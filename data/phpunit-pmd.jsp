@@ -36,4 +36,7 @@
 ********************************************************************************--%>
 <%@page errorPage="/error.jsp"%>
 <%@ taglib uri="/WEB-INF/cruisecontrol-jsp11.tld" prefix="cruisecontrol"%>
+<!--
+    CruiseControl's Style Sheet for PHPUnit PMD and PMD-CPD output
+-->
 <cruisecontrol:xsl xslFile="/xsl/phpunit-pmd-details.xsl"/>
