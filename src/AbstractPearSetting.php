@@ -64,6 +64,7 @@ abstract class pucAbstractPearSetting extends pucAbstractSetting
     public function __construct( $cliTool, $pearInstallDir = null, $outputDir = null )
     {
         $this->properties['cliTool']        = null;
+        $this->properties['fileName']       = null;
         $this->properties['outputDir']      = null;
         $this->properties['pearInstallDir'] = null;
         
