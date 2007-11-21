@@ -49,18 +49,36 @@
 class pucInstallMode extends pucAbstractMode
 {
     /**
+     * List of additional directories for phpUnderControl.
+     *
+     * @type array<string>
+     * @var array(string)
+     */
+    private $directories = array(
+        'images/puc'
+    );
+    
+    /**
      * List of new files.
      *
      * @type array<string>
      * @var array(string=>string) $installFiles
      */
     private $installFiles = array(
+        'header.jsp'                   =>  null,
         'phpcs.jsp'                    =>  null,
+        'phpunit.jsp'                  =>  null,
         'phpunit-pmd.jsp'              =>  null,
+        'images/puc/header-left.png'   =>  null,
+        'images/puc/header-right.png'  =>  null,
+        'images/puc/tab-selected.png'  =>  null,
+        'images/puc/tab-table-bg.png'  =>  null,
         'xsl/phpcs.xsl'                =>  null,
         'xsl/phpcs-details.xsl'        =>  null,
         'xsl/phpdoc.xsl'               =>  null,
         'xsl/phphelper.xsl'            =>  null,
+        'xsl/phpunit.xsl'              =>  null,
+        'xsl/phpunit-details.xsl'      =>  null,
         'xsl/phpunit-pmd.xsl'          =>  null,
         'xsl/phpunit-pmd-details.xsl'  =>  null,
     );
@@ -75,6 +93,8 @@ class pucInstallMode extends pucAbstractMode
         'main.jsp'                     =>  null,
         'metrics.jsp'                  =>  null,
         'xsl/buildresults.xsl'         =>  null,
+        'xsl/errors.xsl'               =>  null,
+        'xsl/modifications.xsl'        =>  null,
     );
     
     /**
@@ -84,14 +104,51 @@ class pucInstallMode extends pucAbstractMode
      */
     public function execute()
     {
-        printf( '%sModifying CruiseControl files.%s', PHP_EOL, PHP_EOL );
+        echo PHP_EOL . 'Creating required CruiseControl directories.' . PHP_EOL;
+        $this->createDirectories();
+        
+        echo PHP_EOL . 'Modifying CruiseControl files.' . PHP_EOL;
         $this->copyModifiedFiles();
         
-        printf( '%sInstalling new CruiseControl files.%s', PHP_EOL, PHP_EOL );
+        echo PHP_EOL . 'Installing new CruiseControl files.' . PHP_EOL;
         $this->copyInstallFiles();
         
-        printf( '%sModifying CruiseControl stylesheet.%s', PHP_EOL, PHP_EOL );
+        echo PHP_EOL . 'Modifying CruiseControl stylesheet.' . PHP_EOL;
         $this->modifyStylesheet();
+    }
+    
+    /**
+     * Creates required directories phpUnderControl.
+     *
+     * @return void
+     */
+    private function createDirectories()
+    {
+        // Get root directory.
+        $installDir = $this->getCCSetting()->ccInstallDir;
+        
+        foreach ( $this->directories as $idx => $directory )
+        {
+            $path = sprintf( 
+                '%s/webapps/cruisecontrol/%s', 
+                $installDir, 
+                $directory
+            );
+            
+            // Skip for existing directories.
+            if ( is_dir( $path ) === true )
+            {
+                continue;
+            }
+            
+            printf( 
+                ' % 2d. Creating directory "webapps/cruisecontrol/%s".%s',
+                $idx,
+                $directory,
+                PHP_EOL
+            );
+            mkdir( $path );
+        }
     }
     
     private function copyModifiedFiles()
