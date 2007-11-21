@@ -94,12 +94,14 @@ class pucExampleMode extends pucAbstractMode
         $ccs  = $this->getCCSetting();
         $path = $ccs->ccInstallDir;
         
-        $projectDir   = sprintf( '%s/projects/%s', $path, $project );
-        $projectInput = sprintf( '%s/projects/%s/source', $path, $project );
-        $projectSrc   = sprintf( '%s/projects/%s/source/src', $path, $project );
-        $projectTests = sprintf( '%s/projects/%s/source/tests', $path, $project );
-        $projectBuild = sprintf( '%s/projects/%s/build', $path, $project );
-        $projectLogs  = sprintf( '%s/projects/%s/build/logs', $path, $project );
+        $projectDir      = sprintf( '%s/projects/%s', $path, $project );
+        $projectInput    = sprintf( '%s/projects/%s/source', $path, $project );
+        $projectSrc      = sprintf( '%s/projects/%s/source/src', $path, $project );
+        $projectTests    = sprintf( '%s/projects/%s/source/tests', $path, $project );
+        $projectBuild    = sprintf( '%s/projects/%s/build', $path, $project );
+        $projectLogs     = sprintf( '%s/projects/%s/build/logs', $path, $project );
+        $projectApi      = sprintf( '%s/projects/%s/build/api', $path, $project );
+        $projectCoverage = sprintf( '%s/projects/%s/build/coverage', $path, $project );
 
         printf( '  1. Creating CruiseControl project dir "projects/%s".' . PHP_EOL, $project );
         mkdir( $projectDir );
@@ -113,31 +115,10 @@ class pucExampleMode extends pucAbstractMode
         mkdir( $projectBuild );
         printf( '  6. Creating Project log dir "%s/build/logs"' . PHP_EOL, $project );
         mkdir( $projectLogs );
-
-        $output = null;
-        
-        $tools = $this->getToolSettings();
-        if ( count( $tools ) > 0 )
-        {
-            foreach ( $tools as $tool )
-            {
-                if ( $tool->outputDir !== null )
-                {
-                    $output = $tool->outputDir;
-                    break; 
-                }
-            }
-        }
-        if ( $output !== null )
-        {
-            $outputApi      = sprintf( '%s/api', $output );
-            $outputCoverage = sprintf( '%s/coverage', $output );
-            
-            printf( '  7. Creating API documentation dir "%s"' . PHP_EOL, $outputApi );
-            mkdir( $outputApi );
-            printf( '  8. Creating Coverage dir "%s"' . PHP_EOL, $outputCoverage );
-            mkdir( $outputCoverage );
-        }
+        printf( '  7. Creating Project coverage dir "%s/build/coverage"' . PHP_EOL, $project );
+        mkdir( $projectCoverage );
+        printf( '  7. Creating Project documentation dir "%s/build/api"' . PHP_EOL, $project );
+        mkdir( $projectApi );
     }
     
     /**
@@ -265,6 +246,12 @@ class pucExampleMode extends pucAbstractMode
 
     <publishers>
       <currentbuildstatuspublisher file="logs/${project.name}/buildstatus.txt"/>
+      <artifactspublisher dir="logs/${project.name}/coverage"
+                          dest="logs/${project.name}"
+                          subdirectory="coverage" />
+      <artifactspublisher dir="logs/${project.name}/api"
+                          dest="logs/${project.name}"
+                          subdirectory="api" />
     </publishers>
   </project>',
                 $project,

@@ -71,13 +71,12 @@ class pucPhpDocumentorSetting extends pucAbstractPearSetting
     <exec executable="%s"
           dir="${basedir}/source"
           logerror="on">
-      <arg line="-ue on -t %s/api -d ." />
+      <arg line="-ue on -t ${basedir}/build/api -d ." />
     </exec>
   </target>
 ',
             $this->cliTool,
-            $this->fileName,
-            $this->outputDir
+            $this->fileName
         );
 
         return $xml;
