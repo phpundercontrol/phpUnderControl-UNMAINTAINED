@@ -52,6 +52,7 @@
     <xsl:variable name="total.error.count" select="count(file/violation)" />
     <xsl:apply-templates select="." mode="summary"/>
     <xsl:apply-templates select="." mode="rule-summary"/>
+
     <table class="result" align="center">
       <colgroup>
         <col width="5%"></col>
@@ -64,6 +65,7 @@
         <xsl:apply-templates select="."/>
       </xsl:for-each>
     </table>
+
     <xsl:apply-templates select="//pmd-cpd/duplication" />
   </xsl:template>
 
@@ -94,10 +96,10 @@
         <col width="5%"></col>
         <col width="85%"></col>
         <col width="5%"></col>
-        <col width="5%"></col>
+        <col width="3%"></col>
       </colgroup>
       <thead>
-        <tr class="checkstyle-fileheader">
+        <tr>
           <th></th>
           <th>PHPUnit PMD rule</th>
           <th>Files</th>
@@ -148,7 +150,7 @@
       <thead>
         <tr><td colspan="4"><br/></td></tr>
         <tr>
-          <th colspan="4" class="checkstyle-fileheader">Duplication
+          <th colspan="4">Duplication
           (Files: <xsl:value-of select="count(file)" />,
            Lines: <xsl:value-of select="@lines" />,
            Tokens: <xsl:value-of select="@tokens" />)</th>
@@ -182,8 +184,8 @@
         <xsl:with-param name="filename" select="@name"/>
       </xsl:call-template>
     </xsl:variable>
-      <xsl:variable name="filename" select="translate(@name,'\','/')"/>
-      <thead>
+    <xsl:variable name="filename" select="translate(@name,'\','/')"/>
+    <thead>
       <tr><td colspan="4"><br/></td></tr>
       <tr>
         <th colspan="4">
@@ -191,8 +193,8 @@
           (<xsl:value-of select="count(violation)"/>)
         </th>
       </tr>
-      </thead>
-      <tbody>
+    </thead>
+    <tbody>
       <xsl:for-each select="violation">
         <xsl:variable name="style">
           <xsl:choose>
@@ -211,12 +213,16 @@
               <xsl:with-param name="line" select="@line"/>
             </xsl:call-template>
           </td>
-          <td class="{$style}"><xsl:value-of disable-output-escaping="no" select="."/></td>
-          <td class="{$style}"><xsl:value-of select="@priority"/></td>
+          <td class="{$style}">
+            <xsl:value-of disable-output-escaping="no" select="."/>
+          </td>
+          <td class="{$style}">
+            <xsl:value-of select="@priority"/>
+          </td>
         </tr>
-      </xsl:for-each>
-      </tbody>
-    </xsl:template>
+      </xsl:for-each> 
+    </tbody>
+  </xsl:template>
 
     <xsl:template name="viewcvs">
       <xsl:param name="file"/>

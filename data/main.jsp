@@ -57,17 +57,34 @@
         margin: 0;
         padding: 10px;
     }
+    table {
+        border: 0;
+    }
     #main-table {
         border-collapse: collapse;
+        width: 98%;
     }
     #main-header th {
+        font-size: 11px;
         margin: 0;
         padding: 0;
     }
-    #main-header th h1 {
+    #main-header th.left {
         background: transparent url('images/puc/header-left.png') 0 0 no-repeat;
+        height: 70px;
+        width: 250px;
+    }
+    #main-header th.center {
+        background: transparent url('images/puc/header-center.png') 0 0 repeat-x;
+    }
+    #main-header th.right {
+        background: transparent url('images/puc/header-right.png') 0 0 no-repeat;
+        width: 50px;
+    }
+    #main-header th h1 {
         float: left;
         margin: 0;
+        padding: 0;
     }
     #main-header th h1 a {
         display: block;
@@ -75,31 +92,31 @@
         text-indent: -9999px;
         width: 250px;
     }
-    #main-header th div {
-        background: transparent url('images/puc/header-right.png') top right no-repeat;
-        height: 70px;
-        margin-left: 50px;
-    }
+
     #main-header th form {
-        float: left;
         margin: 20px 0 0 15px;
+        padding: 0;
     }
     #main-header th form fieldset {
         border: 0 none;
         margin: 0;
         padding: 5px;
+        width: 165px;
     }
     #main-header th form fieldset legend a {
         color: #eeeeec;
         font-weight: bold;
-        margin-left: 3px;
+        margin-left: 8px;
         text-decoration: none;
     }
     #main-header th form fieldset select {
         border: 1px solid #2e3436;
+        font-size: 11px;
+        margin: 0;
+        padding: 0;
         width: 150px;
     }
-    #main-header th div span {
+    #main-header th span {
         color: #eeeeec;
         display: block;
         float: right;
@@ -119,6 +136,7 @@
         height: 27px;
     }
     .tab-table {
+        float: left;
         border: 0 none;
     }
     .tab-table .tabs, .tab-table .tabs-selected {
@@ -132,6 +150,7 @@
         color: #555753;
         display: block;
         font-size: 12px;
+        font-weight: bold;
         line-height: 27px;
         text-align: center;
         width: 100px;
@@ -153,11 +172,12 @@
         line-height: 20px;
         text-align: left;
         text-indent: 5px;
+        white-space: nowrap;
     }
     #main-body table.result tbody td {
         font-size: 11px;
         line-height: 13px;
-        text-indent: 5px;
+        padding-left: 5px;
     }
     #main-body table.result tbody tr.oddrow td {
         background-color: #d3d7cf;
@@ -172,20 +192,16 @@
 </head>
 <body>
   <br />
-  <table id="main-table" border="0" align="center" cellpadding="0" cellspacing="0" width="98%">
+  <table id="main-table" align="center" width="98%">
     <thead id="main-header">
-      <tr>
-        <th>
-          <%@ include file="header.jsp" %>
-        </th>
-      </tr>
+      <%@ include file="header.jsp" %>
     </thead>
     <tbody id="main-body">
     <tr>
-      <td>
+      <td colspan="5">
         <cruisecontrol:tabsheet>
           <tr>
-            <td bgcolor="white" >
+            <td>
               <cruisecontrol:tab name="buildResults" label="Overview" >
                 <%@ include file="buildresults.jsp" %>
               </cruisecontrol:tab>

@@ -37,39 +37,49 @@
 <%@page import="java.io.File, java.util.Arrays"%>
 <%@ taglib uri="/WEB-INF/cruisecontrol-jsp11.tld" prefix="cruisecontrol"%>
 
-<h1>
-  <a href="http://www.phpunit.de/wiki/phpUnderControl">
-  phpUnderControl
-  </a>
-</h1>
-
-<div>
-  <form action="index" >
-    <fieldset>
-      <legend><a href="index">Project:</a></legend>
-      <select name="projecttarget" onchange="self.location.href = this.form.projecttarget.options[this.form.projecttarget.selectedIndex].value">
-        <cruisecontrol:projectnav>
-          <option <%=selected%> value="<%=projecturl%>"><%=linktext%></option>
-        </cruisecontrol:projectnav>
-      </select>
-    </fieldset>
-  </form>
-
-  <cruisecontrol:link id="baseUrl" />
-  <form method="GET" action="<%=baseUrl%>" >
-    <fieldset>
-      <legend><a href="<%=baseUrl%>">Build:</a></legend>
+<tr>
+  <th class="left">
+<%--
+    <h1>
+      <a href="http://www.phpunit.de/wiki/phpUnderControl">
+        phpUnderControl
+      </a>
+    </h1>
+--%>
+  </th>
+  <th class="center">
+    <form action="index" >
+      <fieldset>
+        <legend><a href="index">Project:</a></legend>
+        <select name="projecttarget" onchange="self.location.href = this.form.projecttarget.options[this.form.projecttarget.selectedIndex].value">
+          <cruisecontrol:projectnav>
+            <option <%=selected%> value="<%=projecturl%>"><%=linktext%></option>
+          </cruisecontrol:projectnav>
+        </select>
+      </fieldset>
+    </form>
+  </th>
+  <th class="center">
+    <cruisecontrol:link id="baseUrl" />
+    <form method="GET" action="<%=baseUrl%>" >
+      <fieldset>
+        <legend><a href="<%=baseUrl%>">Build:</a></legend>
   
-      <select name="log" onchange="form.submit()">
-        <option>More builds</option>
-        <cruisecontrol:nav startingBuildNumber="1">
-          <option value="<%=logfile%>"><%= linktext %></option>
-        </cruisecontrol:nav>
-      </select>
-    </fieldset>
-  </form>
-
-  <span>
-    <cruisecontrol:currentbuildstatus/>
-  </span>
-</div>
+        <select name="log" onchange="form.submit()">
+          <option>More builds</option>
+          <cruisecontrol:nav startingBuildNumber="1">
+            <option value="<%=logfile%>"><%= linktext %></option>
+          </cruisecontrol:nav>
+        </select>
+      </fieldset>
+    </form>
+  </th>
+  <th class="center">
+    <span>
+      <cruisecontrol:currentbuildstatus/>
+    </span>
+  </th>
+  <th class="right">
+    <br />
+  </th>
+</tr>
