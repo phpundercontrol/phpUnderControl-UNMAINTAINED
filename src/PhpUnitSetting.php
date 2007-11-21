@@ -85,8 +85,8 @@ class pucPhpUnitSetting extends pucAbstractPearSetting
         $coverage = '';
         if ( $this->coverage === true )
         {
-            $coverage = '--coverage-xml ${basedir}/build/logs/phpunit.coverage.xml
-                         --report ${basedir}/build/coverage';
+            $coverage = '--coverage-xml  ${basedir}/build/logs/phpunit.coverage.xml
+                         --coverage-html ${basedir}/build/coverage';
         }
         $output = '';
         if ( $this->outputDir !== null )
