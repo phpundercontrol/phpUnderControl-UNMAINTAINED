@@ -88,11 +88,6 @@ class pucPhpUnitSetting extends pucAbstractPearSetting
             $coverage = '--coverage-xml  ${basedir}/build/logs/phpunit.coverage.xml
                          --coverage-html ${basedir}/build/coverage';
         }
-        $output = '';
-        if ( $this->outputDir !== null )
-        {
-             
-        }
         
         $xml = sprintf( '
   <target name="%s">
