@@ -50,36 +50,42 @@
     <xsl:variable name="total.errorMessage.count" select="count($phpdoc.warn.messages)  + count($phpdoc.error.messages)"/>
 
     <xsl:if test="$total.errorMessage.count > 0">
-      <table align="center" cellpadding="2" cellspacing="0" border="0" width="98%">
-        <tr>
-          <td class="compile-sectionheader">
-            phpdoc errors/warnings: (<xsl:value-of select="count($phpdoc.error.messages)"/>
-            / <xsl:value-of select="count($phpdoc.warn.messages)" />)
-          </td>
-        </tr>
+      <table class="result" align="center">
+        <thead>
+          <tr>
+            <th>
+              phpdoc errors/warnings: (<xsl:value-of select="count($phpdoc.error.messages)"/>
+              / <xsl:value-of select="count($phpdoc.warn.messages)" />)
+            </th>
+          </tr>
+        </thead>
         <xsl:if test="count($phpdoc.error.messages) > 0">
-          <xsl:for-each select="$phpdoc.error.messages">
-            <tr>
-              <xsl:if test="position() mod 2 = 0">
-                <xsl:attribute name="class">phpdoc-oddrow</xsl:attribute>
-              </xsl:if>
-              <td class="phpdoc-error">
-                <xsl:value-of select="text()"/>
-              </td>
-            </tr>
-          </xsl:for-each>
+          <tbody>
+            <xsl:for-each select="$phpdoc.error.messages">
+              <tr>
+                <xsl:if test="position() mod 2 = 0">
+                  <xsl:attribute name="class">phpdoc-oddrow</xsl:attribute>
+                </xsl:if>
+                <td class="phpdoc-error">
+                  <xsl:value-of select="text()"/>
+                </td>
+              </tr>
+            </xsl:for-each>
+          </tbody>
         </xsl:if>
         <xsl:if test="count($phpdoc.warn.messages) > 0">
-          <xsl:for-each select="$phpdoc.warn.messages">
-            <tr>
-              <xsl:if test="position() mod 2 = 0">
-                <xsl:attribute name="class">phpdoc-oddrow</xsl:attribute>
-              </xsl:if>
-              <td class="phpdoc-warning">
-                <xsl:value-of select="text()"/>
-              </td>
-            </tr>
-          </xsl:for-each>
+          <tbody>
+            <xsl:for-each select="$phpdoc.warn.messages">
+              <tr>
+                <xsl:if test="position() mod 2 = 0">
+                  <xsl:attribute name="class">phpdoc-oddrow</xsl:attribute>
+                </xsl:if>
+                <td class="phpdoc-warning">
+                  <xsl:value-of select="text()"/>
+                </td>
+              </tr>
+            </xsl:for-each>
+          </tbody>
         </xsl:if>
       </table>
     </xsl:if>
@@ -88,4 +94,5 @@
   <xsl:template match="/">
     <xsl:apply-templates select="." mode="phpdoc"/>
   </xsl:template>
+  
 </xsl:stylesheet>

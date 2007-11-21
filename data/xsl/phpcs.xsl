@@ -46,19 +46,23 @@
     <xsl:variable name="total.error.count" select="count(cruisecontrol/checkstyle/file/error[@severity='error'])" />
     <xsl:variable name="total.warning.count" select="count(cruisecontrol/checkstyle/file/error[@severity='warning'])" />
 
-    <table align="center" cellpadding="2" cellspacing="0" border="0" width="98%">
-      <tr>
-        <td class="checkstyle-sectionheader" colspan="3">
-          PHP CodeSniffer errors/warnings (<xsl:value-of select="$total.error.count"/>
-          / <xsl:value-of select="$total.warning.count"/>)
-        </td>
-      </tr>
-      <xsl:for-each select="cruisecontrol/checkstyle">
-        <xsl:apply-templates select="." mode="checkstyle">
-          <xsl:with-param name="total.error.count" select="$total.error.count" />
-          <xsl:with-param name="total.warning.count" select="$total.warning.count" />
-        </xsl:apply-templates>
-      </xsl:for-each>
+    <table class="result" align="center">
+      <thead>
+        <tr>
+          <th colspan="3">
+            PHP CodeSniffer errors/warnings (<xsl:value-of select="$total.error.count"/>
+            / <xsl:value-of select="$total.warning.count"/>)
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <xsl:for-each select="cruisecontrol/checkstyle">
+          <xsl:apply-templates select="." mode="checkstyle">
+            <xsl:with-param name="total.error.count" select="$total.error.count" />
+            <xsl:with-param name="total.warning.count" select="$total.warning.count" />
+          </xsl:apply-templates>
+        </xsl:for-each>
+      </tbody>
     </table>
   </xsl:template>
 
@@ -85,11 +89,11 @@
   <xsl:template match="error" mode="checkstyle">
     <tr>
       <xsl:if test="position() mod 2 = 1">
-        <xsl:attribute name="class">checkstyle-oddrow</xsl:attribute>
+        <xsl:attribute name="class">oddrow</xsl:attribute>
       </xsl:if>
-      <td class="checkstyle-{@severity}"><xsl:value-of select="../@name" /></td>
-      <td class="checkstyle-{@severity}"><xsl:value-of select="@line" /></td>
-      <td class="checkstyle-{@severity}"><xsl:value-of select="@message" /></td>
+      <td class="{@severity}"><xsl:value-of select="../@name" /></td>
+      <td class="{@severity}"><xsl:value-of select="@line" /></td>
+      <td class="{@severity}"><xsl:value-of select="@message" /></td>
     </tr>
   </xsl:template>
 

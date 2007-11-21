@@ -44,28 +44,31 @@
         <xsl:apply-templates select="cruisecontrol/pmd" mode="pmd"/>
     </xsl:template>
 
-    <xsl:template match="pmd[file/violation]" mode="pmd">
-        <xsl:variable name="total.error.count" select="count(file/violation[@priority &lt; $pmd.warning.threshold])" />
-        <xsl:variable name="total.warning.count" select="count(file/violation) + count(//pmd-cpd/duplication)" />
-        <table align="center" cellpadding="2" cellspacing="0" border="0" width="98%">
-          <colgroup>
-              <col width="45%"></col>
-              <col width="5%"></col>
-              <col width="50%"></col>
-          </colgroup>
-          <tr>
-            <td class="checkstyle-sectionheader" colspan="3">
-                PHPUnit PMD errors/warnings (<xsl:value-of select="$total.error.count"/>
-                / <xsl:value-of select="$total.warning.count"/>)
-            </td>
-          </tr>
-         <xsl:choose>
+  <xsl:template match="pmd[file/violation]" mode="pmd">
+    <xsl:variable name="total.error.count" select="count(file/violation[@priority &lt; $pmd.warning.threshold])" />
+    <xsl:variable name="total.warning.count" select="count(file/violation) + count(//pmd-cpd/duplication)" />
+    <table class="result" align="center">
+      <colgroup>
+        <col width="45%"></col>
+        <col width="5%"></col>
+        <col width="50%"></col>
+      </colgroup>
+      <thead>
+        <tr>
+          <th colspan="3">
+            PHPUnit PMD errors/warnings (<xsl:value-of select="$total.error.count"/>
+            / <xsl:value-of select="$total.warning.count"/>)
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <xsl:choose>
           <xsl:when test="$total.error.count = 0">
-             <tr>
+            <tr>
               <td class="checkstyle-data" colspan="3"><xsl:value-of select="$total.warning.count"/> warnings</td>
-             </tr>
-           </xsl:when>
-           <xsl:otherwise>
+            </tr>
+          </xsl:when>
+          <xsl:otherwise>
             <xsl:for-each select="file/violation[@priority &lt; $pmd.warning.threshold]" >
               <tr>
                 <xsl:if test="position() mod 2 = 1">
@@ -76,10 +79,11 @@
                 <td class="checkstyle-data"><xsl:value-of select="." /></td>
               </tr>
             </xsl:for-each>
-           </xsl:otherwise>
-          </xsl:choose>
-      </table>
-    </xsl:template>
+          </xsl:otherwise>
+        </xsl:choose>
+      </tbody>
+    </table>
+  </xsl:template>
 
     <xsl:template match="/">
         <xsl:apply-templates select="." mode="pmd"/>

@@ -1,8 +1,7 @@
-<?xml version="1.0"?>
-<!--********************************************************************************
+<%--********************************************************************************
  * CruiseControl, a Continuous Integration Toolkit
  * Copyright (c) 2001, ThoughtWorks, Inc.
- * 651 W Washington Ave. Suite 500
+ * 200 E. Randolph, 25th Floor
  * Chicago, IL 60601 USA
  * All rights reserved.
  *
@@ -34,33 +33,43 @@
  * LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
  * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
- ********************************************************************************-->
-<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
+ ********************************************************************************--%>
+<%@page import="java.io.File, java.util.Arrays"%>
+<%@ taglib uri="/WEB-INF/cruisecontrol-jsp11.tld" prefix="cruisecontrol"%>
 
-  <xsl:import href="maven.xsl"/>
-  <xsl:import href="phpunit-pmd.xsl"/>
-  <xsl:import href="errors.xsl"/>
-  <xsl:import href="phpdoc.xsl"/>
-  <xsl:import href="phpcs.xsl"/>
-  <xsl:import href="phpunit.xsl"/>
-  <xsl:import href="fittests.xsl"/>
-  <xsl:import href="modifications.xsl"/>
-  <xsl:import href="cvstagdiff.xsl"/>
-  <xsl:import href="distributables.xsl"/>
+<h1>
+  <a href="http://www.phpunit.de/wiki/phpUnderControl">
+  phpUnderControl
+  </a>
+</h1>
 
-  <xsl:output method="html"/>
+<div>
+  <form action="index" >
+    <fieldset>
+      <legend><a href="index">Project:</a></legend>
+      <select name="projecttarget" onchange="self.location.href = this.form.projecttarget.options[this.form.projecttarget.selectedIndex].value">
+        <cruisecontrol:projectnav>
+          <option <%=selected%> value="<%=projecturl%>"><%=linktext%></option>
+        </cruisecontrol:projectnav>
+      </select>
+    </fieldset>
+  </form>
 
-  <xsl:variable name="cruisecontrol.list" select="."/>
+  <cruisecontrol:link id="baseUrl" />
+  <form method="GET" action="<%=baseUrl%>" >
+    <fieldset>
+      <legend><a href="<%=baseUrl%>">Build:</a></legend>
+  
+      <select name="log" onchange="form.submit()">
+        <option>More builds</option>
+        <cruisecontrol:nav startingBuildNumber="1">
+          <option value="<%=logfile%>"><%= linktext %></option>
+        </cruisecontrol:nav>
+      </select>
+    </fieldset>
+  </form>
 
-  <xsl:template match="/">
-    <p><xsl:apply-templates select="$cruisecontrol.list" mode="maven"/></p>
-    <p><xsl:apply-templates select="$cruisecontrol.list" mode="pmd"/></p>
-    <p><xsl:apply-templates select="$cruisecontrol.list" mode="errors"/></p>
-    <p><xsl:apply-templates select="$cruisecontrol.list" mode="checkstyle" /></p>
-    <p><xsl:apply-templates select="$cruisecontrol.list" mode="phpdoc" /></p>
-    <p><xsl:apply-templates select="$cruisecontrol.list" mode="unittests"/></p>
-    <p><xsl:apply-templates select="$cruisecontrol.list" mode="modifications"/></p>
-    <p><xsl:apply-templates select="$cruisecontrol.list" mode="cvstagdiff"/></p>
-    <p><xsl:apply-templates select="$cruisecontrol.list" mode="distributables"/></p>
-  </xsl:template>
-</xsl:stylesheet>
+  <span>
+    <cruisecontrol:currentbuildstatus/>
+  </span>
+</div>

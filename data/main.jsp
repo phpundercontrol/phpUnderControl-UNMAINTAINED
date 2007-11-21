@@ -50,25 +50,148 @@
   <base href="<%=request.getScheme()%>://<%=request.getServerName()%>:<%=request.getServerPort()%><%=request.getContextPath()%>/" />
   <link type="text/css" rel="stylesheet" href="css/cruisecontrol.css"/>
   <link type="application/rss+xml" rel="alternate" href="<%= request.getContextPath() %>/rss/<%= project %>" title="RSS"/>
+  <style type="text/css">
+    body {
+        font-family: arial,helvetica,sans-serif;
+        font-size: 11px;
+        margin: 0;
+        padding: 10px;
+    }
+    #main-table {
+        border-collapse: collapse;
+    }
+    #main-header th {
+        margin: 0;
+        padding: 0;
+    }
+    #main-header th h1 {
+        background: transparent url('images/puc/header-left.png') 0 0 no-repeat;
+        float: left;
+        margin: 0;
+    }
+    #main-header th h1 a {
+        display: block;
+        height: 70px;
+        text-indent: -9999px;
+        width: 250px;
+    }
+    #main-header th div {
+        background: transparent url('images/puc/header-right.png') top right no-repeat;
+        height: 70px;
+        margin-left: 50px;
+    }
+    #main-header th form {
+        float: left;
+        margin: 20px 0 0 15px;
+    }
+    #main-header th form fieldset {
+        border: 0 none;
+        margin: 0;
+        padding: 5px;
+    }
+    #main-header th form fieldset legend a {
+        color: #eeeeec;
+        font-weight: bold;
+        margin-left: 3px;
+        text-decoration: none;
+    }
+    #main-header th form fieldset select {
+        border: 1px solid #2e3436;
+        width: 150px;
+    }
+    #main-header th div span {
+        color: #eeeeec;
+        display: block;
+        float: right;
+        font-style: italic;
+        font-weight: normal;
+        margin: 25px 10px 0 0;
+        text-align: left;
+    }
+    #main-body td {
+        background-color: #eeeeec;
+    }
+    #main-body img {
+        display: none;
+    }
+    #main-body div {
+        background: transparent url('images/puc/tab-table-bg.png') 0 0 repeat-x;
+        height: 27px;
+    }
+    .tab-table {
+        border: 0 none;
+    }
+    .tab-table .tabs, .tab-table .tabs-selected {
+        background: transparent;
+        border: 0 none;
+        padding: 0;
+    }
+    .tab-table .tabs a, .tab-table .tabs-selected {
+        background: transparent url('images/puc/tab-table-bg.png') 0 0 repeat-x;
+        border-right: 1px solid #888a85;
+        color: #555753;
+        display: block;
+        font-size: 12px;
+        line-height: 27px;
+        text-align: center;
+        width: 100px;
+    }
+    .tab-table .tabs a:hover, .tab-table .tabs-selected {
+        background: transparent url('images/puc/tab-selected.png') 0 0 repeat-x;
+        border-right-color: #3465a4;
+        color: #eeeeec;
+    }
+    #main-body table.result {
+        border: 0 none;
+        border-collapse: collapse;
+        width: 98%;
+    }
+    #main-body table.result th {
+        background-color: #a40000;
+        color: #eeeeec;
+        font-size: 13px;
+        line-height: 20px;
+        text-align: left;
+        text-indent: 5px;
+    }
+    #main-body table.result tbody td {
+        font-size: 11px;
+        line-height: 13px;
+        text-indent: 5px;
+    }
+    #main-body table.result tbody tr.oddrow td {
+        background-color: #d3d7cf;
+    } 
+    #main-body table.result tbody td.error {
+        color: #c00;
+    }
+    #main-body table.result tbody td.warning {
+        color: #000;
+    }
+  </style>
 </head>
-<body background="images/bluebg.gif" topmargin="0" leftmargin="0" marginheight="0" marginwidth="0">
-  <table border="0" align="center" cellpadding="0" cellspacing="0" width="98%">
+<body>
+  <br />
+  <table id="main-table" border="0" align="center" cellpadding="0" cellspacing="0" width="98%">
+    <thead id="main-header">
+      <tr>
+        <th>
+          <%@ include file="header.jsp" %>
+        </th>
+      </tr>
+    </thead>
+    <tbody id="main-body">
     <tr>
-      <td valign="top">
-        <%@ include file="navigation.jsp" %>
-      </td>
-      <td valign="top">
-        &nbsp;<br/>
+      <td>
         <cruisecontrol:tabsheet>
           <tr>
             <td bgcolor="white" >
-
-              <cruisecontrol:tab name="buildResults" label="Build Results" >
+              <cruisecontrol:tab name="buildResults" label="Overview" >
                 <%@ include file="buildresults.jsp" %>
               </cruisecontrol:tab>
 
-              <cruisecontrol:tab name="testResults" label="Test Results" >
-                <%@ include file="testdetails.jsp" %>
+              <cruisecontrol:tab name="testResults" label="Tests" >
+                <%@ include file="phpunit.jsp" %>
               </cruisecontrol:tab>
 
               <cruisecontrol:loglink id="logs_url"/>
@@ -77,22 +200,25 @@
               <cruisecontrol:tab name="metrics" label="Metrics" >
                 <%@ include file="metrics.jsp" %>
               </cruisecontrol:tab>
-<%--
-              <% if (rmiEnabled) { %>
-              <cruisecontrol:tab name="config" label="Config">
-                <iframe src="config.jspa?project=<%= project %>" width="90%"
-                    height="600" frameborder="0"></iframe>
+              
+              <cruisecontrol:tab name="coverage" label="Coverage">
+                <cruisecontrol:artifactsLink>
+                  <iframe src="<%= artifacts_url %>/coverage/index.html" width="100%" height="550" frameborder="0" />
+                  </iframe>
+                </cruisecontrol:artifactsLink>
               </cruisecontrol:tab>
-              <% } %>
+              
+              <cruisecontrol:tab name="documentation" label="Documentation">
+                <cruisecontrol:artifactsLink>
+                  <iframe src="<%= artifacts_url %>/api/index.html" width="100%" height="550" frameborder="0" />
+                  </iframe>
+                </cruisecontrol:artifactsLink>
+              </cruisecontrol:tab>
 
-              <cruisecontrol:tab name="controlPanel" label="Control Panel" >
-                <%@ include file="controlpanel.jsp" %>
-              </cruisecontrol:tab>
-              <cruisecontrol:tabrow/>
---%>
-              <cruisecontrol:tab name="phpcs" label="PHP CodeSniffer">
+              <cruisecontrol:tab name="phpcs" label="CodeSniffer">
                 <%@ include file="phpcs.jsp" %>
               </cruisecontrol:tab>
+              
               <cruisecontrol:tab name="pmd" label="PHPUnit PMD">
                 <%@ include file="phpunit-pmd.jsp" %>
               </cruisecontrol:tab>
@@ -102,6 +228,7 @@
         </cruisecontrol:tabsheet>
       </td>
     </tr>
+    </tbody>
   </table>
 </body>
 </html>

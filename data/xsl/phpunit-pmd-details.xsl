@@ -52,7 +52,7 @@
     <xsl:variable name="total.error.count" select="count(file/violation)" />
     <xsl:apply-templates select="." mode="summary"/>
     <xsl:apply-templates select="." mode="rule-summary"/>
-    <table align="center" cellpadding="2" cellspacing="0" border="0" width="98%">
+    <table class="result" align="center">
       <colgroup>
         <col width="5%"></col>
         <col width="5%"></col>
@@ -89,70 +89,76 @@
 
   <xsl:template match="pmd" mode="rule-summary">
     <p/>
-    <table align="center" cellpadding="2" cellspacing="0" border="0" width="98%">
+    <table class="result" align="center">
       <colgroup>
         <col width="5%"></col>
         <col width="85%"></col>
         <col width="5%"></col>
         <col width="5%"></col>
       </colgroup>
-      <tr class="checkstyle-fileheader">
-        <td></td>
-        <td>PHPUnit PMD rule</td>
-        <td>Files</td>
-        <td>Error/Warnings</td>
-      </tr>
-      <xsl:for-each select="file/violation[generate-id() = generate-id(key('rules', @rule)[1])]">
-        <xsl:sort data-type="number" order="descending" select="count(key('rules', @rule))"/>
+      <thead>
+        <tr class="checkstyle-fileheader">
+          <th></th>
+          <th>PHPUnit PMD rule</th>
+          <th>Files</th>
+          <th>Error/Warnings</th>
+        </tr>
+      </thead>
+      <tbody>
+        <xsl:for-each select="file/violation[generate-id() = generate-id(key('rules', @rule)[1])]">
+          <xsl:sort data-type="number" order="descending" select="count(key('rules', @rule))"/>
 
-        <xsl:variable name="errorCount" select="count(key('rules', @rule))"/>
-        <xsl:variable name="fileCount" select="count(../../file[violation/@rule=current()/@rule])"/>
-        <tr>
-          <xsl:if test="position() mod 2 = 0">
-            <xsl:attribute name="class">checkstyle-oddrow</xsl:attribute>
-          </xsl:if>
-          <td></td>
-          <td class="checkstyle-data"><xsl:value-of select="@ruleset"/> / <xsl:value-of select="@rule"/></td>
-          <td class="checkstyle-data" align="right"><xsl:value-of select="$fileCount"/></td>
-          <td class="checkstyle-data" align="right"><xsl:value-of select="$errorCount"/></td>
-        </tr>
-      </xsl:for-each>
-      <xsl:if test="count(//pmd-cpd/duplication) &gt; 0">
-        <xsl:variable name="duplication.count" select="count(//pmd-cpd/duplication)" />
-        <xsl:variable name="duplication.file.count" select="count(//pmd-cpd/duplication/file)" />
-        <tr>
-          <xsl:if test="count(file/violation) mod 2 != 0">
-            <xsl:attribute name="class">checkstyle-oddrow</xsl:attribute>
-          </xsl:if>
-          <td></td>
-          <td class="checkstyle-data"> / CopyPasteDetection</td>
-          <td class="checkstyle-data" align="right"><xsl:value-of select="$duplication.file.count" /></td>
-          <td class="checkstyle-data" align="right"><xsl:value-of select="$duplication.count" /></td>
-        </tr>
-      </xsl:if>
+          <xsl:variable name="errorCount" select="count(key('rules', @rule))"/>
+          <xsl:variable name="fileCount" select="count(../../file[violation/@rule=current()/@rule])"/>
+          <tr>
+            <xsl:if test="position() mod 2 = 0">
+              <xsl:attribute name="class">oddrow</xsl:attribute>
+            </xsl:if>
+            <td></td>
+            <td class="checkstyle-data"><xsl:value-of select="@ruleset"/> / <xsl:value-of select="@rule"/></td>
+            <td class="checkstyle-data" align="right"><xsl:value-of select="$fileCount"/></td>
+            <td class="checkstyle-data" align="right"><xsl:value-of select="$errorCount"/></td>
+          </tr>
+        </xsl:for-each>
+        <xsl:if test="count(//pmd-cpd/duplication) &gt; 0">
+          <xsl:variable name="duplication.count" select="count(//pmd-cpd/duplication)" />
+          <xsl:variable name="duplication.file.count" select="count(//pmd-cpd/duplication/file)" />
+          <tr>
+            <xsl:if test="count(file/violation) mod 2 != 0">
+              <xsl:attribute name="class">oddrow</xsl:attribute>
+            </xsl:if>
+            <td></td>
+            <td class="checkstyle-data"> / CopyPasteDetection</td>
+            <td class="checkstyle-data" align="right"><xsl:value-of select="$duplication.file.count" /></td>
+            <td class="checkstyle-data" align="right"><xsl:value-of select="$duplication.count" /></td>
+          </tr>
+        </xsl:if>
+      </tbody>
     </table>
   </xsl:template>
 
   <xsl:template match="duplication">
-    <table width="98%" cellspacing="0" cellpadding="2" border="0" align="center">
+    <table class="result" align="center">
       <colgroup>
         <col width="5%"/>
         <col width="5%"/>
         <col width="85%"/>
         <col width="5%"/>
       </colgroup>
-      <tbody>
+      <thead>
         <tr><td colspan="4"><br/></td></tr>
         <tr>
-          <td colspan="4" class="checkstyle-fileheader">Duplication
+          <th colspan="4" class="checkstyle-fileheader">Duplication
           (Files: <xsl:value-of select="count(file)" />,
            Lines: <xsl:value-of select="@lines" />,
-           Tokens: <xsl:value-of select="@tokens" />)</td>
+           Tokens: <xsl:value-of select="@tokens" />)</th>
         </tr>
+      </thead>
+      <tbody>
         <xsl:for-each select="file">
           <tr>
             <xsl:if test="position() mod 2 = 0">
-              <xsl:attribute name="class">checkstyle-oddrow</xsl:attribute>
+              <xsl:attribute name="class">oddrow</xsl:attribute>
             </xsl:if>
             <td/>
             <td align="right" class="checkstyle-warning"><xsl:value-of select="@line" /></td>
@@ -177,23 +183,26 @@
       </xsl:call-template>
     </xsl:variable>
       <xsl:variable name="filename" select="translate(@name,'\','/')"/>
+      <thead>
       <tr><td colspan="4"><br/></td></tr>
       <tr>
-        <td class="checkstyle-fileheader" colspan="4">
+        <th colspan="4">
           <xsl:value-of select="$javaclass"/>
           (<xsl:value-of select="count(violation)"/>)
-        </td>
+        </th>
       </tr>
+      </thead>
+      <tbody>
       <xsl:for-each select="violation">
         <xsl:variable name="style">
           <xsl:choose>
-            <xsl:when test="@priority &lt;= 2">checkstyle-error</xsl:when>
-            <xsl:otherwise>checkstyle-warning</xsl:otherwise>
+            <xsl:when test="@priority &lt;= 2">error</xsl:when>
+            <xsl:otherwise>warning</xsl:otherwise>
           </xsl:choose>
         </xsl:variable>
         <tr>
           <xsl:if test="position() mod 2 = 0">
-            <xsl:attribute name="class">checkstyle-oddrow</xsl:attribute>
+            <xsl:attribute name="class">oddrow</xsl:attribute>
           </xsl:if>
           <td />
           <td class="{$style}" align="right">
@@ -206,6 +215,7 @@
           <td class="{$style}"><xsl:value-of select="@priority"/></td>
         </tr>
       </xsl:for-each>
+      </tbody>
     </xsl:template>
 
     <xsl:template name="viewcvs">
