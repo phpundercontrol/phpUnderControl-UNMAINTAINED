@@ -246,10 +246,10 @@ class pucExampleMode extends pucAbstractMode
 
     <publishers>
       <currentbuildstatuspublisher file="logs/${project.name}/buildstatus.txt"/>
-      <artifactspublisher dir="logs/${project.name}/coverage"
+      <artifactspublisher dir="projects/${project.name}/build/coverage"
                           dest="logs/${project.name}"
                           subdirectory="coverage" />
-      <artifactspublisher dir="logs/${project.name}/api"
+      <artifactspublisher dir="projects/${project.name}/build/api"
                           dest="logs/${project.name}"
                           subdirectory="api" />
     </publishers>
