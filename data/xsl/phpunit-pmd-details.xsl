@@ -52,7 +52,7 @@
     <xsl:variable name="total.error.count" select="count(file/violation)" />
     <xsl:apply-templates select="." mode="summary"/>
     <xsl:apply-templates select="." mode="rule-summary"/>
-
+    
     <table class="result" align="center">
       <colgroup>
         <col width="5%"></col>
@@ -163,14 +163,18 @@
               <xsl:attribute name="class">oddrow</xsl:attribute>
             </xsl:if>
             <td/>
-            <td align="right" class="checkstyle-warning"><xsl:value-of select="@line" /></td>
-            <td class="checkstyle-warning"><xsl:value-of select="@path" /></td>
-            <td class="checkstyle-warning"/>
+            <td align="right" class="warning"><xsl:value-of select="@line" /></td>
+            <td class="warning"><xsl:value-of select="@path" /></td>
+            <td class="warning"/>
           </tr>
         </xsl:for-each>
         <tr>
-          <td colspan="4">
-            <pre class="testresults-output-div"><xsl:value-of select="codefragment/text()" /></pre>
+          <td colspan="2"> </td>
+          <td colspan="2">
+            <pre class="code-fragment">
+              <xsl:text>    </xsl:text>
+              <xsl:value-of select="codefragment/text()" />
+            </pre>
           </td>
         </tr>
       </tbody>

@@ -72,7 +72,7 @@
             <xsl:for-each select="file/violation[@priority &lt; $pmd.warning.threshold]" >
               <tr>
                 <xsl:if test="position() mod 2 = 1">
-                  <xsl:attribute name="class">checkstyle-oddrow</xsl:attribute>
+                  <xsl:attribute name="class">oddrow</xsl:attribute>
                 </xsl:if>
                 <td class="checkstyle-data"><xsl:value-of select="../@name" /></td>
                 <td class="checkstyle-data" align="right"><xsl:value-of select="@line" /></td>

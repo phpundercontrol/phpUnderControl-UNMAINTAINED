@@ -96,6 +96,7 @@
     #main-header th form {
         margin: 20px 0 0 15px;
         padding: 0;
+        width: 180px;
     }
     #main-header th form fieldset {
         border: 0 none;
@@ -187,6 +188,10 @@
     }
     #main-body table.result tbody td.warning {
         color: #000;
+    }
+    #main-body pre.code-fragment {
+        background-color: #fff;
+        border: 1px solid #d3d7cf;
     }
   </style>
 </head>

@@ -63,10 +63,10 @@
           <tbody>
             <xsl:for-each select="$phpdoc.error.messages">
               <tr>
-                <xsl:if test="position() mod 2 = 0">
-                  <xsl:attribute name="class">phpdoc-oddrow</xsl:attribute>
+                <xsl:if test="position() mod 2 = 1">
+                  <xsl:attribute name="class">oddrow</xsl:attribute>
                 </xsl:if>
-                <td class="phpdoc-error">
+                <td class="error">
                   <xsl:value-of select="text()"/>
                 </td>
               </tr>
@@ -77,10 +77,10 @@
           <tbody>
             <xsl:for-each select="$phpdoc.warn.messages">
               <tr>
-                <xsl:if test="position() mod 2 = 0">
-                  <xsl:attribute name="class">phpdoc-oddrow</xsl:attribute>
+                <xsl:if test="position() mod 2 = 1">
+                  <xsl:attribute name="class">oddrow</xsl:attribute>
                 </xsl:if>
-                <td class="phpdoc-warning">
+                <td class="warning">
                   <xsl:value-of select="text()"/>
                 </td>
               </tr>
