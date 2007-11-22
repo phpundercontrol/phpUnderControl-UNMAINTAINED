@@ -46,7 +46,7 @@
   <xsl:template match="/">
     <xsl:call-template name="checkstyle-summary" />
     <xsl:call-template name="checkstyle-check-summary"/>
-    <table align="center" cellpadding="2" cellspacing="0" border="0" width="98%">
+    <table class="result">
       <colgroup>
         <col width="5%"></col>
         <col width="5%"></col>
@@ -67,52 +67,50 @@
   </xsl:template>
 
   <xsl:template name="checkstyle-summary">
-    <table align="center" cellpadding="2" cellspacing="0" border="0" width="98%">
-      <tr><td class="header-title">PHP CodeSniffer Summary</td></tr>
-      <tr><td class="header-data">
-        <span class="header-label">Files: </span>
-        <xsl:value-of select="count(/cruisecontrol/checkstyle/file[error])"/>
-      </td></tr>
-      <tr><td class="header-data">
-        <span class="header-label">Errors: </span>
-        <xsl:value-of select="count(/cruisecontrol/checkstyle/file/error[@severity='error'])"/>
-      </td></tr>
-      <tr><td class="header-data">
-        <span class="header-label">Warnings: </span>
-        <xsl:value-of select="count(/cruisecontrol/checkstyle/file/error[@severity='warning'])"/>
-      </td></tr>
-    </table>
+    <h2>PHP CodeSniffer Summary</h2>
+    <dl>
+      <dt>Files: </dt>
+      <dd><xsl:value-of select="count(/cruisecontrol/checkstyle/file[error])"/></dd>
+      <dt>Errors: </dt>
+      <dd><xsl:value-of select="count(/cruisecontrol/checkstyle/file/error[@severity='error'])"/></dd>
+      <dt>Warnings: </dt>
+      <dd><xsl:value-of select="count(/cruisecontrol/checkstyle/file/error[@severity='warning'])"/></dd>
+    </dl>
   </xsl:template>
 
   <xsl:template name="checkstyle-check-summary">
     <p/>
-    <table align="center" cellpadding="2" cellspacing="0" border="0" width="98%">
+    <table class="result">
       <colgroup>
         <col width="5%"></col>
         <col width="85%"></col>
         <col width="5%"></col>
         <col width="5%"></col>
       </colgroup>
-      <tr class="checkstyle-fileheader">
-        <td></td>
-        <td>PHP CodeSniffer violation</td>
-        <td>Files</td>
-        <td>Error/Warnings</td>
-      </tr>
-      <xsl:for-each select="/cruisecontrol/checkstyle/file">
-        <xsl:variable name="errors" select="/cruisecontrol/checkstyle/file[@name=current()/@name]/error"/>
-        <xsl:variable name="errorCount" select="count($errors)"/>
-        <xsl:variable name="fileCount" select="count($errors/..)"/>
+      <thead>
         <tr>
-          <xsl:if test="position() mod 2 = 0">
-            <xsl:attribute name="class">checkstyle-oddrow</xsl:attribute>
-          </xsl:if>
-          <td></td>
-          <td class="checkstyle-data"><xsl:value-of select="@name"/></td>
-          <td class="checkstyle-data" align="right"><xsl:value-of select="$fileCount"/></td>
-          <td class="checkstyle-data" align="right"><xsl:value-of select="$errorCount"/></td>
+          <th></th>
+          <th>PHP CodeSniffer violation</th>
+          <th>Files</th>
+          <th>Error/Warnings</th>
         </tr>
-      </xsl:for-each>
+      </thead>
+      <tbody>
+        <xsl:for-each select="/cruisecontrol/checkstyle/file">
+          <xsl:variable name="errors" select="/cruisecontrol/checkstyle/file[@name=current()/@name]/error"/>
+          <xsl:variable name="errorCount" select="count($errors)"/>
+          <xsl:variable name="fileCount" select="count($errors/..)"/>
+          <tr>
+            <xsl:if test="position() mod 2 = 0">
+              <xsl:attribute name="class">oddrow</xsl:attribute>
+            </xsl:if>
+            <td></td>
+            <td><xsl:value-of select="@name"/></td>
+            <td align="right"><xsl:value-of select="$fileCount"/></td>
+            <td align="right"><xsl:value-of select="$errorCount"/></td>
+          </tr>
+        </xsl:for-each>
+      </tbody>
     </table>
   </xsl:template>
 
@@ -123,29 +121,33 @@
         <xsl:with-param name="filename" select="$filename"/>
       </xsl:call-template>
     </xsl:variable>
-    <tr><td colspan="3"><br/></td></tr>
-    <tr>
-      <td class="checkstyle-fileheader" colspan="3">
-        <xsl:value-of select="$javaclass"/>
-        (<xsl:value-of select="count(error[@severity='error'])"/>
-        / <xsl:value-of select="count(error)"/>)
-      </td>
-    </tr>
-    <xsl:for-each select="error">
+    <thead>
+      <tr><td colspan="3"><br/></td></tr>
       <tr>
-        <xsl:if test="position() mod 2 = 0">
-          <xsl:attribute name="class">checkstyle-oddrow</xsl:attribute>
-        </xsl:if>
-        <td />
-        <td class="checkstyle-{@severity}" align="right">
-          <xsl:call-template name="viewcvs">
-            <xsl:with-param name="file" select="@name"/>
-            <xsl:with-param name="line" select="@line"/>
-          </xsl:call-template>
-        </td>
-        <td class="checkstyle-{@severity}"><xsl:value-of select="@message"/></td>
+        <th colspan="3">
+          <xsl:value-of select="$javaclass"/>
+          (<xsl:value-of select="count(error[@severity='error'])"/>
+          / <xsl:value-of select="count(error)"/>)
+        </th>
       </tr>
-    </xsl:for-each>
+    </thead>
+    <tbody>
+      <xsl:for-each select="error">
+        <tr>
+          <xsl:if test="position() mod 2 = 0">
+            <xsl:attribute name="class">oddrow</xsl:attribute>
+          </xsl:if>
+          <td></td>
+          <td class="{@severity}" align="right">
+            <xsl:call-template name="viewcvs">
+              <xsl:with-param name="file" select="@name"/>
+              <xsl:with-param name="line" select="@line"/>
+            </xsl:call-template>
+          </td>
+          <td><xsl:value-of select="@message"/></td>
+        </tr>
+      </xsl:for-each>
+    </tbody>
   </xsl:template>
 
   <xsl:template name="viewcvs">

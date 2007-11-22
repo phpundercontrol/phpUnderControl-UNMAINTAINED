@@ -44,166 +44,19 @@
     String ccname = System.getProperty("ccname", "");
     String project = request.getPathInfo().substring(1);
 %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html>
 <head>
   <title><%= ccname%> CruiseControl Build Results</title>
   <base href="<%=request.getScheme()%>://<%=request.getServerName()%>:<%=request.getServerPort()%><%=request.getContextPath()%>/" />
-  <link type="text/css" rel="stylesheet" href="css/cruisecontrol.css"/>
+  <link type="text/css" rel="stylesheet" href="css/SyntaxHighlighter.css"/>
+  <link type="text/css" rel="stylesheet" href="css/php-under-control.css"/>
   <link type="application/rss+xml" rel="alternate" href="<%= request.getContextPath() %>/rss/<%= project %>" title="RSS"/>
-  <style type="text/css">
-    body {
-        font-family: arial,helvetica,sans-serif;
-        font-size: 11px;
-        margin: 0;
-        padding: 10px;
-    }
-    table {
-        border: 0;
-    }
-    #main-table {
-        border-collapse: collapse;
-        width: 98%;
-    }
-    #main-header th {
-        font-size: 11px;
-        margin: 0;
-        padding: 0;
-    }
-    #main-header th.left {
-        background: transparent url('images/puc/header-left.png') 0 0 no-repeat;
-        height: 70px;
-        width: 250px;
-    }
-    #main-header th.center {
-        background: transparent url('images/puc/header-center.png') 0 0 repeat-x;
-    }
-    #main-header th.right {
-        background: transparent url('images/puc/header-right.png') 0 0 no-repeat;
-        width: 50px;
-    }
-    #main-header th h1 {
-        float: left;
-        margin: 0;
-        padding: 0;
-    }
-    #main-header th h1 a {
-        display: block;
-        height: 70px;
-        text-indent: -9999px;
-        width: 250px;
-    }
-
-    #main-header th form {
-        margin: 20px 0 0 15px;
-        padding: 0;
-        width: 180px;
-    }
-    #main-header th form fieldset {
-        border: 0 none;
-        margin: 0;
-        padding: 5px;
-        width: 165px;
-    }
-    #main-header th form fieldset legend a {
-        color: #eeeeec;
-        font-weight: bold;
-        margin-left: 8px;
-        text-decoration: none;
-    }
-    #main-header th form fieldset select {
-        border: 1px solid #2e3436;
-        font-size: 11px;
-        margin: 0;
-        padding: 0;
-        width: 150px;
-    }
-    #main-header th span {
-        color: #eeeeec;
-        display: block;
-        float: right;
-        font-style: italic;
-        font-weight: normal;
-        margin: 25px 10px 0 0;
-        text-align: left;
-    }
-    #main-body td {
-        background-color: #eeeeec;
-    }
-    #main-body img {
-        display: none;
-    }
-    #main-body div {
-        background: transparent url('images/puc/tab-table-bg.png') 0 0 repeat-x;
-        height: 27px;
-    }
-    .tab-table {
-        float: left;
-        border: 0 none;
-    }
-    .tab-table .tabs, .tab-table .tabs-selected {
-        background: transparent;
-        border: 0 none;
-        padding: 0;
-    }
-    .tab-table .tabs a, .tab-table .tabs-selected {
-        background: transparent url('images/puc/tab-table-bg.png') 0 0 repeat-x;
-        border-right: 1px solid #888a85;
-        color: #555753;
-        display: block;
-        font-size: 12px;
-        font-weight: bold;
-        line-height: 27px;
-        text-align: center;
-        width: 100px;
-    }
-    .tab-table .tabs a:hover, .tab-table .tabs-selected {
-        background: transparent url('images/puc/tab-selected.png') 0 0 repeat-x;
-        border-right-color: #3465a4;
-        color: #eeeeec;
-    }
-    #main-body table.result {
-        border: 0 none;
-        border-collapse: collapse;
-        width: 98%;
-    }
-    #main-body table.result th {
-        background-color: #a40000;
-        color: #eeeeec;
-        font-size: 13px;
-        line-height: 20px;
-        text-align: left;
-        text-indent: 5px;
-        white-space: nowrap;
-    }
-    #main-body table.result tbody td {
-        font-size: 11px;
-        line-height: 13px;
-        padding-left: 5px;
-    }
-    #main-body table.result tbody tr.oddrow td {
-        background-color: #d3d7cf;
-    } 
-    #main-body table.result tbody td.error {
-        color: #c00;
-    }
-    #main-body table.result tbody td.warning {
-        color: #000;
-    }
-    #main-body pre.code-fragment {
-        background-color: #fff;
-        border: 1px solid #d3d7cf;
-    }
-  </style>
 </head>
 <body>
-  <br />
-  <table id="main-table" align="center" width="98%">
-    <thead id="main-header">
-      <%@ include file="header.jsp" %>
-    </thead>
-    <tbody id="main-body">
-    <tr>
-      <td colspan="5">
+  <div id="container">
+    <%@ include file="header.jsp" %>
         <cruisecontrol:tabsheet>
           <tr>
             <td>
@@ -247,9 +100,11 @@
             </td>
           </tr>
         </cruisecontrol:tabsheet>
-      </td>
-    </tr>
-    </tbody>
-  </table>
-</body>
+  </div>
+  
+    <div id="footer">
+      By <a href="http://www.manuel-pichler.de/">Manuel Pichler</a> hostet
+      at <a href="http://www.phpunit.de/">phpunit.de</a>.
+    </div>
+  </body>
 </html>

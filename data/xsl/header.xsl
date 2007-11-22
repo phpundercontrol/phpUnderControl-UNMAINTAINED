@@ -1,4 +1,5 @@
-<%--********************************************************************************
+<?xml version="1.0"?>
+<!--********************************************************************************
  * CruiseControl, a Continuous Integration Toolkit
  * Copyright (c) 2001, ThoughtWorks, Inc.
  * 200 E. Randolph, 25th Floor
@@ -33,42 +34,49 @@
  * LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
  * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
- ********************************************************************************--%>
-<%@page import="java.io.File, java.util.Arrays"%>
-<%@ taglib uri="/WEB-INF/cruisecontrol-jsp11.tld" prefix="cruisecontrol"%>
+ ********************************************************************************-->
+<xsl:stylesheet
+    xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
 
-    <cruisecontrol:link id="baseUrl" />
-    <h1>
-      <a href="<%=baseUrl%>">
-        phpUnderControl  
-      </a>
-    </h1>
+  <xsl:output method="html"/>
 
-      <form action="index" id="cc-project">
-        <fieldset>
-          <legend><a href="index">Project:</a></legend>
-          <select name="projecttarget" onchange="self.location.href = this.form.projecttarget.options[this.form.projecttarget.selectedIndex].value">
-            <cruisecontrol:projectnav>
-              <option <%=selected%> value="<%=projecturl%>"><%=linktext%></option>
-            </cruisecontrol:projectnav>
-          </select>
-        </fieldset>
-      </form>
-   
-    
-    <form method="GET" action="<%=baseUrl%>" id="cc-build">
-      <fieldset>
-        <legend><a href="<%=baseUrl%>">Build:</a></legend>
+  <xsl:template match="/" mode="header">
+    <xsl:variable name="modification.list" select="cruisecontrol/modifications/modification"/>
+
+    <xsl:if test="cruisecontrol/build/@error">
+      <h2>BUILD FAILED</h2>
+      <dl>
+        <dt>Ant Error Message:</dt>
+        <dd><xsl:value-of select="cruisecontrol/build/@error"/></dd>
+      </dl>
+    </xsl:if>
+
+    <xsl:if test="not (cruisecontrol/build/@error)">
+      <h2>BUILD COMPLETE - <xsl:value-of select="cruisecontrol/info/property[@name='label']/@value"/></h2>
+    </xsl:if>
+    <dl>
+      <dt>Date of build:</dt>
+      <dd><xsl:value-of select="cruisecontrol/info/property[@name='builddate']/@value"/></dd>
+      <dt>Time to build:</dt>
+      <dd><xsl:value-of select="cruisecontrol/build/@time"/></dd>
+      <xsl:apply-templates select="$modification.list" mode="header">
+        <xsl:sort select="date" order="descending" data-type="text" />
+      </xsl:apply-templates>
+    </dl>
+  </xsl:template>
+
+  <!-- Last Modification template -->
+  <xsl:template match="modification" mode="header">
+    <xsl:if test="position() = 1">
+      <dt>Last changed:</dt>
+      <dd><xsl:value-of select="date"/></dd>
+      <dt>Last log entry:</dt>
+      <dd><xsl:value-of select="comment"/></dd>
+    </xsl:if>
+  </xsl:template>
+
+  <xsl:template match="/">
+    <xsl:apply-templates select="." mode="header"/>
+  </xsl:template>
   
-        <select name="log" onchange="form.submit()">
-          <option>More builds</option>
-          <cruisecontrol:nav startingBuildNumber="1">
-            <option value="<%=logfile%>"><%= linktext %></option>
-          </cruisecontrol:nav>
-        </select>
-      </fieldset>
-    </form>
-    
-    <h2 id="cc-build-status">
-      <cruisecontrol:currentbuildstatus/>
-    </h2>
+</xsl:stylesheet>

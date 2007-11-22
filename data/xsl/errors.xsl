@@ -40,64 +40,63 @@
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
     xmlns="http://www.w3.org/TR/html4/strict.dtd" >
 
-    <xsl:output method="html"/>
+  <xsl:output method="html"/>
 
-    <xsl:variable name="tasklist" select="/cruisecontrol/build//target/task"/>
+  <xsl:variable name="tasklist" select="/cruisecontrol/build//target/task"/>
 
-    <xsl:template match="/" mode="errors">
+  <xsl:template match="/" mode="errors">
+    <xsl:variable name="error.messages" select="$tasklist/message[@priority='error']"/>
+    <xsl:variable name="warn.messages" select="$tasklist/message[@priority='warn']"/>
+    <xsl:variable name="total.errorMessage.count" select="count($warn.messages) + count($error.messages)"/>
 
-        <xsl:variable name="error.messages" select="$tasklist/message[@priority='error']"/>
-        <xsl:variable name="warn.messages" select="$tasklist/message[@priority='warn']"/>
-        <xsl:variable name="total.errorMessage.count" select="count($warn.messages) + count($error.messages)"/>
+    <xsl:if test="$total.errorMessage.count > 0">
+      <table class="result">
+        <thead>
+          <tr>
+            <th>
+              Errors/Warnings: (<xsl:value-of select="$total.errorMessage.count"/>)
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <xsl:if test="count($error.messages) > 0">
+            <tr>
+              <td>
+                <pre class="error">
+                  <xsl:apply-templates select="$error.messages" mode="errors"/>
+                </pre>
+              </td>
+            </tr>
+          </xsl:if>
+          <xsl:if test="count($warn.messages) > 0">
+            <tr>
+              <td>
+                <pre>
+                  <xsl:apply-templates select="$warn.messages" mode="errors"/>
+                </pre>
+              </td>
+            </tr>
+          </xsl:if>
+        </tbody>
+      </table>
+    </xsl:if>
+  </xsl:template>
 
-        <xsl:if test="$total.errorMessage.count > 0">
-            <table class="result" align="center">
-              <thead>
-                <tr>
-                    <th colspan="4">
-                        &#160;Errors/Warnings: (<xsl:value-of select="$total.errorMessage.count"/>)
-                    </th>
-                </tr>
-              </thead>
-              <tbody>
-                <xsl:if test="count($error.messages) > 0">
-                    <tr>
-                        <td>
-                           <pre class="compile-error-data">
-                            <xsl:apply-templates select="$error.messages" mode="errors"/>
-                           </pre>
-                        </td>
-                    </tr>
-                </xsl:if>
-                <xsl:if test="count($warn.messages) > 0">
-                    <tr>
-                        <td>
-                           <pre class="compile-data">
-                            <xsl:apply-templates select="$warn.messages" mode="errors"/>
-                           </pre>
-                        </td>
-                    </tr>
-                </xsl:if>
-              </tbody>
-            </table>
-        </xsl:if>
+  <xsl:template match="message[@priority='error']" mode="errors">
+    <xsl:value-of select="text()"/>
+    <xsl:if test="count(./../message[@priority='error']) != position()">
+      <br class="none"/>
+    </xsl:if>
+  </xsl:template>
 
-    </xsl:template>
+  <xsl:template match="message[@priority='warn']" mode="errors">
+    <xsl:if test="not(starts-with(text(),'cvs update'))">
+      <xsl:value-of select="text()"/><br class="none"/>
+    </xsl:if>
+  </xsl:template>
 
-    <xsl:template match="message[@priority='error']" mode="errors">
-        <xsl:value-of select="text()"/>
-        <xsl:if test="count(./../message[@priority='error']) != position()">
-            <br class="none"/>
-        </xsl:if>
-    </xsl:template>
-
-    <xsl:template match="message[@priority='warn']" mode="errors">
-        <xsl:if test="not(starts-with(text(),'cvs update'))">
-            <xsl:value-of select="text()"/><br class="none"/>
-        </xsl:if>
-    </xsl:template>
-
-    <xsl:template match="/">
-        <xsl:apply-templates select="." mode="errors"/>
-    </xsl:template>
+  <xsl:template match="/">
+    <xsl:apply-templates select="." mode="errors"/>
+  </xsl:template>
+  
 </xsl:stylesheet>

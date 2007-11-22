@@ -46,6 +46,13 @@
 
   <xsl:template match="/">
     <xsl:apply-templates select="cruisecontrol/pmd"/>
+    <script language="javascript" src="js/shCore.js"></script>
+    <script language="javascript" src="js/shBrushPhp.js"></script>
+    <script language="javascript">
+      window.onload = function() {
+        dp.SyntaxHighlighter.HighlightAll('code');
+      }
+    </script>
   </xsl:template>
 
   <xsl:template match="pmd">
@@ -70,23 +77,13 @@
   </xsl:template>
 
   <xsl:template match="pmd" mode="summary">
-    <table align="center" cellpadding="2" cellspacing="0" border="0" width="98%">
-      <tr>
-        <td class="header-title">PHPUnit PMD Summary</td>
-      </tr>
-      <tr>
-        <td class="header-data">
-          <span class="header-label">Files:&#160;</span>
-          <xsl:value-of select="count(file[violation]) + count(//pmd-cpd/duplication/file)"/>
-        </td>
-      </tr>
-      <tr>
-        <td class="header-data">
-          <span class="header-label">Violations:&#160;</span>
-          <xsl:value-of select="count(file/violation) + count(//pmd-cpd/duplication)"/>
-        </td>
-      </tr>
-    </table>
+    <h2>PHPUnit PMD Summary</h2>
+    <dl>
+      <dt>Files:</dt>
+      <dd><xsl:value-of select="count(file[violation]) + count(//pmd-cpd/duplication/file)"/></dd>
+      <dt>Violations:</dt>
+      <dd><xsl:value-of select="count(file/violation) + count(//pmd-cpd/duplication)"/></dd>
+    </dl>
   </xsl:template>
 
   <xsl:template match="pmd" mode="rule-summary">
@@ -117,9 +114,9 @@
               <xsl:attribute name="class">oddrow</xsl:attribute>
             </xsl:if>
             <td></td>
-            <td class="checkstyle-data"><xsl:value-of select="@ruleset"/> / <xsl:value-of select="@rule"/></td>
-            <td class="checkstyle-data" align="right"><xsl:value-of select="$fileCount"/></td>
-            <td class="checkstyle-data" align="right"><xsl:value-of select="$errorCount"/></td>
+            <td><xsl:value-of select="@ruleset"/> / <xsl:value-of select="@rule"/></td>
+            <td align="right"><xsl:value-of select="$fileCount"/></td>
+            <td align="right"><xsl:value-of select="$errorCount"/></td>
           </tr>
         </xsl:for-each>
         <xsl:if test="count(//pmd-cpd/duplication) &gt; 0">
@@ -130,9 +127,9 @@
               <xsl:attribute name="class">oddrow</xsl:attribute>
             </xsl:if>
             <td></td>
-            <td class="checkstyle-data"> / CopyPasteDetection</td>
-            <td class="checkstyle-data" align="right"><xsl:value-of select="$duplication.file.count" /></td>
-            <td class="checkstyle-data" align="right"><xsl:value-of select="$duplication.count" /></td>
+            <td> / CopyPasteDetection</td>
+            <td align="right"><xsl:value-of select="$duplication.file.count" /></td>
+            <td align="right"><xsl:value-of select="$duplication.count" /></td>
           </tr>
         </xsl:if>
       </tbody>
@@ -162,19 +159,19 @@
             <xsl:if test="position() mod 2 = 0">
               <xsl:attribute name="class">oddrow</xsl:attribute>
             </xsl:if>
-            <td/>
+            <td></td>
             <td align="right" class="warning"><xsl:value-of select="@line" /></td>
-            <td class="warning"><xsl:value-of select="@path" /></td>
-            <td class="warning"/>
+            <td><xsl:value-of select="@path" /></td>
+            <td></td>
           </tr>
         </xsl:for-each>
         <tr>
-          <td colspan="2"> </td>
-          <td colspan="2">
-            <pre class="code-fragment">
+          <td colspan="1"> </td>
+          <td colspan="3">
+            <textarea name="code" class="php">
               <xsl:text>    </xsl:text>
               <xsl:value-of select="codefragment/text()" />
-            </pre>
+            </textarea>
           </td>
         </tr>
       </tbody>
@@ -217,10 +214,10 @@
               <xsl:with-param name="line" select="@line"/>
             </xsl:call-template>
           </td>
-          <td class="{$style}">
+          <td>
             <xsl:value-of disable-output-escaping="no" select="."/>
           </td>
-          <td class="{$style}">
+          <td>
             <xsl:value-of select="@priority"/>
           </td>
         </tr>

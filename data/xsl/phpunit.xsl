@@ -48,115 +48,96 @@
     <xsl:variable name="testcase.failure.list" select="$testcase.list/failure"/>
     <xsl:variable name="totalErrorsAndFailures" select="count($testcase.error.list) + count($testcase.failure.list) + $testsuite.error.count"/>
 
-    <xsl:template match="/" mode="unittests">
-        <table class="result" align="center">
-          <thead>
-            <!-- Unit Tests -->
+  <xsl:template match="/" mode="unittests">
+    <table class="result" align="center">
+      <thead>
+        <tr>
+          <th colspan="4">
+            Unit Tests: (<xsl:value-of select="count($testcase.list)"/>)
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <xsl:choose>
+          <xsl:when test="count($testsuite.list) = 0">
             <tr>
-              <th colspan="4">
-                   &#160;Unit Tests: (<xsl:value-of select="count($testcase.list)"/>)
-              </th>
+              <td colspan="2">No Tests Run</td>
             </tr>
-          </thead>
-          <tbody>
-            <xsl:choose>
-                <xsl:when test="count($testsuite.list) = 0">
-                    <tr>
-                        <td colspan="2" class="unittests-data">
-                            No Tests Run
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="2" class="unittests-error">
-                            This project doesn't have any tests
-                        </td>
-                    </tr>
-                </xsl:when>
-
-                <xsl:when test="$totalErrorsAndFailures = 0">
-                    <tr>
-                        <td colspan="2" class="unittests-data">
-                            All Tests Passed
-                        </td>
-                    </tr>
-                </xsl:when>
-            </xsl:choose>
             <tr>
-              <td>
-                 <table align="center" cellpadding="2" cellspacing="0" border="0" width="98%">
-                    <xsl:apply-templates select="$testcase.error.list" mode="unittests"/>
-                    <xsl:apply-templates select="$testcase.failure.list" mode="unittests"/>
-                 </table>
-              </td>
+              <td colspan="2" class="error">This project doesn't have any tests</td>
             </tr>
-            <tr/>
-            <tr><td colspan="2">&#160;</td></tr>
+          </xsl:when>
+          <xsl:when test="$totalErrorsAndFailures = 0">
+            <tr>
+              <td colspan="2">All Tests Passed</td>
+            </tr>
+          </xsl:when>
+        </xsl:choose>
+        <xsl:apply-templates select="$testcase.error.list" mode="unittests"/>
+        <xsl:apply-templates select="$testcase.failure.list" mode="unittests"/>
+        <tr><td colspan="2">&#160;</td></tr>
+        <xsl:if test="$totalErrorsAndFailures > 0">
+          <tr>
+            <th colspan="4">
+              Unit Test Error Details: (<xsl:value-of select="$totalErrorsAndFailures"/>)
+            </th>
+          </tr>
 
-            <xsl:if test="$totalErrorsAndFailures > 0">
+          <!-- (PENDING) Why doesn't this work if set up as variables up top? -->
+          <xsl:call-template name="testdetail">
+            <xsl:with-param name="detailnodes" select="//testsuite/testcase[.//error]"/>
+          </xsl:call-template>
 
-              <tr>
-                <td class="unittests-sectionheader" colspan="4">
-                    &#160;Unit Test Error Details:&#160;(<xsl:value-of select="$totalErrorsAndFailures"/>)
-                </td>
-              </tr>
-
-              <!-- (PENDING) Why doesn't this work if set up as variables up top? -->
-              <xsl:call-template name="testdetail">
-                <xsl:with-param name="detailnodes" select="//testsuite/testcase[.//error]"/>
-              </xsl:call-template>
-
-              <xsl:call-template name="testdetail">
-                <xsl:with-param name="detailnodes" select="//testsuite/testcase[.//failure]"/>
-              </xsl:call-template>
-            </xsl:if>
-          </tbody>
-        </table>
-    </xsl:template>
+          <xsl:call-template name="testdetail">
+            <xsl:with-param name="detailnodes" select="//testsuite/testcase[.//failure]"/>
+          </xsl:call-template>
+        </xsl:if>
+      </tbody>
+    </table>
+  </xsl:template>
 
     <!-- UnitTest Errors -->
     <xsl:template match="error" mode="unittests">
-        <tr>
-            <xsl:if test="position() mod 2 = 0">
-                <xsl:attribute name="class">unittests-oddrow</xsl:attribute>
-            </xsl:if>
-
-            <td class="unittests-data" width="50">
-                error
-            </td>
-            <td class="unittests-data" width="300">
-                <xsl:value-of select="../@name"/>
-            </td>
-            <td class="unittests-data" width="400">
-                <xsl:value-of select="..//..//@name"/>
-            </td>
-        </tr>
+      <tr>
+        <xsl:if test="position() mod 2 = 1">
+          <xsl:attribute name="class">oddrow</xsl:attribute>
+        </xsl:if>
+        <td class="error" width="50">
+          error
+        </td>
+        <td width="300">
+          <xsl:value-of select="../@name"/>
+        </td>
+        <td class="unittests-data" width="400">
+          <xsl:value-of select="..//..//@name"/>
+        </td>
+      </tr>
     </xsl:template>
 
-    <!-- UnitTest Failures -->
-    <xsl:template match="failure" mode="unittests">
-        <tr>
-            <xsl:if test="($testsuite.error.count + position()) mod 2 = 0">
-                <xsl:attribute name="class">unittests-oddrow</xsl:attribute>
-            </xsl:if>
-
-            <td class="unittests-data" width="50">
-                failure
-            </td>
-            <td class="unittests-data" width="300">
-                <xsl:value-of select="../@name"/>
-            </td>
-            <td class="unittests-data" width="400">
-                <xsl:value-of select="..//..//@name"/>
-            </td>
-        </tr>
-    </xsl:template>
-
-    <!-- UnitTest Errors And Failures Detail Template -->
-    <xsl:template name="testdetail">
-      <xsl:param name="detailnodes"/>
-
-      <xsl:for-each select="$detailnodes">
+  <!-- UnitTest Failures -->
+  <xsl:template match="failure" mode="unittests">
     <tr>
+      <xsl:if test="($testsuite.error.count + position()) mod 2 = 1">
+        <xsl:attribute name="class">oddrow</xsl:attribute>
+      </xsl:if>
+      <td class="failure" width="50">
+        failure
+      </td>
+      <td width="300">
+        <xsl:value-of select="../@name"/>
+      </td>
+      <td class="unittests-data" width="400">
+        <xsl:value-of select="..//..//@name"/>
+      </td>
+    </tr>
+  </xsl:template>
+
+  <!-- UnitTest Errors And Failures Detail Template -->
+  <xsl:template name="testdetail">
+    <xsl:param name="detailnodes"/>
+
+    <xsl:for-each select="$detailnodes">
+      <tr>
         <td colspan="2">
         <table width="100%" border="0" cellspacing="0">
 

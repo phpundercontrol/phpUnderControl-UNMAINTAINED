@@ -55,7 +55,8 @@ class pucInstallMode extends pucAbstractMode
      * @var array(string)
      */
     private $directories = array(
-        'images/puc'
+        'images/php-under-control',
+        'js'
     );
     
     /**
@@ -65,23 +66,32 @@ class pucInstallMode extends pucAbstractMode
      * @var array(string=>string) $installFiles
      */
     private $installFiles = array(
-        'header.jsp'                    =>  null,
-        'phpcs.jsp'                     =>  null,
-        'phpunit.jsp'                   =>  null,
-        'phpunit-pmd.jsp'               =>  null,
-        'images/puc/header-center.png'  =>  null,
-        'images/puc/header-left.png'    =>  null,
-        'images/puc/header-right.png'   =>  null,
-        'images/puc/tab-selected.png'   =>  null,
-        'images/puc/tab-table-bg.png'   =>  null,
-        'xsl/phpcs.xsl'                 =>  null,
-        'xsl/phpcs-details.xsl'         =>  null,
-        'xsl/phpdoc.xsl'                =>  null,
-        'xsl/phphelper.xsl'             =>  null,
-        'xsl/phpunit.xsl'               =>  null,
-        'xsl/phpunit-details.xsl'       =>  null,
-        'xsl/phpunit-pmd.xsl'           =>  null,
-        'xsl/phpunit-pmd-details.xsl'   =>  null,
+        'header.jsp'                                     =>  null,
+        'phpcs.jsp'                                      =>  null,
+        'phpunit.jsp'                                    =>  null,
+        'phpunit-pmd.jsp'                                =>  null,
+        'css/php-under-control.css'                      =>  null,
+        'css/SyntaxHighlighter.css'                      =>  null,
+        'images/php-under-control/error.png'             =>  null,
+        'images/php-under-control/failed.png'            =>  null,
+        'images/php-under-control/header-center.png'     =>  null,
+        'images/php-under-control/header-left-logo.png'  =>  null,
+        'images/php-under-control/info.png'              =>  null,
+        'images/php-under-control/skipped.png'           =>  null,
+        'images/php-under-control/success.png'           =>  null,
+        'images/php-under-control/tab-active.png'        =>  null,
+        'images/php-under-control/tab-inactive.png'      =>  null,
+        'images/php-under-control/warning.png'           =>  null,
+        'js/shBrushPhp.js'                               =>  null,
+        'js/shCore.js'                                   =>  null,
+        'xsl/phpcs.xsl'                                  =>  null,
+        'xsl/phpcs-details.xsl'                          =>  null,
+        'xsl/phpdoc.xsl'                                 =>  null,
+        'xsl/phphelper.xsl'                              =>  null,
+        'xsl/phpunit.xsl'                                =>  null,
+        'xsl/phpunit-details.xsl'                        =>  null,
+        'xsl/phpunit-pmd.xsl'                            =>  null,
+        'xsl/phpunit-pmd-details.xsl'                    =>  null,
     );
     
     /**
@@ -95,6 +105,7 @@ class pucInstallMode extends pucAbstractMode
         'metrics.jsp'                  =>  null,
         'xsl/buildresults.xsl'         =>  null,
         'xsl/errors.xsl'               =>  null,
+        'xsl/header.xsl'               =>  null,
         'xsl/modifications.xsl'        =>  null,
     );
     
@@ -113,9 +124,6 @@ class pucInstallMode extends pucAbstractMode
         
         echo PHP_EOL . 'Installing new CruiseControl files.' . PHP_EOL;
         $this->copyInstallFiles();
-        
-        echo PHP_EOL . 'Modifying CruiseControl stylesheet.' . PHP_EOL;
-        $this->modifyStylesheet();
     }
     
     /**
@@ -207,35 +215,6 @@ class pucInstallMode extends pucAbstractMode
             printf( '  File "%s" installed.%s', $filename, PHP_EOL );
             file_put_contents( "{$path}/{$filename}", base64_decode( $content ) );
         }
-    }
-    
-    private function modifyStylesheet()
-    {
-        $path = sprintf( 
-            '%s/webapps/cruisecontrol/css/cruisecontrol.css', 
-            $this->getCCSetting()->ccInstallDir 
-        );
-        
-        if ( file_exists( "{$path}.orig" ) === false )
-        {
-            echo '  Creating backup of "css/cruisecontrol.css" as "css/cruisecontrol.css.orig".' . PHP_EOL;
-            copy( $path, "{$path}.orig" );            
-        }
-        else
-        {
-            return;
-        }
-        
-        $css = sprintf(
-            '%s
-.phpdoc-oddrow { background-color: #ccc; }
-.phpdoc-error { font-family:arial,helvetica,sans-serif; font-size:8pt; color:#f00; }
-.phpdoc-warning { font-family:arial,helvetica,sans-serif; font-size:8pt; color:#000; }
-            ',
-            file_get_contents( $path )
-        );
-        
-        file_put_contents( $path, $css );
     }
     
     /**

@@ -85,4 +85,28 @@ class PhpUnderControl_Example_MathTest extends PHPUnit_Framework_TestCase
     {
         $this->assertEquals(-2, $this->math->sub(1, 3));
     }
+    
+    /**
+     * Failing test.
+     */
+    public function testSubFail()
+    {
+        $this->assertEquals(0, $this->math->sub(2,1));
+    }
+    
+    /**
+     * Failing test.
+     */
+    public function testFail()
+    {
+        $this->fail('Failed because...');
+    }
+    
+    /**
+     * Skipping test.
+     */
+    public function testSkip()
+    {
+        $this->markTestSkipped('Skipped because...');
+    }
 }

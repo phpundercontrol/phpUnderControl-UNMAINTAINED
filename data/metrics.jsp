@@ -2,13 +2,16 @@
 <%@ taglib uri="/WEB-INF/lib/cewolf.jar" prefix="cewolf" %>
 <%@ taglib uri="/WEB-INF/cruisecontrol-jsp11.tld" prefix="cruisecontrol"%>
 
+<h2>Project Metric Summary</h2>
 <cruisecontrol:buildInfo />
-
-<table>
-  <tr><td>Number of Build Attempts</td><td><%=build_info.size() %></td></tr>
-  <tr><td>Number of Broken Builds</td><td><%=build_info.getNumBrokenBuilds() %></td></tr>
-  <tr><td>Number of Successful Builds</td><td><%=build_info.getNumSuccessfulBuilds() %></td></tr>
-</table>
+<dl>
+  <dt>Number of Build Attempts</dt>  
+  <dd><%=build_info.size() %></dd>
+  <dt>Number of Broken Builds</dt>
+  <dd><%=build_info.getNumBrokenBuilds() %></dd>
+  <dt>Number of Successful Builds</dt>
+  <dd><%=build_info.getNumSuccessfulBuilds() %></dd>
+</dl>
 
 <hr />
 <jsp:useBean id="pieData" class="net.sourceforge.cruisecontrol.chart.PieChartData" />
@@ -19,7 +22,7 @@
         </cewolf:producer>
     </cewolf:data>
 </cewolf:chart>
-<cewolf:img chartid="pie" renderer="cewolf" width="400" height="300"/>
+<cewolf:img chartid="pie" renderer="cewolf" width="400" height="300" style="display:inline;"/>
 
 <hr />
 <jsp:useBean id="chartData" class="net.sourceforge.cruisecontrol.chart.TimeChartData" />
@@ -31,7 +34,7 @@
     </cewolf:data>
     <cewolf:chartpostprocessor id="chartData" />
 </cewolf:chart>
-<cewolf:img chartid="chart" renderer="cewolf" width="400" height="300"/>
+<cewolf:img chartid="chart" renderer="cewolf" width="400" height="300" style="display:inline;"/>
 
 <hr />
 <jsp:useBean id="xpathData" class="net.sourceforge.cruisecontrol.chart.XPathChartData" />
@@ -48,4 +51,4 @@
     </cewolf:data>
     <cewolf:chartpostprocessor id="xpathData" />
 </cewolf:chart>
-<cewolf:img chartid="chart" renderer="cewolf" width="400" height="300"/>
+<cewolf:img chartid="chart" renderer="cewolf" width="400" height="300" style="display:inline;"/>

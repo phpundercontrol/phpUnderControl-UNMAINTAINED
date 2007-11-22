@@ -65,7 +65,7 @@
             <col width="10%"/>
           </colgroup>
           <thead>
-            <tr valign="top" class="unittests-sectionheader" align="left">
+            <tr>
               <th colspan="3">Name</th>
               <th>Status</th>
               <th nowrap="nowrap">Time(s)</th>
@@ -92,12 +92,11 @@
     <tr>
       <xsl:attribute name="class">
         <xsl:choose>
-          <xsl:when test="testcase/error">unittests-error-title</xsl:when>
-          <xsl:when test="testcase/failure">unittests-failure-title</xsl:when>
-          <xsl:otherwise>unittests-title</xsl:otherwise>
+          <xsl:when test="testcase/error">error</xsl:when>
+          <xsl:when test="testcase/failure">failure</xsl:when>
         </xsl:choose>
       </xsl:attribute>
-      <td colspan="5"><xsl:value-of select="concat(@package,'.',@name)"/></td>
+      <th colspan="5"><xsl:value-of select="concat(@package,'.',@name)"/></th>
     </tr>
     <!-- Display tests -->
     <xsl:apply-templates select="testcase"/>
@@ -114,27 +113,39 @@
       <xsl:attribute name="class">
         <xsl:choose>
           <xsl:when test="error">
-            <xsl:text>unittests-error</xsl:text>
+            <xsl:text>error</xsl:text>
             <xsl:if test="position() mod 2 = 0">
               <xsl:text> oddrow</xsl:text>
             </xsl:if>
           </xsl:when>
           <xsl:when test="failure">
-            <xsl:text>unittests-failure</xsl:text>
+            <xsl:text>failure</xsl:text>
             <xsl:if test="position() mod 2 = 0">
               <xsl:text> oddrow</xsl:text>
             </xsl:if>
           </xsl:when>
           <xsl:otherwise>
-            <xsl:text>unittests-data</xsl:text>
+            <xsl:text>success</xsl:text>
             <xsl:if test="position() mod 2 = 0">
               <xsl:text> oddrow</xsl:text>
             </xsl:if>
           </xsl:otherwise>
         </xsl:choose>
       </xsl:attribute>
-      <td>&#xA0;</td>
-      <td colspan="2">
+      <td colspan="3">
+        <xsl:attribute name="class">
+          <xsl:choose>
+            <xsl:when test="error">
+              <xsl:text>error</xsl:text>
+            </xsl:when>
+            <xsl:when test="failure">
+              <xsl:text>failure</xsl:text>
+            </xsl:when>
+            <xsl:otherwise>
+              <xsl:text>success</xsl:text>
+            </xsl:otherwise>
+          </xsl:choose>
+        </xsl:attribute>
         <xsl:value-of select="@name"/>
       </td>
       <td>
@@ -163,21 +174,23 @@
     </tr>
     <xsl:if test="error">
       <tr>
-        <td colspan="5">
-          <div id="{concat('error.',../@package,'.',../@name,'.',@name)}" class="testresults-output-div" style="display: none;">
-            <span style="font-weight:bold">Error:</span><br/>
+        <td></td>
+        <td colspan="4">
+          <span id="{concat('error.',../@package,'.',../@name,'.',@name)}" class="testresults-output-div" style="display: none;">
+            <h3>Error:</h3>
             <xsl:apply-templates select="error/text()" mode="newline-to-br"/>
-          </div>
+          </span>
         </td>
       </tr>
     </xsl:if>
     <xsl:if test="failure">
       <tr>
-        <td colspan="5">
-          <div id="{concat('failure.',../@package,'.',../@name,'.',@name)}" class="testresults-output-div" style="display: none;">
-            <span style="font-weight:bold">Failure:</span><br/>
+        <td></td>
+        <td colspan="4">
+          <span id="{concat('failure.',../@package,'.',../@name,'.',@name)}" class="testresults-output" style="display: none;">
+            <h3>Failure:</h3>
             <xsl:apply-templates select="failure/text()" mode="newline-to-br"/>
-          </div>
+          </span>
         </td>
       </tr>
     </xsl:if>
@@ -191,17 +204,17 @@
     <tr class="unittests-data">
       <td colspan="2">
         <xsl:if test="count(properties/property)&gt;0">
-          <a href="javascript:void(0)" onClick="toggleDivVisibility(document.getElementById('{concat('properties.',@package,'.',@name)}'))">Properties &#187;</a>
+          <a class="failure" href="javascript:void(0)" onClick="toggleDivVisibility(document.getElementById('{concat('properties.',@package,'.',@name)}'))">Properties &#187;</a>
         </xsl:if>&#xA0;
       </td>
       <td>
         <xsl:if test="system-out/text()">
-          <a href="javascript:void(0)" onClick="toggleDivVisibility(document.getElementById('{concat('system_out.',@package,'.',@name)}'))">System.out &#187;</a>
+          <a class="failure" href="javascript:void(0)" onClick="toggleDivVisibility(document.getElementById('{concat('system_out.',@package,'.',@name)}'))">System.out &#187;</a>
         </xsl:if>&#xA0;
       </td>
       <td>
         <xsl:if test="system-err/text()">
-          <a href="javascript:void(0)" onClick="toggleDivVisibility(document.getElementById('{concat('system_err.',@package,'.',@name)}'))">System.err &#187;</a>
+          <a class="failure" href="javascript:void(0)" onClick="toggleDivVisibility(document.getElementById('{concat('system_err.',@package,'.',@name)}'))">System.err &#187;</a>
         </xsl:if>&#xA0;
       </td>
       <td>&#xA0;</td>
@@ -231,10 +244,10 @@
   -->
   <xsl:template match="system-out" mode="system-out-div" >
     <xsl:param name="div-id"/>
-    <div id="{$div-id}" class="testresults-output-div" style="display: none;">
+    <span id="{$div-id}" class="testresults-output" style="display: none;">
       <span style="font-weight:bold">System out:</span><br/>
       <xsl:apply-templates select="current()" mode="newline-to-br"/>
-    </div>  
+    </span>  
   </xsl:template>
   
   <!--
@@ -242,10 +255,10 @@
   -->
   <xsl:template match="system-err" mode="system-err-div" >
     <xsl:param name="div-id"/>
-    <div id="{$div-id}" class="testresults-output-div" style="display: none;">
+    <span id="{$div-id}" class="testresults-output" style="display: none;">
       <span style="font-weight:bold">System err:</span><br/>
       <xsl:apply-templates select="current()" mode="newline-to-br"/>
-    </div>  
+    </span>  
   </xsl:template>
   
   <!--
@@ -253,7 +266,7 @@
   -->
   <xsl:template match="properties" mode="properties-div" >
     <xsl:param name="div-id"/>
-    <div id="{$div-id}" class="testresults-output-div" style="display: none;">
+    <div id="{$div-id}" class="testresults-output" style="display: none;">
       <span style="font-weight:bold">Properties:</span><br/>
       <table>
         <tr>

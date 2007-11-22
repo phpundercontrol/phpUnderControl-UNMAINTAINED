@@ -92,8 +92,8 @@
         <xsl:attribute name="class">oddrow</xsl:attribute>
       </xsl:if>
       <td class="{@severity}"><xsl:value-of select="../@name" /></td>
-      <td class="{@severity}"><xsl:value-of select="@line" /></td>
-      <td class="{@severity}"><xsl:value-of select="@message" /></td>
+      <td><xsl:value-of select="@line" /></td>
+      <td><xsl:value-of select="@message" /></td>
     </tr>
   </xsl:template>
 

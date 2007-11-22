@@ -22,6 +22,18 @@
      id="defs4">
     <linearGradient
        inkscape:collect="always"
+       id="linearGradient2245">
+      <stop
+         style="stop-color:#eeeeec;stop-opacity:1;"
+         offset="0"
+         id="stop2247" />
+      <stop
+         style="stop-color:#eeeeec;stop-opacity:0;"
+         offset="1"
+         id="stop2249" />
+    </linearGradient>
+    <linearGradient
+       inkscape:collect="always"
        id="linearGradient6100">
       <stop
          style="stop-color:#eeeeec;stop-opacity:1;"
@@ -63,6 +75,15 @@
        x2="394.64328"
        y2="105.732"
        gradientUnits="userSpaceOnUse" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient2245"
+       id="linearGradient2251"
+       x1="525"
+       y1="44.094482"
+       x2="525"
+       y2="104.09448"
+       gradientUnits="userSpaceOnUse" />
   </defs>
   <sodipodi:namedview
      id="base"
@@ -73,7 +94,7 @@
      inkscape:pageshadow="2"
      inkscape:zoom="1"
      inkscape:cx="535.91438"
-     inkscape:cy="596.86392"
+     inkscape:cy="141.53506"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      width="1052.3622px"
@@ -114,9 +135,20 @@
        inkscape:export-filename="/home/pichler/Projects/workspace.xplib.de/phpUnderControl/docs/layout/header.png"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90" />
+    <rect
+       style="opacity:1;fill:url(#linearGradient2251);fill-opacity:1.0;fill-rule:evenodd;stroke:#d3d7cf;stroke-width:0.69767559;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect2243"
+       width="849.30231"
+       height="119.30232"
+       x="100.34884"
+       y="44.443321"
+       ry="30.819767"
+       inkscape:export-filename="/home/pichler/Projects/workspace.xplib.de/phpUnderControl/docs/layout/header.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
     <text
        xml:space="preserve"
-       style="font-size:24px;font-style:italic;font-weight:bold;fill:#eeeeec;fill-opacity:1;stroke:#3465a4;stroke-width:0.7;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Century Schoolbook L;stroke-miterlimit:4;stroke-dasharray:none"
+       style="font-size:24px;font-style:italic;font-weight:bold;fill:#888a85;fill-opacity:1;stroke:#729fcf;stroke-width:0.7;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Century Schoolbook L;stroke-miterlimit:4;stroke-dasharray:none"
        x="124.332"
        y="74.874481"
        id="text4157"
@@ -129,7 +161,7 @@
          y="74.874481">phpUnderControl</tspan></text>
     <text
        xml:space="preserve"
-       style="font-size:12px;font-style:italic;font-weight:bold;fill:#eeeeec;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Century Schoolbook L"
+       style="font-size:12px;font-style:italic;font-weight:bold;fill:#d3d7cf;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Century Schoolbook L"
        x="122.784"
        y="96.390488"
        id="text4161"
@@ -141,7 +173,7 @@
          x="122.784"
          y="96.390488">CruiseControl  Integration for PHP</tspan></text>
     <rect
-       style="opacity:1;fill:#eeeeec;fill-opacity:1;fill-rule:evenodd;stroke:#2e3436;stroke-width:0.69767559;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       style="opacity:1;fill:#eeeeec;fill-opacity:1;fill-rule:evenodd;stroke:#d3d7cf;stroke-width:0.69767559;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        id="rect3183"
        width="849.30231"
        height="119.30232"
@@ -292,7 +324,7 @@
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90" />
     <rect
-       style="opacity:1;fill:#eeeeec;fill-opacity:1;fill-rule:evenodd;stroke:#2e3436;stroke-width:1.22623551;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       style="opacity:1;fill:#eeeeec;fill-opacity:1;fill-rule:evenodd;stroke:#d3d7cf;stroke-width:1.22623551;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        id="rect3185"
        width="848.7738"
        height="368.77377"
@@ -685,7 +717,7 @@
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90" />
     <rect
-       style="opacity:1;fill:#75507b;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:0.5;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       style="opacity:1;fill:#73d216;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:0.5;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        id="rect4186"
        width="62"
        height="20"
