@@ -57,11 +57,10 @@ class pucPhpCodeSnifferSetting extends pucAbstractPearSetting
      * The ctor takes the PEAR install dir as an optional argument.
      * 
      * @param string $pearInstallDir PEAR install dir.
-     * @param string $outputDir      An output dir for the generated contents.
      */
-    public function __construct( $pearInstallDir = null, $outputDir = null )
+    public function __construct( $pearInstallDir = null )
     {
-        parent::__construct( 'phpcs', $pearInstallDir, $outputDir );
+        parent::__construct( 'phpcs', $pearInstallDir );
     }
     
     /**

@@ -88,7 +88,7 @@ class pucConsoleArgs
                 ),
                 array(
                     'short'      =>  'p',
-                    'long'       =>  'pear-install-dir',
+                    'long'       =>  'pear-executables-dir',
                     'arg'        =>  true,
                     'help'       =>  'The pear install directory with the command line scripts.',
                     'mandatory'  =>  false,
@@ -126,7 +126,7 @@ class pucConsoleArgs
                 ),
                 array(
                     'short'      =>  'p',
-                    'long'       =>  'pear-install-dir',
+                    'long'       =>  'pear-executables-dir',
                     'arg'        =>  true,
                     'help'       =>  'The pear install directory with the command line scripts.',
                     'mandatory'  =>  false,

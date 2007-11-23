@@ -60,11 +60,10 @@ class pucPhpUnitSetting extends pucAbstractPearSetting
      * The ctor takes the PEAR install dir as an optional argument.
      * 
      * @param string $pearInstallDir PEAR install dir.
-     * @param string $outputDir      An output dir for the generated contents.
      */
-    public function __construct( $pearInstallDir = null, $outputDir = null )
+    public function __construct( $pearInstallDir = null )
     {
-        parent::__construct( 'phpunit', $pearInstallDir, $outputDir );
+        parent::__construct( 'phpunit', $pearInstallDir );
         
         $this->properties['metrics']  = true;
         $this->properties['coverage'] = true;
@@ -96,7 +95,6 @@ class pucPhpUnitSetting extends pucAbstractPearSetting
                  --log-pmd ${basedir}/build/logs/phpunit.pmd.xml
                  %s
                  %s
-                 %s
                  PhpUnderControl_Example_MathTest MathTest.php" />
     </exec>
   </target>
@@ -104,8 +102,7 @@ class pucPhpUnitSetting extends pucAbstractPearSetting
             $this->cliTool,
             $this->fileName,
             $metrics,
-            $coverage,
-            $output
+            $coverage
         );
         
         return $xml;

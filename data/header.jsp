@@ -39,7 +39,7 @@
 
     <cruisecontrol:link id="baseUrl" />
     <h1>
-      <a href="<%=baseUrl%>">
+      <a href="index">
         phpUnderControl  
       </a>
     </h1>

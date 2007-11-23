@@ -24,6 +24,8 @@
      */
     div#container h1 {
         background: transparent url('../images/php-under-control/header-center.png') left top repeat-x;
+        color: #eeeeec;
+        font-size: 16px;
         position: relative;
     }
     div#container h1 a {
@@ -37,7 +39,8 @@
     /**
      * Header form styles
      */
-    div#container form {
+    div#container form#cc-project,
+    div#container form#cc-build {
         position: absolute;
         top: 25px;
         padding: 0;
@@ -137,7 +140,13 @@
         text-indent: 5px;
         white-space: nowrap;
     }
-
+    div#container table.result thead th a {
+        color: #555753;
+        text-decoration: none;
+    }
+    div#container table.result thead th a:hover {
+        text-decoration: underline;
+    }
     div#container table.result tbody td {
         font-size: 11px;
         line-height: 15px;
@@ -182,6 +191,12 @@
     }
     div#container table.result tbody td.success {
         background-image: url('../images/php-under-control/success.png');
+    }
+    div#container table.result tbody td input.button {
+        border: 1px solid #555753;
+        color: #2e3436;
+        font-size: 11px;
+        padding: 1px 10px;
     }
     div#container pre.code-fragment,
     div#container .testresults-output {

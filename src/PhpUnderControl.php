@@ -108,9 +108,9 @@ class pucPhpUnderControl
         );
         
         $pearDir = null;
-        if ( isset( $opts['pear-install-dir'] ) && trim( $opts['pear-install-dir'] ) !== '' )
+        if ( isset( $opts['pear-executables-dir'] ) && trim( $opts['pear-executables-dir'] ) !== '' )
         {
-            $pearDir = $opts['pear-install-dir'];
+            $pearDir = $opts['pear-executables-dir'];
         }
         $webDir = null;
         if ( isset( $opts['web-output-dir'] ) && trim( $opts['web-output-dir'] ) !== '' )

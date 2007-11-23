@@ -101,6 +101,7 @@ class pucInstallMode extends pucAbstractMode
      * @var array(string=>string) $modifiedFiles
      */
     private $modifiedFiles = array(
+        'index.jsp'                    =>  null,
         'main.jsp'                     =>  null,
         'metrics.jsp'                  =>  null,
         'xsl/buildresults.xsl'         =>  null,

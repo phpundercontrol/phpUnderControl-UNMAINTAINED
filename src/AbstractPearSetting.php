@@ -48,7 +48,6 @@
  * 
  * @property      string $cliTool        The PEAR cli command line tool.
  * @property      string $pearInstallDir An optional PEAR install directory.
- * @property      string $outputDir      An optional output directory.
  * @property-read string $fileName       The full command file name.
  */
 abstract class pucAbstractPearSetting extends pucAbstractSetting
@@ -59,17 +58,14 @@ abstract class pucAbstractPearSetting extends pucAbstractSetting
      *
      * @param string $cliTool        The PEAR cli tool.
      * @param string $pearInstallDir PEAR install dir.
-     * @param string $outputDir      An output dir for the generated contents.
      */
-    public function __construct( $cliTool, $pearInstallDir = null, $outputDir = null )
+    public function __construct( $cliTool, $pearInstallDir = null )
     {
         $this->properties['cliTool']        = null;
         $this->properties['fileName']       = null;
-        $this->properties['outputDir']      = null;
         $this->properties['pearInstallDir'] = null;
         
         $this->cliTool        = $cliTool;
-        $this->outputDir      = $outputDir;
         $this->pearInstallDir = $pearInstallDir;
     }
     
@@ -92,22 +88,30 @@ abstract class pucAbstractPearSetting extends pucAbstractSetting
             $paths = array( $this->pearInstallDir );
         }
         $paths = array_unique( $paths );
+        
+        $windows = ( substr( PHP_OS, 0, 3 ) === 'WIN' );
 
         foreach ( $paths as $path )
         {
-            $fileName = sprintf( '%s/%s', $path, $this->cliTool );
+            $fileName = sprintf( 
+                '%s/%s', 
+                $path, 
+                $this->cliTool,
+                ( $windows ? '.bat' : '' ) 
+            );
             
             if ( file_exists( $fileName ) === false )
             {
                 continue;
             }
-            if ( is_executable( $fileName ) === false )
+            if ( is_executable( $fileName ) === false && $windows === false )
             {
                 continue;
             }
             $this->properties['fileName'] = $fileName;
             break;
         }
+        
         if ( $this->fileName === null )
         {
             printf(
@@ -124,17 +128,6 @@ abstract class pucAbstractPearSetting extends pucAbstractSetting
             {
                 $this->properties['fileName'] = $this->cliTool;
             }
-        }
-
-        // Check output directory
-        if ( $this->outputDir !== null && is_dir( $this->outputDir ) === false )
-        {
-            printf(
-                'The output directory "%s" doesn\'t exist.%s',
-                $this->outputDir,
-                PHP_EOL
-            );
-            exit( 1 );
         }
         
         $this->doValidate();
@@ -155,19 +148,6 @@ abstract class pucAbstractPearSetting extends pucAbstractSetting
         {
             case 'cliTool':
                 $this->properties[$name] = $value;
-                break;
-                
-            case 'outputDir':
-                if ( trim( $value ) === '' )
-                {
-                    $value = sys_get_temp_dir() . '/php-under-control';
-                    if ( file_exists( $value ) === false )
-                    {
-                        mkdir( $value );
-                    }
-                }
-                $regex = sprintf( '#%s+$#', DIRECTORY_SEPARATOR );
-                $this->properties[$name] = preg_replace( $regex, '', $value );
                 break;
                 
             case 'pearInstallDir':
