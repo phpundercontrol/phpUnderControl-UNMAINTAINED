@@ -80,7 +80,7 @@
     <h2>PHPUnit PMD Summary</h2>
     <dl>
       <dt>Files:</dt>
-      <dd><xsl:value-of select="count(file[violation]) + count(//pmd-cpd/duplication/file)"/></dd>
+      <dd><xsl:value-of select="count(file[violation]) + count(//pmd-cpd/duplication/file[@path != //pmd/file[violation]/@name])"/></dd>
       <dt>Violations:</dt>
       <dd><xsl:value-of select="count(file/violation) + count(//pmd-cpd/duplication)"/></dd>
     </dl>
