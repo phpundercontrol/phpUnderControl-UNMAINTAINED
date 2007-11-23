@@ -34,19 +34,21 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  * 
- * @package phpUnderControl
+ * @package    phpUnderControl
+ * @subpackage Util
  */
 
 /**
  * Utility class that handles the command line arguments for this tool.
  *
- * @package   phpUnderControl
- * @author    Manuel Pichler <mapi@manuel-pichler.de>
- * @copyright 2007 Manuel Pichler. All rights reserved.
- * @license   http://www.opensource.org/licenses/bsd-license.php  BSD License
- * @version   $Id$
+ * @package    phpUnderControl
+ * @subpackage Util
+ * @author     Manuel Pichler <mapi@manuel-pichler.de>
+ * @copyright  2007 Manuel Pichler. All rights reserved.
+ * @license    http://www.opensource.org/licenses/bsd-license.php  BSD License
+ * @version    $Id: ConsoleArgs.php 1699 2007-11-23 15:18:12Z mapi $
  */
-class pucConsoleArgs
+class phpucConsoleArgs
 {
     /**
      * The argument array form the command line interface.
@@ -133,16 +135,9 @@ class pucConsoleArgs
                 ),
                 array(
                     'short'      =>  'n',
-                    'long'       =>  'name-of-example',
+                    'long'       =>  'project-name',
                     'arg'        =>  true,
-                    'help'       =>  'The name of the generated example project.',
-                    'mandatory'  =>  false,
-                ),
-                array(
-                    'short'      =>  'w',
-                    'long'       =>  'web-output-dir',
-                    'arg'        =>  true,
-                    'help'       =>  'An optional web directory where the generated contents of phpunit and phpdoc will be visible.',
+                    'help'       =>  'The name of the generated project.',
                     'mandatory'  =>  false,
                 ),
                 array(
@@ -150,6 +145,7 @@ class pucConsoleArgs
                     'long'       =>  'type',
                     'arg'        =>  array( 'ant' ),
                     'help'       =>  'CruiseControl configuration type. Allowed is "ant" at the moment.',
+                    'default'    =>  'ant',
                     'mandatory'  =>  true,
                 )
             ),
@@ -198,6 +194,68 @@ class pucConsoleArgs
             echo 'Please enable "register_argc_argv" for your php cli installation.' . PHP_EOL;
             exit( 1 );
         }
+    }
+    
+    /**
+     * Checks if a value for <b>$name</b> exists.
+     *
+     * @param string $name The argument identifier.
+     * 
+     * @return boolean
+     */
+    public function hasArgument( $name )
+    {
+        return isset( $this->properties['arguments'][$name] );
+    }
+    
+    /**
+     * Returns the value of the argument identified by <b>$name</b>.
+     *
+     * @param string $name The argument identifier.
+     * 
+     * @return string 
+     * @throws OutOfRangeException If no entry exists for $name.
+     */
+    public function getArgument( $name )
+    {
+        if ( $this->hasArgument( $name ) )
+        {
+            return $this->properties['arguments'][$name];
+        }
+        throw new OutOfRangeException(
+            sprintf( 'Unknown argument "%s"."', $name )
+        );
+    }
+    
+    /**
+     * Checks if a value for <b>$name</b> exists.
+     *
+     * @param string $name The option identifier.
+     * 
+     * @return boolean
+     */
+    public function hasOption( $name )
+    {
+        return isset( $this->properties['options'][$name] );
+    }
+    
+    /**
+     * Returns the value of the option identified by <b>$name</b>.
+     *
+     * @param string $name The option identifier.
+     * 
+     * @return string 
+     * @throws OutOfRangeException If no entry exists for $name.
+     */
+    public function getOption( $name )
+    {
+        if ( $this->hasOption( $name ) )
+        {
+            return $this->properties['options'][$name];
+        }
+        throw new OutOfRangeException(
+            sprintf( 'Unknown option "%s"."', $name )
+        );
     }
     
     /**
@@ -320,12 +378,20 @@ class pucConsoleArgs
                 {
                     continue;
                 }
-                printf( 
-                    'The option %s is marked as mandatory and not set.%s', 
-                    $long, 
-                    PHP_EOL 
-                );
-                exit( 1 );
+                else if ( !isset( $opt['default'] ) )
+                {
+                    printf( 
+                        'The option %s is marked as mandatory and not set.%s', 
+                        $long, 
+                        PHP_EOL 
+                    );
+                    exit( 1 );                    
+                }
+                
+                $option = '--' . $opt['long'];
+                
+                array_unshift( $this->argv, $opt['default'] );
+                array_unshift( $this->argv, $option );
             }
             
             // Search array index for option.
@@ -360,7 +426,7 @@ class pucConsoleArgs
             if ( is_array( $opt['arg'] ) && in_array( $value, $opt['arg'] ) === false )
             {
                 printf(
-                    'The value for option %s must be match on one of these values "%s".%s',
+                    'The value for option %s must match one of these values "%s".%s',
                     $option,
                     implode( '", "', $opt['arg'] ),
                     PHP_EOL
@@ -417,6 +483,8 @@ class pucConsoleArgs
         {
             // First print general usage.
             $this->printUsage();
+            
+            echo PHP_EOL;
 
             // Print all options and arguments
             foreach ( array_keys( $this->modes ) as $mode )
@@ -517,9 +585,13 @@ class pucConsoleArgs
     private function printUsage()
     {
         printf( 
-            'Usage: phpuc.php %s <options> <arguments>%s',
+            'Usage: phpuc.php %s <options> <arguments>%s' .
+            'For single command help type:%s' .
+            '  phpuc.php <command> --help%s',
             implode( '|', array_keys( $this->modes ) ),
-            PHP_EOL 
+            PHP_EOL,
+            PHP_EOL,
+            PHP_EOL
         );
     }
 }

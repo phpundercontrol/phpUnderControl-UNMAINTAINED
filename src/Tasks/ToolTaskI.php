@@ -1,4 +1,3 @@
-#!/usr/bin/env php
 <?php
 /**
  * This file is part of phpUnderControl.
@@ -34,6 +33,21 @@
  * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
+ * 
+ * @package    phpUnderControl
+ * @subpackage Tasks
  */
 
-require_once dirname( __FILE__ ) . '/../src/PhpUnderControl.php';
+/**
+ * Simple marker interface for tool tasks.
+ *
+ * @package    phpUnderControl
+ * @subpackage Tasks
+ * @author     Manuel Pichler <mapi@manuel-pichler.de>
+ * @copyright  2007 Manuel Pichler. All rights reserved.
+ * @license    http://www.opensource.org/licenses/bsd-license.php  BSD License
+ * @version    $Id: InstallMode.php 1699 2007-11-23 15:18:12Z mapi $
+ */
+interface phpucToolTaskI
+{
+}

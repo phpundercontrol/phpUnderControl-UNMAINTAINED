@@ -34,58 +34,74 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  * 
- * @package phpUnderControl
+ * @package    phpUnderControl
+ * @subpackage Commands
  */
 
 /**
- * Abstract base class for all modes.
+ * Implementation mode of the example mode.
  *
- * @package   phpUnderControl
- * @author    Manuel Pichler <mapi@manuel-pichler.de>
- * @copyright 2007 Manuel Pichler. All rights reserved.
- * @license   http://www.opensource.org/licenses/bsd-license.php  BSD License
- * @version   $Id$
+ * @package    phpUnderControl
+ * @subpackage Commands
+ * @author     Manuel Pichler <mapi@manuel-pichler.de>
+ * @copyright  2007 Manuel Pichler. All rights reserved.
+ * @license    http://www.opensource.org/licenses/bsd-license.php  BSD License
+ * @version    $Id: InstallMode.php 1699 2007-11-23 15:18:12Z mapi $
  */
-abstract class pucAbstractMode
-{
+abstract class phpucAbstractCommand
+{   
+    protected static $baseDir = null;
+    
     /**
      * Factory method for the different cli modes.
      *
-     * @param string             $mode     The mode identifier.
-     * @param array(pucSettingI) $settings The specified settings.
+     * @param phpucConsoleArgs  $args  The console arguments.
+     * @param array(phpucTaskI) $tasks List of command line tasks.
      * 
-     * @return pucAbstractMode
+     * @return phpucAbstractCommand
      */
-    public static function createMode( $mode, array $settings )
+    public static function createCommand( phpucConsoleArgs $args, array $tasks )
     {
         // Generate class name
-        $className = sprintf( 'puc%sMode', ucfirst( $mode ) );
+        $className = sprintf( 'phpuc%sCommand', ucfirst( $args->mode ) );
         
         if ( class_exists( $className, true ) === false )
         {
-            printf( 'Unknown mode "%s" used.%s', $mode, PHP_EOL );
+            printf( 'Unknown mode "%s" used.%s', $args->mode, PHP_EOL );
             exit( 1 );
         }
         
-        return new $className( $settings );
+        return new $className( $args, $tasks );
     }
     
     /**
-     * List with all settings.
+     * List with all tasks.
      *
-     * @type array<pucSettingI>
-     * @var array(pucSettingI) $settings
+     * @type array<phpucTaskI>
+     * @var array(phpucTaskI) $settings
      */
     protected $settings = array();
     
     /**
-     * Protected ctor that takes the settings as argument.
-     * 
-     * @param array(pucSettingI) $settings List of command line settings.
+     * The console argument object.
+     *
+     * @type phpucConsoleArgs
+     * @var phpucConsoleArgs $consoleArgs
      */
-    protected final function __construct( array $settings )
+    protected $consoleArgs = null;
+    
+    /**
+     * Protected ctor that takes the tasks and console arguments as parameters.
+     * 
+     * @param phpucConsoleArgs  $args  The console arguments.
+     * @param array(phpucTaskI) $tasks List of command line tasks.
+     */
+    protected final function __construct( phpucConsoleArgs $args, array $tasks )
     {
-        $this->settings = $settings;
+        $this->consoleArgs = $args;
+        $this->settings    = $tasks;
+        
+        self::$baseDir = realpath( dirname( __FILE__ ) . '/../..' );
     }
     
     /**
@@ -114,20 +130,20 @@ abstract class pucAbstractMode
     }
     
     /**
-     * Returns all setting objects for a single tool
+     * Returns all as tool marked task objects.
      *
-     * @return array(pucAbstractPearSetting)
+     * @return array(phpucToolTaskI)
      */
-    protected function getToolSettings()
+    protected function getToolTasks()
     {
-        $settings = array();
-        foreach ( $this->settings as $setting )
+        $tasks = array();
+        foreach ( $this->settings as $task )
         {
-            if ( $setting instanceof pucAbstractPearSetting )
+            if ( $task instanceof phpucToolTaskI )
             {
-                $settings[] = $setting;
+                $tasks[] = $task;
             }
         }
-        return $settings;
+        return $tasks;
     }
 }

@@ -34,27 +34,35 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  * 
- * @package phpUnderControl
+ * @package    phpUnderControl
+ * @subpackage Tasks
  */
 
 /**
- * Settings for the cruise control directory.
+ * Base interface for all tasks.
  *
- * @package   phpUnderControl
- * @author    Manuel Pichler <mapi@manuel-pichler.de>
- * @copyright 2007 Manuel Pichler. All rights reserved.
- * @license   http://www.opensource.org/licenses/bsd-license.php  BSD License
- * @version   $Id$
+ * @package    phpUnderControl
+ * @subpackage Tasks
+ * @author     Manuel Pichler <mapi@manuel-pichler.de>
+ * @copyright  2007 Manuel Pichler. All rights reserved.
+ * @license    http://www.opensource.org/licenses/bsd-license.php  BSD License
+ * @version    $Id: InstallMode.php 1699 2007-11-23 15:18:12Z mapi $
  */
-abstract class pucAbstractSetting implements pucSettingI
+interface phpucTaskI
 {
     /**
-     * Virtual properties for the setting implementation.
+     * Validates the required constrains.
      *
-     * @type array<mixed>
-     * @var array(string=>mixed) $properties
+     * @return void
      */
-    protected $properties = array();
+    function validate();
+    
+    /**
+     * Generates the required output/file content.
+     *
+     * @return string
+     */
+    function generate();
     
     /**
      * Magic property isset method.
@@ -63,10 +71,7 @@ abstract class pucAbstractSetting implements pucSettingI
      * 
      * @return boolean
      */
-    public function __isset( $name )
-    {
-        return array_key_exists( $name, $this->properties );
-    }
+    function __isset( $name );
     
     /**
      * Magic property getter method.
@@ -76,14 +81,16 @@ abstract class pucAbstractSetting implements pucSettingI
      * @return mixed
      * @throws OutOfRangeException If the property doesn't exist or is writonly.
      */
-    public function __get( $name )
-    {
-        if ( array_key_exists( $name, $this->properties ) === true )
-        {
-            return $this->properties[$name];
-        }
-        throw new OutOfRangeException( 
-            sprintf( 'Unknown or writonly property $%s.', $name )
-        );
-    }
+    function __get( $name );
+    
+    /**
+     * Magic property setter method.
+     *
+     * @param string $name  The property name.
+     * @param mixed  $value The property value.
+     * 
+     * @return void
+     * @throws OutOfRangeException If the property doesn't exist or is readonly.
+     */
+    function __set( $name, $value );
 }

@@ -33,36 +33,33 @@
  * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
- * 
- * @package phpUnderControl
+ *
+ * @package    phpUnderControl
+ * @subpackage Tasks
  */
 
 /**
- * Settings for the php code sniffer tool.
+ * Settings for the php documentor tool.
  *
- * @package   phpUnderControl
- * @author    Manuel Pichler <mapi@manuel-pichler.de>
- * @copyright 2007 Manuel Pichler. All rights reserved.
- * @license   http://www.opensource.org/licenses/bsd-license.php  BSD License
- * @version   $Id$
+ * @package    phpUnderControl
+ * @subpackage Tasks
+ * @author     Manuel Pichler <mapi@manuel-pichler.de>
+ * @copyright  2007 Manuel Pichler. All rights reserved.
+ * @license    http://www.opensource.org/licenses/bsd-license.php  BSD License
+ * @version    $Id$
  */
-class pucPhpCodeSnifferSetting extends pucAbstractPearSetting
-{   
-    /**
-     * Minimum code sniffer version.
-     */
-    const CODE_SNIFFER_VERSION = '1.0.0RC2';
-    
+class phpucPhpDocumentorTask extends phpucAbstractPearTask
+{
     /**
      * The ctor takes the PEAR install dir as an optional argument.
-     * 
+     *
      * @param string $pearInstallDir PEAR install dir.
      */
     public function __construct( $pearInstallDir = null )
     {
-        parent::__construct( 'phpcs', $pearInstallDir );
+        parent::__construct( 'phpdoc', $pearInstallDir );
     }
-    
+
     /**
      * Generates the required output/file content.
      *
@@ -71,47 +68,18 @@ class pucPhpCodeSnifferSetting extends pucAbstractPearSetting
     public function generate()
     {
         return sprintf( '
-  <target name="phpcs">
+  <target name="%s">
     <exec executable="%s"
-          output="${basedir}/build/logs/checkstyle.xml"
-          dir="${basedir}">
-      <arg line="--report=checkstyle --standard=PEAR source" />
+          dir="${basedir}/source"
+          logerror="on">
+      <arg line="-ue on -t ${basedir}/build/api -d ." />
     </exec>
   </target>
 ',
+            $this->cliTool,
             $this->fileName
         );
-    }
-    
-    /**
-     * Validates the existing code sniffer version.
-     *
-     * @return void
-     */
-    protected function doValidate()
-    {
-        $retval = exec( "{$this->fileName} --version" );
-        
-        if ( preg_match( '/version\s+([0-9\.]+(RC[0-9])?)/', $retval, $match ) === 0 )
-        {
-            echo 'WARNING: Cannot identify PHP_CodeSniffer version.' . PHP_EOL;
-            // Assume valid version
-            $version = self::CODE_SNIFFER_VERSION;
-        }
-        else
-        {
-            $version = $match[1];
-        }
-        
-        if ( version_compare( $version, self::CODE_SNIFFER_VERSION ) < 0 )
-        {
-            printf( 
-                'PHP_CodeSniffer version %s or higher required. Given version is "%s".%s',
-                self::CODE_SNIFFER_VERSION,
-                $version,
-                PHP_EOL
-            );
-            exit( 1 );
-        }
+
+        return $xml;
     }
 }

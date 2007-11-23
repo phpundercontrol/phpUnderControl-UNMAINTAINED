@@ -46,65 +46,131 @@
  * @license   http://www.opensource.org/licenses/bsd-license.php  BSD License
  * @version   $Id$
  */
-class pucPhpUnderControl
+class phpucPhpUnderControl
 {
+    /**
+     * Directory with all phpUnderControl class files.
+     *
+     * @type string
+     * @var string $installDir
+     */
+    private static $installDir = null;
+    
+    /**
+     * Class to file mapping.
+     *
+     * @type array<string> 
+     * @var array(string=>string) $autoloadFiles
+     */
+    private static $autoloadFiles = array(
+        'phpucAbstractCommand'     =>  'Commands/AbstractCommand.php',
+        'phpucExampleCommand'      =>  'Commands/ExampleCommand.php',
+        'phpucInstallCommand'      =>  'Commands/InstallCommand.php',
+        'phpucProjectCommand'      =>  'Commands/ProjectCommand.php',
+        'phpucAbstractPearTask'    =>  'Tasks/AbstractPearTask.php',
+        'phpucAbstractTask'        =>  'Tasks/AbstractTask.php',
+        'phpucCruiseControlTask'   =>  'Tasks/CruiseControlTask.php',
+        'phpucPhpCodeSnifferTask'  =>  'Tasks/PhpCodeSnifferTask.php',
+        'phpucPhpDocumentorTask'   =>  'Tasks/PhpDocumentorTask.php',
+        'phpucPhpUnitTask'         =>  'Tasks/PhpUnitTask.php',
+        'phpucTaskI'               =>  'Tasks/TaskI.php',
+        'phpucToolTaskI'           =>  'Tasks/ToolTaskI.php',
+        'phpucConsoleArgs'         =>  'Util/ConsoleArgs.php',
+        'phpucPhpUnderControl'     =>  'PhpUnderControl.php',
+    );
+    
+    /**
+     * Autoload function.
+     *
+     * @param string $className Unresolved class name.
+     * 
+     * @return void
+     */
+    public static function autoload( $className )
+    {
+        if ( isset( self::$autoloadFiles[$className] ) )
+        {
+            $fileName = sprintf(
+                '%s/../src/%s',
+                dirname( __FILE__ ),
+                self::$autoloadFiles[$className]
+            );
+        
+            include $fileName;
+        }
+    }
+    
+    /**
+     * Main method for phpUnderControl
+     *
+     * @return void
+     */
+    public static function main()
+    {
+        self::$installDir = dirname( __FILE__ );
+        
+        spl_autoload_register( array( 'phpucPhpUnderControl', 'autoload' ) );
+        
+        $phpUnderControl = new phpucPhpUnderControl();
+        $phpUnderControl->run();
+    }
+    
     /**
      * The used console arguments objects.
      *
-     * @type pucConsoleArgs
-     * @var pucConsoleArgs $consoleArgs
+     * @type phpucConsoleArgs
+     * @var phpucConsoleArgs $consoleArgs
      */
     private $consoleArgs = null;
     
     /**
-     * List with all settings.
+     * List with all tasks.
      *
-     * @type array<pucSettingI>
-     * @var array(pucSettingI) $settings
+     * @type array<phpucTaskI>
+     * @var array(phpucTaskI) $tasks
      */
-    private $settings = array();
+    private $tasks = array();
     
     /**
      * The ctor creates the required console arg instance.
      */
     public function __construct()
     {
-        $this->consoleArgs = new pucConsoleArgs();
+        $this->consoleArgs = new phpucConsoleArgs();
     }
     
     public function run()
     {
         $this->consoleArgs->parse();
         
-        $this->initSettings();
-        $this->validateSettings();
+        $this->initTasks();
+        $this->validateTasks();
         
-        $mode = pucAbstractMode::createMode( 
-            $this->consoleArgs->mode, 
-            $this->settings 
+        $mode = phpucAbstractCommand::createCommand( 
+            $this->consoleArgs, 
+            $this->tasks 
         );
         $mode->execute();
     }
     
     /**
-     * Initializes all setting objects.
+     * Initializes all {@link phpucTaskI} objects.
      *
      * @return void
      */
-    private function initSettings()
+    private function initTasks()
     {
         $args = $this->consoleArgs->arguments;
         $opts = $this->consoleArgs->options;
         
-        $exampleName = null;
-        if ( isset( $opts['name-of-example'] ) )
+        $projectName = null;
+        if ( isset( $opts['name-of-project'] ) )
         {
-            $exampleName = $opts['name-of-example'];
+            $projectName = $opts['name-of-project'];
         }
         
-        $this->settings[] = new pucCruiseControlSetting( 
-            $args['cc-install-dir'],
-            $exampleName
+        $this->tasks[] = new phpucCruiseControlTask( 
+            $args['cc-install-dir'], $projectName
         );
         
         $pearDir = null;
@@ -112,36 +178,33 @@ class pucPhpUnderControl
         {
             $pearDir = $opts['pear-executables-dir'];
         }
-        $webDir = null;
-        if ( isset( $opts['web-output-dir'] ) && trim( $opts['web-output-dir'] ) !== '' )
-        {
-            $webDir = $opts['web-output-dir'];
-        }
         
         if ( !isset( $opts['without-php-documentor'] ) )
         {
-            $this->settings[] = new pucPhpDocumentorSetting( $pearDir, $webDir );
+            $this->tasks[] = new phpucPhpDocumentorTask( $pearDir );
         }
         if ( !isset( $opts['without-code-sniffer'] ) )
         {
-            $this->settings[] = new pucPhpCodeSnifferSetting( $pearDir, $webDir );
+            $this->tasks[] = new phpucPhpCodeSnifferTask( $pearDir );
         }
         if ( !isset( $opts['without-phpunit'] ) )
         {
-            $this->settings[] = new pucPhpUnitSetting( $pearDir, $webDir );
+            $this->tasks[] = new phpucPhpUnitTask( $pearDir );
         }
     }
     
     /**
-     * Ask's all settings for valid data.
+     * Ask's all tasks for valid data.
      *
      * @return void
      */
-    private function validateSettings()
+    private function validateTasks()
     {
-        foreach ( $this->settings as $setting )
+        foreach ( $this->tasks as $task )
         {
-            $setting->validate();
+            $task->validate();
         }
     }
 }
+
+phpucPhpUnderControl::main();

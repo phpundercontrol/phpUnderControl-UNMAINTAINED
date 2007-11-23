@@ -1,4 +1,3 @@
-#!/usr/bin/env php
 <?php
 /**
  * This file is part of phpUnderControl.
@@ -34,6 +33,59 @@
  * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
+ * 
+ * @package    phpUnderControl
+ * @subpackage Tasks
  */
 
-require_once dirname( __FILE__ ) . '/../src/PhpUnderControl.php';
+/**
+ * Abstract base implementation of a phpUnderControl task.
+ *
+ * @package    phpUnderControl
+ * @subpackage Tasks
+ * @author     Manuel Pichler <mapi@manuel-pichler.de>
+ * @copyright  2007 Manuel Pichler. All rights reserved.
+ * @license    http://www.opensource.org/licenses/bsd-license.php  BSD License
+ * @version    $Id: AbstractSetting.php 1659 2007-11-19 10:45:02Z mapi $
+ */
+abstract class phpucAbstractTask implements phpucTaskI
+{
+    /**
+     * Virtual properties for the setting implementation.
+     *
+     * @type array<mixed>
+     * @var array(string=>mixed) $properties
+     */
+    protected $properties = array();
+    
+    /**
+     * Magic property isset method.
+     *
+     * @param string $name The property name.
+     * 
+     * @return boolean
+     */
+    public function __isset( $name )
+    {
+        return array_key_exists( $name, $this->properties );
+    }
+    
+    /**
+     * Magic property getter method.
+     *
+     * @param string $name The property name.
+     * 
+     * @return mixed
+     * @throws OutOfRangeException If the property doesn't exist or is writonly.
+     */
+    public function __get( $name )
+    {
+        if ( array_key_exists( $name, $this->properties ) === true )
+        {
+            return $this->properties[$name];
+        }
+        throw new OutOfRangeException( 
+            sprintf( 'Unknown or writonly property $%s.', $name )
+        );
+    }
+}

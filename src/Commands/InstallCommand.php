@@ -34,19 +34,21 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  * 
- * @package phpUnderControl
+ * @package    phpUnderControl
+ * @subpackage Commands
  */
 
 /**
- * Implementation mode of the example mode.
+ * Command implementation for the install mode.
  *
- * @package   phpUnderControl
- * @author    Manuel Pichler <mapi@manuel-pichler.de>
- * @copyright 2007 Manuel Pichler. All rights reserved.
- * @license   http://www.opensource.org/licenses/bsd-license.php  BSD License
- * @version   $Id$
+ * @package    phpUnderControl
+ * @subpackage Commands
+ * @author     Manuel Pichler <mapi@manuel-pichler.de>
+ * @copyright  2007 Manuel Pichler. All rights reserved.
+ * @license    http://www.opensource.org/licenses/bsd-license.php  BSD License
+ * @version    $Id: InstallMode.php 1699 2007-11-23 15:18:12Z mapi $
  */
-class pucInstallMode extends pucAbstractMode
+class phpucInstallCommand extends phpucAbstractCommand
 {
     /**
      * List of additional directories for phpUnderControl.
@@ -66,32 +68,32 @@ class pucInstallMode extends pucAbstractMode
      * @var array(string=>string) $installFiles
      */
     private $installFiles = array(
-        'header.jsp'                                     =>  null,
-        'phpcs.jsp'                                      =>  null,
-        'phpunit.jsp'                                    =>  null,
-        'phpunit-pmd.jsp'                                =>  null,
-        'css/php-under-control.css'                      =>  null,
-        'css/SyntaxHighlighter.css'                      =>  null,
-        'images/php-under-control/error.png'             =>  null,
-        'images/php-under-control/failed.png'            =>  null,
-        'images/php-under-control/header-center.png'     =>  null,
-        'images/php-under-control/header-left-logo.png'  =>  null,
-        'images/php-under-control/info.png'              =>  null,
-        'images/php-under-control/skipped.png'           =>  null,
-        'images/php-under-control/success.png'           =>  null,
-        'images/php-under-control/tab-active.png'        =>  null,
-        'images/php-under-control/tab-inactive.png'      =>  null,
-        'images/php-under-control/warning.png'           =>  null,
-        'js/shBrushPhp.js'                               =>  null,
-        'js/shCore.js'                                   =>  null,
-        'xsl/phpcs.xsl'                                  =>  null,
-        'xsl/phpcs-details.xsl'                          =>  null,
-        'xsl/phpdoc.xsl'                                 =>  null,
-        'xsl/phphelper.xsl'                              =>  null,
-        'xsl/phpunit.xsl'                                =>  null,
-        'xsl/phpunit-details.xsl'                        =>  null,
-        'xsl/phpunit-pmd.xsl'                            =>  null,
-        'xsl/phpunit-pmd-details.xsl'                    =>  null,
+        'header.jsp',
+        'phpcs.jsp',
+        'phpunit.jsp',
+        'phpunit-pmd.jsp',
+        'css/php-under-control.css',
+        'css/SyntaxHighlighter.css',
+        'images/php-under-control/error.png',
+        'images/php-under-control/failed.png',
+        'images/php-under-control/header-center.png',
+        'images/php-under-control/header-left-logo.png',
+        'images/php-under-control/info.png',
+        'images/php-under-control/skipped.png',
+        'images/php-under-control/success.png',
+        'images/php-under-control/tab-active.png',
+        'images/php-under-control/tab-inactive.png',
+        'images/php-under-control/warning.png',
+        'js/shBrushPhp.js',
+        'js/shCore.js',
+        'xsl/phpcs.xsl',
+        'xsl/phpcs-details.xsl',
+        'xsl/phpdoc.xsl',
+        'xsl/phphelper.xsl',
+        'xsl/phpunit.xsl',
+        'xsl/phpunit-details.xsl',
+        'xsl/phpunit-pmd.xsl',
+        'xsl/phpunit-pmd-details.xsl',
     );
     
     /**
@@ -101,13 +103,13 @@ class pucInstallMode extends pucAbstractMode
      * @var array(string=>string) $modifiedFiles
      */
     private $modifiedFiles = array(
-        'index.jsp'                    =>  null,
-        'main.jsp'                     =>  null,
-        'metrics.jsp'                  =>  null,
-        'xsl/buildresults.xsl'         =>  null,
-        'xsl/errors.xsl'               =>  null,
-        'xsl/header.xsl'               =>  null,
-        'xsl/modifications.xsl'        =>  null,
+        'index.jsp',
+        'main.jsp',
+        'metrics.jsp',
+        'xsl/buildresults.xsl',
+        'xsl/errors.xsl',
+        'xsl/header.xsl',
+        'xsl/modifications.xsl',
     );
     
     /**
@@ -135,9 +137,9 @@ class pucInstallMode extends pucAbstractMode
     private function createDirectories()
     {
         // Get root directory.
-        $installDir = $this->getCCSetting()->ccInstallDir;
+        $installDir = $this->consoleArgs->getArgument( 'cc-install-dir' );
         
-        foreach ( $this->directories as $idx => $directory )
+        foreach ( $this->directories as $index => $directory )
         {
             $path = sprintf( 
                 '%s/webapps/cruisecontrol/%s', 
@@ -153,7 +155,7 @@ class pucInstallMode extends pucAbstractMode
             
             printf( 
                 ' % 2d. Creating directory "webapps/cruisecontrol/%s".%s',
-                $idx,
+                $index,
                 $directory,
                 PHP_EOL
             );
@@ -165,10 +167,10 @@ class pucInstallMode extends pucAbstractMode
     {
         $path = sprintf( 
             '%s/webapps/cruisecontrol/', 
-            $this->getCCSetting()->ccInstallDir 
+            $this->consoleArgs->getArgument( 'cc-install-dir' ) 
         );
         
-        foreach ( $this->modifiedFiles as $filename => $content )
+        foreach ( $this->modifiedFiles as $filename )
         {
             if ( file_exists( "{$path}/{$filename}.orig" ) === false )
             {
@@ -181,17 +183,14 @@ class pucInstallMode extends pucAbstractMode
                 copy( "{$path}/{$filename}", "{$path}/{$filename}.orig" );
             }
             
-            if ( $content === null )
-            {
-                $content = $this->loadFileContent(
-                    dirname( __FILE__ ) . '/../data/' . $filename
-                );
-                
-                $this->modifiedFiles[$filename] = $content;
-            }
-            
             printf( '  File "%s" modified.%s', $filename, PHP_EOL );
-            file_put_contents( "{$path}/{$filename}", base64_decode( $content ) );
+            
+            file_put_contents( 
+                "{$path}/{$filename}",
+                $this->loadFileContent(
+                    sprintf( '%s/data/%s', self::$baseDir, $filename )
+                )
+            );
         }
     }
     
@@ -199,22 +198,20 @@ class pucInstallMode extends pucAbstractMode
     {
         $path = sprintf( 
             '%s/webapps/cruisecontrol/', 
-            $this->getCCSetting()->ccInstallDir 
+            $this->consoleArgs->getArgument( 'cc-install-dir' )
         );
         
-        foreach ( $this->installFiles as $filename => $content )
+        foreach ( $this->installFiles as $filename )
         {
-            if ( $content === null )
-            {
-                $content = $this->loadFileContent(
-                    dirname( __FILE__ ) . '/../data/' . $filename
-                );
-                
-                $this->modifiedFiles[$filename] = $content;
-            }
             
             printf( '  File "%s" installed.%s', $filename, PHP_EOL );
-            file_put_contents( "{$path}/{$filename}", base64_decode( $content ) );
+            
+            file_put_contents( 
+                "{$path}/{$filename}",
+                $this->loadFileContent(
+                    sprintf( '%s/data/%s', self::$baseDir, $filename )
+                ) 
+            );
         }
     }
     
@@ -223,10 +220,10 @@ class pucInstallMode extends pucAbstractMode
      *
      * @param string $file The file name.
      * 
-     * @return string base64 encoded content
+     * @return string 
      */
     private function loadFileContent( $file )
     {
-        return base64_encode( file_get_contents( $file ) );
+        return file_get_contents( $file );
     }
 }

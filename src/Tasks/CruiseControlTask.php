@@ -38,32 +38,33 @@
  */
 
 /**
- * Settings for the cruise control directory.
+ * Task for the cruise control directory.
  *
- * @package   phpUnderControl
- * @author    Manuel Pichler <mapi@manuel-pichler.de>
- * @copyright 2007 Manuel Pichler. All rights reserved.
- * @license   http://www.opensource.org/licenses/bsd-license.php  BSD License
- * @version   $Id$
+ * @package    phpUnderControl
+ * @subpackage Tasks
+ * @author     Manuel Pichler <mapi@manuel-pichler.de>
+ * @copyright  2007 Manuel Pichler. All rights reserved.
+ * @license    http://www.opensource.org/licenses/bsd-license.php  BSD License
+ * @version    $Id: CruiseControlSetting.php 1659 2007-11-19 10:45:02Z mapi $
  * 
  * @property string $ccInstallDir The cruise control installation directory.
- * @property string $exampleName  The name of the example project.
+ * @property string $projectName  The name of the example project.
  */
-class pucCruiseControlSetting extends pucAbstractSetting
+class phpucCruiseControlTask extends phpucAbstractTask
 {
     /**
      * The ctor takes the given cruise control install dir as argument.
      *
      * @param string $ccInstallDir The cc install dir.
-     * @param string $exampleName  The name of the example project.
+     * @param string $projectName  The name of the example project.
      */
-    public function __construct( $ccInstallDir, $exampleName = null )
+    public function __construct( $ccInstallDir, $projectName = null )
     {
         $this->properties['ccInstallDir'] = null;
-        $this->properties['exampleName']  = null;
+        $this->properties['projectName']  = null;
         
         $this->ccInstallDir = $ccInstallDir;
-        $this->exampleName  = $exampleName;
+        $this->projectName  = $projectName;
     }
     
     /**
@@ -129,12 +130,12 @@ class pucCruiseControlSetting extends pucAbstractSetting
     {
         switch ( $name )
         {
-            case 'exampleName':
+            case 'projectName':
                 if ( trim( $value) === '' )
                 {
                     $value = 'php-under-control';
                 }
-                $this->properties['exampleName'] = $value;
+                $this->properties[$name] = $value;
                 break;
                 
             case 'ccInstallDir':

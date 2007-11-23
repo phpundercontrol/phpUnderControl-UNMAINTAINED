@@ -34,61 +34,21 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  * 
- * @package phpUnderControl
+ * @package    phpUnderControl
+ * @subpackage Commands
  */
 
 /**
- * Interface for all settings.
+ * Implementation mode of the example mode.
  *
- * @package   phpUnderControl
- * @author    Manuel Pichler <mapi@manuel-pichler.de>
- * @copyright 2007 Manuel Pichler. All rights reserved.
- * @license   http://www.opensource.org/licenses/bsd-license.php  BSD License
- * @version   $Id$
+ * @package    phpUnderControl
+ * @subpackage Commands
+ * @author     Manuel Pichler <mapi@manuel-pichler.de>
+ * @copyright  2007 Manuel Pichler. All rights reserved.
+ * @license    http://www.opensource.org/licenses/bsd-license.php  BSD License
+ * @version    $Id: InstallMode.php 1699 2007-11-23 15:18:12Z mapi $
  */
-interface pucSettingI
+class phpucProjectCommand extends phpucAbstractCommand
 {
-    /**
-     * Validates the required constrains.
-     *
-     * @return void
-     */
-    function validate();
     
-    /**
-     * Generates the required output/file content.
-     *
-     * @return string
-     */
-    function generate();
-    
-    /**
-     * Magic property isset method.
-     *
-     * @param string $name The property name.
-     * 
-     * @return boolean
-     */
-    function __isset( $name );
-    
-    /**
-     * Magic property getter method.
-     *
-     * @param string $name The property name.
-     * 
-     * @return mixed
-     * @throws OutOfRangeException If the property doesn't exist or is writonly.
-     */
-    function __get( $name );
-    
-    /**
-     * Magic property setter method.
-     *
-     * @param string $name  The property name.
-     * @param mixed  $value The property value.
-     * 
-     * @return void
-     * @throws OutOfRangeException If the property doesn't exist or is readonly.
-     */
-    function __set( $name, $value );
 }

@@ -34,23 +34,25 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  * 
- * @package phpUnderControl
+ * @package    phpUnderControl
+ * @subpackage Tasks
  */
 
 /**
  * Abstract base class for the PEAR based options.
  *
- * @package   phpUnderControl
- * @author    Manuel Pichler <mapi@manuel-pichler.de>
- * @copyright 2007 Manuel Pichler. All rights reserved.
- * @license   http://www.opensource.org/licenses/bsd-license.php  BSD License
- * @version   $Id$
+ * @package    phpUnderControl
+ * @subpackage Tasks
+ * @author     Manuel Pichler <mapi@manuel-pichler.de>
+ * @copyright  2007 Manuel Pichler. All rights reserved.
+ * @license    http://www.opensource.org/licenses/bsd-license.php  BSD License
+ * @version    $Id$
  * 
  * @property      string $cliTool        The PEAR cli command line tool.
  * @property      string $pearInstallDir An optional PEAR install directory.
  * @property-read string $fileName       The full command file name.
  */
-abstract class pucAbstractPearSetting extends pucAbstractSetting
+abstract class phpucAbstractPearTask extends phpucAbstractTask implements phpucToolTaskI
 {
     /**
      * The ctor takes the cli script name as argument and the PEAR install dir 
@@ -115,7 +117,7 @@ abstract class pucAbstractPearSetting extends pucAbstractSetting
         if ( $this->fileName === null )
         {
             printf(
-                'Missing command line tool "%s". Please check your PATH settings.%s',
+                'Missing command line tool "%s". Please check your PATH environment variable.%s',
                 $this->cliTool,
                 PHP_EOL
             );

@@ -34,19 +34,21 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  * 
- * @package phpUnderControl
+ * @package    phpUnderControl
+ * @subpackage Commands
  */
 
 /**
  * Implementation mode of the example mode.
  *
- * @package   phpUnderControl
- * @author    Manuel Pichler <mapi@manuel-pichler.de>
- * @copyright 2007 Manuel Pichler. All rights reserved.
- * @license   http://www.opensource.org/licenses/bsd-license.php  BSD License
- * @version   $Id$
+ * @package    phpUnderControl
+ * @subpackage Commands
+ * @author     Manuel Pichler <mapi@manuel-pichler.de>
+ * @copyright  2007 Manuel Pichler. All rights reserved.
+ * @license    http://www.opensource.org/licenses/bsd-license.php  BSD License
+ * @version    $Id: InstallMode.php 1699 2007-11-23 15:18:12Z mapi $
  */
-class pucExampleMode extends pucAbstractMode
+class phpucExampleCommand extends phpucAbstractCommand 
 {
     /**
      * List of example files.
@@ -66,9 +68,16 @@ class pucExampleMode extends pucAbstractMode
      */
     public function execute()
     {
-        $ccsetting = $this->getCCSetting();
-        $project   = $ccsetting->exampleName;
 
+        if ( $this->consoleArgs->hasOption( 'project-name' ) )
+        {
+            $project = $this->consoleArgs->getOption( 'project-name' );
+        }
+        else
+        {
+            $project = 'php-under-control';
+        }
+        
         printf( '%sCreating required project directories.%s', PHP_EOL, PHP_EOL );
         $this->createDirectories( $project );
         
@@ -78,7 +87,7 @@ class pucExampleMode extends pucAbstractMode
         printf( '%sCreating project build file "%s/build.xml".%s', PHP_EOL, $project, PHP_EOL );
         $this->createBuildFile( $project );
         
-        printf( '%sPreparing CruiseControl "%s/config.xml.%s', PHP_EOL, $ccsetting->ccInstallDir, PHP_EOL );
+        printf( '%sPreparing CruiseControl "%s/config.xml.%s', PHP_EOL, $this->consoleArgs->getArgument( 'cc-install-dir' ), PHP_EOL );
         $this->prepareConfig( $project );
     }
     
@@ -91,8 +100,7 @@ class pucExampleMode extends pucAbstractMode
      */
     private function createDirectories( $project )
     {
-        $ccs  = $this->getCCSetting();
-        $path = $ccs->ccInstallDir;
+        $path = $this->consoleArgs->getArgument( 'cc-install-dir' );
         
         $projectDir      = sprintf( '%s/projects/%s', $path, $project );
         $projectInput    = sprintf( '%s/projects/%s/source', $path, $project );
@@ -104,21 +112,28 @@ class pucExampleMode extends pucAbstractMode
         $projectCoverage = sprintf( '%s/projects/%s/build/coverage', $path, $project );
 
         printf( '  1. Creating CruiseControl project dir "projects/%s".' . PHP_EOL, $project );
-        mkdir( $projectDir );
+        @mkdir( $projectDir );
+        
         printf( '  2. Creating Project input dir "%s/source".' . PHP_EOL, $project );
-        mkdir( $projectInput );
+        @mkdir( $projectInput );
+        
         printf( '  3. Creating Project source dir "%s/source/src".' . PHP_EOL, $project );
-        mkdir( $projectSrc );
+        @mkdir( $projectSrc );
+        
         printf( '  4. Creating Project test dir "%s/source/tests".' . PHP_EOL, $project );
-        mkdir( $projectTests );
+        @mkdir( $projectTests );
+        
         printf( '  5. Creating Project build dir "%s/build".' . PHP_EOL, $project );
-        mkdir( $projectBuild );
+        @mkdir( $projectBuild );
+        
         printf( '  6. Creating Project log dir "%s/build/logs"' . PHP_EOL, $project );
-        mkdir( $projectLogs );
+        @mkdir( $projectLogs );
+        
         printf( '  7. Creating Project coverage dir "%s/build/coverage"' . PHP_EOL, $project );
-        mkdir( $projectCoverage );
-        printf( '  7. Creating Project documentation dir "%s/build/api"' . PHP_EOL, $project );
-        mkdir( $projectApi );
+        @mkdir( $projectCoverage );
+        
+        printf( '  8. Creating Project documentation dir "%s/build/api"' . PHP_EOL, $project );
+        @mkdir( $projectApi );
     }
     
     /**
@@ -130,15 +145,18 @@ class pucExampleMode extends pucAbstractMode
      */ 
     private function copyExampleFiles( $project )
     {
-        $ccs  = $this->getCCSetting();
-        $path = sprintf( '%s/projects/%s/source/', $ccs->ccInstallDir, $project );
+        $path = sprintf( 
+            '%s/projects/%s/source/', 
+            $this->consoleArgs->getArgument( 'cc-install-dir' ), 
+            $project 
+        );
         
         foreach ( $this->exampleFiles as $filename => $content )
         {
             if ( $content === null )
             {
                 $content = $this->loadFileContent(
-                    dirname( __FILE__ ) . '/../example/' . $filename
+                    sprintf( '%s/example/%s', self::$baseDir, $filename )
                 );
                 
                 $this->exampleFiles[$filename] = $content;
@@ -166,11 +184,11 @@ class pucExampleMode extends pucAbstractMode
         
         $targets = array();
         
-        foreach ( $this->getToolSettings() as $setting )
+        foreach ( $this->getToolTasks() as $task )
         {
-            $targets[] = $setting->cliTool;
+            $targets[] = $task->cliTool;
             
-            $xml .= $setting->generate();
+            $xml .= $task->generate();
         }
         
         $xml .= sprintf( '
@@ -179,9 +197,12 @@ class pucExampleMode extends pucAbstractMode
 </project>',
             implode( ',', $targets )
         );
-        
-        $ccs  = $this->getCCSetting();
-        $path = sprintf( '%s/projects/%s/build.xml', $ccs->ccInstallDir, $project );
+
+        $path = sprintf( 
+            '%s/projects/%s/build.xml', 
+            $this->consoleArgs->getArgument( 'cc-install-dir' ), 
+            $project 
+        );
         
         file_put_contents( $path, $xml );
     }
@@ -195,10 +216,11 @@ class pucExampleMode extends pucAbstractMode
      */
     private function prepareConfig( $project )
     {
-        $ccs  = $this->getCCSetting();
-        $path = sprintf( '%s/config.xml', $ccs->ccInstallDir );
+        $path = sprintf( 
+            '%s/config.xml', $this->consoleArgs->getArgument( 'cc-install-dir' )
+        );
         
-        if ( count( $ant = glob( sprintf( '%s/apache-ant*', $ccs->ccInstallDir ) ) ) === 0 )
+        if ( count( $ant = glob( sprintf( '%s/apache-ant*', $this->consoleArgs->getArgument( 'cc-install-dir' ) ) ) ) === 0 )
         {
             echo 'ERROR: Cannot locate ant directory.' . PHP_EOL;
             exit( 1 );

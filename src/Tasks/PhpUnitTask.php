@@ -34,22 +34,24 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  * 
- * @package phpUnderControl
+ * @package    phpUnderControl
+ * @subpackage Tasks
  */
 
 /**
  * Settings for the php unit tool.
  *
- * @package   phpUnderControl
- * @author    Manuel Pichler <mapi@manuel-pichler.de>
- * @copyright 2007 Manuel Pichler. All rights reserved.
- * @license   http://www.opensource.org/licenses/bsd-license.php  BSD License
- * @version   $Id$
+ * @package    phpUnderControl
+ * @subpackage Tasks
+ * @author     Manuel Pichler <mapi@manuel-pichler.de>
+ * @copyright  2007 Manuel Pichler. All rights reserved.
+ * @license    http://www.opensource.org/licenses/bsd-license.php  BSD License
+ * @version    $Id$
  * 
  * @property-read boolean $metrics  Enable metrics support?
  * @property-read boolean $coverage Enable coverage support?
  */
-class pucPhpUnitSetting extends pucAbstractPearSetting
+class phpucPhpUnitTask extends phpucAbstractPearTask
 {   
     /**
      * Minimum code sniffer version.
