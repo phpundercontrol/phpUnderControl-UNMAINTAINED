@@ -103,8 +103,8 @@
   </div>
   
     <div id="footer">
-      By <a href="http://www.manuel-pichler.de/">Manuel Pichler</a> hostet
-      at <a href="http://www.phpunit.de/">phpunit.de</a>.
+      By <a href="http://www.manuel-pichler.de/">Manuel Pichler</a> hosted
+      on <a href="http://www.phpunit.de/">phpunit.de</a>.
     </div>
   </body>
 </html>
