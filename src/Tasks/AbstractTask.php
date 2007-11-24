@@ -36,6 +36,11 @@
  * 
  * @package    phpUnderControl
  * @subpackage Tasks
+ * @author     Manuel Pichler <mapi@manuel-pichler.de>
+ * @copyright  2007 Manuel Pichler. All rights reserved.
+ * @license    http://www.opensource.org/licenses/bsd-license.php  BSD License
+ * @version    SVN: $Id$
+ * @link       http://www.phpunit.de/wiki/phpUnderControl
  */
 
 /**
@@ -46,7 +51,8 @@
  * @author     Manuel Pichler <mapi@manuel-pichler.de>
  * @copyright  2007 Manuel Pichler. All rights reserved.
  * @license    http://www.opensource.org/licenses/bsd-license.php  BSD License
- * @version    $Id: AbstractSetting.php 1659 2007-11-19 10:45:02Z mapi $
+ * @version    Release: @package_version@
+ * @link       http://www.phpunit.de/wiki/phpUnderControl
  */
 abstract class phpucAbstractTask implements phpucTaskI
 {

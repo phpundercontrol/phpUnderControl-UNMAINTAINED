@@ -36,6 +36,11 @@
  * 
  * @package    phpUnderControl
  * @subpackage Tasks
+ * @author     Manuel Pichler <mapi@manuel-pichler.de>
+ * @copyright  2007 Manuel Pichler. All rights reserved.
+ * @license    http://www.opensource.org/licenses/bsd-license.php  BSD License
+ * @version    SVN: $Id$
+ * @link       http://www.phpunit.de/wiki/phpUnderControl
  */
 
 /**
@@ -46,7 +51,8 @@
  * @author     Manuel Pichler <mapi@manuel-pichler.de>
  * @copyright  2007 Manuel Pichler. All rights reserved.
  * @license    http://www.opensource.org/licenses/bsd-license.php  BSD License
- * @version    $Id$
+ * @version    Release: @package_version@
+ * @link       http://www.phpunit.de/wiki/phpUnderControl
  * 
  * @property-read boolean $metrics  Enable metrics support?
  * @property-read boolean $coverage Enable coverage support?
@@ -56,7 +62,7 @@ class phpucPhpUnitTask extends phpucAbstractPearTask
     /**
      * Minimum code sniffer version.
      */
-    const PHP_UNIT_VERSION = '3.2.0RC2';
+    const PHP_UNIT_VERSION = '3.2.0';
     
     /**
      * The ctor takes the PEAR install dir as an optional argument.

@@ -34,7 +34,12 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  * 
- * @package phpUnderControl
+ * @package   phpUnderControl
+ * @author    Manuel Pichler <mapi@manuel-pichler.de>
+ * @copyright 2007 Manuel Pichler. All rights reserved.
+ * @license   http://www.opensource.org/licenses/bsd-license.php  BSD License
+ * @version   SVN: $Id$
+ * @link      http://www.phpunit.de/wiki/phpUnderControl
  */
 
 /**
@@ -44,7 +49,8 @@
  * @author    Manuel Pichler <mapi@manuel-pichler.de>
  * @copyright 2007 Manuel Pichler. All rights reserved.
  * @license   http://www.opensource.org/licenses/bsd-license.php  BSD License
- * @version   $Id$
+ * @version   Release: @package_version@
+ * @link      http://www.phpunit.de/wiki/phpUnderControl
  */
 class phpucPhpUnderControl
 {
@@ -54,7 +60,7 @@ class phpucPhpUnderControl
      * @type string
      * @var string $installDir
      */
-    private static $installDir = null;
+    private static $installDir = '@php_dir@';
     
     /**
      * Class to file mapping.
@@ -91,9 +97,7 @@ class phpucPhpUnderControl
         if ( isset( self::$autoloadFiles[$className] ) )
         {
             $fileName = sprintf(
-                '%s/../src/%s',
-                dirname( __FILE__ ),
-                self::$autoloadFiles[$className]
+                '%s/%s', self::$installDir, self::$autoloadFiles[$className]
             );
         
             include $fileName;
@@ -107,7 +111,15 @@ class phpucPhpUnderControl
      */
     public static function main()
     {
-        self::$installDir = dirname( __FILE__ );
+        // Check for svn version of phpUnderControl
+        if ( strpos( self::$installDir,  '@php_dir' ) === 0 )
+        {
+            self::$installDir = realpath( dirname( __FILE__ ) . '/../src' );
+        }
+        else
+        {
+            self::$installDir .= '/phpUnderControl';
+        }
         
         spl_autoload_register( array( 'phpucPhpUnderControl', 'autoload' ) );
         

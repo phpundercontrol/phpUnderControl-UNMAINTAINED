@@ -36,6 +36,11 @@
  * 
  * @package    phpUnderControl
  * @subpackage Util
+ * @author     Manuel Pichler <mapi@manuel-pichler.de>
+ * @copyright  2007 Manuel Pichler. All rights reserved.
+ * @license    http://www.opensource.org/licenses/bsd-license.php  BSD License
+ * @version    SVN: $Id$
+ * @link       http://www.phpunit.de/wiki/phpUnderControl
  */
 
 /**
@@ -46,7 +51,12 @@
  * @author     Manuel Pichler <mapi@manuel-pichler.de>
  * @copyright  2007 Manuel Pichler. All rights reserved.
  * @license    http://www.opensource.org/licenses/bsd-license.php  BSD License
- * @version    $Id: ConsoleArgs.php 1699 2007-11-23 15:18:12Z mapi $
+ * @version    Release: @package_version@
+ * @link       http://www.phpunit.de/wiki/phpUnderControl
+ * 
+ * @property-read string $command   The specified command.
+ * @property-read array  $options   List of command line options.
+ * @property-read array  $arguments List of command line arguments.
  */
 class phpucConsoleArgs
 {
@@ -62,10 +72,11 @@ class phpucConsoleArgs
      * List of valid modes.
      *
      * @type array<array>
-     * @var array(string=>array) $modes
+     * @var array(string=>array) $commands
      */
-    private $modes = array(
+    private $commands = array(
         'install'  =>  array(
+            'help'  =>  'Installs the CruiseControl patches.',
             'options'  =>  array(
                 array(
                     'short'      =>  'c',
@@ -104,6 +115,7 @@ class phpucConsoleArgs
             )
         ),
         'example'  =>  array(
+            'help'  =>  'Creates a small example project.',
             'options'  =>  array(
                 array(
                     'short'      =>  'c',
@@ -165,7 +177,7 @@ class phpucConsoleArgs
      * @var array(string=>mixed) $properties
      */
     private $properties = array(
-        'mode'       =>  null,
+        'command'    =>  null,
         'options'    =>  array(),
         'arguments'  =>  array()
     );
@@ -277,7 +289,7 @@ class phpucConsoleArgs
         }
         
         // First argument must be the mode
-        if ( $this->parseMode() === false )
+        if ( $this->parseCommand() === false )
         {
             echo 'You must enter a valid installation mode as first argument.' . PHP_EOL;
             $this->printUsage();
@@ -334,15 +346,15 @@ class phpucConsoleArgs
      *
      * @return boolean
      */
-    private function parseMode()
+    private function parseCommand()
     {
-        $mode = array_shift( $this->argv );
+        $command = array_shift( $this->argv );
         
-        if ( !isset( $this->modes[$mode] ) )
+        if ( !isset( $this->commands[$command] ) )
         {
             return false;
         }
-        $this->properties['mode'] = $mode;
+        $this->properties['command'] = $command;
         
         return true;
     }
@@ -354,7 +366,7 @@ class phpucConsoleArgs
      */
     private function parseOptions()
     {
-        $opts = $this->modes[$this->mode]['options'];
+        $opts = $this->commands[$this->command]['options'];
         
         foreach ( $opts as $opt )
         {
@@ -453,7 +465,7 @@ class phpucConsoleArgs
      */
     private function parseArguments()
     {
-        $args = $this->modes[$this->mode]['args'];
+        $args = $this->commands[$this->command]['args'];
         
         foreach ( $args as $name => $arg )
         {
@@ -478,8 +490,8 @@ class phpucConsoleArgs
      */
     private function printHelp()
     {
-        // Try to find a mode
-        if ( $this->parseMode() === false )
+        // Try to find a command
+        if ( $this->parseCommand() === false )
         {
             // First print general usage.
             $this->printUsage();
@@ -487,9 +499,9 @@ class phpucConsoleArgs
             echo PHP_EOL;
 
             // Print all options and arguments
-            foreach ( array_keys( $this->modes ) as $mode )
+            foreach ( array_keys( $this->commands ) as $command )
             {
-                $this->printModeHelp( $mode );
+                $this->printModeHelp( $command );
             }
             
             printf(
@@ -506,26 +518,26 @@ class phpucConsoleArgs
         }
         else
         {
-            $this->printModeHelp( $this->mode );
+            $this->printModeHelp( $this->command );
         }
     }
     
     /**
-     * Prints the help text for a single installer mode.
+     * Prints the help text for a single installer command.
      *
-     * @param string $mode The installer mode.
+     * @param string $command The installer command.
      * 
      * @return void
      */
-    private function printModeHelp( $mode )
+    private function printModeHelp( $command )
     {
         printf(
             'Command line options and arguments for "%s"%s',
-            $mode,
+            $command,
             PHP_EOL
         );
         
-        foreach ( $this->modes[$mode]['options'] as $opts )
+        foreach ( $this->commands[$command]['options'] as $opts )
         {
             $tokens = $this->tokenizeHelp( $opts['help'] );
             
@@ -544,7 +556,7 @@ class phpucConsoleArgs
             }
         }
         
-        foreach ( $this->modes[$mode]['args'] as $name => $arg )
+        foreach ( $this->commands[$command]['args'] as $name => $arg )
         {
             $tokens = $this->tokenizeHelp( $arg['help'] );
             
@@ -584,14 +596,27 @@ class phpucConsoleArgs
      */
     private function printUsage()
     {
+        $commands = '';
+        foreach ( $this->commands as $command => $info )
+        {
+            $commands .= sprintf(
+                '  * % -10s  %s%s',
+                $command,
+                $info['help'],
+                PHP_EOL
+            );
+        }
+        
         printf( 
-            'Usage: phpuc.php %s <options> <arguments>%s' .
+            'Usage: phpuc.php <command> <options> <arguments>%s' .
             'For single command help type:%s' .
-            '  phpuc.php <command> --help%s',
-            implode( '|', array_keys( $this->modes ) ),
+            '    phpuc.php <command> --help%s' . 
+            'Available commands:%s%s',
             PHP_EOL,
             PHP_EOL,
-            PHP_EOL
+            PHP_EOL,
+            PHP_EOL,
+            $commands
         );
     }
 }

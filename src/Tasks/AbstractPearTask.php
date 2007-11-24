@@ -36,6 +36,11 @@
  * 
  * @package    phpUnderControl
  * @subpackage Tasks
+ * @author     Manuel Pichler <mapi@manuel-pichler.de>
+ * @copyright  2007 Manuel Pichler. All rights reserved.
+ * @license    http://www.opensource.org/licenses/bsd-license.php  BSD License
+ * @version    SVN: $Id$
+ * @link       http://www.phpunit.de/wiki/phpUnderControl
  */
 
 /**
@@ -46,7 +51,8 @@
  * @author     Manuel Pichler <mapi@manuel-pichler.de>
  * @copyright  2007 Manuel Pichler. All rights reserved.
  * @license    http://www.opensource.org/licenses/bsd-license.php  BSD License
- * @version    $Id$
+ * @version    Release: @package_version@
+ * @link       http://www.phpunit.de/wiki/phpUnderControl
  * 
  * @property      string $cliTool        The PEAR cli command line tool.
  * @property      string $pearInstallDir An optional PEAR install directory.

@@ -34,6 +34,21 @@
  * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
+ * 
+ * @author     Manuel Pichler <mapi@manuel-pichler.de>
+ * @copyright  2007 Manuel Pichler. All rights reserved.
+ * @license    http://www.opensource.org/licenses/bsd-license.php  BSD License
+ * @version    SVN: $Id$
+ * @link       http://www.phpunit.de/wiki/phpUnderControl
  */
 
-require_once dirname( __FILE__ ) . '/../src/PhpUnderControl.php';
+define( 'PHPUC_INSTALL_DIR', '@php_dir@' );
+
+if ( strpos( PHPUC_INSTALL_DIR, '@php_dir' ) === 0 )
+{
+    require_once dirname( __FILE__ ) . '/../src/PhpUnderControl.php';
+}
+else
+{
+    require_once PHPUC_INSTALL_DIR . '/phpUnderControl/PhpUnderControl.php';
+}

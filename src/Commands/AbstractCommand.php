@@ -36,6 +36,11 @@
  * 
  * @package    phpUnderControl
  * @subpackage Commands
+ * @author     Manuel Pichler <mapi@manuel-pichler.de>
+ * @copyright  2007 Manuel Pichler. All rights reserved.
+ * @license    http://www.opensource.org/licenses/bsd-license.php  BSD License
+ * @version    SVN: $Id$
+ * @link       http://www.phpunit.de/wiki/phpUnderControl
  */
 
 /**
@@ -46,11 +51,12 @@
  * @author     Manuel Pichler <mapi@manuel-pichler.de>
  * @copyright  2007 Manuel Pichler. All rights reserved.
  * @license    http://www.opensource.org/licenses/bsd-license.php  BSD License
- * @version    $Id: InstallMode.php 1699 2007-11-23 15:18:12Z mapi $
+ * @version    Release: @package_version@
+ * @link       http://www.phpunit.de/wiki/phpUnderControl
  */
 abstract class phpucAbstractCommand
 {   
-    protected static $baseDir = null;
+    protected static $baseDir = '@base_dir@';
     
     /**
      * Factory method for the different cli modes.
@@ -63,11 +69,11 @@ abstract class phpucAbstractCommand
     public static function createCommand( phpucConsoleArgs $args, array $tasks )
     {
         // Generate class name
-        $className = sprintf( 'phpuc%sCommand', ucfirst( $args->mode ) );
+        $className = sprintf( 'phpuc%sCommand', ucfirst( $args->command ) );
         
         if ( class_exists( $className, true ) === false )
         {
-            printf( 'Unknown mode "%s" used.%s', $args->mode, PHP_EOL );
+            printf( 'Unknown command "%s" used.%s', $args->command, PHP_EOL );
             exit( 1 );
         }
         
@@ -101,7 +107,15 @@ abstract class phpucAbstractCommand
         $this->consoleArgs = $args;
         $this->settings    = $tasks;
         
-        self::$baseDir = realpath( dirname( __FILE__ ) . '/../..' );
+        // check for svn version of phpUnderControl
+        if ( strpos( self::$baseDir, '@base_dir' ) === 0 )
+        {
+            self::$baseDir = realpath( dirname( __FILE__ ) . '/../..' );
+        }
+        else
+        {
+            self::$baseDir .= '/phpUnderControl';
+        }
     }
     
     /**
@@ -110,24 +124,6 @@ abstract class phpucAbstractCommand
      * @return void
      */
     public abstract function execute();
-    
-    /**
-     * Returns the cruise control setting object.
-     *
-     * @return pucCruiseControlSetting
-     */
-    protected function getCCSetting()
-    {
-        foreach ( $this->settings as $setting )
-        {
-            if ( $setting instanceof pucCruiseControlSetting )
-            {
-                return $setting;
-            }
-        }
-        // This should never happen.
-        throw new ErrorException( 'No CruiseControl setting defined.' );
-    }
     
     /**
      * Returns all as tool marked task objects.
