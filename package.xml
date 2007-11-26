@@ -92,9 +92,6 @@
           <file name="TaskI.php" role="php">
             <tasks:replace from="@package_version@" to="version" type="package-info" />
           </file>
-          <file name="ToolTaskI.php" role="php">
-            <tasks:replace from="@package_version@" to="version" type="package-info" />
-          </file>
         </dir>
         <dir name="Util">
           <file name="ConsoleArgs.php" role="php">
@@ -249,7 +246,6 @@
       <install as="phpUnderControl/Tasks/PhpUnitTask.php" name="src/Tasks/PhpUnitTask.php" />
       <install as="phpUnderControl/Tasks/ProjectTask.php" name="src/Tasks/ProjectTask.php" />
       <install as="phpUnderControl/Tasks/TaskI.php" name="src/Tasks/TaskI.php" />
-      <install as="phpUnderControl/Tasks/ToolTaskI.php" name="src/Tasks/ToolTaskI.php" />
       <install as="phpUnderControl/Util/ConsoleArgs.php" name="src/Util/ConsoleArgs.php" />
       
       <install as="phpuc" name="bin/phpuc.php" />
@@ -277,7 +273,6 @@
       <install as="phpUnderControl/Tasks/PhpUnitTask.php" name="src/Tasks/PhpUnitTask.php" />
       <install as="phpUnderControl/Tasks/ProjectTask.php" name="src/Tasks/ProjectTask.php" />
       <install as="phpUnderControl/Tasks/TaskI.php" name="src/Tasks/TaskI.php" />
-      <install as="phpUnderControl/Tasks/ToolTaskI.php" name="src/Tasks/ToolTaskI.php" />
       <install as="phpUnderControl/Util/ConsoleArgs.php" name="src/Util/ConsoleArgs.php" />
       
       <install as="phpuc" name="bin/phpuc.php" />

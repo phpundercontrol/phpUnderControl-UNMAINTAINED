@@ -58,7 +58,7 @@
  * @property      string $pearInstallDir An optional PEAR install directory.
  * @property-read string $executable     The full command file name.
  */
-abstract class phpucAbstractPearTask extends phpucAbstractTask implements phpucToolTaskI
+abstract class phpucAbstractPearTask extends phpucAbstractTask
 {
     /**
      * The ctor takes the cli script name as argument and the PEAR install dir 
