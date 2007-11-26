@@ -41,7 +41,7 @@
 <%
     xpathData.add("PHP CodeSniffer", "count(/cruisecontrol/checkstyle/file/error)");
     xpathData.add("PHPUnit PMD", "count(/cruisecontrol/pmd/file/violation)");
-    xpathData.add("PHPdoc", "count(/cruisecontrol/build//target[@name='phpdoc']/task[@name='exec']/message[contains(text(), 'WARNING in') or contains(text(), 'WARNING:') or contains(text(), 'ERROR in') or contains(text(), 'ERROR:')])");
+    xpathData.add("PHPdoc", "count(/cruisecontrol/build//target[@name='php-documentor']/task[@name='exec']/message[contains(text(), 'WARNING in') or contains(text(), 'WARNING:') or contains(text(), 'ERROR in') or contains(text(), 'ERROR:')])");
 %>
 <cewolf:chart id="chart" title="Coding violations" type="timeseries"  xaxislabel="date" yaxislabel="violations">
     <cewolf:data>
