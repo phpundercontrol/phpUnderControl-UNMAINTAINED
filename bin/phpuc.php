@@ -42,13 +42,11 @@
  * @link       http://www.phpunit.de/wiki/phpUnderControl
  */
 
-define( 'PHPUC_INSTALL_DIR', '@php_dir@' );
-
-if ( strpos( PHPUC_INSTALL_DIR, '@php_dir' ) === 0 )
+if ( strpos( '@php_dir@', '@php_dir' ) === 0 )
 {
     require_once dirname( __FILE__ ) . '/../src/PhpUnderControl.php';
 }
 else
 {
-    require_once PHPUC_INSTALL_DIR . '/phpUnderControl/PhpUnderControl.php';
+    require_once '@php_dir@/phpUnderControl/PhpUnderControl.php';
 }

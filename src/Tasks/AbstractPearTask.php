@@ -56,7 +56,7 @@
  * 
  * @property      string $cliTool        The PEAR cli command line tool.
  * @property      string $pearInstallDir An optional PEAR install directory.
- * @property-read string $fileName       The full command file name.
+ * @property-read string $executable     The full command file name.
  */
 abstract class phpucAbstractPearTask extends phpucAbstractTask implements phpucToolTaskI
 {
@@ -64,17 +64,25 @@ abstract class phpucAbstractPearTask extends phpucAbstractTask implements phpucT
      * The ctor takes the cli script name as argument and the PEAR install dir 
      * as an optional argument.
      *
-     * @param string $cliTool        The PEAR cli tool.
-     * @param string $pearInstallDir PEAR install dir.
+     * @param string           $cliTool The PEAR cli tool.
+     * @param phpucConsoleArgs $args    The command line arguments.
      */
-    public function __construct( $cliTool, $pearInstallDir = null )
+    public function __construct( $cliTool, phpucConsoleArgs $args )
     {
+        parent::__construct( $args );
+        
         $this->properties['cliTool']        = null;
-        $this->properties['fileName']       = null;
+        $this->properties['executable']     = null;
         $this->properties['pearInstallDir'] = null;
         
+        $bindir = null;
+        if ( $args->hasOption( 'pear-executables-dir' ) )
+        {
+            $bindir = $args->getOption( 'pear-executables-dir' );
+        }
+        
         $this->cliTool        = $cliTool;
-        $this->pearInstallDir = $pearInstallDir;
+        $this->pearInstallDir = $bindir;
     }
     
     /**
@@ -116,11 +124,11 @@ abstract class phpucAbstractPearTask extends phpucAbstractTask implements phpucT
             {
                 continue;
             }
-            $this->properties['fileName'] = $fileName;
+            $this->properties['executable'] = $fileName;
             break;
         }
         
-        if ( $this->fileName === null )
+        if ( $this->executable === null )
         {
             printf(
                 'Missing command line tool "%s". Please check your PATH environment variable.%s',
@@ -131,10 +139,10 @@ abstract class phpucAbstractPearTask extends phpucAbstractTask implements phpucT
         }
         else if ( $this->pearInstallDir === null )
         {
-            $dir = dirname( $this->fileName );
+            $dir = dirname( $this->executable );
             if ( strpos( getenv( 'PATH' ), $dir ) !== false )
             {
-                $this->properties['fileName'] = $this->cliTool;
+                $this->properties['executable'] = $this->cliTool;
             }
         }
         

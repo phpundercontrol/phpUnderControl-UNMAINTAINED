@@ -58,7 +58,7 @@
  * @property-read boolean $coverage Enable coverage support?
  */
 class phpucPhpUnitTask extends phpucAbstractPearTask
-{   
+{
     /**
      * Minimum code sniffer version.
      */
@@ -67,53 +67,83 @@ class phpucPhpUnitTask extends phpucAbstractPearTask
     /**
      * The ctor takes the PEAR install dir as an optional argument.
      * 
-     * @param string $pearInstallDir PEAR install dir.
+     * @param phpucConsoleArgs $args The command line arguments.
      */
-    public function __construct( $pearInstallDir = null )
+    public function __construct( phpucConsoleArgs $args )
     {
-        parent::__construct( 'phpunit', $pearInstallDir );
+        parent::__construct( 'phpunit', $args );
         
         $this->properties['metrics']  = true;
         $this->properties['coverage'] = true;
     }
     
     /**
-     * Generates the required output/file content.
+     * Creates the coverage build directory.
      *
-     * @return string
+     * @return void
      */
-    public function generate()
+    public function execute()
     {
-        $metrics = '';
+        echo 'Performing PHPUnit task.' . PHP_EOL;
+        
+        $installDir  = $this->args->getArgument( 'cc-install-dir' );
+        $projectName = $this->args->getOption( 'project-name' );
+        $projectPath = sprintf( '%s/projects/%s', $installDir, $projectName );
+        
+        printf( '  1. Creating coverage dir: project/%s/build/coverage%s', $projectName, PHP_EOL );
+        mkdir( $projectPath . '/build/coverage' );
+        
+        printf( '  2. Modifying build file:  project/%s/build.xml%s', $projectName, PHP_EOL );
+        
+        $logs  = ' --log-xml ${basedir}/build/logs/phpunit.xml';
+        $logs .= ' --log-pmd ${basedir}/build/logs/phpunit.pmd.xml ';
         if ( $this->metrics === true )
         {
-            $metrics = '--log-metrics ${basedir}/build/logs/phpunit.metrics.xml';
+            $logs .= ' --log-metrics ${basedir}/build/logs/phpunit.metrics.xml';
         }
         $coverage = '';
         if ( $this->coverage === true )
         {
-            $coverage = '--coverage-xml  ${basedir}/build/logs/phpunit.coverage.xml
-                         --coverage-html ${basedir}/build/coverage';
+            $logs .= ' --coverage-xml  ${basedir}/build/logs/phpunit.coverage.xml';
+            $logs .= ' --coverage-html ${basedir}/build/coverage';
         }
         
-        $xml = sprintf( '
-  <target name="%s">
-    <exec executable="%s" dir="${basedir}/source/tests" failonerror="true">
-      <arg line="--log-xml ${basedir}/build/logs/phpunit.xml
-                 --log-pmd ${basedir}/build/logs/phpunit.pmd.xml
-                 %s
-                 %s
-                 PhpUnderControl_Example_MathTest MathTest.php" />
-    </exec>
-  </target>
-',
-            $this->cliTool,
-            $this->fileName,
-            $metrics,
-            $coverage
+        $buildFile = new phpucBuildFile( $projectPath . '/build.xml' );
+        
+        $buildTarget              = $buildFile->createBuildTarget( 'phpunit' );
+        $buildTarget->executable  = $this->executable;
+        $buildTarget->failonerror = true;
+        $buildTarget->argLine     = sprintf(
+            '%s %s %s/%s',
+            $logs,
+            $this->args->getOption( 'test-case' ),
+            $this->args->getOption( 'test-dir' ),
+            $this->args->getOption( 'test-file' )
         );
         
-        return $xml;
+        $buildFile->save();
+        
+        echo '  3. Modifying config file: config.xml' . PHP_EOL;
+        
+        $configXml = new DOMDocument();
+        $configXml->preserveWhiteSpace = false;
+        $configXml->load( $installDir . '/config.xml' );
+        
+        $publisher = $configXml->createElement( 'artifactspublisher' );
+        $publisher->setAttribute( 'dir', 'projects/${project.name}/build/coverage' );
+        $publisher->setAttribute( 'dest', 'logs/${project.name}' );
+        $publisher->setAttribute( 'subdirectory', 'coverage' );
+        
+        $xpath      = new DOMXPath( $configXml );
+        $publishers = $xpath->query( 
+            sprintf( '/cruisecontrol/project[@name="%s"]/publishers', $projectName )
+        )->item( 0 );
+        $publishers->appendChild( $publisher );
+        
+        $configXml->formatOutput = true;
+        $configXml->save( $installDir . '/config.xml' );
+        
+        echo PHP_EOL;
     }
     
     /**
@@ -124,7 +154,7 @@ class phpucPhpUnitTask extends phpucAbstractPearTask
     protected function doValidate()
     {
         ob_start();
-        system( "{$this->fileName} --version" );
+        system( "{$this->executable} --version" );
         $retval = ob_get_contents();
         ob_end_clean();
 

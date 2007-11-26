@@ -20,7 +20,7 @@
     <email>mapi@manuel-pichler.de</email>
     <active>yes</active>
   </lead>
-  <date>2007-11-24</date>
+  <date>2007-11-26</date>
   <version>
     <release>0.2.1</release>
     <api>0.2.0</api>
@@ -39,7 +39,6 @@
         <dir name="Commands">
           <file name="AbstractCommand.php" role="php">
             <tasks:replace from="@package_version@" to="version" type="package-info" />
-            <tasks:replace from="@base_dir@" to="data_dir" type="pear-config" />
           </file>
           <file name="ExampleCommand.php" role="php">
             <tasks:replace from="@package_version@" to="version" type="package-info" />
@@ -51,6 +50,14 @@
             <tasks:replace from="@package_version@" to="version" type="package-info" />
           </file>
         </dir>
+        <dir name="Data">
+          <file name="BuildFile.php" role="php">
+            <tasks:replace from="@package_version@" to="version" type="package-info" />
+          </file>
+          <file name="BuildTarget.php" role="php">
+            <tasks:replace from="@package_version@" to="version" type="package-info" />
+          </file>
+        </dir>
         <dir name="Tasks">
           <file name="AbstractPearTask.php" role="php">
             <tasks:replace from="@package_version@" to="version" type="package-info" />
@@ -58,7 +65,16 @@
           <file name="AbstractTask.php" role="php">
             <tasks:replace from="@package_version@" to="version" type="package-info" />
           </file>
+          <file name="CreateFileTask.php" role="php">
+            <tasks:replace from="@package_version@" to="version" type="package-info" />
+          </file>
           <file name="CruiseControlTask.php" role="php">
+            <tasks:replace from="@package_version@" to="version" type="package-info" />
+          </file>
+          <file name="ExampleTask.php" role="php">
+            <tasks:replace from="@package_version@" to="version" type="package-info" />
+          </file>
+          <file name="ModifyFileTask.php" role="php">
             <tasks:replace from="@package_version@" to="version" type="package-info" />
           </file>
           <file name="PhpCodeSnifferTask.php" role="php">
@@ -68,6 +84,9 @@
             <tasks:replace from="@package_version@" to="version" type="package-info" />
           </file>
           <file name="PhpUnitTask.php" role="php">
+            <tasks:replace from="@package_version@" to="version" type="package-info" />
+          </file>
+          <file name="ProjectTask.php" role="php">
             <tasks:replace from="@package_version@" to="version" type="package-info" />
           </file>
           <file name="TaskI.php" role="php">
@@ -85,6 +104,7 @@
         <file name="PhpUnderControl.php" role="php">
           <tasks:replace from="@package_version@" to="version" type="package-info" />
           <tasks:replace from="@php_dir@" to="php_dir" type="pear-config" />
+          <tasks:replace from="@data_dir@" to="data_dir" type="pear-config" />
         </file>
       </dir>
       <dir name="bin">
@@ -156,6 +176,11 @@
           </file>
         </dir>
       </dir>
+      <dir name="template">
+        <file name="project.xml" role="data">
+          <tasks:replace from="@package_version@" to="version" type="package-info" />
+        </file>
+      </dir>
     </dir>
   </contents>
   <dependencies>
@@ -211,12 +236,18 @@
       <install as="phpUnderControl/Commands/ExampleCommand.php" name="src/Commands/ExampleCommand.php" />
       <install as="phpUnderControl/Commands/InstallCommand.php" name="src/Commands/InstallCommand.php" />
       <install as="phpUnderControl/Commands/ProjectCommand.php" name="src/Commands/ProjectCommand.php" />
+      <install as="phpUnderControl/Data/BuildFile.php" name="src/Data/BuildFile.php" />
+      <install as="phpUnderControl/Data/BuildTarget.php" name="src/Data/BuildTarget.php" />
       <install as="phpUnderControl/Tasks/AbstractPearTask.php" name="src/Tasks/AbstractPearTask.php" />
       <install as="phpUnderControl/Tasks/AbstractTask.php" name="src/Tasks/AbstractTask.php" />
+      <install as="phpUnderControl/Tasks/CreateFileTask.php" name="src/Tasks/CreateFileTask.php" />
       <install as="phpUnderControl/Tasks/CruiseControlTask.php" name="src/Tasks/CruiseControlTask.php" />
+      <install as="phpUnderControl/Tasks/ExampleTask.php" name="src/Tasks/ExampleTask.php" />
+      <install as="phpUnderControl/Tasks/ModifyFileTask.php" name="src/Tasks/ModifyFileTask.php" />
       <install as="phpUnderControl/Tasks/PhpCodeSnifferTask.php" name="src/Tasks/PhpCodeSnifferTask.php" />
       <install as="phpUnderControl/Tasks/PhpDocumentorTask.php" name="src/Tasks/PhpDocumentorTask.php" />
       <install as="phpUnderControl/Tasks/PhpUnitTask.php" name="src/Tasks/PhpUnitTask.php" />
+      <install as="phpUnderControl/Tasks/ProjectTask.php" name="src/Tasks/ProjectTask.php" />
       <install as="phpUnderControl/Tasks/TaskI.php" name="src/Tasks/TaskI.php" />
       <install as="phpUnderControl/Tasks/ToolTaskI.php" name="src/Tasks/ToolTaskI.php" />
       <install as="phpUnderControl/Util/ConsoleArgs.php" name="src/Util/ConsoleArgs.php" />
@@ -233,12 +264,18 @@
       <install as="phpUnderControl/Commands/ExampleCommand.php" name="src/Commands/ExampleCommand.php" />
       <install as="phpUnderControl/Commands/InstallCommand.php" name="src/Commands/InstallCommand.php" />
       <install as="phpUnderControl/Commands/ProjectCommand.php" name="src/Commands/ProjectCommand.php" />
+      <install as="phpUnderControl/Data/BuildFile.php" name="src/Data/BuildFile.php" />
+      <install as="phpUnderControl/Data/BuildTarget.php" name="src/Data/BuildTarget.php" />
       <install as="phpUnderControl/Tasks/AbstractPearTask.php" name="src/Tasks/AbstractPearTask.php" />
       <install as="phpUnderControl/Tasks/AbstractTask.php" name="src/Tasks/AbstractTask.php" />
+      <install as="phpUnderControl/Tasks/CreateFileTask.php" name="src/Tasks/CreateFileTask.php" />
       <install as="phpUnderControl/Tasks/CruiseControlTask.php" name="src/Tasks/CruiseControlTask.php" />
+      <install as="phpUnderControl/Tasks/ExampleTask.php" name="src/Tasks/ExampleTask.php" />
+      <install as="phpUnderControl/Tasks/ModifyFileTask.php" name="src/Tasks/ModifyFileTask.php" />
       <install as="phpUnderControl/Tasks/PhpCodeSnifferTask.php" name="src/Tasks/PhpCodeSnifferTask.php" />
       <install as="phpUnderControl/Tasks/PhpDocumentorTask.php" name="src/Tasks/PhpDocumentorTask.php" />
       <install as="phpUnderControl/Tasks/PhpUnitTask.php" name="src/Tasks/PhpUnitTask.php" />
+      <install as="phpUnderControl/Tasks/ProjectTask.php" name="src/Tasks/ProjectTask.php" />
       <install as="phpUnderControl/Tasks/TaskI.php" name="src/Tasks/TaskI.php" />
       <install as="phpUnderControl/Tasks/ToolTaskI.php" name="src/Tasks/ToolTaskI.php" />
       <install as="phpUnderControl/Util/ConsoleArgs.php" name="src/Util/ConsoleArgs.php" />

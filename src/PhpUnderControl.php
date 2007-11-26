@@ -42,6 +42,24 @@
  * @link      http://www.phpunit.de/wiki/phpUnderControl
  */
 
+if ( strpos( '@data_dir@', '@data_dir' ) === false )
+{
+    define( 'PHPUC_DATA_DIR', '@data_dir@/phpUnderControl' );
+}
+else
+{
+    define( 'PHPUC_DATA_DIR', realpath( dirname( __FILE__ ) . '/..' ) );
+}
+
+if ( strpos( '@php_dir@', '@php_dir' ) === false )
+{
+    define( 'PHPUC_INSTALL_DIR', '@php_dir@/phpUnderControl' );
+}
+else
+{
+    define( 'PHPUC_INSTALL_DIR', dirname( __FILE__ ) );
+}
+
 /**
  * Main installer class.
  *
@@ -55,14 +73,6 @@
 class phpucPhpUnderControl
 {
     /**
-     * Directory with all phpUnderControl class files.
-     *
-     * @type string
-     * @var string $installDir
-     */
-    private static $installDir = '@php_dir@';
-    
-    /**
      * Class to file mapping.
      *
      * @type array<string> 
@@ -73,12 +83,18 @@ class phpucPhpUnderControl
         'phpucExampleCommand'      =>  'Commands/ExampleCommand.php',
         'phpucInstallCommand'      =>  'Commands/InstallCommand.php',
         'phpucProjectCommand'      =>  'Commands/ProjectCommand.php',
+        'phpucBuildFile'           =>  'Data/BuildFile.php',
+        'phpucBuildTarget'         =>  'Data/BuildTarget.php',
         'phpucAbstractPearTask'    =>  'Tasks/AbstractPearTask.php',
         'phpucAbstractTask'        =>  'Tasks/AbstractTask.php',
+        'phpucCreateFileTask'      =>  'Tasks/CreateFileTask.php',
         'phpucCruiseControlTask'   =>  'Tasks/CruiseControlTask.php',
+        'phpucExampleTask'         =>  'Tasks/ExampleTask.php',
+        'phpucModifyFileTask'      =>  'Tasks/ModifyFileTask.php',
         'phpucPhpCodeSnifferTask'  =>  'Tasks/PhpCodeSnifferTask.php',
         'phpucPhpDocumentorTask'   =>  'Tasks/PhpDocumentorTask.php',
         'phpucPhpUnitTask'         =>  'Tasks/PhpUnitTask.php',
+        'phpucProjectTask'         =>  'Tasks/ProjectTask.php',
         'phpucTaskI'               =>  'Tasks/TaskI.php',
         'phpucToolTaskI'           =>  'Tasks/ToolTaskI.php',
         'phpucConsoleArgs'         =>  'Util/ConsoleArgs.php',
@@ -97,7 +113,7 @@ class phpucPhpUnderControl
         if ( isset( self::$autoloadFiles[$className] ) )
         {
             $fileName = sprintf(
-                '%s/%s', self::$installDir, self::$autoloadFiles[$className]
+                '%s/%s', PHPUC_INSTALL_DIR, self::$autoloadFiles[$className]
             );
         
             include $fileName;
@@ -111,16 +127,6 @@ class phpucPhpUnderControl
      */
     public static function main()
     {
-        // Check for svn version of phpUnderControl
-        if ( strpos( self::$installDir,  '@php_dir' ) === 0 )
-        {
-            self::$installDir = realpath( dirname( __FILE__ ) . '/../src' );
-        }
-        else
-        {
-            self::$installDir .= '/phpUnderControl';
-        }
-        
         spl_autoload_register( array( 'phpucPhpUnderControl', 'autoload' ) );
         
         $phpUnderControl = new phpucPhpUnderControl();
@@ -131,9 +137,9 @@ class phpucPhpUnderControl
      * The used console arguments objects.
      *
      * @type phpucConsoleArgs
-     * @var phpucConsoleArgs $consoleArgs
+     * @var phpucConsoleArgs $args
      */
-    private $consoleArgs = null;
+    private $args = null;
     
     /**
      * List with all tasks.
@@ -148,74 +154,20 @@ class phpucPhpUnderControl
      */
     public function __construct()
     {
-        $this->consoleArgs = new phpucConsoleArgs();
+        $this->args = new phpucConsoleArgs();
     }
     
     public function run()
     {
-        $this->consoleArgs->parse();
+        $this->args->parse();
         
-        $this->initTasks();
-        $this->validateTasks();
+        $command = phpucAbstractCommand::createCommand( $this->args );
         
-        $mode = phpucAbstractCommand::createCommand( 
-            $this->consoleArgs, 
-            $this->tasks 
-        );
-        $mode->execute();
-    }
-    
-    /**
-     * Initializes all {@link phpucTaskI} objects.
-     *
-     * @return void
-     */
-    private function initTasks()
-    {
-        $args = $this->consoleArgs->arguments;
-        $opts = $this->consoleArgs->options;
-        
-        $projectName = null;
-        if ( isset( $opts['name-of-project'] ) )
-        {
-            $projectName = $opts['name-of-project'];
-        }
-        
-        $this->tasks[] = new phpucCruiseControlTask( 
-            $args['cc-install-dir'], $projectName
-        );
-        
-        $pearDir = null;
-        if ( isset( $opts['pear-executables-dir'] ) && trim( $opts['pear-executables-dir'] ) !== '' )
-        {
-            $pearDir = $opts['pear-executables-dir'];
-        }
-        
-        if ( !isset( $opts['without-php-documentor'] ) )
-        {
-            $this->tasks[] = new phpucPhpDocumentorTask( $pearDir );
-        }
-        if ( !isset( $opts['without-code-sniffer'] ) )
-        {
-            $this->tasks[] = new phpucPhpCodeSnifferTask( $pearDir );
-        }
-        if ( !isset( $opts['without-phpunit'] ) )
-        {
-            $this->tasks[] = new phpucPhpUnitTask( $pearDir );
-        }
-    }
-    
-    /**
-     * Ask's all tasks for valid data.
-     *
-     * @return void
-     */
-    private function validateTasks()
-    {
-        foreach ( $this->tasks as $task )
+        foreach ( $command->createTasks() as $task )
         {
             $task->validate();
         }
+        $command->execute();
     }
 }
 

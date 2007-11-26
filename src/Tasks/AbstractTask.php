@@ -63,6 +63,19 @@ abstract class phpucAbstractTask implements phpucTaskI
      * @var array(string=>mixed) $properties
      */
     protected $properties = array();
+
+    /**
+     * The command line arguments.
+     *
+     * @type phpucConsoleArgs
+     * @var phpucConsoleArgs $args
+     */
+    protected $args = null;
+    
+    public function __construct( phpucConsoleArgs $args )
+    {
+        $this->args = $args;
+    }
     
     /**
      * Magic property isset method.
@@ -92,6 +105,22 @@ abstract class phpucAbstractTask implements phpucTaskI
         }
         throw new OutOfRangeException( 
             sprintf( 'Unknown or writonly property $%s.', $name )
+        );
+    }
+    
+    /**
+     * Magic property setter method.
+     *
+     * @param string $name  The property name.
+     * @param mixed  $value The property value.
+     * 
+     * @return void
+     * @throws OutOfRangeException If the property doesn't exist or is readonly.
+     */
+    public function __set( $name, $value )
+    {
+        throw new OutOfRangeException(
+            sprintf( 'Unknown or readonly property $%s.', $name )
         );
     }
 }

@@ -60,19 +60,15 @@
 class phpucCruiseControlTask extends phpucAbstractTask
 {
     /**
-     * The ctor takes the given cruise control install dir as argument.
+     * List of additional directories for phpUnderControl.
      *
-     * @param string $ccInstallDir The cc install dir.
-     * @param string $projectName  The name of the example project.
+     * @type array<string>
+     * @var array(string)
      */
-    public function __construct( $ccInstallDir, $projectName = null )
-    {
-        $this->properties['ccInstallDir'] = null;
-        $this->properties['projectName']  = null;
-        
-        $this->ccInstallDir = $ccInstallDir;
-        $this->projectName  = $projectName;
-    }
+    private $directories = array(
+        'images/php-under-control',
+        'js'
+    );
     
     /**
      * Validates the required constrains.
@@ -81,12 +77,14 @@ class phpucCruiseControlTask extends phpucAbstractTask
      */
     public function validate()
     {
+        $installDir = $this->args->getArgument( 'cc-install-dir' );
+        
         // Check for a valid directory.
-        if ( is_dir( $this->ccInstallDir ) === false )
+        if ( is_dir( $installDir ) === false )
         {
             printf(
                 'The specified CruiseControl directory "%s" doesn\'t exist.%s',
-                $this->ccInstallDir,
+                $installDir,
                 PHP_EOL
             );
             exit( 1 );
@@ -102,7 +100,7 @@ class phpucCruiseControlTask extends phpucAbstractTask
         foreach ( $subdirs as $subdir )
         {
             // Check for a valid directory.
-            if ( is_dir( $this->ccInstallDir . $subdir ) === false )
+            if ( is_dir( $installDir . $subdir ) === false )
             {
                 printf(
                     'Missing required CruiseControl sub directory "%s".%s',
@@ -115,53 +113,37 @@ class phpucCruiseControlTask extends phpucAbstractTask
     }
     
     /**
-     * Generates the required output/file content.
+     * Creates the some directories in the CruiseControl folder. 
      *
-     * @return string
-     */
-    public function generate()
-    {
-        return '';
-    }
-    
-    /**
-     * Magic property setter method.
-     *
-     * @param string $name  The property name.
-     * @param mixed  $value The property value.
-     * 
      * @return void
-     * @throws OutOfRangeException If the property doesn't exist or is readonly.
      */
-    public function __set( $name, $value )
+    public function execute()
     {
-        switch ( $name )
+        echo 'Performing CruiseControl task.' . PHP_EOL;
+        
+        // Get root directory.
+        $installDir = sprintf(
+            '%s/webapps/cruisecontrol/',
+            $this->args->getArgument( 'cc-install-dir' )
+        );
+        
+        foreach ( $this->directories as $index => $directory )
         {
-            case 'projectName':
-                if ( trim( $value) === '' )
-                {
-                    $value = 'php-under-control';
-                }
-                $this->properties[$name] = $value;
-                break;
-                
-            case 'ccInstallDir':
-                if ( trim( $value) === '' )
-                {
-                    $this->properties[$name] = null;
-                }
-                else
-                {
-                    $regex = sprintf( '#%s+$#', DIRECTORY_SEPARATOR );
-                    $this->properties[$name] = preg_replace( $regex, '', $value );
-                }
-                break;
-                
-            default:
-                throw new OutOfRangeException(
-                    sprintf( 'Unknown or readonly property $%s.', $name )
-                );
-                break;
+            // Skip for existing directories.
+            if ( is_dir( $installDir . $directory ) )
+            {
+                continue;
+            }
+            
+            printf( 
+                ' % 2d. Creating directory "webapps/cruisecontrol/%s".%s',
+                ( $index + 1 ),
+                $directory,
+                PHP_EOL
+            );
+            mkdir( $installDir . $directory );
         }
+
+        echo PHP_EOL;
     }
 }

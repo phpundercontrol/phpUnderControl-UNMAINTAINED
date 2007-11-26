@@ -64,31 +64,45 @@ class phpucPhpCodeSnifferTask extends phpucAbstractPearTask
     /**
      * The ctor takes the PEAR install dir as an optional argument.
      * 
-     * @param string $pearInstallDir PEAR install dir.
+     * @param phpucConsoleArgs $args The command line arguments.
      */
-    public function __construct( $pearInstallDir = null )
+    public function __construct( phpucConsoleArgs $args )
     {
-        parent::__construct( 'phpcs', $pearInstallDir );
+        parent::__construct( 'phpcs', $args );
     }
     
     /**
-     * Generates the required output/file content.
+     * Does nothing.
      *
-     * @return string
+     * @return void
      */
-    public function generate()
+    public function execute()
     {
-        return sprintf( '
-  <target name="phpcs">
-    <exec executable="%s"
-          output="${basedir}/build/logs/checkstyle.xml"
-          dir="${basedir}">
-      <arg line="--report=checkstyle --standard=PEAR source" />
-    </exec>
-  </target>
-',
-            $this->fileName
+        echo 'Performing PHP_CodeSniffer task.' . PHP_EOL;
+        
+        $projectName = $this->args->getOption( 'project-name' );
+        $projectPath = sprintf(
+            '%s/projects/%s', 
+            $this->args->getArgument( 'cc-install-dir' ), 
+            $projectName
         );
+        
+        printf( '  1. Modifying build file: project/%s/build.xml%s', $projectName, PHP_EOL );
+        
+        $buildFile   = new phpucBuildFile( $projectPath . '/build.xml', $projectName );
+        
+        $buildTarget             = $buildFile->createBuildTarget( 'php-codesniffer' );
+        $buildTarget->executable = $this->executable;
+        $buildTarget->output     = '${basedir}/build/logs/checkstyle.xml';
+        $buildTarget->argLine    = sprintf(
+            '--report=checkstyle --standard=%s %s',
+            $this->args->getOption( 'coding-guideline' ),
+            $this->args->getOption( 'source-dir' )
+        );
+        
+        $buildFile->save();
+        
+        echo PHP_EOL;
     }
     
     /**
@@ -98,7 +112,7 @@ class phpucPhpCodeSnifferTask extends phpucAbstractPearTask
      */
     protected function doValidate()
     {
-        $retval = exec( "{$this->fileName} --version" );
+        $retval = exec( "{$this->executable} --version" );
         
         if ( preg_match( '/version\s+([0-9\.]+(RC[0-9])?)/', $retval, $match ) === 0 )
         {

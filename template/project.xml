@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="@project@" buildafterfailed="false">
+  <listeners>
+    <currentbuildstatuslistener file="logs/${project.name}/status.txt"/>
+  </listeners>
+
+  <modificationset/>
+
+  <schedule interval="@interval@" xml:id="schedule">
+    <ant anthome="@anthome@" xml:id="ant" 
+         buildfile="projects/${project.name}/build.xml"/>
+  </schedule>
+
+  <log dir="logs/${project.name}">
+    <merge dir="projects/${project.name}/build/logs/"/>
+  </log>
+
+  <publishers>
+    <currentbuildstatuspublisher file="logs/${project.name}/buildstatus.txt"/>
+  </publishers>
+</project>

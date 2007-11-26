@@ -35,7 +35,7 @@
  * POSSIBILITY OF SUCH DAMAGE.
  * 
  * @package    phpUnderControl
- * @subpackage Commands
+ * @subpackage Tasks
  * @author     Manuel Pichler <mapi@manuel-pichler.de>
  * @copyright  2007 Manuel Pichler. All rights reserved.
  * @license    http://www.opensource.org/licenses/bsd-license.php  BSD License
@@ -44,54 +44,76 @@
  */
 
 /**
- * Implementation mode of the example mode.
+ * <...>
  *
  * @package    phpUnderControl
- * @subpackage Commands
+ * @subpackage Tasks
  * @author     Manuel Pichler <mapi@manuel-pichler.de>
  * @copyright  2007 Manuel Pichler. All rights reserved.
  * @license    http://www.opensource.org/licenses/bsd-license.php  BSD License
  * @version    Release: @package_version@
  * @link       http://www.phpunit.de/wiki/phpUnderControl
+ * 
+ * @property-read boolean $metrics  Enable metrics support?
+ * @property-read boolean $coverage Enable coverage support?
  */
-class phpucExampleCommand extends phpucAbstractCommand 
+class phpucExampleTask extends phpucAbstractTask
 {
-    /**
-     * List of example files.
-     *
-     * @type array<string>
-     * @var array(string=>string) $exampleFiles
-     */
-    private $exampleFiles = array(
-        'src/Math.php'        =>  null,
-        'tests/MathTest.php'  =>  null,
+    protected $fileNames = array(
+        'src/Math.php',
+        'tests/MathTest.php',
     );
     
-    /**
-     * Creates all command specific {@link phpucTaskI} objects.
-     * 
-     * @return array(phpucTaskI)
-     */
-    protected function doCreateTasks()
+    
+    public function validate()
     {
-        $tasks = array();
         
-        $tasks[] = new phpucProjectTask( $this->args );
-        $tasks[] = new phpucExampleTask( $this->args );
+    }
+    
+    public function execute()
+    {
+        $installDir  = $this->args->getArgument( 'cc-install-dir' );
+        $projectName = $this->args->getOption( 'project-name' );
+        $projectPath = sprintf( '%s/projects/%s', $installDir, $projectName );
         
-        if ( !$this->args->hasOption( 'without-php-documentor' ) )
-        {
-            $tasks[] = new phpucPhpDocumentorTask( $this->args );
-        }
-        if ( !$this->args->hasOption( 'without-code-sniffer' ) )
-        {
-            $tasks[] = new phpucPhpCodeSnifferTask( $this->args );
-        }
-        if ( !$this->args->hasOption( 'without-phpunit' ) )
-        {
-            $tasks[] = new phpucPhpUnitTask( $this->args );
-        }
+        echo 'Performing example task.' . PHP_EOL;
         
-        return $tasks;
+        printf( '  1. Creating source directory:  project/%s/source/src%s', $projectName, PHP_EOL );
+        mkdir( $projectPath . '/source/src' );
+        
+        printf( '  2. Creating tests directory:   project/%s/source/tests%s', $projectName, PHP_EOL );
+        mkdir( $projectPath . '/source/tests' );
+        
+        printf( '  3. Creating source class:      project/%s/source/src/Math.php%s', $projectName, PHP_EOL );
+        file_put_contents(
+            $projectPath . '/source/src/Math.php',
+            file_get_contents( PHPUC_DATA_DIR . '/example/src/Math.php' )
+        );
+        
+        printf( '  4. Creating test class:        project/%s/source/tests/MathTest.php%s', $projectName, PHP_EOL );
+        file_put_contents(
+            $projectPath . '/source/tests/MathTest.php',
+            file_get_contents( PHPUC_DATA_DIR . '/example/tests/MathTest.php' )
+        );
+        
+
+        echo '  5. Modifying config file:      config.xml' . PHP_EOL;
+        
+        $configXml = new DOMDocument();
+        $configXml->preserveWhiteSpace = false;
+        $configXml->load( $installDir . '/config.xml' );
+        
+        $alwaysbuild = $configXml->createElement( 'alwaysbuild' );
+        
+        $xpath         = new DOMXPath( $configXml );
+        $modifications = $xpath->query( 
+            sprintf( '/cruisecontrol/project[@name="%s"]/modificationset', $projectName )
+        )->item( 0 );
+        $modifications->appendChild( $alwaysbuild );
+        
+        $configXml->formatOutput = true;
+        $configXml->save( $installDir . '/config.xml' );
+        
+        echo PHP_EOL;
     }
 }

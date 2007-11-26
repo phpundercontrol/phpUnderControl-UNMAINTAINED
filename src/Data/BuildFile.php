@@ -35,7 +35,7 @@
  * POSSIBILITY OF SUCH DAMAGE.
  * 
  * @package    phpUnderControl
- * @subpackage Commands
+ * @subpackage Data
  * @author     Manuel Pichler <mapi@manuel-pichler.de>
  * @copyright  2007 Manuel Pichler. All rights reserved.
  * @license    http://www.opensource.org/licenses/bsd-license.php  BSD License
@@ -44,54 +44,70 @@
  */
 
 /**
- * Implementation mode of the example mode.
+ * <...>
  *
  * @package    phpUnderControl
- * @subpackage Commands
+ * @subpackage Data
  * @author     Manuel Pichler <mapi@manuel-pichler.de>
  * @copyright  2007 Manuel Pichler. All rights reserved.
  * @license    http://www.opensource.org/licenses/bsd-license.php  BSD License
  * @version    Release: @package_version@
  * @link       http://www.phpunit.de/wiki/phpUnderControl
  */
-class phpucExampleCommand extends phpucAbstractCommand 
+class phpucBuildFile extends DOMDocument
 {
-    /**
-     * List of example files.
-     *
-     * @type array<string>
-     * @var array(string=>string) $exampleFiles
-     */
-    private $exampleFiles = array(
-        'src/Math.php'        =>  null,
-        'tests/MathTest.php'  =>  null,
-    );
+    protected $fileName = '';
     
-    /**
-     * Creates all command specific {@link phpucTaskI} objects.
-     * 
-     * @return array(phpucTaskI)
-     */
-    protected function doCreateTasks()
+    protected $targets = array();
+    
+    public function __construct( $fileName, $projectName = null )
     {
-        $tasks = array();
+        parent::__construct( '1.0', 'UTF-8' );
         
-        $tasks[] = new phpucProjectTask( $this->args );
-        $tasks[] = new phpucExampleTask( $this->args );
+        $this->fileName           = $fileName;
+        $this->projectName        = $projectName;
+        $this->formatOutput       = true;
+        $this->preserveWhiteSpace = false;
         
-        if ( !$this->args->hasOption( 'without-php-documentor' ) )
+        if ( file_exists( $fileName ) )
         {
-            $tasks[] = new phpucPhpDocumentorTask( $this->args );
+            $this->load( $fileName );
+            $this->projectName = $this->documentElement->getAttribute( 'name' );
         }
-        if ( !$this->args->hasOption( 'without-code-sniffer' ) )
+        else
         {
-            $tasks[] = new phpucPhpCodeSnifferTask( $this->args );
+            $this->initBuildFile();
         }
-        if ( !$this->args->hasOption( 'without-phpunit' ) )
+    }
+    
+    public function createBuildTarget( $targetName )
+    {
+        $target = new phpucBuildTarget( $this, $targetName );
+        
+        $this->targets[] = $target;
+        
+        return $target;
+    }
+    
+    public function save()
+    {
+        foreach ( $this->targets as $target )
         {
-            $tasks[] = new phpucPhpUnitTask( $this->args );
+            $target->buildXml();
         }
         
-        return $tasks;
+        parent::save( $this->fileName );
+    }
+    
+    protected function initBuildFile()
+    {
+        $project  = $this->appendChild( $this->createElement( 'project' ) );
+        $project->setAttribute( 'name', $this->projectName );
+        $project->setAttribute( 'default', 'build' );
+        $project->setAttribute( 'basedir', '.' );
+        
+        $build = $project->appendChild( $this->createElement( 'target' ) );
+        $build->setAttribute( 'name', 'build' );
+        $build->setAttribute( 'depends', '' );
     }
 }

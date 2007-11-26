@@ -55,18 +55,15 @@
  * @link       http://www.phpunit.de/wiki/phpUnderControl
  */
 abstract class phpucAbstractCommand
-{   
-    protected static $baseDir = '@base_dir@';
-    
+{
     /**
      * Factory method for the different cli modes.
      *
-     * @param phpucConsoleArgs  $args  The console arguments.
-     * @param array(phpucTaskI) $tasks List of command line tasks.
+     * @param phpucConsoleArgs $args The console arguments.
      * 
      * @return phpucAbstractCommand
      */
-    public static function createCommand( phpucConsoleArgs $args, array $tasks )
+    public static function createCommand( phpucConsoleArgs $args )
     {
         // Generate class name
         $className = sprintf( 'phpuc%sCommand', ucfirst( $args->command ) );
@@ -77,69 +74,79 @@ abstract class phpucAbstractCommand
             exit( 1 );
         }
         
-        return new $className( $args, $tasks );
+        return new $className( $args );
     }
-    
-    /**
-     * List with all tasks.
-     *
-     * @type array<phpucTaskI>
-     * @var array(phpucTaskI) $settings
-     */
-    protected $settings = array();
     
     /**
      * The console argument object.
      *
      * @type phpucConsoleArgs
-     * @var phpucConsoleArgs $consoleArgs
+     * @var phpucConsoleArgs $args
      */
-    protected $consoleArgs = null;
+    protected $args = null;
+    
+    /**
+     * List of command specific tasks.
+     *
+     * @type array<phpucTaskI>
+     * @var array(phpucTaskI)
+     */
+    protected $tasks = null;
     
     /**
      * Protected ctor that takes the tasks and console arguments as parameters.
      * 
-     * @param phpucConsoleArgs  $args  The console arguments.
-     * @param array(phpucTaskI) $tasks List of command line tasks.
+     * @param phpucConsoleArgs $args The console arguments.
      */
-    protected final function __construct( phpucConsoleArgs $args, array $tasks )
+    protected final function __construct( phpucConsoleArgs $args )
     {
-        $this->consoleArgs = $args;
-        $this->settings    = $tasks;
-        
-        // check for svn version of phpUnderControl
-        if ( strpos( self::$baseDir, '@base_dir' ) === 0 )
-        {
-            self::$baseDir = realpath( dirname( __FILE__ ) . '/../..' );
-        }
-        else
-        {
-            self::$baseDir .= '/phpUnderControl';
-        }
+        $this->args = $args;
     }
     
     /**
-     * Executes this mode task.
+     * Validates all command tasks.
      *
      * @return void
      */
-    public abstract function execute();
+    public function validate()
+    {
+        foreach ( $this->createTasks() as $task )
+        {
+            $task->validates();
+        }
+    }
     
     /**
-     * Returns all as tool marked task objects.
-     *
-     * @return array(phpucToolTaskI)
+     * Executes all command tasks.
+     * 
+     * @return void
      */
-    protected function getToolTasks()
+    public function execute()
     {
-        $tasks = array();
-        foreach ( $this->settings as $task )
+        foreach ( $this->createTasks() as $task )
         {
-            if ( $task instanceof phpucToolTaskI )
-            {
-                $tasks[] = $task;
-            }
+            $task->execute();
         }
-        return $tasks;
     }
+    
+    /**
+     * Creates a set of command specific tasks.
+     *
+     * @return array(phpucTaskI)
+     */
+    public final function createTasks()
+    {
+        if ( $this->tasks === null )
+        {
+            $this->tasks = $this->doCreateTasks();
+        }
+        return $this->tasks;
+    }
+    
+    /**
+     * Creates all command specific {@link phpucTaskI} objects.
+     * 
+     * @return array(phpucTaskI)
+     */
+    protected abstract function doCreateTasks();
 }

@@ -57,18 +57,18 @@
 interface phpucTaskI
 {
     /**
-     * Validates the required constrains.
+     * Validates the task constrains.
      *
      * @return void
      */
     function validate();
     
     /**
-     * Generates the required output/file content.
+     * Executes task specific actions.
      *
-     * @return string
+     * @return void
      */
-    function generate();
+    function execute();
     
     /**
      * Magic property isset method.

@@ -33,7 +33,7 @@
  * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
- *
+ * 
  * @package    phpUnderControl
  * @subpackage Tasks
  * @author     Manuel Pichler <mapi@manuel-pichler.de>
@@ -44,7 +44,7 @@
  */
 
 /**
- * Settings for the php documentor tool.
+ * <...>
  *
  * @package    phpUnderControl
  * @subpackage Tasks
@@ -53,69 +53,88 @@
  * @license    http://www.opensource.org/licenses/bsd-license.php  BSD License
  * @version    Release: @package_version@
  * @link       http://www.phpunit.de/wiki/phpUnderControl
+ * 
+ * @property-read boolean $metrics  Enable metrics support?
+ * @property-read boolean $coverage Enable coverage support?
  */
-class phpucPhpDocumentorTask extends phpucAbstractPearTask
+class phpucProjectTask extends phpucAbstractTask
 {
-    /**
-     * The ctor takes the PEAR install dir as an optional argument.
-     *
-     * @param phpucConsoleArgs $args The command line arguments.
-     */
-    public function __construct( phpucConsoleArgs $args )
+    
+    public function validate()
     {
-        parent::__construct( 'phpdoc', $args );
+        
     }
     
-    /**
-     * Creates the api documentation build directory.
-     *
-     * @return void
-     */
     public function execute()
     {
-        echo 'Performing PhpDocumentor task.' . PHP_EOL;
-        
         $installDir  = $this->args->getArgument( 'cc-install-dir' );
         $projectName = $this->args->getOption( 'project-name' );
         $projectPath = sprintf( '%s/projects/%s', $installDir, $projectName );
         
-        printf( '  1. Creating api documentation dir: project/%s/build/api%s', $projectName, PHP_EOL );
-        mkdir( $projectPath . '/build/api' );
+        if ( file_exists( $projectPath ) )
+        {
+            echo 'Project directory already exists.' . PHP_EOL;
+            exit( 1 );
+        }
         
-        printf( '  2. Modifying build file:           project/%s/build.xml%s', $projectName, PHP_EOL );
+        echo 'Performing project task.' . PHP_EOL;        
         
-        $buildFile = new phpucBuildFile( $projectPath . '/build.xml' );
+        printf( '  1. Creating project directory: project/%s%s', $projectName, PHP_EOL );
+        mkdir( $projectPath );
         
-        $buildTarget             = $buildFile->createBuildTarget( 'php-documentor' );
-        $buildTarget->executable = $this->executable;
-        $buildTarget->logerror   = true;
-        $buildTarget->argLine    = sprintf(
-            '-ue on -t ${basedir}/build/api -d %s',
-            $this->args->getOption( 'source-dir' )
-        );
+        printf( '  2. Creating source directory:  project/%s/source%s', $projectName, PHP_EOL );
+        mkdir( $projectPath . '/source' );
         
+        printf( '  3. Creating build directory:   project/%s/build%s', $projectName, PHP_EOL );
+        mkdir( $projectPath . '/build' );
+        
+        printf( '  4. Creating log directory:     project/%s/build/logs%s', $projectName, PHP_EOL );
+        mkdir( $projectPath . '/build/logs' );
+        
+        printf( '  5. Creating build file:        project/%s/build.xml%s', $projectName, PHP_EOL );
+        
+        $buildFile = new phpucBuildFile( $projectPath . '/build.xml', $projectName );
         $buildFile->save();
         
-        echo '  3. Modifying config file:          config.xml' . PHP_EOL;
+        echo '  6. Creating backup of file:    config.xml.orig' . PHP_EOL;
+        @unlink( $installDir . '/config.xml.orig' );
+        copy( $installDir . '/config.xml', $installDir . '/config.xml.orig' );
+        
+        echo '  7. Searching ant directory' . PHP_EOL;
+        if ( count( $ant = glob( sprintf( '%s/apache-ant*', $installDir ) ) ) === 0 )
+        {
+            echo 'ERROR: Cannot locate ant directory.' . PHP_EOL;
+            exit( 1 );
+        }
+        $anthome = basename( array_pop( $ant ) );
+        
+        echo '  8. Modifying project file:     config.xml' . PHP_EOL;
         
         $configXml = new DOMDocument();
         $configXml->preserveWhiteSpace = false;
         $configXml->load( $installDir . '/config.xml' );
         
-        $publisher = $configXml->createElement( 'artifactspublisher' );
-        $publisher->setAttribute( 'dir', 'projects/${project.name}/build/api' );
-        $publisher->setAttribute( 'dest', 'logs/${project.name}' );
-        $publisher->setAttribute( 'subdirectory', 'api' );
+        $projectXml = new DOMDocument();
+        $projectXml->preserveWhiteSpace = false;
+        $projectXml->load( PHPUC_DATA_DIR . '/template/project.xml' );
         
-        $xpath      = new DOMXPath( $configXml );
-        $publishers = $xpath->query( 
-            sprintf( '/cruisecontrol/project[@name="%s"]/publishers', $projectName )
-        )->item( 0 );
-        $publishers->appendChild( $publisher );
+        $project = $projectXml->documentElement;
+        $project->setAttribute( 'name', $projectName );
+        
+        $schedule = $projectXml->getElementById( 'schedule' );
+        $schedule->setAttribute( 'interval', $this->args->getOption( 'schedule-interval' ) );
+        $schedule->removeAttribute( 'xml:id' );
+        
+        $ant = $projectXml->getElementById( 'ant' );
+        $ant->setAttribute( 'anthome', $anthome );
+        $ant->removeAttribute( 'xml:id' );
+        
+        $project = $configXml->importNode( $projectXml->documentElement, true );
+        $configXml->documentElement->appendChild( $project );
         
         $configXml->formatOutput = true;
         $configXml->save( $installDir . '/config.xml' );
-        
+                
         echo PHP_EOL;
     }
 }

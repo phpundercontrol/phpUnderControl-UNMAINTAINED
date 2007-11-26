@@ -33,9 +33,9 @@
  * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
- * 
+ *
  * @package    phpUnderControl
- * @subpackage Commands
+ * @subpackage Tasks
  * @author     Manuel Pichler <mapi@manuel-pichler.de>
  * @copyright  2007 Manuel Pichler. All rights reserved.
  * @license    http://www.opensource.org/licenses/bsd-license.php  BSD License
@@ -44,54 +44,69 @@
  */
 
 /**
- * Implementation mode of the example mode.
+ * Creates a set of new files.
  *
  * @package    phpUnderControl
- * @subpackage Commands
+ * @subpackage Tasks
  * @author     Manuel Pichler <mapi@manuel-pichler.de>
  * @copyright  2007 Manuel Pichler. All rights reserved.
  * @license    http://www.opensource.org/licenses/bsd-license.php  BSD License
  * @version    Release: @package_version@
  * @link       http://www.phpunit.de/wiki/phpUnderControl
  */
-class phpucExampleCommand extends phpucAbstractCommand 
+class phpucCreateFileTask extends phpucAbstractTask
 {
     /**
-     * List of example files.
+     * List of new files.
      *
      * @type array<string>
-     * @var array(string=>string) $exampleFiles
+     * @var array(string) $files
      */
-    private $exampleFiles = array(
-        'src/Math.php'        =>  null,
-        'tests/MathTest.php'  =>  null,
-    );
+    protected $files = array();
     
     /**
-     * Creates all command specific {@link phpucTaskI} objects.
-     * 
-     * @return array(phpucTaskI)
+     * The ctor takes the console arguments and a list of files as arguments.
+     *
+     * @param phpucConsoleArgs $args  The console arguments.
+     * @param array            $files List of files.
      */
-    protected function doCreateTasks()
+    public function __construct( phpucConsoleArgs $args, array $files )
     {
-        $tasks = array();
+        parent::__construct( $args );
         
-        $tasks[] = new phpucProjectTask( $this->args );
-        $tasks[] = new phpucExampleTask( $this->args );
+        $this->files = $files;
+    }
+    
+    public function validate()
+    {
+    }
+    
+    public function execute()
+    {
+        echo 'Performing create file task.' . PHP_EOL;
         
-        if ( !$this->args->hasOption( 'without-php-documentor' ) )
+        $installDir = sprintf(
+            '%s/webapps/cruisecontrol', 
+            $this->args->getArgument( 'cc-install-dir' ) 
+        );
+        
+        foreach ( $this->files as $index => $file )
         {
-            $tasks[] = new phpucPhpDocumentorTask( $this->args );
-        }
-        if ( !$this->args->hasOption( 'without-code-sniffer' ) )
-        {
-            $tasks[] = new phpucPhpCodeSnifferTask( $this->args );
-        }
-        if ( !$this->args->hasOption( 'without-phpunit' ) )
-        {
-            $tasks[] = new phpucPhpUnitTask( $this->args );
+            $filepath = $installDir . $file;
+
+            printf( 
+                '  % 2d. Creating file "%s".%s',
+                ( $index + 1 ), 
+                $file, 
+                PHP_EOL 
+            );
+            
+            file_put_contents( 
+                $filepath,
+                file_get_contents( PHPUC_DATA_DIR . '/data/' . $file )
+            );
         }
         
-        return $tasks;
+        echo PHP_EOL;
     }
 }
