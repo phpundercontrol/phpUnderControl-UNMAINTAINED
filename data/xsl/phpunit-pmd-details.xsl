@@ -40,7 +40,7 @@
   <xsl:param name="viewcvs.url"/>
   <xsl:variable name="project" select="/cruisecontrol/info/property[@name='projectname']/@value"/>
   <xsl:param name="cvsmodule" select="concat($project, '/source/src/')"/>
-  <xsl:key name="rules" match="violation" use="@rule"/>
+  <xsl:key name="rules" match="//file/violation" use="@rule"/>
 
   <xsl:include href="./phphelper.xsl" />
 
@@ -114,7 +114,15 @@
               <xsl:attribute name="class">oddrow</xsl:attribute>
             </xsl:if>
             <td></td>
-            <td><xsl:value-of select="@ruleset"/> / <xsl:value-of select="@rule"/></td>
+            <td>              
+              <xsl:choose>
+                <xsl:when test="@ruleset">
+                  <xsl:value-of select="@ruleset"/>
+                </xsl:when>
+                <xsl:otherwise>
+                  <xsl:text>PHPUnit PMD</xsl:text>
+                </xsl:otherwise>
+              </xsl:choose> / <xsl:value-of select="@rule"/></td>
             <td align="right"><xsl:value-of select="$fileCount"/></td>
             <td align="right"><xsl:value-of select="$errorCount"/></td>
           </tr>
@@ -127,7 +135,7 @@
               <xsl:attribute name="class">oddrow</xsl:attribute>
             </xsl:if>
             <td></td>
-            <td> / CopyPasteDetection</td>
+            <td>PHPUnit CPD / CopyPasteDetection</td>
             <td align="right"><xsl:value-of select="$duplication.file.count" /></td>
             <td align="right"><xsl:value-of select="$duplication.count" /></td>
           </tr>
