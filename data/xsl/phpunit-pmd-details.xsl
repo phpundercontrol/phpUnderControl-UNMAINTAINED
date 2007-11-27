@@ -131,7 +131,7 @@
           <xsl:variable name="duplication.count" select="count(//pmd-cpd/duplication)" />
           <xsl:variable name="duplication.file.count" select="count(//pmd-cpd/duplication/file)" />
           <tr>
-            <xsl:if test="count(file/violation) mod 2 != 0">
+            <xsl:if test="count(file/violation[generate-id() = generate-id(key('rules', @rule)[1])]) mod 2 != 0">
               <xsl:attribute name="class">oddrow</xsl:attribute>
             </xsl:if>
             <td></td>
