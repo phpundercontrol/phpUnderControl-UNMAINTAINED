@@ -153,6 +153,7 @@
           <file name="phpunit-pmd.xsl" role="data" />
           <file name="phpunit-pmd-details.xsl" role="data" />
         </dir>
+        <file name="footer.jsp" role="data" />
         <file name="header.jsp" role="data" />
         <file name="index.jsp" role="data" />
         <file name="main.jsp" role="data" />

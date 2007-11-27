@@ -63,6 +63,7 @@ class phpucInstallCommand extends phpucAbstractCommand
      * @var array(string=>string) $installFiles
      */
     private $installFiles = array(
+        '/footer.jsp',
         '/header.jsp',
         '/phpcs.jsp',
         '/phpunit.jsp',

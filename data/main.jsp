@@ -47,64 +47,59 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
                       "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html>
-<head>
-  <title><%= ccname%> CruiseControl Build Results</title>
-  <base href="<%=request.getScheme()%>://<%=request.getServerName()%>:<%=request.getServerPort()%><%=request.getContextPath()%>/" />
-  <link type="text/css" rel="stylesheet" href="css/SyntaxHighlighter.css"/>
-  <link type="text/css" rel="stylesheet" href="css/php-under-control.css"/>
-  <link type="application/rss+xml" rel="alternate" href="<%= request.getContextPath() %>/rss/<%= project %>" title="RSS"/>
-</head>
-<body>
-  <div id="container">
-    <%@ include file="header.jsp" %>
-        <cruisecontrol:tabsheet>
-          <tr>
-            <td>
-              <cruisecontrol:tab name="buildResults" label="Overview" >
-                <%@ include file="buildresults.jsp" %>
-              </cruisecontrol:tab>
+  <head>
+    <title><%= ccname%> phpUnderControl - Build Results</title>
+    <base href="<%=request.getScheme()%>://<%=request.getServerName()%>:<%=request.getServerPort()%><%=request.getContextPath()%>/" />
+    <link type="text/css" rel="stylesheet" href="css/SyntaxHighlighter.css"/>
+    <link type="text/css" rel="stylesheet" href="css/php-under-control.css"/>
+    <link type="application/rss+xml" rel="alternate" href="<%= request.getContextPath() %>/rss/<%= project %>" title="RSS"/>
+  </head>
+  <body>
+    <div id="container">
+      <%@ include file="header.jsp" %>
+      <cruisecontrol:tabsheet>
+        <tr>
+          <td>
+            <cruisecontrol:tab name="buildResults" label="Overview" >
+              <%@ include file="buildresults.jsp" %>
+            </cruisecontrol:tab>
 
-              <cruisecontrol:tab name="testResults" label="Tests" >
-                <%@ include file="phpunit.jsp" %>
-              </cruisecontrol:tab>
+            <cruisecontrol:tab name="testResults" label="Tests" >
+              <%@ include file="phpunit.jsp" %>
+            </cruisecontrol:tab>
 
-              <cruisecontrol:loglink id="logs_url"/>
-              <cruisecontrol:tab name="log" url="<%=logs_url%>" label="XML Log File" />
+            <cruisecontrol:loglink id="logs_url"/>
+            <cruisecontrol:tab name="log" url="<%=logs_url%>" label="XML Log File" />
 
-              <cruisecontrol:tab name="metrics" label="Metrics" >
-                <%@ include file="metrics.jsp" %>
-              </cruisecontrol:tab>
+            <cruisecontrol:tab name="metrics" label="Metrics" >
+              <%@ include file="metrics.jsp" %>
+            </cruisecontrol:tab>
               
-              <cruisecontrol:tab name="coverage" label="Coverage">
-                <cruisecontrol:artifactsLink>
-                  <iframe src="<%= artifacts_url %>/coverage/index.html" width="100%" height="550" frameborder="0" />
-                  </iframe>
-                </cruisecontrol:artifactsLink>
-              </cruisecontrol:tab>
+            <cruisecontrol:tab name="coverage" label="Coverage">
+              <cruisecontrol:artifactsLink>
+                <iframe src="<%= artifacts_url %>/coverage/index.html" width="100%" height="550" frameborder="0" />
+                </iframe>
+              </cruisecontrol:artifactsLink>
+            </cruisecontrol:tab>
               
-              <cruisecontrol:tab name="documentation" label="Documentation">
-                <cruisecontrol:artifactsLink>
-                  <iframe src="<%= artifacts_url %>/api/index.html" width="100%" height="550" frameborder="0" />
-                  </iframe>
-                </cruisecontrol:artifactsLink>
-              </cruisecontrol:tab>
+            <cruisecontrol:tab name="documentation" label="Documentation">
+              <cruisecontrol:artifactsLink>
+                <iframe src="<%= artifacts_url %>/api/index.html" width="100%" height="550" frameborder="0" />
+                </iframe>
+              </cruisecontrol:artifactsLink>
+            </cruisecontrol:tab>
 
-              <cruisecontrol:tab name="phpcs" label="CodeSniffer">
-                <%@ include file="phpcs.jsp" %>
-              </cruisecontrol:tab>
+            <cruisecontrol:tab name="phpcs" label="CodeSniffer">
+              <%@ include file="phpcs.jsp" %>
+            </cruisecontrol:tab>
               
-              <cruisecontrol:tab name="pmd" label="PHPUnit PMD">
-                <%@ include file="phpunit-pmd.jsp" %>
-              </cruisecontrol:tab>
-
-            </td>
-          </tr>
-        </cruisecontrol:tabsheet>
-  </div>
-  
-    <div id="footer">
-      By <a href="http://www.manuel-pichler.de/">Manuel Pichler</a> hosted
-      on <a href="http://www.phpunit.de/">phpunit.de</a>.
+            <cruisecontrol:tab name="pmd" label="PHPUnit PMD">
+              <%@ include file="phpunit-pmd.jsp" %>
+            </cruisecontrol:tab>
+          </td>
+        </tr>
+      </cruisecontrol:tabsheet>
     </div>
+    <%@ include file="footer.jsp" %>
   </body>
 </html>
