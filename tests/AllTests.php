@@ -34,36 +34,51 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  * 
- * @package    phpUnderControl
- * @subpackage Commands
- * @author     Manuel Pichler <mapi@manuel-pichler.de>
- * @copyright  2007 Manuel Pichler. All rights reserved.
- * @license    http://www.opensource.org/licenses/bsd-license.php  BSD License
- * @version    SVN: $Id$
- * @link       http://www.phpunit.de/wiki/phpUnderControl
+ * @package   phpUnderControl
+ * @author    Manuel Pichler <mapi@manuel-pichler.de>
+ * @copyright 2007 Manuel Pichler. All rights reserved.
+ * @license   http://www.opensource.org/licenses/bsd-license.php  BSD License
+ * @version   SVN: $Id$
+ * @link      http://www.phpunit.de/wiki/phpUnderControl
  */
 
-/**
- * Implementation mode of the example mode.
- *
- * @package    phpUnderControl
- * @subpackage Commands
- * @author     Manuel Pichler <mapi@manuel-pichler.de>
- * @copyright  2007 Manuel Pichler. All rights reserved.
- * @license    http://www.opensource.org/licenses/bsd-license.php  BSD License
- * @version    Release: @package_version@
- * @link       http://www.phpunit.de/wiki/phpUnderControl
- */
-class phpucProjectCommand extends phpucAbstractCommand
+if ( defined( 'PHPUnit_MAIN_METHOD' ) === false )
 {
-    
-    /**
-     * Creates all command specific {@link phpucTaskI} objects.
-     * 
-     * @return array(phpucTaskI)
-     */
-    protected function doCreateTasks()
+    define( 'PHPUnit_MAIN_METHOD', 'phpucAllTests::main' );
+}
+
+require_once 'PHPUnit/Framework/TestSuite.php';
+require_once 'PHPUnit/TextUI/TestRunner.php';
+
+require_once dirname( __FILE__ ) . '/ConsoleArgsTest.php';
+
+/**
+ * Main test suite for phpUnderControl.
+ *
+ * @package   phpUnderControl
+ * @author    Manuel Pichler <mapi@manuel-pichler.de>
+ * @copyright 2007 Manuel Pichler. All rights reserved.
+ * @license   http://www.opensource.org/licenses/bsd-license.php  BSD License
+ * @version   Release: @package_version@
+ * @link      http://www.phpunit.de/wiki/phpUnderControl
+ */
+class phpucAllTests
+{
+    public static function main()
     {
-        return array();
+        PHPUnit_TextUI_TestRunner::run( self::suite() );
     }
+    
+    public static function suite()
+    {
+        $suite = new PHPUnit_Framework_TestSuite( 'phpUnderControl - AllTests' );
+        $suite->addTestSuite( 'phpucConsoleArgsTest' );
+
+        return $suite;
+    }
+}
+
+if ( PHPUnit_MAIN_METHOD === 'phpucAllTests::main' )
+{
+    phpucAllTests::main();
 }

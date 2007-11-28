@@ -34,36 +34,57 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  * 
- * @package    phpUnderControl
- * @subpackage Commands
- * @author     Manuel Pichler <mapi@manuel-pichler.de>
- * @copyright  2007 Manuel Pichler. All rights reserved.
- * @license    http://www.opensource.org/licenses/bsd-license.php  BSD License
- * @version    SVN: $Id$
- * @link       http://www.phpunit.de/wiki/phpUnderControl
+ * @package   phpUnderControl
+ * @author    Manuel Pichler <mapi@manuel-pichler.de>
+ * @copyright 2007 Manuel Pichler. All rights reserved.
+ * @license   http://www.opensource.org/licenses/bsd-license.php  BSD License
+ * @version   SVN: $Id$
+ * @link      http://www.phpunit.de/wiki/phpUnderControl
  */
 
+define( 'PHPUC_TEST', true );
+define( 'PHPUC_SOURCE', realpath( dirname( __FILE__ ) . '/../src' ) );
+
+
+require_once 'PHPUnit/Framework/TestCase.php';
+
 /**
- * Implementation mode of the example mode.
+ * Abstract base class for phpUnderControl test cases.
  *
- * @package    phpUnderControl
- * @subpackage Commands
- * @author     Manuel Pichler <mapi@manuel-pichler.de>
- * @copyright  2007 Manuel Pichler. All rights reserved.
- * @license    http://www.opensource.org/licenses/bsd-license.php  BSD License
- * @version    Release: @package_version@
- * @link       http://www.phpunit.de/wiki/phpUnderControl
+ * @package   phpUnderControl
+ * @author    Manuel Pichler <mapi@manuel-pichler.de>
+ * @copyright 2007 Manuel Pichler. All rights reserved.
+ * @license   http://www.opensource.org/licenses/bsd-license.php  BSD License
+ * @version   Release: @package_version@
+ * @link      http://www.phpunit.de/wiki/phpUnderControl
  */
-class phpucProjectCommand extends phpucAbstractCommand
+abstract class phpucAbstractTest extends PHPUnit_Framework_TestCase
 {
-    
-    /**
-     * Creates all command specific {@link phpucTaskI} objects.
-     * 
-     * @return array(phpucTaskI)
-     */
-    protected function doCreateTasks()
+    protected function prepareArgv( array $argv = null )
     {
-        return array();
+        if ( $argv === null )
+        {
+            unset( $GLOBALS['argv'] );
+        }
+        else
+        {
+            // Add dummy file
+            array_unshift( $argv, 'phpuc.php' );
+            // Set new $argv array
+            $GLOBALS['argv'] = $argv;
+        }
+    }
+    
+    public static function init()
+    {
+        // Load phpUnderControl base class
+        require_once PHPUC_SOURCE . '/PhpUnderControl.php';
+        
+        // Register autoload
+        spl_autoload_register( array( 'phpucPhpUnderControl', 'autoload' ) );
+        
+        PHPUnit_Util_Filter::addDirectoryToWhitelist( PHPUC_SOURCE );
     }
 }
+
+phpucAbstractTest::init();

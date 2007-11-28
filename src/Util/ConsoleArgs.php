@@ -350,7 +350,7 @@ class phpucConsoleArgs
         
         $this->parseOptions();
         $this->parseArguments();
-        
+
         return true;
     }
     

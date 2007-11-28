@@ -195,4 +195,7 @@ class phpucPhpUnderControl
     }
 }
 
-phpucPhpUnderControl::main();
+if ( !defined( 'PHPUC_TEST' ) || !constant( 'PHPUC_TEST' ) )
+{
+    phpucPhpUnderControl::main();
+}
