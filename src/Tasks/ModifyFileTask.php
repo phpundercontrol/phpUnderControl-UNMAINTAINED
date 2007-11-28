@@ -88,12 +88,9 @@ class phpucModifyFileTask extends phpucAbstractTask
         {
             if ( !file_exists( $installDir . $file ) )
             {
-                printf(
-                    'Missing required CruiseControl file "%s".%s',
-                    $file,
-                    PHP_EOL
+                throw new phpucValidateException(
+                    sprintf( 'Missing required CruiseControl file "%s".', $file )
                 );
-                exit( 1 );
             }
         }
     }

@@ -127,13 +127,13 @@ class phpucPhpCodeSnifferTask extends phpucAbstractPearTask
         
         if ( version_compare( $version, self::CODE_SNIFFER_VERSION ) < 0 )
         {
-            printf( 
-                'PHP_CodeSniffer version %s or higher required. Given version is "%s".%s',
-                self::CODE_SNIFFER_VERSION,
-                $version,
-                PHP_EOL
+            throw new phpucValidateException(
+                sprintf( 
+                    'PHP_CodeSniffer version %s or higher required. Given version is "%s".',
+                    self::CODE_SNIFFER_VERSION,
+                    $version
+                )
             );
-            exit( 1 );
         }
     }
 }

@@ -247,13 +247,15 @@ class phpucConsoleArgs
         $argc_argv = strtolower( ini_get( 'register_argc_argv' ) );
         if ( $argc_argv === 'on' || $argc_argv === '1' )
         {
-            echo 'An unknown command line argument error occured.' . PHP_EOL;
-            exit( 1 );
+            throw new phpucConsoleException(
+                'An unknown command line argument error occured.'
+            );
         }
         else
         {
-            echo 'Please enable "register_argc_argv" for your php cli installation.' . PHP_EOL;
-            exit( 1 );
+            throw new phpucConsoleException(
+                'Please enable "register_argc_argv" for your php cli installation.'
+            );
         }
     }
     
@@ -322,31 +324,34 @@ class phpucConsoleArgs
     /**
      * Parses the input command line options and arguments.
      *
-     * @return void
+     * @return boolean
      */
     public function parse()
     {
         if ( $this->hasHelpOption() === true )
         {
             $this->printHelp();
-            exit( 0 );
+            return false;
         }
         else if ( $this->hasUsageOption() === true )
         {
             $this->printUsage();
-            exit( 0 );
+            return false;
         }
         
         // First argument must be the mode
         if ( $this->parseCommand() === false )
         {
-            echo 'You must enter a valid installation mode as first argument.' . PHP_EOL;
             $this->printUsage();
-            exit( 1 );
+            throw new phpucConsoleException(
+                'You must enter a valid installation mode as first argument.'
+            );
         }
         
         $this->parseOptions();
         $this->parseArguments();
+        
+        return true;
     }
     
     /**
@@ -441,12 +446,12 @@ class phpucConsoleArgs
                 }
                 else if ( !isset( $opt['default'] ) )
                 {
-                    printf( 
-                        'The option %s is marked as mandatory and not set.%s', 
-                        $long, 
-                        PHP_EOL 
-                    );
-                    exit( 1 );                    
+                    throw new phpucConsoleException(
+                        sprintf( 
+                            'The option %s is marked as mandatory and not set.', 
+                            $long
+                        ) 
+                    );                 
                 }
                 
                 $option = '--' . $opt['long'];
@@ -472,12 +477,9 @@ class phpucConsoleArgs
             ++$idx;
             if ( !isset( $this->argv[$idx] ) || strpos( $this->argv[$idx], '-' ) === 0 )
             {
-                printf(
-                    'The option %s requires an additional value.%s',
-                    $option,
-                    PHP_EOL
+                throw new phpucConsoleException(
+                    sprintf( 'The option %s requires an additional value.', $option )
                 );
-                exit( 1 );
             }
             $value = $this->argv[$idx];
             
@@ -486,22 +488,19 @@ class phpucConsoleArgs
             
             if ( is_array( $opt['arg'] ) && in_array( $value, $opt['arg'] ) === false )
             {
-                printf(
-                    'The value for option %s must match one of these values "%s".%s',
-                    $option,
-                    implode( '", "', $opt['arg'] ),
-                    PHP_EOL
+                throw new phpucConsoleException(
+                    sprintf(
+                        'The value for option %s must match one of these values "%s".',
+                        $option,
+                        implode( '", "', $opt['arg'] )
+                    )
                 );
-                exit( 1 );
             }
             else if ( is_string( $opt['arg'] ) && preg_match( $opt['arg'], $value ) === 0 )
             {
-                printf(
-                    'The value for option %s has an invalid format.%s',
-                    $option,
-                    PHP_EOL
+                throw new phpucConsoleException(
+                    sprintf( 'The value for option %s has an invalid format.%s', $option )
                 );
-                exit( 1 );
             }
             $this->properties['options'][$opt['long']] = $value;
         }
@@ -523,8 +522,9 @@ class phpucConsoleArgs
             {
                 if ( $arg['mandatory'] )
                 {
-                    printf( 'Missing argument <%s>.%s', $name, PHP_EOL );
-                    exit( 1 );
+                    throw new phpucConsoleException(
+                        sprintf( 'Missing argument <%s>.', $name )
+                    );
                 }
                 return;
             }

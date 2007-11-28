@@ -73,8 +73,7 @@ class phpucProjectTask extends phpucAbstractTask
         
         if ( file_exists( $projectPath ) )
         {
-            echo 'Project directory already exists.' . PHP_EOL;
-            exit( 1 );
+            throw new phpucExecuteException( 'Project directory already exists.' );
         }
         
         echo 'Performing project task.' . PHP_EOL;        
@@ -103,8 +102,7 @@ class phpucProjectTask extends phpucAbstractTask
         echo '  7. Searching ant directory' . PHP_EOL;
         if ( count( $ant = glob( sprintf( '%s/apache-ant*', $installDir ) ) ) === 0 )
         {
-            echo 'ERROR: Cannot locate ant directory.' . PHP_EOL;
-            exit( 1 );
+            throw new phpucExecuteException( 'ERROR: Cannot locate ant directory.' );
         }
         $anthome = basename( array_pop( $ant ) );
         

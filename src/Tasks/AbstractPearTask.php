@@ -130,12 +130,12 @@ abstract class phpucAbstractPearTask extends phpucAbstractTask
         
         if ( $this->executable === null )
         {
-            printf(
-                'Missing command line tool "%s". Please check your PATH environment variable.%s',
-                $this->cliTool,
-                PHP_EOL
+            throw new phpucValidateException(
+                sprintf(
+                    'Missing command line tool "%s". Please check the PATH variable.',
+                    $this->cliTool
+                )
             );
-            exit( 1 );
         }
         else if ( $this->pearInstallDir === null )
         {

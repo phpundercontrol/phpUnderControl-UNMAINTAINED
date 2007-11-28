@@ -79,25 +79,28 @@ class phpucPhpUnderControl
      * @var array(string=>string) $autoloadFiles
      */
     private static $autoloadFiles = array(
-        'phpucAbstractCommand'     =>  'Commands/AbstractCommand.php',
-        'phpucExampleCommand'      =>  'Commands/ExampleCommand.php',
-        'phpucInstallCommand'      =>  'Commands/InstallCommand.php',
-        'phpucProjectCommand'      =>  'Commands/ProjectCommand.php',
-        'phpucBuildFile'           =>  'Data/BuildFile.php',
-        'phpucBuildTarget'         =>  'Data/BuildTarget.php',
-        'phpucAbstractPearTask'    =>  'Tasks/AbstractPearTask.php',
-        'phpucAbstractTask'        =>  'Tasks/AbstractTask.php',
-        'phpucCreateFileTask'      =>  'Tasks/CreateFileTask.php',
-        'phpucCruiseControlTask'   =>  'Tasks/CruiseControlTask.php',
-        'phpucExampleTask'         =>  'Tasks/ExampleTask.php',
-        'phpucModifyFileTask'      =>  'Tasks/ModifyFileTask.php',
-        'phpucPhpCodeSnifferTask'  =>  'Tasks/PhpCodeSnifferTask.php',
-        'phpucPhpDocumentorTask'   =>  'Tasks/PhpDocumentorTask.php',
-        'phpucPhpUnitTask'         =>  'Tasks/PhpUnitTask.php',
-        'phpucProjectTask'         =>  'Tasks/ProjectTask.php',
-        'phpucTaskI'               =>  'Tasks/TaskI.php',
-        'phpucConsoleArgs'         =>  'Util/ConsoleArgs.php',
-        'phpucPhpUnderControl'     =>  'PhpUnderControl.php',
+        'phpucAbstractCommand'        =>  'Commands/AbstractCommand.php',
+        'phpucExampleCommand'         =>  'Commands/ExampleCommand.php',
+        'phpucInstallCommand'         =>  'Commands/InstallCommand.php',
+        'phpucProjectCommand'         =>  'Commands/ProjectCommand.php',
+        'phpucBuildFile'              =>  'Data/BuildFile.php',
+        'phpucBuildTarget'            =>  'Data/BuildTarget.php',
+        'phpucConsoleException'       =>  'Exceptions/ConsoleException.php',
+        'phpucExecuteException'       =>  'Exceptions/ExecuteException.php',
+        'phpucValidateException'      =>  'Exceptions/ValidateException.php',
+        'phpucAbstractPearTask'       =>  'Tasks/AbstractPearTask.php',
+        'phpucAbstractTask'           =>  'Tasks/AbstractTask.php',
+        'phpucCreateFileTask'         =>  'Tasks/CreateFileTask.php',
+        'phpucCruiseControlTask'      =>  'Tasks/CruiseControlTask.php',
+        'phpucExampleTask'            =>  'Tasks/ExampleTask.php',
+        'phpucModifyFileTask'         =>  'Tasks/ModifyFileTask.php',
+        'phpucPhpCodeSnifferTask'     =>  'Tasks/PhpCodeSnifferTask.php',
+        'phpucPhpDocumentorTask'      =>  'Tasks/PhpDocumentorTask.php',
+        'phpucPhpUnitTask'            =>  'Tasks/PhpUnitTask.php',
+        'phpucProjectTask'            =>  'Tasks/ProjectTask.php',
+        'phpucTaskI'                  =>  'Tasks/TaskI.php',
+        'phpucConsoleArgs'            =>  'Util/ConsoleArgs.php',
+        'phpucPhpUnderControl'        =>  'PhpUnderControl.php',
     );
     
     /**
@@ -158,15 +161,37 @@ class phpucPhpUnderControl
     
     public function run()
     {
-        $this->args->parse();
-        
-        $command = phpucAbstractCommand::createCommand( $this->args );
-        
-        foreach ( $command->createTasks() as $task )
+        try
         {
-            $task->validate();
+            if ( $this->args->parse() )
+            {
+                $command = phpucAbstractCommand::createCommand( $this->args );
+        
+                $command->validate();
+                $command->execute();
+            }
+            exit( 0 );
         }
-        $command->execute();
+        catch ( phpucConsoleException $e )
+        {
+            echo $e->getMessage() . PHP_EOL;
+            exit( 1 );
+        }
+        catch ( phpucExecuteException $e )
+        {
+            echo $e->getMessage() . PHP_EOL;
+            exit( 2 );
+        }
+        catch ( phpucValidateException $e )
+        {
+            echo $e->getMessage() . PHP_EOL;
+            exit( 3 );
+        }
+        catch ( Exception $e )
+        {
+            echo $e->getMessage() . PHP_EOL;
+            exit( 4 );
+        }
     }
 }
 

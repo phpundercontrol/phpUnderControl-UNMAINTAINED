@@ -60,6 +60,7 @@ interface phpucTaskI
      * Validates the task constrains.
      *
      * @return void
+     * @throws phpucValidateException If the validation fails.
      */
     function validate();
     
@@ -67,6 +68,7 @@ interface phpucTaskI
      * Executes task specific actions.
      *
      * @return void
+     * @throws phpucExecuteException If the execution fails.
      */
     function execute();
     

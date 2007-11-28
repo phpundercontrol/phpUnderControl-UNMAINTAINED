@@ -35,7 +35,7 @@
  * POSSIBILITY OF SUCH DAMAGE.
  * 
  * @package    phpUnderControl
- * @subpackage Commands
+ * @subpackage Exceptions
  * @author     Manuel Pichler <mapi@manuel-pichler.de>
  * @copyright  2007 Manuel Pichler. All rights reserved.
  * @license    http://www.opensource.org/licenses/bsd-license.php  BSD License
@@ -44,110 +44,17 @@
  */
 
 /**
- * Implementation mode of the example mode.
+ * This exception type occures on invalid user input.
  *
  * @package    phpUnderControl
- * @subpackage Commands
+ * @subpackage Exceptions
  * @author     Manuel Pichler <mapi@manuel-pichler.de>
  * @copyright  2007 Manuel Pichler. All rights reserved.
  * @license    http://www.opensource.org/licenses/bsd-license.php  BSD License
  * @version    Release: @package_version@
  * @link       http://www.phpunit.de/wiki/phpUnderControl
  */
-abstract class phpucAbstractCommand
+class phpucConsoleException extends RuntimeException
 {
-    /**
-     * Factory method for the different cli modes.
-     *
-     * @param phpucConsoleArgs $args The console arguments.
-     * 
-     * @return phpucAbstractCommand
-     */
-    public static function createCommand( phpucConsoleArgs $args )
-    {
-        // Generate class name
-        $className = sprintf( 'phpuc%sCommand', ucfirst( $args->command ) );
-        
-        if ( class_exists( $className, true ) === false )
-        {
-            throw new ErrorException(
-                sprintf( 'Unknown command "%s" used.', $args->command )
-            );
-        }
-        
-        return new $className( $args );
-    }
     
-    /**
-     * The console argument object.
-     *
-     * @type phpucConsoleArgs
-     * @var phpucConsoleArgs $args
-     */
-    protected $args = null;
-    
-    /**
-     * List of command specific tasks.
-     *
-     * @type array<phpucTaskI>
-     * @var array(phpucTaskI)
-     */
-    protected $tasks = null;
-    
-    /**
-     * Protected ctor that takes the tasks and console arguments as parameters.
-     * 
-     * @param phpucConsoleArgs $args The console arguments.
-     */
-    protected final function __construct( phpucConsoleArgs $args )
-    {
-        $this->args = $args;
-    }
-    
-    /**
-     * Validates all command tasks.
-     *
-     * @return void
-     */
-    public function validate()
-    {
-        foreach ( $this->createTasks() as $task )
-        {
-            $task->validate();
-        }
-    }
-    
-    /**
-     * Executes all command tasks.
-     * 
-     * @return void
-     */
-    public function execute()
-    {
-        foreach ( $this->createTasks() as $task )
-        {
-            $task->execute();
-        }
-    }
-    
-    /**
-     * Creates a set of command specific tasks.
-     *
-     * @return array(phpucTaskI)
-     */
-    public final function createTasks()
-    {
-        if ( $this->tasks === null )
-        {
-            $this->tasks = $this->doCreateTasks();
-        }
-        return $this->tasks;
-    }
-    
-    /**
-     * Creates all command specific {@link phpucTaskI} objects.
-     * 
-     * @return array(phpucTaskI)
-     */
-    protected abstract function doCreateTasks();
 }

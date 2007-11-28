@@ -82,12 +82,12 @@ class phpucCruiseControlTask extends phpucAbstractTask
         // Check for a valid directory.
         if ( is_dir( $installDir ) === false )
         {
-            printf(
-                'The specified CruiseControl directory "%s" doesn\'t exist.%s',
-                $installDir,
-                PHP_EOL
+            throw new phpucValidateException(
+                sprintf(
+                    'The specified CruiseControl directory "%s" doesn\'t exist.',
+                    $installDir
+                )
             );
-            exit( 1 );
         }
         // List of required sub directories.
         $subdirs = array(
@@ -102,12 +102,12 @@ class phpucCruiseControlTask extends phpucAbstractTask
             // Check for a valid directory.
             if ( is_dir( $installDir . $subdir ) === false )
             {
-                printf(
-                    'Missing required CruiseControl sub directory "%s".%s',
-                    $subdir,
-                    PHP_EOL
+                throw new phpucValidateException(
+                    sprintf(
+                        'Missing required CruiseControl sub directory "%s".',
+                        $subdir
+                    )
                 );
-                exit( 1 );
             }            
         }
     }
