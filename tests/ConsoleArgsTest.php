@@ -176,6 +176,25 @@ class phpucConsoleArgsTest extends phpucAbstractTest
     }
     
     /**
+     * Tests that the default value for the mandatory "--build-system" is set by
+     * the console args object.
+     *
+     * @return void
+     */
+    public function testConsoleExampleWithoutOptionExpectedAnt()
+    {
+        $this->prepareArgv( 
+            array( 'example', '/opt/cruisecontrol' )
+        );
+        
+        $console = new phpucConsoleArgs();
+        $console->parse();
+        
+        $this->assertTrue( $console->hasOption( 'build-system' ) );
+        $this->assertEquals( 'ant', $console->getOption( 'build-system' ) );  
+    }
+    
+    /**
      * Tests that the parse method throws an {@link phpucConsoleException} for
      * invalid command identifiers.
      *
