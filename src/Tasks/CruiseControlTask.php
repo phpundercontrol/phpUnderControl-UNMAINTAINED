@@ -91,7 +91,6 @@ class phpucCruiseControlTask extends phpucAbstractTask
         }
         // List of required sub directories.
         $subdirs = array(
-            '/projects',
             '/webapps/cruisecontrol',
             '/webapps/cruisecontrol/css',
             '/webapps/cruisecontrol/xsl',
