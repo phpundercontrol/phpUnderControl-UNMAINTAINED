@@ -15,7 +15,7 @@
    sodipodi:version="0.32"
    inkscape:version="0.45.1"
    version="1.0"
-   sodipodi:docbase="/home/pichler/Projects/workspace.xplib.de/phpUnderControl/docs"
+   sodipodi:docbase="/home/pichler/Projects/workspace.xplib.de/phpUnderControl/trunk/docs"
    sodipodi:docname="phpUnderControl-kore.svg"
    inkscape:output_extension="org.inkscape.output.svg.inkscape">
   <defs
@@ -245,16 +245,16 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="1"
-     inkscape:cx="421.01298"
+     inkscape:cx="555.56254"
      inkscape:cy="519.27307"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      width="800px"
      height="700px"
-     inkscape:window-width="1012"
-     inkscape:window-height="717"
-     inkscape:window-x="6"
-     inkscape:window-y="45" />
+     inkscape:window-width="1024"
+     inkscape:window-height="724"
+     inkscape:window-x="0"
+     inkscape:window-y="44" />
   <metadata
      id="metadata7">
     <rdf:RDF>
@@ -279,14 +279,14 @@
        y="0"
        rx="0"
        ry="0"
-       inkscape:export-filename="/home/pichler/Projects/workspace.xplib.de/phpUnderControl/docs/layout/kore-header.png"
+       inkscape:export-filename="/home/pichler/kore-header.png"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90" />
     <path
        style="fill:#ededed;fill-opacity:1;filter:url(#filter11190)"
        d="M 724.03125,12.4375 C 718.48542,12.913 712.77218,13.26251 709.4375,18.375 C 708.22382,21.85799 704.46573,17.09363 707.90625,21.90625 C 707.35978,25.26779 708.79535,30.89197 713.21875,32.625 C 716.1667,30.36659 711.73242,33.17398 715.5,33.78125 C 718.58918,34.37867 720.94524,35.47066 723.03125,38 C 722.30772,35.95883 726.05755,38.23831 727.28125,36.78125 C 732.98218,34.06448 739.83838,33.72016 744.9375,30.15625 C 746.40372,28.58558 746.53349,29.24485 747.96875,30.34375 C 750.05708,29.91796 752.05064,33.05128 748.84375,32.1875 C 744.50455,31.74195 741.41342,34.01859 740.21875,37.875 C 733.06775,41.00846 729.29493,50.25677 733.5,57.03125 C 733.12717,58.75135 736.73767,58.65311 735.8125,60.4375 C 733.60553,59.48041 736.645,64.08813 738,64.78125 C 746.83226,69.09353 757.82876,72.33154 766.9375,66.53125 C 772.09132,64.09659 776.01828,59.70914 776.90625,53.96875 C 782.59326,47.62462 770.43486,44.02748 769.03125,38.28125 C 766.75727,34.75306 760.42745,35.25991 760.65625,29.9375 C 761.90421,26.95794 760.90018,22.94652 757.0625,22.84375 C 755.7794,19.90596 752.07893,19.40496 749.375,21 C 746.13877,22.63491 745.73247,16.2521 742.28125,17.53125 C 739.08867,14.7308 734.46447,14.63366 730.65625,12.90625 C 728.54573,12.25328 726.13451,12.36759 724.03125,12.4375 z M 708.03125,23.5625 C 707.6897,23.26852 707.70397,23.98953 708.03125,23.5625 z M 726.96875,19.09375 C 729.8196,18.47253 734.91931,20.29974 731.75,23.53125 C 728.95163,26.18019 721.8702,28.65097 720.125,23.78125 C 719.92282,20.55316 724.38213,19.03775 726.96875,19.09375 z M 752.25,25.25 C 753.76303,25.48008 751.43762,26.17942 752.25,25.25 z M 735.1875,30.53125 C 735.96391,31.75981 733.38732,29.44953 735.1875,30.53125 z M 752.125,34.25 C 751.20072,35.03694 751.91204,32.40535 752.125,34.25 z "
        id="path9184"
-       inkscape:export-filename="/home/pichler/Projects/workspace.xplib.de/phpUnderControl/docs/layout/kore-header.png"
+       inkscape:export-filename="/home/pichler/kore-header.png"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90" />
     <rect
@@ -296,7 +296,7 @@
        height="20"
        x="171"
        y="80"
-       inkscape:export-filename="/home/pichler/Projects/workspace.xplib.de/phpUnderControl/docs/layout/kore-header.png"
+       inkscape:export-filename="/home/pichler/kore-header.png"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90" />
     <rect
@@ -308,7 +308,7 @@
        width="800"
        id="rect5080"
        style="opacity:1;fill:#babdb6;fill-opacity:1;stroke:none;stroke-width:0.99999988;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:0.4679666"
-       inkscape:export-filename="/home/pichler/Projects/workspace.xplib.de/phpUnderControl/docs/layout/kore-header.png"
+       inkscape:export-filename="/home/pichler/kore-header.png"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90" />
     <text
@@ -318,7 +318,7 @@
        y="51.5"
        id="text5084"
        sodipodi:linespacing="125%"
-       inkscape:export-filename="/home/pichler/Projects/workspace.xplib.de/phpUnderControl/docs/layout/kore-header.png"
+       inkscape:export-filename="/home/pichler/kore-header.png"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90"><tspan
          sodipodi:role="line"
@@ -332,7 +332,7 @@
        x="56"
        style="font-size:18px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;fill:#d3d7cf;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:URW Gothic L"
        xml:space="preserve"
-       inkscape:export-filename="/home/pichler/Projects/workspace.xplib.de/phpUnderControl/docs/layout/kore-header.png"
+       inkscape:export-filename="/home/pichler/kore-header.png"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90"><tspan
          y="51.5"
@@ -346,7 +346,7 @@
        x="109"
        style="font-size:18px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;fill:#8ae234;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:URW Gothic L"
        xml:space="preserve"
-       inkscape:export-filename="/home/pichler/Projects/workspace.xplib.de/phpUnderControl/docs/layout/kore-header.png"
+       inkscape:export-filename="/home/pichler/kore-header.png"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90"><tspan
          y="51.5"
@@ -361,7 +361,7 @@
        style="font-size:18px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;fill:url(#linearGradient7104);fill-opacity:1.0;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:URW Gothic L;opacity:0.47740113;filter:url(#filter7126)"
        xml:space="preserve"
        transform="scale(1,-1)"
-       inkscape:export-filename="/home/pichler/Projects/workspace.xplib.de/phpUnderControl/docs/layout/kore-header.png"
+       inkscape:export-filename="/home/pichler/kore-header.png"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90"><tspan
          y="-53.018002"
@@ -377,7 +377,7 @@
        id="text6105"
        sodipodi:linespacing="125%"
        transform="scale(1,-1)"
-       inkscape:export-filename="/home/pichler/Projects/workspace.xplib.de/phpUnderControl/docs/layout/kore-header.png"
+       inkscape:export-filename="/home/pichler/kore-header.png"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90"><tspan
          sodipodi:role="line"
@@ -393,7 +393,7 @@
        id="text6109"
        sodipodi:linespacing="125%"
        transform="scale(1,-1)"
-       inkscape:export-filename="/home/pichler/Projects/workspace.xplib.de/phpUnderControl/docs/layout/kore-header.png"
+       inkscape:export-filename="/home/pichler/kore-header.png"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90"><tspan
          sodipodi:role="line"
@@ -410,7 +410,7 @@
        y="80"
        rx="0"
        ry="0"
-       inkscape:export-filename="/home/pichler/Projects/workspace.xplib.de/phpUnderControl/docs/layout/kore-header.png"
+       inkscape:export-filename="/home/pichler/kore-header.png"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90" />
     <rect
@@ -422,7 +422,7 @@
        width="1"
        id="rect7132"
        style="opacity:1;fill:#babdb6;fill-opacity:1;stroke:none;stroke-width:0.99999988;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:0.4679666"
-       inkscape:export-filename="/home/pichler/Projects/workspace.xplib.de/phpUnderControl/docs/layout/kore-header.png"
+       inkscape:export-filename="/home/pichler/kore-header.png"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90" />
     <rect
@@ -434,7 +434,7 @@
        y="80"
        rx="0"
        ry="0"
-       inkscape:export-filename="/home/pichler/Projects/workspace.xplib.de/phpUnderControl/docs/layout/kore-header.png"
+       inkscape:export-filename="/home/pichler/kore-header.png"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90" />
     <rect
@@ -446,7 +446,7 @@
        width="1"
        id="rect7136"
        style="opacity:1;fill:#babdb6;fill-opacity:1;stroke:none;stroke-width:0.99999988;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:0.4679666"
-       inkscape:export-filename="/home/pichler/Projects/workspace.xplib.de/phpUnderControl/docs/layout/kore-header.png"
+       inkscape:export-filename="/home/pichler/kore-header.png"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90" />
     <text
@@ -456,7 +456,7 @@
        y="94.302383"
        id="text7138"
        sodipodi:linespacing="125%"
-       inkscape:export-filename="/home/pichler/Projects/workspace.xplib.de/phpUnderControl/docs/layout/kore-header.png"
+       inkscape:export-filename="/home/pichler/kore-header.png"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90"><tspan
          sodipodi:role="line"
@@ -470,7 +470,7 @@
        x="118.24265"
        style="font-size:11px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;fill:#eeeeec;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
        xml:space="preserve"
-       inkscape:export-filename="/home/pichler/Projects/workspace.xplib.de/phpUnderControl/docs/layout/kore-header.png"
+       inkscape:export-filename="/home/pichler/kore-header.png"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90"><tspan
          y="94.302383"
@@ -484,7 +484,7 @@
        y="94.302383"
        id="text7146"
        sodipodi:linespacing="125%"
-       inkscape:export-filename="/home/pichler/Projects/workspace.xplib.de/phpUnderControl/docs/layout/kore-header.png"
+       inkscape:export-filename="/home/pichler/kore-header.png"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90"><tspan
          sodipodi:role="line"
@@ -498,7 +498,7 @@
        x="278.24265"
        style="font-size:11px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;fill:#eeeeec;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
        xml:space="preserve"
-       inkscape:export-filename="/home/pichler/Projects/workspace.xplib.de/phpUnderControl/docs/layout/kore-header.png"
+       inkscape:export-filename="/home/pichler/kore-header.png"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90"><tspan
          y="94.302383"
@@ -509,7 +509,7 @@
        id="g9168"
        inkscape:label="Layer 1"
        transform="matrix(9.2771515e-2,0,0,9.2771515e-2,710.24847,6.020096)"
-       inkscape:export-filename="/home/pichler/Projects/workspace.xplib.de/phpUnderControl/docs/layout/kore-header.png"
+       inkscape:export-filename="/home/pichler/kore-header.png"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90">
       <g
@@ -560,7 +560,7 @@
        y="75"
        id="text11194"
        sodipodi:linespacing="125%"
-       inkscape:export-filename="/home/pichler/Projects/workspace.xplib.de/phpUnderControl/docs/layout/kore-header.png"
+       inkscape:export-filename="/home/pichler/kore-header.png"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90"><tspan
          sodipodi:role="line"
@@ -577,7 +577,7 @@
        sodipodi:ry="5.4937277"
        d="M 761.6079 51.846466 A 7.5848885 5.4937277 0 1 1  746.43812,51.846466 A 7.5848885 5.4937277 0 1 1  761.6079 51.846466 z"
        transform="matrix(1.1570004,0.3218601,-0.3112351,1.1188064,-101.8556,-249.45217)"
-       inkscape:export-filename="/home/pichler/Projects/workspace.xplib.de/phpUnderControl/docs/layout/kore-header.png"
+       inkscape:export-filename="/home/pichler/kore-header.png"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90" />
     <rect

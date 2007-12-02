@@ -183,9 +183,7 @@ class phpucConsoleArgsTest extends phpucAbstractTest
      */
     public function testConsoleExampleWithoutOptionExpectedAnt()
     {
-        $this->prepareArgv( 
-            array( 'example', '/opt/cruisecontrol' )
-        );
+        $this->prepareArgv( array( 'example', '/opt/cruisecontrol' ) );
         
         $console = new phpucConsoleArgs();
         $console->parse();

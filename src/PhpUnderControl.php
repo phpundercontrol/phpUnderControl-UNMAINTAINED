@@ -85,6 +85,8 @@ class phpucPhpUnderControl
         'phpucProjectCommand'         =>  'Commands/ProjectCommand.php',
         'phpucBuildFile'              =>  'Data/BuildFile.php',
         'phpucBuildTarget'            =>  'Data/BuildTarget.php',
+        'phpucConfigFile'             =>  'Data/ConfigFile.php',
+        'phpucConfigProject'          =>  'Data/ConfigProject.php',
         'phpucConsoleException'       =>  'Exceptions/ConsoleException.php',
         'phpucExecuteException'       =>  'Exceptions/ExecuteException.php',
         'phpucValidateException'      =>  'Exceptions/ValidateException.php',

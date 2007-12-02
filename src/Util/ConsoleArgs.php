@@ -79,27 +79,6 @@ class phpucConsoleArgs
             'help'  =>  'Installs the CruiseControl patches.',
             'options'  =>  array(
                 array(
-                    'short'      =>  'c',
-                    'long'       =>  'without-code-sniffer',
-                    'arg'        =>  null,
-                    'help'       =>  'Disable PHP CodeSniffer support.',
-                    'mandatory'  =>  false,
-                ),
-                array(
-                    'short'      =>  'u',
-                    'long'       =>  'without-phpunit',
-                    'arg'        =>  null,
-                    'help'       =>  'Disable PHPUnit support.',
-                    'mandatory'  =>  false,
-                ),
-                array(
-                    'short'      =>  'd',
-                    'long'       =>  'without-php-documentor',
-                    'arg'        =>  null,
-                    'help'       =>  'Disable phpDocumentor support.',
-                    'mandatory'  =>  false,
-                ),
-                array(
                     'short'      =>  'p',
                     'long'       =>  'pear-executables-dir',
                     'arg'        =>  true,

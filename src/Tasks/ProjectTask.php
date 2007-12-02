@@ -108,30 +108,13 @@ class phpucProjectTask extends phpucAbstractTask
         
         echo '  8. Modifying project file:     config.xml' . PHP_EOL;
         
-        $configXml = new DOMDocument();
-        $configXml->preserveWhiteSpace = false;
-        $configXml->load( $installDir . '/config.xml' );
+        $config  = new phpucConfigFile( $installDir . '/config.xml' );
+        $project = $config->createProject( $projectName );
         
-        $projectXml = new DOMDocument();
-        $projectXml->preserveWhiteSpace = false;
-        $projectXml->load( PHPUC_DATA_DIR . '/template/project.xml' );
-        
-        $project = $projectXml->documentElement;
-        $project->setAttribute( 'name', $projectName );
-        
-        $schedule = $projectXml->getElementById( 'schedule' );
-        $schedule->setAttribute( 'interval', $this->args->getOption( 'schedule-interval' ) );
-        $schedule->removeAttribute( 'xml:id' );
-        
-        $ant = $projectXml->getElementById( 'ant' );
-        $ant->setAttribute( 'anthome', $anthome );
-        $ant->removeAttribute( 'xml:id' );
-        
-        $project = $configXml->importNode( $projectXml->documentElement, true );
-        $configXml->documentElement->appendChild( $project );
-        
-        $configXml->formatOutput = true;
-        $configXml->save( $installDir . '/config.xml' );
+        $project->interval = $this->args->getOption( 'schedule-interval' );
+        $project->anthome  = $anthome;
+
+        $config->save();
                 
         echo PHP_EOL;
     }
