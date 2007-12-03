@@ -6,9 +6,8 @@
 
   <modificationset/>
 
-  <schedule interval="@interval@" xml:id="schedule">
-    <ant anthome="@anthome@" xml:id="ant" 
-         buildfile="projects/${project.name}/build.xml"/>
+  <schedule interval="@interval@">
+    <ant anthome="@anthome@" buildfile="projects/${project.name}/build.xml"/>
   </schedule>
 
   <log dir="logs/${project.name}">

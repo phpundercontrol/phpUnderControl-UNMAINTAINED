@@ -57,6 +57,15 @@
           <file name="BuildTarget.php" role="php">
             <tasks:replace from="@package_version@" to="version" type="package-info" />
           </file>
+          <file name="ConfigArtifactsPublisher.php" role="php">
+            <tasks:replace from="@package_version@" to="version" type="package-info" />
+          </file>
+          <file name="ConfigFile.php" role="php">
+            <tasks:replace from="@package_version@" to="version" type="package-info" />
+          </file>
+          <file name="ConfigProject.php" role="php">
+            <tasks:replace from="@package_version@" to="version" type="package-info" />
+          </file>
         </dir>
         <dir name="Tasks">
           <file name="AbstractPearTask.php" role="php">
@@ -236,6 +245,9 @@
       <install as="phpUnderControl/Commands/ProjectCommand.php" name="src/Commands/ProjectCommand.php" />
       <install as="phpUnderControl/Data/BuildFile.php" name="src/Data/BuildFile.php" />
       <install as="phpUnderControl/Data/BuildTarget.php" name="src/Data/BuildTarget.php" />
+      <install as="phpUnderControl/Data/ConfigArtifactsPublisher.php" name="src/Data/ConfigArtifactsPublisher.php" />
+      <install as="phpUnderControl/Data/ConfigFile.php" name="src/Data/ConfigFile.php" />
+      <install as="phpUnderControl/Data/ConfigProject.php" name="src/Data/ConfigProject.php" />
       <install as="phpUnderControl/Tasks/AbstractPearTask.php" name="src/Tasks/AbstractPearTask.php" />
       <install as="phpUnderControl/Tasks/AbstractTask.php" name="src/Tasks/AbstractTask.php" />
       <install as="phpUnderControl/Tasks/CreateFileTask.php" name="src/Tasks/CreateFileTask.php" />
@@ -263,6 +275,9 @@
       <install as="phpUnderControl/Commands/ProjectCommand.php" name="src/Commands/ProjectCommand.php" />
       <install as="phpUnderControl/Data/BuildFile.php" name="src/Data/BuildFile.php" />
       <install as="phpUnderControl/Data/BuildTarget.php" name="src/Data/BuildTarget.php" />
+      <install as="phpUnderControl/Data/ConfigArtifactsPublisher.php" name="src/Data/ConfigArtifactsPublisher.php" />
+      <install as="phpUnderControl/Data/ConfigFile.php" name="src/Data/ConfigFile.php" />
+      <install as="phpUnderControl/Data/ConfigProject.php" name="src/Data/ConfigProject.php" />
       <install as="phpUnderControl/Tasks/AbstractPearTask.php" name="src/Tasks/AbstractPearTask.php" />
       <install as="phpUnderControl/Tasks/AbstractTask.php" name="src/Tasks/AbstractTask.php" />
       <install as="phpUnderControl/Tasks/CreateFileTask.php" name="src/Tasks/CreateFileTask.php" />
