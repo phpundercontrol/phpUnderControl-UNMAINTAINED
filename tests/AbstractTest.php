@@ -60,6 +60,11 @@ require_once 'PHPUnit/Framework/TestCase.php';
  */
 abstract class phpucAbstractTest extends PHPUnit_Framework_TestCase
 {
+    /**
+     * Prepares the global <b>$argv</b> array.
+     *
+     * @param array $argv A new argument array.
+     */
     protected function prepareArgv( array $argv = null )
     {
         if ( $argv === null )
@@ -72,6 +77,40 @@ abstract class phpucAbstractTest extends PHPUnit_Framework_TestCase
             array_unshift( $argv, 'phpuc.php' );
             // Set new $argv array
             $GLOBALS['argv'] = $argv;
+        }
+    }
+    
+    protected function createTestDirectories( array $directories )
+    {
+        foreach ( $directories as $directory )
+        {
+            mkdir( dirname( __FILE__ ) . '/run/' . $directory );
+        }
+    }
+    
+    protected function clearTestContents( $directory = null )
+    {
+        if ( $directory === null )
+        {
+            $directory = dirname( __FILE__ ) . '/run';
+        }
+        
+        $it = new DirectoryIterator( $directory );
+        foreach ( $it as $entry )
+        {
+            if ( $entry->isDot() )
+            {
+                continue;
+            }
+            else if ( $entry->isDir() )
+            {
+                $this->clearTestContents( $entry->getPathname() );
+                rmdir( $entry->getPathname() );
+            } 
+            else if ( $entry->isFile() )
+            {
+                unlink( $entry->getPathname() );
+            }
         }
     }
     

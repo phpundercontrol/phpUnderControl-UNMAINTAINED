@@ -94,6 +94,7 @@ class phpucCruiseControlTask extends phpucAbstractTask
             '/webapps/cruisecontrol',
             '/webapps/cruisecontrol/css',
             '/webapps/cruisecontrol/xsl',
+            '/webapps/cruisecontrol/images',
         );
 
         foreach ( $subdirs as $subdir )

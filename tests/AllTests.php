@@ -51,6 +51,7 @@ require_once 'PHPUnit/Framework/TestSuite.php';
 require_once 'PHPUnit/TextUI/TestRunner.php';
 
 require_once dirname( __FILE__ ) . '/ConsoleArgsTest.php';
+require_once dirname( __FILE__ ) . '/CruiseControlTaskTest.php';
 
 /**
  * Main test suite for phpUnderControl.
@@ -73,6 +74,7 @@ class phpucAllTests
     {
         $suite = new PHPUnit_Framework_TestSuite( 'phpUnderControl - AllTests' );
         $suite->addTestSuite( 'phpucConsoleArgsTest' );
+        $suite->addTestSuite( 'phpucCruiseControlTaskTest' );
 
         return $suite;
     }
