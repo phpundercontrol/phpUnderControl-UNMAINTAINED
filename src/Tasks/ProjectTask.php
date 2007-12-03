@@ -44,7 +44,7 @@
  */
 
 /**
- * <...>
+ * This task creates the base directory structure for a new project.
  *
  * @package    phpUnderControl
  * @subpackage Tasks
@@ -53,16 +53,31 @@
  * @license    http://www.opensource.org/licenses/bsd-license.php  BSD License
  * @version    Release: @package_version@
  * @link       http://www.phpunit.de/wiki/phpUnderControl
- * 
- * @property-read boolean $metrics  Enable metrics support?
- * @property-read boolean $coverage Enable coverage support?
  */
 class phpucProjectTask extends phpucAbstractTask
 {
-    
+    /**
+     * Validates that the required <cc-install-dir>/projects directory exists.
+     * 
+     * @return void
+     * @throws phpucValidateException If the directory doesn't exist or the 
+     *         a project for the given name already exists.
+     */
     public function validate()
     {
+        $installDir  = $this->args->getArgument( 'cc-install-dir' );
+        $projectName = $this->args->getOption( 'project-name' );
         
+        if ( !is_dir( $installDir . '/projects' ) )
+        {
+            throw new phpucValidateException(
+                'Missing projects directory <cc-install-dir>/projects.'
+            );
+        }
+        if ( is_dir( $installDir . '/projects/' . $projectName ) )
+        {
+            throw new phpucValidateException( 'Project directory already exists.' );
+        }
     }
     
     public function execute()
@@ -71,26 +86,21 @@ class phpucProjectTask extends phpucAbstractTask
         $projectName = $this->args->getOption( 'project-name' );
         $projectPath = sprintf( '%s/projects/%s', $installDir, $projectName );
         
-        if ( file_exists( $projectPath ) )
-        {
-            throw new phpucExecuteException( 'Project directory already exists.' );
-        }
-        
         echo 'Performing project task.' . PHP_EOL;        
         
-        printf( '  1. Creating project directory: project/%s%s', $projectName, PHP_EOL );
+        printf( '  1. Creating project directory: projects/%s%s', $projectName, PHP_EOL );
         mkdir( $projectPath );
         
-        printf( '  2. Creating source directory:  project/%s/source%s', $projectName, PHP_EOL );
+        printf( '  2. Creating source directory:  projects/%s/source%s', $projectName, PHP_EOL );
         mkdir( $projectPath . '/source' );
         
-        printf( '  3. Creating build directory:   project/%s/build%s', $projectName, PHP_EOL );
+        printf( '  3. Creating build directory:   projects/%s/build%s', $projectName, PHP_EOL );
         mkdir( $projectPath . '/build' );
         
-        printf( '  4. Creating log directory:     project/%s/build/logs%s', $projectName, PHP_EOL );
+        printf( '  4. Creating log directory:     projects/%s/build/logs%s', $projectName, PHP_EOL );
         mkdir( $projectPath . '/build/logs' );
         
-        printf( '  5. Creating build file:        project/%s/build.xml%s', $projectName, PHP_EOL );
+        printf( '  5. Creating build file:        projects/%s/build.xml%s', $projectName, PHP_EOL );
         
         $buildFile = new phpucBuildFile( $projectPath . '/build.xml', $projectName );
         $buildFile->save();

@@ -44,7 +44,7 @@
  */
 
 /**
- * <...>
+ * This class represents the CruiseControl configuration file.
  *
  * @package    phpUnderControl
  * @subpackage Data
@@ -56,10 +56,27 @@
  */
 class phpucConfigFile extends DOMDocument
 {
+    /**
+     * The config.xml file name.
+     *
+     * @type string
+     * @var string $fileName
+     */
     protected $fileName = '';
     
+    /**
+     * List of projects from the configuration file.
+     *
+     * @type array<phpucConfigProject>
+     * @var array(string=>phpucConfigProject) $projects
+     */
     protected $projects = array();
     
+    /**
+     * The ctor takes the configuration file name as argument.
+     *
+     * @param string $fileName The config file name.
+     */
     public function __construct( $fileName )
     {
         parent::__construct( '1.0', 'UTF-8' );
@@ -71,15 +88,56 @@ class phpucConfigFile extends DOMDocument
         $this->load( $fileName );
     }
     
+    /**
+     * Creates a new project for the given name.
+     *
+     * @param string $projectName The name for the new project.
+     * 
+     * @return phpucConfigProject
+     * @throws ErrorException If the configuration contains more than one project
+     *         with the same name. But this should never happen.
+     */
     public function createProject( $projectName )
     {
         $project = new phpucConfigProject( $this, $projectName );
         
-        $this->projects[] = $project;
+        $this->projects[$projectName] = $project;
         
         return $project;
     }
     
+    /**
+     * Returns an existing project from the config file.
+     *
+     * @param string $projectName The name for the new project.
+     * 
+     * @return phpucConfigProject
+     * @throws ErrorException If no project for the given name exists.
+     */
+    public function getProject( $projectName )
+    {
+        if ( !isset($this->projects[$projectName]) )
+        {
+            $project = new phpucConfigProject( $this, $projectName );
+            
+            if ( $project->isNew() )
+            {
+                throw new ErrorException( 
+                    "Cannot find a project names '{$projectName}'." 
+                );
+            }
+            
+            $this->projects[$projectName] = $project;
+        }        
+        return $this->projects[$projectName];
+    }
+    
+    /**
+     * Writes all changes to the config.xml file.
+     *
+     * @return void
+     * @throws ErrorException If a sub action fails.
+     */
     public function save()
     {
         foreach ( $this->projects as $project )

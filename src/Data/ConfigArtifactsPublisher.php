@@ -35,7 +35,6 @@
  * POSSIBILITY OF SUCH DAMAGE.
  * 
  * @package    phpUnderControl
- * @subpackage Data
  * @author     Manuel Pichler <mapi@manuel-pichler.de>
  * @copyright  2007 Manuel Pichler. All rights reserved.
  * @license    http://www.opensource.org/licenses/bsd-license.php  BSD License
@@ -44,8 +43,7 @@
  */
 
 /**
- * This class represents a build target in a build.xml file. Currently this
- * class only supports a single "exec" task.
+ * This class represents an artificats publisher in the config.xml file.
  *
  * @package    phpUnderControl
  * @subpackage Data
@@ -54,93 +52,40 @@
  * @license    http://www.opensource.org/licenses/bsd-license.php  BSD License
  * @version    Release: @package_version@
  * @link       http://www.phpunit.de/wiki/phpUnderControl
- * 
- * @property      string         $executable  The command line executable.
- * @property      string         $dir         Optional working directory.
- * @property      string         $argLine     Optional command line arguments.
- * @property      string         $output      Optional output directory. 
- * @property      boolean        $failonerror Should the target fail on an error.
- * @property      boolean        $logerror    Should the target log all errors.
- * @property-read string         $targetName  The unique identifier for this target.
- * @property-read phpucBuildFile $buildFile   The context build file object.
  */
-class phpucBuildTarget
+class phpucConfigArtifactsPublisher
 {
     /**
-     * Magic properties for the build target.
+     * Magic properties for the artifact publisher tag.
      *
-     * @type array<array>
-     * @var array(string=>array) $properties
+     * @type array<mixed>
+     * @var array(string=>mixed) $properties
      */
     protected $properties = array(
-        'failonerror'  =>  false,
-        'executable'   =>  null,
-        'targetName'   =>  null,
-        'buildFile'    =>  null,
-        'logerror'     =>  false,
-        'argLine'      =>  null,
-        'output'       =>  null,
-        'dir'          =>  '${basedir}/source',
+        'element'       =>  null,
+        'project'       =>  null,
+        'dir'           =>  null,
+        'file'          =>  null,
+        'dest'          =>  'logs/${project.name}',
+        'subdirectory'  =>  null,
     );
     
     /**
-     * The constructor takes the parent build file and the target name as 
-     * arguments. 
+     * The ctor takes the parent project object as argument.
      *
-     * @param phpucBuildFile $buildFile  The parent build file object.
-     * @param strinv         $targetName The build target name.
+     * @param phpucConfigProject $project The parent project.
      */
-    public function __construct( phpucBuildFile $buildFile, $targetName )
+    public function __construct( phpucConfigProject $project )
     {
-        $this->properties['targetName'] = $targetName;
-        $this->properties['buildFile']  = $buildFile;
-    }
-    
-    /**
-     * Builds/Rebuilds the target xml content.
-     *
-     * @return void
-     */
-    public function buildXml()
-    {
-        $target = $this->buildFile->createElement( 'target' );
-        $target->setAttribute( 'name', $this->targetName );
-        
-        $exec = $target->appendChild( $this->buildFile->createElement( 'exec' ) );
-        $exec->setAttribute( 'executable', $this->executable );
-        $exec->setAttribute( 'dir', $this->dir );
-        
-        if ( $this->failonerror === true )
-        {
-            $exec->setAttribute( 'failonerror', 'on' );
-        }
-        if ( $this->logerror === true )
-        {
-            $exec->setAttribute( 'logerror', 'on' );
-        }
-        if ( $this->output !== null )
-        {
-            $exec->setAttribute( 'output', $this->output );
-        }
-        
-        if ( $this->argLine !== null )
-        {
-            $arg = $this->buildFile->createElement( 'arg' );
-            $arg->setAttribute( 'line', $this->argLine );
-            
-            $exec->appendChild( $arg );
-        }
-        
-        $this->buildFile->documentElement->appendChild( $target );
-        
-        $xpath = new DOMXPath( $this->buildFile );
-        $build = $xpath->query( '/project/target[@name="build"]' )->item( 0 );
-        
-        if ( trim( $depends = $build->getAttribute( 'depends' ) ) !== '' )
-        {
-            $depends .= ',';
-        }
-        $build->setAttribute( 'depends', $depends . $this->targetName );
+        $this->properties['project'] = $project;
+        $this->properties['element'] = $project->element
+                                               ->ownerDocument
+                                               ->createElement( 
+                                                    'artifactspublisher'
+                                               );
+                                               
+        $publishers = $project->element->getElementsByTagName( 'publishers' );
+        $publishers->item( 0 )->appendChild( $this->element );
     }
     
     /**
@@ -194,29 +139,50 @@ class phpucBuildTarget
     {
         switch ( $name )
         {
-            case 'executable':
-            case 'argLine':
-            case 'output':
             case 'dir':
+            case 'file':
+            case 'dest':
+            case 'subdirectory':
                 $this->properties[$name] = $value;
                 break;
-                
-            case 'failonerror':
-            case 'logerror':
-                if ( !is_bool( $value ) )
-                {
-                    throw new InvalidArgumentException(
-                        sprintf( 'The property $%s must be an boolean.', $name )
-                    );
-                }
-                $this->properties[$name] = $value;
-                break;
-                
+            
             default:
                 throw new OutOfRangeException(
                     sprintf( 'Unknown or readonly property $%s.', $name )
                 );
                 break;
+        }
+    }
+    
+    /**
+     * Builds/Rebuilds the <artifactspublisher> tag.
+     *
+     * @return void
+     * @throws ErrorException If neither the $dir property nor the $file
+     *         property was set.
+     */
+    public function buildXml()
+    {
+        if ( $this->file === null && $this->dir === null )
+        {
+            throw new ErrorException(
+                'You must set a artificat $dir or $file. Nothing set.'
+            );
+        }
+        else if ( $this->file === null )
+        {
+            $this->element->setAttribute( 'dir', $this->dir );    
+        }
+        else
+        {
+            $this->element->setAttribute( 'file', $this->file );
+        }
+        
+        $this->element->setAttribute( 'dest', $this->dest );
+        
+        if ( $this->subdirectory !== null )
+        {
+            $this->element->setAttribute( 'subdirectory', $this->subdirectory );
         }
     }
 }

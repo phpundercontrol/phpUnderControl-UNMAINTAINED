@@ -132,7 +132,7 @@ abstract class phpucAbstractPearTask extends phpucAbstractTask
         {
             throw new phpucValidateException(
                 sprintf(
-                    'Missing command line tool "%s". Please check the PATH variable.',
+                    'Missing cli tool "%s". Please check the PATH variable.',
                     $this->cliTool
                 )
             );
@@ -167,14 +167,15 @@ abstract class phpucAbstractPearTask extends phpucAbstractTask
                 break;
                 
             case 'pearInstallDir':
-                if ( trim( $value) === '' )
+                if ( trim( $value ) === '' )
                 {
                     $this->properties[$name] = null;
                 }
                 else
                 {
-                    $regex = sprintf( '#%s+$#', DIRECTORY_SEPARATOR );
-                    $this->properties[$name] = preg_replace( $regex, '', $value );
+                    $this->properties[$name] = preg_replace( 
+                        sprintf( '#%s+$#', DIRECTORY_SEPARATOR ), '', $value
+                    );
                 }
                 break;
                 

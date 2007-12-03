@@ -44,7 +44,7 @@
  */
 
 /**
- * <...>
+ * This class represents a single build.xml file.
  *
  * @package    phpUnderControl
  * @subpackage Data
@@ -56,10 +56,28 @@
  */
 class phpucBuildFile extends DOMDocument
 {
+    /**
+     * The build.xml file name.
+     *
+     * @type string
+     * @var string $fileName
+     */
     protected $fileName = '';
     
+    /**
+     * List of build file targets.
+     *
+     * @type array<phpucBuildTarget>
+     * @var array(phpucBuildTarget) $targets
+     */
     protected $targets = array();
     
+    /**
+     * The ctor takes the build file name and the project name as arguments.
+     *
+     * @param string $fileName    The build file name.
+     * @param string $projectName An optional project name. 
+     */
     public function __construct( $fileName, $projectName = null )
     {
         parent::__construct( '1.0', 'UTF-8' );
@@ -80,6 +98,13 @@ class phpucBuildFile extends DOMDocument
         }
     }
     
+    /**
+     * Factory method for the build targets.
+     *
+     * @param string $targetName The target identifier.
+     * 
+     * @return phpucBuildTarget
+     */
     public function createBuildTarget( $targetName )
     {
         $target = new phpucBuildTarget( $this, $targetName );
@@ -89,6 +114,11 @@ class phpucBuildFile extends DOMDocument
         return $target;
     }
     
+    /**
+     * Writes changes to the build file.
+     *
+     * @return void
+     */
     public function save()
     {
         foreach ( $this->targets as $target )
@@ -99,9 +129,14 @@ class phpucBuildFile extends DOMDocument
         parent::save( $this->fileName );
     }
     
+    /**
+     * Creates the base object structure for a new build file.
+     *
+     * @return void
+     */
     protected function initBuildFile()
     {
-        $project  = $this->appendChild( $this->createElement( 'project' ) );
+        $project = $this->appendChild( $this->createElement( 'project' ) );
         $project->setAttribute( 'name', $this->projectName );
         $project->setAttribute( 'default', 'build' );
         $project->setAttribute( 'basedir', '.' );

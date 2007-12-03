@@ -125,23 +125,14 @@ class phpucPhpUnitTask extends phpucAbstractPearTask
         
         echo '  3. Modifying config file: config.xml' . PHP_EOL;
         
-        $configXml = new DOMDocument();
-        $configXml->preserveWhiteSpace = false;
-        $configXml->load( $installDir . '/config.xml' );
+        $configFile    = new phpucConfigFile( $installDir . '/config.xml' );
+        $configProject = $configFile->getProject( $projectName );
+        $publisher     = $configProject->createArtifactsPublisher();
         
-        $publisher = $configXml->createElement( 'artifactspublisher' );
-        $publisher->setAttribute( 'dir', 'projects/${project.name}/build/coverage' );
-        $publisher->setAttribute( 'dest', 'logs/${project.name}' );
-        $publisher->setAttribute( 'subdirectory', 'coverage' );
+        $publisher->dir          = 'projects/${project.name}/build/coverage';
+        $publisher->subdirectory = 'coverage';
         
-        $xpath      = new DOMXPath( $configXml );
-        $publishers = $xpath->query( 
-            sprintf( '/cruisecontrol/project[@name="%s"]/publishers', $projectName )
-        )->item( 0 );
-        $publishers->appendChild( $publisher );
-        
-        $configXml->formatOutput = true;
-        $configXml->save( $installDir . '/config.xml' );
+        $configFile->save();
         
         echo PHP_EOL;
     }

@@ -44,7 +44,7 @@
  */
 
 /**
- * <...>
+ * This class represents a single project in the CruiseControl config.xml file.
  *
  * @package    phpUnderControl
  * @subpackage Data
@@ -53,9 +53,21 @@
  * @license    http://www.opensource.org/licenses/bsd-license.php  BSD License
  * @version    Release: @package_version@
  * @link       http://www.phpunit.de/wiki/phpUnderControl
+ * 
+ * @property      integer         $interval    The schedule interval.
+ * @property      string          $anthome     The ant build tool location.
+ * @property-read phpucConfigFile $configFile  The parent config file object.
+ * @property-read string          $projectName The project name,
+ * @property-read DOMElement      $element     The <project> xml element.
  */
 class phpucConfigProject
 {
+    /**
+     * Magic properties for the project tag.
+     *
+     * @type array<mixed>
+     * @var array(string=>mixed) $properties
+     */
     protected $properties = array(
         'element'      =>  null,
         'anthome'      =>  null,
@@ -64,36 +76,77 @@ class phpucConfigProject
         'projectName'  =>  null,
     );
     
+    /**
+     * List of all registered artificat publishers.
+     *
+     * @type array<phpucConfigArtifactsPublisher>
+     * @var array(phpucConfigArtifactsPublisher) $publishers
+     */
+    protected $publishers = array();
+    
+    /**
+     * Denotes that this project object is new and not loaded from the 
+     * config.xml file.
+     *
+     * @type boolean
+     * @var boolean $isNew
+     */
+    protected $isNew = false;
+    
+    /**
+     * The <schedule> element from the project configuration.
+     *
+     * @type DOMElement
+     * @var DOMElement $scheduleElement
+     */
+    private $scheduleElement = null;
+    
+    /**
+     * The build tool element from the project configuration.
+     *
+     * @type DOMElement
+     * @var DOMElement $toolElement
+     */
+    private $toolElement = null;
+    
+    /**
+     * The ctor takes the parent config file and the project name as arguments.
+     *
+     * @param phpucConfigFile $configFile  The parent config file.
+     * @param string          $projectName The project name.
+     */
     public function __construct( phpucConfigFile $configFile, $projectName )
     {
         $this->properties['configFile']  = $configFile;
         $this->properties['projectName'] = $projectName;
-        
-        $xpath  = new DOMXPath( $configFile );
-        $result = $xpath->query( "/cruisecontrol/project[@name='{$projectName}']" );
-        
-        if ( $result->length === 0 )
-        {
-            $project = new DOMDocument();
-            $project->load( PHPUC_DATA_DIR . '/template/project.xml' );
-            
-            $element = $configFile->importNode( $project->documentElement, true );
-            $element->setAttribute( 'name', $projectName );
-            $configFile->documentElement->appendChild( $element );
-            
-            $this->properties['element'] = $element;
-        }
-        else
-        {
-            $this->properties['element'] = $result->item( 0 );
-        }
+
+        $this->loadProject();
+        $this->init();
     }
-        
+    
+    /**
+     * Magic property isset method.
+     *
+     * @param string $name The property name.
+     * 
+     * @return boolean
+     * @ignore 
+     */
     public function __isset( $name )
     {
         return array_key_exists( $name, $this->properties );
     }
     
+    /**
+     * Magic property getter method.
+     *
+     * @param string $name The property name.
+     * 
+     * @return mixed
+     * @throws OutOfRangeException If the requested property doesn't exist or
+     *         is writonly.
+     * @ignore 
+     */
     public function __get( $name )
     {
         if ( array_key_exists( $name, $this->properties ) )
@@ -105,6 +158,19 @@ class phpucConfigProject
         );
     }
     
+    /**
+     * Magic property setter method.
+     *
+     * @param string $name  The property name.
+     * @param mixed  $value The property value.
+     * 
+     * @return void
+     * @throws OutOfRangeException If the requested property doesn't exist or
+     *         is readonly.
+     * @throws InvalidArgumentException If the given value has an unexpected 
+     *         format or an invalid data type.
+     * @ignore 
+     */
     public function __set( $name, $value )
     {
         switch ( $name )
@@ -131,15 +197,117 @@ class phpucConfigProject
         }
     }
     
+    /**
+     * Returns true if the current project is new and not loaded from the 
+     * configuration file.
+     *
+     * @return boolean
+     */
+    public function isNew()
+    {
+        return $this->isNew;
+    }
+    
+    /**
+     * Creates a new artifact publisher for this project.
+     *
+     * @return phpucConfigArtifactsPublisher
+     */
+    public function createArtifactsPublisher()
+    {
+        $publisher = new phpucConfigArtifactsPublisher( $this );
+        
+        $this->publishers[] = $publisher;
+        
+        return $publisher;
+    }
+    
+    /**
+     * Builds/Rebuilds the project xml document.
+     *
+     * @return void
+     * @throws ErrorException If one of the artifact publisher fail.
+     */
     public function buildXml()
     {
-        $xpath = new DOMXPath( $this->configFile );
-        $query = "/cruisecontrol/project[@name='{$this->projectName}']/schedule";
+        $this->scheduleElement->setAttribute( 'interval', $this->interval );
+        $this->toolElement->setAttribute( 'anthome', $this->anthome );
         
-        $schedule = $xpath->query( $query )->item( 0 );
-        $schedule->setAttribute( 'interval', $this->interval );
+        foreach ( $this->publishers as $publisher )
+        {
+            $publisher->buildXml();
+        }
+    }
+    
+    /**
+     * Tries to load an existing project configuration. If no project for the
+     * name exists a new project will be created. 
+     * 
+     * @return void
+     * @throws ErrorException If the configuration contains more than one project
+     *         with the same name. But this should never happen.
+     */
+    private function loadProject()
+    {
+        $xpath  = new DOMXPath( $this->configFile );
+        $result = $xpath->query( 
+            "/cruisecontrol/project[@name='{$this->projectName}']"
+        );
         
-        $ant = $xpath->query( "{$query}/ant" )->item( 0 );
-        $ant->setAttribute( 'anthome', $this->anthome );
+        if ( $result->length === 0 )
+        {
+            $this->newProjectFromTemplate();
+        }
+        else if ( $result->length > 1 )
+        {
+            throw new ErrorException( 
+                "There is more than one project named '{$projectName}'."
+            );
+        }
+        else
+        {
+            $this->properties['element'] = $result->item( 0 ); 
+        }
+    }
+    
+    /**
+     * Creates a new project fragment from a pre defined template.
+     *
+     * @return void
+     */
+    private function newProjectFromTemplate()
+    {
+        $project = new DOMDocument();
+        $project->load( PHPUC_DATA_DIR . '/template/project.xml' );
+            
+        $element = $this->configFile->importNode( $project->documentElement, true );
+        $element->setAttribute( 'name', $this->projectName );
+        $this->configFile->documentElement->appendChild( $element );
+            
+        $this->properties['element'] = $element;
+            
+        $this->isNew = true;
+    }
+    
+    /**
+     * Loads some project xml elements into object properties and initializes
+     * some values from the project configuration.
+     *
+     * @return void
+     */
+    private function init()
+    {
+        // Load the schedule element
+        $schedules = $this->element->getElementsByTagName( 'schedule' );
+        $tools     = $schedules->item( 0 )->getElementsByTagName( 'ant' );
+        
+        $this->scheduleElement = $schedules->item( 0 );
+        $this->toolElement     = $tools->item( 0 );
+        
+        $anthome  = $this->toolElement->getAttribute( 'anthome' );
+        $interval = $this->scheduleElement->getAttribute( 'interval' );
+
+        $this->properties['anthome']  = $anthome;
+        $this->properties['interval'] = $interval;        
     }
 }
