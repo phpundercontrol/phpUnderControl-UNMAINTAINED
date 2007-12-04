@@ -53,6 +53,8 @@ require_once 'PHPUnit/TextUI/TestRunner.php';
 require_once dirname( __FILE__ ) . '/ConsoleArgsTest.php';
 require_once dirname( __FILE__ ) . '/CruiseControlTaskTest.php';
 
+require_once dirname( __FILE__ ) . '/Data/DataAllTests.php';
+
 /**
  * Main test suite for phpUnderControl.
  *
@@ -65,14 +67,25 @@ require_once dirname( __FILE__ ) . '/CruiseControlTaskTest.php';
  */
 class phpucAllTests
 {
+    /**
+     * Test suite main method.
+     *
+     * @return void
+     */
     public static function main()
     {
         PHPUnit_TextUI_TestRunner::run( self::suite() );
     }
     
+    /**
+     * Creates the phpunit test suite for this package.
+     *
+     * @return PHPUnit_Framework_TestSuite
+     */
     public static function suite()
     {
         $suite = new PHPUnit_Framework_TestSuite( 'phpUnderControl - AllTests' );
+        $suite->addTest( phpucDataAllTest::suite() );
         $suite->addTestSuite( 'phpucConsoleArgsTest' );
         $suite->addTestSuite( 'phpucCruiseControlTaskTest' );
 
