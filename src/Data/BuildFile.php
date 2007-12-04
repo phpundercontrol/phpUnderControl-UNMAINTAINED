@@ -53,16 +53,22 @@
  * @license    http://www.opensource.org/licenses/bsd-license.php  BSD License
  * @version    Release: @package_version@
  * @link       http://www.phpunit.de/wiki/phpUnderControl
+ * 
+ * @property-read string $projectName The build project name.
+ * @property-read string $fileName    The build.xml file name.
  */
 class phpucBuildFile extends DOMDocument
 {
     /**
-     * The build.xml file name.
+     * Magic properties for the build target.
      *
-     * @type string
-     * @var string $fileName
+     * @type array<array>
+     * @var array(string=>array) $properties
      */
-    protected $fileName = '';
+    protected $properties = array(
+        'projectName'  =>  null,
+        'fileName'     =>  null,
+    );   
     
     /**
      * List of build file targets.
@@ -82,20 +88,77 @@ class phpucBuildFile extends DOMDocument
     {
         parent::__construct( '1.0', 'UTF-8' );
         
-        $this->fileName           = $fileName;
-        $this->projectName        = $projectName;
+        $this->properties['fileName']    = $fileName;
+        $this->properties['projectName'] = $projectName;
+        
         $this->formatOutput       = true;
         $this->preserveWhiteSpace = false;
         
         if ( file_exists( $fileName ) )
         {
             $this->load( $fileName );
-            $this->projectName = $this->documentElement->getAttribute( 'name' );
+            $this->properties['projectName'] = 
+                $this->documentElement->getAttribute( 'name' );
         }
         else
         {
             $this->initBuildFile();
         }
+    }
+    
+    /**
+     * Magic property isset method.
+     *
+     * @param string $name The property name.
+     * 
+     * @return boolean
+     * @ignore 
+     */
+    public function __isset( $name )
+    {
+        return array_key_exists( $name, $this->properties );
+    }
+    
+    /**
+     * Magic property getter method.
+     *
+     * @param string $name The property name.
+     * 
+     * @return mixed
+     * @throws OutOfRangeException If the requested property doesn't exist or
+     *         is writonly.
+     * @ignore 
+     */
+    public function __get( $name )
+    {
+        if ( array_key_exists( $name, $this->properties ) )
+        {
+            return $this->properties[$name];
+        }
+        throw new OutOfRangeException(
+            sprintf( 'Unknown or writonly property $%s.', $name )
+        );
+    }
+    
+    /**
+     * Magic property setter method.
+     *
+     * @param string $name  The property name.
+     * @param mixed  $value The property value.
+     * 
+     * @return void
+     * @throws OutOfRangeException If the requested property doesn't exist or
+     *         is readonly.
+     * @throws InvalidArgumentException If the given value has an unexpected 
+     *         format or an invalid data type.
+     * @ignore 
+     */
+    public function __set( $name, $value )
+    {
+        throw new OutOfRangeException(
+            sprintf( 'Unknown or readonly property $%s.', $name )
+        );
+        break;
     }
     
     /**
