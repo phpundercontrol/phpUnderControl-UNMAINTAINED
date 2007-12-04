@@ -34,38 +34,38 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  * 
- * @package   phpUnderControl
- * @author    Manuel Pichler <mapi@manuel-pichler.de>
- * @copyright 2007 Manuel Pichler. All rights reserved.
- * @license   http://www.opensource.org/licenses/bsd-license.php  BSD License
- * @version   SVN: $Id$
- * @link      http://www.phpunit.de/wiki/phpUnderControl
+ * @package    phpUnderControl
+ * @subpackage Data
+ * @author     Manuel Pichler <mapi@manuel-pichler.de>
+ * @copyright  2007 Manuel Pichler. All rights reserved.
+ * @license    http://www.opensource.org/licenses/bsd-license.php  BSD License
+ * @version    SVN: $Id$
+ * @link       http://www.phpunit.de/wiki/phpUnderControl
  */
 
 if ( defined( 'PHPUnit_MAIN_METHOD' ) === false )
 {
-    define( 'PHPUnit_MAIN_METHOD', 'phpucAllTests::main' );
+    define( 'PHPUnit_MAIN_METHOD', 'phpucDataAllTests::main' );
 }
 
 require_once 'PHPUnit/Framework/TestSuite.php';
 require_once 'PHPUnit/TextUI/TestRunner.php';
 
-require_once dirname( __FILE__ ) . '/ConsoleArgsTest.php';
-require_once dirname( __FILE__ ) . '/CruiseControlTaskTest.php';
-
-require_once dirname( __FILE__ ) . '/Data/DataAllTests.php';
+require_once dirname( __FILE__ ) . '/BuildFileTest.php';
+require_once dirname( __FILE__ ) . '/BuildTargetTest.php';
 
 /**
- * Main test suite for phpUnderControl.
+ * Main test suite for phpUnderControl Data.
  *
- * @package   phpUnderControl
- * @author    Manuel Pichler <mapi@manuel-pichler.de>
- * @copyright 2007 Manuel Pichler. All rights reserved.
- * @license   http://www.opensource.org/licenses/bsd-license.php  BSD License
- * @version   Release: @package_version@
- * @link      http://www.phpunit.de/wiki/phpUnderControl
+ * @package    phpUnderControl
+ * @subpackage Data
+ * @author     Manuel Pichler <mapi@manuel-pichler.de>
+ * @copyright  2007 Manuel Pichler. All rights reserved.
+ * @license    http://www.opensource.org/licenses/bsd-license.php  BSD License
+ * @version    Release: @package_version@
+ * @link       http://www.phpunit.de/wiki/phpUnderControl
  */
-class phpucAllTests
+class phpucDataAllTest
 {
     /**
      * Test suite main method.
@@ -84,16 +84,15 @@ class phpucAllTests
      */
     public static function suite()
     {
-        $suite = new PHPUnit_Framework_TestSuite( 'phpUnderControl - AllTests' );
-        $suite->addTest( phpucDataAllTest::suite() );
-        $suite->addTestSuite( 'phpucConsoleArgsTest' );
-        $suite->addTestSuite( 'phpucCruiseControlTaskTest' );
+        $suite = new PHPUnit_Framework_TestSuite( 'phpUnderControl - DataAllTest' );
+        $suite->addTestSuite( 'phpucBuildFileTest' );
+        $suite->addTestSuite( 'phpucBuildTargetTest' );
 
         return $suite;
     }
 }
 
-if ( PHPUnit_MAIN_METHOD === 'phpucAllTests::main' )
+if ( PHPUnit_MAIN_METHOD === 'phpucDataAllTest::main' )
 {
-    phpucAllTests::main();
+    phpucDataAllTest::main();
 }
