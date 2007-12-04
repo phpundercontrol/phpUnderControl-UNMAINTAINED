@@ -194,6 +194,6 @@ abstract class phpucAbstractPearTask extends phpucAbstractTask
      */
     protected function doValidate()
     {
-        // Nothing todo hear
+        // Nothing todo here
     }
 }
