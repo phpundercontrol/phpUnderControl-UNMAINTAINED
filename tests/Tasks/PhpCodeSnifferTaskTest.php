@@ -58,8 +58,70 @@ require_once dirname( __FILE__ ) . '/AbstractPearTaskTest.php';
  */
 class phpucPhpCodeSnifferTaskTest extends phpucAbstractPearTaskTest
 {
-    public function testCodeSnifferVersionTest()
+    /**
+     * Content for a fake code sniffer bin that works.
+     *
+     * @type string
+     * @var string $validBin
+     */
+    protected $validBin = "#!/usr/bin/env php\n<?php echo 'version 1.0.0RC3';?>";
+    
+    /**
+     * Content for a fake code sniffer bin that doesn't work.
+     *
+     * @type string
+     * @var string $invalidBin
+     */
+    protected $invalidBin = "#!/usr/bin/env php\n<?php echo 'version 1.0.0RC2';?>";
+    
+    /**
+     * Tests validate with the required code sniffer version. 
+     *
+     * @return void
+     */
+    public function testCodeSnifferVersionValidate()
     {
+        $this->createExecutable( 'phpcs', $this->validBin );
+        $phpcs = new phpucPhpCodeSnifferTask( $this->args );
+        $phpcs->validate();
+    }
+    
+    /**
+     * Tests that the validate method fails for an unsupported code sniffer
+     * version.
+     *
+     * @return void
+     */
+    public function testCodeSnifferVersionValidateWithInvalidVersion()
+    {
+        $this->createExecutable( 'phpcs', $this->invalidBin );
+        $phpcs = new phpucPhpCodeSnifferTask( $this->args );
+        try
+        {
+            $phpcs->validate();
+            $this->fail( 'phpucValidateException expected.' );
+        }
+        catch ( phpucValidateException $e ) {}
+    }
+    
+    /**
+     * Tests that the execute method adds a correct build file target.
+     *
+     * @return void
+     */
+    public function testCodeSnifferExecuteBuildFileModifications()
+    {
+        $phpcs = new phpucPhpCodeSnifferTask( $this->args );
+        ob_start();
+        $phpcs->execute();
+        ob_end_clean();
         
+        $sxml = simplexml_load_file( $this->projectDir . '/build.xml' );
+        $build = $sxml->xpath( '/project/target[@name="build"]' );
+        $phpcs = $sxml->xpath( '/project/target[@name="php-codesniffer"]' );
+        
+        $this->assertEquals( 1, count( $phpcs ) );
+        $this->assertEquals( 'php-codesniffer', (string) $build[0]['depends'] );
+        $this->assertEquals( 'php-codesniffer', (string) $phpcs[0]['name'] );
     }
 }

@@ -58,5 +58,100 @@ require_once dirname( __FILE__ ) . '/../AbstractTest.php';
  */
 abstract class phpucAbstractPearTaskTest extends phpucAbstractTest
 {
+    /**
+     * The used console args object.
+     *
+     * @type phpucConsoleArgs
+     * @var phpucConsoleArgs $args
+     */
+    protected $args = null;
     
+    /**
+     * Optional list of command line options.
+     *
+     * @type array<string>
+     * @var array(string) $options
+     */
+    protected $options = array();
+    
+    /**
+     * The test project name.
+     *
+     * @type string
+     * @var string $projectName
+     */
+    protected $projectName = 'php-under-control';
+    
+    /**
+     * The test project directory.
+     *
+     * @type string
+     * @var string $projectDir
+     */
+    protected $projectDir = null;
+    
+    /**
+     * Initializes a clean console args object and creates a project dummy.
+     *
+     * @return void
+     */
+    protected function setUp()
+    {
+        parent::setUp();
+        
+        $this->projectDir = PHPUC_TEST_DIR . '/projects/php-under-control';
+        
+        $options = array(
+            'example', 
+            '--pear-executables-dir',
+            PHPUC_TEST_DIR . '/bin',
+            '--project-name',
+            $this->projectName
+        );
+        
+        foreach ( $this->options as $option )
+        {
+            $options[] = $option;
+        }
+        
+        $options[] = PHPUC_TEST_DIR;
+        
+        $this->prepareArgv( $options );
+        $this->args = new phpucConsoleArgs();
+        $this->args->parse();
+        
+        $this->createTestDirectories(
+            array(
+                'projects',
+                'projects/php-under-control',
+            )
+        );
+        
+        $buildFile = new phpucBuildFile( 
+            $this->projectDir . '/build.xml', 
+            $this->projectName
+        );
+        $buildFile->save();
+    }
+    
+    /**
+     * Creates a fake executable. 
+     *
+     * @param string $executable The executable name.
+     * @param string $content    Dummy/test content for the executable.
+     * 
+     * @return void
+     */
+    protected function createExecutable( $executable, $content )
+    {
+        if ( !is_dir( PHPUC_TEST_DIR . '/bin' ) )
+        {
+            mkdir( PHPUC_TEST_DIR . '/bin' );
+        }
+        
+        $fileName = PHPUC_TEST_DIR . '/bin/' . $executable;
+        
+        file_put_contents( $fileName, $content );
+        chmod( $fileName, 0755 );
+    }
 }
