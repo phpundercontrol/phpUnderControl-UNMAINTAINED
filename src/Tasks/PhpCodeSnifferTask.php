@@ -59,7 +59,7 @@ class phpucPhpCodeSnifferTask extends phpucAbstractPearTask
     /**
      * Minimum code sniffer version.
      */
-    const CODE_SNIFFER_VERSION = '1.0.0RC2';
+    const CODE_SNIFFER_VERSION = '1.0.0RC3';
     
     /**
      * The ctor takes the PEAR install dir as an optional argument.
