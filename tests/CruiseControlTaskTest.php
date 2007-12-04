@@ -69,25 +69,13 @@ class phpucCruiseControlTaskTest extends phpucAbstractTest
      *
      * @return void
      */
-    public function setUp()
+    protected function setUp()
     {
         parent::setUp();
         
         $this->prepareArgv( array( 'install', dirname( __FILE__ ) . '/run' ) );
         $this->args = new phpucConsoleArgs();
         $this->args->parse();
-    }
-    
-    /**
-     * Removes all test contents.
-     *
-     * @return void
-     */
-    public function tearDown()
-    {
-        $this->clearTestContents();
-        
-        parent::tearDown();
     }
     
     /**
@@ -159,7 +147,7 @@ class phpucCruiseControlTaskTest extends phpucAbstractTest
         $ccTask->execute();
         ob_end_clean();
         
-        $basedir =  dirname( __FILE__ ) . '/run/webapps/cruisecontrol';
+        $basedir =  PHPUC_TEST_DIR . '/webapps/cruisecontrol';
         
         $this->assertFileExists( $basedir . '/js' );
         $this->assertFileExists( $basedir . '/images/php-under-control' );
