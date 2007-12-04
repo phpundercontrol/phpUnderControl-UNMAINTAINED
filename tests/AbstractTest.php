@@ -43,6 +43,7 @@
  */
 
 define( 'PHPUC_TEST', true );
+define( 'PHPUC_TEST_DIR', dirname( __FILE__ ) . '/run' );
 define( 'PHPUC_SOURCE', realpath( dirname( __FILE__ ) . '/../src' ) );
 
 
@@ -60,6 +61,18 @@ require_once 'PHPUnit/Framework/TestCase.php';
  */
 abstract class phpucAbstractTest extends PHPUnit_Framework_TestCase
 {
+    /**
+     * Removes all test contents.
+     *
+     * @return void
+     */
+    public function tearDown()
+    {
+        $this->clearTestContents();
+        
+        parent::tearDown();
+    }
+    
     /**
      * Prepares the global <b>$argv</b> array.
      *
@@ -84,7 +97,7 @@ abstract class phpucAbstractTest extends PHPUnit_Framework_TestCase
     {
         foreach ( $directories as $directory )
         {
-            mkdir( dirname( __FILE__ ) . '/run/' . $directory );
+            mkdir( PHPUC_TEST_DIR . '/' . $directory );
         }
     }
     
@@ -92,7 +105,7 @@ abstract class phpucAbstractTest extends PHPUnit_Framework_TestCase
     {
         if ( $directory === null )
         {
-            $directory = dirname( __FILE__ ) . '/run';
+            $directory = PHPUC_TEST_DIR;
         }
         
         $it = new DirectoryIterator( $directory );
@@ -102,7 +115,7 @@ abstract class phpucAbstractTest extends PHPUnit_Framework_TestCase
             {
                 continue;
             }
-            else if ( $entry->isDir() )
+            else if ( $entry->isDir() && $entry->getFilename() !== '.svn' )
             {
                 $this->clearTestContents( $entry->getPathname() );
                 rmdir( $entry->getPathname() );
