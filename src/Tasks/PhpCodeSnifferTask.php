@@ -112,8 +112,8 @@ class phpucPhpCodeSnifferTask extends phpucAbstractPearTask
      */
     protected function doValidate()
     {
-        $retval = exec( "{$this->executable} --version" );
-        
+        $retval = exec( escapeshellcmd( "{$this->executable} --version" ) );
+
         if ( preg_match( '/version\s+([0-9\.]+(RC[0-9])?)/', $retval, $match ) === 0 )
         {
             echo 'WARNING: Cannot identify PHP_CodeSniffer version.' . PHP_EOL;
