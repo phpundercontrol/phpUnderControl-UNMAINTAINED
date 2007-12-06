@@ -59,17 +59,23 @@
  */
 class phpucExampleTask extends phpucAbstractTask
 {
+    /**
+     * List of example files.
+     *
+     * @type array<string>
+     * @var array(string) $fileNames
+     */
     protected $fileNames = array(
         'src/Math.php',
         'tests/MathTest.php',
     );
     
-    
-    public function validate()
-    {
-        
-    }
-    
+    /**
+     * Creates a new example project with test files.
+     *
+     * @return void
+     * @throws phpucExecuteException If the execution fails.
+     */
     public function execute()
     {
         $installDir  = $this->args->getArgument( 'cc-install-dir' );
@@ -96,7 +102,6 @@ class phpucExampleTask extends phpucAbstractTask
             file_get_contents( PHPUC_DATA_DIR . '/example/tests/MathTest.php' )
         );
         
-
         echo '  5. Modifying config file:      config.xml' . PHP_EOL;
         
         $configXml = new DOMDocument();
@@ -107,7 +112,9 @@ class phpucExampleTask extends phpucAbstractTask
         
         $xpath         = new DOMXPath( $configXml );
         $modifications = $xpath->query( 
-            sprintf( '/cruisecontrol/project[@name="%s"]/modificationset', $projectName )
+            sprintf( 
+                '/cruisecontrol/project[@name="%s"]/modificationset', $projectName
+            )
         )->item( 0 );
         $modifications->appendChild( $alwaysbuild );
         

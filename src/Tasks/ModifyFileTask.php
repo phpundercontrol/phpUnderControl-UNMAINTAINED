@@ -77,6 +77,12 @@ class phpucModifyFileTask extends phpucAbstractTask
         $this->files = $files;
     }
     
+    /**
+     * Checks that the <b>webapps/cruisecontrol</b> folder exists.
+     *
+     * @return void
+     * @throws phpucValidateException If the validation fails.
+     */
     public function validate()
     {
         $installDir = sprintf( 
@@ -95,6 +101,12 @@ class phpucModifyFileTask extends phpucAbstractTask
         }
     }
     
+    /**
+     * Overrides all files from <b>$files</b> in the cc webapps folder.
+     *
+     * @return void
+     * @throws phpucExecuteException If the execution fails.
+     */
     public function execute()
     {
         echo 'Performing modify file task.' . PHP_EOL;

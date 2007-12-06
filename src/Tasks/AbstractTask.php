@@ -72,9 +72,25 @@ abstract class phpucAbstractTask implements phpucTaskI
      */
     protected $args = null;
     
+    /**
+     * The ctor takes the consol arguments as parameter.
+     *
+     * @param phpucConsoleArgs $args The console arguments.
+     */
     public function __construct( phpucConsoleArgs $args )
     {
         $this->args = $args;
+    }
+
+    /**
+     * Validates the task constrains.
+     *
+     * @return void
+     * @throws phpucValidateException If the validation fails.
+     */
+    public function validate()
+    {
+        // Nothing todo here
     }
     
     /**

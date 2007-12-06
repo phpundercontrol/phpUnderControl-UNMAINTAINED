@@ -77,10 +77,13 @@ class phpucCreateFileTask extends phpucAbstractTask
         $this->files = $files;
     }
     
-    public function validate()
-    {
-    }
-    
+    /**
+     * Copies all files from the <b>$files</b> properties into the cc webapps
+     * folder.
+     *
+     * @return void
+     * @throws phpucExecuteException If the execution fails.
+     */
     public function execute()
     {
         echo 'Performing create file task.' . PHP_EOL;

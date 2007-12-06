@@ -81,6 +81,7 @@ class phpucPhpUnitTask extends phpucAbstractPearTask
      * Creates the coverage build directory.
      *
      * @return void
+     * @throws phpucExecuteException If the execution fails.
      */
     public function execute()
     {
@@ -90,10 +91,18 @@ class phpucPhpUnitTask extends phpucAbstractPearTask
         $projectName = $this->args->getOption( 'project-name' );
         $projectPath = sprintf( '%s/projects/%s', $installDir, $projectName );
         
-        printf( '  1. Creating coverage dir: project/%s/build/coverage%s', $projectName, PHP_EOL );
+        printf( 
+            '  1. Creating coverage dir: project/%s/build/coverage%s', 
+            $projectName, 
+            PHP_EOL
+        );
         mkdir( $projectPath . '/build/coverage' );
         
-        printf( '  2. Modifying build file:  project/%s/build.xml%s', $projectName, PHP_EOL );
+        printf( 
+            '  2. Modifying build file:  project/%s/build.xml%s', 
+            $projectName, 
+            PHP_EOL 
+        );
         
         $logs  = ' --log-xml ${basedir}/build/logs/phpunit.xml';
         $logs .= ' --log-pmd ${basedir}/build/logs/phpunit.pmd.xml ';

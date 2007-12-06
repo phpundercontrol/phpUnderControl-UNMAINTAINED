@@ -70,6 +70,7 @@ class phpucPhpDocumentorTask extends phpucAbstractPearTask
      * Creates the api documentation build directory.
      *
      * @return void
+     * @throws phpucExecuteException If the execution fails.
      */
     public function execute()
     {
@@ -79,10 +80,18 @@ class phpucPhpDocumentorTask extends phpucAbstractPearTask
         $projectName = $this->args->getOption( 'project-name' );
         $projectPath = sprintf( '%s/projects/%s', $installDir, $projectName );
         
-        printf( '  1. Creating api documentation dir: project/%s/build/api%s', $projectName, PHP_EOL );
+        printf( 
+            '  1. Creating api documentation dir: project/%s/build/api%s', 
+            $projectName, 
+            PHP_EOL
+        );
         mkdir( $projectPath . '/build/api' );
         
-        printf( '  2. Modifying build file:           project/%s/build.xml%s', $projectName, PHP_EOL );
+        printf( 
+            '  2. Modifying build file:           project/%s/build.xml%s', 
+            $projectName, 
+            PHP_EOL
+        );
         
         $buildFile = new phpucBuildFile( $projectPath . '/build.xml' );
         
