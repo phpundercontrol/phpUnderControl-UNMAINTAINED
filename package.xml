@@ -1,0 +1,357 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package version="2.0" xmlns="http://pear.php.net/dtd/package-2.0"
+    xmlns:tasks="http://pear.php.net/dtd/tasks-1.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://pear.php.net/dtd/tasks-1.0
+                        http://pear.php.net/dtd/tasks-1.0.xsd
+                        http://pear.php.net/dtd/package-2.0
+                        http://pear.php.net/dtd/package-2.0.xsd">
+  <name>phpUnderControl</name>
+  <channel>pear.phpunit.de</channel>
+  <summary>CruiseControl addon for PHP</summary>
+  <description>phpUnderControl aims to make the first steps with CruiseControl 
+  and PHP as easy as possible. It integrates three of the best PHP development 
+  tools into CruiseControl, combined with an easy setup routine and a small 
+  example project.
+  </description>
+  <lead>
+    <name>Manuel Pichler</name>
+    <user>mapi</user>
+    <email>mapi@manuel-pichler.de</email>
+    <active>yes</active>
+  </lead>
+  <date>2007-11-26</date>
+  <version>
+    <release>0.2.1</release>
+    <api>0.2.0</api>
+  </version>
+  <stability>
+    <release>alpha</release>
+    <api>alpha</api>
+  </stability>
+  <license uri="http://www.opensource.org/licenses/bsd-license.php">BSD License</license>
+  <notes>
+  Note  
+  </notes>
+  <contents>
+    <dir name="/">
+      <dir name="src">
+        <dir name="Commands">
+          <file name="AbstractCommand.php" role="php">
+            <tasks:replace from="@package_version@" to="version" type="package-info" />
+          </file>
+          <file name="ExampleCommand.php" role="php">
+            <tasks:replace from="@package_version@" to="version" type="package-info" />
+          </file>
+          <file name="InstallCommand.php" role="php">
+            <tasks:replace from="@package_version@" to="version" type="package-info" />
+          </file>
+          <file name="ProjectCommand.php" role="php">
+            <tasks:replace from="@package_version@" to="version" type="package-info" />
+          </file>
+        </dir>
+        <dir name="Data">
+          <file name="BuildFile.php" role="php">
+            <tasks:replace from="@package_version@" to="version" type="package-info" />
+          </file>
+          <file name="BuildTarget.php" role="php">
+            <tasks:replace from="@package_version@" to="version" type="package-info" />
+          </file>
+          <file name="ConfigArtifactsPublisher.php" role="php">
+            <tasks:replace from="@package_version@" to="version" type="package-info" />
+          </file>
+          <file name="ConfigFile.php" role="php">
+            <tasks:replace from="@package_version@" to="version" type="package-info" />
+          </file>
+          <file name="ConfigProject.php" role="php">
+            <tasks:replace from="@package_version@" to="version" type="package-info" />
+          </file>
+        </dir>
+        <dir name="Exceptions">
+          <file name="ConsoleException.php" role="php">
+            <tasks:replace from="@package_version@" to="version" type="package-info" />
+          </file>
+          <file name="ExecuteException.php" role="php">
+            <tasks:replace from="@package_version@" to="version" type="package-info" />
+          </file>
+          <file name="ValidateException.php" role="php">
+            <tasks:replace from="@package_version@" to="version" type="package-info" />
+          </file>
+        </dir>
+        <dir name="Tasks">
+          <file name="AbstractPearTask.php" role="php">
+            <tasks:replace from="@package_version@" to="version" type="package-info" />
+          </file>
+          <file name="AbstractTask.php" role="php">
+            <tasks:replace from="@package_version@" to="version" type="package-info" />
+          </file>
+          <file name="CreateFileTask.php" role="php">
+            <tasks:replace from="@package_version@" to="version" type="package-info" />
+          </file>
+          <file name="CruiseControlTask.php" role="php">
+            <tasks:replace from="@package_version@" to="version" type="package-info" />
+          </file>
+          <file name="ExampleTask.php" role="php">
+            <tasks:replace from="@package_version@" to="version" type="package-info" />
+          </file>
+          <file name="ModifyFileTask.php" role="php">
+            <tasks:replace from="@package_version@" to="version" type="package-info" />
+          </file>
+          <file name="PhpCodeSnifferTask.php" role="php">
+            <tasks:replace from="@package_version@" to="version" type="package-info" />
+          </file>
+          <file name="PhpDocumentorTask.php" role="php">
+            <tasks:replace from="@package_version@" to="version" type="package-info" />
+          </file>
+          <file name="PhpUnitTask.php" role="php">
+            <tasks:replace from="@package_version@" to="version" type="package-info" />
+          </file>
+          <file name="ProjectTask.php" role="php">
+            <tasks:replace from="@package_version@" to="version" type="package-info" />
+          </file>
+          <file name="TaskI.php" role="php">
+            <tasks:replace from="@package_version@" to="version" type="package-info" />
+          </file>
+        </dir>
+        <dir name="Util">
+          <file name="ConsoleArgs.php" role="php">
+            <tasks:replace from="@package_version@" to="version" type="package-info" />
+          </file>
+        </dir>
+        <file name="PhpUnderControl.php" role="php">
+          <tasks:replace from="@package_version@" to="version" type="package-info" />
+          <tasks:replace from="@php_dir@" to="php_dir" type="pear-config" />
+          <tasks:replace from="@data_dir@" to="data_dir" type="pear-config" />
+        </file>
+      </dir>
+      <dir name="bin">
+        <file name="phpuc.php" role="script">
+          <tasks:replace from="@package_version@" to="version" type="package-info" />
+          <tasks:replace from="/usr/bin/env php" to="php_bin" type="pear-config" />
+          <tasks:replace from="@php_dir@" to="php_dir" type="pear-config" />
+        </file>
+        <file name="phpuc.bat" role="script">
+          <tasks:replace from="@package_version@" to="version" type="package-info" />
+          <tasks:replace from="@php_bin@" to="php_bin" type="pear-config" />
+          <tasks:replace from="@php_dir@" to="php_dir" type="pear-config" />
+        </file>
+      </dir>
+      <dir name="tests">
+        <dir name="Data">
+          <file name="BuildFileTest.php" role="test">
+            <tasks:replace from="@package_version@" to="version" type="package-info" />
+          </file>
+          <file name="BuildTargetTest.php" role="test">
+            <tasks:replace from="@package_version@" to="version" type="package-info" />
+          </file>
+          <file name="DataAllTests.php" role="test">
+            <tasks:replace from="@package_version@" to="version" type="package-info" />
+          </file>
+        </dir>
+        <dir name="Tasks">
+          <file name="AbstractPearTaskTest.php" role="test">
+            <tasks:replace from="@package_version@" to="version" type="package-info" />
+          </file>
+          <file name="CruiseControlTaskTest.php" role="test">
+            <tasks:replace from="@package_version@" to="version" type="package-info" />
+          </file>
+          <file name="PhpCodeSnifferTaskTest.php" role="test">
+            <tasks:replace from="@package_version@" to="version" type="package-info" />
+          </file>
+          <file name="TasksAllTests.php" role="test">
+            <tasks:replace from="@package_version@" to="version" type="package-info" />
+          </file>
+        </dir>
+        <dir name="Util">
+          <file name="ConsoleArgsTest.php" role="test">
+            <tasks:replace from="@package_version@" to="version" type="package-info" />
+          </file>
+          <file name="UtilAllTests.php" role="test">
+            <tasks:replace from="@package_version@" to="version" type="package-info" />
+          </file>
+        </dir>  
+        <file name="AbstractTest.php" role="test">
+          <tasks:replace from="@package_version@" to="version" type="package-info" />
+          <tasks:replace from="@php_dir@" to="php_dir" type="pear-config" />
+        </file> 
+        <file name="AllTests.php" role="test">
+          <tasks:replace from="@package_version@" to="version" type="package-info" />
+        </file>
+      </dir>
+      <dir name="data">
+        <dir name="css">
+          <file name="php-under-control.css" role="data" />
+          <file name="SyntaxHighlighter.css" role="data" />
+        </dir>
+        <dir name="images">
+          <dir name="php-under-control">
+            <file name="error.png" role="data" />
+            <file name="failed.png" role="data" />
+            <file name="header-center.png" role="data" />
+            <file name="header-left-logo.png" role="data" />
+            <file name="info.png" role="data" />
+            <file name="skipped.png" role="data" />
+            <file name="success.png" role="data" />
+            <file name="tab-active.png" role="data" />
+            <file name="tab-inactive.png" role="data" />
+            <file name="warning.png" role="data" />
+          </dir>
+        </dir>
+        <dir name="js">
+          <file name="shBrushPhp.js" role="data" />
+          <file name="shCore.js" role="data" />
+        </dir>
+        <dir name="xsl">
+          <file name="buildresults.xsl" role="data" />
+          <file name="errors.xsl" role="data" />
+          <file name="header.xsl" role="data" />
+          <file name="modifications.xsl" role="data" />
+          <file name="phpcs.xsl" role="data" />
+          <file name="phpcs-details.xsl" role="data" />
+          <file name="phpdoc.xsl" role="data" />
+          <file name="phphelper.xsl" role="data" />
+          <file name="phpunit.xsl" role="data" />
+          <file name="phpunit-details.xsl" role="data" />
+          <file name="phpunit-pmd.xsl" role="data" />
+          <file name="phpunit-pmd-details.xsl" role="data" />
+        </dir>
+        <file name="footer.jsp" role="data" />
+        <file name="header.jsp" role="data" />
+        <file name="index.jsp" role="data" />
+        <file name="main.jsp" role="data" />
+        <file name="metrics.jsp" role="data" />
+        <file name="phpcs.jsp" role="data" />
+        <file name="phpunit.jsp" role="data" />
+        <file name="phpunit-pmd.jsp" role="data" />
+      </dir>
+      <dir name="example">
+        <dir name="src">
+          <file name="Math.php" role="data">
+            <tasks:replace from="@package_version@" to="version" type="package-info" />
+          </file>
+        </dir>
+        <dir name="tests">
+          <file name="MathTest.php" role="data">
+            <tasks:replace from="@package_version@" to="version" type="package-info" />
+          </file>
+        </dir>
+      </dir>
+      <dir name="template">
+        <file name="project.xml" role="data">
+          <tasks:replace from="@package_version@" to="version" type="package-info" />
+        </file>
+      </dir>
+    </dir>
+  </contents>
+  <dependencies>
+    <required>
+      <php>
+        <min>5.2.4</min>
+      </php>
+      <pearinstaller>
+        <min>1.6.0</min>
+      </pearinstaller>
+      <extension>
+        <name>pcre</name>
+      </extension>
+      <extension>
+        <name>dom</name>
+      </extension>
+      <extension>
+        <name>spl</name>
+      </extension>
+    </required>
+    <optional>
+      <package>
+        <name>PHPUnit</name>
+        <channel>pear.phpunit.de</channel>
+        <min>3.2.0</min>
+      </package>
+      <package>
+        <name>PHP_CodeSniffer</name>
+        <channel>pear.php.net</channel>
+        <min>1.0.0RC3</min>
+      </package>
+      <package>
+        <name>PhpDocumentor</name>
+        <channel>pear.php.net</channel>
+        <min>1.4.0</min>
+      </package>
+      <extension>
+        <name>xdebug</name>
+        <min>2.0.0</min>
+      </extension>
+    </optional>
+  </dependencies>
+
+  <phprelease>
+    <installconditions>
+      <os>
+        <name>windows</name>
+      </os>
+    </installconditions>
+    <filelist>
+      <install as="phpUnderControl/PhpUnderControl.php" name="src/PhpUnderControl.php"/>
+      <install as="phpUnderControl/Commands/AbstractCommand.php" name="src/Commands/AbstractCommand.php" />
+      <install as="phpUnderControl/Commands/ExampleCommand.php" name="src/Commands/ExampleCommand.php" />
+      <install as="phpUnderControl/Commands/InstallCommand.php" name="src/Commands/InstallCommand.php" />
+      <install as="phpUnderControl/Commands/ProjectCommand.php" name="src/Commands/ProjectCommand.php" />
+      <install as="phpUnderControl/Exceptions/ConsoleException.php" name="src/Exceptions/ConsoleException.php" />
+      <install as="phpUnderControl/Exceptions/ExecuteException.php" name="src/Exceptions/ExecuteException.php" />
+      <install as="phpUnderControl/Exceptions/ValidateException.php" name="src/Exceptions/ValidateException.php" />
+      <install as="phpUnderControl/Data/BuildFile.php" name="src/Data/BuildFile.php" />
+      <install as="phpUnderControl/Data/BuildTarget.php" name="src/Data/BuildTarget.php" />
+      <install as="phpUnderControl/Data/ConfigArtifactsPublisher.php" name="src/Data/ConfigArtifactsPublisher.php" />
+      <install as="phpUnderControl/Data/ConfigFile.php" name="src/Data/ConfigFile.php" />
+      <install as="phpUnderControl/Data/ConfigProject.php" name="src/Data/ConfigProject.php" />
+      <install as="phpUnderControl/Tasks/AbstractPearTask.php" name="src/Tasks/AbstractPearTask.php" />
+      <install as="phpUnderControl/Tasks/AbstractTask.php" name="src/Tasks/AbstractTask.php" />
+      <install as="phpUnderControl/Tasks/CreateFileTask.php" name="src/Tasks/CreateFileTask.php" />
+      <install as="phpUnderControl/Tasks/CruiseControlTask.php" name="src/Tasks/CruiseControlTask.php" />
+      <install as="phpUnderControl/Tasks/ExampleTask.php" name="src/Tasks/ExampleTask.php" />
+      <install as="phpUnderControl/Tasks/ModifyFileTask.php" name="src/Tasks/ModifyFileTask.php" />
+      <install as="phpUnderControl/Tasks/PhpCodeSnifferTask.php" name="src/Tasks/PhpCodeSnifferTask.php" />
+      <install as="phpUnderControl/Tasks/PhpDocumentorTask.php" name="src/Tasks/PhpDocumentorTask.php" />
+      <install as="phpUnderControl/Tasks/PhpUnitTask.php" name="src/Tasks/PhpUnitTask.php" />
+      <install as="phpUnderControl/Tasks/ProjectTask.php" name="src/Tasks/ProjectTask.php" />
+      <install as="phpUnderControl/Tasks/TaskI.php" name="src/Tasks/TaskI.php" />
+      <install as="phpUnderControl/Util/ConsoleArgs.php" name="src/Util/ConsoleArgs.php" />
+      
+      <install as="phpuc" name="bin/phpuc.php" />
+      <install as="phpuc.bat" name="bin/phpuc.bat" />
+    </filelist>
+  </phprelease>
+
+  <phprelease>
+    <filelist>
+      <install as="phpUnderControl/PhpUnderControl.php" name="src/PhpUnderControl.php"/>
+      <install as="phpUnderControl/Commands/AbstractCommand.php" name="src/Commands/AbstractCommand.php" />
+      <install as="phpUnderControl/Commands/ExampleCommand.php" name="src/Commands/ExampleCommand.php" />
+      <install as="phpUnderControl/Commands/InstallCommand.php" name="src/Commands/InstallCommand.php" />
+      <install as="phpUnderControl/Commands/ProjectCommand.php" name="src/Commands/ProjectCommand.php" />
+      <install as="phpUnderControl/Exceptions/ConsoleException.php" name="src/Exceptions/ConsoleException.php" />
+      <install as="phpUnderControl/Exceptions/ExecuteException.php" name="src/Exceptions/ExecuteException.php" />
+      <install as="phpUnderControl/Exceptions/ValidateException.php" name="src/Exceptions/ValidateException.php" />
+      <install as="phpUnderControl/Data/BuildFile.php" name="src/Data/BuildFile.php" />
+      <install as="phpUnderControl/Data/BuildTarget.php" name="src/Data/BuildTarget.php" />
+      <install as="phpUnderControl/Data/ConfigArtifactsPublisher.php" name="src/Data/ConfigArtifactsPublisher.php" />
+      <install as="phpUnderControl/Data/ConfigFile.php" name="src/Data/ConfigFile.php" />
+      <install as="phpUnderControl/Data/ConfigProject.php" name="src/Data/ConfigProject.php" />
+      <install as="phpUnderControl/Tasks/AbstractPearTask.php" name="src/Tasks/AbstractPearTask.php" />
+      <install as="phpUnderControl/Tasks/AbstractTask.php" name="src/Tasks/AbstractTask.php" />
+      <install as="phpUnderControl/Tasks/CreateFileTask.php" name="src/Tasks/CreateFileTask.php" />
+      <install as="phpUnderControl/Tasks/CruiseControlTask.php" name="src/Tasks/CruiseControlTask.php" />
+      <install as="phpUnderControl/Tasks/ExampleTask.php" name="src/Tasks/ExampleTask.php" />
+      <install as="phpUnderControl/Tasks/ModifyFileTask.php" name="src/Tasks/ModifyFileTask.php" />
+      <install as="phpUnderControl/Tasks/PhpCodeSnifferTask.php" name="src/Tasks/PhpCodeSnifferTask.php" />
+      <install as="phpUnderControl/Tasks/PhpDocumentorTask.php" name="src/Tasks/PhpDocumentorTask.php" />
+      <install as="phpUnderControl/Tasks/PhpUnitTask.php" name="src/Tasks/PhpUnitTask.php" />
+      <install as="phpUnderControl/Tasks/ProjectTask.php" name="src/Tasks/ProjectTask.php" />
+      <install as="phpUnderControl/Tasks/TaskI.php" name="src/Tasks/TaskI.php" />
+      <install as="phpUnderControl/Util/ConsoleArgs.php" name="src/Util/ConsoleArgs.php" />
+      
+      <install as="phpuc" name="bin/phpuc.php" />
+      <ignore name="bin/phpuc.bat" />
+    </filelist>
+  </phprelease>
+</package>
