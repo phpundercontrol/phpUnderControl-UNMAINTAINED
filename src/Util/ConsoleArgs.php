@@ -137,7 +137,7 @@ class phpucConsoleArgs
                     'long'       =>  'schedule-interval',
                     'arg'        =>  true,
                     'help'       =>  'Schedule interval.',
-                    'default'    =>  60,
+                    'default'    =>  300,
                     'mandatory'  =>  true,
                 ),
                 array(
