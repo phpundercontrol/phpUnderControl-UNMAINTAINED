@@ -182,7 +182,7 @@ class phpucConsoleArgs
                 ),
                 array(
                     'short'      =>  'b',
-                    'long'       =>  'build-system',
+                    'long'       =>  'build-tool',
                     'arg'        =>  array( 'ant' ),
                     'help'       =>  'CruiseControl configuration type. Allowed is "ant" at the moment.',
                     'default'    =>  'ant',
