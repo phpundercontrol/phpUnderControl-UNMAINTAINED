@@ -67,6 +67,17 @@
             <tasks:replace from="@package_version@" to="version" type="package-info" />
           </file>
         </dir>
+        <dir name="Exceptions">
+          <file name="ConsoleException.php" role="php">
+            <tasks:replace from="@package_version@" to="version" type="package-info" />
+          </file>
+          <file name="ExecuteException.php" role="php">
+            <tasks:replace from="@package_version@" to="version" type="package-info" />
+          </file>
+          <file name="ValidateException.php" role="php">
+            <tasks:replace from="@package_version@" to="version" type="package-info" />
+          </file>
+        </dir>
         <dir name="Tasks">
           <file name="AbstractPearTask.php" role="php">
             <tasks:replace from="@package_version@" to="version" type="package-info" />
@@ -123,6 +134,48 @@
           <tasks:replace from="@package_version@" to="version" type="package-info" />
           <tasks:replace from="@php_bin@" to="php_bin" type="pear-config" />
           <tasks:replace from="@php_dir@" to="php_dir" type="pear-config" />
+        </file>
+      </dir>
+      <dir name="tests">
+        <dir name="Data">
+          <file name="BuildFileTest.php" role="test">
+            <tasks:replace from="@package_version@" to="version" type="package-info" />
+          </file>
+          <file name="BuildTargetTest.php" role="test">
+            <tasks:replace from="@package_version@" to="version" type="package-info" />
+          </file>
+          <file name="DataAllTests.php" role="test">
+            <tasks:replace from="@package_version@" to="version" type="package-info" />
+          </file>
+        </dir>
+        <dir name="Tasks">
+          <file name="AbstractPearTaskTest.php" role="test">
+            <tasks:replace from="@package_version@" to="version" type="package-info" />
+          </file>
+          <file name="CruiseControlTaskTest.php" role="test">
+            <tasks:replace from="@package_version@" to="version" type="package-info" />
+          </file>
+          <file name="PhpCodeSnifferTaskTest.php" role="test">
+            <tasks:replace from="@package_version@" to="version" type="package-info" />
+          </file>
+          <file name="TasksAllTests.php" role="test">
+            <tasks:replace from="@package_version@" to="version" type="package-info" />
+          </file>
+        </dir>
+        <dir name="Util">
+          <file name="ConsoleArgsTest.php" role="test">
+            <tasks:replace from="@package_version@" to="version" type="package-info" />
+          </file>
+          <file name="UtilAllTests.php" role="test">
+            <tasks:replace from="@package_version@" to="version" type="package-info" />
+          </file>
+        </dir>  
+        <file name="AbstractTest.php" role="test">
+          <tasks:replace from="@package_version@" to="version" type="package-info" />
+          <tasks:replace from="@php_dir@" to="php_dir" type="pear-config" />
+        </file> 
+        <file name="AllTests.php" role="test">
+          <tasks:replace from="@package_version@" to="version" type="package-info" />
         </file>
       </dir>
       <dir name="data">
@@ -217,7 +270,7 @@
       <package>
         <name>PHP_CodeSniffer</name>
         <channel>pear.php.net</channel>
-        <min>1.0.0RC2</min>
+        <min>1.0.0RC3</min>
       </package>
       <package>
         <name>PhpDocumentor</name>
@@ -243,6 +296,9 @@
       <install as="phpUnderControl/Commands/ExampleCommand.php" name="src/Commands/ExampleCommand.php" />
       <install as="phpUnderControl/Commands/InstallCommand.php" name="src/Commands/InstallCommand.php" />
       <install as="phpUnderControl/Commands/ProjectCommand.php" name="src/Commands/ProjectCommand.php" />
+      <install as="phpUnderControl/Exceptions/ConsoleException.php" name="src/Exceptions/ConsoleException.php" />
+      <install as="phpUnderControl/Exceptions/ExecuteException.php" name="src/Exceptions/ExecuteException.php" />
+      <install as="phpUnderControl/Exceptions/ValidateException.php" name="src/Exceptions/ValidateException.php" />
       <install as="phpUnderControl/Data/BuildFile.php" name="src/Data/BuildFile.php" />
       <install as="phpUnderControl/Data/BuildTarget.php" name="src/Data/BuildTarget.php" />
       <install as="phpUnderControl/Data/ConfigArtifactsPublisher.php" name="src/Data/ConfigArtifactsPublisher.php" />
@@ -273,6 +329,9 @@
       <install as="phpUnderControl/Commands/ExampleCommand.php" name="src/Commands/ExampleCommand.php" />
       <install as="phpUnderControl/Commands/InstallCommand.php" name="src/Commands/InstallCommand.php" />
       <install as="phpUnderControl/Commands/ProjectCommand.php" name="src/Commands/ProjectCommand.php" />
+      <install as="phpUnderControl/Exceptions/ConsoleException.php" name="src/Exceptions/ConsoleException.php" />
+      <install as="phpUnderControl/Exceptions/ExecuteException.php" name="src/Exceptions/ExecuteException.php" />
+      <install as="phpUnderControl/Exceptions/ValidateException.php" name="src/Exceptions/ValidateException.php" />
       <install as="phpUnderControl/Data/BuildFile.php" name="src/Data/BuildFile.php" />
       <install as="phpUnderControl/Data/BuildTarget.php" name="src/Data/BuildTarget.php" />
       <install as="phpUnderControl/Data/ConfigArtifactsPublisher.php" name="src/Data/ConfigArtifactsPublisher.php" />
