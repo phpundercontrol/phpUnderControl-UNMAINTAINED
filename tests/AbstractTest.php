@@ -127,6 +127,11 @@ abstract class phpucAbstractTest extends PHPUnit_Framework_TestCase
         }
     }
     
+    /**
+     * Initializes the test environment.
+     *
+     * @return void
+     */
     public static function init()
     {
         // Load phpUnderControl base class
@@ -136,6 +141,11 @@ abstract class phpucAbstractTest extends PHPUnit_Framework_TestCase
         spl_autoload_register( array( 'phpucPhpUnderControl', 'autoload' ) );
         
         PHPUnit_Util_Filter::addDirectoryToWhitelist( PHPUC_SOURCE );
+        
+        if ( !is_dir( PHPUC_TEST_DIR) )
+        {
+            mkdir( PHPUC_TEST_DIR );
+        }
     }
 }
 
