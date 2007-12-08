@@ -40,289 +40,289 @@
  * @link       http://www.phpunit.de/wiki/phpUnderControl
  */
 body {
-	color: #2e3436;
-	font-family: arial, helvetica, sans-serif;
-	font-size: 11px;
-	margin: 0;
-	padding: 0;
+    color: #2e3436;
+    font-family: arial, helvetica, sans-serif;
+    font-size: 11px;
+    margin: 0;
+    padding: 0;
 }
 
 a {
-	color: #437610;
+    color: #437610;
 }
 
 * {
-	border: 0;
-	margin: 0;
-	padding: 0;
+    border: 0;
+    margin: 0;
+    padding: 0;
 }
 
 div#container {
-	background: transparent
-		url('../images/php-under-control/header-right.png') right top
-		no-repeat;
-	position: relative;
-	width: 100%;
+    background: transparent
+        url('../images/php-under-control/header-right.png') right top
+        no-repeat;
+    position: relative;
+    width: 100%;
 }
 
 /**
      * Header/Headline styles
      */
 div#container h1 {
-	background: transparent
-		url('../images/php-under-control/header-center.png') left top repeat-x
-		;
-	color: #eeeeec;
-	font-size: 16px;
-	position: relative;
+    background: transparent
+        url('../images/php-under-control/header-center.png') left top repeat-x
+        ;
+    color: #eeeeec;
+    font-size: 16px;
+    position: relative;
 }
 
 div#container h1 a {
-	background: transparent
-		url('../images/php-under-control/header-left-logo.png') left top
-		repeat-x;
-	display: block;
-	height: 79px;
-	text-indent: -9999px;
-	width: 180px;
+    background: transparent
+        url('../images/php-under-control/header-left-logo.png') left top
+        repeat-x;
+    display: block;
+    height: 79px;
+    text-indent: -9999px;
+    width: 180px;
 }
 
 /**
      * Header form styles
      */
 div#container form#cc-project,div#container form#cc-build {
-	position: absolute;
-	top: 25px;
-	padding: 0;
+    position: absolute;
+    top: 25px;
+    padding: 0;
 }
 
 div#container form fieldset {
-	border: 0 none;
-	margin: 0;
-	padding: 5px;
-	width: 165px;
+    border: 0 none;
+    margin: 0;
+    padding: 5px;
+    width: 165px;
 }
 
 div#container form fieldset legend a {
-	color: #eeeeec;
-	display: block;
-	font-weight: bold;
-	margin-left: 8px;
-	text-decoration: none;
+    color: #eeeeec;
+    display: block;
+    font-weight: bold;
+    margin-left: 8px;
+    text-decoration: none;
 }
 
 div#container form fieldset select {
-	border: 1px solid #2e3436;
-	font-size: 11px;
-	margin: 0;
-	padding: 0;
-	width: 150px;
+    border: 1px solid #2e3436;
+    font-size: 11px;
+    margin: 0;
+    padding: 0;
+    width: 150px;
 }
 
 div#container form#cc-project {
-	right: 400px;
+    right: 400px;
 }
 
 div#container form#cc-build {
-	right: 200px;
+    right: 200px;
 }
 
 div#container h2#cc-build-status {
-	color: #babdb6;
-	display: block;
-	font-size: 11px;
-	font-style: italic;
-	font-weight: normal;
-	position: absolute;
-	right: 20px;
-	text-align: right;
-	top: 25px;
+    color: #babdb6;
+    display: block;
+    font-size: 11px;
+    font-style: italic;
+    font-weight: normal;
+    position: absolute;
+    right: 20px;
+    text-align: right;
+    top: 25px;
 }
 
 /**
      * Navigation styles
      */
 div#container table img {
-	display: none;
+    display: none;
 }
 
 div#container table div {
-	background: transparent
-		url('../images/php-under-control/tab-inactive.png') 0 0 repeat-x; */
-	background-color: #babdb6;
-	height: 21px;
+    background: transparent
+        url('../images/php-under-control/tab-inactive.png') 0 0 repeat-x; */
+    background-color: #babdb6;
+    height: 21px;
 }
 
 div#container .tab-table {
-	float: left;
-	border: 0 none;
+    float: left;
+    border: 0 none;
 }
 
 div#container .tab-table .tabs,.tab-table .tabs-selected {
-	background: transparent;
-	border: 0 none;
-	padding: 0;
+    background: transparent;
+    border: 0 none;
+    padding: 0;
 }
 
 div#container .tab-table .tabs a,.tab-table .tabs-selected {
-	border-right: 1px solid #d4d6d1;
-	color: #eeeeec;
-	display: block;
-	font-size: 11px;
-	line-height: 21px;
-	text-align: center;
-	text-decoration: none;
-	width: 90px;
+    border-right: 1px solid #d4d6d1;
+    color: #eeeeec;
+    display: block;
+    font-size: 11px;
+    line-height: 21px;
+    text-align: center;
+    text-decoration: none;
+    width: 90px;
 }
 
 div#container .tab-table .tabs a:hover,.tab-table .tabs-selected {
-	background: transparent
-		url('../images/php-under-control/tab-active.png') 0 0 repeat-x;
+    background: transparent
+        url('../images/php-under-control/tab-active.png') 0 0 repeat-x;
 }
 
 /**
      * Content area styles
      */
 div#container table td {
-	background-color: #fff;
+    background-color: #fff;
 }
 
 div#container table.result {
-	border: 0 none;
-	border-collapse: collapse;
-	margin: 10px 1% 15px 1%;
-	width: 98%;
+    border: 0 none;
+    border-collapse: collapse;
+    margin: 10px 1% 15px 1%;
+    width: 98%;
 }
 
 div#container table.result thead th {
-	border-bottom: 1px solid #babdb6;
-	color: #555753;
-	font-size: 13px;
-	line-height: 20px;
-	text-align: left;
-	text-indent: 5px;
-	white-space: nowrap;
+    border-bottom: 1px solid #babdb6;
+    color: #555753;
+    font-size: 13px;
+    line-height: 20px;
+    text-align: left;
+    text-indent: 5px;
+    white-space: nowrap;
 }
 
 div#container table.result thead th a {
-	color: #555753;
-	text-decoration: none;
+    color: #555753;
+    text-decoration: none;
 }
 
 div#container table.result thead th a:hover {
-	text-decoration: underline;
+    text-decoration: underline;
 }
 
 div#container table.result tbody td {
-	font-size: 11px;
-	line-height: 15px;
-	padding-left: 5px;
+    font-size: 11px;
+    line-height: 15px;
+    padding-left: 5px;
 }
 
 div#container table.result tbody tr.oddrow td {
-	background-color: #eeeeec;
+    background-color: #eeeeec;
 }
 
 div#container table.result tbody th {
-	border-bottom: 1px solid #babdb6;
-	color: #555753;
-	font-size: 12px;
-	line-height: 20px;
-	text-align: left;
-	text-indent: 5px;
-	white-space: nowrap;
+    border-bottom: 1px solid #babdb6;
+    color: #555753;
+    font-size: 12px;
+    line-height: 20px;
+    text-align: left;
+    text-indent: 5px;
+    white-space: nowrap;
 }
 
 div#container table.result tbody tr.error th {
-	
+    
 }
 
 div#container table.result tbody tr.failure th {
-	
+    
 }
 
 div#container table.result tbody td.info,div#container table.result tbody td.error,div#container table.result tbody td.failure,div#container table.result tbody td.warning,div#container table.result tbody td.success
-	{
-	background: transparent none 4px 0 no-repeat;
-	line-height: 16px;
-	padding-left: 24px;
+    {
+    background: transparent none 4px 50% no-repeat;
+    line-height: 16px;
+    padding-left: 24px;
 }
 
 div#container table.result tbody td.info {
-	background-image: url('../images/php-under-control/info.png');
+    background-image: url('../images/php-under-control/info.png');
 }
 
 div#container table.result tbody td.failure {
-	background-image: url('../images/php-under-control/failed.png');
+    background-image: url('../images/php-under-control/failed.png');
 }
 
 div#container table.result tbody td.error {
-	background-image: url('../images/php-under-control/error.png');
+    background-image: url('../images/php-under-control/error.png');
 }
 
 div#container table.result tbody td.warning {
-	background-image: url('../images/php-under-control/warning.png');
+    background-image: url('../images/php-under-control/warning.png');
 }
 
 div#container table.result tbody td.success {
-	background-image: url('../images/php-under-control/success.png');
+    background-image: url('../images/php-under-control/success.png');
 }
 
 div#container table.result tbody td input.button {
-	border: 1px solid #555753;
-	color: #2e3436;
-	font-size: 11px;
-	padding: 1px 10px;
+    border: 1px solid #555753;
+    color: #2e3436;
+    font-size: 11px;
+    padding: 1px 10px;
 }
 
 div#container pre.code-fragment,div#container .testresults-output {
-	background-color: #fff;
-	border: 1px solid #d3d7cf;
-	margin: 1px 0;
+    background-color: #fff;
+    border: 1px solid #d3d7cf;
+    margin: 1px 0;
 }
 
 div#container h2 {
-	color: #555753;
-	font-size: 16px;
-	font-weight: bold;
-	margin: 8px 0 4px 20px;
+    color: #555753;
+    font-size: 16px;
+    font-weight: bold;
+    margin: 8px 0 4px 20px;
 }
 
 div#container h3 {
-	color: #a40000;
+    color: #a40000;
 }
 
 div#container dl {
-	margin: 4px 0 8px 20px;
-	font-size: 12px;
+    margin: 4px 0 8px 20px;
+    font-size: 12px;
 }
 
 div#container dl dt {
-	float: left;
-	width: 180px;
+    float: left;
+    width: 180px;
 }
 
 div#container dl dd {
-	margin-bottom: 3px;
+    margin-bottom: 3px;
 }
 
 div#container a.failure {
-	color: #c00;
+    color: #c00;
 }
 
 div.dp-highlighter {
-	margin: 0 0 18px 0 !important;
-	width: 100%;
+    margin: 0 0 18px 0 !important;
+    width: 100%;
 }
 
 div#container table div.dp-highlighter,div#container table div.dp-highlighter div
-	{
-	background: inherit;
-	height: inherit;
+    {
+    background: inherit;
+    height: inherit;
 }
 
 div#footer {
-	color: #555753;
-	margin: 12px;
-	text-align: center;
+    color: #555753;
+    margin: 12px;
+    text-align: center;
 }

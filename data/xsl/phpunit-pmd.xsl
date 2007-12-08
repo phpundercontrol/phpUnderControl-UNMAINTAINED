@@ -74,9 +74,17 @@
                 <xsl:if test="position() mod 2 = 1">
                   <xsl:attribute name="class">oddrow</xsl:attribute>
                 </xsl:if>
-                <td class="checkstyle-data"><xsl:value-of select="../@name" /></td>
-                <td class="checkstyle-data" align="right"><xsl:value-of select="@line" /></td>
-                <td class="checkstyle-data"><xsl:value-of select="." /></td>
+                <td>
+                  <xsl:attribute name="class">
+                    <xsl:choose>
+                      <xsl:when test="@priority &lt;= 2">error</xsl:when>
+                      <xsl:otherwise>warning</xsl:otherwise>
+                    </xsl:choose>
+                  </xsl:attribute>
+                  <xsl:value-of select="../@name" />
+                </td>
+                <td align="right"><xsl:value-of select="@line" /></td>
+                <td><xsl:value-of select="." /></td>
               </tr>
             </xsl:for-each>
           </xsl:otherwise>
