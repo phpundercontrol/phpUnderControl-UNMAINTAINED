@@ -44,7 +44,15 @@
 
 define( 'PHPUC_TEST', true );
 define( 'PHPUC_TEST_DIR', dirname( __FILE__ ) . '/run' );
-define( 'PHPUC_SOURCE', realpath( dirname( __FILE__ ) . '/../src' ) );
+
+if ( strpos( '@php_dir@', '@php_dir' ) === false )
+{
+    define( 'PHPUC_SOURCE', '@php_dir@/phpUnderControl' );
+}
+else
+{
+    define( 'PHPUC_SOURCE', realpath( dirname( __FILE__ ) . '/../src' ) );
+}
 
 
 require_once 'PHPUnit/Framework/TestCase.php';

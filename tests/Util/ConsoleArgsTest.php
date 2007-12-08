@@ -140,14 +140,14 @@ class phpucConsoleArgsTest extends phpucAbstractTest
     public function testConsoleExampleCommandWithBuildSystemOption()
     {
         $this->prepareArgv(
-            array( 'example', '--build-system', 'ant', '/opt/cruisecontrol' )
+            array( 'example', '--build-tool', 'ant', '/opt/cruisecontrol' )
         );
         
         $console = new phpucConsoleArgs();
         $console->parse();
         
-        $this->assertTrue( $console->hasOption( 'build-system' ) );
-        $this->assertEquals( 'ant', $console->getOption( 'build-system' ) );
+        $this->assertTrue( $console->hasOption( 'build-tool' ) );
+        $this->assertEquals( 'ant', $console->getOption( 'build-tool' ) );
         
         try
         {
@@ -171,8 +171,8 @@ class phpucConsoleArgsTest extends phpucAbstractTest
         $console = new phpucConsoleArgs();
         $console->parse();
         
-        $this->assertTrue( $console->hasOption( 'build-system' ) );
-        $this->assertEquals( 'ant', $console->getOption( 'build-system' ) );        
+        $this->assertTrue( $console->hasOption( 'build-tool' ) );
+        $this->assertEquals( 'ant', $console->getOption( 'build-tool' ) );        
     }
     
     /**
@@ -188,8 +188,8 @@ class phpucConsoleArgsTest extends phpucAbstractTest
         $console = new phpucConsoleArgs();
         $console->parse();
         
-        $this->assertTrue( $console->hasOption( 'build-system' ) );
-        $this->assertEquals( 'ant', $console->getOption( 'build-system' ) );  
+        $this->assertTrue( $console->hasOption( 'build-tool' ) );
+        $this->assertEquals( 'ant', $console->getOption( 'build-tool' ) );  
     }
     
     /**
