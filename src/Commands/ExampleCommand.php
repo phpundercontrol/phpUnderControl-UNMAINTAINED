@@ -54,7 +54,7 @@
  * @version    Release: @package_version@
  * @link       http://www.phpunit.de/wiki/phpUnderControl
  */
-class phpucExampleCommand extends phpucAbstractCommand 
+class phpucExampleCommand extends phpucAbstractCommand
 {
     /**
      * List of example files.

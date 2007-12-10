@@ -104,7 +104,7 @@ class phpucExampleTask extends phpucAbstractTask
         
         echo '  5. Modifying config file:      config.xml' . PHP_EOL;
         
-        $configXml = new DOMDocument();
+        $configXml                     = new DOMDocument();
         $configXml->preserveWhiteSpace = false;
         $configXml->load( $installDir . '/config.xml' );
         
