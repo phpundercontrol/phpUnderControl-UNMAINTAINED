@@ -55,7 +55,7 @@
  * @link       http://www.phpunit.de/wiki/phpUnderControl
  */
 class phpucPhpCodeSnifferTask extends phpucAbstractPearTask
-{   
+{
     /**
      * Minimum code sniffer version.
      */
@@ -89,9 +89,10 @@ class phpucPhpCodeSnifferTask extends phpucAbstractPearTask
         
         printf( '  1. Modifying build file: project/%s/build.xml%s', $projectName, PHP_EOL );
         
-        $buildFile   = new phpucBuildFile( $projectPath . '/build.xml', $projectName );
+        $buildFile = new phpucBuildFile( $projectPath . '/build.xml', $projectName );
         
-        $buildTarget             = $buildFile->createBuildTarget( 'php-codesniffer' );
+        $buildTarget = $buildFile->createBuildTarget( 'php-codesniffer' );
+        
         $buildTarget->executable = $this->executable;
         $buildTarget->output     = '${basedir}/build/logs/checkstyle.xml';
         $buildTarget->argLine    = sprintf(
