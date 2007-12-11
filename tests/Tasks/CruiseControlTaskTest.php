@@ -79,6 +79,26 @@ class phpucCruiseControlTaskTest extends phpucAbstractTest
     }
     
     /**
+     * Tests that the cc task fails for an invalid root directory.
+     *
+     * @return void
+     */
+    public function testValidateWithInvalidCCInstallDirFail()
+    {
+        $this->prepareArgv( array( 'install', PHPUC_TEST_DIR . '/foobar' ) );
+        $args = new phpucConsoleArgs();
+        $args->parse();
+        
+        $ccTask = new phpucCruiseControlTask( $args );
+        try
+        {
+            $ccTask->validate();
+            $this->fail( 'phpucValidateException expected.' );
+        }
+        catch ( phpucValidateException $e ) {}        
+    }
+    
+    /**
      * Tests that the validate method fails for an invalid directory structure.
      *
      * @return void

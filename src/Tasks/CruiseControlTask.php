@@ -79,37 +79,8 @@ class phpucCruiseControlTask extends phpucAbstractTask
     {
         $installDir = $this->args->getArgument( 'cc-install-dir' );
         
-        // Check for a valid directory.
-        if ( is_dir( $installDir ) === false )
-        {
-            throw new phpucValidateException(
-                sprintf(
-                    'The specified CruiseControl directory "%s" doesn\'t exist.',
-                    $installDir
-                )
-            );
-        }
-        // List of required sub directories.
-        $subdirs = array(
-            '/webapps/cruisecontrol',
-            '/webapps/cruisecontrol/css',
-            '/webapps/cruisecontrol/xsl',
-            '/webapps/cruisecontrol/images',
-        );
-
-        foreach ( $subdirs as $subdir )
-        {
-            // Check for a valid directory.
-            if ( is_dir( $installDir . $subdir ) === false )
-            {
-                throw new phpucValidateException(
-                    sprintf(
-                        'Missing required CruiseControl sub directory "%s".',
-                        $subdir
-                    )
-                );
-            }            
-        }
+        $this->validateCCInstallDir( $installDir );
+        $this->validateCCSubDirs( $installDir );
     }
     
     /**
@@ -145,5 +116,62 @@ class phpucCruiseControlTask extends phpucAbstractTask
         }
 
         echo PHP_EOL;
+    }
+    
+    /**
+     * Checks that the cruise control install directory exists.
+     *
+     * @param string $installDir The configured cc install directory.
+     * 
+     * @return void
+     * @throws phpucValidateException If the configured directory doesn't exist.
+     */
+    protected function validateCCInstallDir( $installDir )
+    {
+        // Check for a valid directory.
+        if ( is_dir( $installDir ) === true )
+        {
+            return;
+        }
+
+        throw new phpucValidateException(
+            sprintf(
+                'The specified CruiseControl directory "%s" doesn\'t exist.',
+                $installDir
+            )
+        );
+    }
+    
+    /**
+     * Checks that the required sub directories exist.
+     *
+     * @param string $installDir The configured cc install directory.
+     * 
+     * @return void
+     * @throws phpucValidateException If the a directory doesn't exist.
+     */
+    protected function validateCCSubDirs( $installDir )
+    {
+        // List of required sub directories.
+        $subdirs = array(
+            '/webapps/cruisecontrol',
+            '/webapps/cruisecontrol/css',
+            '/webapps/cruisecontrol/xsl',
+            '/webapps/cruisecontrol/images',
+        );
+
+        foreach ( $subdirs as $subdir )
+        {
+            // Check for a valid directory.
+            if ( is_dir( $installDir . $subdir ) === false )
+            {
+                throw new phpucValidateException(
+                    sprintf(
+                        'Missing required CruiseControl sub directory "%s".',
+                        $subdir
+                    )
+                );
+            }            
+        }
     }
 }
