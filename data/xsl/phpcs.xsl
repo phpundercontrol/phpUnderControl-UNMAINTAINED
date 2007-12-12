@@ -39,8 +39,8 @@
   <xsl:output method="html"/>
 
   <!-- Controls whether all PHP CodeSniffer errors and warnings should be listed.
-       Set to 'true' for hiding the warnings -->
-  <xsl:param name="checkstyle.hide.warnings"/>
+       Set to 'false' for showing the warnings -->
+  <xsl:param name="checkstyle.hide.warnings" select="'true'"/>
 
   <xsl:template match="/" mode="checkstyle">
     <xsl:variable name="total.error.count" select="count(cruisecontrol/checkstyle/file/error[@severity='error'])" />
