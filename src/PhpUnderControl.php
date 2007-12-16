@@ -90,6 +90,7 @@ class phpucPhpUnderControl
         'phpucConfigProject'             =>  'Data/ConfigProject.php',
         'phpucLogFile'                   =>  'Data/LogFile.php',
         'phpucConsoleException'          =>  'Exceptions/ConsoleException.php',
+        'phpucErrorException'            =>  'Exceptions/ErrorException.php',
         'phpucExecuteException'          =>  'Exceptions/ExecuteException.php',
         'phpucValidateException'         =>  'Exceptions/ValidateException.php',
         'phpucAbstractPearTask'          =>  'Tasks/AbstractPearTask.php',
