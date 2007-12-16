@@ -105,6 +105,7 @@ class phpucPhpUnderControl
         'phpucProjectTask'               =>  'Tasks/ProjectTask.php',
         'phpucTaskI'                     =>  'Tasks/TaskI.php',
         'phpucConsoleArgs'               =>  'Util/ConsoleArgs.php',
+        'phpucFileUtil'                  =>  'Util/FileUtil.php',
         'phpucPhpUnderControl'           =>  'PhpUnderControl.php',
     );
     
