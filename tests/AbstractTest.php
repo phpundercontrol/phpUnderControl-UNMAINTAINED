@@ -74,7 +74,7 @@ abstract class phpucAbstractTest extends PHPUnit_Framework_TestCase
      *
      * @return void
      */
-    public function tearDown()
+    protected function tearDown()
     {
         $this->clearTestContents();
         
@@ -101,12 +101,46 @@ abstract class phpucAbstractTest extends PHPUnit_Framework_TestCase
         }
     }
     
+    /**
+     * Creates a directory structure under the test directory.
+     *
+     * @param array $directories Test directories.
+     * 
+     * @return array(string)
+     */
     protected function createTestDirectories( array $directories )
     {
+        $fullPaths = array();
+        
         foreach ( $directories as $directory )
         {
-            mkdir( PHPUC_TEST_DIR . '/' . $directory );
+            // Create full testing path
+            $fullPath = PHPUC_TEST_DIR . '/' . $directory;
+            
+            mkdir( $fullPath, 0755, true );
+            
+            $fullPaths[] = $fullPath;
         }
+        return $fullPaths;
+    }
+    
+    /**
+     * Creates a single test file.
+     *
+     * @param string $filePath The test filepath.
+     * @param string $content  Optional file contents.
+     * 
+     * @return string
+     */
+    protected function createTestFile( $filePath, $content = '...' )
+    {
+        $fullPath = PHPUC_TEST_DIR . '/' . $filePath;
+        
+        file_put_contents( $fullPath, $content );
+        
+        chmod( $fullPath, 0755 );
+        
+        return $fullPath;
     }
     
     protected function clearTestContents( $directory = null )

@@ -43,21 +43,10 @@
  * @link       http://www.phpunit.de/wiki/phpUnderControl
  */
 
-if ( defined( 'PHPUnit_MAIN_METHOD' ) === false )
-{
-    define( 'PHPUnit_MAIN_METHOD', 'phpucDataAllTests::main' );
-}
-
-require_once 'PHPUnit/Framework/TestSuite.php';
-require_once 'PHPUnit/TextUI/TestRunner.php';
-
-require_once dirname( __FILE__ ) . '/BuildFileTest.php';
-require_once dirname( __FILE__ ) . '/BuildTargetTest.php';
-require_once dirname( __FILE__ ) . '/ConfigFileTest.php';
-require_once dirname( __FILE__ ) . '/ConfigProjectTest.php';
+require_once dirname( __FILE__ ) . '/AbstractConfigTest.php';
 
 /**
- * Main test suite for phpUnderControl Data.
+ * Test cases for the cc config file.
  *
  * @package    phpUnderControl
  * @subpackage Data
@@ -67,36 +56,87 @@ require_once dirname( __FILE__ ) . '/ConfigProjectTest.php';
  * @version    Release: @package_version@
  * @link       http://www.phpunit.de/wiki/phpUnderControl
  */
-class phpucDataAllTest
+class phpucConfigFileTest extends phpucAbstractConfigTest
 {
     /**
-     * Test suite main method.
+     * Tests the {@link phpucConfigFile} ctor.
      *
      * @return void
      */
-    public static function main()
+    public function testNewConfigFileInstance()
     {
-        PHPUnit_TextUI_TestRunner::run( self::suite() );
+        $this->createTestFile( '/config.xml', $this->testXml );
+        
+        $config = new phpucConfigFile( $this->testFile );
+        $config->save();
+        
+        $this->assertXmlStringEqualsXmlString(
+            $this->testXml,
+            file_get_contents( $this->testFile )
+        );
     }
     
     /**
-     * Creates the phpunit test suite for this package.
+     * Tests the {@link phpucConfigFile} ctor with a not existing file.
      *
-     * @return PHPUnit_Framework_TestSuite
+     * @return void
      */
-    public static function suite()
+    public function testNewConfigFileInstanceFail()
     {
-        $suite = new PHPUnit_Framework_TestSuite( 'phpUnderControl - DataAllTest' );
-        $suite->addTestSuite( 'phpucBuildFileTest' );
-        $suite->addTestSuite( 'phpucBuildTargetTest' );
-        $suite->addTestSuite( 'phpucConfigFileTest' );
-        $suite->addTestSuite( 'phpucConfigProjectTest' );
-
-        return $suite;
+        try
+        {
+            new phpucConfigFile( $this->testFile );
+            $this->fail( 'phpucErrorException expected.' );
+        }
+        catch ( phpucErrorException $e ) {}
     }
-}
-
-if ( PHPUnit_MAIN_METHOD === 'phpucDataAllTest::main' )
-{
-    phpucDataAllTest::main();
+    
+    /**
+     * Tests the {@link phpucConfigFile::createProject()} and the 
+     * {@link phpucConfigFile::getProject()} methods. 
+     *
+     * @return void
+     */
+    public function testCreateProject()
+    {
+        $this->createTestFile( '/config.xml', $this->testXml );
+        
+        $config  = new phpucConfigFile( $this->testFile );
+        $project = $config->createProject( 'phpUnderControl' );
+        
+        $this->assertType( 'phpucConfigProject', $project );
+        
+        $config->save();
+        
+        $this->assertXmlStringNotEqualsXmlString(
+            $this->testXml,
+            file_get_contents( $this->testFile )
+        );
+        
+        // Now try to reload the config and read the new project
+        $config  = new phpucConfigFile( $this->testFile );
+        $project = $config->getProject( 'phpUnderControl' );
+        
+        $this->assertType( 'phpucConfigProject', $project );
+    }
+    
+    /**
+     * This method tests that the {@link phpucConfigFile::getProject()} method
+     * fails with an expection, if no project for the given name exists.
+     *
+     * @return void
+     */
+    public function testGetProjectFail()
+    {
+        $this->createTestFile( '/config.xml', $this->testXml );
+        
+        $config = new phpucConfigFile( $this->testFile );
+        
+        try
+        {
+            $config->getProject( 'phpUnderControl' );
+            $this->fail( 'phpucErrorException expected.' );
+        }
+        catch ( phpucErrorException $e ) {}
+    }
 }

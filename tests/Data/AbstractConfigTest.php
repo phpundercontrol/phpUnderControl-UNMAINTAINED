@@ -43,21 +43,10 @@
  * @link       http://www.phpunit.de/wiki/phpUnderControl
  */
 
-if ( defined( 'PHPUnit_MAIN_METHOD' ) === false )
-{
-    define( 'PHPUnit_MAIN_METHOD', 'phpucDataAllTests::main' );
-}
-
-require_once 'PHPUnit/Framework/TestSuite.php';
-require_once 'PHPUnit/TextUI/TestRunner.php';
-
-require_once dirname( __FILE__ ) . '/BuildFileTest.php';
-require_once dirname( __FILE__ ) . '/BuildTargetTest.php';
-require_once dirname( __FILE__ ) . '/ConfigFileTest.php';
-require_once dirname( __FILE__ ) . '/ConfigProjectTest.php';
+require_once dirname( __FILE__ ) . '/../AbstractTest.php';
 
 /**
- * Main test suite for phpUnderControl Data.
+ * Abstract test case for CruiseControl config tests.
  *
  * @package    phpUnderControl
  * @subpackage Data
@@ -67,36 +56,35 @@ require_once dirname( __FILE__ ) . '/ConfigProjectTest.php';
  * @version    Release: @package_version@
  * @link       http://www.phpunit.de/wiki/phpUnderControl
  */
-class phpucDataAllTest
+abstract class phpucAbstractConfigTest extends phpucAbstractTest
 {
     /**
-     * Test suite main method.
+     * The config test file.
+     *
+     * @type string 
+     * @var string $testFile
+     */
+    protected $testFile = '';
+    
+    /**
+     * The config test content.
+     *
+     * @type string
+     * @var string $testXml
+     */
+    protected $testXml = '<?xml version="1.0"?>
+<cruisecontrol>
+</cruisecontrol>';
+    
+    /**
+     * Sets the test file. 
      *
      * @return void
      */
-    public static function main()
+    protected function setUp()
     {
-        PHPUnit_TextUI_TestRunner::run( self::suite() );
+        parent::setUp();
+        
+        $this->testFile = PHPUC_TEST_DIR . '/config.xml';
     }
-    
-    /**
-     * Creates the phpunit test suite for this package.
-     *
-     * @return PHPUnit_Framework_TestSuite
-     */
-    public static function suite()
-    {
-        $suite = new PHPUnit_Framework_TestSuite( 'phpUnderControl - DataAllTest' );
-        $suite->addTestSuite( 'phpucBuildFileTest' );
-        $suite->addTestSuite( 'phpucBuildTargetTest' );
-        $suite->addTestSuite( 'phpucConfigFileTest' );
-        $suite->addTestSuite( 'phpucConfigProjectTest' );
-
-        return $suite;
-    }
-}
-
-if ( PHPUnit_MAIN_METHOD === 'phpucDataAllTest::main' )
-{
-    phpucDataAllTest::main();
 }

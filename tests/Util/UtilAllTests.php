@@ -52,6 +52,7 @@ require_once 'PHPUnit/Framework/TestSuite.php';
 require_once 'PHPUnit/TextUI/TestRunner.php';
 
 require_once dirname( __FILE__ ) . '/ConsoleArgsTest.php';
+require_once dirname( __FILE__ ) . '/FileUtilTest.php';
 
 /**
  * Main test suite for phpUnderControl Util.
@@ -85,6 +86,7 @@ class phpucUtilAllTests
     {
         $suite = new PHPUnit_Framework_TestSuite( 'phpUnderControl - UtilAllTests' );
         $suite->addTestSuite( 'phpucConsoleArgsTest' );
+        $suite->addTestSuite( 'phpucFileUtilTest' );
 
         return $suite;
     }

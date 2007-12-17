@@ -43,21 +43,10 @@
  * @link       http://www.phpunit.de/wiki/phpUnderControl
  */
 
-if ( defined( 'PHPUnit_MAIN_METHOD' ) === false )
-{
-    define( 'PHPUnit_MAIN_METHOD', 'phpucDataAllTests::main' );
-}
-
-require_once 'PHPUnit/Framework/TestSuite.php';
-require_once 'PHPUnit/TextUI/TestRunner.php';
-
-require_once dirname( __FILE__ ) . '/BuildFileTest.php';
-require_once dirname( __FILE__ ) . '/BuildTargetTest.php';
-require_once dirname( __FILE__ ) . '/ConfigFileTest.php';
-require_once dirname( __FILE__ ) . '/ConfigProjectTest.php';
+require_once dirname( __FILE__ ) . '/AbstractConfigTest.php';
 
 /**
- * Main test suite for phpUnderControl Data.
+ * Test cases for CruiseControl project configuration.
  *
  * @package    phpUnderControl
  * @subpackage Data
@@ -67,36 +56,41 @@ require_once dirname( __FILE__ ) . '/ConfigProjectTest.php';
  * @version    Release: @package_version@
  * @link       http://www.phpunit.de/wiki/phpUnderControl
  */
-class phpucDataAllTest
+class phpucConfigProjectTest extends phpucAbstractConfigTest
 {
     /**
-     * Test suite main method.
+     * The context config file instance.
+     *
+     * @type phpucConfigFile
+     * @var phpucConfigFile $config
+     */
+    protected $config = null;
+    
+    /**
+     * Creates a new/clean {@link phpucConfigFile} instance.
      *
      * @return void
      */
-    public static function main()
+    protected function setUp()
     {
-        PHPUnit_TextUI_TestRunner::run( self::suite() );
+        parent::setUp();
+        
+        $this->createTestFile( '/config.xml', $this->testXml );
+        
+        $this->config = new phpucConfigFile( $this->testFile );
     }
     
     /**
-     * Creates the phpunit test suite for this package.
+     * Tests the {@link phpucConfigProject} ctor and tests the magic properties.
      *
-     * @return PHPUnit_Framework_TestSuite
+     * @return void
      */
-    public static function suite()
+    public function testNewConfigProjectInstance()
     {
-        $suite = new PHPUnit_Framework_TestSuite( 'phpUnderControl - DataAllTest' );
-        $suite->addTestSuite( 'phpucBuildFileTest' );
-        $suite->addTestSuite( 'phpucBuildTargetTest' );
-        $suite->addTestSuite( 'phpucConfigFileTest' );
-        $suite->addTestSuite( 'phpucConfigProjectTest' );
-
-        return $suite;
+        $project = new phpucConfigProject( $this->config, 'phpUnderControl' );
+        
+        $this->assertTrue( $project->isNew() );
+        $this->assertSame( $this->config, $project->configFile );
+        $this->assertEquals( 'phpUnderControl', $project->projectName );
     }
-}
-
-if ( PHPUnit_MAIN_METHOD === 'phpucDataAllTest::main' )
-{
-    phpucDataAllTest::main();
 }
