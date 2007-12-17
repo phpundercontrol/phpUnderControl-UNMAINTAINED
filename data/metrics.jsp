@@ -43,7 +43,7 @@ Displays the number of broken and successful builds
 
 <jsp:useBean id="coverageData" class="net.sourceforge.cruisecontrol.chart.XPathChartData" />
 <%
-/*  coverageData.add("Lines of code", "sum(/cruisecontrol/coverage/project/file/metrics/@loc)");*/
+  coverageData.add("Lines of code", "sum(/cruisecontrol/coverage/project/file/metrics/@loc)");
   coverageData.add("Non comment lines", "sum(/cruisecontrol/coverage/project/file/metrics/@ncloc)");
   coverageData.add("Executable lines", "count(/cruisecontrol/coverage/project/file/line)");
   coverageData.add("Covered lines", "count(/cruisecontrol/coverage/project/file/line[@count != 0])");
@@ -63,7 +63,7 @@ Displays the number of broken and successful builds
   unitTestData.add("Total", "count(/cruisecontrol/testsuites//testcase)");
   unitTestData.add("Failures", "count(/cruisecontrol/testsuites//testcase[failure])");
 %>
-<cewolf:chart id="unitTestChart" title="Unit Tests" type="timeseries"  xaxislabel="date" yaxislabel="violations">
+<cewolf:chart id="unitTestChart" title="Unit Tests" type="timeseries"  xaxislabel="date" yaxislabel="methods">
   <cewolf:data>
     <cewolf:producer id="unitTestData">
       <cewolf:param name="buildInfo" value="<%=build_info%>" />
@@ -81,7 +81,7 @@ Displays the number of broken and successful builds
   numData.add("Methods", "count(/cruisecontrol/coverage/project/file/line[@type='method'])");
   numData.add("Test Methods", "count(/cruisecontrol/testsuites//testsuite/testcase)");
 %>
-<cewolf:chart id="numChart" title="Test - Code ratio" type="timeseries"  xaxislabel="date" yaxislabel="violations">
+<cewolf:chart id="numChart" title="Test - Code ratio" type="timeseries"  xaxislabel="date" yaxislabel="classes / methods">
     <cewolf:data>
         <cewolf:producer id="numData">
           <cewolf:param name="buildInfo" value="<%=build_info%>" />
