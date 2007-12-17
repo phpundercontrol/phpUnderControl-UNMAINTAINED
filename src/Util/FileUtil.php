@@ -153,7 +153,9 @@ final class phpucFileUtil
     {
         if ( self::$paths === null )
         {
-            self::$paths = explode( PATH_SEPARATOR, getenv( 'PATH' ) );
+            self::$paths = array_unique(
+                explode( PATH_SEPARATOR, getenv( 'PATH' ) )
+            );
         }
         return self::$paths;
     }
