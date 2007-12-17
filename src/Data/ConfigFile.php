@@ -76,10 +76,20 @@ class phpucConfigFile extends DOMDocument
      * The ctor takes the configuration file name as argument.
      *
      * @param string $fileName The config file name.
+     * 
+     * @throws phpucErrorException If the given config file doesn't exist.
      */
     public function __construct( $fileName )
     {
         parent::__construct( '1.0', 'UTF-8' );
+        
+        // First check for valid file name
+        if ( !file_exists( $fileName ) )
+        {
+            throw new phpucErrorException(
+                sprintf( 'Cannot find CruiseControl config file "%s".', $fileName )
+            );
+        }
         
         $this->fileName           = $fileName;
         $this->formatOutput       = true;
