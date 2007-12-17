@@ -122,7 +122,7 @@ class phpucConfigFile extends DOMDocument
      * @param string $projectName The name for the new project.
      * 
      * @return phpucConfigProject
-     * @throws ErrorException If no project for the given name exists.
+     * @throws phpucErrorException If no project for the given name exists.
      */
     public function getProject( $projectName )
     {
@@ -132,7 +132,7 @@ class phpucConfigFile extends DOMDocument
             
             if ( $project->isNew() )
             {
-                throw new ErrorException( 
+                throw new phpucErrorException( 
                     "Cannot find a project names '{$projectName}'." 
                 );
             }
