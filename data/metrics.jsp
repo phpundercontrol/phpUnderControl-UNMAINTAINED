@@ -63,7 +63,7 @@ Displays the number of broken and successful builds
   unitTestData.add("Total", "count(/cruisecontrol/testsuites//testcase)");
   unitTestData.add("Failures", "count(/cruisecontrol/testsuites//testcase[failure])");
 %>
-<cewolf:chart id="unitTestChart" title="Unit Tests" type="timeseries"  xaxislabel="date" yaxislabel="methods">
+<cewolf:chart id="unitTestChart" title="Unit Tests" type="timeseries"  xaxislabel="date" yaxislabel="tests">
   <cewolf:data>
     <cewolf:producer id="unitTestData">
       <cewolf:param name="buildInfo" value="<%=build_info%>" />
