@@ -244,8 +244,8 @@ class phpucConfigProject
      * name exists a new project will be created. 
      * 
      * @return void
-     * @throws ErrorException If the configuration contains more than one project
-     *         with the same name. But this should never happen.
+     * @throws phpucErrorException If the configuration contains more than one 
+     *         project with the same name. But this should never happen.
      */
     private function loadProject()
     {
@@ -260,7 +260,7 @@ class phpucConfigProject
         }
         else if ( $result->length > 1 )
         {
-            throw new ErrorException( 
+            throw new phpucErrorException( 
                 "There is more than one project named '{$projectName}'."
             );
         }
