@@ -39,7 +39,7 @@
  * @copyright 2007 Manuel Pichler. All rights reserved.
  * @license   http://www.opensource.org/licenses/bsd-license.php  BSD License
  * @version   SVN: $Id$
- * @link      http://www.phpunit.de/wiki/phpUnderControl
+ * @link      http://www.phpundercontrol.org/
  */
 
 if ( defined( 'PHPUnit_MAIN_METHOD' ) === false )
@@ -62,7 +62,7 @@ require_once dirname( __FILE__ ) . '/Util/UtilAllTests.php';
  * @copyright 2007 Manuel Pichler. All rights reserved.
  * @license   http://www.opensource.org/licenses/bsd-license.php  BSD License
  * @version   Release: @package_version@
- * @link      http://www.phpunit.de/wiki/phpUnderControl
+ * @link      http://www.phpundercontrol.org/
  */
 class phpucAllTests
 {

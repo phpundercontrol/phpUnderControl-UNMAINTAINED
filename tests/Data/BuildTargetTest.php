@@ -34,24 +34,23 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  * 
- * @package   phpUnderControl
+ * @package   Data
  * @author    Manuel Pichler <mapi@manuel-pichler.de>
  * @copyright 2007 Manuel Pichler. All rights reserved.
  * @license   http://www.opensource.org/licenses/bsd-license.php  BSD License
  * @version   SVN: $Id$
- * @link      http://www.phpunit.de/wiki/phpUnderControl
+ * @link      http://www.phpundercontrol.org/
  */
 
 /**
  * Test case for the build target object.
  *
- * @package    phpUnderControl
- * @subpackage Data
- * @author     Manuel Pichler <mapi@manuel-pichler.de>
- * @copyright  2007 Manuel Pichler. All rights reserved.
- * @license    http://www.opensource.org/licenses/bsd-license.php  BSD License
- * @version    Release: @package_version@
- * @link       http://www.phpunit.de/wiki/phpUnderControl
+ * @package   Data
+ * @author    Manuel Pichler <mapi@manuel-pichler.de>
+ * @copyright 2007 Manuel Pichler. All rights reserved.
+ * @license   http://www.opensource.org/licenses/bsd-license.php  BSD License
+ * @version   Release: @package_version@
+ * @link      http://www.phpundercontrol.org/
  */
 class phpucBuildTargetTest extends phpucAbstractTest
 {

@@ -34,27 +34,23 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  *
- * @category   Example
- * @package    PhpUnderControl
- * @subpackage Example
- * @author     Manuel Pichler <mapi@manuel-pichler.de>
- * @copyright  2007 Manuel Pichler. All rights reserved.
- * @license    http://www.opensource.org/licenses/bsd-license.php  BSD License
- * @version    SVN: <svn_id>
- * @link       http://www.manuel-pichler.de/
+ * @package   Example
+ * @author    Manuel Pichler <mapi@manuel-pichler.de>
+ * @copyright 2007 Manuel Pichler. All rights reserved.
+ * @license   http://www.opensource.org/licenses/bsd-license.php  BSD License
+ * @version   SVN: $Id$
+ * @link      http://www.phpundercontrol.org/
  */
 
 /**
  * Simple math class.
  *
- * @category   Example
- * @package    PhpUnderControl
- * @subpackage Example
- * @author     Manuel Pichler <mapi@manuel-pichler.de>
- * @copyright  2007 Manuel Pichler. All rights reserved.
- * @license    http://www.opensource.org/licenses/bsd-license.php  BSD License
- * @version    Release: <package_version>
- * @link       http://www.manuel-pichler.de/
+ * @package   Example
+ * @author    Manuel Pichler <mapi@manuel-pichler.de>
+ * @copyright 2007 Manuel Pichler. All rights reserved.
+ * @license   http://www.opensource.org/licenses/bsd-license.php  BSD License
+ * @version   Release: <package_version>
+ * @link      http://www.phpundercontrol.org/
  */
 class PhpUnderControl_Example_Math
 {

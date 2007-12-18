@@ -34,25 +34,23 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  * 
- * @package    phpUnderControl
- * @subpackage Data
- * @author     Manuel Pichler <mapi@manuel-pichler.de>
- * @copyright  2007 Manuel Pichler. All rights reserved.
- * @license    http://www.opensource.org/licenses/bsd-license.php  BSD License
- * @version    SVN: $Id$
- * @link       http://www.phpunit.de/wiki/phpUnderControl
+ * @package   Data
+ * @author    Manuel Pichler <mapi@manuel-pichler.de>
+ * @copyright 2007 Manuel Pichler. All rights reserved.
+ * @license   http://www.opensource.org/licenses/bsd-license.php  BSD License
+ * @version   SVN: $Id$
+ * @link      http://www.phpundercontrol.org/
  */
 
 /**
  * This model/data class reflects a single build log file.
  *
- * @package    phpUnderControl
- * @subpackage Data
- * @author     Manuel Pichler <mapi@manuel-pichler.de>
- * @copyright  2007 Manuel Pichler. All rights reserved.
- * @license    http://www.opensource.org/licenses/bsd-license.php  BSD License
- * @version    Release: @package_version@
- * @link       http://www.phpunit.de/wiki/phpUnderControl
+ * @package   Data
+ * @author    Manuel Pichler <mapi@manuel-pichler.de>
+ * @copyright 2007 Manuel Pichler. All rights reserved.
+ * @license   http://www.opensource.org/licenses/bsd-license.php  BSD License
+ * @version   Release: @package_version@
+ * @link      http://www.phpundercontrol.org/
  * 
  * @property integer $timestamp The cruise control timestamp format.
  * @property string  $fileName  The full log file filename.

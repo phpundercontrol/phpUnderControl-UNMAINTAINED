@@ -39,7 +39,7 @@
  * @copyright  2007 Manuel Pichler. All rights reserved.
  * @license    http://www.opensource.org/licenses/bsd-license.php  BSD License
  * @version    SVN: $Id$
- * @link       http://www.phpunit.de/wiki/phpUnderControl
+ * @link       http://www.phpundercontrol.org/
  */
 
 if ( strpos( '@php_dir@', '@php_dir' ) === 0 )

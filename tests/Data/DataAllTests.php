@@ -34,13 +34,12 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  * 
- * @package    phpUnderControl
- * @subpackage Data
- * @author     Manuel Pichler <mapi@manuel-pichler.de>
- * @copyright  2007 Manuel Pichler. All rights reserved.
- * @license    http://www.opensource.org/licenses/bsd-license.php  BSD License
- * @version    SVN: $Id$
- * @link       http://www.phpunit.de/wiki/phpUnderControl
+ * @package   Data
+ * @author    Manuel Pichler <mapi@manuel-pichler.de>
+ * @copyright 2007 Manuel Pichler. All rights reserved.
+ * @license   http://www.opensource.org/licenses/bsd-license.php  BSD License
+ * @version   SVN: $Id$
+ * @link      http://www.phpundercontrol.org/
  */
 
 if ( defined( 'PHPUnit_MAIN_METHOD' ) === false )
@@ -59,13 +58,12 @@ require_once dirname( __FILE__ ) . '/ConfigProjectTest.php';
 /**
  * Main test suite for phpUnderControl Data.
  *
- * @package    phpUnderControl
- * @subpackage Data
- * @author     Manuel Pichler <mapi@manuel-pichler.de>
- * @copyright  2007 Manuel Pichler. All rights reserved.
- * @license    http://www.opensource.org/licenses/bsd-license.php  BSD License
- * @version    Release: @package_version@
- * @link       http://www.phpunit.de/wiki/phpUnderControl
+ * @package   Data
+ * @author    Manuel Pichler <mapi@manuel-pichler.de>
+ * @copyright 2007 Manuel Pichler. All rights reserved.
+ * @license   http://www.opensource.org/licenses/bsd-license.php  BSD License
+ * @version   Release: @package_version@
+ * @link      http://www.phpundercontrol.org/
  */
 class phpucDataAllTest
 {

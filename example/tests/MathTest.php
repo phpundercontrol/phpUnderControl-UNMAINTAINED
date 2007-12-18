@@ -42,14 +42,12 @@ require_once dirname(__FILE__) . '/../src/Math.php';
 /**
  * Simple math test class.
  *
- * @category   Example
- * @package    PhpUnderControl
- * @subpackage Example
- * @author     Manuel Pichler <mapi@manuel-pichler.de>
- * @copyright  2007 Manuel Pichler. All rights reserved.
- * @license    http://www.opensource.org/licenses/bsd-license.php  BSD License
- * @version    Release: <package_version>
- * @link       http://www.manuel-pichler.de/
+ * @package   Example
+ * @author    Manuel Pichler <mapi@manuel-pichler.de>
+ * @copyright 2007 Manuel Pichler. All rights reserved.
+ * @license   http://www.opensource.org/licenses/bsd-license.php  BSD License
+ * @version   Release: <package_version>
+ * @link      http://www.phpundercontrol.org/
  */
 class PhpUnderControl_Example_MathTest extends PHPUnit_Framework_TestCase
 {

@@ -39,7 +39,7 @@
  * @copyright 2007 Manuel Pichler. All rights reserved.
  * @license   http://www.opensource.org/licenses/bsd-license.php  BSD License
  * @version   SVN: $Id: PhpUnderControl.php 1782 2007-11-28 13:34:46Z mapi $
- * @link      http://www.phpunit.de/wiki/phpUnderControl
+ * @link      http://www.phpundercontrol.org/
  */
 
 require_once dirname( __FILE__ ) . '/../AbstractTest.php';
@@ -52,7 +52,7 @@ require_once dirname( __FILE__ ) . '/../AbstractTest.php';
  * @copyright 2007 Manuel Pichler. All rights reserved.
  * @license   http://www.opensource.org/licenses/bsd-license.php  BSD License
  * @version   Release: @package_version@
- * @link      http://www.phpunit.de/wiki/phpUnderControl
+ * @link      http://www.phpundercontrol.org/
  */
 class phpucConsoleArgsTest extends phpucAbstractTest
 {
