@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="phpundercontrol.org" default="build" basedir=".">
+
+  <!--
+  Helper target that initializes the CruiseControl project and creates the base 
+  directory structure. 
+  -->
+  <target name="init">
+    <!-- Create the source directory -->
+    <mkdir dir="source" />
+    
+    <!-- Create the different build directories -->
+    <mkdir dir="build/logs" />
+    <mkdir dir="build/api" />
+    <mkdir dir="build/coverage" />
+    
+    <!-- Checkout phpUnderControl trunk into source -->
+    <exec executable="svn">
+      <arg line="co svn://svn.phpunit.de/phpunit/phpUnderControl/trunk source" />
+    </exec>
+  </target>
+
+  <!--
+  The default build target for this project. It simply depends on all sub tasks
+  that perform the project build. The sub targets are executed in the listed 
+  order.
+  
+  1. 'checkout' Update project working copy
+  2. 'php-documentor' Generate api documentation
+  3. 'php-codesniffer' Check for coding violations.
+  4. 'phpunit' Execute unit tests, generate metrics, coverage etc. 
+  -->
+  <target name="build" 
+          depends="checkout,php-documentor,php-codesniffer,phpunit" />
+
+  <!--
+  Performs an 'svn up' for the working copy.
+  -->
+  <target name="checkout">
+    <exec executable="svn" dir="${basedir}/source">
+      <arg line="up" />
+    </exec>
+  </target>
+
+  <!--
+  Generates the project documentation into the <project>/build/api directory.
+  phpUnderControl uses the command line output of PhpDocumentor that is logged
+  by CruiseControl.
+  -->
+  <target name="php-documentor">
+    <exec executable="phpdoc" dir="${basedir}/source">
+      <arg line="-ct type -ue on -t ${basedir}/build/api -d src/"/>
+    </exec>
+  </target>
+
+  <!--
+  Execute code sniffer. This demo uses the PEAR standard the is bundled with
+  PHP_CodeSniffer, but phpUnderControl doesn't follow this standard. CodeSniffer
+  uses the Checkstyle report generator that is supported by CruiseControl. The
+  'output' attribute for the exec element pipes the command line output into the 
+  <project>/build/logs/checkstyle.xml file.
+  -->
+  <target name="php-codesniffer">
+    <exec executable="phpcs" 
+          dir="${basedir}/source" 
+          output="${basedir}/build/logs/checkstyle.xml">
+      <arg line="--report=checkstyle 
+                 --standard=PEAR
+                 --ignore=src/autoload src/"/>
+    </exec>
+  </target>
+  
+  <!--
+  Executes the project unit tests and stores the different logs in the 
+  <project>/build/logs directory. Furthermore it generates the coverage report
+  under <project>/build/coverage.
+  -->
+  <target name="phpunit">
+    <exec executable="phpunit" dir="${basedir}/source" failonerror="on">
+      <arg line="--log-xml ${basedir}/build/logs/phpunit.xml 
+                 --log-pmd ${basedir}/build/logs/phpunit.pmd.xml  
+                 --log-metrics ${basedir}/build/logs/phpunit.metrics.xml 
+                 --coverage-xml  ${basedir}/build/logs/phpunit.coverage.xml 
+                 --coverage-html ${basedir}/build/coverage
+                 phpucAllTests tests/AllTests.php" />
+    </exec>
+  </target>
+</project>
