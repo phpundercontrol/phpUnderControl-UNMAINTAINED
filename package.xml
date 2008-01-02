@@ -20,9 +20,9 @@
     <email>mapi@manuel-pichler.de</email>
     <active>yes</active>
   </lead>
-  <date>2007-12-11</date>
+  <date>2008-02-01</date>
   <version>
-    <release>0.2.1</release>
+    <release>0.2.2</release>
     <api>0.2.0</api>
   </version>
   <stability>
@@ -31,17 +31,9 @@
   </stability>
   <license uri="http://www.opensource.org/licenses/bsd-license.php">BSD License</license>
   <notes>
-- Three new metric views added. Thanks to Sebastian for this great idea.
-   1) Unit Tests vs. Number of Failing Unit Tests.
-   2) Executable Lines of Code vs. Code Coverage in Percent.
-   3) Classes/Methods vs. Number of Tested Classes/Methods 
-- Dependency to latest PHP_CodeSniffer version 1.0.0RC3 increased.
-- CruiseControl config.xml file abstration implemented.
-- Source refactored to make the command line stuff testable.
-- Many code cleanups and documentation fixes.
-- Test cases for the cli tool added.
-- Test cases for the build file abstraction added.
-- Test cases for some tasks added.
+- Default body background color set.
+- Documented example for the CruiseControl config.xml file and an ant build.xml
+  file for the phpUnderControl project added.
   </notes>
   <contents>
     <dir name="/">
@@ -234,6 +226,14 @@
         <file name="phpunit.jsp" role="data" />
         <file name="phpunit-pmd.jsp" role="data" />
       </dir>
+      <dir name="docs">
+        <file name="build.xml" role="doc">
+          <tasks:replace from="@package_version@" to="version" type="package-info" />
+        </file>
+        <file name="config.xml" role="doc">
+          <tasks:replace from="@package_version@" to="version" type="package-info" />
+        </file>
+      </dir>
       <dir name="example">
         <dir name="src">
           <file name="Math.php" role="data">
@@ -364,4 +364,31 @@
       <ignore name="bin/phpuc.bat" />
     </filelist>
   </phprelease>
+  <changelog>
+    <release>
+      <version>
+	    <release>0.2.1</release>
+	    <api>0.2.0</api>
+	  </version>
+	  <stability>
+	    <release>beta</release>
+	    <api>beta</api>
+	  </stability>
+	  <date>2007-12-11</date>
+	  <license uri="http://www.opensource.org/licenses/bsd-license.php">BSD License</license>
+	  <notes>
+- Three new metric views added. Thanks to Sebastian for this great idea.
+   1) Unit Tests vs. Number of Failing Unit Tests.
+   2) Executable Lines of Code vs. Code Coverage in Percent.
+   3) Classes/Methods vs. Number of Tested Classes/Methods 
+- Dependency to latest PHP_CodeSniffer version 1.0.0RC3 increased.
+- CruiseControl config.xml file abstration implemented.
+- Source refactored to make the command line stuff testable.
+- Many code cleanups and documentation fixes.
+- Test cases for the cli tool added.
+- Test cases for the build file abstraction added.
+- Test cases for some tasks added.
+	  </notes>
+    </release>
+  </changelog>
 </package>
