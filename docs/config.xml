@@ -138,13 +138,13 @@
       Copies the generated api documentation into project artifacts directory.  
       -->
       <artifactspublisher dir="projects/${project.name}/build/api" 
-                          dest="artifacts/${project.name}" 
+                          dest="logs/${project.name}" 
                           subdirectory="api"/>
       <!--
       Copies the generated code coverage report into project artifacts directory.  
       -->
       <artifactspublisher dir="projects/${project.name}/build/coverage" 
-                          dest="artifacts/${project.name}" 
+                          dest="logs/${project.name}" 
                           subdirectory="coverage"/>
       <!--
       Sends simple text emails after a project build. For nicer html emails, 
