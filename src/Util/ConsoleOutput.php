@@ -182,8 +182,8 @@ class phpucConsoleOutput
      * Replaces all <b>{[0-9]+}</b> placeholders with the corresponding values
      * in the <b>$args</b> array.
      *
-     * @param string                 $text The raw output text.
-     * @param array(integer=>string) $args Replace values.
+     * @param string                 $text   The raw output text.
+     * @param array(integer=>string) $values Replace values.
      * 
      * @return string
      */
