@@ -82,6 +82,14 @@ class phpucProjectTask extends phpucAbstractTask
         }
     }
     
+    /**
+     * Adds a new project to CruiseControl.
+     * 
+     * This method creates the base directory structure for a CruiseControl
+     * project and adds this project to the CruiseControl config.xml file.
+     *
+     * @return void
+     */
     public function execute()
     {
         $out = phpucConsoleOutput::get();
