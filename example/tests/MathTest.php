@@ -46,7 +46,7 @@ require_once dirname(__FILE__) . '/../src/Math.php';
  * @author    Manuel Pichler <mapi@manuel-pichler.de>
  * @copyright 2007-2008 Manuel Pichler. All rights reserved.
  * @license   http://www.opensource.org/licenses/bsd-license.php  BSD License
- * @version   Release: <package_version>
+ * @version   Release: @package_version@
  * @link      http://www.phpundercontrol.org/
  */
 class PhpUnderControl_Example_MathTest extends PHPUnit_Framework_TestCase
