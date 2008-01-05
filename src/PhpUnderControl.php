@@ -103,6 +103,7 @@ class phpucPhpUnderControl
         'phpucProjectTask'               =>  'Tasks/ProjectTask.php',
         'phpucTaskI'                     =>  'Tasks/TaskI.php',
         'phpucConsoleArgs'               =>  'Util/ConsoleArgs.php',
+        'phpucConsoleOutput'             =>  'Util/ConsoleOutput.php',
         'phpucFileUtil'                  =>  'Util/FileUtil.php',
         'phpucPhpUnderControl'           =>  'PhpUnderControl.php',
     );
@@ -163,12 +164,19 @@ class phpucPhpUnderControl
         $this->args = new phpucConsoleArgs();
     }
     
+    /**
+     * Performs a single cli request.
+     *
+     * @return void
+     */
     public function run()
     {
         try
         {
             if ( $this->args->parse() )
             {
+                phpucConsoleOutput::set( new phpucConsoleOutput() );
+                
                 $command = phpucAbstractCommand::createCommand( $this->args );
         
                 $command->validate();

@@ -107,35 +107,28 @@ class phpucModifyFileTask extends phpucAbstractTask
      */
     public function execute()
     {
-        echo 'Performing modify file task.' . PHP_EOL;
+        $out = phpucConsoleOutput::get();
+        $out->writeLine( 'Performing modify file task.' );
         
         $installDir = sprintf(
             '%s/webapps/cruisecontrol', 
             $this->args->getArgument( 'cc-install-dir' ) 
         );
         
-        $index = 0;
+        $out->startList();
+        
         foreach ( $this->files as $file )
         {
             $filepath = $installDir . $file;
             
             if ( file_exists( "{$filepath}.orig" ) === false )
             {
-                printf(
-                    '  % 2d. Creating backup "%s.orig".%s',
-                    ++$index,
-                    $file,
-                    PHP_EOL
-                );
+                $out->writeListItem( 'Creating backup "%s.{1}"', $file );
+                
                 copy( $filepath, "{$filepath}.orig" );
             }
             
-            printf( 
-                '  % 2d. Modifying file  "%s".%s', 
-                ++$index,
-                $file, 
-                PHP_EOL
-            );
+            $out->writeListItem( 'Modifying file "{1}"', $file );
             
             file_put_contents( 
                 $filepath,
@@ -143,6 +136,6 @@ class phpucModifyFileTask extends phpucAbstractTask
             );
         }
         
-        echo PHP_EOL;
+        $out->writeLine();
     }
 }

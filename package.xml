@@ -251,6 +251,7 @@
           <tasks:replace from="@package_version@" to="version" type="package-info" />
         </file>
       </dir>
+      <file name="CHANGELOG" role="doc" />
     </dir>
   </contents>
   <dependencies>

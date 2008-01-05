@@ -76,7 +76,8 @@ class phpucPhpCodeSnifferTask extends phpucAbstractPearTask
      */
     public function execute()
     {
-        echo 'Performing PHP_CodeSniffer task.' . PHP_EOL;
+        $out = phpucConsoleOutput::get();
+        $out->writeLine( 'Performing PHP_CodeSniffer task.' );
         
         $projectName = $this->args->getOption( 'project-name' );
         $projectPath = sprintf(
@@ -85,7 +86,10 @@ class phpucPhpCodeSnifferTask extends phpucAbstractPearTask
             $projectName
         );
         
-        printf( '  1. Modifying build file: project/%s/build.xml%s', $projectName, PHP_EOL );
+        $out->startList();
+        $out->writeListItem( 
+            'Modifying build file: project/{1}/build.xml', $projectName
+        );
         
         $buildFile = new phpucBuildFile( $projectPath . '/build.xml', $projectName );
         
@@ -101,7 +105,7 @@ class phpucPhpCodeSnifferTask extends phpucAbstractPearTask
         
         $buildFile->save();
         
-        echo PHP_EOL;
+        $out->writeLine();
     }
     
     /**
@@ -115,7 +119,9 @@ class phpucPhpCodeSnifferTask extends phpucAbstractPearTask
 
         if ( preg_match( '/version\s+([0-9\.]+(RC[0-9])?)/', $retval, $match ) === 0 )
         {
-            echo 'WARNING: Cannot identify PHP_CodeSniffer version.' . PHP_EOL;
+            phpucConsoleOutput::get()->writeLine(
+                'WARNING: Cannot identify PHP_CodeSniffer version.'
+            );
             // Assume valid version
             $version = self::CODE_SNIFFER_VERSION;
         }

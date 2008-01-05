@@ -84,23 +84,21 @@ class phpucCreateFileTask extends phpucAbstractTask
      */
     public function execute()
     {
-        echo 'Performing create file task.' . PHP_EOL;
+        $out = phpucConsoleOutput::get();
+        $out->writeLine( 'Performing create file task.' );
         
         $installDir = sprintf(
             '%s/webapps/cruisecontrol', 
             $this->args->getArgument( 'cc-install-dir' ) 
         );
         
+        $out->startList();
+        
         foreach ( $this->files as $index => $file )
         {
             $filepath = $installDir . $file;
-
-            printf( 
-                '  % 2d. Creating file "%s".%s',
-                ( $index + 1 ), 
-                $file, 
-                PHP_EOL 
-            );
+            
+            $out->writeListItem( 'Creating file "{1}"', $file );
             
             file_put_contents( 
                 $filepath,
@@ -108,6 +106,6 @@ class phpucCreateFileTask extends phpucAbstractTask
             );
         }
         
-        echo PHP_EOL;
+        $out->writeLine();
     }
 }

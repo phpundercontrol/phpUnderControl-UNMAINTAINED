@@ -72,23 +72,22 @@ class phpucPhpDocumentorTask extends phpucAbstractPearTask
      */
     public function execute()
     {
-        echo 'Performing PhpDocumentor task.' . PHP_EOL;
+        $out = phpucConsoleOutput::get();
+        $out->writeLine( 'Performing PhpDocumentor task.' );
         
         $installDir  = $this->args->getArgument( 'cc-install-dir' );
         $projectName = $this->args->getOption( 'project-name' );
         $projectPath = sprintf( '%s/projects/%s', $installDir, $projectName );
         
-        printf( 
-            '  1. Creating api documentation dir: project/%s/build/api%s', 
-            $projectName, 
-            PHP_EOL
+        $out->startList();
+        
+        $out->writeListItem( 
+            'Creating apidoc dir:  project/{1}/build/api', $projectName
         );
         mkdir( $projectPath . '/build/api' );
         
-        printf( 
-            '  2. Modifying build file:           project/%s/build.xml%s', 
-            $projectName, 
-            PHP_EOL
+        $out->writeListItem(
+            'Modifying build file: project/{1}/build.xml', $projectName
         );
         
         $buildFile = new phpucBuildFile( $projectPath . '/build.xml' );
