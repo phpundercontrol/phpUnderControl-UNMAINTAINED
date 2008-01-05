@@ -76,31 +76,43 @@ class phpucExampleTask extends phpucAbstractTask
      */
     public function execute()
     {
+        $out = phpucConsoleOutput::get();
+        $out->writeLine( 'Performing example task.' );
+        
         $installDir  = $this->args->getArgument( 'cc-install-dir' );
         $projectName = $this->args->getOption( 'project-name' );
         $projectPath = sprintf( '%s/projects/%s', $installDir, $projectName );
         
-        echo 'Performing example task.' . PHP_EOL;
+        $out->startList();
         
-        printf( '  1. Creating source directory:  project/%s/source/src%s', $projectName, PHP_EOL );
+        $out->writeListItem(
+            'Creating source directory:  project/{1}/source/src', $projectName
+        );
         mkdir( $projectPath . '/source/src' );
         
-        printf( '  2. Creating tests directory:   project/%s/source/tests%s', $projectName, PHP_EOL );
+        $out->writeListItem(
+            'Creating tests directory:   project/{1}/source/tests', $projectName
+        );
         mkdir( $projectPath . '/source/tests' );
         
-        printf( '  3. Creating source class:      project/%s/source/src/Math.php%s', $projectName, PHP_EOL );
+        $out->writeListItem(
+            'Creating source class:      project/{1}/source/src/Math.php', $projectName
+        );
         file_put_contents(
             $projectPath . '/source/src/Math.php',
             file_get_contents( PHPUC_DATA_DIR . '/example/src/Math.php' )
         );
         
-        printf( '  4. Creating test class:        project/%s/source/tests/MathTest.php%s', $projectName, PHP_EOL );
+        $out->writeListItem(
+            'Creating test class:        project/{1}/source/tests/MathTest.php',
+            $projectName
+        );
         file_put_contents(
             $projectPath . '/source/tests/MathTest.php',
             file_get_contents( PHPUC_DATA_DIR . '/example/tests/MathTest.php' )
         );
         
-        echo '  5. Modifying config file:      config.xml' . PHP_EOL;
+        $out->writeListItem( 'Modifying config file:      config.xml' );
         
         $configXml                     = new DOMDocument();
         $configXml->preserveWhiteSpace = false;
@@ -119,6 +131,6 @@ class phpucExampleTask extends phpucAbstractTask
         $configXml->formatOutput = true;
         $configXml->save( $installDir . '/config.xml' );
         
-        echo PHP_EOL;
+        $out->writeLine();
     }
 }

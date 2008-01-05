@@ -102,8 +102,7 @@ class phpucPhpDocumentorTask extends phpucAbstractPearTask
         
         $buildFile->save();
         
-        echo '  3. Modifying config file:          config.xml' . PHP_EOL;
-        
+        $out->writeListItem( 'Modifying config file:          config.xml' );
         $configFile    = new phpucConfigFile( $installDir . '/config.xml' );
         $configProject = $configFile->getProject( $projectName );
         $publisher     = $configProject->createArtifactsPublisher();
@@ -113,6 +112,6 @@ class phpucPhpDocumentorTask extends phpucAbstractPearTask
         
         $configFile->save();
 
-        echo PHP_EOL;
+        $out->writeLine();
     }
 }

@@ -83,25 +83,23 @@ class phpucPhpUnitTask extends phpucAbstractPearTask
      */
     public function execute()
     {
-        echo 'Performing PHPUnit task.' . PHP_EOL;
+        $out = phpucConsoleOutput::get();
+        $out->writeLine( 'Performing PHPUnit task.' );
         
         $installDir  = $this->args->getArgument( 'cc-install-dir' );
         $projectName = $this->args->getOption( 'project-name' );
         $projectPath = sprintf( '%s/projects/%s', $installDir, $projectName );
         
-        printf( 
-            '  1. Creating coverage dir: project/%s/build/coverage%s', 
-            $projectName, 
-            PHP_EOL
+        $out->startList();
+        
+        $out->writeListItem(
+            'Creating coverage dir: project/{1}/build/coverage', $projectName
         );
         mkdir( $projectPath . '/build/coverage' );
         
-        printf( 
-            '  2. Modifying build file:  project/%s/build.xml%s', 
-            $projectName, 
-            PHP_EOL 
+        $out->writeListItem(
+            'Modifying build file:  project/{1}/build.xml', $projectName
         );
-        
         $logs  = ' --log-xml ${basedir}/build/logs/phpunit.xml';
         $logs .= ' --log-pmd ${basedir}/build/logs/phpunit.pmd.xml ';
         if ( $this->metrics === true )
@@ -130,7 +128,7 @@ class phpucPhpUnitTask extends phpucAbstractPearTask
         
         $buildFile->save();
         
-        echo '  3. Modifying config file: config.xml' . PHP_EOL;
+        $out->writeListItem( 'Modifying config file: config.xml' );
         
         $configFile    = new phpucConfigFile( $installDir . '/config.xml' );
         $configProject = $configFile->getProject( $projectName );
@@ -141,7 +139,7 @@ class phpucPhpUnitTask extends phpucAbstractPearTask
         
         $configFile->save();
         
-        echo PHP_EOL;
+        $out->writeLine();
     }
     
     /**
@@ -158,7 +156,9 @@ class phpucPhpUnitTask extends phpucAbstractPearTask
 
         if ( preg_match( '/\s+([0-9\.]+(RC[0-9])?)/', $retval, $match ) === 0 )
         {
-            echo 'WARNING: Cannot identify PHPUnit version.' . PHP_EOL;
+            phpucConsoleOutput::get()->writeLine(
+                'WARNING: Cannot identify PHPUnit version.'
+            );
             // Assume valid version
             $version = self::PHP_UNIT_VERSION;
         }
@@ -170,13 +170,13 @@ class phpucPhpUnitTask extends phpucAbstractPearTask
         // Check version and inform user
         if ( version_compare( $version, self::PHP_UNIT_VERSION ) < 0 )
         {
-            printf(
-                'NOTICE: The identified version %s doesn\'t support metrics.%s' .
-                'You may switch to PHPUnit %s for cooler features.%s',
-                $version,
-                PHP_EOL,
-                self::PHP_UNIT_VERSION,
-                PHP_EOL
+            phpucConsoleOutput::get()->writeLine(
+                'NOTICE: The identified version {1} doesn\'t support metrics.',
+                $version
+            );
+            phpucConsoleOutput::get()->writeLine(
+                'You may switch to PHPUnit {1} for cooler features.', 
+                self::PHP_UNIT_VERSION 
             );
             $this->properties['metrics'] = false;
         }
@@ -184,14 +184,16 @@ class phpucPhpUnitTask extends phpucAbstractPearTask
         // Check xdebug installation
         if ( extension_loaded( 'xdebug' ) === false )
         {
-            printf(
-                'NOTICE: The xdebug extension is not installed. For coverage%s' .
-                'you must install xdebug with the following command:%s' .
-                '  pecl install xdebug%s',
-                PHP_EOL,
-                PHP_EOL,
-                PHP_EOL
+            phpucConsoleOutput::get()->writeLine(
+                'NOTICE: The xdebug extension is not installed. For coverage'
             );
+            phpucConsoleOutput::get()->writeLine(
+                'you must install xdebug with the following command:'
+            );
+            phpucConsoleOutput::get()->writeLine(
+                '  pecl install xdebug'
+            );
+            
             $this->properties['coverage'] = false;
         }
     }

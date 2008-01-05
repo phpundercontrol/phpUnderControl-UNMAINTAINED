@@ -88,13 +88,16 @@ class phpucCruiseControlTask extends phpucAbstractTask
      */
     public function execute()
     {
-        echo 'Performing CruiseControl task.' . PHP_EOL;
+        $out = phpucConsoleOutput::get();
+        $out->writeLine( 'Performing CruiseControl task.' );
         
         // Get root directory.
         $installDir = sprintf(
             '%s/webapps/cruisecontrol/',
             $this->args->getArgument( 'cc-install-dir' )
         );
+        
+        $out->startList();
         
         foreach ( $this->directories as $index => $directory )
         {
@@ -104,16 +107,13 @@ class phpucCruiseControlTask extends phpucAbstractTask
                 continue;
             }
             
-            printf( 
-                ' % 2d. Creating directory "webapps/cruisecontrol/%s".%s',
-                ( $index + 1 ),
-                $directory,
-                PHP_EOL
+            $out->writeListItem(
+                'Creating directory "webapps/cruisecontrol/{1}', $directory
             );
             mkdir( $installDir . $directory );
         }
-
-        echo PHP_EOL;
+        
+        $out->writeLine();
     }
     
     /**

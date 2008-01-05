@@ -80,41 +80,53 @@ class phpucProjectTask extends phpucAbstractTask
     
     public function execute()
     {
+        $out = phpucConsoleOutput::get();
+        $out->writeLine( 'Performing project task.' );
+        
         $installDir  = $this->args->getArgument( 'cc-install-dir' );
         $projectName = $this->args->getOption( 'project-name' );
         $projectPath = sprintf( '%s/projects/%s', $installDir, $projectName );
         
-        echo 'Performing project task.' . PHP_EOL;        
+        $out->startList();
         
-        printf( '  1. Creating project directory: projects/%s%s', $projectName, PHP_EOL );
+        $out->writeListItem(
+            'Creating project directory: projects/{1}', $projectName
+        );
         mkdir( $projectPath );
         
-        printf( '  2. Creating source directory:  projects/%s/source%s', $projectName, PHP_EOL );
+        $out->writeListItem(
+            'Creating source directory:  projects/{1}/source', $projectName
+        );
         mkdir( $projectPath . '/source' );
         
-        printf( '  3. Creating build directory:   projects/%s/build%s', $projectName, PHP_EOL );
+        $out->writeListItem(
+            'Creating build directory:   projects/{1}/build', $projectName
+        );
         mkdir( $projectPath . '/build' );
         
-        printf( '  4. Creating log directory:     projects/%s/build/logs%s', $projectName, PHP_EOL );
+        $out->writeListItem(
+            'Creating log directory:     projects/{1}/build/logs', $projectName
+        );
         mkdir( $projectPath . '/build/logs' );
         
-        printf( '  5. Creating build file:        projects/%s/build.xml%s', $projectName, PHP_EOL );
-        
+        $out->writeListItem(
+            'Creating build file:        projects/{1}/build.xml', $projectName
+        );
         $buildFile = new phpucBuildFile( $projectPath . '/build.xml', $projectName );
         $buildFile->save();
         
-        echo '  6. Creating backup of file:    config.xml.orig' . PHP_EOL;
+        $out->writeListItem( 'Creating backup of file:    config.xml.orig' );
         @unlink( $installDir . '/config.xml.orig' );
         copy( $installDir . '/config.xml', $installDir . '/config.xml.orig' );
         
-        echo '  7. Searching ant directory' . PHP_EOL;
+        $out->writeListItem( 'Searching ant directory' );
         if ( count( $ant = glob( sprintf( '%s/apache-ant*', $installDir ) ) ) === 0 )
         {
             throw new phpucExecuteException( 'ERROR: Cannot locate ant directory.' );
         }
         $anthome = basename( array_pop( $ant ) );
         
-        echo '  8. Modifying project file:     config.xml' . PHP_EOL;
+        $out->writeListItem( 'Modifying project file:     config.xml' );
         
         $config  = new phpucConfigFile( $installDir . '/config.xml' );
         $project = $config->createProject( $projectName );
@@ -124,6 +136,6 @@ class phpucProjectTask extends phpucAbstractTask
 
         $config->save();
                 
-        echo PHP_EOL;
+        $out->writeLine();
     }
 }

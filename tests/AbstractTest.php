@@ -182,6 +182,8 @@ abstract class phpucAbstractTest extends PHPUnit_Framework_TestCase
         // Register autoload
         spl_autoload_register( array( 'phpucPhpUnderControl', 'autoload' ) );
         
+        phpucConsoleOutput::set( new phpucConsoleOutput() );
+        
         PHPUnit_Util_Filter::addDirectoryToWhitelist( PHPUC_SOURCE );
         
         if ( !is_dir( PHPUC_TEST_DIR) )
