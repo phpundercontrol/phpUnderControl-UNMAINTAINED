@@ -100,7 +100,8 @@ class phpucExampleTask extends phpucAbstractTask
         mkdir( $projectPath . '/source/tests' );
         
         $out->writeListItem(
-            'Creating source class:      project/{1}/source/src/Math.php', $projectName
+            'Creating source class:      project/{1}/source/src/Math.php', 
+            $projectName
         );
         file_put_contents(
             $projectPath . '/source/src/Math.php',

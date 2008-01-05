@@ -84,7 +84,7 @@ class phpucConsoleArgs
                     'short'      =>  'p',
                     'long'       =>  'pear-executables-dir',
                     'arg'        =>  true,
-                    'help'       =>  'The pear install directory with the command line scripts.',
+                    'help'       =>  'The pear directory with cli scripts.',
                     'mandatory'  =>  false,
                 )
             ),
@@ -123,7 +123,7 @@ class phpucConsoleArgs
                     'short'      =>  'p',
                     'long'       =>  'pear-executables-dir',
                     'arg'        =>  true,
-                    'help'       =>  'The pear install directory with the command line scripts.',
+                    'help'       =>  'The pear directory with cli scripts.',
                     'mandatory'  =>  false,
                 ),
                 array(
@@ -186,7 +186,7 @@ class phpucConsoleArgs
                     'short'      =>  'b',
                     'long'       =>  'build-tool',
                     'arg'        =>  array( 'ant' ),
-                    'help'       =>  'CruiseControl configuration type. Allowed is "ant" at the moment.',
+                    'help'       =>  'CruiseControl build system type type.',
                     'default'    =>  'ant',
                     'mandatory'  =>  true,
                 )
