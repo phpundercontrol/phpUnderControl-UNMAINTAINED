@@ -22,7 +22,7 @@
   </lead>
   <date>2008-01-02</date>
   <version>
-    <release>0.2.2</release>
+    <release>0.2.3</release>
     <api>0.2.0</api>
   </version>
   <stability>
@@ -31,9 +31,7 @@
   </stability>
   <license uri="http://www.opensource.org/licenses/bsd-license.php">BSD License</license>
   <notes>
-- Default body background color set.
-- Documented example for the CruiseControl config.xml file and an ant build.xml
-  file for the phpUnderControl project added.
+
   </notes>
   <contents>
     <dir name="/">
@@ -390,6 +388,25 @@
 - Test cases for the build file abstraction added.
 - Test cases for some tasks added.
 	  </notes>
+    </release>
+  </changelog>
+  <changelog>
+    <release>
+      <version>
+        <release>0.2.2</release>
+        <api>0.2.0</api>
+      </version>
+      <stability>
+        <release>beta</release>
+        <api>beta</api>
+      </stability>
+      <date>2008-01-02</date>
+      <license uri="http://www.opensource.org/licenses/bsd-license.php">BSD License</license>
+      <notes>
+- Default body background color set.
+- Documented example for the CruiseControl config.xml file and an ant build.xml
+  file for the phpUnderControl project added.
+      </notes>
     </release>
   </changelog>
 </package>
