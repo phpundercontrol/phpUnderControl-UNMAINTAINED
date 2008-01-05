@@ -313,7 +313,7 @@
 
 <html>
 <head>
-  <title><%= name%> CruiseControl at <%= hostname %></title>
+  <title><%= name%> phpUnderControl at <%= hostname %></title>
 
   <base href="<%=baseURL%>"/>
   <link type="application/rss+xml" rel="alternate" href="rss" title="RSS"/>
