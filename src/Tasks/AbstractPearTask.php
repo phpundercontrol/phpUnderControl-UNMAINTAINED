@@ -112,7 +112,7 @@ abstract class phpucAbstractPearTask extends phpucAbstractTask
         foreach ( $paths as $path )
         {
             $fileName = sprintf( 
-                '%s/%s', 
+                '%s/%s%s', 
                 $path, 
                 $this->cliTool,
                 ( $windows ? '.bat' : '' ) 
