@@ -107,7 +107,7 @@ abstract class phpucAbstractPearTask extends phpucAbstractTask
         }
         $paths = array_unique( $paths );
         
-        $windows = ( substr( PHP_OS, 0, 3 ) === 'WIN' );
+        $windows = stripos( PHP_OS, 'WIN' );
 
         foreach ( $paths as $path )
         {
@@ -115,7 +115,7 @@ abstract class phpucAbstractPearTask extends phpucAbstractTask
                 '%s/%s%s', 
                 $path, 
                 $this->cliTool,
-                ( $windows ? '.bat' : '' ) 
+                ( $windows === true ? '.bat' : '' ) 
             );
             
             if ( file_exists( $fileName ) === false )
