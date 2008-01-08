@@ -31,7 +31,7 @@
   </stability>
   <license uri="http://www.opensource.org/licenses/bsd-license.php">BSD License</license>
   <notes>
-
+- New console output class added.
   </notes>
   <contents>
     <dir name="/">
@@ -115,6 +115,12 @@
         </dir>
         <dir name="Util">
           <file name="ConsoleArgs.php" role="php">
+            <tasks:replace from="@package_version@" to="version" type="package-info" />
+          </file>
+          <file name="ConsoleOutput.php" role="php">
+            <tasks:replace from="@package_version@" to="version" type="package-info" />
+          </file>
+          <file name="FileUtil.php" role="php">
             <tasks:replace from="@package_version@" to="version" type="package-info" />
           </file>
         </dir>
@@ -325,6 +331,8 @@
       <install as="phpUnderControl/Tasks/ProjectTask.php" name="src/Tasks/ProjectTask.php" />
       <install as="phpUnderControl/Tasks/TaskI.php" name="src/Tasks/TaskI.php" />
       <install as="phpUnderControl/Util/ConsoleArgs.php" name="src/Util/ConsoleArgs.php" />
+      <install as="phpUnderControl/Util/ConsoleOutput.php" name="src/Util/ConsoleOutput.php" />
+      <install as="phpUnderControl/Util/FileUtil.php" name="src/Util/FileUtil.php" />
       
       <install as="phpuc" name="bin/phpuc.php" />
       <install as="phpuc.bat" name="bin/phpuc.bat" />
@@ -358,6 +366,8 @@
       <install as="phpUnderControl/Tasks/ProjectTask.php" name="src/Tasks/ProjectTask.php" />
       <install as="phpUnderControl/Tasks/TaskI.php" name="src/Tasks/TaskI.php" />
       <install as="phpUnderControl/Util/ConsoleArgs.php" name="src/Util/ConsoleArgs.php" />
+      <install as="phpUnderControl/Util/ConsoleOutput.php" name="src/Util/ConsoleOutput.php" />
+      <install as="phpUnderControl/Util/FileUtil.php" name="src/Util/FileUtil.php" />
       
       <install as="phpuc" name="bin/phpuc.php" />
       <ignore name="bin/phpuc.bat" />
