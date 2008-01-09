@@ -72,6 +72,17 @@ class phpucPhpCodeSnifferTaskTest extends phpucAbstractPearTaskTest
      */
     protected $invalidBin = "#!/usr/bin/env php\n<?php echo 'version 1.0.0RC2';?>";
     
+    protected function setUp()
+    {
+        parent::setUp();
+        
+        if ( stripos( PHP_OS, 'WIN' ) !== false )
+        {
+            $this->validBin   = "@echo off\n\recho version 1.0.0RC3";
+            $this->invalidBin = "@echo off\n\recho version 1.0.0RC2";
+        }
+    }
+    
     /**
      * Tests validate with the required code sniffer version. 
      *

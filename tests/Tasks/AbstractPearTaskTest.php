@@ -146,6 +146,11 @@ abstract class phpucAbstractPearTaskTest extends phpucAbstractTest
         {
             mkdir( PHPUC_TEST_DIR . '/bin' );
         }
+		
+		if ( stripos( PHP_OS, 'WIN' ) !== false )
+		{
+		    $executable .= '.bat';
+		}
         
         $fileName = PHPUC_TEST_DIR . '/bin/' . $executable;
         
