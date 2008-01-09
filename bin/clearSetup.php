@@ -42,7 +42,18 @@
  * @link       http://www.phpundercontrol.org/
  */
 
-$installDir = '/opt/cruisecontrol';
+if ( stripos( PHP_OS, 'WIN' ) === false )
+{
+    $rmcmd      = 'rm -rf';
+    $copycmd    = 'cp -rf';
+    $installDir = '/opt/cruisecontrol';
+}
+else
+{
+    $rmcmd      = 'rmdir /S /Q';
+    $copycmd    = 'xcopy /S /E /I';
+    $installDir = 'c:\Programme\CruiseControl';
+}
 if ( count( $GLOBALS['argv'] ) > 1 )
 {
     $installDir = $GLOBALS['argv'][1];
@@ -64,18 +75,33 @@ if ( $result->length > 0 )
     $config->save( $installDir . '/config.xml' );
 }
 
-$projectDir = "{$installDir}/projects/php-under-control";
+$projectDir = sprintf(
+    "%s%sprojects%sphp-under-control",
+    $installDir,
+    DIRECTORY_SEPARATOR,
+    DIRECTORY_SEPARATOR
+);
 if ( file_exists( $projectDir ) && is_dir( $projectDir ) )
 {
-    system( "rm -rf {$projectDir}" );
+    system( "{$rmcmd} {$projectDir}" );
 }
 
-$webappsOrig = "{$installDir}/webapps/cruisecontrol.orig";
+$webappsOrig =  sprintf(
+    "%s%swebapps%scruisecontrol.orig",
+    $installDir,
+    DIRECTORY_SEPARATOR,
+    DIRECTORY_SEPARATOR
+);
 if ( file_exists( $webappsOrig ) && is_dir( $webappsOrig ) )
 {
-    $webapps = "{$installDir}/webapps/cruisecontrol";
+    $webapps = sprintf(
+        "%s%swebapps%scruisecontrol",
+        $installDir,
+        DIRECTORY_SEPARATOR,
+        DIRECTORY_SEPARATOR
+    );
+ 
+    system( "{$rmcmd} {$webapps}" );
     
-    system( "rm -rf {$webapps}" );
-    
-    system( "cp -rf {$webappsOrig} {$webapps}" );
+    system( "{$copycmd} {$webappsOrig} {$webapps}" );
 }
