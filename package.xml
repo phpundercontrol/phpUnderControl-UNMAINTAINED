@@ -32,6 +32,7 @@
   <license uri="http://www.opensource.org/licenses/bsd-license.php">BSD License</license>
   <notes>
 - New console output class added.
+- Improved Windows Support.
   </notes>
   <contents>
     <dir name="/">

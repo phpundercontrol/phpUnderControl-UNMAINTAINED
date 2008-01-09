@@ -1,3 +1,9 @@
+phpUnderControl 0.2.3
+
+Core
+- New console output class added.
+- Improved Windows Support.
+
 phpUnderControl 0.2.2
 ---------------------
 
