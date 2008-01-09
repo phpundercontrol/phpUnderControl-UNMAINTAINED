@@ -123,6 +123,11 @@ class phpucFileUtilTest extends phpucAbstractTest
      */
     public function testFindExecutableUnix()
     {
+        if ( self::$windows )
+        {
+            $this->markTestSkipped( 'Windows doesn\'t support this test.' );
+            return;
+        }
         $this->initExecutableTest();
         $this->assertEquals( 'svn', phpucFileUtil::findExecutable( 'svn' ) );
     }
@@ -135,6 +140,11 @@ class phpucFileUtilTest extends phpucAbstractTest
      */
     public function testFindExecutableUnixFail()
     {
+        if ( self::$windows )
+        {
+            $this->markTestSkipped( 'Windows doesn\'t support this test.' );
+            return;
+        }
         $this->initExecutableTest();
         try
         {

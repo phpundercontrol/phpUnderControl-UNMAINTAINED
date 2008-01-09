@@ -70,6 +70,14 @@ require_once 'PHPUnit/Framework/TestCase.php';
 abstract class phpucAbstractTest extends PHPUnit_Framework_TestCase
 {
     /**
+     * Is the current operation system Windows?
+     *
+     * @type boolean
+     * @var boolean $windows
+     */
+    public static $windows = false;
+
+    /**
      * Removes all test contents.
      *
      * @return void
@@ -190,6 +198,8 @@ abstract class phpucAbstractTest extends PHPUnit_Framework_TestCase
         {
             mkdir( PHPUC_TEST_DIR );
         }
+        
+        self::$windows = ( stripos( PHP_OS, 'WIN' ) !== false );
     }
 }
 
