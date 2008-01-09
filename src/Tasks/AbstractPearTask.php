@@ -56,9 +56,9 @@
  * @version   Release: @package_version@
  * @link      http://www.phpundercontrol.org/
  * 
- * @property      string $cliTool        The PEAR cli command line tool.
- * @property      string $pearInstallDir An optional PEAR install directory.
- * @property-read string $executable     The full command file name.
+ * @property      string $cliTool       The PEAR cli command line tool.
+ * @property      string $pearBinaryDir An optional PEAR install directory.
+ * @property-read string $executable    The full command file name.
  */
 abstract class phpucAbstractPearTask extends phpucAbstractTask
 {
@@ -73,9 +73,9 @@ abstract class phpucAbstractPearTask extends phpucAbstractTask
     {
         parent::__construct( $args );
         
-        $this->properties['cliTool']        = null;
-        $this->properties['executable']     = null;
-        $this->properties['pearInstallDir'] = null;
+        $this->properties['cliTool']       = null;
+        $this->properties['executable']    = null;
+        $this->properties['pearBinaryDir'] = null;
         
         $bindir = null;
         if ( $args->hasOption( 'pear-executables-dir' ) )
@@ -83,8 +83,8 @@ abstract class phpucAbstractPearTask extends phpucAbstractTask
             $bindir = $args->getOption( 'pear-executables-dir' );
         }
         
-        $this->cliTool        = $cliTool;
-        $this->pearInstallDir = $bindir;
+        $this->cliTool       = $cliTool;
+        $this->pearBinaryDir = $bindir;
     }
     
     /**
@@ -97,13 +97,13 @@ abstract class phpucAbstractPearTask extends phpucAbstractTask
     public final function validate()
     {
         // Get possible or configured pear path
-        if ( $this->pearInstallDir === null )
+        if ( $this->pearBinaryDir === null )
         {
             $paths = explode( PATH_SEPARATOR, getenv( 'PATH' ) );
         }
         else
         {
-            $paths = array( $this->pearInstallDir );
+            $paths = array( $this->pearBinaryDir );
         }
         $paths = array_unique( $paths );
         
@@ -139,7 +139,7 @@ abstract class phpucAbstractPearTask extends phpucAbstractTask
                 )
             );
         }
-        else if ( $this->pearInstallDir === null )
+        else if ( $this->pearBinaryDir === null )
         {
             $dir = dirname( $this->executable );
             if ( strpos( getenv( 'PATH' ), $dir ) !== false )
@@ -168,7 +168,7 @@ abstract class phpucAbstractPearTask extends phpucAbstractTask
                 $this->properties[$name] = $value;
                 break;
                 
-            case 'pearInstallDir':
+            case 'pearBinaryDir':
                 if ( trim( $value ) === '' )
                 {
                     $this->properties[$name] = null;
