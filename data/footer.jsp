@@ -35,7 +35,7 @@
  ********************************************************************************--%>
 <%@ page language="java" pageEncoding="UTF-8"%>
 <div id="footer">
-  <a href="http://www.phpundercontrol.org">phpUnderControl</a>
+  <a href="http://www.phpundercontrol.org">phpUnderControl @package_version@</a>
   is Copyright (C) 2007
   by <a href="http://www.manuel-pichler.de/">Manuel Pichler</a> hosted
   on <a href="http://www.phpunit.de/">phpunit.de</a>.
