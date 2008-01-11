@@ -313,7 +313,7 @@
 
 <html>
 <head>
-  <title><%= name%> phpUnderControl @package_version@ at <%= hostname %></title>
+  <title><%= name%> phpUnderControl - SVN at <%= hostname %></title>
 
   <base href="<%=baseURL%>"/>
   <link type="application/rss+xml" rel="alternate" href="rss" title="RSS"/>

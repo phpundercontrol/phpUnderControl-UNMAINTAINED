@@ -223,14 +223,14 @@
           <file name="phpunit-pmd-details.xsl" role="data" />
         </dir>
         <file name="footer.jsp" role="data">
-          <tasks:replace from="@package_version@" to="version" type="package-info" />
+          <tasks:replace from="- SVN" to="version" type="package-info" />
         </file>
         <file name="header.jsp" role="data" />
         <file name="index.jsp" role="data">
-          <tasks:replace from="@package_version@" to="version" type="package-info" />
+          <tasks:replace from="- SVN" to="version" type="package-info" />
         </file>
         <file name="main.jsp" role="data">
-          <tasks:replace from="@package_version@" to="version" type="package-info" />
+          <tasks:replace from="- SVN" to="version" type="package-info" />
         </file>
         <file name="metrics.jsp" role="data" />
         <file name="phpcs.jsp" role="data" />

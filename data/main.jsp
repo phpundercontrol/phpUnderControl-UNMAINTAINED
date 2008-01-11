@@ -48,7 +48,7 @@
                       "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html>
   <head>
-    <title><%= ccname%> phpUnderControl @package_version@ - Build Results</title>
+    <title><%= ccname%> phpUnderControl - SVN - Build Results</title>
     <base href="<%=request.getScheme()%>://<%=request.getServerName()%>:<%=request.getServerPort()%><%=request.getContextPath()%>/" />
     <link type="text/css" rel="stylesheet" href="css/SyntaxHighlighter.css"/>
     <link type="text/css" rel="stylesheet" href="css/php-under-control.css"/>
