@@ -59,9 +59,7 @@ a {
 }
 
 div#container {
-    background: transparent
-        url('../images/php-under-control/header-right.png') right top
-        no-repeat;
+    background: transparent url('../images/php-under-control/header-right.png') right top no-repeat;
     position: relative;
     width: 100%;
 }
@@ -70,18 +68,14 @@ div#container {
      * Header/Headline styles
      */
 div#container h1 {
-    background: transparent
-        url('../images/php-under-control/header-center.png') left top repeat-x
-        ;
+    background: transparent url('../images/php-under-control/header-center.png') left top repeat-x;
     color: #eeeeec;
     font-size: 16px;
     position: relative;
 }
 
 div#container h1 a {
-    background: transparent
-        url('../images/php-under-control/header-left-logo.png') left top
-        repeat-x;
+    background: transparent url('../images/php-under-control/header-left-logo.png') left top repeat-x;
     display: block;
     height: 79px;
     text-indent: -9999px;
@@ -89,8 +83,8 @@ div#container h1 a {
 }
 
 /**
-     * Header form styles
-     */
+ * Header form styles
+ */
 div#container form#cc-project,div#container form#cc-build {
     position: absolute;
     top: 25px;
@@ -141,15 +135,14 @@ div#container h2#cc-build-status {
 }
 
 /**
-     * Navigation styles
-     */
+ * Navigation styles
+ */
 div#container table img {
     display: none;
 }
 
 div#container table div {
-    background: transparent
-        url('../images/php-under-control/tab-inactive.png') 0 0 repeat-x; */
+    background: transparent url('../images/php-under-control/tab-inactive.png') 0 0 repeat-x;
     background-color: #babdb6;
     height: 21px;
 }
@@ -177,8 +170,7 @@ div#container .tab-table .tabs a,.tab-table .tabs-selected {
 }
 
 div#container .tab-table .tabs a:hover,.tab-table .tabs-selected {
-    background: transparent
-        url('../images/php-under-control/tab-active.png') 0 0 repeat-x;
+    background: transparent url('../images/php-under-control/tab-active.png') 0 0 repeat-x;
 }
 
 /**
@@ -243,7 +235,7 @@ div#container table.result tbody tr.failure th {
 }
 
 div#container table.result tbody td.info,div#container table.result tbody td.error,div#container table.result tbody td.failure,div#container table.result tbody td.warning,div#container table.result tbody td.success
-    {
+{
     background: transparent none 4px 50% no-repeat;
     line-height: 16px;
     padding-left: 24px;
