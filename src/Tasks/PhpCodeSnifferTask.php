@@ -132,7 +132,7 @@ class phpucPhpCodeSnifferTask extends phpucAbstractPearTask
         $regexp = '/version\s+([0-9\.]+(RC[0-9])?)/';
         $retval = exec( escapeshellcmd( "{$binary} --version" ) );
         
-        chdir ( $cwd );
+        chdir( $cwd );
 
         if ( preg_match( $regexp, $retval, $match ) === 0 )
         {
