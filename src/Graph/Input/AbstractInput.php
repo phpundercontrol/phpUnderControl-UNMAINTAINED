@@ -87,6 +87,11 @@ abstract class phpucAbstractInput
     const MODE_COUNT = 1;
     
     /**
+     * This identifier the value mode which takes the raw node value.
+     */
+    const MODE_VALUE = 2;
+    
+    /**
      * The human readable input type title.
      *
      * @type string
@@ -177,13 +182,16 @@ abstract class phpucAbstractInput
     {
         switch ( $name )
         {
-            case 'data':
             case 'type':
             case 'title':
+            case 'rawData':
             case 'fileName':
             case 'yAxisLabel':
             case 'xAxisLabel':
                 return $this->$name;
+                
+            case 'data':
+                return $this->postProcessLog( $this->data );
                 
             default:
                 throw new OutOfRangeException(
@@ -216,6 +224,11 @@ abstract class phpucAbstractInput
     {
         foreach ( $this->rules as $rule )
         {
+            if ( !isset( $this->data[$rule->label] ) )
+            {
+                $this->data[$rule->label] = array();
+            }
+            
             $nodeList = $xpath->query( $rule->xpath );
             
             switch ( $rule->mode )
@@ -226,6 +239,10 @@ abstract class phpucAbstractInput
                     
                 case self::MODE_SUM:
                     $data = $this->processLogSum( $nodeList );
+                    break;
+                    
+                case self::MODE_VALUE:
+                    $data = $this->processLogValue( $nodeList );
                     break;
             }
             
@@ -248,6 +265,21 @@ abstract class phpucAbstractInput
         return $nodeList->length;
     }
     
+    protected function processLogValue( DOMNodeList $nodeList )
+    {
+        $value = '';
+        foreach ( $nodeList as $node )
+        {
+            $value .= $node->nodeValue;
+        }
+        return $value;
+    }
+    
+    protected function postProcessLog( array $logs )
+    {
+        return $logs;
+    }
+    
     /**
      * Adds a xpath rule to this input object. 
      *
@@ -256,7 +288,5 @@ abstract class phpucAbstractInput
     protected function addRule( phpucInputRule $rule )
     {
         $this->rules[] = $rule;
-        
-        $this->data[$rule->label] = array();
     }
 }

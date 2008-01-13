@@ -37,7 +37,7 @@
  * POSSIBILITY OF SUCH DAMAGE.
  * 
  * @category  QualityAssurance
- * @package   ...
+ * @package   Graph
  * @author    Manuel Pichler <mapi@manuel-pichler.de>
  * @copyright 2007-2008 Manuel Pichler. All rights reserved.
  * @license   http://www.opensource.org/licenses/bsd-license.php  BSD License
@@ -46,7 +46,7 @@
  */
 
 /**
- * Displays a metrics line chart.
+ * Displays a metrics pie chart.
  *
  * @category  QualityAssurance
  * @package   Graph
@@ -55,10 +55,8 @@
  * @license   http://www.opensource.org/licenses/bsd-license.php  BSD License
  * @version   Release: @package_version@
  * @link      http://www.phpundercontrol.org/
- * 
- * @property phpucAbstractInput $input The input data source.
  */
-class phpucLineChart extends ezcGraphLineChart implements phpucChartI
+class phpucPieChart extends ezcGraphPieChart implements phpucChartI
 {
     public function __construct()
     {
@@ -76,66 +74,50 @@ class phpucLineChart extends ezcGraphLineChart implements phpucChartI
      */
     public function setInput( phpucAbstractInput $input )
     {
-        $this->title        = $input->title;
-        $this->yAxis->label = $input->yAxisLabel;
-        $this->xAxis->label = $input->xAxisLabel;
+        $this->title = $input->title;
         
-        $this->data = new ezcGraphChartDataContainer( $this );
-        
-        foreach ( $input->data as $label => $data )
-        {
-            $this->data[$label]         = new ezcGraphArrayDataSet( $data );
-            $this->data[$label]->symbol = ezcGraph::BULLET;
-
-            foreach ( $this->data[$label] as $key => $v )
-            {
-                $this->data[$label]->symbol[$key] = ezcGraph::NO_SYMBOL;
-            }
-        }
+        $this->data          = new ezcGraphChartDataContainer( $this );
+        $this->data['label'] = new ezcGraphArrayDataSet( $input->data );
     }
     
     protected function init()
     {
         $this->palette = new phpucGraphPalette();
         
-        $this->renderer->options->legendSymbolGleam = .3;
+        $this->legend = false;
         
-        $this->options->symbolSize    = 1;
-        $this->options->lineThickness = 2;
-        $this->options->fillLines     = 220;
-        
-        $this->initAxis();
         $this->initTitle();
-        $this->initLegend();
+        $this->initRenderer();
     }
     
     protected function initTitle()
     {
-        $this->title->background  = '#d3d7cf';
-        $this->title->padding     = 1;
-        $this->title->margin      = 1;
-        $this->title->border      = '#555753';
+        $this->title->background = '#d3d7cf';
+        $this->title->padding = 1;
+        $this->title->margin = 1;
+        $this->title->border = '#555753';
         $this->title->borderWidth = 1;
     }
     
-    protected function initLegend()
+    protected function initRenderer()
     {
-        $this->legend->position    = ezcGraph::BOTTOM;
-        $this->legend->padding     = 2;
-        $this->legend->margin      = 1;
-        $this->legend->border      = '#555753';
-        $this->legend->borderWidth = 1;
-    }
-    
-    protected function initAxis()
-    {
-        $this->yAxis->axisLabelRenderer = new ezcGraphAxisCenteredLabelRenderer();
-        $this->yAxis->font->maxFontSize = 10;
-        $this->yAxis->label             = 'FOO';
+        $this->renderer = new ezcGraphRenderer3d();
 
-        $this->xAxis                    = new ezcGraphChartElementNumericAxis();
-        $this->xAxis->axisLabelRenderer = new ezcGraphAxisCenteredLabelRenderer();
-        $this->xAxis->label             = 'BAR';
-        $this->xAxis->font->maxFontSize = 10;
+        $this->renderer->options->moveOut = .0;
+
+        $this->renderer->options->pieChartGleam      = .3;
+        $this->renderer->options->pieChartGleamColor = '#FFFFFF';
+
+        $this->renderer->options->pieChartShadowSize  = 5;
+        $this->renderer->options->pieChartShadowColor = '#2e3436';
+        $this->renderer->options->dataBorder          = .2;
+
+        $this->renderer->options->legendSymbolGleam      = .3;
+        $this->renderer->options->legendSymbolGleamColor = '#FFFFFF';
+
+        $this->renderer->options->pieChartSymbolColor = '#55575388';
+
+        $this->renderer->options->pieChartHeight   = 6;
+        $this->renderer->options->pieChartRotation = .8;
     }
 }
