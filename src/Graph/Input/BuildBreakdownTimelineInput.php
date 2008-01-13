@@ -56,29 +56,53 @@
  * @version   Release: @package_version@
  * @link      http://www.phpundercontrol.org/
  */
-class phpucBuildBreakdownInput extends phpucAbstractInput
+class phpucBuildBreakdownTimelineInput extends phpucAbstractInput
 {
     public function __construct()
     {
-        parent::__construct( 'Breakdown of build types', '01-breakdown-of-build-types', self::TYPE_PIE );
+        parent::__construct( 'Breakdown of build timeline', '02-breakdown-of-build-timeline', self::TYPE_DOT );
         
         $this->addRule(
             new phpucInputRule(
-                'lastsuccessfulbuild',
-                '/cruisecontrol/info/property[@name = "lastsuccessfulbuild"]/@value',
+                'builddate',
+                '/cruisecontrol/info/property[@name = "builddate"]/@value',
                 self::MODE_VALUE
+                
+            )
+        );
+        
+        $this->addRule(
+            new phpucInputRule(
+                'builddate_error',
+                '/cruisecontrol[build/@error]/info/property[@name = "builddate"]/@value',
+                self::MODE_VALUE
+                
             )
         );
     }
     
     protected function postProcessLog( array $logs )
     {
-        $total = $logs['lastsuccessfulbuild'];
-        $good  = count( array_unique( $total ) );
+        $data = array();
         
-        return array(
-            'Good Builds'    =>  $good,
-            'Broken Builds'  =>  ( count( $total ) - $good ),
-        );
+        foreach ( $logs['builddate'] as $date )
+        {
+            // Generate time stamp
+            $time = strtotime( $date );
+            
+            // extract hour and minute
+            list( $hour, $minute ) = explode( ':', date( 'H:i', $time ) );
+
+            $label = 'Good Builds';
+            if ( in_array( $date, $logs['builddate_error'] ) )
+            {
+                $label = 'Broken Builds';
+            }
+            
+            $data[$label][$time] = mktime( $hour, $minute, 0, 0, 0, 0 );
+        }
+
+        //print_r( $data );
+        return $data;
     }
 }

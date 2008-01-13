@@ -77,6 +77,12 @@ abstract class phpucAbstractInput
     const TYPE_LINE = 1;
     
     /**
+     * Identifies an input implementation for line charts without lines but
+     * highlights.
+     */
+    const TYPE_DOT = 2;
+    
+    /**
      * This identifies the sum mode where all found records are summed up.
      */
     const MODE_SUM = 0;
@@ -161,7 +167,7 @@ abstract class phpucAbstractInput
         $this->title    = $title;
         $this->fileName = $fileName;
         
-        if ( !in_array( $type, array( self::TYPE_PIE, self::TYPE_LINE ) ) )
+        if ( !in_array( $type, array( self::TYPE_PIE, self::TYPE_LINE, self::TYPE_DOT ) ) )
         {
             throw new InvalidArgumentException( 'Invalid input type given.' );
         }

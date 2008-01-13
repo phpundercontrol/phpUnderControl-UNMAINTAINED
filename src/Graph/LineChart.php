@@ -60,6 +60,8 @@
  */
 class phpucLineChart extends ezcGraphLineChart implements phpucChartI
 {
+    protected $showSymbol = false;
+    
     public function __construct()
     {
         parent::__construct();
@@ -87,6 +89,11 @@ class phpucLineChart extends ezcGraphLineChart implements phpucChartI
             $this->data[$label]         = new ezcGraphArrayDataSet( $data );
             $this->data[$label]->symbol = ezcGraph::BULLET;
 
+            if ( $this->showSymbol === true )
+            {
+                continue;
+            }
+            
             foreach ( $this->data[$label] as $key => $v )
             {
                 $this->data[$label]->symbol[$key] = ezcGraph::NO_SYMBOL;
@@ -101,7 +108,7 @@ class phpucLineChart extends ezcGraphLineChart implements phpucChartI
         $this->renderer->options->legendSymbolGleam = .3;
         
         $this->options->symbolSize    = 1;
-        $this->options->lineThickness = 2;
+        $this->options->lineThickness = 1;
         $this->options->fillLines     = 220;
         
         $this->initAxis();
@@ -131,11 +138,9 @@ class phpucLineChart extends ezcGraphLineChart implements phpucChartI
     {
         $this->yAxis->axisLabelRenderer = new ezcGraphAxisCenteredLabelRenderer();
         $this->yAxis->font->maxFontSize = 10;
-        $this->yAxis->label             = 'FOO';
 
         $this->xAxis                    = new ezcGraphChartElementNumericAxis();
         $this->xAxis->axisLabelRenderer = new ezcGraphAxisCenteredLabelRenderer();
-        $this->xAxis->label             = 'BAR';
         $this->xAxis->font->maxFontSize = 10;
     }
 }

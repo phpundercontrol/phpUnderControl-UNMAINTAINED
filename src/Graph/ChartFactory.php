@@ -62,6 +62,10 @@ class phpucChartFactory
     {
         switch ( $input->type )
         {
+            case phpucAbstractInput::TYPE_DOT:
+                $chart = new phpucDotChart();
+                break;
+                
             case phpucAbstractInput::TYPE_LINE:
                 $chart = new phpucLineChart();
                 break;
