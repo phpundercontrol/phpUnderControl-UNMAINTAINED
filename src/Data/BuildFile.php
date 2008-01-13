@@ -160,7 +160,6 @@ class phpucBuildFile extends DOMDocument
         throw new OutOfRangeException(
             sprintf( 'Unknown or readonly property $%s.', $name )
         );
-        break;
     }
     
     /**
