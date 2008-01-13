@@ -190,6 +190,11 @@ abstract class phpucAbstractTest extends PHPUnit_Framework_TestCase
         // Register autoload
         spl_autoload_register( array( 'phpucPhpUnderControl', 'autoload' ) );
         
+        // Load ezcBase class
+        require_once 'ezc/Base/base.php';
+        
+        spl_autoload_register( array( 'ezcBase', 'autoload' ) );
+        
         phpucConsoleOutput::set( new phpucConsoleOutput() );
         
         PHPUnit_Util_Filter::addDirectoryToWhitelist( PHPUC_SOURCE );
