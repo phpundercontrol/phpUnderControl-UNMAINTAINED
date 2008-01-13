@@ -55,19 +55,50 @@
  * @license   http://www.opensource.org/licenses/bsd-license.php  BSD License
  * @version   Release: @package_version@
  * @link      http://www.phpundercontrol.org/
+ * 
+ * @property phpucAbstractInput $input The input data source.
  */
 class phpucLineChart extends ezcGraphLineChart
 {
     public function __construct()
     {
+        parent::__construct();
+        
         $this->init();
+    }
+    
+    /**
+     * Sets the input instance for the next rendering process.
+     *
+     * @param phpucAbstractInput $input The input object.
+     * 
+     * @return void
+     */
+    public function setInput( phpucAbstractInput $input )
+    {
+        $this->title        = $input->title;
+        $this->yAxis->label = $input->yAxisLabel;
+        $this->xAxis->label = $input->xAxisLabel;
+        
+        $this->data = new ezcGraphChartDataContainer( $this );
+        
+        foreach ( $input->data as $label => $data )
+        {
+            $this->data[$label]         = new ezcGraphArrayDataSet( $data );
+            $this->data[$label]->symbol = ezcGraph::BULLET;
+
+            foreach ( $this->data[$label] as $key => $v )
+            {
+                $this->data[$label]->symbol[$key] = ezcGraph::NO_SYMBOL;
+            }
+        }
     }
     
     protected function init()
     {
         $this->palette = new phpucGraphPalette();
         
-        $graph->renderer->options->legendSymbolGleam = .3;
+        $this->renderer->options->legendSymbolGleam = .3;
         
         $this->options->symbolSize    = 1;
         $this->options->lineThickness = 2;
@@ -100,8 +131,11 @@ class phpucLineChart extends ezcGraphLineChart
     {
         $this->yAxis->axisLabelRenderer = new ezcGraphAxisCenteredLabelRenderer();
         $this->yAxis->font->maxFontSize = 10;
+        $this->yAxis->label             = 'FOO';
 
         $this->xAxis                    = new ezcGraphChartElementNumericAxis();
         $this->xAxis->axisLabelRenderer = new ezcGraphAxisCenteredLabelRenderer();
+        $this->xAxis->label             = 'BAR';
+        $this->xAxis->font->maxFontSize = 10;
     }
 }

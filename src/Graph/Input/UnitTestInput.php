@@ -47,7 +47,7 @@
  */
 
 /**
- * This class implements the graph input for the unit coverage metric view.
+ * This class implements the graph input for the unit tests overview.
  *
  * @category   QualityAssurance
  * @package    Graph
@@ -58,43 +58,29 @@
  * @version    Release: @package_version@
  * @link       http://www.phpundercontrol.org/
  */
-class phpucUnitCoverageInput extends phpucAbstractInput
+class phpucUnitTestInput extends phpucAbstractInput
 {
     /**
-     * Constructs a new unit coverage input object.
+     * Constructs a new unit test input object.
      */
     public function __construct()
     {
-        parent::__construct( 'Unit coverage', '03-unit-coverage', self::TYPE_LINE );
+        parent::__construct( 'Unit Tests', '04-unit-tests', self::TYPE_LINE );
         
-        $this->yAxisLabel = 'Lines';
+        $this->yAxisLabel = 'Tests';
         $this->xAxisLabel = 'Build ';
         
         $this->addRule(
             new phpucInputRule(
-                'Lines of code',
-                '/cruisecontrol/coverage/project/file/metrics/@loc',
-                self::MODE_SUM
-            )
-        );
-        $this->addRule(
-            new phpucInputRule(
-                'Non comment lines',
-                '/cruisecontrol/coverage/project/file/metrics/@ncloc',
-                self::MODE_SUM
-            )
-        );
-        $this->addRule(
-            new phpucInputRule(
-                'Executable lines',
-                '/cruisecontrol/coverage/project/file/line',
+                'Total',
+                '/cruisecontrol/testsuites//testcase',
                 self::MODE_COUNT
             )
         );
         $this->addRule(
             new phpucInputRule(
-                'Covered lines',
-                '/cruisecontrol/coverage/project/file/line[@count != 0]',
+                'Failures',
+                '/cruisecontrol/testsuites//testcase[failure]',
                 self::MODE_COUNT
             )
         );

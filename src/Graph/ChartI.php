@@ -37,7 +37,7 @@
  * POSSIBILITY OF SUCH DAMAGE.
  * 
  * @category  QualityAssurance
- * @package   Data
+ * @package   ...
  * @author    Manuel Pichler <mapi@manuel-pichler.de>
  * @copyright 2007-2008 Manuel Pichler. All rights reserved.
  * @license   http://www.opensource.org/licenses/bsd-license.php  BSD License
@@ -46,83 +46,26 @@
  */
 
 /**
- * This model/data class reflects a single build log file.
+ * Displays a metrics line chart.
  *
  * @category  QualityAssurance
- * @package   Data
+ * @package   Graph
  * @author    Manuel Pichler <mapi@manuel-pichler.de>
  * @copyright 2007-2008 Manuel Pichler. All rights reserved.
  * @license   http://www.opensource.org/licenses/bsd-license.php  BSD License
  * @version   Release: @package_version@
  * @link      http://www.phpundercontrol.org/
  * 
- * @property-read string $timestamp The cruise control timestamp format.
- * @property-read string $fileName  The full log file filename.
+ * @property phpucAbstractInput $input The input data source.
  */
-class phpucLogFile extends DOMDocument
+interface phpucChartI
 {
     /**
-     * Virtual properties for a single build log file.
+     * Sets the input instance for the next rendering process.
      *
-     * @type array<mixed>
-     * @var array(string=>mixed) $properties
-     */
-    protected $properties = array(
-        'timestamp'  =>  null,
-        'fileName'   =>  null,        
-    );
-    
-    public function __construct( $fileName )
-    {
-        parent::__construct();
-        
-        $this->load( $fileName );
-        
-        // Extract timestamp from file name
-        preg_match( '/log([0-9]+)\w/', basename( $fileName ), $match );
-        
-        $this->properties['timestamp'] = $match[1];
-        $this->properties['fileName']  = $fileName;
-    }
-    
-    /**
-     * Magic property getter method.
-     *
-     * @param string $name The property name.
-     * 
-     * @return mixed
-     * @throws OutOfRangeException If the requested property doesn't exist or
-     *         is writonly.
-     * @ignore 
-     */
-    public function __get( $name )
-    {
-        if ( array_key_exists( $name, $this->properties ) )
-        {
-            return $this->properties[$name];
-        }
-        throw new OutOfRangeException(
-            sprintf( 'Unknown or writonly property $%s.', $name )
-        );
-    }
-    
-    /**
-     * Magic property setter method.
-     *
-     * @param string $name  The property name.
-     * @param mixed  $value The property value.
+     * @param phpucAbstractInput $input The input object.
      * 
      * @return void
-     * @throws OutOfRangeException If the requested property doesn't exist or
-     *         is readonly.
-     * @throws InvalidArgumentException If the given value has an unexpected 
-     *         format or an invalid data type.
-     * @ignore 
      */
-    public function __set( $name, $value )
-    {
-        throw new OutOfRangeException(
-            sprintf( 'Unknown or readonly property $%s.', $name )
-        );
-    }
+    function setInput( phpucAbstractInput $input );
 }

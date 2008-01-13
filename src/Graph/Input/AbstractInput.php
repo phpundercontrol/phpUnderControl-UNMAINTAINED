@@ -57,9 +57,25 @@
  * @license    http://www.opensource.org/licenses/bsd-license.php  BSD License
  * @version    Release: @package_version@
  * @link       http://www.phpundercontrol.org/
+ * 
+ * @property-read string               $title      The human readable data title.
+ * @property-read integer              $type       The output chart type.
+ * @property-read array(string=>mixed) $data       The extracted log file data.
+ * @property-read string               $yAxisLabel An optional label for the y-axis.
+ * @property-read string               $xAxisLabel An optional label for the x-axis.
  */
 abstract class phpucAbstractInput
 {
+    /**
+     * Identifies an input implementation for pie charts.
+     */
+    const TYPE_PIE = 0;
+    
+    /**
+     * Identifies an input implementation for line charts.
+     */
+    const TYPE_LINE = 1;
+    
     /**
      * This identifies the sum mode where all found records are summed up.
      */
@@ -71,12 +87,166 @@ abstract class phpucAbstractInput
     const MODE_COUNT = 1;
     
     /**
+     * The human readable input type title.
+     *
+     * @type string
+     * @var string $title
+     */
+    protected $title = null;
+    
+    /**
+     * An optional label for the y-axis.
+     *
+     * @type string
+     * @var string $yAxisLabel
+     */
+    protected $yAxisLabel = '';
+    
+    /**
+     * An optional label for the x-axis.
+     *
+     * @type string
+     * @var string $xAxisLabel
+     */
+    protected $xAxisLabel = '';
+    
+    /**
+     * The output image file name.
+     *
+     * @type string
+     * @var string $fileName
+     */
+    private $fileName = null;
+    
+    /**
+     * The output chart type.
+     * 
+     * @type integer
+     * @var integer $type
+     */
+    private $type = null;
+    
+    /**
+     * The extracted log file data.
+     *
+     * @type array<mixed>
+     * @var array(string=>mixed) $data
+     */
+    private $data = array();
+    
+    /**
      * List of input rules.
      *
      * @type array<phpucInputRule>
      * @var array(phpucInputRule) $rules
      */
     private $rules = array();
+    
+    /**
+     * Constructs a new input type implementation.
+     *
+     * @param string  $title    The human readable input type title.
+     * @param string  $fileName The output image file name.
+     * @param integer $type     The output chart type.
+     * 
+     * @throws InvalidArgumentException If the given type is unknown.
+     */
+    public function __construct( $title, $fileName, $type )
+    {
+        $this->title    = $title;
+        $this->fileName = $fileName;
+        
+        if ( !in_array( $type, array( self::TYPE_PIE, self::TYPE_LINE ) ) )
+        {
+            throw new InvalidArgumentException( 'Invalid input type given.' );
+        }
+        $this->type = $type;
+    }
+    
+    /**
+     * Magic property getter method.
+     *
+     * @param string $name The property name.
+     * 
+     * @return mixed
+     * @throws OutOfRangeException If the requested property doesn't exist or
+     *         is writonly.
+     * @ignore 
+     */
+    public function __get( $name )
+    {
+        switch ( $name )
+        {
+            case 'data':
+            case 'type':
+            case 'title':
+            case 'fileName':
+            case 'yAxisLabel':
+            case 'xAxisLabel':
+                return $this->$name;
+                
+            default:
+                throw new OutOfRangeException(
+                    sprintf( 'Unknown or writonly property $%s.', $name )
+                );
+        }
+    }
+    
+    /**
+     * Magic property setter method.
+     *
+     * @param string $name  The property name.
+     * @param mixed  $value The property value.
+     * 
+     * @return void
+     * @throws OutOfRangeException If the requested property doesn't exist or
+     *         is readonly.
+     * @throws InvalidArgumentException If the given value has an unexpected 
+     *         format or an invalid data type.
+     * @ignore 
+     */
+    public function __set( $name, $value )
+    {
+        throw new OutOfRangeException(
+            sprintf( 'Unknown or readonly property $%s.', $name )
+        );
+    }
+    
+    public function processLog( DOMXPath $xpath )
+    {
+        foreach ( $this->rules as $rule )
+        {
+            $nodeList = $xpath->query( $rule->xpath );
+            
+            switch ( $rule->mode )
+            {
+                case self::MODE_COUNT:
+                    $data = $this->processLogCount( $nodeList );
+                    break;
+                    
+                case self::MODE_SUM:
+                    $data = $this->processLogSum( $nodeList );
+                    break;
+            }
+            
+            $this->data[$rule->label][] = $data;
+        }
+    }
+    
+    protected function processLogSum( DOMNodeList $nodeList )
+    {
+        $sum = 0;
+        foreach ( $nodeList as $node )
+        {
+            $sum += (int) $node->nodeValue;
+        }
+        return $sum;
+    }
+    
+    protected function processLogCount( DOMNodeList $nodeList )
+    {
+        return $nodeList->length;
+    }
     
     /**
      * Adds a xpath rule to this input object. 
@@ -86,5 +256,7 @@ abstract class phpucAbstractInput
     protected function addRule( phpucInputRule $rule )
     {
         $this->rules[] = $rule;
+        
+        $this->data[$rule->label] = array();
     }
 }

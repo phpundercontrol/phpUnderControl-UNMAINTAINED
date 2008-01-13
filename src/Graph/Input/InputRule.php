@@ -58,7 +58,7 @@
  * @version    Release: @package_version@
  * @link       http://www.phpundercontrol.org/
  */
-abstract class phpucInputRule
+class phpucInputRule
 {
     /**
      * The human readable label.

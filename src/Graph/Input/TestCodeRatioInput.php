@@ -47,54 +47,53 @@
  */
 
 /**
- * This class implements the graph input for the unit coverage metric view.
+ * This class implements the graph input for the tests to normal code ratio.
  *
  * @category   QualityAssurance
  * @package    Graph
- * @subpackage Input
  * @author     Manuel Pichler <mapi@manuel-pichler.de>
  * @copyright  2007-2008 Manuel Pichler. All rights reserved.
  * @license    http://www.opensource.org/licenses/bsd-license.php  BSD License
  * @version    Release: @package_version@
  * @link       http://www.phpundercontrol.org/
  */
-class phpucUnitCoverageInput extends phpucAbstractInput
+class phpucTestCodeRatioInput extends phpucAbstractInput
 {
     /**
      * Constructs a new unit coverage input object.
      */
     public function __construct()
     {
-        parent::__construct( 'Unit coverage', '03-unit-coverage', self::TYPE_LINE );
+        parent::__construct( 'Test to Code ratio', '05-test-to-code-ratio', self::TYPE_LINE );
         
-        $this->yAxisLabel = 'Lines';
+        $this->yAxisLabel = 'Classes / Methods';
         $this->xAxisLabel = 'Build ';
         
         $this->addRule(
             new phpucInputRule(
-                'Lines of code',
-                '/cruisecontrol/coverage/project/file/metrics/@loc',
-                self::MODE_SUM
-            )
-        );
-        $this->addRule(
-            new phpucInputRule(
-                'Non comment lines',
-                '/cruisecontrol/coverage/project/file/metrics/@ncloc',
-                self::MODE_SUM
-            )
-        );
-        $this->addRule(
-            new phpucInputRule(
-                'Executable lines',
-                '/cruisecontrol/coverage/project/file/line',
+                'Classes',
+                '/cruisecontrol/coverage/project/file/class',
                 self::MODE_COUNT
             )
         );
         $this->addRule(
             new phpucInputRule(
-                'Covered lines',
-                '/cruisecontrol/coverage/project/file/line[@count != 0]',
+                'Methods',
+                '/cruisecontrol/coverage/project/file/line[@type="method"]',
+                self::MODE_COUNT
+            )
+        );
+        $this->addRule(
+            new phpucInputRule(
+                'Test Classes',
+                '/cruisecontrol/testsuites//testsuite[testcase]',
+                self::MODE_SUM
+            )
+        );
+        $this->addRule(
+            new phpucInputRule(
+                'Test Methods',
+                '/cruisecontrol/testsuites//testsuite/testcase',
                 self::MODE_COUNT
             )
         );
