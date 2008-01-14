@@ -47,13 +47,15 @@
 
 if ( strpos( '@php_dir@', '@php_dir' ) === false )
 {
-    define( 'PHPUC_DATA_DIR', '@data_dir@/phpUnderControl' );
+    define( 'PHPUC_DATA_DIR',    '@data_dir@/phpUnderControl' );
     define( 'PHPUC_INSTALL_DIR', '@php_dir@/phpUnderControl' );
+    define( 'PHPUC_EZC_BASE',    '@php_dir@/ezc/Base/base.php' );
 }
 else
 {
     define( 'PHPUC_INSTALL_DIR', dirname( __FILE__ ) );
-    define( 'PHPUC_DATA_DIR', realpath( dirname( __FILE__ ) . '/..' ) );
+    define( 'PHPUC_DATA_DIR',    realpath( PHPUC_INSTALL_DIR . '/..' ) );
+    define( 'PHPUC_EZC_BASE',    PHPUC_DATA_DIR . '/lib/ezc/Base/src/base.php' );
 }
 
 /**
@@ -76,35 +78,53 @@ class phpucPhpUnderControl
      * @var array(string=>string) $autoloadFiles
      */
     private static $autoloadFiles = array(
-        'phpucAbstractCommand'           =>  'Commands/AbstractCommand.php',
-        'phpucExampleCommand'            =>  'Commands/ExampleCommand.php',
-        'phpucInstallCommand'            =>  'Commands/InstallCommand.php',
-        'phpucProjectCommand'            =>  'Commands/ProjectCommand.php',
-        'phpucBuildFile'                 =>  'Data/BuildFile.php',
-        'phpucBuildTarget'               =>  'Data/BuildTarget.php',
-        'phpucConfigArtifactsPublisher'  =>  'Data/ConfigArtifactsPublisher.php',
-        'phpucConfigFile'                =>  'Data/ConfigFile.php',
-        'phpucConfigProject'             =>  'Data/ConfigProject.php',
-        'phpucLogFile'                   =>  'Data/LogFile.php',
-        'phpucConsoleException'          =>  'Exceptions/ConsoleException.php',
-        'phpucErrorException'            =>  'Exceptions/ErrorException.php',
-        'phpucExecuteException'          =>  'Exceptions/ExecuteException.php',
-        'phpucValidateException'         =>  'Exceptions/ValidateException.php',
-        'phpucAbstractPearTask'          =>  'Tasks/AbstractPearTask.php',
-        'phpucAbstractTask'              =>  'Tasks/AbstractTask.php',
-        'phpucCreateFileTask'            =>  'Tasks/CreateFileTask.php',
-        'phpucCruiseControlTask'         =>  'Tasks/CruiseControlTask.php',
-        'phpucExampleTask'               =>  'Tasks/ExampleTask.php',
-        'phpucModifyFileTask'            =>  'Tasks/ModifyFileTask.php',
-        'phpucPhpCodeSnifferTask'        =>  'Tasks/PhpCodeSnifferTask.php',
-        'phpucPhpDocumentorTask'         =>  'Tasks/PhpDocumentorTask.php',
-        'phpucPhpUnitTask'               =>  'Tasks/PhpUnitTask.php',
-        'phpucProjectTask'               =>  'Tasks/ProjectTask.php',
-        'phpucTaskI'                     =>  'Tasks/TaskI.php',
-        'phpucConsoleArgs'               =>  'Util/ConsoleArgs.php',
-        'phpucConsoleOutput'             =>  'Util/ConsoleOutput.php',
-        'phpucFileUtil'                  =>  'Util/FileUtil.php',
-        'phpucPhpUnderControl'           =>  'PhpUnderControl.php',
+        'phpucAbstractCommand'              =>  'Commands/AbstractCommand.php',
+        'phpucExampleCommand'               =>  'Commands/ExampleCommand.php',
+        'phpucInstallCommand'               =>  'Commands/InstallCommand.php',
+        'phpucProjectCommand'               =>  'Commands/ProjectCommand.php',
+        'phpucBuildFile'                    =>  'Data/BuildFile.php',
+        'phpucBuildTarget'                  =>  'Data/BuildTarget.php',
+        'phpucConfigArtifactsPublisher'     =>  'Data/ConfigArtifactsPublisher.php',
+        'phpucConfigFile'                   =>  'Data/ConfigFile.php',
+        'phpucConfigProject'                =>  'Data/ConfigProject.php',
+        'phpucLogFile'                      =>  'Data/LogFile.php',
+        'phpucLogFileIterator'              =>  'Data/LogFileIterator.php',
+        'phpucConsoleException'             =>  'Exceptions/ConsoleException.php',
+        'phpucErrorException'               =>  'Exceptions/ErrorException.php',
+        'phpucExecuteException'             =>  'Exceptions/ExecuteException.php',
+        'phpucValidateException'            =>  'Exceptions/ValidateException.php',
+        'phpucAbstractInput'                =>  'Graph/Input/AbstractInput.php',
+        'phpucBuildBreakdownInput'          =>  'Graph/Input/BuildBreakdownInput.php',
+        'phpucBuildBreakdownTimelineInput'  =>  'Graph/Input/BuildBreakdownTimelineInput.php',
+        'phpucCodeViolationInput'           =>  'Graph/Input/CodeViolationInput.php',
+        'phpucInputI'                       =>  'Graph/Input/InputI.php',
+        'phpucInputIterator'                =>  'Graph/Input/InputIterator.php',
+        'phpucInputLoader'                  =>  'Graph/Input/InputLoader.php',
+        'phpucInputRule'                    =>  'Graph/Input/InputRule.php',
+        'phpucTestCodeRatioInput'           =>  'Graph/Input/TestCodeRatioInput.php',
+        'phpucUnitCoverageInput'            =>  'Graph/Input/UnitCoverageInput.php',
+        'phpucUnitTestInput'                =>  'Graph/Input/UnitTestInput.php',
+        'phpucChartFactory'                 =>  'Graph/ChartFactory.php',
+        'phpucChartI'                       =>  'Graph/ChartI.php',
+        'phpucDotChart'                     =>  'Graph/DotChart.php',
+        'phpucGraphPalette'                 =>  'Graph/GraphPalette.php',
+        'phpucLineChart'                    =>  'Graph/LineChart.php',
+        'phpucPieChart'                     =>  'Graph/PieChart.php',
+        'phpucAbstractPearTask'             =>  'Tasks/AbstractPearTask.php',
+        'phpucAbstractTask'                 =>  'Tasks/AbstractTask.php',
+        'phpucCreateFileTask'               =>  'Tasks/CreateFileTask.php',
+        'phpucCruiseControlTask'            =>  'Tasks/CruiseControlTask.php',
+        'phpucExampleTask'                  =>  'Tasks/ExampleTask.php',
+        'phpucModifyFileTask'               =>  'Tasks/ModifyFileTask.php',
+        'phpucPhpCodeSnifferTask'           =>  'Tasks/PhpCodeSnifferTask.php',
+        'phpucPhpDocumentorTask'            =>  'Tasks/PhpDocumentorTask.php',
+        'phpucPhpUnitTask'                  =>  'Tasks/PhpUnitTask.php',
+        'phpucProjectTask'                  =>  'Tasks/ProjectTask.php',
+        'phpucTaskI'                        =>  'Tasks/TaskI.php',
+        'phpucConsoleArgs'                  =>  'Util/ConsoleArgs.php',
+        'phpucConsoleOutput'                =>  'Util/ConsoleOutput.php',
+        'phpucFileUtil'                     =>  'Util/FileUtil.php',
+        'phpucPhpUnderControl'              =>  'PhpUnderControl.php',
     );
     
     /**
@@ -134,6 +154,13 @@ class phpucPhpUnderControl
     public static function main()
     {
         spl_autoload_register( array( 'phpucPhpUnderControl', 'autoload' ) );
+        
+        if ( file_exists( PHPUC_EZC_BASE ) )
+        {
+            include_once PHPUC_EZC_BASE;
+
+            spl_autoload_register( array( 'ezcBase', 'autoload' ) );
+        }
         
         $phpUnderControl = new phpucPhpUnderControl();
         $phpUnderControl->run();
@@ -204,9 +231,4 @@ class phpucPhpUnderControl
             exit( 4 );
         }
     }
-}
-
-if ( !defined( 'PHPUC_TEST' ) || !constant( 'PHPUC_TEST' ) )
-{
-    phpucPhpUnderControl::main();
 }
