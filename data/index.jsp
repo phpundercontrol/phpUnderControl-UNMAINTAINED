@@ -427,7 +427,7 @@
     </a>
   </h1>
   <h1 style="padding: 3px 0;" class="white" align="center">
-    <%= name%> CruiseControl at <%= hostname %><span class="dateNow">[<%= dateNow %>]</span>
+    <%= name%> phpUnderControl at <%= hostname %><span class="dateNow">[<%= dateNow %>]</span>
   </h1>
   <div id="serverData" class="hidden"></div>
   <form>

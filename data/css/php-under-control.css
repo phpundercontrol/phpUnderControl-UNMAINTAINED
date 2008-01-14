@@ -303,6 +303,13 @@ div#container a.failure {
     color: #c00;
 }
 
+div#container table iframe.chart {
+    border: 0 none;
+    height: 250px;
+    margin: 10px;
+    width: 390px;
+}
+
 div.dp-highlighter {
     margin: 0 0 18px 0 !important;
     width: 100%;

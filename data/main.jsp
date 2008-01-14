@@ -41,7 +41,7 @@
     String rmiPort = System.getProperty("cruisecontrol.rmiport");
     boolean rmiEnabled = rmiPort != null;
 
-    String ccname = System.getProperty("ccname", "");
+    String ccname  = System.getProperty("ccname", "");
     String project = request.getPathInfo().substring(1);
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
