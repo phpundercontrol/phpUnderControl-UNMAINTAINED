@@ -65,7 +65,11 @@ class phpucUnitCoverageInput extends phpucAbstractInput
      */
     public function __construct()
     {
-        parent::__construct( 'Unit coverage', '03-unit-coverage', self::TYPE_LINE );
+        parent::__construct( 
+            'Unit coverage', 
+            '03-unit-coverage', 
+            phpucChartI::TYPE_LINE
+        );
         
         $this->yAxisLabel = 'Lines';
         $this->xAxisLabel = 'Build ';

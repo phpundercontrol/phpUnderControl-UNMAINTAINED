@@ -91,9 +91,9 @@ class phpucInputRule
      * @var array(integer) $modes
      */
     private $modes = array(
-        phpucAbstractInput::MODE_COUNT,
-        phpucAbstractInput::MODE_SUM,
-        phpucAbstractInput::MODE_VALUE,
+        phpucInputI::MODE_COUNT,
+        phpucInputI::MODE_SUM,
+        phpucInputI::MODE_VALUE,
     );
     
     /**

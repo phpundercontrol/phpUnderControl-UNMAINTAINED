@@ -64,39 +64,8 @@
  * @property-read string               $yAxisLabel An optional label for the y-axis.
  * @property-read string               $xAxisLabel An optional label for the x-axis.
  */
-abstract class phpucAbstractInput
+abstract class phpucAbstractInput implements phpucInputI
 {
-    /**
-     * Identifies an input implementation for pie charts.
-     */
-    const TYPE_PIE = 0;
-    
-    /**
-     * Identifies an input implementation for line charts.
-     */
-    const TYPE_LINE = 1;
-    
-    /**
-     * Identifies an input implementation for line charts without lines but
-     * highlights.
-     */
-    const TYPE_DOT = 2;
-    
-    /**
-     * This identifies the sum mode where all found records are summed up.
-     */
-    const MODE_SUM = 0;
-    
-    /**
-     * This identifier the count mode which counts the number of matching records.
-     */
-    const MODE_COUNT = 1;
-    
-    /**
-     * This identifier the value mode which takes the raw node value.
-     */
-    const MODE_VALUE = 2;
-    
     /**
      * The human readable input type title.
      *
@@ -167,7 +136,10 @@ abstract class phpucAbstractInput
         $this->title    = $title;
         $this->fileName = $fileName;
         
-        if ( !in_array( $type, array( self::TYPE_PIE, self::TYPE_LINE, self::TYPE_DOT ) ) )
+        if ( !in_array( $type, array( 
+            phpucChartI::TYPE_PIE, 
+            phpucChartI::TYPE_LINE, 
+            phpucChartI::TYPE_DOT ) ) )
         {
             throw new InvalidArgumentException( 'Invalid input type given.' );
         }

@@ -60,7 +60,14 @@ class phpucBuildBreakdownTimelineInput extends phpucAbstractInput
 {
     public function __construct()
     {
-        parent::__construct( 'Breakdown of build timeline', '02-breakdown-of-build-timeline', self::TYPE_DOT );
+        parent::__construct(
+            'Breakdown of build timeline', 
+            '02-breakdown-of-build-timeline', 
+            phpucChartI::TYPE_DOT
+        );
+        
+        $this->yAxisLabel = 'Time';
+        $this->xAxisLabel = 'Date ';
         
         $this->addRule(
             new phpucInputRule(

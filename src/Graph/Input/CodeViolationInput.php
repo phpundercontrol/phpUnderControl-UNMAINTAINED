@@ -65,7 +65,11 @@ class phpucCodeViolationInput extends phpucAbstractInput
      */
     public function __construct()
     {
-        parent::__construct( 'Coding Violations', '06-coding-violations', self::TYPE_LINE );
+        parent::__construct(
+            'Coding Violations',
+            '06-coding-violations',
+            phpucChartI::TYPE_LINE
+        );
         
         $this->yAxisLabel = 'Violations';
         $this->xAxisLabel = 'Build ';

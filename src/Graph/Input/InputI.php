@@ -56,33 +56,49 @@
  * @version   Release: @package_version@
  * @link      http://www.phpundercontrol.org/
  */
-class phpucBuildBreakdownInput extends phpucAbstractInput
+interface phpucInputI
 {
-    public function __construct()
-    {
-        parent::__construct( 
-            'Breakdown of build types', 
-            '01-breakdown-of-build-types', 
-            phpucChartI::TYPE_PIE
-        );
-        
-        $this->addRule(
-            new phpucInputRule(
-                'lastsuccessfulbuild',
-                '/cruisecontrol/info/property[@name = "lastsuccessfulbuild"]/@value',
-                self::MODE_VALUE
-            )
-        );
-    }
+    /**
+     * This identifies the sum mode where all found records are summed up.
+     */
+    const MODE_SUM = 0;
     
-    protected function postProcessLog( array $logs )
-    {
-        $total = $logs['lastsuccessfulbuild'];
-        $good  = count( array_unique( $total ) );
-        
-        return array(
-            'Good Builds'    =>  $good,
-            'Broken Builds'  =>  ( count( $total ) - $good ),
-        );
-    }
+    /**
+     * This identifier the count mode which counts the number of matching records.
+     */
+    const MODE_COUNT = 1;
+    
+    /**
+     * This identifier the value mode which takes the raw node value.
+     */
+    const MODE_VALUE = 2;
+    
+    /**
+     * Magic property getter method.
+     *
+     * @param string $name The property name.
+     * 
+     * @return mixed
+     * @throws OutOfRangeException If the requested property doesn't exist or
+     *         is writonly.
+     * @ignore 
+     */
+    function __get( $name );
+    
+    /**
+     * Magic property setter method.
+     *
+     * @param string $name  The property name.
+     * @param mixed  $value The property value.
+     * 
+     * @return void
+     * @throws OutOfRangeException If the requested property doesn't exist or
+     *         is readonly.
+     * @throws InvalidArgumentException If the given value has an unexpected 
+     *         format or an invalid data type.
+     * @ignore 
+     */
+    function __set( $name, $value );
+    
+    function processLog( DOMXPath $xpath );
 }

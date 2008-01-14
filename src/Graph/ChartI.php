@@ -61,6 +61,22 @@
 interface phpucChartI
 {
     /**
+     * Identifies an input implementation for pie charts.
+     */
+    const TYPE_PIE = 0;
+    
+    /**
+     * Identifies an input implementation for line charts.
+     */
+    const TYPE_LINE = 1;
+    
+    /**
+     * Identifies an input implementation for line charts without lines but
+     * highlights.
+     */
+    const TYPE_DOT = 2;
+    
+    /**
      * Sets the input instance for the next rendering process.
      *
      * @param phpucAbstractInput $input The input object.

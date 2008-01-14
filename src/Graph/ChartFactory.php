@@ -62,15 +62,15 @@ class phpucChartFactory
     {
         switch ( $input->type )
         {
-            case phpucAbstractInput::TYPE_DOT:
+            case phpucChartI::TYPE_DOT:
                 $chart = new phpucDotChart();
                 break;
                 
-            case phpucAbstractInput::TYPE_LINE:
+            case phpucChartI::TYPE_LINE:
                 $chart = new phpucLineChart();
                 break;
                 
-            case phpucAbstractInput::TYPE_PIE:
+            case phpucChartI::TYPE_PIE:
                 $chart = new phpucPieChart();
                 break;
         }

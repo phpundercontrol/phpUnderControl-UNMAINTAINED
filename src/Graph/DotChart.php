@@ -56,33 +56,27 @@
  * @version   Release: @package_version@
  * @link      http://www.phpundercontrol.org/
  */
-class phpucBuildBreakdownInput extends phpucAbstractInput
+class phpucDotChart extends phpucLineChart
 {
-    public function __construct()
+    protected function init()
     {
-        parent::__construct( 
-            'Breakdown of build types', 
-            '01-breakdown-of-build-types', 
-            phpucChartI::TYPE_PIE
-        );
+        parent::init();
         
-        $this->addRule(
-            new phpucInputRule(
-                'lastsuccessfulbuild',
-                '/cruisecontrol/info/property[@name = "lastsuccessfulbuild"]/@value',
-                self::MODE_VALUE
-            )
-        );
+        $this->showSymbol = true;
+        
+        $this->options->fillLines = false;
     }
     
-    protected function postProcessLog( array $logs )
+    protected function initAxis()
     {
-        $total = $logs['lastsuccessfulbuild'];
-        $good  = count( array_unique( $total ) );
-        
-        return array(
-            'Good Builds'    =>  $good,
-            'Broken Builds'  =>  ( count( $total ) - $good ),
-        );
+        $this->yAxis                    = new ezcGraphChartElementDateAxis();
+        $this->yAxis->axisLabelRenderer = new ezcGraphAxisCenteredLabelRenderer();
+        $this->yAxis->dateFormat        = 'H:i';
+        $this->yAxis->font->maxFontSize = 10;
+
+        $this->xAxis                    = new ezcGraphChartElementDateAxis();
+        $this->xAxis->axisLabelRenderer = new ezcGraphAxisCenteredLabelRenderer();
+        $this->xAxis->dateFormat        = 'y/m/d';
+        $this->xAxis->font->maxFontSize = 10;
     }
 }

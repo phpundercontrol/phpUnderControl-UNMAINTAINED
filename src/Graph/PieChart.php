@@ -83,8 +83,7 @@ class phpucPieChart extends ezcGraphPieChart implements phpucChartI
     protected function init()
     {
         $this->palette = new phpucGraphPalette();
-        
-        $this->legend = false;
+        $this->legend  = false;
         
         $this->initTitle();
         $this->initRenderer();

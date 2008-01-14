@@ -65,7 +65,11 @@ class phpucUnitTestInput extends phpucAbstractInput
      */
     public function __construct()
     {
-        parent::__construct( 'Unit Tests', '04-unit-tests', self::TYPE_LINE );
+        parent::__construct( 
+            'Unit Tests', 
+            '04-unit-tests', 
+            phpucChartI::TYPE_LINE 
+        );
         
         $this->yAxisLabel = 'Tests';
         $this->xAxisLabel = 'Build ';
