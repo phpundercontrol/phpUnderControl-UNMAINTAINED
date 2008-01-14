@@ -45,22 +45,15 @@
  * @link      http://www.phpundercontrol.org/
  */
 
-if ( strpos( '@data_dir@', '@data_dir' ) === false )
-{
-    define( 'PHPUC_DATA_DIR', '@data_dir@/phpUnderControl' );
-}
-else
-{
-    define( 'PHPUC_DATA_DIR', realpath( dirname( __FILE__ ) . '/..' ) );
-}
-
 if ( strpos( '@php_dir@', '@php_dir' ) === false )
 {
+    define( 'PHPUC_DATA_DIR', '@data_dir@/phpUnderControl' );
     define( 'PHPUC_INSTALL_DIR', '@php_dir@/phpUnderControl' );
 }
 else
 {
     define( 'PHPUC_INSTALL_DIR', dirname( __FILE__ ) );
+    define( 'PHPUC_DATA_DIR', realpath( dirname( __FILE__ ) . '/..' ) );
 }
 
 /**
