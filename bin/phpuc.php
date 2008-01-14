@@ -50,3 +50,4 @@ else
 {
     require_once '@php_dir@/phpUnderControl/PhpUnderControl.php';
 }
+phpucPhpUnderControl::main();

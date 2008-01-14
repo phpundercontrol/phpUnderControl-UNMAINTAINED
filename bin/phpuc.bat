@@ -37,4 +37,4 @@ REM $Id$
 REM
 
 set PHPBIN="@php_bin@"
-"@php_bin@" "@php_dir@/phpUnderControl/PhpUnderControl.php" %*
+"@php_bin@" "@bin_dir@\phpuc.php" %*
