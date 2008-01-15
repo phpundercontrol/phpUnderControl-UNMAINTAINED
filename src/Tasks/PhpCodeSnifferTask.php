@@ -120,15 +120,19 @@ class phpucPhpCodeSnifferTask extends phpucAbstractPearTask
     protected function doValidate()
     {
         $cwd = getcwd();
-    
-        chdir( dirname( $this->executable ) );
+        
         $binary = basename( $this->executable );
         
-        if ( stripos( PHP_OS, 'WIN' ) === false )
+        if ( ( $execdir = dirname( $this->executable ) ) !== '.' )
         {
-            $binary = "./{$binary}";
+            chdir( $execdir );
+        
+            if ( stripos( PHP_OS, 'WIN' ) === false )
+            {
+                $binary = "./{$binary}";
+            }
         }
-    
+            
         $regexp = '/version\s+([0-9\.]+(RC[0-9])?)/';
         $retval = exec( escapeshellcmd( "{$binary} --version" ) );
         
