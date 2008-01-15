@@ -61,6 +61,7 @@ class phpucConsoleArgsTest extends phpucAbstractTest
      * exists.
      *
      * @return void
+     * @todo TODO: Move this into a console input test case.
      */
     public function testConsoleWithoutArgv()
     {
@@ -68,7 +69,7 @@ class phpucConsoleArgsTest extends phpucAbstractTest
         
         try
         {
-            new phpucConsoleArgs();
+            $input = new phpucConsoleInput();
             $this->fail( 'phpucConsoleException expected.' );
         }
         catch ( phpucConsoleException $e ) {}
@@ -90,8 +91,10 @@ class phpucConsoleArgsTest extends phpucAbstractTest
             )
         );
         
-        $console = new phpucConsoleArgs();
-        $console->parse();
+        $input = new phpucConsoleInput();
+        $input->parse();
+        
+        $console = $input->args;
         
         $this->assertTrue( 
             $console->hasArgument( 'cc-install-dir' ) 
@@ -116,16 +119,17 @@ class phpucConsoleArgsTest extends phpucAbstractTest
      * result in an {@link phpucConsoleException}.
      *
      * @return void
+     * @todo TODO: Move this into a console input test case.
      */
     public function testConsoleInstallCommandButWithoutArguments()
     {
         $this->prepareArgv( array( 'install' ) );
         
-        $console = new phpucConsoleArgs();
+        $input = new phpucConsoleInput();
         
         try
         {
-            $console->parse();
+            $input->parse();
             $this->fail( 'phpucConsoleException expected.' );
         }
         catch ( phpucConsoleException $e ) {}
@@ -143,8 +147,10 @@ class phpucConsoleArgsTest extends phpucAbstractTest
             array( 'example', '--build-tool', 'ant', '/opt/cruisecontrol' )
         );
         
-        $console = new phpucConsoleArgs();
-        $console->parse();
+        $input = new phpucConsoleInput();
+        $input->parse();
+        
+        $console = $input->args;
         
         $this->assertTrue( $console->hasOption( 'build-tool' ) );
         $this->assertEquals( 'ant', $console->getOption( 'build-tool' ) );
@@ -168,8 +174,10 @@ class phpucConsoleArgsTest extends phpucAbstractTest
             array( 'example', '-b', 'ant', '/opt/cruisecontrol' )
         );
         
-        $console = new phpucConsoleArgs();
-        $console->parse();
+        $input = new phpucConsoleInput();
+        $input->parse();
+        
+        $console = $input->args;
         
         $this->assertTrue( $console->hasOption( 'build-tool' ) );
         $this->assertEquals( 'ant', $console->getOption( 'build-tool' ) );        
@@ -185,8 +193,10 @@ class phpucConsoleArgsTest extends phpucAbstractTest
     {
         $this->prepareArgv( array( 'example', '/opt/cruisecontrol' ) );
         
-        $console = new phpucConsoleArgs();
-        $console->parse();
+        $input = new phpucConsoleInput();
+        $input->parse();
+        
+        $console = $input->args;
         
         $this->assertTrue( $console->hasOption( 'build-tool' ) );
         $this->assertEquals( 'ant', $console->getOption( 'build-tool' ) );  
@@ -197,17 +207,19 @@ class phpucConsoleArgsTest extends phpucAbstractTest
      * invalid command identifiers.
      *
      * @return void
+     * @todo TODO: Move this into a console input test case.
      */
     public function testConsoleWithInvalidCommandIdentifier()
     {
         $this->prepareArgv( array( 'phpUnderControl' ) );
-        $console = new phpucConsoleArgs();
+        
+        $input = new phpucConsoleInput();
         
         ob_start();
         
         try
         {
-            $console->parse();
+            $input->parse();
             $this->fail( 'phpucConsoleException expected.' );
         }
         catch ( phpucConsoleException $e ) {}
@@ -215,13 +227,19 @@ class phpucConsoleArgsTest extends phpucAbstractTest
         ob_end_clean();
     }
     
+    /**
+     * 
+     *
+     * @return void
+     * @todo TODO: Move this into a console input test case.
+     */
     public function testConsolePrintHelp()
     {
         $this->prepareArgv( array( '-h' ) );
-        $console = new phpucConsoleArgs();
+        $input = new phpucConsoleInput();
         
         ob_start();
-        $console->parse();
+        $input->parse();
         $content = ob_get_contents();
         ob_end_clean();
         

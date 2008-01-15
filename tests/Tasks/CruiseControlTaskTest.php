@@ -74,8 +74,11 @@ class phpucCruiseControlTaskTest extends phpucAbstractTest
         parent::setUp();
         
         $this->prepareArgv( array( 'install', PHPUC_TEST_DIR ) );
-        $this->args = new phpucConsoleArgs();
-        $this->args->parse();
+        
+        $input = new phpucConsoleInput();
+        $input->parse();
+        
+        $this->args = $input->args;
     }
     
     /**
@@ -86,10 +89,11 @@ class phpucCruiseControlTaskTest extends phpucAbstractTest
     public function testValidateWithInvalidCCInstallDirFail()
     {
         $this->prepareArgv( array( 'install', PHPUC_TEST_DIR . '/foobar' ) );
-        $args = new phpucConsoleArgs();
-        $args->parse();
         
-        $ccTask = new phpucCruiseControlTask( $args );
+        $input = new phpucConsoleInput();
+        $input->parse();
+        
+        $ccTask = new phpucCruiseControlTask( $input->args );
         try
         {
             $ccTask->validate();

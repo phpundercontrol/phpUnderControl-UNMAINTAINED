@@ -185,15 +185,18 @@ abstract class phpucAbstractTest extends PHPUnit_Framework_TestCase
     public static function init()
     {
         // Load phpUnderControl base class
-        require_once PHPUC_SOURCE . '/PhpUnderControl.php';
+        include_once PHPUC_SOURCE . '/PhpUnderControl.php';
         
         // Register autoload
         spl_autoload_register( array( 'phpucPhpUnderControl', 'autoload' ) );
         
         // Load ezcBase class
-        require_once 'ezc/Base/base.php';
+        if ( file_exists( PHPUC_EZC_BASE ) )
+        {
+            include_once PHPUC_EZC_BASE;
         
-        spl_autoload_register( array( 'ezcBase', 'autoload' ) );
+            spl_autoload_register( array( 'ezcBase', 'autoload' ) );
+        }
         
         phpucConsoleOutput::set( new phpucConsoleOutput() );
         

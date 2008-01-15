@@ -115,8 +115,11 @@ abstract class phpucAbstractPearTaskTest extends phpucAbstractTest
         $options[] = PHPUC_TEST_DIR;
         
         $this->prepareArgv( $options );
-        $this->args = new phpucConsoleArgs();
-        $this->args->parse();
+        
+        $input = new phpucConsoleInput();
+        $input->parse();
+        
+        $this->args = $input->args;
         
         $this->createTestDirectories(
             array(

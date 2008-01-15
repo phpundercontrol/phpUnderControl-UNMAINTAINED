@@ -124,6 +124,7 @@ class phpucPhpUnderControl
         'phpucProjectTask'                  =>  'Tasks/ProjectTask.php',
         'phpucTaskI'                        =>  'Tasks/TaskI.php',
         'phpucConsoleArgs'                  =>  'Util/ConsoleArgs.php',
+        'phpucConsoleInput'                 =>  'Util/ConsoleInput.php',
         'phpucConsoleOutput'                =>  'Util/ConsoleOutput.php',
         'phpucFileUtil'                     =>  'Util/FileUtil.php',
         'phpucPhpUnderControl'              =>  'PhpUnderControl.php',
@@ -169,12 +170,12 @@ class phpucPhpUnderControl
     }
     
     /**
-     * The used console arguments objects.
+     * The used console input object.
      *
-     * @type phpucConsoleArgs
-     * @var phpucConsoleArgs $args
+     * @type phpucConsoleInput
+     * @var phpucConsoleInput $input
      */
-    private $args = null;
+    private $input = null;
     
     /**
      * List with all tasks.
@@ -189,7 +190,7 @@ class phpucPhpUnderControl
      */
     public function __construct()
     {
-        $this->args = new phpucConsoleArgs();
+        $this->input = new phpucConsoleInput();
     }
     
     /**
@@ -201,11 +202,11 @@ class phpucPhpUnderControl
     {
         try
         {
-            if ( $this->args->parse() )
+            if ( $this->input->parse() )
             {
                 phpucConsoleOutput::set( new phpucConsoleOutput() );
                 
-                $command = phpucAbstractCommand::createCommand( $this->args );
+                $command = phpucAbstractCommand::createCommand( $this->input->args );
         
                 $command->validate();
                 $command->execute();
