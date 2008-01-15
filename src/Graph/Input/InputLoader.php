@@ -72,6 +72,11 @@ class phpucInputLoader implements IteratorAggregate
      */
     private $inputs = null;
     
+    /**
+     * Returns an iterator with all valid input implementations.
+     *
+     * @return Iterator
+     */
     public function getIterator()
     {
         if ( $this->inputs === null )

@@ -93,6 +93,11 @@ class phpucInputIterator extends FilterIterator
         );
     }
     
+    /**
+     * Returns an instance of {@link phpucInputI}.
+     *
+     * @return phpucInputI
+     */
     public function current()
     {
         $key = $this->key();
