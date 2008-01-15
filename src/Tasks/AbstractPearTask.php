@@ -93,6 +93,8 @@ abstract class phpucAbstractPearTask extends phpucAbstractTask
      * method {@link doValidate()}.
      *
      * @return void
+     * 
+     * @throws phpucValidateException If the validation fails.
      */
     public final function validate()
     {
