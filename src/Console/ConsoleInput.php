@@ -61,17 +61,6 @@
 class phpucConsoleInput
 {
     /**
-     * Marks a normal command or option that shows up in the cli help.
-     */
-    const MODE_NORMAL = 0;
-    
-    /**
-     * Marks a hidden command or option. This means a command is not shown in 
-     * the cli help.
-     */
-    const MODE_HIDDEN = 1;
-    
-    /**
      * The argument array form the command line interface.
      *
      * @type array<string>
@@ -109,141 +98,7 @@ class phpucConsoleInput
      * @type array<array>
      * @var array(string=>array) $commands
      */
-    private $commands = array(
-        'install'  =>  array(
-            'mode'  =>  self::MODE_NORMAL,
-            'help'  =>  'Installs the CruiseControl patches.',
-            'options'  =>  array(
-                array(
-                    'short'      =>  'p',
-                    'long'       =>  'pear-executables-dir',
-                    'arg'        =>  true,
-                    'help'       =>  'The pear directory with cli scripts.',
-                    'mandatory'  =>  false,
-                )
-            ),
-            'args'  =>  array(
-                'cc-install-dir'  =>  array(
-                    'help'       =>  'The installation directory of CruiseControl.',
-                    'mandatory'  =>  true
-                )
-            )
-        ),
-        'example'  =>  array(
-            'mode'  =>  self::MODE_NORMAL,
-            'help'  =>  'Creates a small example project.',
-            'options'  =>  array(
-                array(
-                    'short'      =>  'c',
-                    'long'       =>  'without-code-sniffer',
-                    'arg'        =>  null,
-                    'help'       =>  'Disable PHP CodeSniffer support.',
-                    'mandatory'  =>  false,
-                ),
-                array(
-                    'short'      =>  'u',
-                    'long'       =>  'without-phpunit',
-                    'arg'        =>  null,
-                    'help'       =>  'Disable PHPUnit support.',
-                    'mandatory'  =>  false,
-                ),
-                array(
-                    'short'      =>  'd',
-                    'long'       =>  'without-php-documentor',
-                    'arg'        =>  null,
-                    'help'       =>  'Disable phpDocumentor support.',
-                    'mandatory'  =>  false,
-                ),
-                array(
-                    'short'      =>  'p',
-                    'long'       =>  'pear-executables-dir',
-                    'arg'        =>  true,
-                    'help'       =>  'The pear directory with cli scripts.',
-                    'mandatory'  =>  false,
-                ),
-                array(
-                    'short'      =>  'n',
-                    'long'       =>  'project-name',
-                    'arg'        =>  true,
-                    'help'       =>  'The name of the generated project.',
-                    'default'    =>  'php-under-control',
-                    'mandatory'  =>  true,
-                ),
-                array(
-                    'short'      =>  'i',
-                    'long'       =>  'schedule-interval',
-                    'arg'        =>  true,
-                    'help'       =>  'Schedule interval.',
-                    'default'    =>  300,
-                    'mandatory'  =>  true,
-                ),
-                array(
-                    'short'      =>  's',
-                    'long'       =>  'source-dir',
-                    'arg'        =>  true,
-                    'help'       =>  'The source directory in the project.',
-                    'default'    =>  '.',
-                    'mandatory'  =>  true,
-                ),
-                array(
-                    'short'      =>  't',
-                    'long'       =>  'test-dir',
-                    'arg'        =>  true,
-                    'help'       =>  'The test directory in the project.',
-                    'default'    =>  'tests',
-                    'mandatory'  =>  true,
-                ),
-                array(
-                    'short'      =>  'tc',
-                    'long'       =>  'test-case',
-                    'arg'        =>  true,
-                    'help'       =>  'Name of the test case class.',
-                    'default'    =>  'PhpUnderControl_Example_MathTest',
-                    'mandatory'  =>  true,
-                ),
-                array(
-                    'short'      =>  'tf',
-                    'long'       =>  'test-file',
-                    'arg'        =>  true,
-                    'help'       =>  'Name of the test case file.',
-                    'default'    =>  'MathTest.php',
-                    'mandatory'  =>  true,
-                ),
-                array(
-                    'short'      =>  'g',
-                    'long'       =>  'coding-guideline',
-                    'arg'        =>  true,
-                    'help'       =>  'The used PHP_CodeSniffer coding guideline.',
-                    'default'    =>  'PEAR',
-                    'mandatory'  =>  true,
-                ),
-                array(
-                    'short'      =>  'b',
-                    'long'       =>  'build-tool',
-                    'arg'        =>  array( 'ant' ),
-                    'help'       =>  'CruiseControl build system type type.',
-                    'default'    =>  'ant',
-                    'mandatory'  =>  true,
-                )
-            ),
-            'args'  =>  array(
-                'cc-install-dir'  =>  array(
-                    'help'       =>  'The installation directory of CruiseControl.',
-                    'mandatory'  =>  true
-                )
-            )
-        ),
-        'graph'  =>  array(
-            'help'  =>  'Generates the metric graphs with ezcGraph',
-            'mode'  =>  self::MODE_HIDDEN,
-            'args'  =>  array(
-                'project-log-dir'  =>  array(
-                    'help'       =>  'The project log directory',
-                    'mandatory'  =>  true
-                )
-            )
-        ),
-    );
+    private $commands = null;
     
     /**
      * List of properties read from the command line interface.
@@ -260,6 +115,8 @@ class phpucConsoleInput
      */
     public function __construct()
     {
+        $this->commands = new phpucConsoleInputDefinition();
+        
         if ( isset( $GLOBALS['argv'] ) )
         {
             $this->argv = $GLOBALS['argv'];
@@ -528,7 +385,7 @@ class phpucConsoleInput
             foreach ( $this->commands as $command => $config )
             {
                 // Skip hidden commands
-                if ( $config['mode'] === self::MODE_HIDDEN )
+                if ( $config['mode'] === phpucConsoleInputDefinition::MODE_HIDDEN )
                 {
                     continue;
                 }
@@ -638,7 +495,7 @@ class phpucConsoleInput
         foreach ( $this->commands as $command => $config )
         {
             // Skip hidden commands
-            if ( $config['mode'] === self::MODE_HIDDEN )
+            if ( $config['mode'] === phpucConsoleInputDefinition::MODE_HIDDEN )
             {
                 continue;
             }
