@@ -141,6 +141,7 @@
           <tasks:replace from="@package_version@" to="version" type="package-info" />
           <tasks:replace from="@php_bin@" to="php_bin" type="pear-config" />
           <tasks:replace from="@php_dir@" to="php_dir" type="pear-config" />
+          <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config" />
         </file>
       </dir>
       <dir name="tests">
@@ -318,6 +319,8 @@
       <install as="phpUnderControl/Commands/ExampleCommand.php" name="src/Commands/ExampleCommand.php" />
       <install as="phpUnderControl/Commands/InstallCommand.php" name="src/Commands/InstallCommand.php" />
       <install as="phpUnderControl/Commands/ProjectCommand.php" name="src/Commands/ProjectCommand.php" />
+      <install as="phpUnderControl/Console/ConsoleArgs.php" name="src/Console/ConsoleArgs.php" />
+      <install as="phpUnderControl/Console/ConsoleOutput.php" name="src/Console/ConsoleOutput.php" />
       <install as="phpUnderControl/Exceptions/ConsoleException.php" name="src/Exceptions/ConsoleException.php" />
       <install as="phpUnderControl/Exceptions/ExecuteException.php" name="src/Exceptions/ExecuteException.php" />
       <install as="phpUnderControl/Exceptions/ValidateException.php" name="src/Exceptions/ValidateException.php" />
@@ -337,8 +340,6 @@
       <install as="phpUnderControl/Tasks/PhpUnitTask.php" name="src/Tasks/PhpUnitTask.php" />
       <install as="phpUnderControl/Tasks/ProjectTask.php" name="src/Tasks/ProjectTask.php" />
       <install as="phpUnderControl/Tasks/TaskI.php" name="src/Tasks/TaskI.php" />
-      <install as="phpUnderControl/Util/ConsoleArgs.php" name="src/Util/ConsoleArgs.php" />
-      <install as="phpUnderControl/Util/ConsoleOutput.php" name="src/Util/ConsoleOutput.php" />
       <install as="phpUnderControl/Util/FileUtil.php" name="src/Util/FileUtil.php" />
       
       <install as="phpuc" name="bin/phpuc.php" />
@@ -353,6 +354,8 @@
       <install as="phpUnderControl/Commands/ExampleCommand.php" name="src/Commands/ExampleCommand.php" />
       <install as="phpUnderControl/Commands/InstallCommand.php" name="src/Commands/InstallCommand.php" />
       <install as="phpUnderControl/Commands/ProjectCommand.php" name="src/Commands/ProjectCommand.php" />
+      <install as="phpUnderControl/Console/ConsoleArgs.php" name="src/Console/ConsoleArgs.php" />
+      <install as="phpUnderControl/Console/ConsoleOutput.php" name="src/Console/ConsoleOutput.php" />
       <install as="phpUnderControl/Exceptions/ConsoleException.php" name="src/Exceptions/ConsoleException.php" />
       <install as="phpUnderControl/Exceptions/ExecuteException.php" name="src/Exceptions/ExecuteException.php" />
       <install as="phpUnderControl/Exceptions/ValidateException.php" name="src/Exceptions/ValidateException.php" />
@@ -372,8 +375,6 @@
       <install as="phpUnderControl/Tasks/PhpUnitTask.php" name="src/Tasks/PhpUnitTask.php" />
       <install as="phpUnderControl/Tasks/ProjectTask.php" name="src/Tasks/ProjectTask.php" />
       <install as="phpUnderControl/Tasks/TaskI.php" name="src/Tasks/TaskI.php" />
-      <install as="phpUnderControl/Util/ConsoleArgs.php" name="src/Util/ConsoleArgs.php" />
-      <install as="phpUnderControl/Util/ConsoleOutput.php" name="src/Util/ConsoleOutput.php" />
       <install as="phpUnderControl/Util/FileUtil.php" name="src/Util/FileUtil.php" />
       
       <install as="phpuc" name="bin/phpuc.php" />

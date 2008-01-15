@@ -37,7 +37,7 @@
  * POSSIBILITY OF SUCH DAMAGE.
  * 
  * @category  QualityAssurance
- * @package   Util
+ * @package   Console
  * @author    Manuel Pichler <mapi@manuel-pichler.de>
  * @copyright 2007-2008 Manuel Pichler. All rights reserved.
  * @license   http://www.opensource.org/licenses/bsd-license.php  BSD License
@@ -49,7 +49,7 @@
  * 
  *
  * @category  QualityAssurance
- * @package   Util
+ * @package   Console
  * @author    Manuel Pichler <mapi@manuel-pichler.de>
  * @copyright 2007-2008 Manuel Pichler. All rights reserved.
  * @license   http://www.opensource.org/licenses/bsd-license.php  BSD License
