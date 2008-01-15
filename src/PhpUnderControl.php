@@ -80,6 +80,7 @@ class phpucPhpUnderControl
     private static $autoloadFiles = array(
         'phpucAbstractCommand'              =>  'Commands/AbstractCommand.php',
         'phpucExampleCommand'               =>  'Commands/ExampleCommand.php',
+        'phpucGraphCommand'                 =>  'Commands/GraphCommand.php',
         'phpucInstallCommand'               =>  'Commands/InstallCommand.php',
         'phpucProjectCommand'               =>  'Commands/ProjectCommand.php',
         'phpucBuildFile'                    =>  'Data/BuildFile.php',
@@ -115,6 +116,7 @@ class phpucPhpUnderControl
         'phpucCreateFileTask'               =>  'Tasks/CreateFileTask.php',
         'phpucCruiseControlTask'            =>  'Tasks/CruiseControlTask.php',
         'phpucExampleTask'                  =>  'Tasks/ExampleTask.php',
+        'phpucGenerateGraphTask'            =>  'Tasks/GenerateGraphTask.php',
         'phpucModifyFileTask'               =>  'Tasks/ModifyFileTask.php',
         'phpucPhpCodeSnifferTask'           =>  'Tasks/PhpCodeSnifferTask.php',
         'phpucPhpDocumentorTask'            =>  'Tasks/PhpDocumentorTask.php',

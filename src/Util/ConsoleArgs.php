@@ -63,6 +63,17 @@
 class phpucConsoleArgs
 {
     /**
+     * Marks a normal command or option that shows up in the cli help.
+     */
+    const MODE_NORMAL = 0;
+    
+    /**
+     * Marks a hidden command or option. This means a command is not shown in 
+     * the cli help.
+     */
+    const MODE_HIDDEN = 1;
+    
+    /**
      * The argument array form the command line interface.
      *
      * @type array<string>
@@ -78,6 +89,7 @@ class phpucConsoleArgs
      */
     private $commands = array(
         'install'  =>  array(
+            'mode'  =>  self::MODE_NORMAL,
             'help'  =>  'Installs the CruiseControl patches.',
             'options'  =>  array(
                 array(
@@ -96,6 +108,7 @@ class phpucConsoleArgs
             )
         ),
         'example'  =>  array(
+            'mode'  =>  self::MODE_NORMAL,
             'help'  =>  'Creates a small example project.',
             'options'  =>  array(
                 array(
@@ -197,7 +210,17 @@ class phpucConsoleArgs
                     'mandatory'  =>  true
                 )
             )
-        )
+        ),
+        'graph'  =>  array(
+            'help'  =>  'Generates the metric graphs with ezcGraph',
+            'mode'  =>  self::MODE_HIDDEN,
+            'args'  =>  array(
+                'project-log-dir'  =>  array(
+                    'help'       =>  'The project log directory',
+                    'mandatory'  =>  true
+                )
+            )
+        ),
     );
     
     /**
@@ -401,7 +424,11 @@ class phpucConsoleArgs
      */
     private function parseOptions()
     {
-        $opts = $this->commands[$this->command]['options'];
+        $opts = array();
+        if ( isset( $this->commands[$this->command]['options'] ) )
+        {
+            $opts = $this->commands[$this->command]['options'];
+        }
         
         foreach ( $opts as $opt )
         {
@@ -534,8 +561,14 @@ class phpucConsoleArgs
             echo PHP_EOL;
 
             // Print all options and arguments
-            foreach ( array_keys( $this->commands ) as $command )
+            foreach ( $this->commands as $command => $config )
             {
+                // Skip hidden commands
+                if ( $config['mode'] === self::MODE_HIDDEN )
+                {
+                    continue;
+                }
+                
                 $this->printModeHelp( $command );
             }
             
@@ -572,14 +605,20 @@ class phpucConsoleArgs
             PHP_EOL
         );
         
-        foreach ( $this->commands[$command]['options'] as $opts )
+        $opts = array();
+        if ( isset( $this->commands[$command]['options'] ) )
         {
-            $tokens = $this->tokenizeHelp( $opts['help'] );
+            $opts = $this->commands[$command]['options'];
+        }
+        
+        foreach ( $opts as $opt )
+        {
+            $tokens = $this->tokenizeHelp( $opt['help'] );
             
             printf(
                 ' -% -2s --% -23s %s%s',
-                $opts['short'],
-                $opts['long'],
+                $opt['short'],
+                $opt['long'],
                 array_shift( $tokens ),
                 PHP_EOL
             );
@@ -632,12 +671,18 @@ class phpucConsoleArgs
     private function printUsage()
     {
         $commands = '';
-        foreach ( $this->commands as $command => $info )
+        foreach ( $this->commands as $command => $config )
         {
+            // Skip hidden commands
+            if ( $config['mode'] === self::MODE_HIDDEN )
+            {
+                continue;
+            }
+            
             $commands .= sprintf(
                 '  * % -10s  %s%s',
                 $command,
-                $info['help'],
+                $config['help'],
                 PHP_EOL
             );
         }
