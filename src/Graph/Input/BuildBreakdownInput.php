@@ -68,21 +68,40 @@ class phpucBuildBreakdownInput extends phpucAbstractInput
         
         $this->addRule(
             new phpucInputRule(
-                'lastsuccessfulbuild',
-                '/cruisecontrol/info/property[@name = "lastsuccessfulbuild"]/@value',
+                'builddate',
+                '/cruisecontrol/info/property[@name = "builddate"]/@value',
                 self::MODE_VALUE
+                
+            )
+        );
+        $this->addRule(
+            new phpucInputRule(
+                'builddate_error',
+                '/cruisecontrol[build/@error]/info/property[@name = "builddate"]/@value',
+                self::MODE_VALUE
+                
             )
         );
     }
     
     protected function postProcessLog( array $logs )
     {
-        $total = $logs['lastsuccessfulbuild'];
-        $good  = count( array_unique( $total ) );
-        
-        return array(
-            'Good Builds'    =>  $good,
-            'Broken Builds'  =>  ( count( $total ) - $good ),
+        $data = array(
+            'Good Builds'    =>  0,
+            'Broken Builds'  =>  0
         );
+        
+        foreach ( $logs['builddate'] as $date )
+        {
+
+            $label = 'Good Builds';
+            if ( in_array( $date, $logs['builddate_error'] ) )
+            {
+                $label = 'Broken Builds';
+            }
+            ++$data[$label];
+        }
+        
+        return $data;
     }
 }

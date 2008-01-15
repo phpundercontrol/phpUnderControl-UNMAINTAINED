@@ -82,6 +82,7 @@ class phpucGraphPalette extends ezcGraphPaletteEzGreen
      */
     protected $dataSetColor = array(
         '#8ae234',
+        '#f57900',
         '#437610',
         '#888a85',
         '#2e3436',

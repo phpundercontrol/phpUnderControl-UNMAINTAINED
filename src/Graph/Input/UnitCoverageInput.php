@@ -90,14 +90,14 @@ class phpucUnitCoverageInput extends phpucAbstractInput
         );
         $this->addRule(
             new phpucInputRule(
-                'Executable lines',
+                'Executable',
                 '/cruisecontrol/coverage/project/file/line',
                 self::MODE_COUNT
             )
         );
         $this->addRule(
             new phpucInputRule(
-                'Covered lines',
+                'Covered',
                 '/cruisecontrol/coverage/project/file/line[@count != 0]',
                 self::MODE_COUNT
             )

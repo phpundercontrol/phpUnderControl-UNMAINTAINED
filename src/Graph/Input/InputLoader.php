@@ -36,47 +36,50 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  * 
- * @category  QualityAssurance
- * @package   ...
- * @author    Manuel Pichler <mapi@manuel-pichler.de>
- * @copyright 2007-2008 Manuel Pichler. All rights reserved.
- * @license   http://www.opensource.org/licenses/bsd-license.php  BSD License
- * @version   SVN: $Id$
- * @link      http://www.phpundercontrol.org/
+ * @category   QualityAssurance
+ * @package    Graph
+ * @subpackage Input
+ * @author     Manuel Pichler <mapi@manuel-pichler.de>
+ * @copyright  2007-2008 Manuel Pichler. All rights reserved.
+ * @license    http://www.opensource.org/licenses/bsd-license.php  BSD License
+ * @version    SVN: $Id$
+ * @link       http://www.phpundercontrol.org/
  */
 
 /**
- * ...
+ * Simple directory based input loader.
+ * 
+ * This utility class will load all input classes from the same directory and
+ * returns input instance. This allows easy input integration for new metric
+ * charts. 
  *
- * @category  QualityAssurance
- * @package   ...
- * @author    Manuel Pichler <mapi@manuel-pichler.de>
- * @copyright 2007-2008 Manuel Pichler. All rights reserved.
- * @license   http://www.opensource.org/licenses/bsd-license.php  BSD License
- * @version   Release: @package_version@
- * @link      http://www.phpundercontrol.org/
+ * @category   QualityAssurance
+ * @package    Graph
+ * @subpackage Input
+ * @author     Manuel Pichler <mapi@manuel-pichler.de>
+ * @copyright  2007-2008 Manuel Pichler. All rights reserved.
+ * @license    http://www.opensource.org/licenses/bsd-license.php  BSD License
+ * @version    Release: @package_version@
+ * @link       http://www.phpundercontrol.org/
  */
-class phpucDotChart extends phpucLineChart
+class phpucInputLoader implements IteratorAggregate
 {
-    protected function init()
-    {
-        parent::init();
-        
-        $this->showSymbol = true;
-        
-        $this->options->fillLines = false;
-    }
+    /**
+     * The input iterator.
+     *
+     * @type phpucInputIterator
+     * @var phpucInputIterator $inputs
+     */
+    private $inputs = null;
     
-    protected function initAxis()
+    public function getIterator()
     {
-        $this->yAxis                    = new ezcGraphChartElementDateAxis();
-        $this->yAxis->axisLabelRenderer = new ezcGraphAxisCenteredLabelRenderer();
-        $this->yAxis->dateFormat        = 'H:i';
-        $this->yAxis->font->maxFontSize = 10;
-
-        $this->xAxis                    = new ezcGraphChartElementDateAxis();
-        $this->xAxis->axisLabelRenderer = new ezcGraphAxisCenteredLabelRenderer();
-        $this->xAxis->dateFormat        = 'Y/m/d';
-        $this->xAxis->font->maxFontSize = 10;
+        if ( $this->inputs === null )
+        {
+            $this->inputs = new phpucInputIterator(
+                new DirectoryIterator( dirname( __FILE__ ) )
+            );
+        }
+        return $this->inputs;
     }
 }

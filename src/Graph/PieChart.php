@@ -76,7 +76,6 @@ class phpucPieChart extends ezcGraphPieChart implements phpucChartI
     {
         $this->title = $input->title;
         
-        $this->data          = new ezcGraphChartDataContainer( $this );
         $this->data['label'] = new ezcGraphArrayDataSet( $input->data );
     }
     

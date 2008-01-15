@@ -47,7 +47,10 @@
  */
 
 /**
+ * Filter iterator that expects a {@link DirectoryIterator} as argument. 
  * 
+ * This iterator accepts all php files that end with 'Input.php' and do not 
+ * begin with 'Abstract'. 
  *
  * @category   QualityAssurance
  * @package    Graph
@@ -58,55 +61,50 @@
  * @version    Release: @package_version@
  * @link       http://www.phpundercontrol.org/
  */
-class phpucBuildBreakdownTimelineInput extends phpucAbstractInput
+class phpucInputIterator extends FilterIterator
 {
-    public function __construct()
+    /**
+     * The required file suffix.
+     */
+    const SUFFIX = 'Input.php';
+    
+    /**
+     * List of available input object.
+     *
+     * @type array<phpucInputI>
+     * @var array(phpucInputI) $inputs
+     */
+    private $inputs = null;
+    
+    /**
+     * Returns <b>true if the file name indicates a valid input file. 
+     *
+     * @return boolean
+     */
+    public function accept()
     {
-        parent::__construct(
-            'Breakdown of build timeline', 
-            '02-breakdown-of-build-timeline', 
-            phpucChartI::TYPE_DOT
-        );
+        // Get current file name
+        $file = basename( $this->getInnerIterator()->current() );
         
-        $this->yAxisLabel = 'Time';
-        $this->xAxisLabel = 'Date ';
-        
-        $this->addRule(
-            new phpucInputRule(
-                'builddate',
-                '/cruisecontrol/info/property[@name = "builddate"]/@value',
-                self::MODE_VALUE
-                
-            )
-        );
-        $this->addRule(
-            new phpucInputRule(
-                'builddate_error',
-                '/cruisecontrol[build/@error]/info/property[@name = "builddate"]/@value',
-                self::MODE_VALUE
-                
-            )
+        return (
+            strpos( $file, 'Abstract' ) !== 0 && 
+            substr( $file, -1 * strlen( self::SUFFIX ) ) === self::SUFFIX
+            
         );
     }
     
-    protected function postProcessLog( array $logs )
+    public function current()
     {
-        $data = array();
+        $key = $this->key();
         
-        foreach ( $logs['builddate'] as $date )
+        if ( !isset( $this->inputs[$key] ) )
         {
-            // Generate time stamp
-            $timestamp = strtotime( $date );
-
-            $label = 'Good Builds';
-            if ( in_array( $date, $logs['builddate_error'] ) )
-            {
-                $label = 'Broken Builds';
-            }
+            // Build class name from file
+            $class = 'phpuc' . pathinfo( parent::current(), PATHINFO_FILENAME );
             
-            $data[$label][$timestamp] = date( 'H:i', $timestamp );
+            $this->inputs[$key] = new $class();
         }
         
-        return $data;
+        return $this->inputs[$key];
     }
 }
