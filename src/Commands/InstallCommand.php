@@ -67,6 +67,7 @@ class phpucInstallCommand extends phpucAbstractCommand
     private $installFiles = array(
         '/footer.jsp',
         '/header.jsp',
+        '/metrics.cewolf.jsp',
         '/phpcs.jsp',
         '/phpunit.jsp',
         '/phpunit-pmd.jsp',
