@@ -46,7 +46,7 @@
  */
 
 /**
- * This model/data class reflects a single build log file.
+ * 
  *
  * @category  QualityAssurance
  * @package   Data
@@ -55,74 +55,32 @@
  * @license   http://www.opensource.org/licenses/bsd-license.php  BSD License
  * @version   Release: @package_version@
  * @link      http://www.phpundercontrol.org/
- * 
- * @property-read string $timestamp The cruise control timestamp format.
- * @property-read string $fileName  The full log file filename.
  */
-class phpucLogFile extends DOMDocument
+class phpucLogFileIterator extends ArrayIterator
 {
-    /**
-     * Virtual properties for a single build log file.
-     *
-     * @type array<mixed>
-     * @var array(string=>mixed) $properties
-     */
-    protected $properties = array(
-        'timestamp'  =>  null,
-        'fileName'   =>  null,        
-    );
-    
-    public function __construct( $fileName )
+    public function __construct( $logDir )
     {
-        parent::__construct();
-        
-        $this->load( $fileName );
-        
-        // Extract timestamp from file name
-        preg_match( '/log([0-9]+)/', basename( $fileName ), $match );
-        
-        $this->properties['timestamp'] = $match[1];
-        $this->properties['fileName']  = $fileName;
+        parent::__construct( $this->readLogs( $logDir ) );
     }
     
-    /**
-     * Magic property getter method.
-     *
-     * @param string $name The property name.
-     * 
-     * @return mixed
-     * @throws OutOfRangeException If the requested property doesn't exist or
-     *         is writonly.
-     * @ignore 
-     */
-    public function __get( $name )
+    public function current()
     {
-        if ( array_key_exists( $name, $this->properties ) )
+        return new phpucLogFile( parent::current() );
+    }
+    
+    private function readLogs( $logDir )
+    {
+        $logs = array();
+        
+        foreach ( glob( "{$logDir}/log*.xml" ) as $log )
         {
-            return $this->properties[$name];
+            preg_match( '/^log([0-9]+)/', basename( $log ), $match );
+            
+            $logs[$match[1]] = $log;
         }
-        throw new OutOfRangeException(
-            sprintf( 'Unknown or writonly property $%s.', $name )
-        );
-    }
-    
-    /**
-     * Magic property setter method.
-     *
-     * @param string $name  The property name.
-     * @param mixed  $value The property value.
-     * 
-     * @return void
-     * @throws OutOfRangeException If the requested property doesn't exist or
-     *         is readonly.
-     * @throws InvalidArgumentException If the given value has an unexpected 
-     *         format or an invalid data type.
-     * @ignore 
-     */
-    public function __set( $name, $value )
-    {
-        throw new OutOfRangeException(
-            sprintf( 'Unknown or readonly property $%s.', $name )
-        );
+        
+        ksort( $logs );
+        
+        return $logs;
     }
 }
