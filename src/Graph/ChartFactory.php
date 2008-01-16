@@ -46,7 +46,7 @@
  */
 
 /**
- * ...
+ * Object factory for the different chart types.
  *
  * @category  QualityAssurance
  * @package   Graph
@@ -58,6 +58,13 @@
  */
 class phpucChartFactory
 {
+    /**
+     * Creates a chart instance depending on the given <b>$input</b> settings.
+     *
+     * @param phpucAbstractInput $input The input data source.
+     * 
+     * @return ezcGraphChart
+     */
     public function createChart( phpucAbstractInput $input )
     {
         switch ( $input->type )

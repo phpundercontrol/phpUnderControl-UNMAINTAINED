@@ -37,7 +37,7 @@
  * POSSIBILITY OF SUCH DAMAGE.
  * 
  * @category  QualityAssurance
- * @package   ...
+ * @package   Graph
  * @author    Manuel Pichler <mapi@manuel-pichler.de>
  * @copyright 2007-2008 Manuel Pichler. All rights reserved.
  * @license   http://www.opensource.org/licenses/bsd-license.php  BSD License
@@ -46,10 +46,10 @@
  */
 
 /**
- * ...
+ * Counts the good and broken builds for a pie chart. 
  *
  * @category  QualityAssurance
- * @package   ...
+ * @package   Graph
  * @author    Manuel Pichler <mapi@manuel-pichler.de>
  * @copyright 2007-2008 Manuel Pichler. All rights reserved.
  * @license   http://www.opensource.org/licenses/bsd-license.php  BSD License
@@ -58,6 +58,9 @@
  */
 class phpucBuildBreakdownInput extends phpucAbstractInput
 {
+    /**
+     * Constructs a build breakdown input instance.
+     */
     public function __construct()
     {
         parent::__construct( 
@@ -84,6 +87,13 @@ class phpucBuildBreakdownInput extends phpucAbstractInput
         );
     }
     
+    /**
+     * Counts te good and broken builds.
+     *
+     * @param array(string=>array) $logs Fetched log data.
+     * 
+     * @return array(string=>integer)
+     */
     protected function postProcessLog( array $logs )
     {
         $data = array(

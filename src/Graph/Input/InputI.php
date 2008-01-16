@@ -100,5 +100,12 @@ interface phpucInputI
      */
     function __set( $name, $value );
     
+    /**
+     * Extracts the input data from the given DOMXPath instance.
+     *
+     * @param DOMXPath $xpath The context dom xpath object.
+     * 
+     * @return void
+     */
     function processLog( DOMXPath $xpath );
 }

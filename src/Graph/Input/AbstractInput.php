@@ -47,7 +47,33 @@
  */
 
 /**
- * ...
+ * Abstract base class for graph input data.
+ * 
+ * This class provides the main xpath and data extraction logic for conrete
+ * implementations. This means an extending class must only define the xpath
+ * rules and the required chart type.
+ * 
+ * <code>
+ * class MyChartInput extends phpucAbstractInput
+ * {
+ *     public function __construct()
+ *     {        
+ *         parent::__construct(
+ *             'Coding Violations',
+ *             '06-coding-violations',
+ *             phpucChartI::TYPE_LINE
+ *         );
+ * 
+ *         $this->addRule(
+ *             new phpucInputRule(
+ *                 'PHP CodeSniffer', 
+ *                 '/cruisecontrol/checkstyle/file/error',
+ *                 self::MODE_COUNT
+ *             )
+ *         ); 
+ *     }
+ * }
+ * </code>
  *
  * @category   QualityAssurance
  * @package    Graph
@@ -110,7 +136,7 @@ abstract class phpucAbstractInput implements phpucInputI
      * The extracted log file data.
      *
      * @type array<mixed>
-     * @var array(string=>mixed) $data
+     * @var array(string=>array) $data
      */
     private $data = array();
     
@@ -198,6 +224,13 @@ abstract class phpucAbstractInput implements phpucInputI
         );
     }
     
+    /**
+     * Evaluates all defined xpath rules against the given DOMXPath instance.
+     *
+     * @param DOMXPath $xpath The context dom xpath object.
+     * 
+     * @return void
+     */
     public function processLog( DOMXPath $xpath )
     {
         foreach ( $this->rules as $rule )
@@ -228,6 +261,13 @@ abstract class phpucAbstractInput implements phpucInputI
         }
     }
     
+    /**
+     * Calculates the sum of all node values.
+     *
+     * @param DOMNodeList $nodeList Fetched node list.
+     * 
+     * @return integer
+     */
     protected function processLogSum( DOMNodeList $nodeList )
     {
         $sum = 0;
@@ -238,11 +278,25 @@ abstract class phpucAbstractInput implements phpucInputI
         return $sum;
     }
     
+    /**
+     * Counts all nodes in the node list
+     *
+     * @param DOMNodeList $nodeList Fetched node list.
+     * 
+     * @return integer
+     */
     protected function processLogCount( DOMNodeList $nodeList )
     {
         return $nodeList->length;
     }
     
+    /**
+     * Creates a concated string with all node values.
+     *
+     * @param DOMNodeList $nodeList Fetched node list.
+     * 
+     * @return string
+     */
     protected function processLogValue( DOMNodeList $nodeList )
     {
         $value = '';
@@ -253,6 +307,17 @@ abstract class phpucAbstractInput implements phpucInputI
         return $value;
     }
     
+    /**
+     * Post processes the fetched data.
+     * 
+     * Concrete implementations can overwrite this this method to post process
+     * the fetched data before it is given to the graph object. This can be very
+     * usefull in all cases where logs don't have the required format. 
+     *
+     * @param array(string=>array) $logs Fetched log data.
+     * 
+     * @return array(string=>mixed)
+     */
     protected function postProcessLog( array $logs )
     {
         return $logs;

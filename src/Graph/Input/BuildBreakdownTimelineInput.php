@@ -47,7 +47,7 @@
  */
 
 /**
- * 
+ * This input provides data for the timeline of good and broken builds.
  *
  * @category   QualityAssurance
  * @package    Graph
@@ -60,6 +60,9 @@
  */
 class phpucBuildBreakdownTimelineInput extends phpucAbstractInput
 {
+    /**
+     * Constructs a build timeline input instance.
+     */
     public function __construct()
     {
         parent::__construct(
@@ -89,6 +92,13 @@ class phpucBuildBreakdownTimelineInput extends phpucAbstractInput
         );
     }
     
+    /**
+     * Counts te good and broken builds and extracts the day time.
+     *
+     * @param array(string=>array) $logs Fetched log data.
+     * 
+     * @return array(string=>array)
+     */
     protected function postProcessLog( array $logs )
     {
         $data = array();
