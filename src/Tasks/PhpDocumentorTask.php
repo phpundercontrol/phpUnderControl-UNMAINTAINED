@@ -100,7 +100,7 @@ class phpucPhpDocumentorTask extends phpucAbstractPearTask
         $buildTarget->executable = $this->executable;
         $buildTarget->logerror   = true;
         $buildTarget->argLine    = sprintf(
-            '-ue on -t ${basedir}/build/api -d %s',
+            '-ti \'${project.name}\' -ue on -t ${basedir}/build/api -d %s',
             $this->args->getOption( 'source-dir' )
         );
         
