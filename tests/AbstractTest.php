@@ -1,6 +1,8 @@
 <?php
 /**
  * This file is part of phpUnderControl.
+ * 
+ * PHP Version 5
  *
  * Copyright (c) 2007-2008, Manuel Pichler <mapi@manuel-pichler.de>.
  * All rights reserved.
@@ -34,7 +36,8 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  * 
- * @package   phpUnderControl
+ * @category  QualityAssurance
+ * @package   PhpUnderControl
  * @author    Manuel Pichler <mapi@manuel-pichler.de>
  * @copyright 2007-2008 Manuel Pichler. All rights reserved.
  * @license   http://www.opensource.org/licenses/bsd-license.php  BSD License
@@ -60,7 +63,8 @@ require_once 'PHPUnit/Framework/TestCase.php';
 /**
  * Abstract base class for phpUnderControl test cases.
  *
- * @package   phpUnderControl
+ * @category  QualityAssurance
+ * @package   PhpUnderControl
  * @author    Manuel Pichler <mapi@manuel-pichler.de>
  * @copyright 2007-2008 Manuel Pichler. All rights reserved.
  * @license   http://www.opensource.org/licenses/bsd-license.php  BSD License
@@ -93,6 +97,8 @@ abstract class phpucAbstractTest extends PHPUnit_Framework_TestCase
      * Prepares the global <b>$argv</b> array.
      *
      * @param array $argv A new argument array.
+     * 
+     * @return void
      */
     protected function prepareArgv( array $argv = null )
     {
@@ -151,6 +157,13 @@ abstract class phpucAbstractTest extends PHPUnit_Framework_TestCase
         return $fullPath;
     }
     
+    /**
+     * Removes temporary test content recursively.
+     *
+     * @param string $directory The context directory.
+     * 
+     * @return void
+     */
     protected function clearTestContents( $directory = null )
     {
         if ( $directory === null )
@@ -186,9 +199,12 @@ abstract class phpucAbstractTest extends PHPUnit_Framework_TestCase
     {
         // Load phpUnderControl base class
         include_once PHPUC_SOURCE . '/PhpUnderControl.php';
+        include_once PHPUC_SOURCE . '/Util/Autoloader.php';
         
         // Register autoload
-        spl_autoload_register( array( 'phpucPhpUnderControl', 'autoload' ) );
+        $autoloader = new phpucAutoloader();
+        
+        spl_autoload_register( array( $autoloader, 'autoload' ) );
         
         // Load ezcBase class
         if ( file_exists( PHPUC_EZC_BASE ) )
@@ -202,7 +218,7 @@ abstract class phpucAbstractTest extends PHPUnit_Framework_TestCase
         
         PHPUnit_Util_Filter::addDirectoryToWhitelist( PHPUC_SOURCE );
         
-        if ( !is_dir( PHPUC_TEST_DIR) )
+        if ( !is_dir( PHPUC_TEST_DIR ) )
         {
             mkdir( PHPUC_TEST_DIR );
         }

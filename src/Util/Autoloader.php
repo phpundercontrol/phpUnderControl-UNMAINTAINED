@@ -35,9 +35,9 @@
  * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
- *
+ * 
  * @category  QualityAssurance
- * @package   PhpUnderControl
+ * @package   Util
  * @author    Manuel Pichler <mapi@manuel-pichler.de>
  * @copyright 2007-2008 Manuel Pichler. All rights reserved.
  * @license   http://www.opensource.org/licenses/bsd-license.php  BSD License
@@ -45,119 +45,62 @@
  * @link      http://www.phpundercontrol.org/
  */
 
-if ( strpos( '@php_dir@', '@php_dir' ) === false )
-{
-    define( 'PHPUC_INSTALL_DIR', '@php_dir@/phpUnderControl' );
-    define( 'PHPUC_DATA_DIR', '@data_dir@/phpUnderControl' );
-    define( 'PHPUC_EZC_BASE', '@php_dir@/ezc/Base/base.php' );
-}
-else
-{
-    define( 'PHPUC_INSTALL_DIR', dirname( __FILE__ ) );
-    define( 'PHPUC_DATA_DIR', realpath( PHPUC_INSTALL_DIR . '/..' ) );
-    define( 'PHPUC_EZC_BASE', PHPUC_DATA_DIR . '/lib/ezc/Base/src/base.php' );
-}
-
-require_once PHPUC_INSTALL_DIR . '/Util/Autoloader.php';
+require_once PHPUC_INSTALL_DIR . '/Util/PhpFileFilterIterator.php';
 
 /**
- * Main installer class.
- *
+ * Simple utility class that provides the autoload mechanism for phpUnderControl.
+ * 
  * @category  QualityAssurance
- * @package   PhpUnderControl
+ * @package   Util
  * @author    Manuel Pichler <mapi@manuel-pichler.de>
  * @copyright 2007-2008 Manuel Pichler. All rights reserved.
  * @license   http://www.opensource.org/licenses/bsd-license.php  BSD License
  * @version   Release: @package_version@
  * @link      http://www.phpundercontrol.org/
+ * @todo      TODO: Some sort of caching would be a really good idea.
  */
-class phpucPhpUnderControl
+class phpucAutoloader
 {
     /**
-     * Main method for phpUnderControl
+     * Mapping between class names and files.
      *
-     * @return void
+     * @type array<string>
+     * @var array(string=>string)
      */
-    public static function main()
-    {
-        $autoloader = new phpucAutoloader();
-        
-        spl_autoload_register( array( $autoloader, 'autoload' ) );
-        
-        if ( file_exists( PHPUC_EZC_BASE ) )
-        {
-            include_once PHPUC_EZC_BASE;
-
-            spl_autoload_register( array( 'ezcBase', 'autoload' ) );
-        }
-        
-        $phpUnderControl = new phpucPhpUnderControl();
-        $phpUnderControl->run();
-    }
+    private $classMap = null;
     
     /**
-     * The used console input object.
+     * Constructs an instance of the autoload and loads the internal used mapping.
      *
-     * @type phpucConsoleInput
-     * @var phpucConsoleInput $input
-     */
-    private $input = null;
-    
-    /**
-     * List with all tasks.
-     *
-     * @type array<phpucTaskI>
-     * @var array(phpucTaskI) $tasks
-     */
-    private $tasks = array();
-    
-    /**
-     * The ctor creates the required console arg instance.
+     * @todo TODO: Some sort of caching would be a good idea
      */
     public function __construct()
     {
-        $this->input = new phpucConsoleInput();
+        $it = new phpucPhpFileFilterIterator( 
+            new RecursiveIteratorIterator(
+                new RecursiveDirectoryIterator( PHPUC_INSTALL_DIR )
+            )
+        );
+        foreach ( $it as $item )
+        {
+            $className = 'phpuc' . substr( $it->getFilename(), 0, -4 );
+            
+            $this->classMap[$className] = $it->getRealPath();
+        }
     }
     
     /**
-     * Performs a single cli request.
+     * Autoload function.
      *
+     * @param string $className Unresolved class name.
+     * 
      * @return void
      */
-    public function run()
+    public function autoload( $className )
     {
-        try
+        if ( isset( $this->classMap[$className] ) )
         {
-            if ( $this->input->parse() )
-            {
-                phpucConsoleOutput::set( new phpucConsoleOutput() );
-                
-                $command = phpucAbstractCommand::createCommand( $this->input->args );
-        
-                $command->validate();
-                $command->execute();
-            }
-            exit( 0 );
-        }
-        catch ( phpucConsoleException $e )
-        {
-            echo $e->getMessage() . PHP_EOL;
-            exit( 1 );
-        }
-        catch ( phpucExecuteException $e )
-        {
-            echo $e->getMessage() . PHP_EOL;
-            exit( 2 );
-        }
-        catch ( phpucValidateException $e )
-        {
-            echo $e->getMessage() . PHP_EOL;
-            exit( 3 );
-        }
-        catch ( Exception $e )
-        {
-            echo $e->getMessage() . PHP_EOL;
-            exit( 4 );
+            include $this->classMap[$className];
         }
     }
 }
