@@ -1,9 +1,9 @@
 <?php
 /**
  * This file is part of phpUnderControl.
- *
- * PHP Version 5.2.4
  * 
+ * PHP Version 5.2.4
+ *
  * Copyright (c) 2007-2008, Manuel Pichler <mapi@manuel-pichler.de>.
  * All rights reserved.
  *
@@ -37,7 +37,7 @@
  * POSSIBILITY OF SUCH DAMAGE.
  * 
  * @category  QualityAssurance
- * @package   Commands
+ * @package   Data
  * @author    Manuel Pichler <mapi@manuel-pichler.de>
  * @copyright 2007-2008 Manuel Pichler. All rights reserved.
  * @license   http://www.opensource.org/licenses/bsd-license.php  BSD License
@@ -46,58 +46,23 @@
  */
 
 /**
- * Implementation mode of the example mode.
+ * 
  *
  * @category  QualityAssurance
- * @package   Commands
+ * @package   Data
  * @author    Manuel Pichler <mapi@manuel-pichler.de>
  * @copyright 2007-2008 Manuel Pichler. All rights reserved.
  * @license   http://www.opensource.org/licenses/bsd-license.php  BSD License
  * @version   Release: @package_version@
  * @link      http://www.phpundercontrol.org/
  */
-class phpucExampleCommand extends phpucAbstractCommand
+interface phpucConfigPublisherI
 {
     /**
-     * List of example files.
+     * Builds/Rebuilds the publisher-tag.
      *
-     * @type array<string>
-     * @var array(string=>string) $exampleFiles
+     * @return void
+     * @throws ErrorException If an error occured..
      */
-    private $exampleFiles = array(
-        'src/Math.php'        =>  null,
-        'tests/MathTest.php'  =>  null,
-    );
-    
-    /**
-     * Creates all command specific {@link phpucTaskI} objects.
-     * 
-     * @return array(phpucTaskI)
-     */
-    protected function doCreateTasks()
-    {
-        $tasks = array();
-        
-        $tasks[] = new phpucProjectTask( $this->args );
-        $tasks[] = new phpucExampleTask( $this->args );
-        
-        if ( !$this->args->hasOption( 'without-php-documentor' ) )
-        {
-            $tasks[] = new phpucPhpDocumentorTask( $this->args );
-        }
-        if ( !$this->args->hasOption( 'without-code-sniffer' ) )
-        {
-            $tasks[] = new phpucPhpCodeSnifferTask( $this->args );
-        }
-        if ( !$this->args->hasOption( 'without-phpunit' ) )
-        {
-            $tasks[] = new phpucPhpUnitTask( $this->args );
-        }
-        if ( !$this->args->hasOption( 'without-ezc-graph' ) )
-        {
-            $tasks[] = new phpucGraphTask( $this->args );
-        }
-        
-        return $tasks;
-    }
+    function buildXml();
 }

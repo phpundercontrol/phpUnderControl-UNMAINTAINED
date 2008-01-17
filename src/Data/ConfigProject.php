@@ -225,6 +225,20 @@ class phpucConfigProject
     }
     
     /**
+     * Creates a new execute publisher for this project.
+     *
+     * @return phpucConfigExecutePublisher
+     */
+    public function createExecutePublisher()
+    {
+        $execute = new phpucConfigExecutePublisher( $this );
+        
+        $this->publishers[] = $execute;
+        
+        return $execute;
+    }
+    
+    /**
      * Builds/Rebuilds the project xml document.
      *
      * @return void

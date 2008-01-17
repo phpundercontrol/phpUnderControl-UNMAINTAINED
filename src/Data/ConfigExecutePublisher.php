@@ -46,7 +46,7 @@
  */
 
 /**
- * This class represents an artificats publisher in the config.xml file.
+ *
  *
  * @category  QualityAssurance
  * @package   Data
@@ -56,7 +56,7 @@
  * @version   Release: @package_version@
  * @link      http://www.phpundercontrol.org/
  */
-class phpucConfigArtifactsPublisher implements phpucConfigPublisherI
+class phpucConfigExecutePublisher implements phpucConfigPublisherI
 {
     /**
      * Magic properties for the artifact publisher tag.
@@ -65,12 +65,9 @@ class phpucConfigArtifactsPublisher implements phpucConfigPublisherI
      * @var array(string=>mixed) $properties
      */
     protected $properties = array(
-        'element'       =>  null,
-        'project'       =>  null,
-        'dir'           =>  null,
-        'file'          =>  null,
-        'dest'          =>  'logs/${project.name}',
-        'subdirectory'  =>  null,
+        'element'  =>  null,
+        'project'  =>  null,
+        'command'  =>  null
     );
     
     /**
@@ -83,9 +80,7 @@ class phpucConfigArtifactsPublisher implements phpucConfigPublisherI
         $this->properties['project'] = $project;
         $this->properties['element'] = $project->element
                                                ->ownerDocument
-                                               ->createElement( 
-                                                    'artifactspublisher'
-                                               );
+                                               ->createElement( 'execute' );
                                                
         $publishers = $project->element->getElementsByTagName( 'publishers' );
         $publishers->item( 0 )->appendChild( $this->element );
@@ -129,13 +124,10 @@ class phpucConfigArtifactsPublisher implements phpucConfigPublisherI
     {
         switch ( $name )
         {
-            case 'dir':
-            case 'file':
-            case 'dest':
-            case 'subdirectory':
+            case 'command':
                 $this->properties[$name] = $value;
                 break;
-            
+
             default:
                 throw new OutOfRangeException(
                     sprintf( 'Unknown or readonly property $%s.', $name )
@@ -145,34 +137,13 @@ class phpucConfigArtifactsPublisher implements phpucConfigPublisherI
     }
     
     /**
-     * Builds/Rebuilds the <artifactspublisher> tag.
+     * Generates the up
      *
      * @return void
-     * @throws ErrorException If neither the $dir property nor the $file
-     *         property was set.
      */
     public function buildXml()
     {
-        if ( $this->file === null && $this->dir === null )
-        {
-            throw new ErrorException(
-                'You must set a artificat $dir or $file. Nothing set.'
-            );
-        }
-        else if ( $this->file === null )
-        {
-            $this->element->setAttribute( 'dir', $this->dir );    
-        }
-        else
-        {
-            $this->element->setAttribute( 'file', $this->file );
-        }
-        
-        $this->element->setAttribute( 'dest', $this->dest );
-        
-        if ( $this->subdirectory !== null )
-        {
-            $this->element->setAttribute( 'subdirectory', $this->subdirectory );
-        }
+
+        $this->element->setAttribute( 'command', $this->command );
     }
 }
