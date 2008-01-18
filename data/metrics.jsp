@@ -62,11 +62,15 @@ String ts  = artifacts_url.substring(artifacts_url.lastIndexOf('/') + 1);
 
 graphUrl = artifacts_url + "/graph/";
 graphDir = new File( log + "/" + project + "/" + ts + "/graph" );
+
+if (!graphDir.exists()) {
+    graphDir = new File(log + "/../artifacts/" + project + "/" + ts + "/graph" );
+}
 %>
 </cruisecontrol:artifactsLink>
 
 <% 
-if ( graphDir.exists() ) {
+if (graphDir.exists()) {
     FilenameFilter filter = new FilenameFilter() {
         public boolean accept(File dir, String name) {
             return name.substring(name.length() - 4).equals(".svg");
