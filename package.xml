@@ -20,9 +20,9 @@
     <email>mapi@phpundercontrol.org</email>
     <active>yes</active>
   </lead>
-  <date>2008-01-18</date>
+  <date>2008-01-19</date>
   <version>
-    <release>0.3.0</release>
+    <release>0.3.1</release>
     <api>0.2.0</api>
   </version>
   <stability>
@@ -31,10 +31,7 @@
   </stability>
   <license uri="http://www.opensource.org/licenses/bsd-license.php">BSD License</license>
   <notes>
-- New console input class added.
-- New dynamic command/option layer for console started. 
-- New ezcGraph based metrics view integrated.
-- Changed from static to dynamic autoloading. 
+- Bugfix for different artifact locations.
   </notes>
   <contents>
     <dir name="/">
@@ -661,6 +658,32 @@
       <notes>
 - New console output class added.
 - Improved Windows Support.
+      </notes>
+    </release>
+  </changelog>
+  <changelog>
+    <release>
+      <lead>
+        <name>Manuel Pichler</name>
+        <user>mp</user>
+        <email>mapi@phpundercontrol.org</email>
+        <active>yes</active>
+      </lead>
+      <date>2008-01-18</date>
+      <version>
+        <release>0.3.0</release>
+        <api>0.2.0</api>
+      </version>
+      <stability>
+        <release>beta</release>
+        <api>beta</api>
+      </stability>
+      <license uri="http://www.opensource.org/licenses/bsd-license.php">BSD License</license>
+      <notes>
+- New console input class added.
+- New dynamic command/option layer for console started. 
+- New ezcGraph based metrics view integrated.
+- Changed from static to dynamic autoloading. 
       </notes>
     </release>
   </changelog>
