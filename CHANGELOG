@@ -1,8 +1,10 @@
-phpUnderControl 0.2.3
+phpUnderControl 0.3.0
 
 Core
-- New console output class added.
-- Improved Windows Support.
+- New console input class added.
+- New dynamic command/option layer for console started. 
+- New ezcGraph based metrics view integrated.
+- Changed from static to dynamic autoloading. 
 
 phpUnderControl 0.2.2
 ---------------------
