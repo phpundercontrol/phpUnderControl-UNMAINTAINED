@@ -121,6 +121,13 @@ class phpucConsoleInputDefinition implements ArrayAccess, IteratorAggregate
                     'mandatory'  =>  false,
                 ),
                 array(
+                    'short'      =>  'e',
+                    'long'       =>  'without-ezc-graph',
+                    'arg'        =>  null,
+                    'help'       =>  'Disable ezcGraph support.',
+                    'mandatory'  =>  false,
+                ),
+                array(
                     'short'      =>  'p',
                     'long'       =>  'pear-executables-dir',
                     'arg'        =>  true,
