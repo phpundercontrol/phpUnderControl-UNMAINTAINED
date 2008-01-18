@@ -408,7 +408,7 @@
       </pearinstaller>
       <package>
         <name>Graph</name>
-        <channel>ezcomponents.ez.no</channel>
+        <channel>components.ez.no</channel>
         <min>1.2</min>      
       </package>
       <extension>
