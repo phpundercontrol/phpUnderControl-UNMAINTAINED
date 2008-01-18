@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="phpUnderControl" basedir="." default="build">
+  
+  <property name="output.dir" value="${basedir}/build" />
+
+  <target name="update">
+  	<exec executable="svn">
+      <arg line="up"/>
+  	</exec>
+  </target> 
+  
+  <target name="test">
+    <mkdir dir="${output.dir}/logs"/>
+    <mkdir dir="${output.dir}/coverage"/>
+    <exec dir="tests" executable="phpunit">
+      <arg line="--log-pmd ${output.dir}/logs/pmd.xml
+                 --log-metrics ${output.dir}/logs/metrics.xml
+                 --coverage-xml ${output.dir}/logs/coverage.xml
+                 --coverage-html ${output.dir}/coverage
+                 phpucAllTests AllTests.php"/>
+    </exec>
+  </target>
+  
+  <target name="phpdoc">
+    <mkdir dir="${output.dir}/api"/>
+    <exec dir="src" executable="phpdoc">
+      <arg line="-ct type -ue on -t ${output.dir}/api -d ."/>
+    </exec>
+  </target>
+
+  <target name="sniff">
+    <mkdir dir="${output.dir}/logs"/>
+    <exec dir="src" executable="phpcs" output="${output.dir}/logs/codesniffer.xml">
+      <arg line="--report=checkstyle --standard=MapiSource ." />
+    </exec>
+  </target>
+	
+  <target name="build">
+
+  </target>
+	
+</project>

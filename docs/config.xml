@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--****************************************************************************
+ * This file is part of phpUnderControl.
+ *
+ * Copyright (c) 2007-2008, Manuel Pichler <mapi@phpundercontrol.org>.
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions
+ * are met:
+ *
+ *   * Redistributions of source code must retain the above copyright
+ *     notice, this list of conditions and the following disclaimer.
+ *
+ *   * Redistributions in binary form must reproduce the above copyright
+ *     notice, this list of conditions and the following disclaimer in
+ *     the documentation and/or other materials provided with the
+ *     distribution.
+ *
+ *   * Neither the name of Manuel Pichler nor the names of his
+ *     contributors may be used to endorse or promote products derived
+ *     from this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+ * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+ * LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
+ * FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
+ * COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
+ * INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
+ * BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+ * LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+ * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+ * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
+ * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+ * POSSIBILITY OF SUCH DAMAGE.
+ * 
+ * @author    Manuel Pichler <mapi@phpundercontrol.org>
+ * @copyright 2007-2008 Manuel Pichler. All rights reserved.
+ * @license   http://www.opensource.org/licenses/bsd-license.php  BSD License
+ * @version   @package_version@
+ * @link      http://www.phpundercontrol.org/
+ ****************************************************************************-->
+<cruisecontrol>
+  <!--
+  Each CruiseControl project needs it's own project section. The CruiseControl
+  configuration allows multiple project configurations. 
+  
+    * http://cruisecontrol.sourceforge.net/main/configxml.html
+  -->
+  <project name="phpundercontrol.org" buildafterfailed="false">
+    <!--
+    CruiseControl provides a plugin system to integrate custom functionality 
+    into the build cycles.
+    
+    This example uses two subversion plugins, the svn bootstrapper and the svn
+    modification set. For more details on CruiseControl plugins see original 
+    documentation:
+     
+      * http://cruisecontrol.sourceforge.net/main/configxml.html#plugin
+      * http://cruisecontrol.sourceforge.net/main/plugins.html
+    -->
+    <plugin name="svnbootstrapper" 
+            classname="net.sourceforge.cruisecontrol.bootstrappers.SVNBootstrapper" />
+    <plugin name="svn" 
+            classname="net.sourceforge.cruisecontrol.sourcecontrols.SVN" />
+    
+    <!--
+    This listener stores the current build status.
+    
+      * http://cruisecontrol.sourceforge.net/main/configxml.html#listeners
+    -->
+    <listeners>
+      <currentbuildstatuslistener file="logs/${project.name}/status.txt"/>
+    </listeners>
+    
+    <!--
+    The modificationset tag checks for project changes in the used revision 
+    control system. If it detects a change a new build is started. The optional
+    "quietperiod" attribute defines the seconds without project changes, in this
+    example CruiseControl will only trigger a new build if at least 60 seconds
+    without a change are gone by.
+    
+      * http://cruisecontrol.sourceforge.net/main/configxml.html#modificationset 
+    -->
+    <modificationset quietperiod="60">
+      <svn localWorkingCopy="projects/${project.name}/source/"/>
+    </modificationset>
+    
+    <!--
+    The tasks defined in the bootstrapper section are run before CruiseControl 
+    starts the project build process. The plugins defined here update the local
+    working copy of the project from the used revision control system.
+    
+      * http://cruisecontrol.sourceforge.net/main/configxml.html#bootstrappers
+    -->
+    <bootstrappers>
+      <svnbootstrapper localWorkingCopy="projects/${project.name}/source/" />
+    </bootstrappers>
+    
+    <!--
+    The schedule element contains the concrete project build definition. In this
+    example the ant build system is used to perform the project build. The 
+    "interval" attribute defines the period in seconds that CruiseControl waits
+    before it checks for modifications in the revision control system.
+    CruiseControl supports other build system for example phing and maven, for a
+    detailed listing of supported system see the documentation.
+    
+      * http://cruisecontrol.sourceforge.net/main/configxml.html#schedule 
+    -->
+    <schedule interval="120">
+      <ant anthome="apache-ant-1.7.0" 
+           buildfile="projects/${project.name}/build.xml"/>
+    </schedule>
+    
+    <!--
+    The nested merge element takes all generated xml log files and merges them
+    into a single big build log file. This new file is used by the CruiseControl
+    user interface to generate the different views.
+    
+      * http://cruisecontrol.sourceforge.net/main/configxml.html#log
+    -->
+    <log dir="logs/${project.name}">
+      <merge dir="projects/${project.name}/build/logs/"/>
+    </log>
+    
+    <!--
+    CruiseControl provides multiple project publishers. Publishers are run after
+    the project build. The artifactspublisher can be used to copy some build 
+    artifacts like coverage reports or the api documentation from the working 
+    directory into the publish directory for the current build. Another publisher
+    sends emails for failed or successful builds  
+    
+      * http://cruisecontrol.sourceforge.net/main/configxml.html#publishers
+    -->
+    <publishers>
+      <currentbuildstatuspublisher file="logs/${project.name}/buildstatus.txt"/>
+      <!--
+      Copies the generated api documentation into project artifacts directory.  
+      -->
+      <artifactspublisher dir="projects/${project.name}/build/api" 
+                          dest="logs/${project.name}" 
+                          subdirectory="api"/>
+      <!--
+      Copies the generated code coverage report into project artifacts directory.  
+      -->
+      <artifactspublisher dir="projects/${project.name}/build/coverage" 
+                          dest="logs/${project.name}" 
+                          subdirectory="coverage"/>
+      <!--
+      Sends simple text emails after a project build. For nicer html emails, 
+      checkout the original CruiseControl documentation.
+    
+        * http://cruisecontrol.sourceforge.net/main/configxml.html#email
+        * http://cruisecontrol.sourceforge.net/main/configxml.html#htmlemail 
+      -->
+      <email mailhost="smtp.localhost"
+             username="username"
+             password="password"
+             returnaddress="cruise@phpundercontrol.org"
+             buildresultsurl="http://localhost:8080/buildresults/${project.name}"
+             skipusers="true" 
+             spamwhilebroken="true">
+        <always address="successful@php-under-control.org"/>
+        <always address="mapi@phpundercontrol.org"/>
+        <failure address="failed@php-under-control.org"/>
+      </email>
+    </publishers>
+  </project>
+</cruisecontrol>
