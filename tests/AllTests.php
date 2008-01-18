@@ -2,7 +2,7 @@
 /**
  * This file is part of phpUnderControl.
  *
- * Copyright (c) 2007-2008, Manuel Pichler <mapi@manuel-pichler.de>.
+ * Copyright (c) 2007-2008, Manuel Pichler <mapi@phpundercontrol.org>.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -35,7 +35,7 @@
  * POSSIBILITY OF SUCH DAMAGE.
  * 
  * @package   phpUnderControl
- * @author    Manuel Pichler <mapi@manuel-pichler.de>
+ * @author    Manuel Pichler <mapi@phpundercontrol.org>
  * @copyright 2007-2008 Manuel Pichler. All rights reserved.
  * @license   http://www.opensource.org/licenses/bsd-license.php  BSD License
  * @version   SVN: $Id$
@@ -59,7 +59,7 @@ require_once dirname( __FILE__ ) . '/Util/UtilAllTests.php';
  * Main test suite for phpUnderControl.
  *
  * @package   phpUnderControl
- * @author    Manuel Pichler <mapi@manuel-pichler.de>
+ * @author    Manuel Pichler <mapi@phpundercontrol.org>
  * @copyright 2007-2008 Manuel Pichler. All rights reserved.
  * @license   http://www.opensource.org/licenses/bsd-license.php  BSD License
  * @version   Release: @package_version@

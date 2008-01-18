@@ -1,7 +1,7 @@
 <%--********************************************************************************
  * This file is part of phpUnderControl.
  *
- * Copyright (c) 2007-2008, Manuel Pichler <mapi@manuel-pichler.de>.
+ * Copyright (c) 2007-2008, Manuel Pichler <mapi@phpundercontrol.org>.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without

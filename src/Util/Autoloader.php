@@ -4,7 +4,7 @@
  * 
  * PHP Version 5.2.4
  *
- * Copyright (c) 2007-2008, Manuel Pichler <mapi@manuel-pichler.de>.
+ * Copyright (c) 2007-2008, Manuel Pichler <mapi@phpundercontrol.org>.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -38,7 +38,7 @@
  * 
  * @category  QualityAssurance
  * @package   Util
- * @author    Manuel Pichler <mapi@manuel-pichler.de>
+ * @author    Manuel Pichler <mapi@phpundercontrol.org>
  * @copyright 2007-2008 Manuel Pichler. All rights reserved.
  * @license   http://www.opensource.org/licenses/bsd-license.php  BSD License
  * @version   SVN: $Id$
@@ -52,7 +52,7 @@ require_once PHPUC_INSTALL_DIR . '/Util/PhpFileFilterIterator.php';
  * 
  * @category  QualityAssurance
  * @package   Util
- * @author    Manuel Pichler <mapi@manuel-pichler.de>
+ * @author    Manuel Pichler <mapi@phpundercontrol.org>
  * @copyright 2007-2008 Manuel Pichler. All rights reserved.
  * @license   http://www.opensource.org/licenses/bsd-license.php  BSD License
  * @version   Release: @package_version@
