@@ -46,7 +46,7 @@
  */
 
 /**
- * 
+ * Collection with all available commands and options.
  *
  * @category  QualityAssurance
  * @package   Console
@@ -211,16 +211,40 @@ class phpucConsoleInputDefinition implements ArrayAccess, IteratorAggregate
         ),
     );
     
+    /**
+     * Returns an iterator with all registered cli commands.
+     *
+     * @return Iterator
+     */
     public function getIterator()
     {
         return new ArrayIterator( $this->definition );
     }
     
+    /**
+     * Array access method for isset.
+     *
+     * @param string $name The command name to look up.
+     * 
+     * @return boolean
+     */
     public function offsetExists( $name )
     {
         return ( isset( $this->definition[$name] ) );
     }
     
+    /**
+     * Returns the command definition for the given name.
+     * 
+     * If no command for the given <b>$name</b> exists, this method will throw
+     * an <b>OutOfRangeException</b>.
+     *
+     * @param string $name The name of the requested command.
+     * 
+     * @return array
+     * @throws OutOfRangeException If the requested command doesn't exist.
+     * @todo TODO: Change to a an instance of phpucConsoleCommandDefintion
+     */
     public function offsetGet( $name )
     {
         if ( $this->offsetExists( $name ) )
@@ -230,15 +254,34 @@ class phpucConsoleInputDefinition implements ArrayAccess, IteratorAggregate
         throw new OutOfRangeException( "Unknown index '{$name}'." );
     }
     
+    /**
+     * Adds a new command definition.
+     *
+     * @param string $name  The command name.
+     * @param array  $value The command array.
+     * 
+     * @return void
+     * @throws InvalidArgumentException If the $value is not an array.
+     * @todo TODO: Change to a an instance of phpucConsoleCommandDefintion
+     */
     public function offsetSet( $name, $value )
     {
-        if ( is_array( $value ) )
+        if ( !is_array( $value ) )
         {
-            $this->definition[$name] = $value;
+            throw new InvalidArgumentException( 
+                'A new definition must be an array.' 
+            );
         }
-        throw new InvalidArgumentException( 'A new definition must be an array.' );
+        $this->definition[$name] = $value;
     }
     
+    /**
+     * Does nothing here!?!?
+     *
+     * @param string $name The command name.
+     * 
+     * @return void
+     */
     public function offsetUnset( $name )
     {
         // Nothing todo here

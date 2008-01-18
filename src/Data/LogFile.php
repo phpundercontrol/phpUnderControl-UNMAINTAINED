@@ -72,6 +72,11 @@ class phpucLogFile extends DOMDocument
         'fileName'   =>  null,        
     );
     
+    /**
+     * Constructs a new log file instance for the given file.
+     *
+     * @param string $fileName Path of a cc log file.
+     */
     public function __construct( $fileName )
     {
         parent::__construct();

@@ -60,8 +60,17 @@
  */
 class phpucLineChart extends ezcGraphLineChart implements phpucChartI
 {
+    /**
+     * If <b>true</b> each data item is shown with a highlight symbol.
+     *
+     * @type boolean
+     * @var boolean $showSymbol
+     */
     protected $showSymbol = false;
     
+    /**
+     * Constructs a new line chart object.
+     */
     public function __construct()
     {
         parent::__construct();
@@ -101,6 +110,11 @@ class phpucLineChart extends ezcGraphLineChart implements phpucChartI
         }
     }
     
+    /**
+     * Initializes the chart properties.
+     *
+     * @return void
+     */
     protected function init()
     {
         $this->palette = new phpucGraphPalette();
@@ -116,6 +130,11 @@ class phpucLineChart extends ezcGraphLineChart implements phpucChartI
         $this->initLegend();
     }
     
+    /**
+     * Init's the title properties.
+     *
+     * @return void
+     */
     protected function initTitle()
     {
         $this->title->background  = '#d3d7cf';
@@ -125,6 +144,11 @@ class phpucLineChart extends ezcGraphLineChart implements phpucChartI
         $this->title->borderWidth = 1;
     }
     
+    /**
+     * Init's some common legend properties.
+     *
+     * @return void
+     */
     protected function initLegend()
     {
         $this->legend->position    = ezcGraph::BOTTOM;
@@ -134,6 +158,11 @@ class phpucLineChart extends ezcGraphLineChart implements phpucChartI
         $this->legend->borderWidth = 1;
     }
     
+    /**
+     * Init's the default chart axis.
+     *
+     * @return void
+     */
     protected function initAxis()
     {
         $this->yAxis->axisLabelRenderer = new ezcGraphAxisCenteredLabelRenderer();

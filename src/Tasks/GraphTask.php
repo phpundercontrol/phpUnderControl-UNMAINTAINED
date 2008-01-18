@@ -46,7 +46,7 @@
  */
 
 /**
- * 
+ * This task creates the required execute publisher for the graph generation.
  *
  * @category  QualityAssurance
  * @package   Task
@@ -58,6 +58,11 @@
  */
 class phpucGraphTask extends phpucAbstractTask
 {
+    /**
+     * Performs the primary task and adds an execute publisher to the config.xml.
+     * 
+     * @return void
+     */
     public function execute()
     {
         $out = phpucConsoleOutput::get();

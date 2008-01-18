@@ -46,7 +46,10 @@
  */
 
 /**
+ * Input parser for cli inputs.
  * 
+ * Depending on a defined set of input commands and options this class extracts
+ * the required informations from the provided command line input.
  *
  * @category  QualityAssurance
  * @package   Console

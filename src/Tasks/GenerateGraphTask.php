@@ -46,6 +46,7 @@
  */
 
 /**
+ * Generates a set of graphs for each project build.
  *
  * @category  QualityAssurance
  * @package   Tasks
@@ -66,7 +67,9 @@ class phpucGenerateGraphTask extends phpucAbstractTask
     protected $logDir = null;
     
     /**
-     * Internal used debug property.
+     * Internal used debug property. 
+     * 
+     * If this is set to <b>true</b> all graphs are regenerate on every call.
      *
      * @type boolean
      * @var boolean $debug

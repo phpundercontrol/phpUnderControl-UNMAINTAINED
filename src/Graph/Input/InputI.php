@@ -36,25 +36,27 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  * 
- * @category  QualityAssurance
- * @package   ...
- * @author    Manuel Pichler <mapi@manuel-pichler.de>
- * @copyright 2007-2008 Manuel Pichler. All rights reserved.
- * @license   http://www.opensource.org/licenses/bsd-license.php  BSD License
- * @version   SVN: $Id$
- * @link      http://www.phpundercontrol.org/
+ * @category   QualityAssurance
+ * @package    Graph
+ * @subpackage Input
+ * @author     Manuel Pichler <mapi@manuel-pichler.de>
+ * @copyright  2007-2008 Manuel Pichler. All rights reserved.
+ * @license    http://www.opensource.org/licenses/bsd-license.php  BSD License
+ * @version    SVN: $Id$
+ * @link       http://www.phpundercontrol.org/
  */
 
 /**
- * ...
+ * Base interface for all graph inputs.
  *
- * @category  QualityAssurance
- * @package   ...
- * @author    Manuel Pichler <mapi@manuel-pichler.de>
- * @copyright 2007-2008 Manuel Pichler. All rights reserved.
- * @license   http://www.opensource.org/licenses/bsd-license.php  BSD License
- * @version   Release: @package_version@
- * @link      http://www.phpundercontrol.org/
+ * @category   QualityAssurance
+ * @package    Graph
+ * @subpackage Input
+ * @author     Manuel Pichler <mapi@manuel-pichler.de>
+ * @copyright  2007-2008 Manuel Pichler. All rights reserved.
+ * @license    http://www.opensource.org/licenses/bsd-license.php  BSD License
+ * @version    Release: @package_version@
+ * @link       http://www.phpundercontrol.org/
  */
 interface phpucInputI
 {

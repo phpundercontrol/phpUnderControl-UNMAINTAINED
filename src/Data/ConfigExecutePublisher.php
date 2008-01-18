@@ -46,7 +46,7 @@
  */
 
 /**
- *
+ * Abstraction for the CruiseControl <execute> tag.
  *
  * @category  QualityAssurance
  * @package   Data
@@ -55,6 +55,10 @@
  * @license   http://www.opensource.org/licenses/bsd-license.php  BSD License
  * @version   Release: @package_version@
  * @link      http://www.phpundercontrol.org/
+ * 
+ * @property      string             $command The full command for execution.
+ * @property-read DOMElement         $element The execute xml element. 
+ * @property-read phpucConfigProject $project The parent project instance.
  */
 class phpucConfigExecutePublisher implements phpucConfigPublisherI
 {

@@ -58,6 +58,9 @@
  */
 class phpucPieChart extends ezcGraphPieChart implements phpucChartI
 {
+    /**
+     * Constructs a new pie chart instance.
+     */
     public function __construct()
     {
         parent::__construct();
@@ -79,6 +82,11 @@ class phpucPieChart extends ezcGraphPieChart implements phpucChartI
         $this->data['label'] = new ezcGraphArrayDataSet( $input->data );
     }
     
+    /**
+     * Initializes the chart properties.
+     *
+     * @return void
+     */
     protected function init()
     {
         $this->palette = new phpucGraphPalette();
@@ -88,6 +96,11 @@ class phpucPieChart extends ezcGraphPieChart implements phpucChartI
         $this->initRenderer();
     }
     
+    /**
+     * Inits the title properties.
+     *
+     * @return void
+     */
     protected function initTitle()
     {
         $this->title->background = '#d3d7cf';
@@ -97,6 +110,11 @@ class phpucPieChart extends ezcGraphPieChart implements phpucChartI
         $this->title->borderWidth = 1;
     }
     
+    /**
+     * Creates the used 3D renderer and set's some layout properties. 
+     *
+     * @return void
+     */
     protected function initRenderer()
     {
         $this->renderer = new ezcGraphRenderer3d();

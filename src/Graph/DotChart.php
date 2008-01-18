@@ -58,6 +58,11 @@
  */
 class phpucDotChart extends phpucLineChart
 {
+    /**
+     * Initializes this chart implementation.
+     *
+     * @return void
+     */
     protected function init()
     {
         parent::init();
@@ -67,6 +72,11 @@ class phpucDotChart extends phpucLineChart
         $this->options->fillLines = false;
     }
     
+    /**
+     * Initializes the special axis for the graph type.
+     *
+     * @return void
+     */
     protected function initAxis()
     {
         $this->yAxis                    = new ezcGraphChartElementDateAxis();

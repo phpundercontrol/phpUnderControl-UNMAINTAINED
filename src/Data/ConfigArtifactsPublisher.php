@@ -55,6 +55,13 @@
  * @license   http://www.opensource.org/licenses/bsd-license.php  BSD License
  * @version   Release: @package_version@
  * @link      http://www.phpundercontrol.org/
+ * 
+ * @property      string             $dir          A directory to publish.
+ * @property      string             $file         A file to publish.
+ * @property      string             $dest         The destination directory.
+ * @property      string             $subdirectory A destination sub directory.
+ * @property-read DOMElement         $element      The execute xml element. 
+ * @property-read phpucConfigProject $project      The parent project instance.
  */
 class phpucConfigArtifactsPublisher implements phpucConfigPublisherI
 {

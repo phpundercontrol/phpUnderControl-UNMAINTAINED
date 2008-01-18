@@ -201,6 +201,7 @@ abstract class phpucAbstractInput implements phpucInputI
                 throw new OutOfRangeException(
                     sprintf( 'Unknown or writonly property $%s.', $name )
                 );
+                break;
         }
     }
     
@@ -327,6 +328,8 @@ abstract class phpucAbstractInput implements phpucInputI
      * Adds a xpath rule to this input object. 
      *
      * @param phpucInputRule $rule The rule instance
+     * 
+     * @return void
      */
     protected function addRule( phpucInputRule $rule )
     {

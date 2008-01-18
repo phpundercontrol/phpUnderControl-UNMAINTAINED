@@ -51,6 +51,7 @@
  *
  * @category   QualityAssurance
  * @package    Graph
+ * @subpackage Input
  * @author     Manuel Pichler <mapi@manuel-pichler.de>
  * @copyright  2007-2008 Manuel Pichler. All rights reserved.
  * @license    http://www.opensource.org/licenses/bsd-license.php  BSD License

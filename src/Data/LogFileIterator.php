@@ -46,7 +46,7 @@
  */
 
 /**
- * 
+ * Iterator that returns all files in a directory that are equal to an cc log files. 
  *
  * @category  QualityAssurance
  * @package   Data
@@ -58,16 +58,33 @@
  */
 class phpucLogFileIterator extends ArrayIterator
 {
+    /**
+     * Constructs a new log file iterator.
+     *
+     * @param string $logDir The log directory.
+     */
     public function __construct( $logDir )
     {
         parent::__construct( $this->readLogs( $logDir ) );
     }
     
+    /**
+     * Returns the current log file.
+     * 
+     * @return phpucLogFile
+     */
     public function current()
     {
         return new phpucLogFile( parent::current() );
     }
     
+    /**
+     * Reads all files from the given directory.
+     *
+     * @param string $logDir The log directory.
+     * 
+     * @return array(string)
+     */
     private function readLogs( $logDir )
     {
         $logs = array();
