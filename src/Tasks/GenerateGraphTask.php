@@ -67,6 +67,17 @@ class phpucGenerateGraphTask extends phpucAbstractTask
     protected $logDir = null;
     
     /**
+     * The graph output directory.
+     * 
+     * Normally this defaults to log directory but in some cases different
+     * directories are used for artifacts.
+     *
+     * @type string
+     * @var string $outputDir
+     */
+    protected $outputDir = null;
+    
+    /**
      * Internal used debug property. 
      * 
      * If this is set to <b>true</b> all graphs are regenerate on every call.
@@ -74,7 +85,7 @@ class phpucGenerateGraphTask extends phpucAbstractTask
      * @type boolean
      * @var boolean $debug
      */
-    private $debug = true;
+    private $debug = false;
     
     /**
      * Validates that the project log directory exists.
@@ -92,6 +103,18 @@ class phpucGenerateGraphTask extends phpucAbstractTask
             throw new phpucValidateException(
                 "The specified log directory '{$logdir}' doesn't exist."
             );
+        }
+        
+        if ( $this->args->hasArgument( 'project-output-dir' ) )
+        {
+            $outputDir = $this->args->getArgument( 'project-output-dir' );
+            
+            if ( ( $this->outputDir = realpath( $outputDir ) ) === '' )
+            {
+                throw new phpucValidateException(
+                    "The specified output directory '{$outputDir}' doesn't exist."
+                );
+            }
         }
     }
     
@@ -111,7 +134,7 @@ class phpucGenerateGraphTask extends phpucAbstractTask
         {
             $xpath = new DOMXPath( $logFile );
     
-            $outputDir = "{$this->logDir}/{$logFile->timestamp}/graph";
+            $outputDir = "{$this->outputDir}/{$logFile->timestamp}/graph";
 
             foreach ( $inputLoader as $input )
             {

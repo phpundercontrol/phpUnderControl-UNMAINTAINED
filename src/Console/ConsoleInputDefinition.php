@@ -207,12 +207,16 @@ class phpucConsoleInputDefinition implements ArrayAccess, IteratorAggregate
             )
         ),
         'graph'  =>  array(
-            'help'  =>  'Generates the metric graphs with ezcGraph',
             'mode'  =>  self::MODE_HIDDEN,
+            'help'  =>  'Generates the metric graphs with ezcGraph',
             'args'  =>  array(
                 'project-log-dir'  =>  array(
                     'help'       =>  'The project log directory',
                     'mandatory'  =>  true
+                ),
+                'project-output-dir'  =>  array(
+                    'help'       =>  'The graph output directory.',
+                    'mandatory'  =>  false,
                 )
             )
         ),
