@@ -146,6 +146,13 @@
       <artifactspublisher dir="projects/${project.name}/build/coverage" 
                           dest="logs/${project.name}" 
                           subdirectory="coverage"/>
+                          
+      <!--
+      Generates the different metric charts with the phpUnderControl ezcGraph
+      extension. 
+      -->
+      <execute command="phpuc graph logs/${project.name}"/>
+      
       <!--
       Sends simple text emails after a project build. For nicer html emails, 
       checkout the original CruiseControl documentation.
