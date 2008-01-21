@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 /**
  * This file is part of phpUnderControl.
  * 
@@ -146,7 +146,7 @@ abstract class phpucAbstractPearTask extends phpucAbstractTask
             $dir = dirname( $this->executable );
             if ( strpos( getenv( 'PATH' ), $dir ) !== false )
             {
-                $this->properties['executable'] = $this->cliTool;
+                $this->properties['executable'] = basename( $this->executable );
             }
         }
         

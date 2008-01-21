@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 /**
  * This file is part of phpUnderControl.
  * 
@@ -97,14 +97,14 @@ class phpucGenerateGraphTask extends phpucAbstractTask
     public function validate()
     {
         $logdir = $this->args->getArgument( 'project-log-dir' );
-        
+
         if ( trim( $this->logDir = realpath( $logdir ) ) === '' )
         {
             throw new phpucValidateException(
                 "The specified log directory '{$logdir}' doesn't exist."
             );
         }
-        
+
         if ( $this->args->hasArgument( 'project-output-dir' ) )
         {
             $outputDir = $this->args->getArgument( 'project-output-dir' );
@@ -116,6 +116,10 @@ class phpucGenerateGraphTask extends phpucAbstractTask
                 );
             }
         }
+		else
+		{
+		    $this->outputDir = $this->logDir;
+		}
     }
     
     /**
