@@ -38,6 +38,7 @@
  * 
  * @category  QualityAssurance
  * @package   Graph
+ * @author    Kore Nordmann <kore@php.net>
  * @author    Manuel Pichler <mapi@phpundercontrol.org>
  * @copyright 2007-2008 Manuel Pichler. All rights reserved.
  * @license   http://www.opensource.org/licenses/bsd-license.php  BSD License
@@ -46,62 +47,50 @@
  */
 
 /**
- * Draws a data point highlighting line chart.
+ * Tweaked line chart options that allow line hiding.
  *
  * @category  QualityAssurance
  * @package   Graph
- * @author    Manuel Pichler <mapi@phpundercontrol.org>
+ * @author    Kore Nordmann <kore@php.net>
  * @copyright 2007-2008 Manuel Pichler. All rights reserved.
  * @license   http://www.opensource.org/licenses/bsd-license.php  BSD License
  * @version   Release: @package_version@
  * @link      http://www.phpundercontrol.org/
  */
-class phpucDotChart extends phpucLineChart
+class phpucDotChartOptions extends ezcGraphLineChartOptions
 {
     /**
-     * Constructs a new dot chart instance.
+     * Magic property setter method.
      *
-     * @param array $options Default option array
+     * @param string $name  The property name.
+     * @param mixed  $value The property value.
      * 
-     * @author Kore Nordmann <kore@php.net>
-     */
-    public function __construct( array $options = array() )
-    {
-        parent::__construct( $options );
-        
-        $this->options                = new phpucDotChartOptions( $options );
-        $this->options->lineThickness = 0;
-    }
-    
-    /**
-     * Initializes this chart implementation.
-     *
      * @return void
-     */
-    protected function init()
+     * @throws OutOfRangeException If the requested property doesn't exist or
+     *         is readonly.
+     * @throws InvalidArgumentException If the given value has an unexpected 
+     *         format or an invalid data type.
+    * @throws ezcBasePropertyNotFoundException
+    *          If a property is not defined in this class
+     * @ignore
+    */
+    public function __set( $name, $value )
     {
-        parent::init();
-        
-        $this->showSymbol = true;
-        
-        $this->options->fillLines = false;
-    }
-    
-    /**
-     * Initializes the special axis for the graph type.
-     *
-     * @return void
-     */
-    protected function initAxis()
-    {
-        $this->yAxis                    = new ezcGraphChartElementDateAxis();
-        $this->yAxis->axisLabelRenderer = new ezcGraphAxisCenteredLabelRenderer();
-        $this->yAxis->dateFormat        = 'H:i';
-        $this->yAxis->font->maxFontSize = 10;
+        switch ( $name )
+        {
+            case 'lineThickness':
+                if ( !is_numeric( $value ) || ( $value < 0 ) )
+                {
+                    throw new InvalidArgumentException(
+                        sprintf( 'Property $%s must be a positive integer.', $name )
+                    );
+                }
 
-        $this->xAxis                    = new ezcGraphChartElementDateAxis();
-        $this->xAxis->axisLabelRenderer = new ezcGraphAxisCenteredLabelRenderer();
-        $this->xAxis->dateFormat        = 'Y/m/d';
-        $this->xAxis->font->maxFontSize = 10;
+                $this->properties[$name] = (int) $value;
+                break;
+                
+            default:
+                return parent::__set( $name, $value );
+        }
     }
 }
