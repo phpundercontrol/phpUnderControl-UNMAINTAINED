@@ -37,7 +37,7 @@
  * POSSIBILITY OF SUCH DAMAGE.
  * 
  * @category  QualityAssurance
- * @package   Task
+ * @package   Tasks
  * @author    Manuel Pichler <mapi@phpundercontrol.org>
  * @copyright 2007-2008 Manuel Pichler. All rights reserved.
  * @license   http://www.opensource.org/licenses/bsd-license.php  BSD License
@@ -49,7 +49,7 @@
  * This task creates the required execute publisher for the graph generation.
  *
  * @category  QualityAssurance
- * @package   Task
+ * @package   Tasks
  * @author    Manuel Pichler <mapi@phpundercontrol.org>
  * @copyright 2007-2008 Manuel Pichler. All rights reserved.
  * @license   http://www.opensource.org/licenses/bsd-license.php  BSD License
