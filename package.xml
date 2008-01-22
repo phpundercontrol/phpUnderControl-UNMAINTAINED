@@ -20,9 +20,9 @@
     <email>mapi@phpundercontrol.org</email>
     <active>yes</active>
   </lead>
-  <date>2008-01-19</date>
+  <date>2008-01-22</date>
   <version>
-    <release>0.3.2</release>
+    <release>0.3.3</release>
     <api>0.2.0</api>
   </version>
   <stability>
@@ -31,8 +31,8 @@
   </stability>
   <license uri="http://www.opensource.org/licenses/bsd-license.php">BSD License</license>
   <notes>
-- Allow different locations for logs and artifacts. The graph cli tool now accepts
-  a second optional output directory for the generated charts.
+- Example project fixed for windows.
+- CruiseControl link added to copyright line.
   </notes>
   <contents>
     <dir name="/">
@@ -709,6 +709,31 @@
       <notes>
 - Bugfix for different artifact locations.
       </notes>
+    </release>
+  </changelog>
+  
+  <changelog>
+    <release>
+	  <lead>
+	    <name>Manuel Pichler</name>
+	    <user>mp</user>
+	    <email>mapi@phpundercontrol.org</email>
+	    <active>yes</active>
+	  </lead>
+	  <date>2008-01-19</date>
+	  <version>
+	    <release>0.3.2</release>
+	    <api>0.2.0</api>
+	  </version>
+	  <stability>
+	    <release>beta</release>
+	    <api>beta</api>
+	  </stability>
+	  <license uri="http://www.opensource.org/licenses/bsd-license.php">BSD License</license>
+	  <notes>
+	- Allow different locations for logs and artifacts. The graph cli tool now accepts
+	  a second optional output directory for the generated charts.
+	  </notes>
     </release>
   </changelog>
 </package>
