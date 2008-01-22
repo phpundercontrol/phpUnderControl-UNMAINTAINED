@@ -1,8 +1,10 @@
 <?php
 /**
  * This file is part of phpUnderControl.
+ * 
+ * PHP Version 5.2.4
  *
- * Copyright (c) 2007-2008, Manuel Pichler <mapi@phpundercontrol.org>.
+ * Copyright (c) 2007-2008, Manuel Pichler <mapi@manuel-pichler.de>.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -34,38 +36,45 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  * 
- * @package   Tasks
- * @author    Manuel Pichler <mapi@phpundercontrol.org>
- * @copyright 2007-2008 Manuel Pichler. All rights reserved.
- * @license   http://www.opensource.org/licenses/bsd-license.php  BSD License
- * @version   SVN: $Id$
- * @link      http://www.phpundercontrol.org/
+ * @category   QualityAssurance
+ * @package    Graph
+ * @subpackage Input
+ * @author     Manuel Pichler <mapi@manuel-pichler.de>
+ * @copyright  2007-2008 Manuel Pichler. All rights reserved.
+ * @license    http://www.opensource.org/licenses/bsd-license.php  BSD License
+ * @version    SVN: $Id$
+ * @link       http://www.phpundercontrol.org/
  */
 
 if ( defined( 'PHPUnit_MAIN_METHOD' ) === false )
 {
-    define( 'PHPUnit_MAIN_METHOD', 'phpucTasksAllTest::main' );
+    define( 'PHPUnit_MAIN_METHOD', 'phpucGraphInputAllTests::main' );
 }
 
 require_once 'PHPUnit/Framework/TestSuite.php';
 require_once 'PHPUnit/TextUI/TestRunner.php';
 
-require_once dirname( __FILE__ ) . '/CruiseControlTaskTest.php';
-require_once dirname( __FILE__ ) . '/PhpCodeSnifferTaskTest.php';
-require_once dirname( __FILE__ ) . '/PHPUnitTaskTest.php';
-require_once dirname( __FILE__ ) . '/ProjectTaskTest.php';
+require_once dirname( __FILE__ ) . '/BuildBreakdownInputTest.php';
+require_once dirname( __FILE__ ) . '/BuildBreakdownTimelineInputTest.php';
+require_once dirname( __FILE__ ) . '/CodeViolationInputTest.php';
+require_once dirname( __FILE__ ) . '/InputLoaderTest.php';
+require_once dirname( __FILE__ ) . '/TestCodeRatioInputTest.php';
+require_once dirname( __FILE__ ) . '/UnitCoverageInputTest.php';
+require_once dirname( __FILE__ ) . '/UnitTestInputTest.php';
 
 /**
- * Main test suite for phpUnderControl Tasks.
+ * Test suite for the graph package
  *
- * @package   Tasks
- * @author    Manuel Pichler <mapi@phpundercontrol.org>
- * @copyright 2007-2008 Manuel Pichler. All rights reserved.
- * @license   http://www.opensource.org/licenses/bsd-license.php  BSD License
- * @version   Release: @package_version@
+ * @category   QualityAssurance
+ * @subpackage Input
+ * @package    Graph
+ * @author     Manuel Pichler <mapi@manuel-pichler.de>
+ * @copyright  2007-2008 Manuel Pichler. All rights reserved.
+ * @license    http://www.opensource.org/licenses/bsd-license.php  BSD License
+ * @version    Release: @package_version@
  * @link      http://www.phpundercontrol.org/
  */
-class phpucTasksAllTest
+class phpucGraphInputAllTests
 {
     /**
      * Test suite main method.
@@ -84,17 +93,20 @@ class phpucTasksAllTest
      */
     public static function suite()
     {
-        $suite = new PHPUnit_Framework_TestSuite( 'phpUnderControl - TasksAllTest' );
-        $suite->addTestSuite( 'phpucCruiseControlTaskTest' );
-        $suite->addTestSuite( 'phpucPhpCodeSnifferTaskTest' );
-        $suite->addTestSuite( 'phpucPHPUnitTaskTest' );
-        $suite->addTestSuite( 'phpucProjectTaskTest' );
+        $suite = new PHPUnit_Framework_TestSuite( 'phpUnderControl - GraphInputAllTests' );
+        $suite->addTestSuite( 'phpucBuildBreakdownInputTest' );
+        $suite->addTestSuite( 'phpucBuildBreakdownTimelineInputTest' );
+        $suite->addTestSuite( 'phpucCodeViolationInputTest' );
+        $suite->addTestSuite( 'phpucInputLoaderTest' );
+        $suite->addTestSuite( 'phpucTestCodeRatioInputTest' );
+        $suite->addTestSuite( 'phpucUnitCoverageInputTest' );
+        $suite->addTestSuite( 'phpucUnitTestInputTest' );
 
         return $suite;
     }
 }
 
-if ( PHPUnit_MAIN_METHOD === 'phpucTasksAllTest::main' )
+if ( PHPUnit_MAIN_METHOD === 'phpucGraphInputAllTests::main' )
 {
-    phpucTasksAllTest::main();
+    phpucGraphInputAllTests::main();
 }

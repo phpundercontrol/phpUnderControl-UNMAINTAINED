@@ -52,6 +52,7 @@ require_once 'PHPUnit/TextUI/TestRunner.php';
 
 require_once dirname( __FILE__ ) . '/Console/ConsoleAllTests.php';
 require_once dirname( __FILE__ ) . '/Data/DataAllTests.php';
+require_once dirname( __FILE__ ) . '/Graph/GraphAllTests.php';
 require_once dirname( __FILE__ ) . '/Tasks/TasksAllTests.php';
 require_once dirname( __FILE__ ) . '/Util/UtilAllTests.php';
 
@@ -87,6 +88,7 @@ class phpucAllTests
         $suite = new PHPUnit_Framework_TestSuite( 'phpUnderControl - AllTests' );
         $suite->addTest( phpucConsoleAllTests::suite() );
         $suite->addTest( phpucDataAllTest::suite() );
+        $suite->addTest( phpucGraphAllTests::suite() );
         $suite->addTest( phpucTasksAllTest::suite() );
         $suite->addTest( phpucUtilAllTests::suite() );
 

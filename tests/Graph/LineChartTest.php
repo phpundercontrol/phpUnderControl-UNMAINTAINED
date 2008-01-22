@@ -1,8 +1,10 @@
 <?php
 /**
  * This file is part of phpUnderControl.
+ * 
+ * PHP Version 5.2.4
  *
- * Copyright (c) 2007-2008, Manuel Pichler <mapi@phpundercontrol.org>.
+ * Copyright (c) 2007-2008, Manuel Pichler <mapi@manuel-pichler.de>.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -34,67 +36,50 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  * 
- * @package   Tasks
- * @author    Manuel Pichler <mapi@phpundercontrol.org>
+ * @category  QualityAssurance
+ * @package   Graph
+ * @author    Manuel Pichler <mapi@manuel-pichler.de>
  * @copyright 2007-2008 Manuel Pichler. All rights reserved.
  * @license   http://www.opensource.org/licenses/bsd-license.php  BSD License
  * @version   SVN: $Id$
  * @link      http://www.phpundercontrol.org/
  */
 
-if ( defined( 'PHPUnit_MAIN_METHOD' ) === false )
-{
-    define( 'PHPUnit_MAIN_METHOD', 'phpucTasksAllTest::main' );
-}
-
-require_once 'PHPUnit/Framework/TestSuite.php';
-require_once 'PHPUnit/TextUI/TestRunner.php';
-
-require_once dirname( __FILE__ ) . '/CruiseControlTaskTest.php';
-require_once dirname( __FILE__ ) . '/PhpCodeSnifferTaskTest.php';
-require_once dirname( __FILE__ ) . '/PHPUnitTaskTest.php';
-require_once dirname( __FILE__ ) . '/ProjectTaskTest.php';
+require_once dirname( __FILE__ ) . '/../AbstractTest.php';
 
 /**
- * Main test suite for phpUnderControl Tasks.
+ * Test case for the line chart.
  *
- * @package   Tasks
- * @author    Manuel Pichler <mapi@phpundercontrol.org>
+ * @category  QualityAssurance
+ * @package   Graph
+ * @author    Manuel Pichler <mapi@manuel-pichler.de>
  * @copyright 2007-2008 Manuel Pichler. All rights reserved.
  * @license   http://www.opensource.org/licenses/bsd-license.php  BSD License
  * @version   Release: @package_version@
  * @link      http://www.phpundercontrol.org/
  */
-class phpucTasksAllTest
+class phpucLineChartTest extends phpucAbstractTest
 {
     /**
-     * Test suite main method.
+     * Tests the line chart render method.
      *
      * @return void
      */
-    public static function main()
+    public function testRender()
     {
-        PHPUnit_TextUI_TestRunner::run( self::suite() );
+        $dom = new DOMDocument();
+        $dom->load( PHPUC_TEST_LOG_FILE );
+        
+        $input = new phpucUnitCoverageInput();
+        $input->processLog( new DOMXPath( $dom ) );
+        
+        $chart = new phpucLineChart();
+        $chart->setInput( $input );
+        
+        $file = PHPUC_TEST_DIR . '/test.png';
+        
+        $chart->render( 230, 420, $file );
+        
+        $this->assertFileExists( $file );
     }
-    
-    /**
-     * Creates the phpunit test suite for this package.
-     *
-     * @return PHPUnit_Framework_TestSuite
-     */
-    public static function suite()
-    {
-        $suite = new PHPUnit_Framework_TestSuite( 'phpUnderControl - TasksAllTest' );
-        $suite->addTestSuite( 'phpucCruiseControlTaskTest' );
-        $suite->addTestSuite( 'phpucPhpCodeSnifferTaskTest' );
-        $suite->addTestSuite( 'phpucPHPUnitTaskTest' );
-        $suite->addTestSuite( 'phpucProjectTaskTest' );
-
-        return $suite;
-    }
-}
-
-if ( PHPUnit_MAIN_METHOD === 'phpucTasksAllTest::main' )
-{
-    phpucTasksAllTest::main();
 }

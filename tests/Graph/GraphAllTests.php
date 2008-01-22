@@ -1,8 +1,10 @@
 <?php
 /**
  * This file is part of phpUnderControl.
+ * 
+ * PHP Version 5.2.4
  *
- * Copyright (c) 2007-2008, Manuel Pichler <mapi@phpundercontrol.org>.
+ * Copyright (c) 2007-2008, Manuel Pichler <mapi@manuel-pichler.de>.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -34,8 +36,9 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  * 
- * @package   Tasks
- * @author    Manuel Pichler <mapi@phpundercontrol.org>
+ * @category  QualityAssurance
+ * @package   Graph
+ * @author    Manuel Pichler <mapi@manuel-pichler.de>
  * @copyright 2007-2008 Manuel Pichler. All rights reserved.
  * @license   http://www.opensource.org/licenses/bsd-license.php  BSD License
  * @version   SVN: $Id$
@@ -44,28 +47,30 @@
 
 if ( defined( 'PHPUnit_MAIN_METHOD' ) === false )
 {
-    define( 'PHPUnit_MAIN_METHOD', 'phpucTasksAllTest::main' );
+    define( 'PHPUnit_MAIN_METHOD', 'phpucGraphAllTests::main' );
 }
 
 require_once 'PHPUnit/Framework/TestSuite.php';
 require_once 'PHPUnit/TextUI/TestRunner.php';
 
-require_once dirname( __FILE__ ) . '/CruiseControlTaskTest.php';
-require_once dirname( __FILE__ ) . '/PhpCodeSnifferTaskTest.php';
-require_once dirname( __FILE__ ) . '/PHPUnitTaskTest.php';
-require_once dirname( __FILE__ ) . '/ProjectTaskTest.php';
+require_once dirname( __FILE__ ) . '/Input/GraphInputAllTests.php';
+require_once dirname( __FILE__ ) . '/ChartFactoryTest.php';
+require_once dirname( __FILE__ ) . '/DotChartTest.php';
+require_once dirname( __FILE__ ) . '/LineChartTest.php';
+require_once dirname( __FILE__ ) . '/PieChartTest.php';
 
 /**
- * Main test suite for phpUnderControl Tasks.
+ * Test suite for the graph package
  *
- * @package   Tasks
- * @author    Manuel Pichler <mapi@phpundercontrol.org>
+ * @category  QualityAssurance
+ * @package   Graph
+ * @author    Manuel Pichler <mapi@manuel-pichler.de>
  * @copyright 2007-2008 Manuel Pichler. All rights reserved.
  * @license   http://www.opensource.org/licenses/bsd-license.php  BSD License
  * @version   Release: @package_version@
  * @link      http://www.phpundercontrol.org/
  */
-class phpucTasksAllTest
+class phpucGraphAllTests
 {
     /**
      * Test suite main method.
@@ -84,17 +89,18 @@ class phpucTasksAllTest
      */
     public static function suite()
     {
-        $suite = new PHPUnit_Framework_TestSuite( 'phpUnderControl - TasksAllTest' );
-        $suite->addTestSuite( 'phpucCruiseControlTaskTest' );
-        $suite->addTestSuite( 'phpucPhpCodeSnifferTaskTest' );
-        $suite->addTestSuite( 'phpucPHPUnitTaskTest' );
-        $suite->addTestSuite( 'phpucProjectTaskTest' );
+        $suite = new PHPUnit_Framework_TestSuite( 'phpUnderControl - GraphAllTests' );
+        $suite->addTest( phpucGraphInputAllTests::suite() );
+        $suite->addTestSuite( 'phpucChartFactoryTest' );
+        $suite->addTestSuite( 'phpucDotChartTest' );
+        $suite->addTestSuite( 'phpucLineChartTest' );
+        $suite->addTestSuite( 'phpucPieChartTest' );
 
         return $suite;
     }
 }
 
-if ( PHPUnit_MAIN_METHOD === 'phpucTasksAllTest::main' )
+if ( PHPUnit_MAIN_METHOD === 'phpucGraphAllTests::main' )
 {
-    phpucTasksAllTest::main();
+    phpucGraphAllTests::main();
 }

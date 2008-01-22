@@ -47,6 +47,8 @@
 
 define( 'PHPUC_TEST', true );
 define( 'PHPUC_TEST_DIR', dirname( __FILE__ ) . '/run' );
+define( 'PHPUC_TEST_LOGS', dirname( __FILE__ ) . '/logs' );
+define( 'PHPUC_TEST_LOG_FILE', PHPUC_TEST_LOGS . '/log20080118220842Lbuild.57.xml');
 
 if ( strpos( '@php_dir@', '@php_dir' ) === false )
 {

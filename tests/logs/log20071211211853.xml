@@ -1,0 +1,1870 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cruisecontrol>
+  <modifications>
+    <modification type="svn">
+      <file action="modified">
+        <revision>1884</revision>
+        <filename>/phpUnderControl/trunk/package.xml</filename>
+      </file>
+      <date>12/11/2007 21:01:17</date>
+      <user>mapi</user>
+      <comment><![CDATA[- package.xml date and release note adjusted.]]></comment>
+      <revision>1884</revision>
+    </modification>
+    <modification type="svn">
+      <file action="modified">
+        <revision>1885</revision>
+        <filename>/phpUnderControl/trunk/package.xml</filename>
+      </file>
+      <date>12/11/2007 21:17:19</date>
+      <user>mapi</user>
+      <comment><![CDATA[- phpUnderControl stability changed to beta.]]></comment>
+      <revision>1885</revision>
+    </modification>
+  </modifications>
+  <info>
+    <property name="projectname" value="phpUnderControl" />
+    <property name="lastbuild" value="20071211210340" />
+    <property name="lastsuccessfulbuild" value="20071211001112" />
+    <property name="builddate" value="12/11/2007 21:18:53" />
+    <property name="cctimestamp" value="20071211211853" />
+    <property name="label" value="build.3" />
+    <property name="interval" value="180" />
+    <property name="lastbuildsuccessful" value="false" />
+    <property name="logdir" value="/opt/cruisecontrol-bin-2.7/logs/phpUnderControl" />
+    <property name="logfile" value="log20071211211853.xml" />
+  </info>
+  <build error="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/build.xml:13: Execute failed: java.io.IOException: Cannot run program &quot;phpdoc&quot; (in directory &quot;/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source&quot;): java.io.IOException: error=2, No such file or directory" time="0 seconds">
+    <message priority="debug"><![CDATA[Adding reference: ant.PropertyHelper]]></message>
+    <message priority="debug"><![CDATA[Detected Java version: 1.5 in: /usr/local/share/java/jdk1.6.0_03/jre]]></message>
+    <message priority="debug"><![CDATA[Detected OS: Linux]]></message>
+    <message priority="debug"><![CDATA[Adding reference: ant.ComponentHelper]]></message>
+    <message priority="debug"><![CDATA[Setting ro project property: ant.version -> Apache Ant version 1.6.5 compiled on June 2 2005]]></message>
+    <message priority="debug"><![CDATA[Setting ro project property: label -> build.3]]></message>
+    <message priority="debug"><![CDATA[Setting ro project property: projectname -> phpUnderControl]]></message>
+    <message priority="debug"><![CDATA[Setting ro project property: cclastgoodbuildtimestamp -> 20071211001112]]></message>
+    <message priority="debug"><![CDATA[Setting ro project property: lastbuildsuccessful -> false]]></message>
+    <message priority="debug"><![CDATA[Setting ro project property: cclastbuildtimestamp -> 20071211210340]]></message>
+    <message priority="debug"><![CDATA[Setting ro project property: cvstimestamp -> 2007-12-11 20:18:53 GMT]]></message>
+    <message priority="debug"><![CDATA[Setting ro project property: cctimestamp -> 20071211211853]]></message>
+    <message priority="debug"><![CDATA[Setting ro project property: XmlLogger.file -> log.xml]]></message>
+    <message priority="debug"><![CDATA[Setting ro project property: ant.file -> /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/build.xml]]></message>
+    <message priority="debug"><![CDATA[Adding reference: ant.projectHelper]]></message>
+    <message priority="debug"><![CDATA[Adding reference: ant.parsing.context]]></message>
+    <message priority="debug"><![CDATA[Adding reference: ant.targets]]></message>
+    <message priority="debug"><![CDATA[parsing buildfile /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/build.xml with URI = file:///opt/cruisecontrol-bin-2.7/projects/phpUnderControl/build.xml]]></message>
+    <message priority="debug"><![CDATA[Setting ro project property: ant.project.name -> phpUnderControl]]></message>
+    <message priority="debug"><![CDATA[Adding reference: phpUnderControl]]></message>
+    <message priority="debug"><![CDATA[Setting ro project property: ant.file.phpUnderControl -> /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/build.xml]]></message>
+    <message priority="debug"><![CDATA[Project base dir set to: /opt/cruisecontrol-bin-2.7/projects/phpUnderControl]]></message>
+    <message priority="debug"><![CDATA[+Target:]]></message>
+    <message priority="debug"><![CDATA[+Target: build]]></message>
+    <message priority="debug"><![CDATA[+Target: checkout]]></message>
+    <message priority="debug"><![CDATA[+Target: php-documentor]]></message>
+    <message priority="debug"><![CDATA[+Target: php-codesniffer]]></message>
+    <message priority="debug"><![CDATA[+Target: phpunit]]></message>
+    <message priority="debug"><![CDATA[Attempting to create object of type org.apache.tools.ant.helper.DefaultExecutor]]></message>
+    <message priority="debug"><![CDATA[Adding reference: ant.executor]]></message>
+    <message priority="debug"><![CDATA[Build sequence for target(s) `build' is [checkout, php-documentor, php-codesniffer, phpunit, build]]]></message>
+    <message priority="debug"><![CDATA[Complete build sequence is [checkout, php-documentor, php-codesniffer, phpunit, build, ]]]></message>
+    <message priority="debug"><![CDATA[Execute:Java13CommandLauncher: Executing 'svn' with arguments:
+'up'
+
+The ' characters around the executable and arguments are
+not part of the command.]]></message>
+    <target name="checkout" time="0 seconds">
+      <task location="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/build.xml:7: " name="exec" time="0 seconds">
+        <message priority="debug"><![CDATA[Current OS is Linux]]></message>
+        <message priority="debug"><![CDATA[Executing 'svn' with arguments:
+'up'
+
+The ' characters around the executable and arguments are
+not part of the command.]]></message>
+        <message priority="info"><![CDATA[Revision 1885.]]></message>
+      </task>
+    </target>
+    <message priority="debug"><![CDATA[Execute:Java13CommandLauncher: Executing 'phpdoc' with arguments:
+'-ct'
+'type'
+'-ue'
+'on'
+'-t'
+'/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/build/api'
+'-d'
+'src/'
+
+The ' characters around the executable and arguments are
+not part of the command.]]></message>
+    <target name="php-documentor" time="0 seconds">
+      <task location="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/build.xml:13: " name="exec" time="0 seconds">
+        <message priority="debug"><![CDATA[Current OS is Linux]]></message>
+        <message priority="debug"><![CDATA[Executing 'phpdoc' with arguments:
+'-ct'
+'type'
+'-ue'
+'on'
+'-t'
+'/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/build/api'
+'-d'
+'src/'
+
+The ' characters around the executable and arguments are
+not part of the command.]]></message>
+      </task>
+    </target>
+    <stacktrace><![CDATA[/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/build.xml:13: Execute failed: java.io.IOException: Cannot run program "phpdoc" (in directory "/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source"): java.io.IOException: error=2, No such file or directory
+	at org.apache.tools.ant.taskdefs.ExecTask.runExec(ExecTask.java:620)
+	at org.apache.tools.ant.taskdefs.ExecTask.execute(ExecTask.java:452)
+	at org.apache.tools.ant.UnknownElement.execute(UnknownElement.java:275)
+	at org.apache.tools.ant.Task.perform(Task.java:364)
+	at org.apache.tools.ant.Target.execute(Target.java:341)
+	at org.apache.tools.ant.Target.performTasks(Target.java:369)
+	at org.apache.tools.ant.Project.executeSortedTargets(Project.java:1216)
+	at org.apache.tools.ant.Project.executeTarget(Project.java:1185)
+	at org.apache.tools.ant.helper.DefaultExecutor.executeTargets(DefaultExecutor.java:40)
+	at org.apache.tools.ant.Project.executeTargets(Project.java:1068)
+	at org.apache.tools.ant.Main.runBuild(Main.java:668)
+	at org.apache.tools.ant.Main.startAnt(Main.java:187)
+	at org.apache.tools.ant.launch.Launcher.run(Launcher.java:246)
+	at org.apache.tools.ant.launch.Launcher.main(Launcher.java:67)
+Caused by: java.io.IOException: Cannot run program "phpdoc" (in directory "/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source"): java.io.IOException: error=2, No such file or directory
+	at java.lang.ProcessBuilder.start(ProcessBuilder.java:459)
+	at java.lang.Runtime.exec(Runtime.java:593)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:597)
+	at org.apache.tools.ant.taskdefs.Execute$Java13CommandLauncher.exec(Execute.java:834)
+	at org.apache.tools.ant.taskdefs.Execute.launch(Execute.java:435)
+	at org.apache.tools.ant.taskdefs.Execute.execute(Execute.java:449)
+	at org.apache.tools.ant.taskdefs.ExecTask.runExecute(ExecTask.java:576)
+	at org.apache.tools.ant.taskdefs.ExecTask.runExec(ExecTask.java:617)
+	... 13 more
+Caused by: java.io.IOException: java.io.IOException: error=2, No such file or directory
+	at java.lang.UNIXProcess.<init>(UNIXProcess.java:148)
+	at java.lang.ProcessImpl.start(ProcessImpl.java:65)
+	at java.lang.ProcessBuilder.start(ProcessBuilder.java:452)
+	... 23 more
+--- Nested Exception ---
+java.io.IOException: Cannot run program "phpdoc" (in directory "/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source"): java.io.IOException: error=2, No such file or directory
+	at java.lang.ProcessBuilder.start(ProcessBuilder.java:459)
+	at java.lang.Runtime.exec(Runtime.java:593)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:597)
+	at org.apache.tools.ant.taskdefs.Execute$Java13CommandLauncher.exec(Execute.java:834)
+	at org.apache.tools.ant.taskdefs.Execute.launch(Execute.java:435)
+	at org.apache.tools.ant.taskdefs.Execute.execute(Execute.java:449)
+	at org.apache.tools.ant.taskdefs.ExecTask.runExecute(ExecTask.java:576)
+	at org.apache.tools.ant.taskdefs.ExecTask.runExec(ExecTask.java:617)
+	at org.apache.tools.ant.taskdefs.ExecTask.execute(ExecTask.java:452)
+	at org.apache.tools.ant.UnknownElement.execute(UnknownElement.java:275)
+	at org.apache.tools.ant.Task.perform(Task.java:364)
+	at org.apache.tools.ant.Target.execute(Target.java:341)
+	at org.apache.tools.ant.Target.performTasks(Target.java:369)
+	at org.apache.tools.ant.Project.executeSortedTargets(Project.java:1216)
+	at org.apache.tools.ant.Project.executeTarget(Project.java:1185)
+	at org.apache.tools.ant.helper.DefaultExecutor.executeTargets(DefaultExecutor.java:40)
+	at org.apache.tools.ant.Project.executeTargets(Project.java:1068)
+	at org.apache.tools.ant.Main.runBuild(Main.java:668)
+	at org.apache.tools.ant.Main.startAnt(Main.java:187)
+	at org.apache.tools.ant.launch.Launcher.run(Launcher.java:246)
+	at org.apache.tools.ant.launch.Launcher.main(Launcher.java:67)
+Caused by: java.io.IOException: java.io.IOException: error=2, No such file or directory
+	at java.lang.UNIXProcess.<init>(UNIXProcess.java:148)
+	at java.lang.ProcessImpl.start(ProcessImpl.java:65)
+	at java.lang.ProcessBuilder.start(ProcessBuilder.java:452)
+	... 23 more]]></stacktrace>
+  </build>
+  <checkstyle version="1.0.0RC3">
+    <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/PhpUnderControl.php">
+      <error line="66" column="1" severity="error" message="Package name &quot;phpUnderControl&quot; is not valid; Consider &quot;PhpUnderControl&quot; instead." />
+      <error line="165" column="12" severity="error" message="Missing function doc comment" />
+    </file>
+    <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Tasks/ExampleTask.php">
+      <error line="49" column="1" severity="error" message="Package name &quot;phpUnderControl&quot; is not valid; Consider &quot;PhpUnderControl&quot; instead." />
+      <error line="87" column="101" severity="warning" message="Line exceeds 85 characters; contains 100 characters" />
+      <error line="90" column="103" severity="warning" message="Line exceeds 85 characters; contains 102 characters" />
+      <error line="93" column="110" severity="warning" message="Line exceeds 85 characters; contains 109 characters" />
+      <error line="99" column="116" severity="warning" message="Line exceeds 85 characters; contains 115 characters" />
+    </file>
+    <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Tasks/PhpUnitTask.php">
+      <error line="49" column="1" severity="error" message="Package name &quot;phpUnderControl&quot; is not valid; Consider &quot;PhpUnderControl&quot; instead." />
+    </file>
+    <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Tasks/AbstractPearTask.php">
+      <error line="49" column="1" severity="error" message="Package name &quot;phpUnderControl&quot; is not valid; Consider &quot;PhpUnderControl&quot; instead." />
+    </file>
+    <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Tasks/CreateFileTask.php">
+      <error line="49" column="1" severity="error" message="Package name &quot;phpUnderControl&quot; is not valid; Consider &quot;PhpUnderControl&quot; instead." />
+    </file>
+    <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Tasks/CruiseControlTask.php">
+      <error line="49" column="1" severity="error" message="Package name &quot;phpUnderControl&quot; is not valid; Consider &quot;PhpUnderControl&quot; instead." />
+    </file>
+    <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Tasks/PhpDocumentorTask.php">
+      <error line="49" column="1" severity="error" message="Package name &quot;phpUnderControl&quot; is not valid; Consider &quot;PhpUnderControl&quot; instead." />
+    </file>
+    <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Tasks/PhpCodeSnifferTask.php">
+      <error line="49" column="1" severity="error" message="Package name &quot;phpUnderControl&quot; is not valid; Consider &quot;PhpUnderControl&quot; instead." />
+      <error line="58" column="1" severity="error" message="Opening class brace must be on a line by itself" />
+      <error line="90" column="94" severity="warning" message="Line exceeds 85 characters; contains 93 characters" />
+      <error line="92" column="88" severity="warning" message="Line exceeds 85 characters; contains 87 characters" />
+      <error line="92" column="22" severity="warning" message="Equals sign not aligned correctly; expected 1 space but found 3 spaces" />
+      <error line="94" column="87" severity="warning" message="Line exceeds 85 characters; contains 86 characters" />
+      <error line="117" column="87" severity="warning" message="Line exceeds 85 characters; contains 86 characters" />
+      <error line="132" column="93" severity="warning" message="Line exceeds 85 characters; contains 92 characters" />
+    </file>
+    <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Tasks/AbstractTask.php">
+      <error line="49" column="1" severity="error" message="Package name &quot;phpUnderControl&quot; is not valid; Consider &quot;PhpUnderControl&quot; instead." />
+    </file>
+    <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Tasks/ProjectTask.php">
+      <error line="49" column="1" severity="error" message="Package name &quot;phpUnderControl&quot; is not valid; Consider &quot;PhpUnderControl&quot; instead." />
+      <error line="83" column="12" severity="error" message="Missing function doc comment" />
+      <error line="91" column="91" severity="warning" message="Line exceeds 85 characters; contains 90 characters" />
+      <error line="94" column="98" severity="warning" message="Line exceeds 85 characters; contains 97 characters" />
+      <error line="97" column="97" severity="warning" message="Line exceeds 85 characters; contains 96 characters" />
+      <error line="100" column="102" severity="warning" message="Line exceeds 85 characters; contains 101 characters" />
+      <error line="103" column="101" severity="warning" message="Line exceeds 85 characters; contains 100 characters" />
+    </file>
+    <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Tasks/ModifyFileTask.php">
+      <error line="49" column="1" severity="error" message="Package name &quot;phpUnderControl&quot; is not valid; Consider &quot;PhpUnderControl&quot; instead." />
+    </file>
+    <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Tasks/TaskI.php" />
+    <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Commands/AbstractCommand.php">
+      <error line="49" column="1" severity="error" message="Package name &quot;phpUnderControl&quot; is not valid; Consider &quot;PhpUnderControl&quot; instead." />
+    </file>
+    <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Commands/ExampleCommand.php">
+      <error line="49" column="1" severity="error" message="Package name &quot;phpUnderControl&quot; is not valid; Consider &quot;PhpUnderControl&quot; instead." />
+    </file>
+    <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Commands/InstallCommand.php">
+      <error line="49" column="1" severity="error" message="Package name &quot;phpUnderControl&quot; is not valid; Consider &quot;PhpUnderControl&quot; instead." />
+    </file>
+    <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Commands/ProjectCommand.php">
+      <error line="49" column="1" severity="error" message="Package name &quot;phpUnderControl&quot; is not valid; Consider &quot;PhpUnderControl&quot; instead." />
+    </file>
+    <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Data/ConfigFile.php">
+      <error line="49" column="1" severity="error" message="Package name &quot;phpUnderControl&quot; is not valid; Consider &quot;PhpUnderControl&quot; instead." />
+    </file>
+    <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Data/BuildTarget.php">
+      <error line="50" column="1" severity="error" message="Package name &quot;phpUnderControl&quot; is not valid; Consider &quot;PhpUnderControl&quot; instead." />
+    </file>
+    <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Data/BuildFile.php">
+      <error line="49" column="1" severity="error" message="Package name &quot;phpUnderControl&quot; is not valid; Consider &quot;PhpUnderControl&quot; instead." />
+    </file>
+    <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Data/ConfigProject.php">
+      <error line="49" column="1" severity="error" message="Package name &quot;phpUnderControl&quot; is not valid; Consider &quot;PhpUnderControl&quot; instead." />
+    </file>
+    <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Data/ConfigArtifactsPublisher.php">
+      <error line="48" column="1" severity="error" message="Package name &quot;phpUnderControl&quot; is not valid; Consider &quot;PhpUnderControl&quot; instead." />
+    </file>
+    <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Exceptions/ValidateException.php">
+      <error line="49" column="1" severity="error" message="Package name &quot;phpUnderControl&quot; is not valid; Consider &quot;PhpUnderControl&quot; instead." />
+    </file>
+    <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Exceptions/ExecuteException.php">
+      <error line="49" column="1" severity="error" message="Package name &quot;phpUnderControl&quot; is not valid; Consider &quot;PhpUnderControl&quot; instead." />
+    </file>
+    <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Exceptions/ConsoleException.php">
+      <error line="49" column="1" severity="error" message="Package name &quot;phpUnderControl&quot; is not valid; Consider &quot;PhpUnderControl&quot; instead." />
+    </file>
+    <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Util/ConsoleArgs.php">
+      <error line="49" column="1" severity="error" message="Package name &quot;phpUnderControl&quot; is not valid; Consider &quot;PhpUnderControl&quot; instead." />
+      <error line="85" column="98" severity="warning" message="Line exceeds 85 characters; contains 97 characters" />
+      <error line="124" column="98" severity="warning" message="Line exceeds 85 characters; contains 97 characters" />
+      <error line="187" column="106" severity="warning" message="Line exceeds 85 characters; contains 105 characters" />
+    </file>
+  </checkstyle>
+  <coverage generated="1197328285" phpunit="3.2.5">
+    <project name="phpUnderControl - AllTests" timestamp="1197328285">
+      <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Data/BuildFile.php">
+        <class name="phpucBuildFile">
+          <metrics methods="7" coveredmethods="7" statements="45" coveredstatements="36" elements="52" coveredelements="43" />
+        </class>
+        <line num="0" type="stmt" count="9" />
+        <line num="60" type="stmt" count="1" />
+        <line num="87" type="method" count="9" />
+        <line num="89" type="stmt" count="9" />
+        <line num="91" type="stmt" count="9" />
+        <line num="92" type="stmt" count="9" />
+        <line num="94" type="stmt" count="9" />
+        <line num="95" type="stmt" count="9" />
+        <line num="97" type="stmt" count="9" />
+        <line num="98" type="stmt" count="9" />
+        <line num="99" type="stmt" count="2" />
+        <line num="100" type="stmt" count="2" />
+        <line num="101" type="stmt" count="2" />
+        <line num="102" type="stmt" count="2" />
+        <line num="105" type="stmt" count="8" />
+        <line num="107" type="stmt" count="9" />
+        <line num="117" type="method" count="1" />
+        <line num="119" type="stmt" count="1" />
+        <line num="132" type="method" count="9" />
+        <line num="134" type="stmt" count="9" />
+        <line num="135" type="stmt" count="9" />
+        <line num="136" type="stmt" count="9" />
+        <line num="138" type="stmt" count="0" />
+        <line num="139" type="stmt" count="0" />
+        <line num="140" type="stmt" count="0" />
+        <line num="156" type="method" count="1" />
+        <line num="158" type="stmt" count="1" />
+        <line num="159" type="stmt" count="1" />
+        <line num="160" type="stmt" count="1" />
+        <line num="171" type="method" count="4" />
+        <line num="173" type="stmt" count="4" />
+        <line num="175" type="stmt" count="4" />
+        <line num="177" type="stmt" count="4" />
+        <line num="185" type="method" count="6" />
+        <line num="187" type="stmt" count="6" />
+        <line num="189" type="stmt" count="3" />
+        <line num="190" type="stmt" count="3" />
+        <line num="192" type="stmt" count="6" />
+        <line num="193" type="stmt" count="6" />
+        <line num="200" type="method" count="8" />
+        <line num="202" type="stmt" count="8" />
+        <line num="203" type="stmt" count="8" />
+        <line num="204" type="stmt" count="8" />
+        <line num="205" type="stmt" count="8" />
+        <line num="207" type="stmt" count="8" />
+        <line num="208" type="stmt" count="8" />
+        <line num="209" type="stmt" count="8" />
+        <line num="210" type="stmt" count="8" />
+        <line num="211" type="stmt" count="1" />
+        <metrics loc="211" ncloc="88" classes="1" methods="7" coveredmethods="7" statements="45" coveredstatements="36" elements="52" coveredelements="43" />
+      </file>
+      <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/PhpUnderControl.php">
+        <class name="phpucPhpUnderControl">
+          <metrics methods="4" coveredmethods="1" statements="37" coveredstatements="8" elements="41" coveredelements="9" />
+        </class>
+        <line num="0" type="stmt" count="5" />
+        <line num="116" type="method" count="5" />
+        <line num="118" type="stmt" count="5" />
+        <line num="119" type="stmt" count="5" />
+        <line num="120" type="stmt" count="5" />
+        <line num="121" type="stmt" count="5" />
+        <line num="122" type="stmt" count="5" />
+        <line num="124" type="stmt" count="5" />
+        <line num="125" type="stmt" count="5" />
+        <line num="126" type="stmt" count="5" />
+        <line num="133" type="method" count="0" />
+        <line num="135" type="stmt" count="0" />
+        <line num="137" type="stmt" count="0" />
+        <line num="138" type="stmt" count="0" />
+        <line num="139" type="stmt" count="0" />
+        <line num="160" type="method" count="0" />
+        <line num="162" type="stmt" count="0" />
+        <line num="163" type="stmt" count="0" />
+        <line num="165" type="method" count="0" />
+        <line num="169" type="stmt" count="0" />
+        <line num="170" type="stmt" count="0" />
+        <line num="171" type="stmt" count="0" />
+        <line num="173" type="stmt" count="0" />
+        <line num="174" type="stmt" count="0" />
+        <line num="175" type="stmt" count="0" />
+        <line num="176" type="stmt" count="0" />
+        <metrics loc="204" ncloc="119" classes="1" methods="4" coveredmethods="1" statements="37" coveredstatements="8" elements="41" coveredelements="9" />
+      </file>
+      <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Data/BuildTarget.php">
+        <class name="phpucBuildTarget">
+          <metrics methods="5" coveredmethods="5" statements="68" coveredstatements="57" elements="73" coveredelements="62" />
+        </class>
+        <line num="0" type="stmt" count="4" />
+        <line num="68" type="stmt" count="1" />
+        <line num="93" type="method" count="4" />
+        <line num="95" type="stmt" count="4" />
+        <line num="96" type="stmt" count="4" />
+        <line num="97" type="stmt" count="4" />
+        <line num="104" type="method" count="3" />
+        <line num="106" type="stmt" count="3" />
+        <line num="107" type="stmt" count="3" />
+        <line num="109" type="stmt" count="3" />
+        <line num="110" type="stmt" count="3" />
+        <line num="111" type="stmt" count="3" />
+        <line num="113" type="stmt" count="3" />
+        <line num="114" type="stmt" count="3" />
+        <line num="115" type="stmt" count="1" />
+        <line num="116" type="stmt" count="1" />
+        <line num="117" type="stmt" count="3" />
+        <line num="118" type="stmt" count="3" />
+        <line num="119" type="stmt" count="1" />
+        <line num="120" type="stmt" count="1" />
+        <line num="121" type="stmt" count="3" />
+        <line num="122" type="stmt" count="3" />
+        <line num="123" type="stmt" count="2" />
+        <line num="124" type="stmt" count="2" />
+        <line num="126" type="stmt" count="3" />
+        <line num="127" type="stmt" count="3" />
+        <line num="128" type="stmt" count="2" />
+        <line num="129" type="stmt" count="2" />
+        <line num="131" type="stmt" count="2" />
+        <line num="132" type="stmt" count="2" />
+        <line num="134" type="stmt" count="3" />
+        <line num="136" type="stmt" count="3" />
+        <line num="137" type="stmt" count="3" />
+        <line num="139" type="stmt" count="3" />
+        <line num="140" type="stmt" count="3" />
+        <line num="141" type="stmt" count="1" />
+        <line num="142" type="stmt" count="1" />
+        <line num="143" type="stmt" count="3" />
+        <line num="144" type="stmt" count="3" />
+        <line num="154" type="method" count="1" />
+        <line num="156" type="stmt" count="1" />
+        <line num="169" type="method" count="3" />
+        <line num="171" type="stmt" count="3" />
+        <line num="172" type="stmt" count="3" />
+        <line num="173" type="stmt" count="3" />
+        <line num="175" type="stmt" count="0" />
+        <line num="176" type="stmt" count="0" />
+        <line num="177" type="stmt" count="0" />
+        <line num="193" type="method" count="3" />
+        <line num="197" type="stmt" count="3" />
+        <line num="198" type="stmt" count="3" />
+        <line num="199" type="stmt" count="3" />
+        <line num="200" type="stmt" count="3" />
+        <line num="201" type="stmt" count="2" />
+        <line num="202" type="stmt" count="2" />
+        <line num="204" type="stmt" count="2" />
+        <line num="205" type="stmt" count="2" />
+        <line num="206" type="stmt" count="1" />
+        <line num="207" type="stmt" count="1" />
+        <line num="208" type="stmt" count="0" />
+        <line num="209" type="stmt" count="0" />
+        <line num="210" type="stmt" count="0" />
+        <line num="212" type="stmt" count="1" />
+        <line num="213" type="stmt" count="1" />
+        <line num="215" type="stmt" count="1" />
+        <line num="216" type="stmt" count="1" />
+        <line num="217" type="stmt" count="1" />
+        <line num="218" type="stmt" count="1" />
+        <line num="220" type="stmt" count="1" />
+        <line num="221" type="stmt" count="2" />
+        <line num="222" type="stmt" count="1" />
+        <metrics loc="222" ncloc="109" classes="1" methods="5" coveredmethods="5" statements="68" coveredstatements="57" elements="73" coveredelements="62" />
+      </file>
+      <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Tasks/CruiseControlTask.php">
+        <class name="phpucCruiseControlTask">
+          <metrics methods="2" coveredmethods="2" statements="44" coveredstatements="35" elements="46" coveredelements="37" />
+        </class>
+        <line num="60" type="stmt" count="1" />
+        <line num="78" type="method" count="2" />
+        <line num="80" type="stmt" count="2" />
+        <line num="83" type="stmt" count="2" />
+        <line num="84" type="stmt" count="2" />
+        <line num="85" type="stmt" count="0" />
+        <line num="86" type="stmt" count="0" />
+        <line num="87" type="stmt" count="0" />
+        <line num="89" type="stmt" count="0" />
+        <line num="90" type="stmt" count="0" />
+        <line num="94" type="stmt" count="2" />
+        <line num="95" type="stmt" count="2" />
+        <line num="96" type="stmt" count="2" />
+        <line num="97" type="stmt" count="2" />
+        <line num="98" type="stmt" count="2" />
+        <line num="100" type="stmt" count="2" />
+        <line num="103" type="stmt" count="2" />
+        <line num="104" type="stmt" count="2" />
+        <line num="105" type="stmt" count="1" />
+        <line num="106" type="stmt" count="1" />
+        <line num="107" type="stmt" count="1" />
+        <line num="109" type="stmt" count="1" />
+        <line num="110" type="stmt" count="1" />
+        <line num="112" type="stmt" count="2" />
+        <line num="113" type="stmt" count="1" />
+        <line num="120" type="method" count="1" />
+        <line num="122" type="stmt" count="1" />
+        <line num="125" type="stmt" count="1" />
+        <line num="126" type="stmt" count="1" />
+        <line num="127" type="stmt" count="1" />
+        <line num="128" type="stmt" count="1" />
+        <line num="130" type="stmt" count="1" />
+        <line num="133" type="stmt" count="1" />
+        <line num="134" type="stmt" count="1" />
+        <line num="135" type="stmt" count="0" />
+        <line num="136" type="stmt" count="0" />
+        <line num="138" type="stmt" count="1" />
+        <line num="139" type="stmt" count="1" />
+        <line num="140" type="stmt" count="1" />
+        <line num="141" type="stmt" count="1" />
+        <line num="143" type="stmt" count="1" />
+        <line num="144" type="stmt" count="1" />
+        <line num="145" type="stmt" count="1" />
+        <line num="147" type="stmt" count="1" />
+        <line num="148" type="stmt" count="1" />
+        <line num="149" type="stmt" count="1" />
+        <metrics loc="149" ncloc="66" classes="1" methods="2" coveredmethods="2" statements="44" coveredstatements="35" elements="46" coveredelements="37" />
+      </file>
+      <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Util/ConsoleArgs.php">
+        <class name="phpucConsoleArgs">
+          <metrics methods="16" coveredmethods="16" statements="236" coveredstatements="170" elements="252" coveredelements="186" />
+        </class>
+        <line num="0" type="stmt" count="11" />
+        <line num="62" type="stmt" count="1" />
+        <line num="216" type="method" count="14" />
+        <line num="218" type="stmt" count="14" />
+        <line num="219" type="stmt" count="14" />
+        <line num="220" type="stmt" count="13" />
+        <line num="222" type="stmt" count="13" />
+        <line num="224" type="stmt" count="13" />
+        <line num="226" type="stmt" count="1" />
+        <line num="227" type="stmt" count="1" />
+        <line num="228" type="stmt" count="1" />
+        <line num="229" type="stmt" count="1" />
+        <line num="231" type="stmt" count="1" />
+        <line num="235" type="stmt" count="0" />
+        <line num="237" type="stmt" count="0" />
+        <line num="248" type="method" count="5" />
+        <line num="250" type="stmt" count="5" />
+        <line num="261" type="method" count="5" />
+        <line num="263" type="stmt" count="5" />
+        <line num="264" type="stmt" count="5" />
+        <line num="265" type="stmt" count="5" />
+        <line num="267" type="stmt" count="1" />
+        <line num="268" type="stmt" count="1" />
+        <line num="269" type="stmt" count="1" />
+        <line num="279" type="method" count="6" />
+        <line num="281" type="stmt" count="6" />
+        <line num="292" type="method" count="6" />
+        <line num="294" type="stmt" count="6" />
+        <line num="295" type="stmt" count="6" />
+        <line num="296" type="stmt" count="6" />
+        <line num="298" type="stmt" count="1" />
+        <line num="299" type="stmt" count="1" />
+        <line num="300" type="stmt" count="1" />
+        <line num="308" type="method" count="13" />
+        <line num="310" type="stmt" count="13" />
+        <line num="311" type="stmt" count="13" />
+        <line num="312" type="stmt" count="1" />
+        <line num="313" type="stmt" count="1" />
+        <line num="315" type="stmt" count="12" />
+        <line num="316" type="stmt" count="12" />
+        <line num="317" type="stmt" count="0" />
+        <line num="318" type="stmt" count="0" />
+        <line num="322" type="stmt" count="12" />
+        <line num="323" type="stmt" count="12" />
+        <line num="324" type="stmt" count="1" />
+        <line num="325" type="stmt" count="1" />
+        <line num="327" type="stmt" count="1" />
+        <line num="330" type="stmt" count="11" />
+        <line num="331" type="stmt" count="11" />
+        <line num="333" type="stmt" count="10" />
+        <line num="345" type="method" count="11" />
+        <line num="347" type="stmt" count="11" />
+        <line num="348" type="stmt" count="11" />
+        <line num="349" type="stmt" count="11" />
+        <line num="351" type="stmt" count="0" />
+        <line num="352" type="stmt" count="0" />
+        <line num="353" type="stmt" count="0" />
+        <line num="361" type="method" count="13" />
+        <line num="363" type="stmt" count="13" />
+        <line num="371" type="method" count="12" />
+        <line num="373" type="stmt" count="12" />
+        <line num="382" type="method" count="13" />
+        <line num="384" type="stmt" count="13" />
+        <line num="386" type="stmt" count="13" />
+        <line num="387" type="stmt" count="13" />
+        <line num="388" type="stmt" count="2" />
+        <line num="390" type="stmt" count="11" />
+        <line num="392" type="stmt" count="11" />
+        <line num="400" type="method" count="11" />
+        <line num="402" type="stmt" count="11" />
+        <line num="404" type="stmt" count="11" />
+        <line num="406" type="stmt" count="11" />
+        <line num="407" type="stmt" count="11" />
+        <line num="409" type="stmt" count="11" />
+        <line num="410" type="stmt" count="11" />
+        <line num="411" type="stmt" count="11" />
+        <line num="412" type="stmt" count="1" />
+        <line num="413" type="stmt" count="1" />
+        <line num="414" type="stmt" count="11" />
+        <line num="415" type="stmt" count="11" />
+        <line num="416" type="stmt" count="4" />
+        <line num="417" type="stmt" count="4" />
+        <line num="420" type="stmt" count="11" />
+        <line num="421" type="stmt" count="11" />
+        <line num="422" type="stmt" count="11" />
+        <line num="423" type="stmt" count="11" />
+        <line num="424" type="stmt" count="11" />
+        <line num="425" type="stmt" count="0" />
+        <line num="426" type="stmt" count="0" />
+        <line num="427" type="stmt" count="6" />
+        <line num="428" type="stmt" count="0" />
+        <line num="429" type="stmt" count="0" />
+        <line num="430" type="stmt" count="0" />
+        <line num="432" type="stmt" count="0" />
+        <line num="433" type="stmt" count="0" />
+        <line num="436" type="stmt" count="6" />
+        <line num="438" type="stmt" count="6" />
+        <line num="439" type="stmt" count="6" />
+        <line num="440" type="stmt" count="6" />
+        <line num="443" type="stmt" count="6" />
+        <line num="445" type="stmt" count="6" />
+        <line num="446" type="stmt" count="6" />
+        <line num="448" type="stmt" count="0" />
+        <line num="450" type="stmt" count="0" />
+        <line num="452" type="stmt" count="0" />
+        <line num="453" type="stmt" count="0" />
+        <line num="456" type="stmt" count="6" />
+        <line num="457" type="stmt" count="6" />
+        <line num="458" type="stmt" count="6" />
+        <line num="459" type="stmt" count="6" />
+        <line num="460" type="stmt" count="0" />
+        <line num="461" type="stmt" count="0" />
+        <line num="462" type="stmt" count="0" />
+        <line num="464" type="stmt" count="6" />
+        <line num="467" type="stmt" count="6" />
+        <line num="469" type="stmt" count="6" />
+        <line num="470" type="stmt" count="6" />
+        <line num="471" type="stmt" count="6" />
+        <line num="472" type="stmt" count="0" />
+        <line num="473" type="stmt" count="0" />
+        <line num="474" type="stmt" count="0" />
+        <line num="475" type="stmt" count="0" />
+        <line num="476" type="stmt" count="0" />
+        <line num="477" type="stmt" count="0" />
+        <line num="478" type="stmt" count="0" />
+        <line num="480" type="stmt" count="6" />
+        <line num="481" type="stmt" count="0" />
+        <line num="482" type="stmt" count="6" />
+        <line num="483" type="stmt" count="0" />
+        <line num="484" type="stmt" count="0" />
+        <line num="485" type="stmt" count="0" />
+        <line num="486" type="stmt" count="0" />
+        <line num="487" type="stmt" count="0" />
+        <line num="489" type="stmt" count="6" />
+        <line num="490" type="stmt" count="6" />
+        <line num="491" type="stmt" count="11" />
+        <line num="498" type="method" count="11" />
+        <line num="500" type="stmt" count="11" />
+        <line num="502" type="stmt" count="11" />
+        <line num="504" type="stmt" count="11" />
+        <line num="505" type="stmt" count="11" />
+        <line num="506" type="stmt" count="11" />
+        <line num="507" type="stmt" count="1" />
+        <line num="508" type="stmt" count="1" />
+        <line num="509" type="stmt" count="1" />
+        <line num="510" type="stmt" count="1" />
+        <line num="511" type="stmt" count="1" />
+        <line num="513" type="stmt" count="0" />
+        <line num="515" type="stmt" count="10" />
+        <line num="516" type="stmt" count="10" />
+        <line num="517" type="stmt" count="10" />
+        <line num="524" type="method" count="1" />
+        <line num="527" type="stmt" count="1" />
+        <line num="528" type="stmt" count="1" />
+        <line num="530" type="stmt" count="1" />
+        <line num="532" type="stmt" count="1" />
+        <line num="535" type="stmt" count="1" />
+        <line num="537" type="stmt" count="1" />
+        <line num="538" type="stmt" count="1" />
+        <line num="540" type="stmt" count="1" />
+        <line num="541" type="stmt" count="1" />
+        <line num="542" type="stmt" count="1" />
+        <line num="543" type="stmt" count="1" />
+        <line num="544" type="stmt" count="1" />
+        <line num="545" type="stmt" count="1" />
+        <line num="546" type="stmt" count="1" />
+        <line num="547" type="stmt" count="1" />
+        <line num="548" type="stmt" count="1" />
+        <line num="550" type="stmt" count="1" />
+        <line num="551" type="stmt" count="1" />
+        <line num="554" type="stmt" count="0" />
+        <line num="556" type="stmt" count="1" />
+        <line num="565" type="method" count="1" />
+        <line num="567" type="stmt" count="1" />
+        <line num="568" type="stmt" count="1" />
+        <line num="569" type="stmt" count="1" />
+        <line num="571" type="stmt" count="1" />
+        <line num="573" type="stmt" count="1" />
+        <line num="575" type="stmt" count="1" />
+        <line num="577" type="stmt" count="1" />
+        <line num="578" type="stmt" count="1" />
+        <line num="579" type="stmt" count="1" />
+        <line num="580" type="stmt" count="1" />
+        <line num="581" type="stmt" count="1" />
+        <line num="583" type="stmt" count="1" />
+        <line num="584" type="stmt" count="1" />
+        <line num="586" type="stmt" count="1" />
+        <line num="587" type="stmt" count="1" />
+        <line num="588" type="stmt" count="1" />
+        <line num="589" type="stmt" count="1" />
+        <line num="590" type="stmt" count="1" />
+        <line num="592" type="stmt" count="1" />
+        <line num="594" type="stmt" count="1" />
+        <line num="596" type="stmt" count="1" />
+        <line num="597" type="stmt" count="1" />
+        <line num="598" type="stmt" count="1" />
+        <line num="599" type="stmt" count="1" />
+        <line num="601" type="stmt" count="1" />
+        <line num="602" type="stmt" count="1" />
+        <line num="604" type="stmt" count="0" />
+        <line num="605" type="stmt" count="0" />
+        <line num="606" type="stmt" count="0" />
+        <line num="607" type="stmt" count="0" />
+        <line num="608" type="stmt" count="1" />
+        <line num="609" type="stmt" count="1" />
+        <line num="610" type="stmt" count="1" />
+        <line num="619" type="method" count="1" />
+        <line num="621" type="stmt" count="1" />
+        <line num="622" type="stmt" count="1" />
+        <line num="630" type="method" count="2" />
+        <line num="632" type="stmt" count="2" />
+        <line num="633" type="stmt" count="2" />
+        <line num="635" type="stmt" count="2" />
+        <line num="636" type="stmt" count="2" />
+        <line num="637" type="stmt" count="2" />
+        <line num="638" type="stmt" count="2" />
+        <line num="640" type="stmt" count="2" />
+        <line num="641" type="stmt" count="2" />
+        <line num="643" type="stmt" count="2" />
+        <line num="645" type="stmt" count="2" />
+        <line num="646" type="stmt" count="2" />
+        <line num="647" type="stmt" count="2" />
+        <line num="648" type="stmt" count="2" />
+        <line num="649" type="stmt" count="2" />
+        <line num="650" type="stmt" count="2" />
+        <line num="651" type="stmt" count="2" />
+        <line num="653" type="stmt" count="2" />
+        <line num="654" type="stmt" count="2" />
+        <line num="655" type="stmt" count="1" />
+        <metrics loc="655" ncloc="462" classes="1" methods="16" coveredmethods="16" statements="236" coveredstatements="170" elements="252" coveredelements="186" />
+      </file>
+      <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Exceptions/ValidateException.php">
+        <class name="phpucValidateException">
+          <metrics methods="0" coveredmethods="0" statements="0" coveredstatements="0" elements="0" coveredelements="0" />
+        </class>
+        <line num="57" type="stmt" count="1" />
+        <line num="60" type="stmt" count="1" />
+        <metrics loc="60" ncloc="6" classes="1" methods="0" coveredmethods="0" statements="0" coveredstatements="0" elements="0" coveredelements="0" />
+      </file>
+      <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Tasks/AbstractTask.php">
+        <class name="phpucAbstractTask">
+          <metrics methods="5" coveredmethods="2" statements="17" coveredstatements="5" elements="22" coveredelements="7" />
+        </class>
+        <line num="0" type="stmt" count="3" />
+        <line num="57" type="stmt" count="1" />
+        <line num="80" type="method" count="6" />
+        <line num="82" type="stmt" count="6" />
+        <line num="83" type="stmt" count="6" />
+        <line num="91" type="method" count="0" />
+        <line num="94" type="stmt" count="0" />
+        <line num="103" type="method" count="0" />
+        <line num="105" type="stmt" count="0" />
+        <line num="116" type="method" count="3" />
+        <line num="118" type="stmt" count="3" />
+        <line num="119" type="stmt" count="3" />
+        <line num="120" type="stmt" count="3" />
+        <line num="122" type="stmt" count="0" />
+        <line num="123" type="stmt" count="0" />
+        <line num="124" type="stmt" count="0" />
+        <line num="136" type="method" count="0" />
+        <line num="138" type="stmt" count="0" />
+        <line num="139" type="stmt" count="0" />
+        <line num="140" type="stmt" count="0" />
+        <line num="142" type="stmt" count="1" />
+        <metrics loc="142" ncloc="39" classes="1" methods="5" coveredmethods="2" statements="17" coveredstatements="5" elements="22" coveredelements="7" />
+      </file>
+      <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Tasks/TaskI.php">
+        <class name="phpucTaskI">
+          <metrics methods="5" coveredmethods="0" statements="0" coveredstatements="0" elements="5" coveredelements="0" />
+        </class>
+        <line num="57" type="stmt" count="1" />
+        <line num="65" type="method" count="0" />
+        <line num="73" type="method" count="0" />
+        <line num="82" type="method" count="0" />
+        <line num="92" type="method" count="0" />
+        <line num="103" type="method" count="0" />
+        <line num="104" type="stmt" count="1" />
+        <metrics loc="104" ncloc="14" classes="1" methods="5" coveredmethods="0" statements="0" coveredstatements="0" elements="5" coveredelements="0" />
+      </file>
+      <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Tasks/PhpCodeSnifferTask.php">
+        <class name="phpucPhpCodeSnifferTask">
+          <metrics methods="3" coveredmethods="3" statements="38" coveredstatements="34" elements="41" coveredelements="37" />
+        </class>
+        <line num="57" type="stmt" count="1" />
+        <line num="69" type="method" count="3" />
+        <line num="71" type="stmt" count="3" />
+        <line num="72" type="stmt" count="3" />
+        <line num="79" type="method" count="1" />
+        <line num="81" type="stmt" count="1" />
+        <line num="83" type="stmt" count="1" />
+        <line num="84" type="stmt" count="1" />
+        <line num="85" type="stmt" count="1" />
+        <line num="86" type="stmt" count="1" />
+        <line num="88" type="stmt" count="1" />
+        <line num="90" type="stmt" count="1" />
+        <line num="92" type="stmt" count="1" />
+        <line num="94" type="stmt" count="1" />
+        <line num="95" type="stmt" count="1" />
+        <line num="96" type="stmt" count="1" />
+        <line num="97" type="stmt" count="1" />
+        <line num="98" type="stmt" count="1" />
+        <line num="99" type="stmt" count="1" />
+        <line num="100" type="stmt" count="1" />
+        <line num="101" type="stmt" count="1" />
+        <line num="103" type="stmt" count="1" />
+        <line num="105" type="stmt" count="1" />
+        <line num="106" type="stmt" count="1" />
+        <line num="113" type="method" count="2" />
+        <line num="115" type="stmt" count="2" />
+        <line num="117" type="stmt" count="2" />
+        <line num="118" type="stmt" count="2" />
+        <line num="119" type="stmt" count="0" />
+        <line num="121" type="stmt" count="0" />
+        <line num="122" type="stmt" count="0" />
+        <line num="125" type="stmt" count="2" />
+        <line num="128" type="stmt" count="2" />
+        <line num="129" type="stmt" count="2" />
+        <line num="130" type="stmt" count="1" />
+        <line num="131" type="stmt" count="1" />
+        <line num="132" type="stmt" count="1" />
+        <line num="133" type="stmt" count="1" />
+        <line num="135" type="stmt" count="1" />
+        <line num="136" type="stmt" count="1" />
+        <line num="138" type="stmt" count="1" />
+        <line num="139" type="stmt" count="1" />
+        <metrics loc="139" ncloc="65" classes="1" methods="3" coveredmethods="3" statements="38" coveredstatements="34" elements="41" coveredelements="37" />
+      </file>
+      <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Tasks/AbstractPearTask.php">
+        <class name="phpucAbstractPearTask">
+          <metrics methods="4" coveredmethods="3" statements="76" coveredstatements="47" elements="80" coveredelements="50" />
+        </class>
+        <line num="0" type="stmt" count="3" />
+        <line num="61" type="stmt" count="1" />
+        <line num="70" type="method" count="3" />
+        <line num="72" type="stmt" count="3" />
+        <line num="74" type="stmt" count="3" />
+        <line num="75" type="stmt" count="3" />
+        <line num="76" type="stmt" count="3" />
+        <line num="78" type="stmt" count="3" />
+        <line num="79" type="stmt" count="3" />
+        <line num="80" type="stmt" count="3" />
+        <line num="81" type="stmt" count="3" />
+        <line num="82" type="stmt" count="3" />
+        <line num="84" type="stmt" count="3" />
+        <line num="85" type="stmt" count="3" />
+        <line num="86" type="stmt" count="3" />
+        <line num="95" type="method" count="2" />
+        <line num="98" type="stmt" count="2" />
+        <line num="99" type="stmt" count="2" />
+        <line num="100" type="stmt" count="0" />
+        <line num="101" type="stmt" count="0" />
+        <line num="104" type="stmt" count="2" />
+        <line num="106" type="stmt" count="2" />
+        <line num="108" type="stmt" count="2" />
+        <line num="110" type="stmt" count="2" />
+        <line num="112" type="stmt" count="2" />
+        <line num="113" type="stmt" count="2" />
+        <line num="114" type="stmt" count="2" />
+        <line num="115" type="stmt" count="2" />
+        <line num="116" type="stmt" count="2" />
+        <line num="117" type="stmt" count="2" />
+        <line num="119" type="stmt" count="2" />
+        <line num="120" type="stmt" count="2" />
+        <line num="121" type="stmt" count="0" />
+        <line num="122" type="stmt" count="0" />
+        <line num="123" type="stmt" count="2" />
+        <line num="124" type="stmt" count="2" />
+        <line num="125" type="stmt" count="0" />
+        <line num="126" type="stmt" count="0" />
+        <line num="127" type="stmt" count="2" />
+        <line num="128" type="stmt" count="2" />
+        <line num="129" type="stmt" count="0" />
+        <line num="131" type="stmt" count="2" />
+        <line num="132" type="stmt" count="2" />
+        <line num="133" type="stmt" count="0" />
+        <line num="134" type="stmt" count="0" />
+        <line num="135" type="stmt" count="0" />
+        <line num="136" type="stmt" count="0" />
+        <line num="137" type="stmt" count="0" />
+        <line num="138" type="stmt" count="0" />
+        <line num="140" type="stmt" count="2" />
+        <line num="141" type="stmt" count="2" />
+        <line num="142" type="stmt" count="0" />
+        <line num="143" type="stmt" count="0" />
+        <line num="144" type="stmt" count="0" />
+        <line num="145" type="stmt" count="0" />
+        <line num="146" type="stmt" count="0" />
+        <line num="147" type="stmt" count="0" />
+        <line num="149" type="stmt" count="2" />
+        <line num="150" type="stmt" count="1" />
+        <line num="161" type="method" count="3" />
+        <line num="165" type="stmt" count="3" />
+        <line num="166" type="stmt" count="3" />
+        <line num="167" type="stmt" count="3" />
+        <line num="169" type="stmt" count="3" />
+        <line num="170" type="stmt" count="3" />
+        <line num="171" type="stmt" count="3" />
+        <line num="172" type="stmt" count="0" />
+        <line num="173" type="stmt" count="0" />
+        <line num="176" type="stmt" count="3" />
+        <line num="177" type="stmt" count="3" />
+        <line num="178" type="stmt" count="3" />
+        <line num="180" type="stmt" count="3" />
+        <line num="182" type="stmt" count="0" />
+        <line num="183" type="stmt" count="0" />
+        <line num="184" type="stmt" count="0" />
+        <line num="185" type="stmt" count="0" />
+        <line num="187" type="stmt" count="0" />
+        <line num="188" type="stmt" count="3" />
+        <line num="195" type="method" count="0" />
+        <line num="198" type="stmt" count="0" />
+        <line num="199" type="stmt" count="1" />
+        <metrics loc="199" ncloc="109" classes="1" methods="4" coveredmethods="3" statements="76" coveredstatements="47" elements="80" coveredelements="50" />
+      </file>
+      <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Exceptions/ConsoleException.php">
+        <class name="phpucConsoleException">
+          <metrics methods="0" coveredmethods="0" statements="0" coveredstatements="0" elements="0" coveredelements="0" />
+        </class>
+        <line num="57" type="stmt" count="1" />
+        <line num="60" type="stmt" count="1" />
+        <metrics loc="60" ncloc="6" classes="1" methods="0" coveredmethods="0" statements="0" coveredstatements="0" elements="0" coveredelements="0" />
+      </file>
+      <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Tasks/ExampleTask.php">
+        <class name="phpucExampleTask">
+          <metrics methods="1" coveredmethods="0" statements="34" coveredstatements="0" elements="35" coveredelements="0" />
+        </class>
+        <line num="60" type="stmt" count="0" />
+        <line num="79" type="method" count="0" />
+        <line num="81" type="stmt" count="0" />
+        <line num="82" type="stmt" count="0" />
+        <line num="83" type="stmt" count="0" />
+        <line num="85" type="stmt" count="0" />
+        <line num="87" type="stmt" count="0" />
+        <line num="88" type="stmt" count="0" />
+        <line num="90" type="stmt" count="0" />
+        <line num="91" type="stmt" count="0" />
+        <line num="93" type="stmt" count="0" />
+        <line num="94" type="stmt" count="0" />
+        <line num="95" type="stmt" count="0" />
+        <line num="96" type="stmt" count="0" />
+        <line num="97" type="stmt" count="0" />
+        <line num="99" type="stmt" count="0" />
+        <line num="100" type="stmt" count="0" />
+        <line num="101" type="stmt" count="0" />
+        <line num="102" type="stmt" count="0" />
+        <line num="103" type="stmt" count="0" />
+        <line num="105" type="stmt" count="0" />
+        <line num="107" type="stmt" count="0" />
+        <line num="108" type="stmt" count="0" />
+        <line num="109" type="stmt" count="0" />
+        <line num="111" type="stmt" count="0" />
+        <line num="113" type="stmt" count="0" />
+        <line num="114" type="stmt" count="0" />
+        <line num="115" type="stmt" count="0" />
+        <line num="116" type="stmt" count="0" />
+        <line num="117" type="stmt" count="0" />
+        <line num="118" type="stmt" count="0" />
+        <line num="119" type="stmt" count="0" />
+        <line num="121" type="stmt" count="0" />
+        <line num="122" type="stmt" count="0" />
+        <line num="124" type="stmt" count="0" />
+        <line num="125" type="stmt" count="0" />
+        <line num="126" type="stmt" count="0" />
+        <metrics loc="126" ncloc="57" classes="1" methods="1" coveredmethods="0" statements="34" coveredstatements="0" elements="35" coveredelements="0" />
+      </file>
+      <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Tasks/PhpUnitTask.php">
+        <class name="phpucPhpUnitTask">
+          <metrics methods="3" coveredmethods="0" statements="81" coveredstatements="0" elements="84" coveredelements="0" />
+        </class>
+        <line num="60" type="stmt" count="0" />
+        <line num="72" type="method" count="0" />
+        <line num="74" type="stmt" count="0" />
+        <line num="76" type="stmt" count="0" />
+        <line num="77" type="stmt" count="0" />
+        <line num="78" type="stmt" count="0" />
+        <line num="86" type="method" count="0" />
+        <line num="88" type="stmt" count="0" />
+        <line num="90" type="stmt" count="0" />
+        <line num="91" type="stmt" count="0" />
+        <line num="92" type="stmt" count="0" />
+        <line num="94" type="stmt" count="0" />
+        <line num="95" type="stmt" count="0" />
+        <line num="96" type="stmt" count="0" />
+        <line num="98" type="stmt" count="0" />
+        <line num="99" type="stmt" count="0" />
+        <line num="101" type="stmt" count="0" />
+        <line num="102" type="stmt" count="0" />
+        <line num="103" type="stmt" count="0" />
+        <line num="105" type="stmt" count="0" />
+        <line num="107" type="stmt" count="0" />
+        <line num="108" type="stmt" count="0" />
+        <line num="109" type="stmt" count="0" />
+        <line num="110" type="stmt" count="0" />
+        <line num="111" type="stmt" count="0" />
+        <line num="112" type="stmt" count="0" />
+        <line num="113" type="stmt" count="0" />
+        <line num="114" type="stmt" count="0" />
+        <line num="115" type="stmt" count="0" />
+        <line num="116" type="stmt" count="0" />
+        <line num="117" type="stmt" count="0" />
+        <line num="118" type="stmt" count="0" />
+        <line num="120" type="stmt" count="0" />
+        <line num="122" type="stmt" count="0" />
+        <line num="123" type="stmt" count="0" />
+        <line num="124" type="stmt" count="0" />
+        <line num="125" type="stmt" count="0" />
+        <line num="126" type="stmt" count="0" />
+        <line num="127" type="stmt" count="0" />
+        <line num="128" type="stmt" count="0" />
+        <line num="129" type="stmt" count="0" />
+        <line num="130" type="stmt" count="0" />
+        <line num="131" type="stmt" count="0" />
+        <line num="133" type="stmt" count="0" />
+        <line num="135" type="stmt" count="0" />
+        <line num="137" type="stmt" count="0" />
+        <line num="138" type="stmt" count="0" />
+        <line num="139" type="stmt" count="0" />
+        <line num="141" type="stmt" count="0" />
+        <line num="142" type="stmt" count="0" />
+        <line num="144" type="stmt" count="0" />
+        <line num="146" type="stmt" count="0" />
+        <line num="147" type="stmt" count="0" />
+        <line num="154" type="method" count="0" />
+        <line num="156" type="stmt" count="0" />
+        <line num="157" type="stmt" count="0" />
+        <line num="158" type="stmt" count="0" />
+        <line num="159" type="stmt" count="0" />
+        <line num="161" type="stmt" count="0" />
+        <line num="162" type="stmt" count="0" />
+        <line num="163" type="stmt" count="0" />
+        <line num="165" type="stmt" count="0" />
+        <line num="166" type="stmt" count="0" />
+        <line num="169" type="stmt" count="0" />
+        <line num="173" type="stmt" count="0" />
+        <line num="174" type="stmt" count="0" />
+        <line num="175" type="stmt" count="0" />
+        <line num="177" type="stmt" count="0" />
+        <line num="178" type="stmt" count="0" />
+        <line num="179" type="stmt" count="0" />
+        <line num="180" type="stmt" count="0" />
+        <line num="182" type="stmt" count="0" />
+        <line num="183" type="stmt" count="0" />
+        <line num="184" type="stmt" count="0" />
+        <line num="187" type="stmt" count="0" />
+        <line num="188" type="stmt" count="0" />
+        <line num="189" type="stmt" count="0" />
+        <line num="191" type="stmt" count="0" />
+        <line num="192" type="stmt" count="0" />
+        <line num="193" type="stmt" count="0" />
+        <line num="194" type="stmt" count="0" />
+        <line num="196" type="stmt" count="0" />
+        <line num="197" type="stmt" count="0" />
+        <line num="198" type="stmt" count="0" />
+        <line num="199" type="stmt" count="0" />
+        <line num="201" type="stmt" count="0" />
+        <metrics loc="200" ncloc="118" classes="1" methods="3" coveredmethods="0" statements="81" coveredstatements="0" elements="84" coveredelements="0" />
+      </file>
+      <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Tasks/CreateFileTask.php">
+        <class name="phpucCreateFileTask">
+          <metrics methods="2" coveredmethods="0" statements="22" coveredstatements="0" elements="24" coveredelements="0" />
+        </class>
+        <line num="57" type="stmt" count="0" />
+        <line num="73" type="method" count="0" />
+        <line num="75" type="stmt" count="0" />
+        <line num="77" type="stmt" count="0" />
+        <line num="78" type="stmt" count="0" />
+        <line num="87" type="method" count="0" />
+        <line num="89" type="stmt" count="0" />
+        <line num="91" type="stmt" count="0" />
+        <line num="92" type="stmt" count="0" />
+        <line num="93" type="stmt" count="0" />
+        <line num="94" type="stmt" count="0" />
+        <line num="96" type="stmt" count="0" />
+        <line num="98" type="stmt" count="0" />
+        <line num="100" type="stmt" count="0" />
+        <line num="101" type="stmt" count="0" />
+        <line num="102" type="stmt" count="0" />
+        <line num="103" type="stmt" count="0" />
+        <line num="105" type="stmt" count="0" />
+        <line num="107" type="stmt" count="0" />
+        <line num="108" type="stmt" count="0" />
+        <line num="109" type="stmt" count="0" />
+        <line num="110" type="stmt" count="0" />
+        <line num="111" type="stmt" count="0" />
+        <line num="113" type="stmt" count="0" />
+        <line num="114" type="stmt" count="0" />
+        <line num="115" type="stmt" count="0" />
+        <metrics loc="115" ncloc="42" classes="1" methods="2" coveredmethods="0" statements="22" coveredstatements="0" elements="24" coveredelements="0" />
+      </file>
+      <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Tasks/PhpDocumentorTask.php">
+        <class name="phpucPhpDocumentorTask">
+          <metrics methods="2" coveredmethods="0" statements="33" coveredstatements="0" elements="35" coveredelements="0" />
+        </class>
+        <line num="57" type="stmt" count="0" />
+        <line num="64" type="method" count="0" />
+        <line num="66" type="stmt" count="0" />
+        <line num="67" type="stmt" count="0" />
+        <line num="75" type="method" count="0" />
+        <line num="77" type="stmt" count="0" />
+        <line num="79" type="stmt" count="0" />
+        <line num="80" type="stmt" count="0" />
+        <line num="81" type="stmt" count="0" />
+        <line num="83" type="stmt" count="0" />
+        <line num="84" type="stmt" count="0" />
+        <line num="85" type="stmt" count="0" />
+        <line num="87" type="stmt" count="0" />
+        <line num="88" type="stmt" count="0" />
+        <line num="90" type="stmt" count="0" />
+        <line num="91" type="stmt" count="0" />
+        <line num="92" type="stmt" count="0" />
+        <line num="94" type="stmt" count="0" />
+        <line num="96" type="stmt" count="0" />
+        <line num="98" type="stmt" count="0" />
+        <line num="99" type="stmt" count="0" />
+        <line num="100" type="stmt" count="0" />
+        <line num="101" type="stmt" count="0" />
+        <line num="102" type="stmt" count="0" />
+        <line num="103" type="stmt" count="0" />
+        <line num="104" type="stmt" count="0" />
+        <line num="106" type="stmt" count="0" />
+        <line num="108" type="stmt" count="0" />
+        <line num="110" type="stmt" count="0" />
+        <line num="111" type="stmt" count="0" />
+        <line num="112" type="stmt" count="0" />
+        <line num="114" type="stmt" count="0" />
+        <line num="115" type="stmt" count="0" />
+        <line num="117" type="stmt" count="0" />
+        <line num="119" type="stmt" count="0" />
+        <line num="120" type="stmt" count="0" />
+        <line num="121" type="stmt" count="0" />
+        <metrics loc="121" ncloc="56" classes="1" methods="2" coveredmethods="0" statements="33" coveredstatements="0" elements="35" coveredelements="0" />
+      </file>
+      <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Tasks/ProjectTask.php">
+        <class name="phpucProjectTask">
+          <metrics methods="2" coveredmethods="0" statements="44" coveredstatements="0" elements="46" coveredelements="0" />
+        </class>
+        <line num="57" type="stmt" count="0" />
+        <line num="66" type="method" count="0" />
+        <line num="68" type="stmt" count="0" />
+        <line num="69" type="stmt" count="0" />
+        <line num="71" type="stmt" count="0" />
+        <line num="72" type="stmt" count="0" />
+        <line num="73" type="stmt" count="0" />
+        <line num="75" type="stmt" count="0" />
+        <line num="77" type="stmt" count="0" />
+        <line num="78" type="stmt" count="0" />
+        <line num="79" type="stmt" count="0" />
+        <line num="81" type="stmt" count="0" />
+        <line num="83" type="method" count="0" />
+        <line num="85" type="stmt" count="0" />
+        <line num="86" type="stmt" count="0" />
+        <line num="87" type="stmt" count="0" />
+        <line num="89" type="stmt" count="0" />
+        <line num="91" type="stmt" count="0" />
+        <line num="92" type="stmt" count="0" />
+        <line num="94" type="stmt" count="0" />
+        <line num="95" type="stmt" count="0" />
+        <line num="97" type="stmt" count="0" />
+        <line num="98" type="stmt" count="0" />
+        <line num="100" type="stmt" count="0" />
+        <line num="101" type="stmt" count="0" />
+        <line num="103" type="stmt" count="0" />
+        <line num="105" type="stmt" count="0" />
+        <line num="106" type="stmt" count="0" />
+        <line num="108" type="stmt" count="0" />
+        <line num="109" type="stmt" count="0" />
+        <line num="110" type="stmt" count="0" />
+        <line num="112" type="stmt" count="0" />
+        <line num="113" type="stmt" count="0" />
+        <line num="114" type="stmt" count="0" />
+        <line num="115" type="stmt" count="0" />
+        <line num="117" type="stmt" count="0" />
+        <line num="119" type="stmt" count="0" />
+        <line num="121" type="stmt" count="0" />
+        <line num="122" type="stmt" count="0" />
+        <line num="124" type="stmt" count="0" />
+        <line num="125" type="stmt" count="0" />
+        <line num="127" type="stmt" count="0" />
+        <line num="129" type="stmt" count="0" />
+        <line num="130" type="stmt" count="0" />
+        <line num="131" type="stmt" count="0" />
+        <metrics loc="131" ncloc="70" classes="1" methods="2" coveredmethods="0" statements="44" coveredstatements="0" elements="46" coveredelements="0" />
+      </file>
+      <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Tasks/ModifyFileTask.php">
+        <class name="phpucModifyFileTask">
+          <metrics methods="3" coveredmethods="0" statements="45" coveredstatements="0" elements="48" coveredelements="0" />
+        </class>
+        <line num="57" type="stmt" count="0" />
+        <line num="73" type="method" count="0" />
+        <line num="75" type="stmt" count="0" />
+        <line num="77" type="stmt" count="0" />
+        <line num="78" type="stmt" count="0" />
+        <line num="86" type="method" count="0" />
+        <line num="88" type="stmt" count="0" />
+        <line num="89" type="stmt" count="0" />
+        <line num="90" type="stmt" count="0" />
+        <line num="91" type="stmt" count="0" />
+        <line num="93" type="stmt" count="0" />
+        <line num="95" type="stmt" count="0" />
+        <line num="96" type="stmt" count="0" />
+        <line num="97" type="stmt" count="0" />
+        <line num="98" type="stmt" count="0" />
+        <line num="99" type="stmt" count="0" />
+        <line num="101" type="stmt" count="0" />
+        <line num="102" type="stmt" count="0" />
+        <line num="110" type="method" count="0" />
+        <line num="112" type="stmt" count="0" />
+        <line num="114" type="stmt" count="0" />
+        <line num="115" type="stmt" count="0" />
+        <line num="116" type="stmt" count="0" />
+        <line num="117" type="stmt" count="0" />
+        <line num="119" type="stmt" count="0" />
+        <line num="120" type="stmt" count="0" />
+        <line num="122" type="stmt" count="0" />
+        <line num="124" type="stmt" count="0" />
+        <line num="125" type="stmt" count="0" />
+        <line num="126" type="stmt" count="0" />
+        <line num="127" type="stmt" count="0" />
+        <line num="128" type="stmt" count="0" />
+        <line num="129" type="stmt" count="0" />
+        <line num="131" type="stmt" count="0" />
+        <line num="132" type="stmt" count="0" />
+        <line num="133" type="stmt" count="0" />
+        <line num="135" type="stmt" count="0" />
+        <line num="136" type="stmt" count="0" />
+        <line num="137" type="stmt" count="0" />
+        <line num="138" type="stmt" count="0" />
+        <line num="140" type="stmt" count="0" />
+        <line num="142" type="stmt" count="0" />
+        <line num="143" type="stmt" count="0" />
+        <line num="144" type="stmt" count="0" />
+        <line num="145" type="stmt" count="0" />
+        <line num="146" type="stmt" count="0" />
+        <line num="148" type="stmt" count="0" />
+        <line num="149" type="stmt" count="0" />
+        <line num="150" type="stmt" count="0" />
+        <metrics loc="150" ncloc="72" classes="1" methods="3" coveredmethods="0" statements="45" coveredstatements="0" elements="48" coveredelements="0" />
+      </file>
+      <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Commands/AbstractCommand.php">
+        <class name="phpucAbstractCommand">
+          <metrics methods="6" coveredmethods="0" statements="25" coveredstatements="0" elements="31" coveredelements="0" />
+        </class>
+        <line num="58" type="stmt" count="0" />
+        <line num="66" type="method" count="0" />
+        <line num="69" type="stmt" count="0" />
+        <line num="71" type="stmt" count="0" />
+        <line num="72" type="stmt" count="0" />
+        <line num="73" type="stmt" count="0" />
+        <line num="74" type="stmt" count="0" />
+        <line num="75" type="stmt" count="0" />
+        <line num="78" type="stmt" count="0" />
+        <line num="102" type="method" count="0" />
+        <line num="104" type="stmt" count="0" />
+        <line num="105" type="stmt" count="0" />
+        <line num="112" type="method" count="0" />
+        <line num="114" type="stmt" count="0" />
+        <line num="116" type="stmt" count="0" />
+        <line num="117" type="stmt" count="0" />
+        <line num="118" type="stmt" count="0" />
+        <line num="125" type="method" count="0" />
+        <line num="127" type="stmt" count="0" />
+        <line num="129" type="stmt" count="0" />
+        <line num="130" type="stmt" count="0" />
+        <line num="131" type="stmt" count="0" />
+        <line num="138" type="method" count="0" />
+        <line num="140" type="stmt" count="0" />
+        <line num="141" type="stmt" count="0" />
+        <line num="142" type="stmt" count="0" />
+        <line num="143" type="stmt" count="0" />
+        <line num="144" type="stmt" count="0" />
+        <line num="152" type="method" count="0" />
+        <line num="153" type="stmt" count="0" />
+        <metrics loc="153" ncloc="53" classes="1" methods="6" coveredmethods="0" statements="25" coveredstatements="0" elements="31" coveredelements="0" />
+      </file>
+      <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Commands/ExampleCommand.php">
+        <class name="phpucExampleCommand">
+          <metrics methods="1" coveredmethods="0" statements="17" coveredstatements="0" elements="18" coveredelements="0" />
+        </class>
+        <line num="57" type="stmt" count="0" />
+        <line num="75" type="method" count="0" />
+        <line num="77" type="stmt" count="0" />
+        <line num="79" type="stmt" count="0" />
+        <line num="80" type="stmt" count="0" />
+        <line num="82" type="stmt" count="0" />
+        <line num="83" type="stmt" count="0" />
+        <line num="84" type="stmt" count="0" />
+        <line num="85" type="stmt" count="0" />
+        <line num="86" type="stmt" count="0" />
+        <line num="87" type="stmt" count="0" />
+        <line num="88" type="stmt" count="0" />
+        <line num="89" type="stmt" count="0" />
+        <line num="90" type="stmt" count="0" />
+        <line num="91" type="stmt" count="0" />
+        <line num="92" type="stmt" count="0" />
+        <line num="93" type="stmt" count="0" />
+        <line num="95" type="stmt" count="0" />
+        <line num="97" type="stmt" count="0" />
+        <metrics loc="97" ncloc="32" classes="1" methods="1" coveredmethods="0" statements="17" coveredstatements="0" elements="18" coveredelements="0" />
+      </file>
+      <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Commands/InstallCommand.php">
+        <class name="phpucInstallCommand">
+          <metrics methods="1" coveredmethods="0" statements="6" coveredstatements="0" elements="7" coveredelements="0" />
+        </class>
+        <line num="57" type="stmt" count="0" />
+        <line num="116" type="method" count="0" />
+        <line num="118" type="stmt" count="0" />
+        <line num="120" type="stmt" count="0" />
+        <line num="121" type="stmt" count="0" />
+        <line num="122" type="stmt" count="0" />
+        <line num="124" type="stmt" count="0" />
+        <line num="126" type="stmt" count="0" />
+        <metrics loc="126" ncloc="55" classes="1" methods="1" coveredmethods="0" statements="6" coveredstatements="0" elements="7" coveredelements="0" />
+      </file>
+      <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Commands/ProjectCommand.php">
+        <class name="phpucProjectCommand">
+          <metrics methods="1" coveredmethods="0" statements="2" coveredstatements="0" elements="3" coveredelements="0" />
+        </class>
+        <line num="57" type="stmt" count="0" />
+        <line num="65" type="method" count="0" />
+        <line num="67" type="stmt" count="0" />
+        <line num="69" type="stmt" count="0" />
+        <metrics loc="69" ncloc="10" classes="1" methods="1" coveredmethods="0" statements="2" coveredstatements="0" elements="3" coveredelements="0" />
+      </file>
+      <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Data/ConfigFile.php">
+        <class name="phpucConfigFile">
+          <metrics methods="4" coveredmethods="0" statements="28" coveredstatements="0" elements="32" coveredelements="0" />
+        </class>
+        <line num="57" type="stmt" count="0" />
+        <line num="80" type="method" count="0" />
+        <line num="82" type="stmt" count="0" />
+        <line num="84" type="stmt" count="0" />
+        <line num="85" type="stmt" count="0" />
+        <line num="86" type="stmt" count="0" />
+        <line num="88" type="stmt" count="0" />
+        <line num="89" type="stmt" count="0" />
+        <line num="100" type="method" count="0" />
+        <line num="102" type="stmt" count="0" />
+        <line num="104" type="stmt" count="0" />
+        <line num="106" type="stmt" count="0" />
+        <line num="117" type="method" count="0" />
+        <line num="119" type="stmt" count="0" />
+        <line num="120" type="stmt" count="0" />
+        <line num="121" type="stmt" count="0" />
+        <line num="123" type="stmt" count="0" />
+        <line num="124" type="stmt" count="0" />
+        <line num="125" type="stmt" count="0" />
+        <line num="126" type="stmt" count="0" />
+        <line num="127" type="stmt" count="0" />
+        <line num="130" type="stmt" count="0" />
+        <line num="131" type="stmt" count="0" />
+        <line num="132" type="stmt" count="0" />
+        <line num="141" type="method" count="0" />
+        <line num="143" type="stmt" count="0" />
+        <line num="145" type="stmt" count="0" />
+        <line num="146" type="stmt" count="0" />
+        <line num="147" type="stmt" count="0" />
+        <line num="148" type="stmt" count="0" />
+        <line num="149" type="stmt" count="0" />
+        <metrics loc="149" ncloc="55" classes="1" methods="4" coveredmethods="0" statements="28" coveredstatements="0" elements="32" coveredelements="0" />
+      </file>
+      <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Data/ConfigProject.php">
+        <class name="phpucConfigProject">
+          <metrics methods="10" coveredmethods="0" statements="79" coveredstatements="0" elements="89" coveredelements="0" />
+        </class>
+        <line num="64" type="stmt" count="0" />
+        <line num="118" type="method" count="0" />
+        <line num="120" type="stmt" count="0" />
+        <line num="121" type="stmt" count="0" />
+        <line num="123" type="stmt" count="0" />
+        <line num="124" type="stmt" count="0" />
+        <line num="125" type="stmt" count="0" />
+        <line num="135" type="method" count="0" />
+        <line num="137" type="stmt" count="0" />
+        <line num="150" type="method" count="0" />
+        <line num="152" type="stmt" count="0" />
+        <line num="153" type="stmt" count="0" />
+        <line num="154" type="stmt" count="0" />
+        <line num="156" type="stmt" count="0" />
+        <line num="157" type="stmt" count="0" />
+        <line num="158" type="stmt" count="0" />
+        <line num="174" type="method" count="0" />
+        <line num="178" type="stmt" count="0" />
+        <line num="179" type="stmt" count="0" />
+        <line num="180" type="stmt" count="0" />
+        <line num="182" type="stmt" count="0" />
+        <line num="183" type="stmt" count="0" />
+        <line num="184" type="stmt" count="0" />
+        <line num="185" type="stmt" count="0" />
+        <line num="186" type="stmt" count="0" />
+        <line num="187" type="stmt" count="0" />
+        <line num="189" type="stmt" count="0" />
+        <line num="190" type="stmt" count="0" />
+        <line num="192" type="stmt" count="0" />
+        <line num="193" type="stmt" count="0" />
+        <line num="194" type="stmt" count="0" />
+        <line num="195" type="stmt" count="0" />
+        <line num="197" type="stmt" count="0" />
+        <line num="206" type="method" count="0" />
+        <line num="208" type="stmt" count="0" />
+        <line num="216" type="method" count="0" />
+        <line num="218" type="stmt" count="0" />
+        <line num="220" type="stmt" count="0" />
+        <line num="222" type="stmt" count="0" />
+        <line num="231" type="method" count="0" />
+        <line num="233" type="stmt" count="0" />
+        <line num="234" type="stmt" count="0" />
+        <line num="236" type="stmt" count="0" />
+        <line num="238" type="stmt" count="0" />
+        <line num="239" type="stmt" count="0" />
+        <line num="240" type="stmt" count="0" />
+        <line num="250" type="method" count="0" />
+        <line num="252" type="stmt" count="0" />
+        <line num="253" type="stmt" count="0" />
+        <line num="254" type="stmt" count="0" />
+        <line num="255" type="stmt" count="0" />
+        <line num="257" type="stmt" count="0" />
+        <line num="258" type="stmt" count="0" />
+        <line num="259" type="stmt" count="0" />
+        <line num="260" type="stmt" count="0" />
+        <line num="261" type="stmt" count="0" />
+        <line num="262" type="stmt" count="0" />
+        <line num="263" type="stmt" count="0" />
+        <line num="264" type="stmt" count="0" />
+        <line num="265" type="stmt" count="0" />
+        <line num="269" type="stmt" count="0" />
+        <line num="271" type="stmt" count="0" />
+        <line num="278" type="method" count="0" />
+        <line num="280" type="stmt" count="0" />
+        <line num="281" type="stmt" count="0" />
+        <line num="283" type="stmt" count="0" />
+        <line num="284" type="stmt" count="0" />
+        <line num="285" type="stmt" count="0" />
+        <line num="287" type="stmt" count="0" />
+        <line num="289" type="stmt" count="0" />
+        <line num="290" type="stmt" count="0" />
+        <line num="298" type="method" count="0" />
+        <line num="301" type="stmt" count="0" />
+        <line num="302" type="stmt" count="0" />
+        <line num="304" type="stmt" count="0" />
+        <line num="305" type="stmt" count="0" />
+        <line num="307" type="stmt" count="0" />
+        <line num="308" type="stmt" count="0" />
+        <line num="310" type="stmt" count="0" />
+        <line num="311" type="stmt" count="0" />
+        <line num="312" type="stmt" count="0" />
+        <line num="313" type="stmt" count="0" />
+        <metrics loc="313" ncloc="147" classes="1" methods="10" coveredmethods="0" statements="79" coveredstatements="0" elements="89" coveredelements="0" />
+      </file>
+      <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Data/ConfigArtifactsPublisher.php">
+        <class name="phpucConfigArtifactsPublisher">
+          <metrics methods="5" coveredmethods="0" statements="47" coveredstatements="0" elements="52" coveredelements="0" />
+        </class>
+        <line num="57" type="stmt" count="0" />
+        <line num="78" type="method" count="0" />
+        <line num="80" type="stmt" count="0" />
+        <line num="81" type="stmt" count="0" />
+        <line num="82" type="stmt" count="0" />
+        <line num="83" type="stmt" count="0" />
+        <line num="85" type="stmt" count="0" />
+        <line num="87" type="stmt" count="0" />
+        <line num="88" type="stmt" count="0" />
+        <line num="89" type="stmt" count="0" />
+        <line num="99" type="method" count="0" />
+        <line num="101" type="stmt" count="0" />
+        <line num="114" type="method" count="0" />
+        <line num="116" type="stmt" count="0" />
+        <line num="117" type="stmt" count="0" />
+        <line num="118" type="stmt" count="0" />
+        <line num="120" type="stmt" count="0" />
+        <line num="121" type="stmt" count="0" />
+        <line num="122" type="stmt" count="0" />
+        <line num="138" type="method" count="0" />
+        <line num="142" type="stmt" count="0" />
+        <line num="143" type="stmt" count="0" />
+        <line num="144" type="stmt" count="0" />
+        <line num="145" type="stmt" count="0" />
+        <line num="146" type="stmt" count="0" />
+        <line num="147" type="stmt" count="0" />
+        <line num="149" type="stmt" count="0" />
+        <line num="150" type="stmt" count="0" />
+        <line num="151" type="stmt" count="0" />
+        <line num="152" type="stmt" count="0" />
+        <line num="154" type="stmt" count="0" />
+        <line num="164" type="method" count="0" />
+        <line num="166" type="stmt" count="0" />
+        <line num="167" type="stmt" count="0" />
+        <line num="168" type="stmt" count="0" />
+        <line num="170" type="stmt" count="0" />
+        <line num="172" type="stmt" count="0" />
+        <line num="173" type="stmt" count="0" />
+        <line num="174" type="stmt" count="0" />
+        <line num="175" type="stmt" count="0" />
+        <line num="178" type="stmt" count="0" />
+        <line num="181" type="stmt" count="0" />
+        <line num="183" type="stmt" count="0" />
+        <line num="184" type="stmt" count="0" />
+        <line num="185" type="stmt" count="0" />
+        <line num="186" type="stmt" count="0" />
+        <line num="187" type="stmt" count="0" />
+        <line num="188" type="stmt" count="0" />
+        <metrics loc="188" ncloc="86" classes="1" methods="5" coveredmethods="0" statements="47" coveredstatements="0" elements="52" coveredelements="0" />
+      </file>
+      <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Exceptions/ExecuteException.php">
+        <class name="phpucExecuteException">
+          <metrics methods="0" coveredmethods="0" statements="0" coveredstatements="0" elements="0" coveredelements="0" />
+        </class>
+        <line num="57" type="stmt" count="0" />
+        <line num="60" type="stmt" count="0" />
+        <metrics loc="60" ncloc="6" classes="1" methods="0" coveredmethods="0" statements="0" coveredstatements="0" elements="0" coveredelements="0" />
+      </file>
+      <metrics files="25" loc="4143" ncloc="1942" classes="25" methods="92" coveredmethods="39" statements="1024" coveredstatements="392" elements="1116" coveredelements="431" />
+    </project>
+  </coverage>
+  <metrics files="25" functions="0" cls="24" clsa="3" clsc="21" roots="2" leafs="22" interfs="1" maxdit="2">
+    <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Data/BuildFile.php" classes="1" functions="0" loc="211" cloc="123" ncloc="88" locExecutable="41" locExecuted="38" coverage="92.682927">
+      <class name="phpucBuildFile" loc="152" locExecutable="41" locExecuted="38" aif="0.000000" ahf="100.000000" ca="5" ce="1" csz="9" cis="6" coverage="92.682927" dit="2" i="0.166667" impl="0" mif="88.135593" mhf="1.694915" noc="0" pf="3.703704" vars="2" varsnp="0" varsi="2" wmc="10" wmcnp="9" wmci="62">
+        <method name="__construct" loc="21" locExecutable="13" locExecuted="13" coverage="100.000000" ccn="2" crap="2.000000" npath="2" parameters="2" />
+        <method name="__isset" loc="4" locExecutable="1" locExecuted="1" coverage="100.000000" ccn="1" crap="1.000000" npath="1" parameters="1" />
+        <method name="__get" loc="10" locExecutable="6" locExecuted="3" coverage="50.000000" ccn="2" crap="8.500000" npath="2" parameters="1" />
+        <method name="__set" loc="7" locExecutable="3" locExecuted="3" coverage="100.000000" ccn="1" crap="1.000000" npath="1" parameters="2" />
+        <method name="createBuildTarget" loc="8" locExecutable="3" locExecuted="3" coverage="100.000000" ccn="1" crap="1.000000" npath="1" parameters="1" />
+        <method name="save" loc="9" locExecutable="5" locExecuted="5" coverage="100.000000" ccn="2" crap="2.000000" npath="2" parameters="0" />
+        <method name="initBuildFile" loc="11" locExecutable="8" locExecuted="8" coverage="100.000000" ccn="1" crap="1.000000" npath="1" parameters="0" />
+      </class>
+    </file>
+    <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/PhpUnderControl.php" classes="1" functions="0" loc="204" cloc="85" ncloc="119" locExecutable="21" locExecuted="8" coverage="38.095238">
+      <class name="phpucPhpUnderControl" loc="127" locExecutable="21" locExecuted="8" aif="0.000000" ahf="100.000000" ca="0" ce="1" csz="7" cis="4" coverage="38.095238" dit="0" i="1.000000" impl="0" mif="0.000000" mhf="0.000000" noc="0" pf="0.000000" vars="3" varsnp="0" varsi="3" wmc="10" wmcnp="10" wmci="10">
+        <method name="autoload" loc="11" locExecutable="8" locExecuted="8" coverage="100.000000" ccn="2" crap="2.000000" npath="2" parameters="1" />
+        <method name="main" loc="7" locExecutable="4" locExecuted="0" coverage="0.000000" ccn="1" crap="2.000000" npath="1" parameters="0" />
+        <method name="__construct" loc="4" locExecutable="2" locExecuted="0" coverage="0.000000" ccn="1" crap="2.000000" npath="1" parameters="0" />
+        <method name="run" loc="34" locExecutable="7" locExecuted="0" coverage="0.000000" ccn="6" crap="42.000000" npath="3" parameters="0" />
+      </class>
+    </file>
+    <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Data/BuildTarget.php" classes="1" functions="0" loc="222" cloc="113" ncloc="109" locExecutable="65" locExecuted="59" coverage="90.769231">
+      <class name="phpucBuildTarget" loc="156" locExecutable="65" locExecuted="59" aif="0.000000" ahf="100.000000" ca="1" ce="1" csz="6" cis="5" coverage="90.769231" dit="0" i="0.500000" impl="0" mif="0.000000" mhf="0.000000" noc="0" pf="0.000000" vars="1" varsnp="0" varsi="1" wmc="18" wmcnp="18" wmci="18">
+        <method name="__construct" loc="5" locExecutable="3" locExecuted="3" coverage="100.000000" ccn="1" crap="1.000000" npath="1" parameters="2" />
+        <method name="buildXml" loc="41" locExecutable="32" locExecuted="32" coverage="100.000000" ccn="6" crap="6.000000" npath="32" parameters="0" />
+        <method name="__isset" loc="4" locExecutable="1" locExecuted="1" coverage="100.000000" ccn="1" crap="1.000000" npath="1" parameters="1" />
+        <method name="__get" loc="10" locExecutable="6" locExecuted="3" coverage="50.000000" ccn="2" crap="8.500000" npath="2" parameters="1" />
+        <method name="__set" loc="29" locExecutable="21" locExecuted="18" coverage="85.714286" ccn="8" crap="512.186589" npath="3" parameters="2" />
+      </class>
+    </file>
+    <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Tasks/CruiseControlTask.php" classes="1" functions="0" loc="149" cloc="83" ncloc="66" locExecutable="44" locExecuted="37" coverage="84.090909">
+      <class name="phpucCruiseControlTask" loc="90" locExecutable="44" locExecuted="37" aif="66.666667" ahf="100.000000" ca="1" ce="4" csz="3" cis="2" coverage="84.090909" dit="1" i="0.800000" impl="1" mif="66.666667" mhf="0.000000" noc="0" pf="20.000000" vars="1" varsnp="0" varsi="3" wmc="7" wmcnp="7" wmci="12">
+        <method name="validate" loc="36" locExecutable="23" locExecuted="18" coverage="78.260870" ccn="4" crap="64.164379" npath="6" parameters="0" />
+        <method name="execute" loc="29" locExecutable="19" locExecuted="17" coverage="89.473684" ccn="3" crap="27.010497" npath="3" parameters="0" />
+      </class>
+    </file>
+    <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Util/ConsoleArgs.php" classes="1" functions="0" loc="655" cloc="193" ncloc="462" locExecutable="212" locExecuted="172" coverage="81.132075">
+      <class name="phpucConsoleArgs" loc="595" locExecutable="212" locExecuted="172" aif="0.000000" ahf="100.000000" ca="15" ce="1" csz="19" cis="7" coverage="81.132075" dit="0" i="0.062500" impl="0" mif="0.000000" mhf="56.250000" noc="0" pf="0.000000" vars="3" varsnp="0" varsi="3" wmc="51" wmcnp="16" wmci="51">
+        <method name="__construct" loc="24" locExecutable="12" locExecuted="10" coverage="83.333333" ccn="4" crap="64.074074" npath="4" parameters="0" />
+        <method name="hasArgument" loc="4" locExecutable="1" locExecuted="1" coverage="100.000000" ccn="1" crap="1.000000" npath="1" parameters="1" />
+        <method name="getArgument" loc="10" locExecutable="6" locExecuted="6" coverage="100.000000" ccn="2" crap="2.000000" npath="2" parameters="1" />
+        <method name="hasOption" loc="4" locExecutable="1" locExecuted="1" coverage="100.000000" ccn="1" crap="1.000000" npath="1" parameters="1" />
+        <method name="getOption" loc="10" locExecutable="6" locExecuted="6" coverage="100.000000" ccn="2" crap="2.000000" npath="2" parameters="1" />
+        <method name="parse" loc="27" locExecutable="16" locExecuted="14" coverage="87.500000" ccn="4" crap="64.031250" npath="8" parameters="0" />
+        <method name="__get" loc="10" locExecutable="6" locExecuted="3" coverage="50.000000" ccn="2" crap="8.500000" npath="2" parameters="1" />
+        <method name="hasHelpOption" loc="4" locExecutable="1" locExecuted="1" coverage="100.000000" ccn="2" crap="2.000000" npath="1" parameters="0" />
+        <method name="hasUsageOption" loc="4" locExecutable="1" locExecuted="1" coverage="100.000000" ccn="2" crap="2.000000" npath="1" parameters="0" />
+        <method name="parseCommand" loc="12" locExecutable="6" locExecuted="6" coverage="100.000000" ccn="2" crap="2.000000" npath="2" parameters="0" />
+        <method name="parseOptions" loc="92" locExecutable="67" locExecuted="40" coverage="59.701493" ccn="14" crap="2756.826937" npath="321" parameters="0" />
+        <method name="parseArguments" loc="20" locExecutable="14" locExecuted="13" coverage="92.857143" ccn="4" crap="64.005831" npath="4" parameters="0" />
+        <method name="printHelp" loc="33" locExecutable="20" locExecuted="19" coverage="95.000000" ccn="3" crap="3.000000" npath="3" parameters="0" />
+        <method name="printModeHelp" loc="46" locExecutable="33" locExecuted="29" coverage="87.878788" ccn="5" crap="125.044522" npath="12" parameters="1" />
+        <method name="tokenizeHelp" loc="5" locExecutable="2" locExecuted="2" coverage="100.000000" ccn="1" crap="1.000000" npath="1" parameters="1" />
+        <method name="printUsage" loc="25" locExecutable="18" locExecuted="18" coverage="100.000000" ccn="2" crap="2.000000" npath="2" parameters="0" />
+      </class>
+    </file>
+    <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Exceptions/ValidateException.php" classes="1" functions="0" loc="60" cloc="54" ncloc="6" locExecutable="2" locExecuted="2" coverage="100.000000">
+      <class name="phpucValidateException" loc="4" locExecutable="2" locExecuted="2" aif="100.000000" ahf="100.000000" ca="7" ce="0" csz="0" cis="0" coverage="100.000000" dit="2" i="0.000000" impl="0" mif="100.000000" mhf="11.111111" noc="0" pf="0.000000" vars="0" varsnp="0" varsi="4" wmc="0" wmcnp="0" wmci="9" />
+    </file>
+    <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Tasks/AbstractTask.php" classes="1" functions="0" loc="142" cloc="103" ncloc="39" locExecutable="15" locExecuted="7" coverage="46.666667">
+      <class name="phpucAbstractTask" loc="86" locExecutable="15" locExecuted="7" aif="0.000000" ahf="100.000000" ca="6" ce="2" csz="7" cis="5" coverage="46.666667" dit="0" i="0.250000" impl="1" mif="16.666667" mhf="0.000000" noc="6" pf="0.000000" vars="2" varsnp="0" varsi="2" wmc="6" wmcnp="6" wmci="7">
+        <method name="__construct" loc="4" locExecutable="2" locExecuted="2" coverage="100.000000" ccn="1" crap="1.000000" npath="1" parameters="1" />
+        <method name="validate" loc="4" locExecutable="1" locExecuted="0" coverage="0.000000" ccn="1" crap="2.000000" npath="1" parameters="0" />
+        <method name="__isset" loc="4" locExecutable="1" locExecuted="0" coverage="0.000000" ccn="1" crap="2.000000" npath="1" parameters="1" />
+        <method name="__get" loc="10" locExecutable="6" locExecuted="3" coverage="50.000000" ccn="2" crap="8.500000" npath="2" parameters="1" />
+        <method name="__set" loc="6" locExecutable="3" locExecuted="0" coverage="0.000000" ccn="1" crap="2.000000" npath="1" parameters="2" />
+      </class>
+    </file>
+    <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Tasks/TaskI.php" classes="1" functions="0" loc="104" cloc="90" ncloc="14" locExecutable="2" locExecuted="2" coverage="100.000000">
+      <class name="phpucTaskI" loc="48" locExecutable="2" locExecuted="2" aif="0.000000" ahf="0.000000" ca="10" ce="0" csz="5" cis="5" coverage="100.000000" dit="0" i="0.000000" impl="0" mif="0.000000" mhf="0.000000" noc="0" pf="0.000000" vars="0" varsnp="0" varsi="0" wmc="5" wmcnp="5" wmci="5">
+        <method name="validate" loc="1" locExecutable="0" locExecuted="0" coverage="0.000000" ccn="1" crap="2.000000" npath="1" parameters="0" />
+        <method name="execute" loc="1" locExecutable="0" locExecuted="0" coverage="0.000000" ccn="1" crap="2.000000" npath="1" parameters="0" />
+        <method name="__isset" loc="1" locExecutable="0" locExecuted="0" coverage="0.000000" ccn="1" crap="2.000000" npath="1" parameters="1" />
+        <method name="__get" loc="1" locExecutable="0" locExecuted="0" coverage="0.000000" ccn="1" crap="2.000000" npath="1" parameters="1" />
+        <method name="__set" loc="1" locExecutable="0" locExecuted="0" coverage="0.000000" ccn="1" crap="2.000000" npath="1" parameters="2" />
+      </class>
+    </file>
+    <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Tasks/PhpCodeSnifferTask.php" classes="1" functions="0" loc="139" cloc="74" ncloc="65" locExecutable="39" locExecuted="36" coverage="92.307692">
+      <class name="phpucPhpCodeSnifferTask" loc="83" locExecutable="39" locExecuted="36" aif="100.000000" ahf="100.000000" ca="1" ce="5" csz="3" cis="2" coverage="92.307692" dit="2" i="0.833333" impl="1" mif="57.142857" mhf="14.285714" noc="0" pf="40.000000" vars="0" varsnp="0" varsi="2" wmc="5" wmcnp="2" wmci="22">
+        <method name="__construct" loc="4" locExecutable="2" locExecuted="2" coverage="100.000000" ccn="1" crap="1.000000" npath="1" parameters="1" />
+        <method name="execute" loc="28" locExecutable="19" locExecuted="19" coverage="100.000000" ccn="1" crap="1.000000" npath="1" parameters="0" />
+        <method name="doValidate" loc="26" locExecutable="16" locExecuted="13" coverage="81.250000" ccn="3" crap="27.059326" npath="4" parameters="0" />
+      </class>
+    </file>
+    <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Tasks/AbstractPearTask.php" classes="1" functions="0" loc="199" cloc="90" ncloc="109" locExecutable="76" locExecuted="49" coverage="64.473684">
+      <class name="phpucAbstractPearTask" loc="139" locExecutable="76" locExecuted="49" aif="100.000000" ahf="100.000000" ca="3" ce="4" csz="4" cis="3" coverage="64.473684" dit="1" i="0.571429" impl="1" mif="42.857143" mhf="14.285714" noc="3" pf="60.000000" vars="0" varsnp="0" varsi="2" wmc="17" wmcnp="16" wmci="21">
+        <method name="__construct" loc="17" locExecutable="12" locExecuted="12" coverage="100.000000" ccn="2" crap="2.000000" npath="2" parameters="2" />
+        <method name="validate" loc="56" locExecutable="43" locExecuted="24" coverage="55.813953" ccn="10" crap="1008.626913" npath="108" parameters="0" />
+        <method name="__set" loc="28" locExecutable="18" locExecuted="11" coverage="61.111111" ccn="4" crap="64.941015" npath="3" parameters="2" />
+        <method name="doValidate" loc="4" locExecutable="1" locExecuted="0" coverage="0.000000" ccn="1" crap="2.000000" npath="1" parameters="0" />
+      </class>
+    </file>
+    <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Exceptions/ConsoleException.php" classes="1" functions="0" loc="60" cloc="54" ncloc="6" locExecutable="2" locExecuted="2" coverage="100.000000">
+      <class name="phpucConsoleException" loc="4" locExecutable="2" locExecuted="2" aif="100.000000" ahf="100.000000" ca="1" ce="0" csz="0" cis="0" coverage="100.000000" dit="2" i="0.000000" impl="0" mif="100.000000" mhf="11.111111" noc="0" pf="0.000000" vars="0" varsnp="0" varsi="4" wmc="0" wmcnp="0" wmci="9" />
+    </file>
+    <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Tasks/ExampleTask.php" classes="1" functions="0" loc="126" cloc="69" ncloc="57" locExecutable="36" locExecuted="0" coverage="0.000000">
+      <class name="phpucExampleTask" loc="67" locExecutable="36" locExecuted="0" aif="66.666667" ahf="100.000000" ca="1" ce="3" csz="2" cis="1" coverage="0.000000" dit="1" i="0.750000" impl="1" mif="83.333333" mhf="0.000000" noc="0" pf="0.000000" vars="1" varsnp="0" varsi="3" wmc="1" wmcnp="1" wmci="7">
+        <method name="execute" loc="47" locExecutable="34" locExecuted="0" coverage="0.000000" ccn="1" crap="2.000000" npath="1" parameters="0" />
+      </class>
+    </file>
+    <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Tasks/PhpUnitTask.php" classes="1" functions="0" loc="200" cloc="82" ncloc="118" locExecutable="82" locExecuted="0" coverage="0.000000">
+      <class name="phpucPhpUnitTask" loc="141" locExecutable="82" locExecuted="0" aif="100.000000" ahf="100.000000" ca="1" ce="6" csz="3" cis="2" coverage="0.000000" dit="2" i="0.857143" impl="1" mif="57.142857" mhf="14.285714" noc="0" pf="40.000000" vars="0" varsnp="0" varsi="2" wmc="8" wmcnp="4" wmci="25">
+        <method name="__construct" loc="7" locExecutable="4" locExecuted="0" coverage="0.000000" ccn="1" crap="2.000000" npath="1" parameters="1" />
+        <method name="execute" loc="62" locExecutable="46" locExecuted="0" coverage="0.000000" ccn="3" crap="12.000000" npath="4" parameters="0" />
+        <method name="doValidate" loc="46" locExecutable="31" locExecuted="0" coverage="0.000000" ccn="4" crap="20.000000" npath="8" parameters="0" />
+      </class>
+    </file>
+    <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Tasks/CreateFileTask.php" classes="1" functions="0" loc="115" cloc="73" ncloc="42" locExecutable="24" locExecuted="0" coverage="0.000000">
+      <class name="phpucCreateFileTask" loc="59" locExecutable="24" locExecuted="0" aif="66.666667" ahf="100.000000" ca="1" ce="3" csz="3" cis="2" coverage="0.000000" dit="1" i="0.750000" impl="1" mif="66.666667" mhf="0.000000" noc="0" pf="20.000000" vars="1" varsnp="0" varsi="3" wmc="3" wmcnp="3" wmci="8">
+        <method name="__construct" loc="6" locExecutable="3" locExecuted="0" coverage="0.000000" ccn="1" crap="2.000000" npath="1" parameters="2" />
+        <method name="execute" loc="28" locExecutable="19" locExecuted="0" coverage="0.000000" ccn="2" crap="6.000000" npath="2" parameters="0" />
+      </class>
+    </file>
+    <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Tasks/PhpDocumentorTask.php" classes="1" functions="0" loc="121" cloc="65" ncloc="56" locExecutable="35" locExecuted="0" coverage="0.000000">
+      <class name="phpucPhpDocumentorTask" loc="65" locExecutable="35" locExecuted="0" aif="100.000000" ahf="100.000000" ca="1" ce="6" csz="2" cis="2" coverage="0.000000" dit="2" i="0.857143" impl="1" mif="71.428571" mhf="14.285714" noc="0" pf="20.000000" vars="0" varsnp="0" varsi="2" wmc="2" wmcnp="2" wmci="20">
+        <method name="__construct" loc="4" locExecutable="2" locExecuted="0" coverage="0.000000" ccn="1" crap="2.000000" npath="1" parameters="1" />
+        <method name="execute" loc="46" locExecutable="31" locExecuted="0" coverage="0.000000" ccn="1" crap="2.000000" npath="1" parameters="0" />
+      </class>
+    </file>
+    <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Tasks/ProjectTask.php" classes="1" functions="0" loc="131" cloc="61" ncloc="70" locExecutable="43" locExecuted="0" coverage="0.000000">
+      <class name="phpucProjectTask" loc="75" locExecutable="43" locExecuted="0" aif="100.000000" ahf="100.000000" ca="1" ce="7" csz="2" cis="2" coverage="0.000000" dit="1" i="0.875000" impl="1" mif="66.666667" mhf="0.000000" noc="0" pf="20.000000" vars="0" varsnp="0" varsi="2" wmc="5" wmcnp="5" wmci="10">
+        <method name="validate" loc="16" locExecutable="10" locExecuted="0" coverage="0.000000" ccn="3" crap="12.000000" npath="4" parameters="0" />
+        <method name="execute" loc="48" locExecutable="31" locExecuted="0" coverage="0.000000" ccn="2" crap="6.000000" npath="2" parameters="0" />
+      </class>
+    </file>
+    <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Tasks/ModifyFileTask.php" classes="1" functions="0" loc="150" cloc="78" ncloc="72" locExecutable="46" locExecuted="0" coverage="0.000000">
+      <class name="phpucModifyFileTask" loc="94" locExecutable="46" locExecuted="0" aif="66.666667" ahf="100.000000" ca="1" ce="4" csz="4" cis="3" coverage="0.000000" dit="1" i="0.800000" impl="1" mif="50.000000" mhf="0.000000" noc="0" pf="40.000000" vars="1" varsnp="0" varsi="3" wmc="7" wmcnp="7" wmci="11">
+        <method name="__construct" loc="6" locExecutable="3" locExecuted="0" coverage="0.000000" ccn="1" crap="2.000000" npath="1" parameters="2" />
+        <method name="validate" loc="17" locExecutable="12" locExecuted="0" coverage="0.000000" ccn="3" crap="12.000000" npath="3" parameters="0" />
+        <method name="execute" loc="40" locExecutable="29" locExecuted="0" coverage="0.000000" ccn="3" crap="12.000000" npath="4" parameters="0" />
+      </class>
+    </file>
+    <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Commands/AbstractCommand.php" classes="1" functions="0" loc="153" cloc="100" ncloc="53" locExecutable="24" locExecuted="0" coverage="0.000000">
+      <class name="phpucAbstractCommand" loc="97" locExecutable="24" locExecuted="0" aif="0.000000" ahf="100.000000" ca="3" ce="1" csz="8" cis="4" coverage="0.000000" dit="0" i="0.250000" impl="0" mif="0.000000" mhf="33.333333" noc="3" pf="0.000000" vars="2" varsnp="0" varsi="2" wmc="10" wmcnp="8" wmci="10">
+        <method name="createCommand" loc="14" locExecutable="7" locExecuted="0" coverage="0.000000" ccn="2" crap="6.000000" npath="2" parameters="1" />
+        <method name="__construct" loc="4" locExecutable="2" locExecuted="0" coverage="0.000000" ccn="1" crap="2.000000" npath="1" parameters="1" />
+        <method name="validate" loc="7" locExecutable="4" locExecuted="0" coverage="0.000000" ccn="2" crap="6.000000" npath="2" parameters="0" />
+        <method name="execute" loc="7" locExecutable="4" locExecuted="0" coverage="0.000000" ccn="2" crap="6.000000" npath="2" parameters="0" />
+        <method name="createTasks" loc="8" locExecutable="5" locExecuted="0" coverage="0.000000" ccn="2" crap="6.000000" npath="2" parameters="0" />
+        <method name="doCreateTasks" loc="1" locExecutable="0" locExecuted="0" coverage="0.000000" ccn="1" crap="2.000000" npath="1" parameters="0" />
+      </class>
+    </file>
+    <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Commands/ExampleCommand.php" classes="1" functions="0" loc="97" cloc="65" ncloc="32" locExecutable="18" locExecuted="0" coverage="0.000000">
+      <class name="phpucExampleCommand" loc="41" locExecutable="18" locExecuted="0" aif="66.666667" ahf="100.000000" ca="0" ce="7" csz="2" cis="0" coverage="0.000000" dit="1" i="1.000000" impl="0" mif="83.333333" mhf="33.333333" noc="0" pf="0.000000" vars="1" varsnp="0" varsi="3" wmc="4" wmcnp="0" wmci="13">
+        <method name="doCreateTasks" loc="22" locExecutable="16" locExecuted="0" coverage="0.000000" ccn="4" crap="20.000000" npath="8" parameters="0" />
+      </class>
+    </file>
+    <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Commands/InstallCommand.php" classes="1" functions="0" loc="126" cloc="71" ncloc="55" locExecutable="7" locExecuted="0" coverage="0.000000">
+      <class name="phpucInstallCommand" loc="70" locExecutable="7" locExecuted="0" aif="50.000000" ahf="100.000000" ca="0" ce="5" csz="3" cis="0" coverage="0.000000" dit="1" i="1.000000" impl="0" mif="83.333333" mhf="33.333333" noc="0" pf="0.000000" vars="2" varsnp="0" varsi="4" wmc="1" wmcnp="0" wmci="10">
+        <method name="doCreateTasks" loc="10" locExecutable="5" locExecuted="0" coverage="0.000000" ccn="1" crap="2.000000" npath="1" parameters="0" />
+      </class>
+    </file>
+    <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Commands/ProjectCommand.php" classes="1" functions="0" loc="69" cloc="59" ncloc="10" locExecutable="3" locExecuted="0" coverage="0.000000">
+      <class name="phpucProjectCommand" loc="13" locExecutable="3" locExecuted="0" aif="100.000000" ahf="100.000000" ca="0" ce="2" csz="1" cis="0" coverage="0.000000" dit="1" i="1.000000" impl="0" mif="83.333333" mhf="33.333333" noc="0" pf="0.000000" vars="0" varsnp="0" varsi="2" wmc="1" wmcnp="0" wmci="10">
+        <method name="doCreateTasks" loc="4" locExecutable="1" locExecuted="0" coverage="0.000000" ccn="1" crap="2.000000" npath="1" parameters="0" />
+      </class>
+    </file>
+    <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Data/ConfigFile.php" classes="1" functions="0" loc="149" cloc="94" ncloc="55" locExecutable="27" locExecuted="0" coverage="0.000000">
+      <class name="phpucConfigFile" loc="93" locExecutable="27" locExecuted="0" aif="0.000000" ahf="100.000000" ca="4" ce="1" csz="6" cis="4" coverage="0.000000" dit="2" i="0.200000" impl="0" mif="92.857143" mhf="0.000000" noc="0" pf="3.703704" vars="2" varsnp="0" varsi="2" wmc="7" wmcnp="7" wmci="59">
+        <method name="__construct" loc="10" locExecutable="6" locExecuted="0" coverage="0.000000" ccn="1" crap="2.000000" npath="1" parameters="1" />
+        <method name="createProject" loc="8" locExecutable="3" locExecuted="0" coverage="0.000000" ccn="1" crap="2.000000" npath="1" parameters="1" />
+        <method name="getProject" loc="17" locExecutable="11" locExecuted="0" coverage="0.000000" ccn="3" crap="12.000000" npath="3" parameters="1" />
+        <method name="save" loc="8" locExecutable="5" locExecuted="0" coverage="0.000000" ccn="2" crap="6.000000" npath="2" parameters="0" />
+      </class>
+    </file>
+    <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Data/ConfigProject.php" classes="1" functions="0" loc="313" cloc="166" ncloc="147" locExecutable="72" locExecuted="0" coverage="0.000000">
+      <class name="phpucConfigProject" loc="251" locExecutable="72" locExecuted="0" aif="0.000000" ahf="100.000000" ca="2" ce="2" csz="15" cis="7" coverage="0.000000" dit="0" i="0.500000" impl="0" mif="0.000000" mhf="30.000000" noc="0" pf="0.000000" vars="5" varsnp="0" varsi="5" wmc="18" wmcnp="13" wmci="18">
+        <method name="__construct" loc="8" locExecutable="5" locExecuted="0" coverage="0.000000" ccn="1" crap="2.000000" npath="1" parameters="2" />
+        <method name="__isset" loc="4" locExecutable="1" locExecuted="0" coverage="0.000000" ccn="1" crap="2.000000" npath="1" parameters="1" />
+        <method name="__get" loc="10" locExecutable="6" locExecuted="0" coverage="0.000000" ccn="2" crap="6.000000" npath="2" parameters="1" />
+        <method name="__set" loc="25" locExecutable="16" locExecuted="0" coverage="0.000000" ccn="5" crap="30.000000" npath="3" parameters="2" />
+        <method name="isNew" loc="4" locExecutable="1" locExecuted="0" coverage="0.000000" ccn="1" crap="2.000000" npath="1" parameters="0" />
+        <method name="createArtifactsPublisher" loc="8" locExecutable="3" locExecuted="0" coverage="0.000000" ccn="1" crap="2.000000" npath="1" parameters="0" />
+        <method name="buildXml" loc="10" locExecutable="6" locExecuted="0" coverage="0.000000" ccn="2" crap="6.000000" npath="2" parameters="0" />
+        <method name="loadProject" loc="22" locExecutable="15" locExecuted="0" coverage="0.000000" ccn="3" crap="12.000000" npath="4" parameters="0" />
+        <method name="newProjectFromTemplate" loc="13" locExecutable="8" locExecuted="0" coverage="0.000000" ccn="1" crap="2.000000" npath="1" parameters="0" />
+        <method name="init" loc="15" locExecutable="9" locExecuted="0" coverage="0.000000" ccn="1" crap="2.000000" npath="1" parameters="0" />
+      </class>
+    </file>
+    <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Data/ConfigArtifactsPublisher.php" classes="1" functions="0" loc="188" cloc="102" ncloc="86" locExecutable="43" locExecuted="0" coverage="0.000000">
+      <class name="phpucConfigArtifactsPublisher" loc="133" locExecutable="43" locExecuted="0" aif="0.000000" ahf="100.000000" ca="1" ce="1" csz="6" cis="5" coverage="0.000000" dit="0" i="0.500000" impl="0" mif="0.000000" mhf="0.000000" noc="0" pf="0.000000" vars="1" varsnp="0" varsi="1" wmc="14" wmcnp="14" wmci="14">
+        <method name="__construct" loc="12" locExecutable="8" locExecuted="0" coverage="0.000000" ccn="1" crap="2.000000" npath="1" parameters="1" />
+        <method name="__isset" loc="4" locExecutable="1" locExecuted="0" coverage="0.000000" ccn="1" crap="2.000000" npath="1" parameters="1" />
+        <method name="__get" loc="10" locExecutable="6" locExecuted="0" coverage="0.000000" ccn="2" crap="6.000000" npath="2" parameters="1" />
+        <method name="__set" loc="18" locExecutable="11" locExecuted="0" coverage="0.000000" ccn="5" crap="30.000000" npath="2" parameters="2" />
+        <method name="buildXml" loc="24" locExecutable="15" locExecuted="0" coverage="0.000000" ccn="5" crap="30.000000" npath="8" parameters="0" />
+      </class>
+    </file>
+    <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Exceptions/ExecuteException.php" classes="1" functions="0" loc="60" cloc="54" ncloc="6" locExecutable="2" locExecuted="0" coverage="0.000000">
+      <class name="phpucExecuteException" loc="4" locExecutable="2" locExecuted="0" aif="100.000000" ahf="100.000000" ca="1" ce="0" csz="0" cis="0" coverage="0.000000" dit="2" i="0.000000" impl="0" mif="100.000000" mhf="11.111111" noc="0" pf="0.000000" vars="0" varsnp="0" varsi="4" wmc="0" wmcnp="0" wmci="9" />
+    </file>
+  </metrics>
+  <pmd-cpd version="PHPUnit 3.2.5" />
+  <pmd version="PHPUnit 3.2.5">
+    <violation rule="CRAP" priority="1" package="global">More than 5.00% of the project's methods have a Change Risk Analysis and Predictions (CRAP) index that is above the threshold of 30.
+The CRAP index of a function or method uses cyclomatic complexity and code coverage from automated tests to help estimate the effort and risk associated with maintaining legacy code. A CRAP index over 30 is a good indicator of crappy code.</violation>
+    <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Data/BuildFile.php">
+      <violation rule="CodeCoverage" priority="1" line="132" to-line="141" package="phpUnderControl.Data" class="phpucBuildFile" method="__get">The code coverage is 50.00 which is considered medium.</violation>
+    </file>
+    <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/PhpUnderControl.php">
+      <violation rule="CodeCoverage" priority="1" line="133" to-line="139" package="phpUnderControl" class="phpucPhpUnderControl" method="main">The code coverage is 0.00 which is considered low.</violation>
+      <violation rule="CodeCoverage" priority="1" line="160" to-line="163" package="phpUnderControl" class="phpucPhpUnderControl" method="__construct">The code coverage is 0.00 which is considered low.</violation>
+      <violation rule="CRAP" priority="1" line="165" to-line="198" package="phpUnderControl" class="phpucPhpUnderControl" method="run">The CRAP index is 42.
+The Change Risk Analysis and Predictions (CRAP) index of a function or method uses cyclomatic complexity and code coverage from automated tests to help estimate the effort and risk associated with maintaining legacy code. A CRAP index over 30 is a good indicator of crappy code.</violation>
+      <violation rule="CodeCoverage" priority="1" line="165" to-line="198" package="phpUnderControl" class="phpucPhpUnderControl" method="run">The code coverage is 0.00 which is considered low.</violation>
+    </file>
+    <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Data/BuildTarget.php">
+      <violation rule="CodeCoverage" priority="1" line="169" to-line="178" package="phpUnderControl.Data" class="phpucBuildTarget" method="__get">The code coverage is 50.00 which is considered medium.</violation>
+      <violation rule="CRAP" priority="1" line="193" to-line="221" package="phpUnderControl.Data" class="phpucBuildTarget" method="__set">The CRAP index is 512.
+The Change Risk Analysis and Predictions (CRAP) index of a function or method uses cyclomatic complexity and code coverage from automated tests to help estimate the effort and risk associated with maintaining legacy code. A CRAP index over 30 is a good indicator of crappy code.</violation>
+    </file>
+    <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Tasks/CruiseControlTask.php">
+      <violation rule="CRAP" priority="1" line="78" to-line="113" package="phpUnderControl.Tasks" class="phpucCruiseControlTask" method="validate">The CRAP index is 64.
+The Change Risk Analysis and Predictions (CRAP) index of a function or method uses cyclomatic complexity and code coverage from automated tests to help estimate the effort and risk associated with maintaining legacy code. A CRAP index over 30 is a good indicator of crappy code.</violation>
+    </file>
+    <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Util/ConsoleArgs.php">
+      <violation rule="CRAP" priority="1" line="216" to-line="239" package="phpUnderControl.Util" class="phpucConsoleArgs" method="__construct">The CRAP index is 64.
+The Change Risk Analysis and Predictions (CRAP) index of a function or method uses cyclomatic complexity and code coverage from automated tests to help estimate the effort and risk associated with maintaining legacy code. A CRAP index over 30 is a good indicator of crappy code.</violation>
+      <violation rule="CRAP" priority="1" line="308" to-line="334" package="phpUnderControl.Util" class="phpucConsoleArgs" method="parse">The CRAP index is 64.
+The Change Risk Analysis and Predictions (CRAP) index of a function or method uses cyclomatic complexity and code coverage from automated tests to help estimate the effort and risk associated with maintaining legacy code. A CRAP index over 30 is a good indicator of crappy code.</violation>
+      <violation rule="CodeCoverage" priority="1" line="345" to-line="354" package="phpUnderControl.Util" class="phpucConsoleArgs" method="__get">The code coverage is 50.00 which is considered medium.</violation>
+      <violation rule="NPathComplexity" priority="1" line="400" to-line="491" package="phpUnderControl.Util" class="phpucConsoleArgs" method="parseOptions">The NPath complexity is 321.
+The NPath complexity of a function or method is the number of acyclic execution paths through that method. A threshold of 200 is generally considered the point where measures should be taken to reduce complexity.</violation>
+      <violation rule="CRAP" priority="1" line="400" to-line="491" package="phpUnderControl.Util" class="phpucConsoleArgs" method="parseOptions">The CRAP index is 2756.
+The Change Risk Analysis and Predictions (CRAP) index of a function or method uses cyclomatic complexity and code coverage from automated tests to help estimate the effort and risk associated with maintaining legacy code. A CRAP index over 30 is a good indicator of crappy code.</violation>
+      <violation rule="CodeCoverage" priority="1" line="400" to-line="491" package="phpUnderControl.Util" class="phpucConsoleArgs" method="parseOptions">The code coverage is 59.70 which is considered medium.</violation>
+      <violation rule="CRAP" priority="1" line="498" to-line="517" package="phpUnderControl.Util" class="phpucConsoleArgs" method="parseArguments">The CRAP index is 64.
+The Change Risk Analysis and Predictions (CRAP) index of a function or method uses cyclomatic complexity and code coverage from automated tests to help estimate the effort and risk associated with maintaining legacy code. A CRAP index over 30 is a good indicator of crappy code.</violation>
+      <violation rule="CRAP" priority="1" line="565" to-line="610" package="phpUnderControl.Util" class="phpucConsoleArgs" method="printModeHelp">The CRAP index is 125.
+The Change Risk Analysis and Predictions (CRAP) index of a function or method uses cyclomatic complexity and code coverage from automated tests to help estimate the effort and risk associated with maintaining legacy code. A CRAP index over 30 is a good indicator of crappy code.</violation>
+    </file>
+    <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Tasks/AbstractTask.php">
+      <violation rule="CodeCoverage" priority="1" line="91" to-line="94" package="phpUnderControl.Tasks" class="phpucAbstractTask" method="validate">The code coverage is 0.00 which is considered low.</violation>
+      <violation rule="CodeCoverage" priority="1" line="103" to-line="106" package="phpUnderControl.Tasks" class="phpucAbstractTask" method="__isset">The code coverage is 0.00 which is considered low.</violation>
+      <violation rule="CodeCoverage" priority="1" line="116" to-line="125" package="phpUnderControl.Tasks" class="phpucAbstractTask" method="__get">The code coverage is 50.00 which is considered medium.</violation>
+      <violation rule="CodeCoverage" priority="1" line="136" to-line="141" package="phpUnderControl.Tasks" class="phpucAbstractTask" method="__set">The code coverage is 0.00 which is considered low.</violation>
+    </file>
+    <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Tasks/AbstractPearTask.php">
+      <violation rule="CRAP" priority="1" line="95" to-line="150" package="phpUnderControl.Tasks" class="phpucAbstractPearTask" method="validate">The CRAP index is 1008.
+The Change Risk Analysis and Predictions (CRAP) index of a function or method uses cyclomatic complexity and code coverage from automated tests to help estimate the effort and risk associated with maintaining legacy code. A CRAP index over 30 is a good indicator of crappy code.</violation>
+      <violation rule="CodeCoverage" priority="1" line="95" to-line="150" package="phpUnderControl.Tasks" class="phpucAbstractPearTask" method="validate">The code coverage is 55.81 which is considered medium.</violation>
+      <violation rule="CRAP" priority="1" line="161" to-line="188" package="phpUnderControl.Tasks" class="phpucAbstractPearTask" method="__set">The CRAP index is 64.
+The Change Risk Analysis and Predictions (CRAP) index of a function or method uses cyclomatic complexity and code coverage from automated tests to help estimate the effort and risk associated with maintaining legacy code. A CRAP index over 30 is a good indicator of crappy code.</violation>
+      <violation rule="CodeCoverage" priority="1" line="161" to-line="188" package="phpUnderControl.Tasks" class="phpucAbstractPearTask" method="__set">The code coverage is 61.11 which is considered medium.</violation>
+      <violation rule="CodeCoverage" priority="1" line="195" to-line="198" package="phpUnderControl.Tasks" class="phpucAbstractPearTask" method="doValidate">The code coverage is 0.00 which is considered low.</violation>
+    </file>
+    <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Tasks/ExampleTask.php">
+      <violation rule="CodeCoverage" priority="1" line="79" to-line="125" package="phpUnderControl.Tasks" class="phpucExampleTask" method="execute">The code coverage is 0.00 which is considered low.</violation>
+    </file>
+    <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Tasks/PhpUnitTask.php">
+      <violation rule="CodeCoverage" priority="1" line="72" to-line="78" package="phpUnderControl.Tasks" class="phpucPhpUnitTask" method="__construct">The code coverage is 0.00 which is considered low.</violation>
+      <violation rule="CodeCoverage" priority="1" line="86" to-line="147" package="phpUnderControl.Tasks" class="phpucPhpUnitTask" method="execute">The code coverage is 0.00 which is considered low.</violation>
+      <violation rule="CodeCoverage" priority="1" line="154" to-line="199" package="phpUnderControl.Tasks" class="phpucPhpUnitTask" method="doValidate">The code coverage is 0.00 which is considered low.</violation>
+    </file>
+    <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Tasks/CreateFileTask.php">
+      <violation rule="CodeCoverage" priority="1" line="73" to-line="78" package="phpUnderControl.Tasks" class="phpucCreateFileTask" method="__construct">The code coverage is 0.00 which is considered low.</violation>
+      <violation rule="CodeCoverage" priority="1" line="87" to-line="114" package="phpUnderControl.Tasks" class="phpucCreateFileTask" method="execute">The code coverage is 0.00 which is considered low.</violation>
+    </file>
+    <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Tasks/PhpDocumentorTask.php">
+      <violation rule="CodeCoverage" priority="1" line="64" to-line="67" package="phpUnderControl.Tasks" class="phpucPhpDocumentorTask" method="__construct">The code coverage is 0.00 which is considered low.</violation>
+      <violation rule="CodeCoverage" priority="1" line="75" to-line="120" package="phpUnderControl.Tasks" class="phpucPhpDocumentorTask" method="execute">The code coverage is 0.00 which is considered low.</violation>
+    </file>
+    <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Tasks/ProjectTask.php">
+      <violation rule="CodeCoverage" priority="1" line="66" to-line="81" package="phpUnderControl.Tasks" class="phpucProjectTask" method="validate">The code coverage is 0.00 which is considered low.</violation>
+      <violation rule="CodeCoverage" priority="1" line="83" to-line="130" package="phpUnderControl.Tasks" class="phpucProjectTask" method="execute">The code coverage is 0.00 which is considered low.</violation>
+    </file>
+    <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Tasks/ModifyFileTask.php">
+      <violation rule="CodeCoverage" priority="1" line="73" to-line="78" package="phpUnderControl.Tasks" class="phpucModifyFileTask" method="__construct">The code coverage is 0.00 which is considered low.</violation>
+      <violation rule="CodeCoverage" priority="1" line="86" to-line="102" package="phpUnderControl.Tasks" class="phpucModifyFileTask" method="validate">The code coverage is 0.00 which is considered low.</violation>
+      <violation rule="CodeCoverage" priority="1" line="110" to-line="149" package="phpUnderControl.Tasks" class="phpucModifyFileTask" method="execute">The code coverage is 0.00 which is considered low.</violation>
+    </file>
+    <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Commands/AbstractCommand.php">
+      <violation rule="CodeCoverage" priority="1" line="66" to-line="79" package="phpUnderControl.Commands" class="phpucAbstractCommand" method="createCommand">The code coverage is 0.00 which is considered low.</violation>
+      <violation rule="CodeCoverage" priority="1" line="102" to-line="105" package="phpUnderControl.Commands" class="phpucAbstractCommand" method="__construct">The code coverage is 0.00 which is considered low.</violation>
+      <violation rule="CodeCoverage" priority="1" line="112" to-line="118" package="phpUnderControl.Commands" class="phpucAbstractCommand" method="validate">The code coverage is 0.00 which is considered low.</violation>
+      <violation rule="CodeCoverage" priority="1" line="125" to-line="131" package="phpUnderControl.Commands" class="phpucAbstractCommand" method="execute">The code coverage is 0.00 which is considered low.</violation>
+      <violation rule="CodeCoverage" priority="1" line="138" to-line="145" package="phpUnderControl.Commands" class="phpucAbstractCommand" method="createTasks">The code coverage is 0.00 which is considered low.</violation>
+    </file>
+    <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Commands/ExampleCommand.php">
+      <violation rule="CodeCoverage" priority="1" line="75" to-line="96" package="phpUnderControl.Commands" class="phpucExampleCommand" method="doCreateTasks">The code coverage is 0.00 which is considered low.</violation>
+    </file>
+    <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Commands/InstallCommand.php">
+      <violation rule="CodeCoverage" priority="1" line="116" to-line="125" package="phpUnderControl.Commands" class="phpucInstallCommand" method="doCreateTasks">The code coverage is 0.00 which is considered low.</violation>
+    </file>
+    <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Commands/ProjectCommand.php">
+      <violation rule="CodeCoverage" priority="1" line="65" to-line="68" package="phpUnderControl.Commands" class="phpucProjectCommand" method="doCreateTasks">The code coverage is 0.00 which is considered low.</violation>
+    </file>
+    <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Data/ConfigFile.php">
+      <violation rule="CodeCoverage" priority="1" line="80" to-line="89" package="phpUnderControl.Data" class="phpucConfigFile" method="__construct">The code coverage is 0.00 which is considered low.</violation>
+      <violation rule="CodeCoverage" priority="1" line="100" to-line="107" package="phpUnderControl.Data" class="phpucConfigFile" method="createProject">The code coverage is 0.00 which is considered low.</violation>
+      <violation rule="CodeCoverage" priority="1" line="117" to-line="133" package="phpUnderControl.Data" class="phpucConfigFile" method="getProject">The code coverage is 0.00 which is considered low.</violation>
+      <violation rule="CodeCoverage" priority="1" line="141" to-line="148" package="phpUnderControl.Data" class="phpucConfigFile" method="save">The code coverage is 0.00 which is considered low.</violation>
+    </file>
+    <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Data/ConfigProject.php">
+      <violation rule="CodeCoverage" priority="1" line="118" to-line="125" package="phpUnderControl.Data" class="phpucConfigProject" method="__construct">The code coverage is 0.00 which is considered low.</violation>
+      <violation rule="CodeCoverage" priority="1" line="135" to-line="138" package="phpUnderControl.Data" class="phpucConfigProject" method="__isset">The code coverage is 0.00 which is considered low.</violation>
+      <violation rule="CodeCoverage" priority="1" line="150" to-line="159" package="phpUnderControl.Data" class="phpucConfigProject" method="__get">The code coverage is 0.00 which is considered low.</violation>
+      <violation rule="CRAP" priority="1" line="174" to-line="198" package="phpUnderControl.Data" class="phpucConfigProject" method="__set">The CRAP index is 30.
+The Change Risk Analysis and Predictions (CRAP) index of a function or method uses cyclomatic complexity and code coverage from automated tests to help estimate the effort and risk associated with maintaining legacy code. A CRAP index over 30 is a good indicator of crappy code.</violation>
+      <violation rule="CodeCoverage" priority="1" line="174" to-line="198" package="phpUnderControl.Data" class="phpucConfigProject" method="__set">The code coverage is 0.00 which is considered low.</violation>
+      <violation rule="CodeCoverage" priority="1" line="206" to-line="209" package="phpUnderControl.Data" class="phpucConfigProject" method="isNew">The code coverage is 0.00 which is considered low.</violation>
+      <violation rule="CodeCoverage" priority="1" line="216" to-line="223" package="phpUnderControl.Data" class="phpucConfigProject" method="createArtifactsPublisher">The code coverage is 0.00 which is considered low.</violation>
+      <violation rule="CodeCoverage" priority="1" line="231" to-line="240" package="phpUnderControl.Data" class="phpucConfigProject" method="buildXml">The code coverage is 0.00 which is considered low.</violation>
+      <violation rule="CodeCoverage" priority="1" line="250" to-line="271" package="phpUnderControl.Data" class="phpucConfigProject" method="loadProject">The code coverage is 0.00 which is considered low.</violation>
+      <violation rule="CodeCoverage" priority="1" line="278" to-line="290" package="phpUnderControl.Data" class="phpucConfigProject" method="newProjectFromTemplate">The code coverage is 0.00 which is considered low.</violation>
+      <violation rule="CodeCoverage" priority="1" line="298" to-line="312" package="phpUnderControl.Data" class="phpucConfigProject" method="init">The code coverage is 0.00 which is considered low.</violation>
+    </file>
+    <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Data/ConfigArtifactsPublisher.php">
+      <violation rule="CodeCoverage" priority="1" line="78" to-line="89" package="phpUnderControl.Data" class="phpucConfigArtifactsPublisher" method="__construct">The code coverage is 0.00 which is considered low.</violation>
+      <violation rule="CodeCoverage" priority="1" line="99" to-line="102" package="phpUnderControl.Data" class="phpucConfigArtifactsPublisher" method="__isset">The code coverage is 0.00 which is considered low.</violation>
+      <violation rule="CodeCoverage" priority="1" line="114" to-line="123" package="phpUnderControl.Data" class="phpucConfigArtifactsPublisher" method="__get">The code coverage is 0.00 which is considered low.</violation>
+      <violation rule="CRAP" priority="1" line="138" to-line="155" package="phpUnderControl.Data" class="phpucConfigArtifactsPublisher" method="__set">The CRAP index is 30.
+The Change Risk Analysis and Predictions (CRAP) index of a function or method uses cyclomatic complexity and code coverage from automated tests to help estimate the effort and risk associated with maintaining legacy code. A CRAP index over 30 is a good indicator of crappy code.</violation>
+      <violation rule="CodeCoverage" priority="1" line="138" to-line="155" package="phpUnderControl.Data" class="phpucConfigArtifactsPublisher" method="__set">The code coverage is 0.00 which is considered low.</violation>
+      <violation rule="CRAP" priority="1" line="164" to-line="187" package="phpUnderControl.Data" class="phpucConfigArtifactsPublisher" method="buildXml">The CRAP index is 30.
+The Change Risk Analysis and Predictions (CRAP) index of a function or method uses cyclomatic complexity and code coverage from automated tests to help estimate the effort and risk associated with maintaining legacy code. A CRAP index over 30 is a good indicator of crappy code.</violation>
+      <violation rule="CodeCoverage" priority="1" line="164" to-line="187" package="phpUnderControl.Data" class="phpucConfigArtifactsPublisher" method="buildXml">The code coverage is 0.00 which is considered low.</violation>
+    </file>
+  </pmd>
+  <testsuites>
+    <testsuite name="phpUnderControl - AllTests" tests="20" failures="0" errors="0" time="0.320894">
+      <testsuite name="phpUnderControl - DataAllTest" tests="6" failures="0" errors="0" time="0.073454">
+        <testsuite name="phpucBuildFileTest" file="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/tests/Data/BuildFileTest.php" package="phpUnderControl" subpackage="Data" tests="3" failures="0" errors="0" time="0.024176">
+          <testcase name="testInitNewBuildFile" class="phpucBuildFileTest" file="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/tests/Data/BuildFileTest.php" line="111" time="0.012457" />
+          <testcase name="testOpenExistingBuildFile" class="phpucBuildFileTest" file="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/tests/Data/BuildFileTest.php" line="131" time="0.006057" />
+          <testcase name="testPropertiesProjectNameAndFileNameAreReadonly" class="phpucBuildFileTest" file="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/tests/Data/BuildFileTest.php" line="149" time="0.005662" />
+        </testsuite>
+        <testsuite name="phpucBuildTargetTest" file="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/tests/Data/BuildTargetTest.php" package="phpUnderControl" subpackage="Data" tests="3" failures="0" errors="0" time="0.049278">
+          <testcase name="testBuildTargetAllFeatures" class="phpucBuildTargetTest" file="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/tests/Data/BuildTargetTest.php" line="92" time="0.025978" />
+          <testcase name="testBuildTargetDependsList" class="phpucBuildTargetTest" file="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/tests/Data/BuildTargetTest.php" line="132" time="0.017162" />
+          <testcase name="testReadonlyPropertiesTargetNameAndBuildFile" class="phpucBuildTargetTest" file="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/tests/Data/BuildTargetTest.php" line="153" time="0.006138" />
+        </testsuite>
+      </testsuite>
+      <testsuite name="phpUnderControl - TasksAllTest" tests="6" failures="0" errors="0" time="0.178393">
+        <testsuite name="phpucCruiseControlTaskTest" file="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/tests/Tasks/CruiseControlTaskTest.php" package="phpUnderControl" tests="3" failures="0" errors="0" time="0.042746">
+          <testcase name="testValidateWithInValidDirectoryStructureFail" class="phpucCruiseControlTaskTest" file="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/tests/Tasks/CruiseControlTaskTest.php" line="86" time="0.020536" />
+          <testcase name="testValidateWithValidDirectoryStructure" class="phpucCruiseControlTaskTest" file="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/tests/Tasks/CruiseControlTaskTest.php" line="112" time="0.009749" />
+          <testcase name="testExecuteWithValidDirectoryStructure" class="phpucCruiseControlTaskTest" file="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/tests/Tasks/CruiseControlTaskTest.php" line="133" time="0.012461" />
+        </testsuite>
+        <testsuite name="phpucPhpCodeSnifferTaskTest" file="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/tests/Tasks/PhpCodeSnifferTaskTest.php" package="phpUnderControl" subpackage="Tasks" tests="3" failures="0" errors="0" time="0.135647">
+          <testcase name="testCodeSnifferVersionValidate" class="phpucPhpCodeSnifferTaskTest" file="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/tests/Tasks/PhpCodeSnifferTaskTest.php" line="82" time="0.056384" />
+          <testcase name="testCodeSnifferVersionValidateWithInvalidVersion" class="phpucPhpCodeSnifferTaskTest" file="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/tests/Tasks/PhpCodeSnifferTaskTest.php" line="95" time="0.052926" />
+          <testcase name="testCodeSnifferExecuteBuildFileModifications" class="phpucPhpCodeSnifferTaskTest" file="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/tests/Tasks/PhpCodeSnifferTaskTest.php" line="112" time="0.026337" />
+        </testsuite>
+      </testsuite>
+      <testsuite name="phpUnderControl - UtilAllTests" tests="8" failures="0" errors="0" time="0.069047">
+        <testsuite name="phpucConsoleArgsTest" file="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/tests/Util/ConsoleArgsTest.php" package="phpUnderControl" tests="8" failures="0" errors="0" time="0.069047">
+          <testcase name="testConsoleWithoutArgv" class="phpucConsoleArgsTest" file="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/tests/Util/ConsoleArgsTest.php" line="65" time="0.004673" />
+          <testcase name="testConsoleInstallCommandWithoutOptions" class="phpucConsoleArgsTest" file="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/tests/Util/ConsoleArgsTest.php" line="83" time="0.011915" />
+          <testcase name="testConsoleInstallCommandButWithoutArguments" class="phpucConsoleArgsTest" file="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/tests/Util/ConsoleArgsTest.php" line="120" time="0.005587" />
+          <testcase name="testConsoleExampleCommandWithBuildSystemOption" class="phpucConsoleArgsTest" file="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/tests/Util/ConsoleArgsTest.php" line="140" time="0.010660" />
+          <testcase name="testConsoleExampleCommandWithBuildSystemShortOption" class="phpucConsoleArgsTest" file="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/tests/Util/ConsoleArgsTest.php" line="165" time="0.009896" />
+          <testcase name="testConsoleExampleWithoutOptionExpectedAnt" class="phpucConsoleArgsTest" file="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/tests/Util/ConsoleArgsTest.php" line="184" time="0.009762" />
+          <testcase name="testConsoleWithInvalidCommandIdentifier" class="phpucConsoleArgsTest" file="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/tests/Util/ConsoleArgsTest.php" line="201" time="0.004997" />
+          <testcase name="testConsolePrintHelp" class="phpucConsoleArgsTest" file="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/tests/Util/ConsoleArgsTest.php" line="218" time="0.011557" />
+        </testsuite>
+      </testsuite>
+    </testsuite>
+  </testsuites>
+</cruisecontrol>
+

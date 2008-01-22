@@ -42,22 +42,11 @@
  * @link      http://www.phpundercontrol.org/
  */
 
-if ( defined( 'PHPUnit_MAIN_METHOD' ) === false )
-{
-    define( 'PHPUnit_MAIN_METHOD', 'phpucTasksAllTest::main' );
-}
-
-require_once 'PHPUnit/Framework/TestSuite.php';
-require_once 'PHPUnit/TextUI/TestRunner.php';
-
-require_once dirname( __FILE__ ) . '/CruiseControlTaskTest.php';
-require_once dirname( __FILE__ ) . '/PhpCodeSnifferTaskTest.php';
-require_once dirname( __FILE__ ) . '/PHPUnitTaskTest.php';
-require_once dirname( __FILE__ ) . '/ProjectTaskTest.php';
+require_once dirname( __FILE__ ) . '/AbstractPearTaskTest.php';
 
 /**
- * Main test suite for phpUnderControl Tasks.
- *
+ * Test case for the php code sniffer task.
+ * 
  * @package   Tasks
  * @author    Manuel Pichler <mapi@phpundercontrol.org>
  * @copyright 2007-2008 Manuel Pichler. All rights reserved.
@@ -65,36 +54,66 @@ require_once dirname( __FILE__ ) . '/ProjectTaskTest.php';
  * @version   Release: @package_version@
  * @link      http://www.phpundercontrol.org/
  */
-class phpucTasksAllTest
+class phpucPHPUnitTaskTest extends phpucAbstractPearTaskTest
 {
     /**
-     * Test suite main method.
+     * Content for a fake phpunit bin that works.
      *
+     * @type string
+     * @var string $validBin
+     */
+    protected $validBin = "#!/usr/bin/env php\n<?php echo 'version 3.2.0';?>";
+    
+    /**
+     * Content for a fake phpunit bin that doesn't work.
+     *
+     * @type string
+     * @var string $invalidBin
+     */
+    protected $invalidBin = "#!/usr/bin/env php\n<?php echo 'version 3.1.9';?>";
+    
+    /**
+     * Sets the required binary contents.
+     * 
      * @return void
      */
-    public static function main()
+    protected function setUp()
     {
-        PHPUnit_TextUI_TestRunner::run( self::suite() );
+        parent::setUp();
+        
+        if ( stripos( PHP_OS, 'WIN' ) !== false )
+        {
+            $this->validBin   = "@echo off\n\recho version 3.2.0";
+            $this->invalidBin = "@echo off\n\recho version 3.1.9";
+        }
     }
     
     /**
-     * Creates the phpunit test suite for this package.
+     * Tests validate with the required phpunit version. 
      *
-     * @return PHPUnit_Framework_TestSuite
+     * @return void
      */
-    public static function suite()
+    public function testPHPUnitVersionValidate()
     {
-        $suite = new PHPUnit_Framework_TestSuite( 'phpUnderControl - TasksAllTest' );
-        $suite->addTestSuite( 'phpucCruiseControlTaskTest' );
-        $suite->addTestSuite( 'phpucPhpCodeSnifferTaskTest' );
-        $suite->addTestSuite( 'phpucPHPUnitTaskTest' );
-        $suite->addTestSuite( 'phpucProjectTaskTest' );
-
-        return $suite;
+        $this->createExecutable( 'phpunit', $this->validBin );
+        $phpunit = new phpucPhpUnitTask( $this->args );
+        $phpunit->validate();
     }
-}
-
-if ( PHPUnit_MAIN_METHOD === 'phpucTasksAllTest::main' )
-{
-    phpucTasksAllTest::main();
+    
+    /**
+     * Tests that the validate method fails for an unsupported phpunit version.
+     *
+     * @return void
+     */
+    public function testPHPUnitVersionValidateWithInvalidVersion()
+    {
+        $this->createExecutable( 'phpunit', $this->invalidBin );
+        $phpunit = new phpucPhpCodeSnifferTask( $this->args );
+        try
+        {
+            $phpunit->validate();
+            $this->fail( 'phpucValidateException expected.' );
+        }
+        catch ( phpucValidateException $e ) {}
+    }
 }

@@ -72,6 +72,11 @@ class phpucPhpCodeSnifferTaskTest extends phpucAbstractPearTaskTest
      */
     protected $invalidBin = "#!/usr/bin/env php\n<?php echo 'version 1.0.0RC2';?>";
     
+    /**
+     * Sets the required binary contents.
+     * 
+     * @return void
+     */
     protected function setUp()
     {
         parent::setUp();
