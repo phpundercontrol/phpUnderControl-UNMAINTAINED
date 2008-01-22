@@ -116,10 +116,10 @@ class phpucGenerateGraphTask extends phpucAbstractTask
                 );
             }
         }
-		else
-		{
-		    $this->outputDir = $this->logDir;
-		}
+        else
+        {
+            $this->outputDir = $this->logDir;
+        }
     }
     
     /**

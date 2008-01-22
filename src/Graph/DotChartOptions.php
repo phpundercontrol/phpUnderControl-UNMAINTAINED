@@ -90,7 +90,8 @@ class phpucDotChartOptions extends ezcGraphLineChartOptions
                 break;
                 
             default:
-                return parent::__set( $name, $value );
+                parent::__set( $name, $value );
+                break;
         }
     }
 }
