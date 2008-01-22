@@ -1,0 +1,1494 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cruisecontrol>
+  <modifications>
+    <modification type="svn">
+      <file action="modified">
+        <revision>2071</revision>
+        <filename>/phpUnderControl/trunk/src/Data/LogFile.php</filename>
+      </file>
+      <date>01/13/2008 18:12:21</date>
+      <user>mapi</user>
+      <comment><![CDATA[- New metric views added.]]></comment>
+      <revision>2071</revision>
+    </modification>
+    <modification type="svn">
+      <file action="modified">
+        <revision>2071</revision>
+        <filename>/phpUnderControl/trunk/src/Graph/LineChart.php</filename>
+      </file>
+      <date>01/13/2008 18:12:21</date>
+      <user>mapi</user>
+      <comment><![CDATA[- New metric views added.]]></comment>
+      <revision>2071</revision>
+    </modification>
+    <modification type="svn">
+      <file action="added">
+        <revision>2071</revision>
+        <filename>/phpUnderControl/trunk/src/Graph/ChartI.php</filename>
+      </file>
+      <date>01/13/2008 18:12:21</date>
+      <user>mapi</user>
+      <comment><![CDATA[- New metric views added.]]></comment>
+      <revision>2071</revision>
+    </modification>
+    <modification type="svn">
+      <file action="modified">
+        <revision>2071</revision>
+        <filename>/phpUnderControl/trunk/src/Graph/Input/UnitCoverageInput.php</filename>
+      </file>
+      <date>01/13/2008 18:12:21</date>
+      <user>mapi</user>
+      <comment><![CDATA[- New metric views added.]]></comment>
+      <revision>2071</revision>
+    </modification>
+    <modification type="svn">
+      <file action="added">
+        <revision>2071</revision>
+        <filename>/phpUnderControl/trunk/src/Graph/Input/CodeViolationInput.php</filename>
+      </file>
+      <date>01/13/2008 18:12:21</date>
+      <user>mapi</user>
+      <comment><![CDATA[- New metric views added.]]></comment>
+      <revision>2071</revision>
+    </modification>
+    <modification type="svn">
+      <file action="added">
+        <revision>2071</revision>
+        <filename>/phpUnderControl/trunk/src/Graph/Input/UnitTestInput.php</filename>
+      </file>
+      <date>01/13/2008 18:12:21</date>
+      <user>mapi</user>
+      <comment><![CDATA[- New metric views added.]]></comment>
+      <revision>2071</revision>
+    </modification>
+    <modification type="svn">
+      <file action="modified">
+        <revision>2071</revision>
+        <filename>/phpUnderControl/trunk/src/Graph/Input/AbstractInput.php</filename>
+      </file>
+      <date>01/13/2008 18:12:21</date>
+      <user>mapi</user>
+      <comment><![CDATA[- New metric views added.]]></comment>
+      <revision>2071</revision>
+    </modification>
+    <modification type="svn">
+      <file action="modified">
+        <revision>2071</revision>
+        <filename>/phpUnderControl/trunk/src/Graph/Input/InputRule.php</filename>
+      </file>
+      <date>01/13/2008 18:12:21</date>
+      <user>mapi</user>
+      <comment><![CDATA[- New metric views added.]]></comment>
+      <revision>2071</revision>
+    </modification>
+    <modification type="svn">
+      <file action="added">
+        <revision>2071</revision>
+        <filename>/phpUnderControl/trunk/src/Graph/Input/TestCodeRatioInput.php</filename>
+      </file>
+      <date>01/13/2008 18:12:21</date>
+      <user>mapi</user>
+      <comment><![CDATA[- New metric views added.]]></comment>
+      <revision>2071</revision>
+    </modification>
+    <modification type="svn">
+      <file action="added">
+        <revision>2075</revision>
+        <filename>/phpUnderControl/trunk/src/Graph/ChartFactory.php</filename>
+      </file>
+      <date>01/13/2008 20:21:03</date>
+      <user>mapi</user>
+      <comment><![CDATA[- phpucPieChart added.
+- Breakdown of builds added.]]></comment>
+      <revision>2075</revision>
+    </modification>
+    <modification type="svn">
+      <file action="modified">
+        <revision>2075</revision>
+        <filename>/phpUnderControl/trunk/src/Graph/LineChart.php</filename>
+      </file>
+      <date>01/13/2008 20:21:03</date>
+      <user>mapi</user>
+      <comment><![CDATA[- phpucPieChart added.
+- Breakdown of builds added.]]></comment>
+      <revision>2075</revision>
+    </modification>
+    <modification type="svn">
+      <file action="added">
+        <revision>2075</revision>
+        <filename>/phpUnderControl/trunk/src/Graph/Input/BuildBreakdownInput.php</filename>
+      </file>
+      <date>01/13/2008 20:21:03</date>
+      <user>mapi</user>
+      <comment><![CDATA[- phpucPieChart added.
+- Breakdown of builds added.]]></comment>
+      <revision>2075</revision>
+    </modification>
+    <modification type="svn">
+      <file action="added">
+        <revision>2075</revision>
+        <filename>/phpUnderControl/trunk/src/Graph/PieChart.php</filename>
+      </file>
+      <date>01/13/2008 20:21:03</date>
+      <user>mapi</user>
+      <comment><![CDATA[- phpucPieChart added.
+- Breakdown of builds added.]]></comment>
+      <revision>2075</revision>
+    </modification>
+    <modification type="svn">
+      <file action="modified">
+        <revision>2075</revision>
+        <filename>/phpUnderControl/trunk/src/Graph/Input/AbstractInput.php</filename>
+      </file>
+      <date>01/13/2008 20:21:03</date>
+      <user>mapi</user>
+      <comment><![CDATA[- phpucPieChart added.
+- Breakdown of builds added.]]></comment>
+      <revision>2075</revision>
+    </modification>
+    <modification type="svn">
+      <file action="modified">
+        <revision>2075</revision>
+        <filename>/phpUnderControl/trunk/src/Graph/Input/InputRule.php</filename>
+      </file>
+      <date>01/13/2008 20:21:03</date>
+      <user>mapi</user>
+      <comment><![CDATA[- phpucPieChart added.
+- Breakdown of builds added.]]></comment>
+      <revision>2075</revision>
+    </modification>
+    <modification type="svn">
+      <file action="modified">
+        <revision>2076</revision>
+        <filename>/phpUnderControl/trunk/src/Graph/ChartFactory.php</filename>
+      </file>
+      <date>01/13/2008 21:52:58</date>
+      <user>mapi</user>
+      <comment><![CDATA[- Build breakdown timeline chart added.]]></comment>
+      <revision>2076</revision>
+    </modification>
+    <modification type="svn">
+      <file action="modified">
+        <revision>2076</revision>
+        <filename>/phpUnderControl/trunk/src/Graph/LineChart.php</filename>
+      </file>
+      <date>01/13/2008 21:52:58</date>
+      <user>mapi</user>
+      <comment><![CDATA[- Build breakdown timeline chart added.]]></comment>
+      <revision>2076</revision>
+    </modification>
+    <modification type="svn">
+      <file action="unknown">
+        <revision>2076</revision>
+        <filename>/phpUnderControl/trunk/src/Graph/Input/BuildBreakdownInput.php</filename>
+      </file>
+      <date>01/13/2008 21:52:58</date>
+      <user>mapi</user>
+      <comment><![CDATA[- Build breakdown timeline chart added.]]></comment>
+      <revision>2076</revision>
+    </modification>
+    <modification type="svn">
+      <file action="added">
+        <revision>2076</revision>
+        <filename>/phpUnderControl/trunk/src/Graph/Input/BuildBreakdownTimelineInput.php</filename>
+      </file>
+      <date>01/13/2008 21:52:58</date>
+      <user>mapi</user>
+      <comment><![CDATA[- Build breakdown timeline chart added.]]></comment>
+      <revision>2076</revision>
+    </modification>
+    <modification type="svn">
+      <file action="modified">
+        <revision>2076</revision>
+        <filename>/phpUnderControl/trunk/src/Graph/Input/AbstractInput.php</filename>
+      </file>
+      <date>01/13/2008 21:52:58</date>
+      <user>mapi</user>
+      <comment><![CDATA[- Build breakdown timeline chart added.]]></comment>
+      <revision>2076</revision>
+    </modification>
+    <modification type="svn">
+      <file action="modified">
+        <revision>2077</revision>
+        <filename>/phpUnderControl/trunk/src/Graph/ChartFactory.php</filename>
+      </file>
+      <date>01/14/2008 08:21:39</date>
+      <user>mapi</user>
+      <comment><![CDATA[- New dot chart type for the build breakdown timeline added.
+- Base interface for chart inputs added.]]></comment>
+      <revision>2077</revision>
+    </modification>
+    <modification type="svn">
+      <file action="modified">
+        <revision>2077</revision>
+        <filename>/phpUnderControl/trunk/src/Graph/ChartI.php</filename>
+      </file>
+      <date>01/14/2008 08:21:39</date>
+      <user>mapi</user>
+      <comment><![CDATA[- New dot chart type for the build breakdown timeline added.
+- Base interface for chart inputs added.]]></comment>
+      <revision>2077</revision>
+    </modification>
+    <modification type="svn">
+      <file action="modified">
+        <revision>2077</revision>
+        <filename>/phpUnderControl/trunk/src/Graph/Input/UnitCoverageInput.php</filename>
+      </file>
+      <date>01/14/2008 08:21:39</date>
+      <user>mapi</user>
+      <comment><![CDATA[- New dot chart type for the build breakdown timeline added.
+- Base interface for chart inputs added.]]></comment>
+      <revision>2077</revision>
+    </modification>
+    <modification type="svn">
+      <file action="modified">
+        <revision>2077</revision>
+        <filename>/phpUnderControl/trunk/src/Graph/Input/BuildBreakdownInput.php</filename>
+      </file>
+      <date>01/14/2008 08:21:39</date>
+      <user>mapi</user>
+      <comment><![CDATA[- New dot chart type for the build breakdown timeline added.
+- Base interface for chart inputs added.]]></comment>
+      <revision>2077</revision>
+    </modification>
+    <modification type="svn">
+      <file action="modified">
+        <revision>2077</revision>
+        <filename>/phpUnderControl/trunk/src/Graph/Input/CodeViolationInput.php</filename>
+      </file>
+      <date>01/14/2008 08:21:39</date>
+      <user>mapi</user>
+      <comment><![CDATA[- New dot chart type for the build breakdown timeline added.
+- Base interface for chart inputs added.]]></comment>
+      <revision>2077</revision>
+    </modification>
+    <modification type="svn">
+      <file action="modified">
+        <revision>2077</revision>
+        <filename>/phpUnderControl/trunk/src/Graph/Input/UnitTestInput.php</filename>
+      </file>
+      <date>01/14/2008 08:21:39</date>
+      <user>mapi</user>
+      <comment><![CDATA[- New dot chart type for the build breakdown timeline added.
+- Base interface for chart inputs added.]]></comment>
+      <revision>2077</revision>
+    </modification>
+    <modification type="svn">
+      <file action="modified">
+        <revision>2077</revision>
+        <filename>/phpUnderControl/trunk/src/Graph/PieChart.php</filename>
+      </file>
+      <date>01/14/2008 08:21:39</date>
+      <user>mapi</user>
+      <comment><![CDATA[- New dot chart type for the build breakdown timeline added.
+- Base interface for chart inputs added.]]></comment>
+      <revision>2077</revision>
+    </modification>
+    <modification type="svn">
+      <file action="modified">
+        <revision>2077</revision>
+        <filename>/phpUnderControl/trunk/src/Graph/Input/AbstractInput.php</filename>
+      </file>
+      <date>01/14/2008 08:21:39</date>
+      <user>mapi</user>
+      <comment><![CDATA[- New dot chart type for the build breakdown timeline added.
+- Base interface for chart inputs added.]]></comment>
+      <revision>2077</revision>
+    </modification>
+    <modification type="svn">
+      <file action="modified">
+        <revision>2077</revision>
+        <filename>/phpUnderControl/trunk/src/Graph/Input/BuildBreakdownTimelineInput.php</filename>
+      </file>
+      <date>01/14/2008 08:21:39</date>
+      <user>mapi</user>
+      <comment><![CDATA[- New dot chart type for the build breakdown timeline added.
+- Base interface for chart inputs added.]]></comment>
+      <revision>2077</revision>
+    </modification>
+    <modification type="svn">
+      <file action="modified">
+        <revision>2077</revision>
+        <filename>/phpUnderControl/trunk/src/Graph/Input/InputRule.php</filename>
+      </file>
+      <date>01/14/2008 08:21:39</date>
+      <user>mapi</user>
+      <comment><![CDATA[- New dot chart type for the build breakdown timeline added.
+- Base interface for chart inputs added.]]></comment>
+      <revision>2077</revision>
+    </modification>
+    <modification type="svn">
+      <file action="added">
+        <revision>2077</revision>
+        <filename>/phpUnderControl/trunk/src/Graph/Input/InputI.php</filename>
+      </file>
+      <date>01/14/2008 08:21:39</date>
+      <user>mapi</user>
+      <comment><![CDATA[- New dot chart type for the build breakdown timeline added.
+- Base interface for chart inputs added.]]></comment>
+      <revision>2077</revision>
+    </modification>
+    <modification type="svn">
+      <file action="added">
+        <revision>2077</revision>
+        <filename>/phpUnderControl/trunk/src/Graph/DotChart.php</filename>
+      </file>
+      <date>01/14/2008 08:21:39</date>
+      <user>mapi</user>
+      <comment><![CDATA[- New dot chart type for the build breakdown timeline added.
+- Base interface for chart inputs added.]]></comment>
+      <revision>2077</revision>
+    </modification>
+    <modification type="svn">
+      <file action="modified">
+        <revision>2077</revision>
+        <filename>/phpUnderControl/trunk/src/Graph/Input/TestCodeRatioInput.php</filename>
+      </file>
+      <date>01/14/2008 08:21:39</date>
+      <user>mapi</user>
+      <comment><![CDATA[- New dot chart type for the build breakdown timeline added.
+- Base interface for chart inputs added.]]></comment>
+      <revision>2077</revision>
+    </modification>
+    <modification type="svn">
+      <file action="modified">
+        <revision>2078</revision>
+        <filename>/phpUnderControl/trunk/src/PhpUnderControl.php</filename>
+      </file>
+      <date>01/14/2008 10:20:15</date>
+      <user>mapi</user>
+      <comment><![CDATA[- Code cleanup.]]></comment>
+      <revision>2078</revision>
+    </modification>
+    <modification type="svn">
+      <file action="added">
+        <revision>2079</revision>
+        <filename>/phpUnderControl/trunk/lib/ezc</filename>
+      </file>
+      <date>01/14/2008 11:52:20</date>
+      <user>mapi</user>
+      <comment><![CDATA[- svn:external for ezcGraph added.]]></comment>
+      <revision>2079</revision>
+    </modification>
+    <modification type="svn">
+      <file action="added">
+        <revision>2079</revision>
+        <filename>/phpUnderControl/trunk/lib</filename>
+      </file>
+      <date>01/14/2008 11:52:20</date>
+      <user>mapi</user>
+      <comment><![CDATA[- svn:external for ezcGraph added.]]></comment>
+      <revision>2079</revision>
+    </modification>
+  </modifications>
+  <info>
+    <property name="projectname" value="phpUnderControl" />
+    <property name="lastbuild" value="20080114102153" />
+    <property name="lastsuccessfulbuild" value="20080113171717" />
+    <property name="builddate" value="01/14/2008 11:53:20" />
+    <property name="cctimestamp" value="20080114115320" />
+    <property name="label" value="build.42" />
+    <property name="interval" value="180" />
+    <property name="lastbuildsuccessful" value="false" />
+    <property name="logdir" value="/opt/cruisecontrol-bin-2.7/logs/phpUnderControl" />
+    <property name="logfile" value="log20080114115320.xml" />
+  </info>
+  <build error="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/build.xml:29: exec returned: 255" time="20 seconds">
+    <message priority="debug"><![CDATA[Adding reference: ant.PropertyHelper]]></message>
+    <message priority="debug"><![CDATA[Detected Java version: 1.5 in: /usr/local/share/java/jdk1.6.0_03/jre]]></message>
+    <message priority="debug"><![CDATA[Detected OS: Linux]]></message>
+    <message priority="debug"><![CDATA[Adding reference: ant.ComponentHelper]]></message>
+    <message priority="debug"><![CDATA[Setting ro project property: ant.version -> Apache Ant version 1.6.5 compiled on June 2 2005]]></message>
+    <message priority="debug"><![CDATA[Setting ro project property: label -> build.42]]></message>
+    <message priority="debug"><![CDATA[Setting ro project property: projectname -> phpUnderControl]]></message>
+    <message priority="debug"><![CDATA[Setting ro project property: cclastgoodbuildtimestamp -> 20080113171717]]></message>
+    <message priority="debug"><![CDATA[Setting ro project property: lastbuildsuccessful -> false]]></message>
+    <message priority="debug"><![CDATA[Setting ro project property: cclastbuildtimestamp -> 20080114102153]]></message>
+    <message priority="debug"><![CDATA[Setting ro project property: cvstimestamp -> 2008-01-14 10:53:20 GMT]]></message>
+    <message priority="debug"><![CDATA[Setting ro project property: cctimestamp -> 20080114115320]]></message>
+    <message priority="debug"><![CDATA[Setting ro project property: XmlLogger.file -> log.xml]]></message>
+    <message priority="debug"><![CDATA[Setting ro project property: ant.file -> /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/build.xml]]></message>
+    <message priority="debug"><![CDATA[Adding reference: ant.projectHelper]]></message>
+    <message priority="debug"><![CDATA[Adding reference: ant.parsing.context]]></message>
+    <message priority="debug"><![CDATA[Adding reference: ant.targets]]></message>
+    <message priority="debug"><![CDATA[parsing buildfile /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/build.xml with URI = file:///opt/cruisecontrol-bin-2.7/projects/phpUnderControl/build.xml]]></message>
+    <message priority="debug"><![CDATA[Setting ro project property: ant.project.name -> phpUnderControl]]></message>
+    <message priority="debug"><![CDATA[Adding reference: phpUnderControl]]></message>
+    <message priority="debug"><![CDATA[Setting ro project property: ant.file.phpUnderControl -> /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/build.xml]]></message>
+    <message priority="debug"><![CDATA[Project base dir set to: /opt/cruisecontrol-bin-2.7/projects/phpUnderControl]]></message>
+    <message priority="debug"><![CDATA[+Target:]]></message>
+    <message priority="debug"><![CDATA[+Target: build]]></message>
+    <message priority="debug"><![CDATA[+Target: checkout]]></message>
+    <message priority="debug"><![CDATA[+Target: php-documentor]]></message>
+    <message priority="debug"><![CDATA[+Target: php-codesniffer]]></message>
+    <message priority="debug"><![CDATA[+Target: phpunit]]></message>
+    <message priority="debug"><![CDATA[Attempting to create object of type org.apache.tools.ant.helper.DefaultExecutor]]></message>
+    <message priority="debug"><![CDATA[Adding reference: ant.executor]]></message>
+    <message priority="debug"><![CDATA[Build sequence for target(s) `build' is [checkout, php-documentor, php-codesniffer, phpunit, build]]]></message>
+    <message priority="debug"><![CDATA[Complete build sequence is [checkout, php-documentor, php-codesniffer, phpunit, build, ]]]></message>
+    <message priority="debug"><![CDATA[Execute:Java13CommandLauncher: Executing 'svn' with arguments:
+'up'
+
+The ' characters around the executable and arguments are
+not part of the command.]]></message>
+    <target name="checkout" time="2 seconds">
+      <task location="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/build.xml:7: " name="exec" time="2 seconds">
+        <message priority="debug"><![CDATA[Current OS is Linux]]></message>
+        <message priority="debug"><![CDATA[Executing 'svn' with arguments:
+'up'
+
+The ' characters around the executable and arguments are
+not part of the command.]]></message>
+        <message priority="info"><![CDATA[Hole externen Verweis nach 'lib/ezc/Base']]></message>
+        <message priority="info"><![CDATA[Externer Verweis, Revision 7144.]]></message>
+        <message priority="info"><![CDATA[Hole externen Verweis nach 'lib/ezc/Graph']]></message>
+        <message priority="info"><![CDATA[Externer Verweis, Revision 7144.]]></message>
+        <message priority="info"><![CDATA[Revision 2079.]]></message>
+      </task>
+    </target>
+    <message priority="debug"><![CDATA[Execute:Java13CommandLauncher: Executing 'phpdoc' with arguments:
+'-ct'
+'type'
+'-ue'
+'on'
+'-t'
+'/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/build/api'
+'-d'
+'src/'
+
+The ' characters around the executable and arguments are
+not part of the command.]]></message>
+    <target name="php-documentor" time="11 seconds">
+      <task location="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/build.xml:13: " name="exec" time="11 seconds">
+        <message priority="debug"><![CDATA[Current OS is Linux]]></message>
+        <message priority="debug"><![CDATA[Executing 'phpdoc' with arguments:
+'-ct'
+'type'
+'-ue'
+'on'
+'-t'
+'/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/build/api'
+'-d'
+'src/'
+
+The ' characters around the executable and arguments are
+not part of the command.]]></message>
+        <message priority="info"><![CDATA[PHP Version 5.2.5]]></message>
+        <message priority="info"><![CDATA[phpDocumentor version 1.4.1]]></message>
+        <message priority="info"><![CDATA[Parsing configuration file phpDocumentor.ini...]]></message>
+        <message priority="info"><![CDATA[(found in /usr/local/pear/share/pear/data/PhpDocumentor/)...]]></message>
+        <message priority="info"><![CDATA[done]]></message>
+        <message priority="info"><![CDATA[Maximum memory usage set at 256M after considering php.ini...]]></message>
+        <message priority="info"><![CDATA[using tokenizer Parser]]></message>
+        <message priority="info"><![CDATA[Hidden /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/.svn Ignored]]></message>
+        <message priority="info"><![CDATA[Hidden /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Graph/Input/.svn Ignored]]></message>
+        <message priority="info"><![CDATA[Hidden /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Graph/.svn Ignored]]></message>
+        <message priority="info"><![CDATA[Hidden /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Tasks/.svn Ignored]]></message>
+        <message priority="info"><![CDATA[Hidden /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Commands/.svn Ignored]]></message>
+        <message priority="info"><![CDATA[Hidden /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Data/.svn Ignored]]></message>
+        <message priority="info"><![CDATA[Hidden /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Exceptions/.svn Ignored]]></message>
+        <message priority="info"><![CDATA[Hidden /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Util/.svn Ignored]]></message>
+        <message priority="info"><![CDATA[Grabbing README/INSTALL/CHANGELOG]]></message>
+        <message priority="info"><![CDATA[done]]></message>
+        <message priority="info"><![CDATA[Tutorial/Extended Documentation Parsing Stage]]></message>
+        <message priority="info"><![CDATA[done]]></message>
+        <message priority="info"><![CDATA[General Parsing Stage]]></message>
+        <message priority="info"><![CDATA[Reading file /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Graph/DotChart.php -- Parsing file]]></message>
+        <message priority="info"><![CDATA[WARNING in DotChart.php on line 57: package default is already in category default, will now replace with category QualityAssurance]]></message>
+        <message priority="info"><![CDATA[WARNING in DotChart.php on line 67: Method "init" has no method-level DocBlock.]]></message>
+        <message priority="info"><![CDATA[WARNING in DotChart.php on line 80: Method "initAxis" has no method-level DocBlock.]]></message>
+        <message priority="info"><![CDATA[Reading file /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Graph/Input/TestCodeRatioInput.php -- Parsing file]]></message>
+        <message priority="info"><![CDATA[Reading file /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Graph/Input/AbstractInput.php -- Parsing file]]></message>
+        <message priority="info"><![CDATA[WARNING in AbstractInput.php on line 228: Method "processLog" has no method-level DocBlock.]]></message>
+        <message priority="info"><![CDATA[WARNING in AbstractInput.php on line 238: Method "processLogSum" has no method-level DocBlock.]]></message>
+        <message priority="info"><![CDATA[WARNING in AbstractInput.php on line 243: Method "processLogCount" has no method-level DocBlock.]]></message>
+        <message priority="info"><![CDATA[WARNING in AbstractInput.php on line 253: Method "processLogValue" has no method-level DocBlock.]]></message>
+        <message priority="info"><![CDATA[WARNING in AbstractInput.php on line 258: Method "postProcessLog" has no method-level DocBlock.]]></message>
+        <message priority="info"><![CDATA[Reading file /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Graph/Input/InputRule.php -- Parsing file]]></message>
+        <message priority="info"><![CDATA[Reading file /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Graph/Input/CodeViolationInput.php -- Parsing file]]></message>
+        <message priority="info"><![CDATA[Reading file /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Graph/Input/InputI.php -- Parsing file]]></message>
+        <message priority="info"><![CDATA[WARNING in InputI.php on line 102: Method "processLog" has no method-level DocBlock.]]></message>
+        <message priority="info"><![CDATA[Reading file /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Graph/Input/UnitTestInput.php -- Parsing file]]></message>
+        <message priority="info"><![CDATA[Reading file /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Graph/Input/BuildBreakdownTimelineInput.php -- Parsing file]]></message>
+        <message priority="info"><![CDATA[WARNING in BuildBreakdownTimelineInput.php on line 88: Method "__construct" has no method-level DocBlock.]]></message>
+        <message priority="info"><![CDATA[WARNING in BuildBreakdownTimelineInput.php on line 113: Method "postProcessLog" has no method-level DocBlock.]]></message>
+        <message priority="info"><![CDATA[Reading file /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Graph/Input/BuildBreakdownInput.php -- Parsing file]]></message>
+        <message priority="info"><![CDATA[WARNING in BuildBreakdownInput.php on line 75: Method "__construct" has no method-level DocBlock.]]></message>
+        <message priority="info"><![CDATA[WARNING in BuildBreakdownInput.php on line 86: Method "postProcessLog" has no method-level DocBlock.]]></message>
+        <message priority="info"><![CDATA[Reading file /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Graph/Input/UnitCoverageInput.php -- Parsing file]]></message>
+        <message priority="info"><![CDATA[Reading file /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Graph/ChartI.php -- Parsing file]]></message>
+        <message priority="info"><![CDATA[Reading file /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Graph/LineChart.php -- Parsing file]]></message>
+        <message priority="info"><![CDATA[WARNING in LineChart.php on line 69: Method "__construct" has no method-level DocBlock.]]></message>
+        <message priority="info"><![CDATA[WARNING in LineChart.php on line 116: Method "init" has no method-level DocBlock.]]></message>
+        <message priority="info"><![CDATA[WARNING in LineChart.php on line 125: Method "initTitle" has no method-level DocBlock.]]></message>
+        <message priority="info"><![CDATA[WARNING in LineChart.php on line 134: Method "initLegend" has no method-level DocBlock.]]></message>
+        <message priority="info"><![CDATA[WARNING in LineChart.php on line 144: Method "initAxis" has no method-level DocBlock.]]></message>
+        <message priority="info"><![CDATA[Reading file /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Graph/PieChart.php -- Parsing file]]></message>
+        <message priority="info"><![CDATA[WARNING in PieChart.php on line 65: Method "__construct" has no method-level DocBlock.]]></message>
+        <message priority="info"><![CDATA[WARNING in PieChart.php on line 89: Method "init" has no method-level DocBlock.]]></message>
+        <message priority="info"><![CDATA[WARNING in PieChart.php on line 98: Method "initTitle" has no method-level DocBlock.]]></message>
+        <message priority="info"><![CDATA[WARNING in PieChart.php on line 120: Method "initRenderer" has no method-level DocBlock.]]></message>
+        <message priority="info"><![CDATA[Reading file /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Graph/ChartFactory.php -- Parsing file]]></message>
+        <message priority="info"><![CDATA[WARNING in ChartFactory.php on line 80: Method "createChart" has no method-level DocBlock.]]></message>
+        <message priority="info"><![CDATA[Reading file /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Graph/GraphPalette.php -- Parsing file]]></message>
+        <message priority="info"><![CDATA[Reading file /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/PhpUnderControl.php -- Parsing file]]></message>
+        <message priority="info"><![CDATA[WARNING in PhpUnderControl.php on line 49: Page-level DocBlock precedes "define PHPUC_DATA_DIR", use another DocBlock to document the source element]]></message>
+        <message priority="info"><![CDATA[WARNING in PhpUnderControl.php on line 54:]]></message>
+        <message priority="info"><![CDATA[duplicate define element "PHPUC_INSTALL_DIR" in file /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/PhpUnderControl.php will be ignored.]]></message>
+        <message priority="info"><![CDATA[Use an @ignore tag on the original if you want this case to be documented.]]></message>
+        <message priority="info"><![CDATA[WARNING in PhpUnderControl.php on line 55:]]></message>
+        <message priority="info"><![CDATA[duplicate define element "PHPUC_DATA_DIR" in file /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/PhpUnderControl.php will be ignored.]]></message>
+        <message priority="info"><![CDATA[Use an @ignore tag on the original if you want this case to be documented.]]></message>
+        <message priority="info"><![CDATA[Reading file /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Tasks/ExampleTask.php -- Parsing file]]></message>
+        <message priority="info"><![CDATA[Reading file /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Tasks/PhpUnitTask.php -- Parsing file]]></message>
+        <message priority="info"><![CDATA[Reading file /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Tasks/AbstractPearTask.php -- Parsing file]]></message>
+        <message priority="info"><![CDATA[Reading file /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Tasks/CreateFileTask.php -- Parsing file]]></message>
+        <message priority="info"><![CDATA[Reading file /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Tasks/CruiseControlTask.php -- Parsing file]]></message>
+        <message priority="info"><![CDATA[Reading file /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Tasks/PhpDocumentorTask.php -- Parsing file]]></message>
+        <message priority="info"><![CDATA[Reading file /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Tasks/PhpCodeSnifferTask.php -- Parsing file]]></message>
+        <message priority="info"><![CDATA[Reading file /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Tasks/AbstractTask.php -- Parsing file]]></message>
+        <message priority="info"><![CDATA[Reading file /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Tasks/ProjectTask.php -- Parsing file]]></message>
+        <message priority="info"><![CDATA[Reading file /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Tasks/ModifyFileTask.php -- Parsing file]]></message>
+        <message priority="info"><![CDATA[Reading file /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Tasks/TaskI.php -- Parsing file]]></message>
+        <message priority="info"><![CDATA[Reading file /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Commands/AbstractCommand.php -- Parsing file]]></message>
+        <message priority="info"><![CDATA[Reading file /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Commands/ExampleCommand.php -- Parsing file]]></message>
+        <message priority="info"><![CDATA[Reading file /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Commands/InstallCommand.php -- Parsing file]]></message>
+        <message priority="info"><![CDATA[Reading file /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Commands/ProjectCommand.php -- Parsing file]]></message>
+        <message priority="info"><![CDATA[Reading file /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Data/ConfigFile.php -- Parsing file]]></message>
+        <message priority="info"><![CDATA[Reading file /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Data/BuildTarget.php -- Parsing file]]></message>
+        <message priority="info"><![CDATA[Reading file /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Data/BuildFile.php -- Parsing file]]></message>
+        <message priority="info"><![CDATA[Reading file /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Data/ConfigProject.php -- Parsing file]]></message>
+        <message priority="info"><![CDATA[Reading file /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Data/LogFile.php -- Parsing file]]></message>
+        <message priority="info"><![CDATA[WARNING in LogFile.php on line 85: Method "__construct" has no method-level DocBlock.]]></message>
+        <message priority="info"><![CDATA[Reading file /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Data/ConfigArtifactsPublisher.php -- Parsing file]]></message>
+        <message priority="info"><![CDATA[Reading file /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Exceptions/ErrorException.php -- Parsing file]]></message>
+        <message priority="info"><![CDATA[Reading file /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Exceptions/ValidateException.php -- Parsing file]]></message>
+        <message priority="info"><![CDATA[Reading file /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Exceptions/ExecuteException.php -- Parsing file]]></message>
+        <message priority="info"><![CDATA[Reading file /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Exceptions/ConsoleException.php -- Parsing file]]></message>
+        <message priority="info"><![CDATA[Reading file /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Util/ConsoleArgs.php -- Parsing file]]></message>
+        <message priority="info"><![CDATA[Reading file /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Util/ConsoleOutput.php -- Parsing file]]></message>
+        <message priority="info"><![CDATA[Reading file /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Util/FileUtil.php -- Parsing file]]></message>
+        <message priority="info"><![CDATA[done]]></message>
+        <message priority="info"><![CDATA[Converting From Abstract Parsed Data]]></message>
+        <message priority="info"><![CDATA[Processing Class Inheritance]]></message>
+        <message priority="info"><![CDATA[Processing Root Trees]]></message>
+        <message priority="info"><![CDATA[Processing leftover classes (classes that extend root classes not found in the same package)]]></message>
+        <message priority="info"><![CDATA[Processing phpucDotChart in file /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Graph/DotChart.php]]></message>
+        <message priority="info"><![CDATA[Processing phpucLineChart in file /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Graph/LineChart.php]]></message>
+        <message priority="info"><![CDATA[WARNING: Class phpucLineChart parent ezcGraphLineChart not found]]></message>
+        <message priority="info"><![CDATA[Processing phpucPieChart in file /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Graph/PieChart.php]]></message>
+        <message priority="info"><![CDATA[WARNING: Class phpucPieChart parent ezcGraphPieChart not found]]></message>
+        <message priority="info"><![CDATA[Processing phpucGraphPalette in file /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Graph/GraphPalette.php]]></message>
+        <message priority="info"><![CDATA[WARNING: Class phpucGraphPalette parent ezcGraphPaletteEzGreen not found]]></message>
+        <message priority="info"><![CDATA[Processing phpucConfigFile in file /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Data/ConfigFile.php]]></message>
+        <message priority="info"><![CDATA[Processing phpucBuildFile in file /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Data/BuildFile.php]]></message>
+        <message priority="info"><![CDATA[Processing phpucLogFile in file /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Data/LogFile.php]]></message>
+        <message priority="info"><![CDATA[Processing phpucErrorException in file /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Exceptions/ErrorException.php]]></message>
+        <message priority="info"><![CDATA[Processing phpucValidateException in file /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Exceptions/ValidateException.php]]></message>
+        <message priority="info"><![CDATA[Processing phpucExecuteException in file /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Exceptions/ExecuteException.php]]></message>
+        <message priority="info"><![CDATA[Processing phpucConsoleException in file /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Exceptions/ConsoleException.php]]></message>
+        <message priority="info"><![CDATA[done processing leftover classes]]></message>
+        <message priority="info"><![CDATA[Processing Procedural Page Element Name Conflicts]]></message>
+        <message priority="info"><![CDATA[Sorting page elements...done]]></message>
+        <message priority="info"><![CDATA[Formatting @uses list...done]]></message>
+        <message priority="info"><![CDATA[creating /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/build/api/media]]></message>
+        <message priority="info"><![CDATA[copying /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/build/api/media/banner.css]]></message>
+        <message priority="info"><![CDATA[copying /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/build/api/media/stylesheet.css]]></message>
+        <message priority="info"><![CDATA[Building indexes...done]]></message>
+        <message priority="info"><![CDATA[Sorting Indexes...done]]></message>
+        <message priority="info"><![CDATA[Sorting @todo list...done]]></message>
+        <message priority="info"><![CDATA[Converting tutorials/extended docs]]></message>
+        <message priority="info"><![CDATA[Formatting Package Indexes...    Writing /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/build/api/elementindex_Commands.html]]></message>
+        <message priority="info"><![CDATA[Writing /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/build/api/elementindex_Graph.html]]></message>
+        <message priority="info"><![CDATA[Writing /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/build/api/elementindex_Tasks.html]]></message>
+        <message priority="info"><![CDATA[Writing /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/build/api/elementindex_---.html]]></message>
+        <message priority="info"><![CDATA[Writing /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/build/api/elementindex_Data.html]]></message>
+        <message priority="info"><![CDATA[Writing /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/build/api/elementindex_Util.html]]></message>
+        <message priority="info"><![CDATA[Writing /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/build/api/elementindex_Exceptions.html]]></message>
+        <message priority="info"><![CDATA[Writing /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/build/api/elementindex_Default.html]]></message>
+        <message priority="info"><![CDATA[done]]></message>
+        <message priority="info"><![CDATA[Formatting Index...]]></message>
+        <message priority="info"><![CDATA[Writing /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/build/api/elementindex.html]]></message>
+        <message priority="info"><![CDATA[Writing /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/build/api/blank.html]]></message>
+        <message priority="info"><![CDATA[Writing /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/build/api/index.html]]></message>
+        <message priority="info"><![CDATA[Writing /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/build/api/packages.html]]></message>
+        <message priority="info"><![CDATA[done]]></message>
+        <message priority="info"><![CDATA[Formatting Left Quick Index...]]></message>
+        <message priority="info"><![CDATA[Writing /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/build/api/li_---.html]]></message>
+        <message priority="info"><![CDATA[Writing /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/build/api/classtrees_---.html]]></message>
+        <message priority="info"><![CDATA[Writing /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/build/api/li_Graph.html]]></message>
+        <message priority="info"><![CDATA[Writing /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/build/api/classtrees_Graph.html]]></message>
+        <message priority="info"><![CDATA[Writing /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/build/api/li_Default.html]]></message>
+        <message priority="info"><![CDATA[Writing /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/build/api/classtrees_Default.html]]></message>
+        <message priority="info"><![CDATA[Writing /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/build/api/li_Tasks.html]]></message>
+        <message priority="info"><![CDATA[Writing /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/build/api/classtrees_Tasks.html]]></message>
+        <message priority="info"><![CDATA[Writing /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/build/api/li_Commands.html]]></message>
+        <message priority="info"><![CDATA[Writing /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/build/api/classtrees_Commands.html]]></message>
+        <message priority="info"><![CDATA[Writing /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/build/api/li_Data.html]]></message>
+        <message priority="info"><![CDATA[Writing /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/build/api/classtrees_Data.html]]></message>
+        <message priority="info"><![CDATA[Writing /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/build/api/li_Exceptions.html]]></message>
+        <message priority="info"><![CDATA[Writing /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/build/api/classtrees_Exceptions.html]]></message>
+        <message priority="info"><![CDATA[Writing /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/build/api/li_Util.html]]></message>
+        <message priority="info"><![CDATA[Writing /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/build/api/classtrees_Util.html]]></message>
+        <message priority="info"><![CDATA[done]]></message>
+        <message priority="info"><![CDATA[Converting /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Commands/AbstractCommand.php Procedural Page Elements... Classes...]]></message>
+        <message priority="info"><![CDATA[Writing /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/build/api/Commands/phpucAbstractCommand.html]]></message>
+        <message priority="info"><![CDATA[done]]></message>
+        <message priority="info"><![CDATA[Writing /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/build/api/Commands/_Commands---AbstractCommand.php.html]]></message>
+        <message priority="info"><![CDATA[Converting /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Graph/Input/AbstractInput.php Procedural Page Elements... Classes...]]></message>
+        <message priority="info"><![CDATA[Writing /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/build/api/Graph/Input/phpucAbstractInput.html]]></message>
+        <message priority="info"><![CDATA[done]]></message>
+        <message priority="info"><![CDATA[Writing /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/build/api/Graph/Input/_Graph---Input---AbstractInput.php.html]]></message>
+        <message priority="info"><![CDATA[Converting /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Tasks/AbstractPearTask.php Procedural Page Elements... Classes...]]></message>
+        <message priority="info"><![CDATA[Writing /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/build/api/Tasks/phpucAbstractPearTask.html]]></message>
+        <message priority="info"><![CDATA[done]]></message>
+        <message priority="info"><![CDATA[Writing /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/build/api/Tasks/_Tasks---AbstractPearTask.php.html]]></message>
+        <message priority="info"><![CDATA[Converting /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Tasks/AbstractTask.php Procedural Page Elements... Classes...]]></message>
+        <message priority="info"><![CDATA[Writing /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/build/api/Tasks/phpucAbstractTask.html]]></message>
+        <message priority="info"><![CDATA[done]]></message>
+        <message priority="info"><![CDATA[Writing /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/build/api/Tasks/_Tasks---AbstractTask.php.html]]></message>
+        <message priority="info"><![CDATA[Converting /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Graph/Input/BuildBreakdownInput.php Procedural Page Elements... Classes...]]></message>
+        <message priority="info"><![CDATA[Writing /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/build/api/---/phpucBuildBreakdownInput.html]]></message>
+        <message priority="info"><![CDATA[done]]></message>
+        <message priority="info"><![CDATA[Writing /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/build/api/---/_Graph---Input---BuildBreakdownInput.php.html]]></message>
+        <message priority="info"><![CDATA[Converting /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Graph/Input/BuildBreakdownTimelineInput.php Procedural Page Elements... Classes...]]></message>
+        <message priority="info"><![CDATA[Writing /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/build/api/---/phpucBuildBreakdownTimelineInput.html]]></message>
+        <message priority="info"><![CDATA[done]]></message>
+        <message priority="info"><![CDATA[Writing /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/build/api/---/_Graph---Input---BuildBreakdownTimelineInput.php.html]]></message>
+        <message priority="info"><![CDATA[Converting /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Data/BuildFile.php Procedural Page Elements... Classes...]]></message>
+        <message priority="info"><![CDATA[Writing /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/build/api/Data/phpucBuildFile.html]]></message>
+        <message priority="info"><![CDATA[done]]></message>
+        <message priority="info"><![CDATA[Writing /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/build/api/Data/_Data---BuildFile.php.html]]></message>
+        <message priority="info"><![CDATA[Converting /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Data/BuildTarget.php Procedural Page Elements... Classes...]]></message>
+        <message priority="info"><![CDATA[Writing /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/build/api/Data/phpucBuildTarget.html]]></message>
+        <message priority="info"><![CDATA[done]]></message>
+        <message priority="info"><![CDATA[Writing /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/build/api/Data/_Data---BuildTarget.php.html]]></message>
+        <message priority="info"><![CDATA[Converting /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Graph/ChartFactory.php Procedural Page Elements... Classes...]]></message>
+        <message priority="info"><![CDATA[Writing /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/build/api/Graph/phpucChartFactory.html]]></message>
+        <message priority="info"><![CDATA[done]]></message>
+        <message priority="info"><![CDATA[Writing /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/build/api/Graph/_Graph---ChartFactory.php.html]]></message>
+        <message priority="info"><![CDATA[Converting /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Graph/ChartI.php Procedural Page Elements... Classes...]]></message>
+        <message priority="info"><![CDATA[Writing /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/build/api/Graph/phpucChartI.html]]></message>
+        <message priority="info"><![CDATA[done]]></message>
+        <message priority="info"><![CDATA[Writing /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/build/api/---/_Graph---ChartI.php.html]]></message>
+        <message priority="info"><![CDATA[Converting /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Graph/Input/CodeViolationInput.php Procedural Page Elements... Classes...]]></message>
+        <message priority="info"><![CDATA[Writing /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/build/api/Graph/Input/phpucCodeViolationInput.html]]></message>
+        <message priority="info"><![CDATA[done]]></message>
+        <message priority="info"><![CDATA[Writing /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/build/api/Graph/Input/_Graph---Input---CodeViolationInput.php.html]]></message>
+        <message priority="info"><![CDATA[Converting /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Data/ConfigArtifactsPublisher.php Procedural Page Elements... Classes...]]></message>
+        <message priority="info"><![CDATA[Writing /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/build/api/Data/phpucConfigArtifactsPublisher.html]]></message>
+        <message priority="info"><![CDATA[done]]></message>
+        <message priority="info"><![CDATA[Writing /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/build/api/Data/_Data---ConfigArtifactsPublisher.php.html]]></message>
+        <message priority="info"><![CDATA[Converting /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Data/ConfigFile.php Procedural Page Elements... Classes...]]></message>
+        <message priority="info"><![CDATA[Writing /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/build/api/Data/phpucConfigFile.html]]></message>
+        <message priority="info"><![CDATA[done]]></message>
+        <message priority="info"><![CDATA[Writing /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/build/api/Data/_Data---ConfigFile.php.html]]></message>
+        <message priority="info"><![CDATA[Converting /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Data/ConfigProject.php Procedural Page Elements... Classes...]]></message>
+        <message priority="info"><![CDATA[Writing /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/build/api/Data/phpucConfigProject.html]]></message>
+        <message priority="info"><![CDATA[done]]></message>
+        <message priority="info"><![CDATA[Writing /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/build/api/Data/_Data---ConfigProject.php.html]]></message>
+        <message priority="info"><![CDATA[Converting /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Util/ConsoleArgs.php Procedural Page Elements... Classes...]]></message>
+        <message priority="info"><![CDATA[Writing /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/build/api/Util/phpucConsoleArgs.html]]></message>
+        <message priority="info"><![CDATA[done]]></message>
+        <message priority="info"><![CDATA[Writing /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/build/api/Util/_Util---ConsoleArgs.php.html]]></message>
+        <message priority="info"><![CDATA[Converting /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Exceptions/ConsoleException.php Procedural Page Elements... Classes...]]></message>
+        <message priority="info"><![CDATA[Writing /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/build/api/Exceptions/phpucConsoleException.html]]></message>
+        <message priority="info"><![CDATA[done]]></message>
+        <message priority="info"><![CDATA[Writing /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/build/api/Exceptions/_Exceptions---ConsoleException.php.html]]></message>
+        <message priority="info"><![CDATA[Converting /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Util/ConsoleOutput.php Procedural Page Elements... Classes...]]></message>
+        <message priority="info"><![CDATA[Writing /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/build/api/Util/phpucConsoleOutput.html]]></message>
+        <message priority="info"><![CDATA[done]]></message>
+        <message priority="info"><![CDATA[Writing /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/build/api/Util/_Util---ConsoleOutput.php.html]]></message>
+        <message priority="info"><![CDATA[Converting /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Tasks/CreateFileTask.php Procedural Page Elements... Classes...]]></message>
+        <message priority="info"><![CDATA[Writing /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/build/api/Tasks/phpucCreateFileTask.html]]></message>
+        <message priority="info"><![CDATA[done]]></message>
+        <message priority="info"><![CDATA[Writing /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/build/api/Tasks/_Tasks---CreateFileTask.php.html]]></message>
+        <message priority="info"><![CDATA[Converting /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Tasks/CruiseControlTask.php Procedural Page Elements... Classes...]]></message>
+        <message priority="info"><![CDATA[Writing /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/build/api/Tasks/phpucCruiseControlTask.html]]></message>
+        <message priority="info"><![CDATA[done]]></message>
+        <message priority="info"><![CDATA[Writing /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/build/api/Tasks/_Tasks---CruiseControlTask.php.html]]></message>
+        <message priority="info"><![CDATA[Converting /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Graph/DotChart.php Procedural Page Elements... Classes...]]></message>
+        <message priority="info"><![CDATA[Writing /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/build/api/---/phpucDotChart.html]]></message>
+        <message priority="info"><![CDATA[done]]></message>
+        <message priority="info"><![CDATA[Writing /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/build/api/---/_Graph---DotChart.php.html]]></message>
+        <message priority="info"><![CDATA[Converting /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Exceptions/ErrorException.php Procedural Page Elements... Classes...]]></message>
+        <message priority="info"><![CDATA[Writing /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/build/api/Exceptions/phpucErrorException.html]]></message>
+        <message priority="info"><![CDATA[done]]></message>
+        <message priority="info"><![CDATA[Writing /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/build/api/Exceptions/_Exceptions---ErrorException.php.html]]></message>
+        <message priority="info"><![CDATA[Converting /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Commands/ExampleCommand.php Procedural Page Elements... Classes...]]></message>
+        <message priority="info"><![CDATA[Writing /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/build/api/Commands/phpucExampleCommand.html]]></message>
+        <message priority="info"><![CDATA[done]]></message>
+        <message priority="info"><![CDATA[Writing /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/build/api/Commands/_Commands---ExampleCommand.php.html]]></message>
+        <message priority="info"><![CDATA[Converting /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Tasks/ExampleTask.php Procedural Page Elements... Classes...]]></message>
+        <message priority="info"><![CDATA[Writing /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/build/api/Tasks/phpucExampleTask.html]]></message>
+        <message priority="info"><![CDATA[done]]></message>
+        <message priority="info"><![CDATA[Writing /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/build/api/Tasks/_Tasks---ExampleTask.php.html]]></message>
+        <message priority="info"><![CDATA[Converting /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Exceptions/ExecuteException.php Procedural Page Elements... Classes...]]></message>
+        <message priority="info"><![CDATA[Writing /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/build/api/Exceptions/phpucExecuteException.html]]></message>
+        <message priority="info"><![CDATA[done]]></message>
+        <message priority="info"><![CDATA[Writing /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/build/api/Exceptions/_Exceptions---ExecuteException.php.html]]></message>
+        <message priority="info"><![CDATA[Converting /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Util/FileUtil.php Procedural Page Elements... Classes...]]></message>
+        <message priority="info"><![CDATA[Writing /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/build/api/Util/phpucFileUtil.html]]></message>
+        <message priority="info"><![CDATA[done]]></message>
+        <message priority="info"><![CDATA[Writing /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/build/api/Util/_Util---FileUtil.php.html]]></message>
+        <message priority="info"><![CDATA[Converting /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Graph/GraphPalette.php Procedural Page Elements... Classes...]]></message>
+        <message priority="info"><![CDATA[Writing /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/build/api/Graph/phpucGraphPalette.html]]></message>
+        <message priority="info"><![CDATA[done]]></message>
+        <message priority="info"><![CDATA[Writing /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/build/api/Graph/_Graph---GraphPalette.php.html]]></message>
+        <message priority="info"><![CDATA[Converting /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Graph/Input/InputI.php Procedural Page Elements... Classes...]]></message>
+        <message priority="info"><![CDATA[Writing /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/build/api/---/phpucInputI.html]]></message>
+        <message priority="info"><![CDATA[done]]></message>
+        <message priority="info"><![CDATA[Writing /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/build/api/---/_Graph---Input---InputI.php.html]]></message>
+        <message priority="info"><![CDATA[Converting /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Graph/Input/InputRule.php Procedural Page Elements... Classes...]]></message>
+        <message priority="info"><![CDATA[Writing /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/build/api/Graph/Input/phpucInputRule.html]]></message>
+        <message priority="info"><![CDATA[done]]></message>
+        <message priority="info"><![CDATA[Writing /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/build/api/Graph/Input/_Graph---Input---InputRule.php.html]]></message>
+        <message priority="info"><![CDATA[Converting /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Commands/InstallCommand.php Procedural Page Elements... Classes...]]></message>
+        <message priority="info"><![CDATA[Writing /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/build/api/Commands/phpucInstallCommand.html]]></message>
+        <message priority="info"><![CDATA[done]]></message>
+        <message priority="info"><![CDATA[Writing /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/build/api/Commands/_Commands---InstallCommand.php.html]]></message>
+        <message priority="info"><![CDATA[Converting /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Graph/LineChart.php Procedural Page Elements... Classes...]]></message>
+        <message priority="info"><![CDATA[Writing /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/build/api/Graph/phpucLineChart.html]]></message>
+        <message priority="info"><![CDATA[done]]></message>
+        <message priority="info"><![CDATA[Writing /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/build/api/---/_Graph---LineChart.php.html]]></message>
+        <message priority="info"><![CDATA[Converting /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Data/LogFile.php Procedural Page Elements... Classes...]]></message>
+        <message priority="info"><![CDATA[Writing /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/build/api/Data/phpucLogFile.html]]></message>
+        <message priority="info"><![CDATA[done]]></message>
+        <message priority="info"><![CDATA[Writing /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/build/api/Data/_Data---LogFile.php.html]]></message>
+        <message priority="info"><![CDATA[Converting /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Tasks/ModifyFileTask.php Procedural Page Elements... Classes...]]></message>
+        <message priority="info"><![CDATA[Writing /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/build/api/Tasks/phpucModifyFileTask.html]]></message>
+        <message priority="info"><![CDATA[done]]></message>
+        <message priority="info"><![CDATA[Writing /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/build/api/Tasks/_Tasks---ModifyFileTask.php.html]]></message>
+        <message priority="info"><![CDATA[Converting /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Tasks/PhpCodeSnifferTask.php Procedural Page Elements... Classes...]]></message>
+        <message priority="info"><![CDATA[Writing /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/build/api/Tasks/phpucPhpCodeSnifferTask.html]]></message>
+        <message priority="info"><![CDATA[done]]></message>
+        <message priority="info"><![CDATA[Writing /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/build/api/Tasks/_Tasks---PhpCodeSnifferTask.php.html]]></message>
+        <message priority="info"><![CDATA[Converting /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Tasks/PhpDocumentorTask.php Procedural Page Elements... Classes...]]></message>
+        <message priority="info"><![CDATA[Writing /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/build/api/Tasks/phpucPhpDocumentorTask.html]]></message>
+        <message priority="info"><![CDATA[done]]></message>
+        <message priority="info"><![CDATA[Writing /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/build/api/Tasks/_Tasks---PhpDocumentorTask.php.html]]></message>
+        <message priority="info"><![CDATA[Converting /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/PhpUnderControl.php Procedural Page Elements... Classes...]]></message>
+        <message priority="info"><![CDATA[Writing /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/build/api/Default/phpucPhpUnderControl.html]]></message>
+        <message priority="info"><![CDATA[done]]></message>
+        <message priority="info"><![CDATA[Writing /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/build/api/Default/_PhpUnderControl.php.html]]></message>
+        <message priority="info"><![CDATA[Converting /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Tasks/PhpUnitTask.php Procedural Page Elements... Classes...]]></message>
+        <message priority="info"><![CDATA[Writing /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/build/api/Tasks/phpucPhpUnitTask.html]]></message>
+        <message priority="info"><![CDATA[done]]></message>
+        <message priority="info"><![CDATA[Writing /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/build/api/Tasks/_Tasks---PhpUnitTask.php.html]]></message>
+        <message priority="info"><![CDATA[Converting /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Graph/PieChart.php Procedural Page Elements... Classes...]]></message>
+        <message priority="info"><![CDATA[Writing /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/build/api/Graph/phpucPieChart.html]]></message>
+        <message priority="info"><![CDATA[done]]></message>
+        <message priority="info"><![CDATA[Writing /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/build/api/Graph/_Graph---PieChart.php.html]]></message>
+        <message priority="info"><![CDATA[Converting /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Commands/ProjectCommand.php Procedural Page Elements... Classes...]]></message>
+        <message priority="info"><![CDATA[Writing /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/build/api/Commands/phpucProjectCommand.html]]></message>
+        <message priority="info"><![CDATA[done]]></message>
+        <message priority="info"><![CDATA[Writing /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/build/api/Commands/_Commands---ProjectCommand.php.html]]></message>
+        <message priority="info"><![CDATA[Converting /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Tasks/ProjectTask.php Procedural Page Elements... Classes...]]></message>
+        <message priority="info"><![CDATA[Writing /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/build/api/Tasks/phpucProjectTask.html]]></message>
+        <message priority="info"><![CDATA[done]]></message>
+        <message priority="info"><![CDATA[Writing /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/build/api/Tasks/_Tasks---ProjectTask.php.html]]></message>
+        <message priority="info"><![CDATA[Converting /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Tasks/TaskI.php Procedural Page Elements... Classes...]]></message>
+        <message priority="info"><![CDATA[Writing /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/build/api/Tasks/phpucTaskI.html]]></message>
+        <message priority="info"><![CDATA[done]]></message>
+        <message priority="info"><![CDATA[Writing /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/build/api/Tasks/_Tasks---TaskI.php.html]]></message>
+        <message priority="info"><![CDATA[Converting /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Graph/Input/TestCodeRatioInput.php Procedural Page Elements... Classes...]]></message>
+        <message priority="info"><![CDATA[Writing /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/build/api/Graph/Input/phpucTestCodeRatioInput.html]]></message>
+        <message priority="info"><![CDATA[done]]></message>
+        <message priority="info"><![CDATA[Writing /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/build/api/Graph/Input/_Graph---Input---TestCodeRatioInput.php.html]]></message>
+        <message priority="info"><![CDATA[Converting /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Graph/Input/UnitCoverageInput.php Procedural Page Elements... Classes...]]></message>
+        <message priority="info"><![CDATA[Writing /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/build/api/Graph/Input/phpucUnitCoverageInput.html]]></message>
+        <message priority="info"><![CDATA[done]]></message>
+        <message priority="info"><![CDATA[Writing /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/build/api/Graph/Input/_Graph---Input---UnitCoverageInput.php.html]]></message>
+        <message priority="info"><![CDATA[Converting /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Graph/Input/UnitTestInput.php Procedural Page Elements... Classes...]]></message>
+        <message priority="info"><![CDATA[Writing /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/build/api/Graph/Input/phpucUnitTestInput.html]]></message>
+        <message priority="info"><![CDATA[done]]></message>
+        <message priority="info"><![CDATA[Writing /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/build/api/Graph/Input/_Graph---Input---UnitTestInput.php.html]]></message>
+        <message priority="info"><![CDATA[Converting /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Exceptions/ValidateException.php Procedural Page Elements... Classes...]]></message>
+        <message priority="info"><![CDATA[Writing /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/build/api/Exceptions/phpucValidateException.html]]></message>
+        <message priority="info"><![CDATA[done]]></message>
+        <message priority="info"><![CDATA[Writing /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/build/api/Exceptions/_Exceptions---ValidateException.php.html]]></message>
+        <message priority="info"><![CDATA[Converting @todo List...done]]></message>
+        <message priority="info"><![CDATA[Converting Error Log...    Writing /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/build/api/errors.html]]></message>
+        <message priority="info"><![CDATA[To view errors and warnings, look at /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/build/api/errors.html]]></message>
+        <message priority="info"><![CDATA[done]]></message>
+        <message priority="info"><![CDATA[Parsing time: 5 seconds]]></message>
+        <message priority="info"><![CDATA[Conversion time: 6 seconds]]></message>
+        <message priority="info"><![CDATA[Total Documentation Time: 11 seconds]]></message>
+        <message priority="info"><![CDATA[done]]></message>
+      </task>
+    </target>
+    <message priority="debug"><![CDATA[Execute:Java13CommandLauncher: Executing 'phpcs' with arguments:
+'--report=checkstyle'
+'--standard=Mapi'
+'--ignore=src/autoload'
+'src/'
+
+The ' characters around the executable and arguments are
+not part of the command.]]></message>
+    <target name="php-codesniffer" time="5 seconds">
+      <task location="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/build.xml:21: " name="exec" time="5 seconds">
+        <message priority="debug"><![CDATA[Current OS is Linux]]></message>
+        <message priority="debug"><![CDATA[Output redirected to /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/build/logs/checkstyle.xml]]></message>
+        <message priority="debug"><![CDATA[Executing 'phpcs' with arguments:
+'--report=checkstyle'
+'--standard=Mapi'
+'--ignore=src/autoload'
+'src/'
+
+The ' characters around the executable and arguments are
+not part of the command.]]></message>
+        <message priority="error"><![CDATA[Result: 1]]></message>
+      </task>
+    </target>
+    <message priority="debug"><![CDATA[Execute:Java13CommandLauncher: Executing 'phpunit' with arguments:
+'--log-xml'
+'/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/build/logs/phpunit.xml'
+'--log-pmd'
+'/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/build/logs/phpunit.pmd.xml'
+'--log-metrics'
+'/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/build/logs/phpunit.metrics.xml'
+'--coverage-xml'
+'/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/build/logs/phpunit.coverage.xml'
+'--coverage-html'
+'/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/build/coverage'
+'phpucAllTests'
+'tests/AllTests.php'
+
+The ' characters around the executable and arguments are
+not part of the command.]]></message>
+    <target name="phpunit" time="1 second">
+      <task location="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/build.xml:29: " name="exec" time="1 second">
+        <message priority="debug"><![CDATA[Current OS is Linux]]></message>
+        <message priority="debug"><![CDATA[Executing 'phpunit' with arguments:
+'--log-xml'
+'/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/build/logs/phpunit.xml'
+'--log-pmd'
+'/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/build/logs/phpunit.pmd.xml'
+'--log-metrics'
+'/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/build/logs/phpunit.metrics.xml'
+'--coverage-xml'
+'/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/build/logs/phpunit.coverage.xml'
+'--coverage-html'
+'/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/build/coverage'
+'phpucAllTests'
+'tests/AllTests.php'
+
+The ' characters around the executable and arguments are
+not part of the command.]]></message>
+        <message priority="info"><![CDATA[PHPUnit 3.2.8 by Sebastian Bergmann.]]></message>
+        <message priority="info"><![CDATA[.....................................]]></message>
+        <message priority="info"><![CDATA[Time: 0 seconds]]></message>
+        <message priority="info"><![CDATA[OK (37 tests)]]></message>
+        <message priority="warn"><![CDATA[PHP Fatal error:  Class 'phpucLineChart' not found in /opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Graph/DotChart.php on line 59]]></message>
+        <message priority="warn"><![CDATA[PHP Stack trace:]]></message>
+        <message priority="warn"><![CDATA[PHP   1. {main}() /usr/local/php/php-cgi-5.2.5/bin/phpunit:0]]></message>
+        <message priority="warn"><![CDATA[PHP   2. require() /usr/local/php/php-cgi-5.2.5/bin/phpunit:44]]></message>
+        <message priority="warn"><![CDATA[PHP   3. PHPUnit_TextUI_Command::main() /usr/local/pear/share/pear/PHPUnit/TextUI/Command.php:528]]></message>
+        <message priority="warn"><![CDATA[PHP   4. PHPUnit_TextUI_TestRunner->doRun() /usr/local/pear/share/pear/PHPUnit/TextUI/Command.php:112]]></message>
+        <message priority="warn"><![CDATA[PHP   5. PHPUnit_Util_Log_CodeCoverage_XML->process() /usr/local/pear/share/pear/PHPUnit/TextUI/TestRunner.php:315]]></message>
+        <message priority="warn"><![CDATA[PHP   6. PHPUnit_Framework_TestResult->getCodeCoverageInformation() /usr/local/pear/share/pear/PHPUnit/Util/Log/CodeCoverage/XML.php:92]]></message>
+        <message priority="warn"><![CDATA[PHP   7. PHPUnit_Util_Filter::getFilteredCodeCoverage() /usr/local/pear/share/pear/PHPUnit/Framework/TestResult.php:545]]></message>
+        <message priority="warn"><![CDATA[PHP   8. include_once() /usr/local/pear/share/pear/PHPUnit/Util/Filter.php:342]]></message>
+        <message priority="info"><![CDATA[Writing code coverage data to XML file, this may take a moment.]]></message>
+      </task>
+    </target>
+    <stacktrace><![CDATA[/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/build.xml:29: exec returned: 255
+	at org.apache.tools.ant.taskdefs.ExecTask.runExecute(ExecTask.java:591)
+	at org.apache.tools.ant.taskdefs.ExecTask.runExec(ExecTask.java:617)
+	at org.apache.tools.ant.taskdefs.ExecTask.execute(ExecTask.java:452)
+	at org.apache.tools.ant.UnknownElement.execute(UnknownElement.java:275)
+	at org.apache.tools.ant.Task.perform(Task.java:364)
+	at org.apache.tools.ant.Target.execute(Target.java:341)
+	at org.apache.tools.ant.Target.performTasks(Target.java:369)
+	at org.apache.tools.ant.Project.executeSortedTargets(Project.java:1216)
+	at org.apache.tools.ant.Project.executeTarget(Project.java:1185)
+	at org.apache.tools.ant.helper.DefaultExecutor.executeTargets(DefaultExecutor.java:40)
+	at org.apache.tools.ant.Project.executeTargets(Project.java:1068)
+	at org.apache.tools.ant.Main.runBuild(Main.java:668)
+	at org.apache.tools.ant.Main.startAnt(Main.java:187)
+	at org.apache.tools.ant.launch.Launcher.run(Launcher.java:246)
+	at org.apache.tools.ant.launch.Launcher.main(Launcher.java:67)]]></stacktrace>
+  </build>
+  <checkstyle version="1.0.0">
+    <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Graph/DotChart.php">
+      <error line="40" column="1" severity="error" message="Package name &quot;...&quot; is not valid; consider &quot;...&quot; instead" />
+      <error line="52" column="1" severity="error" message="Package name &quot;...&quot; is not valid; consider &quot;...&quot; instead" />
+      <error line="61" column="15" severity="error" message="Missing function doc comment" />
+      <error line="61" column="15" severity="error" message="Missing function doc comment" />
+      <error line="70" column="15" severity="error" message="Missing function doc comment" />
+      <error line="70" column="15" severity="error" message="Missing function doc comment" />
+    </file>
+    <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Graph/Input/TestCodeRatioInput.php">
+      <error line="52" column="1" severity="error" message="@category tag comment indented incorrectly. Expected 2 spaces but found 3." />
+      <error line="53" column="1" severity="error" message="@package tag comment indented incorrectly. Expected 3 spaces but found 4." />
+      <error line="54" column="1" severity="error" message="@author tag comment indented incorrectly. Expected 4 spaces but found 5." />
+      <error line="55" column="1" severity="error" message="@copyright tag comment indented incorrectly. Expected 1 spaces but found 2." />
+      <error line="56" column="1" severity="error" message="@license tag comment indented incorrectly. Expected 3 spaces but found 4." />
+      <error line="57" column="1" severity="error" message="@version tag comment indented incorrectly. Expected 3 spaces but found 4." />
+      <error line="58" column="1" severity="error" message="@link tag comment indented incorrectly. Expected 6 spaces but found 7." />
+    </file>
+    <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Graph/Input/AbstractInput.php">
+      <error line="178" column="9" severity="error" message="Closing brace indented incorrectly; expected 12 spaces, found 8" />
+      <error line="178" column="9" severity="error" message="Closing brace indented incorrectly; expected 12 spaces, found 8" />
+      <error line="178" column="9" severity="error" message="Closing brace indented incorrectly; expected 12 spaces, found 8" />
+      <error line="178" column="9" severity="error" message="Closing brace indented incorrectly; expected 12 spaces, found 8" />
+      <error line="178" column="9" severity="error" message="Closing brace indented incorrectly; expected 12 spaces, found 8" />
+      <error line="178" column="9" severity="error" message="Closing brace indented incorrectly; expected 12 spaces, found 8" />
+      <error line="178" column="9" severity="error" message="Closing brace indented incorrectly; expected 12 spaces, found 8" />
+      <error line="178" column="9" severity="error" message="Closing brace indented incorrectly; expected 12 spaces, found 8" />
+      <error line="201" column="12" severity="error" message="Missing function doc comment" />
+      <error line="201" column="12" severity="error" message="Missing function doc comment" />
+      <error line="231" column="15" severity="error" message="Missing function doc comment" />
+      <error line="231" column="15" severity="error" message="Missing function doc comment" />
+      <error line="241" column="15" severity="error" message="Missing function doc comment" />
+      <error line="241" column="15" severity="error" message="Missing function doc comment" />
+      <error line="246" column="15" severity="error" message="Missing function doc comment" />
+      <error line="246" column="15" severity="error" message="Missing function doc comment" />
+      <error line="256" column="15" severity="error" message="Missing function doc comment" />
+      <error line="256" column="15" severity="error" message="Missing function doc comment" />
+      <error line="265" column="1" severity="error" message="Missing @return tag in function comment" />
+      <error line="265" column="1" severity="error" message="Missing @return tag in function comment" />
+    </file>
+    <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Graph/Input/InputRule.php" />
+    <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Graph/Input/CodeViolationInput.php" />
+    <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Graph/Input/InputI.php">
+      <error line="40" column="1" severity="error" message="Package name &quot;...&quot; is not valid; consider &quot;...&quot; instead" />
+      <error line="103" column="5" severity="error" message="Missing function doc comment" />
+      <error line="103" column="5" severity="error" message="Missing function doc comment" />
+    </file>
+    <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Graph/Input/UnitTestInput.php" />
+    <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Graph/Input/BuildBreakdownTimelineInput.php">
+      <error line="40" column="1" severity="error" message="Package name &quot;...&quot; is not valid; consider &quot;...&quot; instead" />
+      <error line="52" column="1" severity="error" message="Package name &quot;...&quot; is not valid; consider &quot;...&quot; instead" />
+      <error line="61" column="12" severity="error" message="Missing function doc comment" />
+      <error line="61" column="12" severity="error" message="Missing function doc comment" />
+      <error line="84" column="90" severity="warning" message="Line exceeds 85 characters; contains 89 characters" />
+      <error line="91" column="15" severity="error" message="Missing function doc comment" />
+      <error line="91" column="15" severity="error" message="Missing function doc comment" />
+    </file>
+    <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Graph/Input/BuildBreakdownInput.php">
+      <error line="40" column="1" severity="error" message="Package name &quot;...&quot; is not valid; consider &quot;...&quot; instead" />
+      <error line="52" column="1" severity="error" message="Package name &quot;...&quot; is not valid; consider &quot;...&quot; instead" />
+      <error line="61" column="12" severity="error" message="Missing function doc comment" />
+      <error line="61" column="12" severity="error" message="Missing function doc comment" />
+      <error line="78" column="15" severity="error" message="Missing function doc comment" />
+      <error line="78" column="15" severity="error" message="Missing function doc comment" />
+    </file>
+    <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Graph/Input/UnitCoverageInput.php" />
+    <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Graph/ChartI.php">
+      <error line="40" column="1" severity="error" message="Package name &quot;...&quot; is not valid; consider &quot;...&quot; instead" />
+    </file>
+    <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Graph/LineChart.php">
+      <error line="40" column="1" severity="error" message="Package name &quot;...&quot; is not valid; consider &quot;...&quot; instead" />
+      <error line="65" column="12" severity="error" message="Missing function doc comment" />
+      <error line="65" column="12" severity="error" message="Missing function doc comment" />
+      <error line="104" column="15" severity="error" message="Missing function doc comment" />
+      <error line="104" column="15" severity="error" message="Missing function doc comment" />
+      <error line="119" column="15" severity="error" message="Missing function doc comment" />
+      <error line="119" column="15" severity="error" message="Missing function doc comment" />
+      <error line="128" column="15" severity="error" message="Missing function doc comment" />
+      <error line="128" column="15" severity="error" message="Missing function doc comment" />
+      <error line="137" column="15" severity="error" message="Missing function doc comment" />
+      <error line="137" column="15" severity="error" message="Missing function doc comment" />
+    </file>
+    <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Graph/PieChart.php">
+      <error line="61" column="12" severity="error" message="Missing function doc comment" />
+      <error line="61" column="12" severity="error" message="Missing function doc comment" />
+      <error line="83" column="15" severity="error" message="Missing function doc comment" />
+      <error line="83" column="15" severity="error" message="Missing function doc comment" />
+      <error line="92" column="15" severity="error" message="Missing function doc comment" />
+      <error line="92" column="15" severity="error" message="Missing function doc comment" />
+      <error line="101" column="15" severity="error" message="Missing function doc comment" />
+      <error line="101" column="15" severity="error" message="Missing function doc comment" />
+    </file>
+    <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Graph/ChartFactory.php">
+      <error line="61" column="12" severity="error" message="Missing function doc comment" />
+      <error line="61" column="12" severity="error" message="Missing function doc comment" />
+    </file>
+    <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Graph/GraphPalette.php" />
+    <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/PhpUnderControl.php" />
+    <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Tasks/ExampleTask.php" />
+    <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Tasks/PhpUnitTask.php" />
+    <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Tasks/AbstractPearTask.php" />
+    <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Tasks/CreateFileTask.php" />
+    <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Tasks/CruiseControlTask.php" />
+    <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Tasks/PhpDocumentorTask.php" />
+    <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Tasks/PhpCodeSnifferTask.php" />
+    <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Tasks/AbstractTask.php" />
+    <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Tasks/ProjectTask.php" />
+    <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Tasks/ModifyFileTask.php" />
+    <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Tasks/TaskI.php" />
+    <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Commands/AbstractCommand.php" />
+    <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Commands/ExampleCommand.php" />
+    <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Commands/InstallCommand.php" />
+    <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Commands/ProjectCommand.php" />
+    <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Data/ConfigFile.php" />
+    <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Data/BuildTarget.php" />
+    <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Data/BuildFile.php" />
+    <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Data/ConfigProject.php" />
+    <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Data/LogFile.php">
+      <error line="75" column="12" severity="error" message="Missing function doc comment" />
+      <error line="75" column="12" severity="error" message="Missing function doc comment" />
+    </file>
+    <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Data/ConfigArtifactsPublisher.php" />
+    <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Exceptions/ErrorException.php" />
+    <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Exceptions/ValidateException.php" />
+    <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Exceptions/ExecuteException.php" />
+    <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Exceptions/ConsoleException.php" />
+    <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Util/ConsoleArgs.php" />
+    <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Util/ConsoleOutput.php" />
+    <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Util/FileUtil.php" />
+  </checkstyle>
+  <metrics files="34" functions="0" cls="33" clsa="5" clsc="28" roots="2" leafs="31" interfs="1" maxdit="2">
+    <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Data/BuildFile.php" classes="1" functions="0" loc="212" cloc="125" ncloc="87" locExecutable="41" locExecuted="38" coverage="92.682927">
+      <class name="phpucBuildFile" loc="151" locExecutable="41" locExecuted="38" aif="0.000000" ahf="100.000000" ca="5" ce="1" csz="9" cis="6" coverage="92.682927" dit="2" i="0.166667" impl="0" mif="88.135593" mhf="1.694915" noc="0" pf="3.703704" vars="2" varsnp="0" varsi="2" wmc="10" wmcnp="9" wmci="62">
+        <method name="__construct" loc="21" locExecutable="13" locExecuted="13" coverage="100.000000" ccn="2" crap="2.000000" npath="2" parameters="2" />
+        <method name="__isset" loc="4" locExecutable="1" locExecuted="1" coverage="100.000000" ccn="1" crap="1.000000" npath="1" parameters="1" />
+        <method name="__get" loc="10" locExecutable="6" locExecuted="3" coverage="50.000000" ccn="2" crap="8.500000" npath="2" parameters="1" />
+        <method name="__set" loc="6" locExecutable="3" locExecuted="3" coverage="100.000000" ccn="1" crap="1.000000" npath="1" parameters="2" />
+        <method name="createBuildTarget" loc="8" locExecutable="3" locExecuted="3" coverage="100.000000" ccn="1" crap="1.000000" npath="1" parameters="1" />
+        <method name="save" loc="9" locExecutable="5" locExecuted="5" coverage="100.000000" ccn="2" crap="2.000000" npath="2" parameters="0" />
+        <method name="initBuildFile" loc="11" locExecutable="8" locExecuted="8" coverage="100.000000" ccn="1" crap="1.000000" npath="1" parameters="0" />
+      </class>
+    </file>
+    <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Util/ConsoleOutput.php" classes="1" functions="0" loc="211" cloc="144" ncloc="67" locExecutable="30" locExecuted="28" coverage="93.333333">
+      <class name="phpucConsoleOutput" loc="153" locExecutable="30" locExecuted="28" aif="0.000000" ahf="100.000000" ca="1" ce="0" csz="9" cis="5" coverage="93.333333" dit="0" i="0.000000" impl="0" mif="0.000000" mhf="28.571429" noc="0" pf="0.000000" vars="2" varsnp="0" varsi="2" wmc="10" wmcnp="5" wmci="10">
+        <method name="get" loc="4" locExecutable="1" locExecuted="1" coverage="100.000000" ccn="1" crap="1.000000" npath="1" parameters="0" />
+        <method name="set" loc="4" locExecutable="2" locExecuted="0" coverage="0.000000" ccn="1" crap="2.000000" npath="1" parameters="1" />
+        <method name="writeLine" loc="5" locExecutable="3" locExecuted="3" coverage="100.000000" ccn="1" crap="1.000000" npath="1" parameters="1" />
+        <method name="writeListItem" loc="8" locExecutable="6" locExecuted="6" coverage="100.000000" ccn="1" crap="1.000000" npath="1" parameters="1" />
+        <method name="startList" loc="4" locExecutable="2" locExecuted="2" coverage="100.000000" ccn="1" crap="1.000000" npath="1" parameters="0" />
+        <method name="writeLineArray" loc="6" locExecutable="3" locExecuted="3" coverage="100.000000" ccn="1" crap="1.000000" npath="1" parameters="2" />
+        <method name="replacePlaceholders" loc="21" locExecutable="13" locExecuted="13" coverage="100.000000" ccn="4" crap="4.000000" npath="6" parameters="2" />
+      </class>
+    </file>
+    <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/PhpUnderControl.php" classes="1" functions="0" loc="219" cloc="94" ncloc="125" locExecutable="22" locExecuted="8" coverage="36.363636">
+      <class name="phpucPhpUnderControl" loc="138" locExecutable="22" locExecuted="8" aif="0.000000" ahf="100.000000" ca="0" ce="2" csz="7" cis="4" coverage="36.363636" dit="0" i="1.000000" impl="0" mif="0.000000" mhf="0.000000" noc="0" pf="0.000000" vars="3" varsnp="0" varsi="3" wmc="10" wmcnp="10" wmci="10">
+        <method name="autoload" loc="11" locExecutable="8" locExecuted="8" coverage="100.000000" ccn="2" crap="2.000000" npath="2" parameters="1" />
+        <method name="main" loc="7" locExecutable="4" locExecuted="0" coverage="0.000000" ccn="1" crap="2.000000" npath="1" parameters="0" />
+        <method name="__construct" loc="4" locExecutable="2" locExecuted="0" coverage="0.000000" ccn="1" crap="2.000000" npath="1" parameters="0" />
+        <method name="run" loc="36" locExecutable="8" locExecuted="0" coverage="0.000000" ccn="6" crap="42.000000" npath="3" parameters="0" />
+      </class>
+    </file>
+    <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Data/BuildTarget.php" classes="1" functions="0" loc="224" cloc="115" ncloc="109" locExecutable="65" locExecuted="59" coverage="90.769231">
+      <class name="phpucBuildTarget" loc="156" locExecutable="65" locExecuted="59" aif="0.000000" ahf="100.000000" ca="1" ce="1" csz="6" cis="5" coverage="90.769231" dit="0" i="0.500000" impl="0" mif="0.000000" mhf="0.000000" noc="0" pf="0.000000" vars="1" varsnp="0" varsi="1" wmc="18" wmcnp="18" wmci="18">
+        <method name="__construct" loc="5" locExecutable="3" locExecuted="3" coverage="100.000000" ccn="1" crap="1.000000" npath="1" parameters="2" />
+        <method name="buildXml" loc="41" locExecutable="32" locExecuted="32" coverage="100.000000" ccn="6" crap="6.000000" npath="32" parameters="0" />
+        <method name="__isset" loc="4" locExecutable="1" locExecuted="1" coverage="100.000000" ccn="1" crap="1.000000" npath="1" parameters="1" />
+        <method name="__get" loc="10" locExecutable="6" locExecuted="3" coverage="50.000000" ccn="2" crap="8.500000" npath="2" parameters="1" />
+        <method name="__set" loc="29" locExecutable="21" locExecuted="18" coverage="85.714286" ccn="8" crap="512.186589" npath="3" parameters="2" />
+      </class>
+    </file>
+    <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Data/ConfigFile.php" classes="1" functions="0" loc="161" cloc="100" ncloc="61" locExecutable="32" locExecuted="32" coverage="100.000000">
+      <class name="phpucConfigFile" loc="103" locExecutable="32" locExecuted="32" aif="0.000000" ahf="100.000000" ca="4" ce="2" csz="6" cis="4" coverage="100.000000" dit="2" i="0.333333" impl="0" mif="92.857143" mhf="0.000000" noc="0" pf="3.703704" vars="2" varsnp="0" varsi="2" wmc="8" wmcnp="8" wmci="60">
+        <method name="__construct" loc="18" locExecutable="11" locExecuted="11" coverage="100.000000" ccn="2" crap="2.000000" npath="2" parameters="1" />
+        <method name="createProject" loc="8" locExecutable="3" locExecuted="3" coverage="100.000000" ccn="1" crap="1.000000" npath="1" parameters="1" />
+        <method name="getProject" loc="17" locExecutable="11" locExecuted="11" coverage="100.000000" ccn="3" crap="3.000000" npath="3" parameters="1" />
+        <method name="save" loc="8" locExecutable="5" locExecuted="5" coverage="100.000000" ccn="2" crap="2.000000" npath="2" parameters="0" />
+      </class>
+    </file>
+    <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Exceptions/ErrorException.php" classes="1" functions="0" loc="62" cloc="57" ncloc="5" locExecutable="2" locExecuted="2" coverage="100.000000">
+      <class name="phpucErrorException" loc="3" locExecutable="2" locExecuted="2" aif="100.000000" ahf="100.000000" ca="3" ce="0" csz="0" cis="0" coverage="100.000000" dit="2" i="0.000000" impl="0" mif="100.000000" mhf="10.000000" noc="0" pf="0.000000" vars="0" varsnp="0" varsi="5" wmc="0" wmcnp="0" wmci="10" />
+    </file>
+    <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Data/ConfigProject.php" classes="1" functions="0" loc="315" cloc="168" ncloc="147" locExecutable="73" locExecuted="53" coverage="72.602740">
+      <class name="phpucConfigProject" loc="251" locExecutable="73" locExecuted="53" aif="0.000000" ahf="100.000000" ca="2" ce="3" csz="15" cis="7" coverage="72.602740" dit="0" i="0.600000" impl="0" mif="0.000000" mhf="30.000000" noc="0" pf="0.000000" vars="5" varsnp="0" varsi="5" wmc="18" wmcnp="13" wmci="18">
+        <method name="__construct" loc="8" locExecutable="5" locExecuted="5" coverage="100.000000" ccn="1" crap="1.000000" npath="1" parameters="2" />
+        <method name="__isset" loc="4" locExecutable="1" locExecuted="0" coverage="0.000000" ccn="1" crap="2.000000" npath="1" parameters="1" />
+        <method name="__get" loc="10" locExecutable="6" locExecuted="3" coverage="50.000000" ccn="2" crap="8.500000" npath="2" parameters="1" />
+        <method name="__set" loc="25" locExecutable="17" locExecuted="9" coverage="52.941176" ccn="5" crap="127.605333" npath="3" parameters="2" />
+        <method name="isNew" loc="4" locExecutable="1" locExecuted="1" coverage="100.000000" ccn="1" crap="1.000000" npath="1" parameters="0" />
+        <method name="createArtifactsPublisher" loc="8" locExecutable="3" locExecuted="0" coverage="0.000000" ccn="1" crap="2.000000" npath="1" parameters="0" />
+        <method name="buildXml" loc="10" locExecutable="6" locExecuted="4" coverage="66.666667" ccn="2" crap="8.148148" npath="2" parameters="0" />
+        <method name="loadProject" loc="22" locExecutable="15" locExecuted="12" coverage="80.000000" ccn="3" crap="27.072000" npath="4" parameters="0" />
+        <method name="newProjectFromTemplate" loc="13" locExecutable="8" locExecuted="8" coverage="100.000000" ccn="1" crap="1.000000" npath="1" parameters="0" />
+        <method name="init" loc="15" locExecutable="9" locExecuted="9" coverage="100.000000" ccn="1" crap="1.000000" npath="1" parameters="0" />
+      </class>
+    </file>
+    <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Tasks/CruiseControlTask.php" classes="1" functions="0" loc="179" cloc="101" ncloc="78" locExecutable="48" locExecuted="46" coverage="95.833333">
+      <class name="phpucCruiseControlTask" loc="118" locExecutable="48" locExecuted="46" aif="66.666667" ahf="100.000000" ca="1" ce="4" csz="5" cis="2" coverage="95.833333" dit="1" i="0.800000" impl="1" mif="50.000000" mhf="25.000000" noc="0" pf="20.000000" vars="1" varsnp="0" varsi="3" wmc="9" wmcnp="4" wmci="14">
+        <method name="validate" loc="7" locExecutable="4" locExecuted="4" coverage="100.000000" ccn="1" crap="1.000000" npath="1" parameters="0" />
+        <method name="execute" loc="29" locExecutable="19" locExecuted="17" coverage="89.473684" ccn="3" crap="27.010497" npath="3" parameters="0" />
+        <method name="validateCCInstallDir" loc="15" locExecutable="8" locExecuted="8" coverage="100.000000" ccn="2" crap="2.000000" npath="2" parameters="1" />
+        <method name="validateCCSubDirs" loc="24" locExecutable="15" locExecuted="15" coverage="100.000000" ccn="3" crap="3.000000" npath="3" parameters="1" />
+      </class>
+    </file>
+    <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Util/ConsoleArgs.php" classes="1" functions="0" loc="657" cloc="195" ncloc="462" locExecutable="212" locExecuted="168" coverage="79.245283">
+      <class name="phpucConsoleArgs" loc="595" locExecutable="212" locExecuted="168" aif="0.000000" ahf="100.000000" ca="15" ce="1" csz="19" cis="7" coverage="79.245283" dit="0" i="0.062500" impl="0" mif="0.000000" mhf="56.250000" noc="0" pf="0.000000" vars="3" varsnp="0" varsi="3" wmc="51" wmcnp="16" wmci="51">
+        <method name="__construct" loc="24" locExecutable="12" locExecuted="10" coverage="83.333333" ccn="4" crap="64.074074" npath="4" parameters="0" />
+        <method name="hasArgument" loc="4" locExecutable="1" locExecuted="1" coverage="100.000000" ccn="1" crap="1.000000" npath="1" parameters="1" />
+        <method name="getArgument" loc="10" locExecutable="6" locExecuted="6" coverage="100.000000" ccn="2" crap="2.000000" npath="2" parameters="1" />
+        <method name="hasOption" loc="4" locExecutable="1" locExecuted="1" coverage="100.000000" ccn="1" crap="1.000000" npath="1" parameters="1" />
+        <method name="getOption" loc="10" locExecutable="6" locExecuted="6" coverage="100.000000" ccn="2" crap="2.000000" npath="2" parameters="1" />
+        <method name="parse" loc="27" locExecutable="16" locExecuted="14" coverage="87.500000" ccn="4" crap="64.031250" npath="8" parameters="0" />
+        <method name="__get" loc="10" locExecutable="6" locExecuted="3" coverage="50.000000" ccn="2" crap="8.500000" npath="2" parameters="1" />
+        <method name="hasHelpOption" loc="4" locExecutable="1" locExecuted="1" coverage="100.000000" ccn="2" crap="2.000000" npath="1" parameters="0" />
+        <method name="hasUsageOption" loc="4" locExecutable="1" locExecuted="1" coverage="100.000000" ccn="2" crap="2.000000" npath="1" parameters="0" />
+        <method name="parseCommand" loc="12" locExecutable="6" locExecuted="6" coverage="100.000000" ccn="2" crap="2.000000" npath="2" parameters="0" />
+        <method name="parseOptions" loc="92" locExecutable="67" locExecuted="40" coverage="59.701493" ccn="14" crap="2756.826937" npath="321" parameters="0" />
+        <method name="parseArguments" loc="20" locExecutable="14" locExecuted="13" coverage="92.857143" ccn="4" crap="64.005831" npath="4" parameters="0" />
+        <method name="printHelp" loc="33" locExecutable="20" locExecuted="19" coverage="95.000000" ccn="3" crap="3.000000" npath="3" parameters="0" />
+        <method name="printModeHelp" loc="46" locExecutable="33" locExecuted="25" coverage="75.757576" ccn="5" crap="125.356179" npath="12" parameters="1" />
+        <method name="tokenizeHelp" loc="5" locExecutable="2" locExecuted="2" coverage="100.000000" ccn="1" crap="1.000000" npath="1" parameters="1" />
+        <method name="printUsage" loc="25" locExecutable="18" locExecuted="18" coverage="100.000000" ccn="2" crap="2.000000" npath="2" parameters="0" />
+      </class>
+    </file>
+    <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Exceptions/ValidateException.php" classes="1" functions="0" loc="62" cloc="56" ncloc="6" locExecutable="2" locExecuted="2" coverage="100.000000">
+      <class name="phpucValidateException" loc="4" locExecutable="2" locExecuted="2" aif="100.000000" ahf="100.000000" ca="7" ce="0" csz="0" cis="0" coverage="100.000000" dit="2" i="0.000000" impl="0" mif="100.000000" mhf="11.111111" noc="0" pf="0.000000" vars="0" varsnp="0" varsi="4" wmc="0" wmcnp="0" wmci="9" />
+    </file>
+    <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Tasks/AbstractTask.php" classes="1" functions="0" loc="144" cloc="105" ncloc="39" locExecutable="15" locExecuted="7" coverage="46.666667">
+      <class name="phpucAbstractTask" loc="86" locExecutable="15" locExecuted="7" aif="0.000000" ahf="100.000000" ca="6" ce="2" csz="7" cis="5" coverage="46.666667" dit="0" i="0.250000" impl="1" mif="16.666667" mhf="0.000000" noc="6" pf="0.000000" vars="2" varsnp="0" varsi="2" wmc="6" wmcnp="6" wmci="7">
+        <method name="__construct" loc="4" locExecutable="2" locExecuted="2" coverage="100.000000" ccn="1" crap="1.000000" npath="1" parameters="1" />
+        <method name="validate" loc="4" locExecutable="1" locExecuted="0" coverage="0.000000" ccn="1" crap="2.000000" npath="1" parameters="0" />
+        <method name="__isset" loc="4" locExecutable="1" locExecuted="0" coverage="0.000000" ccn="1" crap="2.000000" npath="1" parameters="1" />
+        <method name="__get" loc="10" locExecutable="6" locExecuted="3" coverage="50.000000" ccn="2" crap="8.500000" npath="2" parameters="1" />
+        <method name="__set" loc="6" locExecutable="3" locExecuted="0" coverage="0.000000" ccn="1" crap="2.000000" npath="1" parameters="2" />
+      </class>
+    </file>
+    <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Tasks/TaskI.php" classes="1" functions="0" loc="106" cloc="92" ncloc="14" locExecutable="2" locExecuted="2" coverage="100.000000">
+      <class name="phpucTaskI" loc="48" locExecutable="2" locExecuted="2" aif="0.000000" ahf="0.000000" ca="10" ce="0" csz="5" cis="5" coverage="100.000000" dit="0" i="0.000000" impl="0" mif="0.000000" mhf="0.000000" noc="0" pf="0.000000" vars="0" varsnp="0" varsi="0" wmc="5" wmcnp="5" wmci="5">
+        <method name="validate" loc="1" locExecutable="0" locExecuted="0" coverage="0.000000" ccn="1" crap="2.000000" npath="1" parameters="0" />
+        <method name="execute" loc="1" locExecutable="0" locExecuted="0" coverage="0.000000" ccn="1" crap="2.000000" npath="1" parameters="0" />
+        <method name="__isset" loc="1" locExecutable="0" locExecuted="0" coverage="0.000000" ccn="1" crap="2.000000" npath="1" parameters="1" />
+        <method name="__get" loc="1" locExecutable="0" locExecuted="0" coverage="0.000000" ccn="1" crap="2.000000" npath="1" parameters="1" />
+        <method name="__set" loc="1" locExecutable="0" locExecuted="0" coverage="0.000000" ccn="1" crap="2.000000" npath="1" parameters="2" />
+      </class>
+    </file>
+    <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Tasks/PhpCodeSnifferTask.php" classes="1" functions="0" loc="162" cloc="76" ncloc="86" locExecutable="53" locExecuted="49" coverage="92.452830">
+      <class name="phpucPhpCodeSnifferTask" loc="104" locExecutable="53" locExecuted="49" aif="100.000000" ahf="100.000000" ca="1" ce="5" csz="3" cis="2" coverage="92.452830" dit="2" i="0.833333" impl="1" mif="57.142857" mhf="14.285714" noc="0" pf="40.000000" vars="0" varsnp="0" varsi="2" wmc="6" wmcnp="2" wmci="23">
+        <method name="__construct" loc="4" locExecutable="2" locExecuted="2" coverage="100.000000" ccn="1" crap="1.000000" npath="1" parameters="1" />
+        <method name="execute" loc="33" locExecutable="23" locExecuted="23" coverage="100.000000" ccn="1" crap="1.000000" npath="1" parameters="0" />
+        <method name="doValidate" loc="42" locExecutable="26" locExecuted="22" coverage="84.615385" ccn="4" crap="64.058261" npath="8" parameters="0" />
+      </class>
+    </file>
+    <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Tasks/AbstractPearTask.php" classes="1" functions="0" loc="201" cloc="92" ncloc="109" locExecutable="76" locExecuted="49" coverage="64.473684">
+      <class name="phpucAbstractPearTask" loc="139" locExecutable="76" locExecuted="49" aif="100.000000" ahf="100.000000" ca="3" ce="4" csz="4" cis="3" coverage="64.473684" dit="1" i="0.571429" impl="1" mif="42.857143" mhf="14.285714" noc="3" pf="60.000000" vars="0" varsnp="0" varsi="2" wmc="17" wmcnp="16" wmci="21">
+        <method name="__construct" loc="17" locExecutable="12" locExecuted="12" coverage="100.000000" ccn="2" crap="2.000000" npath="2" parameters="2" />
+        <method name="validate" loc="56" locExecutable="43" locExecuted="24" coverage="55.813953" ccn="10" crap="1008.626913" npath="108" parameters="0" />
+        <method name="__set" loc="28" locExecutable="18" locExecuted="11" coverage="61.111111" ccn="4" crap="64.941015" npath="3" parameters="2" />
+        <method name="doValidate" loc="4" locExecutable="1" locExecuted="0" coverage="0.000000" ccn="1" crap="2.000000" npath="1" parameters="0" />
+      </class>
+    </file>
+    <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Tasks/ProjectTask.php" classes="1" functions="0" loc="153" cloc="71" ncloc="82" locExecutable="55" locExecuted="55" coverage="100.000000">
+      <class name="phpucProjectTask" loc="95" locExecutable="55" locExecuted="55" aif="100.000000" ahf="100.000000" ca="1" ce="7" csz="2" cis="2" coverage="100.000000" dit="1" i="0.875000" impl="1" mif="66.666667" mhf="0.000000" noc="0" pf="20.000000" vars="0" varsnp="0" varsi="2" wmc="5" wmcnp="5" wmci="10">
+        <method name="validate" loc="16" locExecutable="10" locExecuted="10" coverage="100.000000" ccn="3" crap="3.000000" npath="4" parameters="0" />
+        <method name="execute" loc="60" locExecutable="43" locExecuted="43" coverage="100.000000" ccn="2" crap="2.000000" npath="2" parameters="0" />
+      </class>
+    </file>
+    <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Exceptions/ExecuteException.php" classes="1" functions="0" loc="62" cloc="56" ncloc="6" locExecutable="2" locExecuted="2" coverage="100.000000">
+      <class name="phpucExecuteException" loc="4" locExecutable="2" locExecuted="2" aif="100.000000" ahf="100.000000" ca="1" ce="0" csz="0" cis="0" coverage="100.000000" dit="2" i="0.000000" impl="0" mif="100.000000" mhf="11.111111" noc="0" pf="0.000000" vars="0" varsnp="0" varsi="4" wmc="0" wmcnp="0" wmci="9" />
+    </file>
+    <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Exceptions/ConsoleException.php" classes="1" functions="0" loc="62" cloc="56" ncloc="6" locExecutable="2" locExecuted="2" coverage="100.000000">
+      <class name="phpucConsoleException" loc="4" locExecutable="2" locExecuted="2" aif="100.000000" ahf="100.000000" ca="1" ce="0" csz="0" cis="0" coverage="100.000000" dit="2" i="0.000000" impl="0" mif="100.000000" mhf="11.111111" noc="0" pf="0.000000" vars="0" varsnp="0" varsi="4" wmc="0" wmcnp="0" wmci="9" />
+    </file>
+    <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Util/FileUtil.php" classes="1" functions="0" loc="263" cloc="151" ncloc="112" locExecutable="58" locExecuted="54" coverage="93.103448">
+      <class name="phpucFileUtil" loc="205" locExecutable="58" locExecuted="54" aif="0.000000" ahf="100.000000" ca="0" ce="1" csz="11" cis="5" coverage="93.103448" dit="0" i="1.000000" impl="0" mif="0.000000" mhf="28.571429" noc="0" pf="0.000000" vars="4" varsnp="0" varsi="4" wmc="18" wmcnp="10" wmci="18">
+        <method name="getOS" loc="15" locExecutable="9" locExecuted="8" coverage="88.888889" ccn="3" crap="27.012346" npath="3" parameters="0" />
+        <method name="setOS" loc="10" locExecutable="7" locExecuted="4" coverage="57.142857" ccn="2" crap="8.314869" npath="2" parameters="1" />
+        <method name="getPaths" loc="10" locExecutable="7" locExecuted="7" coverage="100.000000" ccn="2" crap="2.000000" npath="2" parameters="0" />
+        <method name="setPaths" loc="4" locExecutable="2" locExecuted="2" coverage="100.000000" ccn="1" crap="1.000000" npath="1" parameters="1" />
+        <method name="findExecutable" loc="13" locExecutable="7" locExecuted="7" coverage="100.000000" ccn="2" crap="2.000000" npath="2" parameters="1" />
+        <method name="findUnixExecutable" loc="17" locExecutable="11" locExecuted="11" coverage="100.000000" ccn="4" crap="4.000000" npath="4" parameters="1" />
+        <method name="findWindowsExecutable" loc="20" locExecutable="13" locExecuted="13" coverage="100.000000" ccn="4" crap="4.000000" npath="6" parameters="1" />
+      </class>
+    </file>
+    <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Graph/Input/AbstractInput.php" classes="1" functions="0" loc="90" cloc="75" ncloc="15" locExecutable="4" locExecuted="0" coverage="0.000000">
+      <class name="phpucAbstractInput" loc="30" locExecutable="4" locExecuted="0" aif="0.000000" ahf="100.000000" ca="0" ce="1" csz="2" cis="0" coverage="0.000000" dit="0" i="1.000000" impl="0" mif="0.000000" mhf="100.000000" noc="0" pf="0.000000" vars="1" varsnp="0" varsi="1" wmc="1" wmcnp="0" wmci="1">
+        <method name="addRule" loc="4" locExecutable="2" locExecuted="0" coverage="0.000000" ccn="1" crap="2.000000" npath="1" parameters="1" />
+      </class>
+    </file>
+    <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Graph/Input/InputRule.php" classes="1" functions="0" loc="118" cloc="91" ncloc="27" locExecutable="9" locExecuted="0" coverage="0.000000">
+      <class name="phpucInputRule" loc="58" locExecutable="9" locExecuted="0" aif="0.000000" ahf="25.000000" ca="1" ce="0" csz="5" cis="4" coverage="0.000000" dit="0" i="0.000000" impl="0" mif="0.000000" mhf="0.000000" noc="0" pf="0.000000" vars="4" varsnp="3" varsi="4" wmc="2" wmcnp="2" wmci="2">
+        <method name="__construct" loc="11" locExecutable="7" locExecuted="0" coverage="0.000000" ccn="2" crap="6.000000" npath="2" parameters="3" />
+      </class>
+    </file>
+    <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Graph/Input/UnitCoverageInput.php" classes="1" functions="0" loc="66" cloc="58" ncloc="8" locExecutable="2" locExecuted="0" coverage="0.000000">
+      <class name="phpucUnitCoverageInput" loc="6" locExecutable="2" locExecuted="0" aif="0.000000" ahf="0.000000" ca="0" ce="0" csz="0" cis="0" coverage="0.000000" dit="0" i="0.000000" impl="0" mif="0.000000" mhf="0.000000" noc="0" pf="0.000000" vars="0" varsnp="0" varsi="0" wmc="0" wmcnp="0" wmci="0" />
+    </file>
+    <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Graph/LineChart.php" classes="1" functions="0" loc="107" cloc="56" ncloc="51" locExecutable="30" locExecuted="0" coverage="0.000000">
+      <class name="phpucLineChart" loc="49" locExecutable="30" locExecuted="0" aif="100.000000" ahf="100.000000" ca="0" ce="6" csz="5" cis="1" coverage="0.000000" dit="2" i="1.000000" impl="0" mif="70.588235" mhf="52.941176" noc="0" pf="7.692308" vars="0" varsnp="0" varsi="6" wmc="5" wmcnp="1" wmci="66">
+        <method name="__construct" loc="4" locExecutable="2" locExecuted="0" coverage="0.000000" ccn="1" crap="2.000000" npath="1" parameters="0" />
+        <method name="init" loc="14" locExecutable="9" locExecuted="0" coverage="0.000000" ccn="1" crap="2.000000" npath="1" parameters="0" />
+        <method name="initTitle" loc="8" locExecutable="6" locExecuted="0" coverage="0.000000" ccn="1" crap="2.000000" npath="1" parameters="0" />
+        <method name="initLegend" loc="8" locExecutable="6" locExecuted="0" coverage="0.000000" ccn="1" crap="2.000000" npath="1" parameters="0" />
+        <method name="initAxis" loc="8" locExecutable="5" locExecuted="0" coverage="0.000000" ccn="1" crap="2.000000" npath="1" parameters="0" />
+      </class>
+    </file>
+    <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Graph/GraphPalette.php" classes="1" functions="0" loc="115" cloc="92" ncloc="23" locExecutable="2" locExecuted="0" coverage="0.000000">
+      <class name="phpucGraphPalette" loc="57" locExecutable="2" locExecuted="0" aif="94.444444" ahf="100.000000" ca="1" ce="1" csz="1" cis="0" coverage="0.000000" dit="2" i="0.500000" impl="0" mif="100.000000" mhf="25.000000" noc="0" pf="0.000000" vars="1" varsnp="0" varsi="18" wmc="0" wmcnp="0" wmci="41" />
+    </file>
+    <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Tasks/ExampleTask.php" classes="1" functions="0" loc="141" cloc="71" ncloc="70" locExecutable="46" locExecuted="0" coverage="0.000000">
+      <class name="phpucExampleTask" loc="80" locExecutable="46" locExecuted="0" aif="66.666667" ahf="100.000000" ca="1" ce="3" csz="2" cis="1" coverage="0.000000" dit="1" i="0.750000" impl="1" mif="83.333333" mhf="0.000000" noc="0" pf="0.000000" vars="1" varsnp="0" varsi="3" wmc="1" wmcnp="1" wmci="7">
+        <method name="execute" loc="60" locExecutable="44" locExecuted="0" coverage="0.000000" ccn="1" crap="2.000000" npath="1" parameters="0" />
+      </class>
+    </file>
+    <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Tasks/PhpUnitTask.php" classes="1" functions="0" loc="204" cloc="84" ncloc="120" locExecutable="84" locExecuted="0" coverage="0.000000">
+      <class name="phpucPhpUnitTask" loc="143" locExecutable="84" locExecuted="0" aif="100.000000" ahf="100.000000" ca="1" ce="6" csz="3" cis="2" coverage="0.000000" dit="2" i="0.857143" impl="1" mif="57.142857" mhf="14.285714" noc="0" pf="40.000000" vars="0" varsnp="0" varsi="2" wmc="8" wmcnp="4" wmci="25">
+        <method name="__construct" loc="7" locExecutable="4" locExecuted="0" coverage="0.000000" ccn="1" crap="2.000000" npath="1" parameters="1" />
+        <method name="execute" loc="60" locExecutable="46" locExecuted="0" coverage="0.000000" ccn="3" crap="12.000000" npath="4" parameters="0" />
+        <method name="doValidate" loc="50" locExecutable="33" locExecuted="0" coverage="0.000000" ccn="4" crap="20.000000" npath="8" parameters="0" />
+      </class>
+    </file>
+    <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Tasks/CreateFileTask.php" classes="1" functions="0" loc="115" cloc="75" ncloc="40" locExecutable="22" locExecuted="0" coverage="0.000000">
+      <class name="phpucCreateFileTask" loc="57" locExecutable="22" locExecuted="0" aif="66.666667" ahf="100.000000" ca="1" ce="3" csz="3" cis="2" coverage="0.000000" dit="1" i="0.750000" impl="1" mif="66.666667" mhf="0.000000" noc="0" pf="20.000000" vars="1" varsnp="0" varsi="3" wmc="3" wmcnp="3" wmci="8">
+        <method name="__construct" loc="6" locExecutable="3" locExecuted="0" coverage="0.000000" ccn="1" crap="2.000000" npath="1" parameters="2" />
+        <method name="execute" loc="26" locExecutable="17" locExecuted="0" coverage="0.000000" ccn="2" crap="6.000000" npath="2" parameters="0" />
+      </class>
+    </file>
+    <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Tasks/PhpDocumentorTask.php" classes="1" functions="0" loc="121" cloc="67" ncloc="54" locExecutable="35" locExecuted="0" coverage="0.000000">
+      <class name="phpucPhpDocumentorTask" loc="63" locExecutable="35" locExecuted="0" aif="100.000000" ahf="100.000000" ca="1" ce="6" csz="2" cis="2" coverage="0.000000" dit="2" i="0.857143" impl="1" mif="71.428571" mhf="14.285714" noc="0" pf="20.000000" vars="0" varsnp="0" varsi="2" wmc="2" wmcnp="2" wmci="20">
+        <method name="__construct" loc="4" locExecutable="2" locExecuted="0" coverage="0.000000" ccn="1" crap="2.000000" npath="1" parameters="1" />
+        <method name="execute" loc="44" locExecutable="31" locExecuted="0" coverage="0.000000" ccn="1" crap="2.000000" npath="1" parameters="0" />
+      </class>
+    </file>
+    <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Tasks/ModifyFileTask.php" classes="1" functions="0" loc="145" cloc="80" ncloc="65" locExecutable="39" locExecuted="0" coverage="0.000000">
+      <class name="phpucModifyFileTask" loc="87" locExecutable="39" locExecuted="0" aif="66.666667" ahf="100.000000" ca="1" ce="4" csz="4" cis="3" coverage="0.000000" dit="1" i="0.800000" impl="1" mif="50.000000" mhf="0.000000" noc="0" pf="40.000000" vars="1" varsnp="0" varsi="3" wmc="7" wmcnp="7" wmci="11">
+        <method name="__construct" loc="6" locExecutable="3" locExecuted="0" coverage="0.000000" ccn="1" crap="2.000000" npath="1" parameters="2" />
+        <method name="validate" loc="17" locExecutable="12" locExecuted="0" coverage="0.000000" ccn="3" crap="12.000000" npath="3" parameters="0" />
+        <method name="execute" loc="33" locExecutable="22" locExecuted="0" coverage="0.000000" ccn="3" crap="12.000000" npath="4" parameters="0" />
+      </class>
+    </file>
+    <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Commands/AbstractCommand.php" classes="1" functions="0" loc="155" cloc="102" ncloc="53" locExecutable="24" locExecuted="0" coverage="0.000000">
+      <class name="phpucAbstractCommand" loc="97" locExecutable="24" locExecuted="0" aif="0.000000" ahf="100.000000" ca="3" ce="1" csz="8" cis="4" coverage="0.000000" dit="0" i="0.250000" impl="0" mif="0.000000" mhf="33.333333" noc="3" pf="0.000000" vars="2" varsnp="0" varsi="2" wmc="10" wmcnp="8" wmci="10">
+        <method name="createCommand" loc="14" locExecutable="7" locExecuted="0" coverage="0.000000" ccn="2" crap="6.000000" npath="2" parameters="1" />
+        <method name="__construct" loc="4" locExecutable="2" locExecuted="0" coverage="0.000000" ccn="1" crap="2.000000" npath="1" parameters="1" />
+        <method name="validate" loc="7" locExecutable="4" locExecuted="0" coverage="0.000000" ccn="2" crap="6.000000" npath="2" parameters="0" />
+        <method name="execute" loc="7" locExecutable="4" locExecuted="0" coverage="0.000000" ccn="2" crap="6.000000" npath="2" parameters="0" />
+        <method name="createTasks" loc="8" locExecutable="5" locExecuted="0" coverage="0.000000" ccn="2" crap="6.000000" npath="2" parameters="0" />
+        <method name="doCreateTasks" loc="1" locExecutable="0" locExecuted="0" coverage="0.000000" ccn="1" crap="2.000000" npath="1" parameters="0" />
+      </class>
+    </file>
+    <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Commands/ExampleCommand.php" classes="1" functions="0" loc="99" cloc="67" ncloc="32" locExecutable="18" locExecuted="0" coverage="0.000000">
+      <class name="phpucExampleCommand" loc="41" locExecutable="18" locExecuted="0" aif="66.666667" ahf="100.000000" ca="0" ce="7" csz="2" cis="0" coverage="0.000000" dit="1" i="1.000000" impl="0" mif="83.333333" mhf="33.333333" noc="0" pf="0.000000" vars="1" varsnp="0" varsi="3" wmc="4" wmcnp="0" wmci="13">
+        <method name="doCreateTasks" loc="22" locExecutable="16" locExecuted="0" coverage="0.000000" ccn="4" crap="20.000000" npath="8" parameters="0" />
+      </class>
+    </file>
+    <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Commands/InstallCommand.php" classes="1" functions="0" loc="128" cloc="73" ncloc="55" locExecutable="7" locExecuted="0" coverage="0.000000">
+      <class name="phpucInstallCommand" loc="70" locExecutable="7" locExecuted="0" aif="50.000000" ahf="100.000000" ca="0" ce="5" csz="3" cis="0" coverage="0.000000" dit="1" i="1.000000" impl="0" mif="83.333333" mhf="33.333333" noc="0" pf="0.000000" vars="2" varsnp="0" varsi="4" wmc="1" wmcnp="0" wmci="10">
+        <method name="doCreateTasks" loc="10" locExecutable="5" locExecuted="0" coverage="0.000000" ccn="1" crap="2.000000" npath="1" parameters="0" />
+      </class>
+    </file>
+    <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Commands/ProjectCommand.php" classes="1" functions="0" loc="71" cloc="61" ncloc="10" locExecutable="3" locExecuted="0" coverage="0.000000">
+      <class name="phpucProjectCommand" loc="13" locExecutable="3" locExecuted="0" aif="100.000000" ahf="100.000000" ca="0" ce="2" csz="1" cis="0" coverage="0.000000" dit="1" i="1.000000" impl="0" mif="83.333333" mhf="33.333333" noc="0" pf="0.000000" vars="0" varsnp="0" varsi="2" wmc="1" wmcnp="0" wmci="10">
+        <method name="doCreateTasks" loc="4" locExecutable="1" locExecuted="0" coverage="0.000000" ccn="1" crap="2.000000" npath="1" parameters="0" />
+      </class>
+    </file>
+    <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Data/LogFile.php" classes="1" functions="0" loc="147" cloc="96" ncloc="51" locExecutable="25" locExecuted="0" coverage="0.000000">
+      <class name="phpucLogFile" loc="86" locExecutable="25" locExecuted="0" aif="0.000000" ahf="100.000000" ca="0" ce="0" csz="4" cis="3" coverage="0.000000" dit="0" i="0.000000" impl="0" mif="0.000000" mhf="0.000000" noc="0" pf="0.000000" vars="1" varsnp="0" varsi="1" wmc="7" wmcnp="7" wmci="7">
+        <method name="__isset" loc="4" locExecutable="1" locExecuted="0" coverage="0.000000" ccn="1" crap="2.000000" npath="1" parameters="1" />
+        <method name="__get" loc="10" locExecutable="6" locExecuted="0" coverage="0.000000" ccn="2" crap="6.000000" npath="2" parameters="1" />
+        <method name="__set" loc="25" locExecutable="16" locExecuted="0" coverage="0.000000" ccn="4" crap="20.000000" npath="3" parameters="2" />
+      </class>
+    </file>
+    <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Data/ConfigArtifactsPublisher.php" classes="1" functions="0" loc="191" cloc="105" ncloc="86" locExecutable="43" locExecuted="0" coverage="0.000000">
+      <class name="phpucConfigArtifactsPublisher" loc="133" locExecutable="43" locExecuted="0" aif="0.000000" ahf="100.000000" ca="1" ce="1" csz="6" cis="5" coverage="0.000000" dit="0" i="0.500000" impl="0" mif="0.000000" mhf="0.000000" noc="0" pf="0.000000" vars="1" varsnp="0" varsi="1" wmc="14" wmcnp="14" wmci="14">
+        <method name="__construct" loc="12" locExecutable="8" locExecuted="0" coverage="0.000000" ccn="1" crap="2.000000" npath="1" parameters="1" />
+        <method name="__isset" loc="4" locExecutable="1" locExecuted="0" coverage="0.000000" ccn="1" crap="2.000000" npath="1" parameters="1" />
+        <method name="__get" loc="10" locExecutable="6" locExecuted="0" coverage="0.000000" ccn="2" crap="6.000000" npath="2" parameters="1" />
+        <method name="__set" loc="18" locExecutable="11" locExecuted="0" coverage="0.000000" ccn="5" crap="30.000000" npath="2" parameters="2" />
+        <method name="buildXml" loc="24" locExecutable="15" locExecuted="0" coverage="0.000000" ccn="5" crap="30.000000" npath="8" parameters="0" />
+      </class>
+    </file>
+  </metrics>
+  <pmd-cpd version="PHPUnit 3.2.8" />
+  <pmd version="PHPUnit 3.2.8">
+    <violation rule="CRAP" priority="1" package="global">More than 5.00% of the project's methods have a Change Risk Analysis and Predictions (CRAP) index that is above the threshold of 30.
+The CRAP index of a function or method uses cyclomatic complexity and code coverage from automated tests to help estimate the effort and risk associated with maintaining legacy code. A CRAP index over 30 is a good indicator of crappy code.</violation>
+    <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Data/BuildFile.php">
+      <violation rule="CodeCoverage" priority="1" line="134" to-line="143" package="Data" class="phpucBuildFile" method="__get">The code coverage is 50.00 which is considered medium.</violation>
+    </file>
+    <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Util/ConsoleOutput.php">
+      <violation rule="CodeCoverage" priority="1" line="86" to-line="89" package="Util" class="phpucConsoleOutput" method="set">The code coverage is 0.00 which is considered low.</violation>
+    </file>
+    <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/PhpUnderControl.php">
+      <violation rule="CodeCoverage" priority="1" line="141" to-line="147" package="Default" class="phpucPhpUnderControl" method="main">The code coverage is 0.00 which is considered low.</violation>
+      <violation rule="CodeCoverage" priority="1" line="168" to-line="171" package="Default" class="phpucPhpUnderControl" method="__construct">The code coverage is 0.00 which is considered low.</violation>
+      <violation rule="CRAP" priority="1" line="178" to-line="213" package="Default" class="phpucPhpUnderControl" method="run">The CRAP index is 42.
+The Change Risk Analysis and Predictions (CRAP) index of a function or method uses cyclomatic complexity and code coverage from automated tests to help estimate the effort and risk associated with maintaining legacy code. A CRAP index over 30 is a good indicator of crappy code.</violation>
+      <violation rule="CodeCoverage" priority="1" line="178" to-line="213" package="Default" class="phpucPhpUnderControl" method="run">The code coverage is 0.00 which is considered low.</violation>
+    </file>
+    <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Data/BuildTarget.php">
+      <violation rule="CodeCoverage" priority="1" line="171" to-line="180" package="Data" class="phpucBuildTarget" method="__get">The code coverage is 50.00 which is considered medium.</violation>
+      <violation rule="CRAP" priority="1" line="195" to-line="223" package="Data" class="phpucBuildTarget" method="__set">The CRAP index is 512.
+The Change Risk Analysis and Predictions (CRAP) index of a function or method uses cyclomatic complexity and code coverage from automated tests to help estimate the effort and risk associated with maintaining legacy code. A CRAP index over 30 is a good indicator of crappy code.</violation>
+    </file>
+    <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Data/ConfigProject.php">
+      <violation rule="CodeCoverage" priority="1" line="137" to-line="140" package="Data" class="phpucConfigProject" method="__isset">The code coverage is 0.00 which is considered low.</violation>
+      <violation rule="CodeCoverage" priority="1" line="152" to-line="161" package="Data" class="phpucConfigProject" method="__get">The code coverage is 50.00 which is considered medium.</violation>
+      <violation rule="CRAP" priority="1" line="176" to-line="200" package="Data" class="phpucConfigProject" method="__set">The CRAP index is 127.
+The Change Risk Analysis and Predictions (CRAP) index of a function or method uses cyclomatic complexity and code coverage from automated tests to help estimate the effort and risk associated with maintaining legacy code. A CRAP index over 30 is a good indicator of crappy code.</violation>
+      <violation rule="CodeCoverage" priority="1" line="176" to-line="200" package="Data" class="phpucConfigProject" method="__set">The code coverage is 52.94 which is considered medium.</violation>
+      <violation rule="CodeCoverage" priority="1" line="218" to-line="225" package="Data" class="phpucConfigProject" method="createArtifactsPublisher">The code coverage is 0.00 which is considered low.</violation>
+      <violation rule="CodeCoverage" priority="1" line="233" to-line="242" package="Data" class="phpucConfigProject" method="buildXml">The code coverage is 66.67 which is considered medium.</violation>
+    </file>
+    <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Util/ConsoleArgs.php">
+      <violation rule="CRAP" priority="1" line="218" to-line="241" package="Util" class="phpucConsoleArgs" method="__construct">The CRAP index is 64.
+The Change Risk Analysis and Predictions (CRAP) index of a function or method uses cyclomatic complexity and code coverage from automated tests to help estimate the effort and risk associated with maintaining legacy code. A CRAP index over 30 is a good indicator of crappy code.</violation>
+      <violation rule="CRAP" priority="1" line="310" to-line="336" package="Util" class="phpucConsoleArgs" method="parse">The CRAP index is 64.
+The Change Risk Analysis and Predictions (CRAP) index of a function or method uses cyclomatic complexity and code coverage from automated tests to help estimate the effort and risk associated with maintaining legacy code. A CRAP index over 30 is a good indicator of crappy code.</violation>
+      <violation rule="CodeCoverage" priority="1" line="347" to-line="356" package="Util" class="phpucConsoleArgs" method="__get">The code coverage is 50.00 which is considered medium.</violation>
+      <violation rule="NPathComplexity" priority="1" line="402" to-line="493" package="Util" class="phpucConsoleArgs" method="parseOptions">The NPath complexity is 321.
+The NPath complexity of a function or method is the number of acyclic execution paths through that method. A threshold of 200 is generally considered the point where measures should be taken to reduce complexity.</violation>
+      <violation rule="CRAP" priority="1" line="402" to-line="493" package="Util" class="phpucConsoleArgs" method="parseOptions">The CRAP index is 2756.
+The Change Risk Analysis and Predictions (CRAP) index of a function or method uses cyclomatic complexity and code coverage from automated tests to help estimate the effort and risk associated with maintaining legacy code. A CRAP index over 30 is a good indicator of crappy code.</violation>
+      <violation rule="CodeCoverage" priority="1" line="402" to-line="493" package="Util" class="phpucConsoleArgs" method="parseOptions">The code coverage is 59.70 which is considered medium.</violation>
+      <violation rule="CRAP" priority="1" line="500" to-line="519" package="Util" class="phpucConsoleArgs" method="parseArguments">The CRAP index is 64.
+The Change Risk Analysis and Predictions (CRAP) index of a function or method uses cyclomatic complexity and code coverage from automated tests to help estimate the effort and risk associated with maintaining legacy code. A CRAP index over 30 is a good indicator of crappy code.</violation>
+      <violation rule="CRAP" priority="1" line="567" to-line="612" package="Util" class="phpucConsoleArgs" method="printModeHelp">The CRAP index is 125.
+The Change Risk Analysis and Predictions (CRAP) index of a function or method uses cyclomatic complexity and code coverage from automated tests to help estimate the effort and risk associated with maintaining legacy code. A CRAP index over 30 is a good indicator of crappy code.</violation>
+    </file>
+    <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Tasks/AbstractTask.php">
+      <violation rule="CodeCoverage" priority="1" line="93" to-line="96" package="Tasks" class="phpucAbstractTask" method="validate">The code coverage is 0.00 which is considered low.</violation>
+      <violation rule="CodeCoverage" priority="1" line="105" to-line="108" package="Tasks" class="phpucAbstractTask" method="__isset">The code coverage is 0.00 which is considered low.</violation>
+      <violation rule="CodeCoverage" priority="1" line="118" to-line="127" package="Tasks" class="phpucAbstractTask" method="__get">The code coverage is 50.00 which is considered medium.</violation>
+      <violation rule="CodeCoverage" priority="1" line="138" to-line="143" package="Tasks" class="phpucAbstractTask" method="__set">The code coverage is 0.00 which is considered low.</violation>
+    </file>
+    <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Tasks/PhpCodeSnifferTask.php">
+      <violation rule="CRAP" priority="1" line="120" to-line="161" package="Tasks" class="phpucPhpCodeSnifferTask" method="doValidate">The CRAP index is 64.
+The Change Risk Analysis and Predictions (CRAP) index of a function or method uses cyclomatic complexity and code coverage from automated tests to help estimate the effort and risk associated with maintaining legacy code. A CRAP index over 30 is a good indicator of crappy code.</violation>
+    </file>
+    <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Tasks/AbstractPearTask.php">
+      <violation rule="CRAP" priority="1" line="97" to-line="152" package="Tasks" class="phpucAbstractPearTask" method="validate">The CRAP index is 1008.
+The Change Risk Analysis and Predictions (CRAP) index of a function or method uses cyclomatic complexity and code coverage from automated tests to help estimate the effort and risk associated with maintaining legacy code. A CRAP index over 30 is a good indicator of crappy code.</violation>
+      <violation rule="CodeCoverage" priority="1" line="97" to-line="152" package="Tasks" class="phpucAbstractPearTask" method="validate">The code coverage is 55.81 which is considered medium.</violation>
+      <violation rule="CRAP" priority="1" line="163" to-line="190" package="Tasks" class="phpucAbstractPearTask" method="__set">The CRAP index is 64.
+The Change Risk Analysis and Predictions (CRAP) index of a function or method uses cyclomatic complexity and code coverage from automated tests to help estimate the effort and risk associated with maintaining legacy code. A CRAP index over 30 is a good indicator of crappy code.</violation>
+      <violation rule="CodeCoverage" priority="1" line="163" to-line="190" package="Tasks" class="phpucAbstractPearTask" method="__set">The code coverage is 61.11 which is considered medium.</violation>
+      <violation rule="CodeCoverage" priority="1" line="197" to-line="200" package="Tasks" class="phpucAbstractPearTask" method="doValidate">The code coverage is 0.00 which is considered low.</violation>
+    </file>
+    <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Util/FileUtil.php">
+      <violation rule="CodeCoverage" priority="1" line="136" to-line="145" package="Util" class="phpucFileUtil" method="setOS">The code coverage is 57.14 which is considered medium.</violation>
+    </file>
+    <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Graph/Input/AbstractInput.php">
+      <violation rule="CodeCoverage" priority="1" line="86" to-line="89" package="Graph.Input" class="phpucAbstractInput" method="addRule">The code coverage is 0.00 which is considered low.</violation>
+    </file>
+    <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Graph/Input/InputRule.php">
+      <violation rule="CodeCoverage" priority="1" line="107" to-line="117" package="Graph.Input" class="phpucInputRule" method="__construct">The code coverage is 0.00 which is considered low.</violation>
+    </file>
+    <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Graph/LineChart.php">
+      <violation rule="CodeCoverage" priority="1" line="61" to-line="64" package="Graph" class="phpucLineChart" method="__construct">The code coverage is 0.00 which is considered low.</violation>
+      <violation rule="CodeCoverage" priority="1" line="66" to-line="79" package="Graph" class="phpucLineChart" method="init">The code coverage is 0.00 which is considered low.</violation>
+      <violation rule="CodeCoverage" priority="1" line="81" to-line="88" package="Graph" class="phpucLineChart" method="initTitle">The code coverage is 0.00 which is considered low.</violation>
+      <violation rule="CodeCoverage" priority="1" line="90" to-line="97" package="Graph" class="phpucLineChart" method="initLegend">The code coverage is 0.00 which is considered low.</violation>
+      <violation rule="CodeCoverage" priority="1" line="99" to-line="106" package="Graph" class="phpucLineChart" method="initAxis">The code coverage is 0.00 which is considered low.</violation>
+    </file>
+    <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Tasks/ExampleTask.php">
+      <violation rule="CodeCoverage" priority="1" line="81" to-line="140" package="Tasks" class="phpucExampleTask" method="execute">The code coverage is 0.00 which is considered low.</violation>
+    </file>
+    <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Tasks/PhpUnitTask.php">
+      <violation rule="CodeCoverage" priority="1" line="74" to-line="80" package="Tasks" class="phpucPhpUnitTask" method="__construct">The code coverage is 0.00 which is considered low.</violation>
+      <violation rule="CodeCoverage" priority="1" line="88" to-line="147" package="Tasks" class="phpucPhpUnitTask" method="execute">The code coverage is 0.00 which is considered low.</violation>
+      <violation rule="CodeCoverage" priority="1" line="154" to-line="203" package="Tasks" class="phpucPhpUnitTask" method="doValidate">The code coverage is 0.00 which is considered low.</violation>
+    </file>
+    <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Tasks/CreateFileTask.php">
+      <violation rule="CodeCoverage" priority="1" line="75" to-line="80" package="Tasks" class="phpucCreateFileTask" method="__construct">The code coverage is 0.00 which is considered low.</violation>
+      <violation rule="CodeCoverage" priority="1" line="89" to-line="114" package="Tasks" class="phpucCreateFileTask" method="execute">The code coverage is 0.00 which is considered low.</violation>
+    </file>
+    <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Tasks/PhpDocumentorTask.php">
+      <violation rule="CodeCoverage" priority="1" line="66" to-line="69" package="Tasks" class="phpucPhpDocumentorTask" method="__construct">The code coverage is 0.00 which is considered low.</violation>
+      <violation rule="CodeCoverage" priority="1" line="77" to-line="120" package="Tasks" class="phpucPhpDocumentorTask" method="execute">The code coverage is 0.00 which is considered low.</violation>
+    </file>
+    <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Tasks/ModifyFileTask.php">
+      <violation rule="CodeCoverage" priority="1" line="75" to-line="80" package="Tasks" class="phpucModifyFileTask" method="__construct">The code coverage is 0.00 which is considered low.</violation>
+      <violation rule="CodeCoverage" priority="1" line="88" to-line="104" package="Tasks" class="phpucModifyFileTask" method="validate">The code coverage is 0.00 which is considered low.</violation>
+      <violation rule="CodeCoverage" priority="1" line="112" to-line="144" package="Tasks" class="phpucModifyFileTask" method="execute">The code coverage is 0.00 which is considered low.</violation>
+    </file>
+    <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Commands/AbstractCommand.php">
+      <violation rule="CodeCoverage" priority="1" line="68" to-line="81" package="Commands" class="phpucAbstractCommand" method="createCommand">The code coverage is 0.00 which is considered low.</violation>
+      <violation rule="CodeCoverage" priority="1" line="104" to-line="107" package="Commands" class="phpucAbstractCommand" method="__construct">The code coverage is 0.00 which is considered low.</violation>
+      <violation rule="CodeCoverage" priority="1" line="114" to-line="120" package="Commands" class="phpucAbstractCommand" method="validate">The code coverage is 0.00 which is considered low.</violation>
+      <violation rule="CodeCoverage" priority="1" line="127" to-line="133" package="Commands" class="phpucAbstractCommand" method="execute">The code coverage is 0.00 which is considered low.</violation>
+      <violation rule="CodeCoverage" priority="1" line="140" to-line="147" package="Commands" class="phpucAbstractCommand" method="createTasks">The code coverage is 0.00 which is considered low.</violation>
+    </file>
+    <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Commands/ExampleCommand.php">
+      <violation rule="CodeCoverage" priority="1" line="77" to-line="98" package="Commands" class="phpucExampleCommand" method="doCreateTasks">The code coverage is 0.00 which is considered low.</violation>
+    </file>
+    <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Commands/InstallCommand.php">
+      <violation rule="CodeCoverage" priority="1" line="118" to-line="127" package="Commands" class="phpucInstallCommand" method="doCreateTasks">The code coverage is 0.00 which is considered low.</violation>
+    </file>
+    <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Commands/ProjectCommand.php">
+      <violation rule="CodeCoverage" priority="1" line="67" to-line="70" package="Commands" class="phpucProjectCommand" method="doCreateTasks">The code coverage is 0.00 which is considered low.</violation>
+    </file>
+    <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Data/LogFile.php">
+      <violation rule="CodeCoverage" priority="1" line="83" to-line="86" package="Data" class="phpucLogFile" method="__isset">The code coverage is 0.00 which is considered low.</violation>
+      <violation rule="CodeCoverage" priority="1" line="98" to-line="107" package="Data" class="phpucLogFile" method="__get">The code coverage is 0.00 which is considered low.</violation>
+      <violation rule="CodeCoverage" priority="1" line="122" to-line="146" package="Data" class="phpucLogFile" method="__set">The code coverage is 0.00 which is considered low.</violation>
+    </file>
+    <file name="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/src/Data/ConfigArtifactsPublisher.php">
+      <violation rule="CodeCoverage" priority="1" line="81" to-line="92" package="Data" class="phpucConfigArtifactsPublisher" method="__construct">The code coverage is 0.00 which is considered low.</violation>
+      <violation rule="CodeCoverage" priority="1" line="102" to-line="105" package="Data" class="phpucConfigArtifactsPublisher" method="__isset">The code coverage is 0.00 which is considered low.</violation>
+      <violation rule="CodeCoverage" priority="1" line="117" to-line="126" package="Data" class="phpucConfigArtifactsPublisher" method="__get">The code coverage is 0.00 which is considered low.</violation>
+      <violation rule="CRAP" priority="1" line="141" to-line="158" package="Data" class="phpucConfigArtifactsPublisher" method="__set">The CRAP index is 30.
+The Change Risk Analysis and Predictions (CRAP) index of a function or method uses cyclomatic complexity and code coverage from automated tests to help estimate the effort and risk associated with maintaining legacy code. A CRAP index over 30 is a good indicator of crappy code.</violation>
+      <violation rule="CodeCoverage" priority="1" line="141" to-line="158" package="Data" class="phpucConfigArtifactsPublisher" method="__set">The code coverage is 0.00 which is considered low.</violation>
+      <violation rule="CRAP" priority="1" line="167" to-line="190" package="Data" class="phpucConfigArtifactsPublisher" method="buildXml">The CRAP index is 30.
+The Change Risk Analysis and Predictions (CRAP) index of a function or method uses cyclomatic complexity and code coverage from automated tests to help estimate the effort and risk associated with maintaining legacy code. A CRAP index over 30 is a good indicator of crappy code.</violation>
+      <violation rule="CodeCoverage" priority="1" line="167" to-line="190" package="Data" class="phpucConfigArtifactsPublisher" method="buildXml">The code coverage is 0.00 which is considered low.</violation>
+    </file>
+  </pmd>
+  <testsuites>
+    <testsuite name="phpUnderControl - AllTests" tests="37" failures="0" errors="0" time="0.577790">
+      <testsuite name="phpUnderControl - DataAllTest" tests="11" failures="0" errors="0" time="0.133023">
+        <testsuite name="phpucBuildFileTest" file="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/tests/Data/BuildFileTest.php" package="Data" tests="3" failures="0" errors="0" time="0.023809">
+          <testcase name="testInitNewBuildFile" class="phpucBuildFileTest" file="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/tests/Data/BuildFileTest.php" line="109" time="0.011685" />
+          <testcase name="testOpenExistingBuildFile" class="phpucBuildFileTest" file="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/tests/Data/BuildFileTest.php" line="129" time="0.006202" />
+          <testcase name="testPropertiesProjectNameAndFileNameAreReadonly" class="phpucBuildFileTest" file="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/tests/Data/BuildFileTest.php" line="147" time="0.005922" />
+        </testsuite>
+        <testsuite name="phpucBuildTargetTest" file="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/tests/Data/BuildTargetTest.php" package="Data" tests="3" failures="0" errors="0" time="0.054698">
+          <testcase name="testBuildTargetAllFeatures" class="phpucBuildTargetTest" file="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/tests/Data/BuildTargetTest.php" line="91" time="0.028955" />
+          <testcase name="testBuildTargetDependsList" class="phpucBuildTargetTest" file="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/tests/Data/BuildTargetTest.php" line="131" time="0.017684" />
+          <testcase name="testReadonlyPropertiesTargetNameAndBuildFile" class="phpucBuildTargetTest" file="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/tests/Data/BuildTargetTest.php" line="152" time="0.008059" />
+        </testsuite>
+        <testsuite name="phpucConfigFileTest" file="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/tests/Data/ConfigFileTest.php" package="Data" tests="4" failures="0" errors="0" time="0.043388">
+          <testcase name="testNewConfigFileInstance" class="phpucConfigFileTest" file="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/tests/Data/ConfigFileTest.php" line="64" time="0.008847" />
+          <testcase name="testNewConfigFileInstanceFail" class="phpucConfigFileTest" file="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/tests/Data/ConfigFileTest.php" line="82" time="0.004764" />
+          <testcase name="testCreateProject" class="phpucConfigFileTest" file="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/tests/Data/ConfigFileTest.php" line="98" time="0.021041" />
+          <testcase name="testGetProjectFail" class="phpucConfigFileTest" file="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/tests/Data/ConfigFileTest.php" line="127" time="0.008736" />
+        </testsuite>
+        <testsuite name="phpucConfigProjectTest" file="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/tests/Data/ConfigProjectTest.php" package="Data" tests="1" failures="0" errors="0" time="0.011128">
+          <testcase name="testNewConfigProjectInstance" class="phpucConfigProjectTest" file="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/tests/Data/ConfigProjectTest.php" line="86" time="0.011128" />
+        </testsuite>
+      </testsuite>
+      <testsuite name="phpUnderControl - TasksAllTest" tests="12" failures="0" errors="0" time="0.315045">
+        <testsuite name="phpucCruiseControlTaskTest" file="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/tests/Tasks/CruiseControlTaskTest.php" package="Tasks" tests="4" failures="0" errors="0" time="0.060161">
+          <testcase name="testValidateWithInvalidCCInstallDirFail" class="phpucCruiseControlTaskTest" file="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/tests/Tasks/CruiseControlTaskTest.php" line="86" time="0.021009" />
+          <testcase name="testValidateWithInValidDirectoryStructureFail" class="phpucCruiseControlTaskTest" file="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/tests/Tasks/CruiseControlTaskTest.php" line="106" time="0.010502" />
+          <testcase name="testValidateWithValidDirectoryStructure" class="phpucCruiseControlTaskTest" file="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/tests/Tasks/CruiseControlTaskTest.php" line="132" time="0.012187" />
+          <testcase name="testExecuteWithValidDirectoryStructure" class="phpucCruiseControlTaskTest" file="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/tests/Tasks/CruiseControlTaskTest.php" line="153" time="0.016463" />
+        </testsuite>
+        <testsuite name="phpucPhpCodeSnifferTaskTest" file="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/tests/Tasks/PhpCodeSnifferTaskTest.php" package="Tasks" tests="3" failures="0" errors="0" time="0.149761">
+          <testcase name="testCodeSnifferVersionValidate" class="phpucPhpCodeSnifferTaskTest" file="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/tests/Tasks/PhpCodeSnifferTaskTest.php" line="91" time="0.061774" />
+          <testcase name="testCodeSnifferVersionValidateWithInvalidVersion" class="phpucPhpCodeSnifferTaskTest" file="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/tests/Tasks/PhpCodeSnifferTaskTest.php" line="104" time="0.056605" />
+          <testcase name="testCodeSnifferExecuteBuildFileModifications" class="phpucPhpCodeSnifferTaskTest" file="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/tests/Tasks/PhpCodeSnifferTaskTest.php" line="121" time="0.031382" />
+        </testsuite>
+        <testsuite name="phpucProjectTaskTest" file="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/tests/Tasks/ProjectTaskTest.php" package="Tasks" tests="5" failures="0" errors="0" time="0.105123">
+          <testcase name="testValidateProjectTaskNoError" class="phpucProjectTaskTest" file="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/tests/Tasks/ProjectTaskTest.php" line="102" time="0.014430" />
+          <testcase name="testValidateProjectTaskWithoutCCProjectsDirFail" class="phpucProjectTaskTest" file="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/tests/Tasks/ProjectTaskTest.php" line="114" time="0.013313" />
+          <testcase name="testValidateProjectTaskWithExistingProjectDirectoryFail" class="phpucProjectTaskTest" file="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/tests/Tasks/ProjectTaskTest.php" line="133" time="0.014039" />
+          <testcase name="testExecuteProjectTaskNoError" class="phpucProjectTaskTest" file="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/tests/Tasks/ProjectTaskTest.php" line="152" time="0.038425" />
+          <testcase name="testExecuteProjectTaskWithoutAntDirectoryFail" class="phpucProjectTaskTest" file="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/tests/Tasks/ProjectTaskTest.php" line="179" time="0.024916" />
+        </testsuite>
+      </testsuite>
+      <testsuite name="phpUnderControl - UtilAllTests" tests="14" failures="0" errors="0" time="0.129722">
+        <testsuite name="phpucConsoleArgsTest" file="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/tests/Util/ConsoleArgsTest.php" package="phpUnderControl" tests="8" failures="0" errors="0" time="0.071993">
+          <testcase name="testConsoleWithoutArgv" class="phpucConsoleArgsTest" file="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/tests/Util/ConsoleArgsTest.php" line="65" time="0.004906" />
+          <testcase name="testConsoleInstallCommandWithoutOptions" class="phpucConsoleArgsTest" file="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/tests/Util/ConsoleArgsTest.php" line="83" time="0.009533" />
+          <testcase name="testConsoleInstallCommandButWithoutArguments" class="phpucConsoleArgsTest" file="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/tests/Util/ConsoleArgsTest.php" line="120" time="0.005897" />
+          <testcase name="testConsoleExampleCommandWithBuildSystemOption" class="phpucConsoleArgsTest" file="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/tests/Util/ConsoleArgsTest.php" line="140" time="0.014427" />
+          <testcase name="testConsoleExampleCommandWithBuildSystemShortOption" class="phpucConsoleArgsTest" file="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/tests/Util/ConsoleArgsTest.php" line="165" time="0.010096" />
+          <testcase name="testConsoleExampleWithoutOptionExpectedAnt" class="phpucConsoleArgsTest" file="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/tests/Util/ConsoleArgsTest.php" line="184" time="0.010266" />
+          <testcase name="testConsoleWithInvalidCommandIdentifier" class="phpucConsoleArgsTest" file="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/tests/Util/ConsoleArgsTest.php" line="201" time="0.005250" />
+          <testcase name="testConsolePrintHelp" class="phpucConsoleArgsTest" file="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/tests/Util/ConsoleArgsTest.php" line="218" time="0.011618" />
+        </testsuite>
+        <testsuite name="phpucFileUtilTest" file="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/tests/Util/FileUtilTest.php" package="Util" tests="6" failures="0" errors="0" time="0.057729">
+          <testcase name="testGetOperationSystem" class="phpucFileUtilTest" file="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/tests/Util/FileUtilTest.php" line="92" time="0.007102" />
+          <testcase name="testGetEnvironmentPaths" class="phpucFileUtilTest" file="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/tests/Util/FileUtilTest.php" line="103" time="0.014384" />
+          <testcase name="testFindExecutableUnix" class="phpucFileUtilTest" file="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/tests/Util/FileUtilTest.php" line="124" time="0.009326" />
+          <testcase name="testFindExecutableUnixFail" class="phpucFileUtilTest" file="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/tests/Util/FileUtilTest.php" line="141" time="0.008603" />
+          <testcase name="testFindExecutableWindows" class="phpucFileUtilTest" file="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/tests/Util/FileUtilTest.php" line="162" time="0.009411" />
+          <testcase name="testFindExecutableWindowsFail" class="phpucFileUtilTest" file="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/tests/Util/FileUtilTest.php" line="174" time="0.008903" />
+        </testsuite>
+      </testsuite>
+    </testsuite>
+  </testsuites>
+</cruisecontrol>
+
