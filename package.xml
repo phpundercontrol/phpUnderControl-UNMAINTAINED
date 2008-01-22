@@ -22,7 +22,7 @@
   </lead>
   <date>2008-01-22</date>
   <version>
-    <release>0.3.3</release>
+    <release>0.3.4</release>
     <api>0.2.0</api>
   </version>
   <stability>
@@ -31,8 +31,7 @@
   </stability>
   <license uri="http://www.opensource.org/licenses/bsd-license.php">BSD License</license>
   <notes>
-- Example project fixed for windows.
-- CruiseControl link added to copyright line.
+- In 0.3.3 the class phpucDotChartOptions was missing.
   </notes>
   <contents>
     <dir name="/">
@@ -157,6 +156,9 @@
             <tasks:replace from="@package_version@" to="version" type="package-info" />
           </file>
           <file name="DotChart.php" role="php">
+            <tasks:replace from="@package_version@" to="version" type="package-info" />
+          </file>
+          <file name="DotChartOptions.php" role="php">
             <tasks:replace from="@package_version@" to="version" type="package-info" />
           </file>
           <file name="GraphPalette.php" role="php">
@@ -493,6 +495,7 @@
       <install as="phpUnderControl/Graph/ChartFactory.php" name="src/Graph/ChartFactory.php" />
       <install as="phpUnderControl/Graph/ChartI.php" name="src/Graph/ChartI.php" />
       <install as="phpUnderControl/Graph/DotChart.php" name="src/Graph/DotChart.php" />
+      <install as="phpUnderControl/Graph/DotChartOptions.php" name="src/Graph/DotChartOptions.php" />
       <install as="phpUnderControl/Graph/GraphPalette.php" name="src/Graph/GraphPalette.php" />
       <install as="phpUnderControl/Graph/LineChart.php" name="src/Graph/LineChart.php" />
       <install as="phpUnderControl/Graph/PieChart.php" name="src/Graph/PieChart.php" />
@@ -566,6 +569,7 @@
       <install as="phpUnderControl/Graph/ChartFactory.php" name="src/Graph/ChartFactory.php" />
       <install as="phpUnderControl/Graph/ChartI.php" name="src/Graph/ChartI.php" />
       <install as="phpUnderControl/Graph/DotChart.php" name="src/Graph/DotChart.php" />
+      <install as="phpUnderControl/Graph/DotChartOptions.php" name="src/Graph/DotChartOptions.php" />
       <install as="phpUnderControl/Graph/GraphPalette.php" name="src/Graph/GraphPalette.php" />
       <install as="phpUnderControl/Graph/LineChart.php" name="src/Graph/LineChart.php" />
       <install as="phpUnderControl/Graph/PieChart.php" name="src/Graph/PieChart.php" />
@@ -733,6 +737,31 @@
 	  <notes>
 	- Allow different locations for logs and artifacts. The graph cli tool now accepts
 	  a second optional output directory for the generated charts.
+	  </notes>
+    </release>
+  </changelog>
+  
+  <changelog>
+    <release>
+	  <lead>
+	    <name>Manuel Pichler</name>
+	    <user>mp</user>
+	    <email>mapi@phpundercontrol.org</email>
+	    <active>yes</active>
+	  </lead>
+	  <date>2008-01-22</date>
+	  <version>
+	    <release>0.3.3</release>
+	    <api>0.2.0</api>
+	  </version>
+	  <stability>
+	    <release>beta</release>
+	    <api>beta</api>
+	  </stability>
+	  <license uri="http://www.opensource.org/licenses/bsd-license.php">BSD License</license>
+	  <notes>
+	- Example project fixed for windows.
+	- CruiseControl link added to copyright line.
 	  </notes>
     </release>
   </changelog>
