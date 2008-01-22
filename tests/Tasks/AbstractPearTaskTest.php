@@ -160,4 +160,23 @@ abstract class phpucAbstractPearTaskTest extends phpucAbstractTest
         file_put_contents( $fileName, $content );
         chmod( $fileName, 0755 );
     }
+    
+    protected function createCCConfig()
+    {
+        file_put_contents(
+            PHPUC_TEST_DIR . '/config.xml',
+            sprintf(
+                '<?xml version="1.0"?>
+                 <cruisecontrol>
+                   <project name="%s" buildafterfailed="false">
+                     <schedule>
+                       <ant anthome="/" interval="0" />
+                     </schedule>
+                     <publishers />
+                   </project>
+                 </cruisecontrol>',
+                 $this->projectName
+            )    
+        );
+    }
 }

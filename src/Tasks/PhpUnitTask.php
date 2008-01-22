@@ -99,7 +99,8 @@ class phpucPhpUnitTask extends phpucAbstractPearTask
         $out->writeListItem(
             'Creating coverage dir: project/{1}/build/coverage', $projectName
         );
-        mkdir( $projectPath . '/build/coverage' );
+        
+        mkdir( $projectPath . '/build/coverage', 0755, true );
         
         $out->writeListItem(
             'Modifying build file:  project/{1}/build.xml', $projectName

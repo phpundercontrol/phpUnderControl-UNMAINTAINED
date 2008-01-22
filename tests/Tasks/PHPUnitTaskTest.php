@@ -81,6 +81,10 @@ class phpucPHPUnitTaskTest extends phpucAbstractPearTaskTest
     {
         parent::setUp();
         
+        $this->clearTestContents(  PHPUC_TEST_DIR . '/projects' );
+        $this->clearTestContents(  PHPUC_TEST_DIR . '/build' );
+        $this->clearTestContents(  PHPUC_TEST_DIR . '/logs' );
+        
         if ( stripos( PHP_OS, 'WIN' ) !== false )
         {
             $this->validBin   = "@echo off\n\recho version 3.2.0";
@@ -108,12 +112,44 @@ class phpucPHPUnitTaskTest extends phpucAbstractPearTaskTest
     public function testPHPUnitVersionValidateWithInvalidVersion()
     {
         $this->createExecutable( 'phpunit', $this->invalidBin );
-        $phpunit = new phpucPhpCodeSnifferTask( $this->args );
-        try
-        {
-            $phpunit->validate();
-            $this->fail( 'phpucValidateException expected.' );
-        }
-        catch ( phpucValidateException $e ) {}
+        $phpunit = new phpucPhpUnitTask( $this->args );
+
+        ob_start();
+        $phpunit->validate();
+        $text = ob_get_contents();
+        ob_end_clean();
+        
+        $this->assertRegExp( '/^NOTICE:/', $text );
+    }
+    
+    /**
+     * Tests that the execute method adds a correct build file target.
+     *
+     * @return void
+     */
+    public function testPHPUnitExecuteBuildFileModifications()
+    {
+        $this->createCCConfig();
+        
+        $file = sprintf( '%s/projects/%s/build.xml', PHPUC_TEST_DIR, $this->projectName );
+        
+        $this->assertFileNotExists( $file );
+        
+        $phpunit = new phpucPhpUnitTask( $this->args );
+        ob_start();
+        $phpunit->execute();
+        ob_end_clean();
+        
+        $this->assertFileExists( $file );
+        
+        $dom = new DOMDocument();
+        $dom->load( $file );
+        
+        $xpath = new DOMXPath( $dom );
+        $result = $xpath->query( '//target[@name="phpunit"]' );
+        
+        $this->assertEquals( 1, $result->length );
+        
+        // TODO: Config artifact check
     }
 }

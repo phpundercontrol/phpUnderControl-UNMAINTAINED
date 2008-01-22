@@ -172,6 +172,10 @@ abstract class phpucAbstractTest extends PHPUnit_Framework_TestCase
         {
             $directory = PHPUC_TEST_DIR;
         }
+        if ( !is_dir( $directory ) )
+        {
+            return;
+        }
         
         $it = new DirectoryIterator( $directory );
         foreach ( $it as $entry )
