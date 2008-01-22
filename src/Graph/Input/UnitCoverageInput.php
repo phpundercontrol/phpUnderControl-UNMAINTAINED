@@ -73,21 +73,7 @@ class phpucUnitCoverageInput extends phpucAbstractInput
         
         $this->yAxisLabel = 'Lines';
         $this->xAxisLabel = 'Build ';
-        
-        $this->addRule(
-            new phpucInputRule(
-                'Lines of code',
-                '/cruisecontrol/coverage/project/file/metrics/@loc',
-                self::MODE_SUM
-            )
-        );
-        $this->addRule(
-            new phpucInputRule(
-                'Non comment lines',
-                '/cruisecontrol/coverage/project/file/metrics/@ncloc',
-                self::MODE_SUM
-            )
-        );
+
         $this->addRule(
             new phpucInputRule(
                 'Executable',

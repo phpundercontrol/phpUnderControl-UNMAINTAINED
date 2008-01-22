@@ -87,14 +87,10 @@ class phpucUnitCoverageInputTest extends phpucAbstractGraphInputTest
         $input->processLog( $xpath );
         
         $data = $input->data;
-        
-        $this->assertArrayHasKey( 'Lines of code', $data );
-        $this->assertArrayHasKey( 'Non comment lines', $data );
+
         $this->assertArrayHasKey( 'Executable', $data );
         $this->assertArrayHasKey( 'Covered', $data );
-        
-        $this->assertEquals( $log['Lines of code'], reset( $data['Lines of code'] ) );
-        $this->assertEquals( $log['Non comment lines'], reset( $data['Non comment lines'] ) );
+
         $this->assertEquals( $log['Executable'], reset( $data['Executable'] ) );
         $this->assertEquals( $log['Covered'], reset( $data['Covered'] ) );
     }
@@ -116,15 +112,11 @@ class phpucUnitCoverageInputTest extends phpucAbstractGraphInputTest
         if ( count( $records ) === 0 )
         {
             $records = array(
-                'Lines of code'      =>  array(),
-                'Non comment lines'  =>  array(),
                 'Executable'         =>  array(),
                 'Covered'            =>  array()
             );
         }
 
-        $records['Lines of code'][]      = $log['Lines of code'];
-        $records['Non comment lines'][]  = $log['Non comment lines'];
         $records['Executable'][]         = $log['Executable'];
         $records['Covered'][]            = $log['Covered'];
         
@@ -133,22 +125,9 @@ class phpucUnitCoverageInputTest extends phpucAbstractGraphInputTest
     
     protected function queryLogData( DOMXPath $xpath )
     {
-        $data = array(
-            'Lines of code'      =>  0,
-            'Non comment lines'  =>  0,
-            'Executable'         =>  $xpath->query( '/cruisecontrol/coverage/project/file/line' )->length,
-            'Covered'            =>  $xpath->query( '/cruisecontrol/coverage/project/file/line[@count != 0]' )->length
+        return array(
+            'Executable'  =>  $xpath->query( '/cruisecontrol/coverage/project/file/line' )->length,
+            'Covered'     =>  $xpath->query( '/cruisecontrol/coverage/project/file/line[@count != 0]' )->length
         );
-        
-        foreach ( $xpath->query( '/cruisecontrol/coverage/project/file/metrics/@loc' ) as $node )
-        {
-            $data['Lines of code'] += (int) $node->nodeValue;
-        }
-        foreach ( $xpath->query( '/cruisecontrol/coverage/project/file/metrics/@ncloc' ) as $node )
-        {
-            $data['Non comment lines'] += (int) $node->nodeValue;
-        }
-        
-        return $data;
     }
 }
