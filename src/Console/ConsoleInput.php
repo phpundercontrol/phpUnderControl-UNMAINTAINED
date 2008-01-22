@@ -59,7 +59,7 @@
  * @version   Release: @package_version@
  * @link      http://www.phpundercontrol.org/
  * 
- * @property-read phpucConsoleArgs The console arguments.
+ * @property-read phpucConsoleArgs $args The console arguments.
  */
 class phpucConsoleInput
 {
