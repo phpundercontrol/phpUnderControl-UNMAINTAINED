@@ -129,6 +129,9 @@ class phpucGenerateGraphTask extends phpucAbstractTask
      */
     public function execute()
     {
+        // Force update?
+        $force = ( $this->debug || $this->args->hasOption( 'force-update' ) );
+        
         $inputLoader  = new phpucInputLoader();
         $chartFactory = new phpucChartFactory();
         
@@ -150,7 +153,7 @@ class phpucGenerateGraphTask extends phpucAbstractTask
                 }
                 
                 $fileName = "{$outputDir}/{$input->fileName}.svg";
-                if ( !file_exists( $fileName ) || $this->debug )
+                if ( !file_exists( $fileName ) || $force )
                 {
                     $chart = $chartFactory->createChart( $input );
                     $chart->render( 390, 250, $fileName );
