@@ -220,7 +220,9 @@ abstract class phpucAbstractTest extends PHPUnit_Framework_TestCase
             spl_autoload_register( array( 'ezcBase', 'autoload' ) );
         }
         
-        phpucConsoleOutput::set( new phpucConsoleOutput() );
+        include_once dirname( __FILE__ ) . '/ConsoleOutputBuffer.php';
+        
+        phpucConsoleOutput::set( new phpucConsoleOutputBuffer() );
         
         PHPUnit_Util_Filter::addDirectoryToWhitelist( PHPUC_SOURCE );
         

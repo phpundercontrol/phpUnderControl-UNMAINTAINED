@@ -34,6 +34,7 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  * 
+ * @category  QualityAssurance
  * @package   Tasks
  * @author    Manuel Pichler <mapi@phpundercontrol.org>
  * @copyright 2007-2008 Manuel Pichler. All rights reserved.
@@ -42,11 +43,12 @@
  * @link      http://www.phpundercontrol.org/
  */
 
-require_once dirname( __FILE__ ) . '/../AbstractTest.php';
+require_once dirname( __FILE__ ) . '/AbstractTaskTest.php';
 
 /**
  * Abstract test case for pear tasks.
  * 
+ * @category  QualityAssurance
  * @package   Tasks
  * @author    Manuel Pichler <mapi@phpundercontrol.org>
  * @copyright 2007-2008 Manuel Pichler. All rights reserved.
@@ -54,7 +56,7 @@ require_once dirname( __FILE__ ) . '/../AbstractTest.php';
  * @version   Release: @package_version@
  * @link      http://www.phpundercontrol.org/
  */
-abstract class phpucAbstractPearTaskTest extends phpucAbstractTest
+abstract class phpucAbstractPearTaskTest extends phpucAbstractTaskTest
 {
     /**
      * The used console args object.
@@ -159,24 +161,5 @@ abstract class phpucAbstractPearTaskTest extends phpucAbstractTest
         
         file_put_contents( $fileName, $content );
         chmod( $fileName, 0755 );
-    }
-    
-    protected function createCCConfig()
-    {
-        file_put_contents(
-            PHPUC_TEST_DIR . '/config.xml',
-            sprintf(
-                '<?xml version="1.0"?>
-                 <cruisecontrol>
-                   <project name="%s" buildafterfailed="false">
-                     <schedule>
-                       <ant anthome="/" interval="0" />
-                     </schedule>
-                     <publishers />
-                   </project>
-                 </cruisecontrol>',
-                 $this->projectName
-            )    
-        );
     }
 }

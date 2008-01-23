@@ -73,6 +73,14 @@ class phpucPHPUnitTaskTest extends phpucAbstractPearTaskTest
     protected $invalidBin = "#!/usr/bin/env php\n<?php echo 'version 3.1.9';?>";
     
     /**
+     * Content for a fake phpunit bin that returns an invalid version.
+     *
+     * @type string
+     * @var string $badBin
+     */
+    protected $badBin = "#!/usr/bin/env php\n<?php echo 'version-3.2.0';?>";
+    
+    /**
      * Sets the required binary contents.
      * 
      * @return void
@@ -87,6 +95,7 @@ class phpucPHPUnitTaskTest extends phpucAbstractPearTaskTest
         
         if ( stripos( PHP_OS, 'WIN' ) !== false )
         {
+            $this->badBin     = "@echo off\n\recho version-3.2.0";
             $this->validBin   = "@echo off\n\recho version 3.2.0";
             $this->invalidBin = "@echo off\n\recho version 3.1.9";
         }
@@ -113,13 +122,32 @@ class phpucPHPUnitTaskTest extends phpucAbstractPearTaskTest
     {
         $this->createExecutable( 'phpunit', $this->invalidBin );
         $phpunit = new phpucPhpUnitTask( $this->args );
-
-        ob_start();
-        $phpunit->validate();
-        $text = ob_get_contents();
-        ob_end_clean();
         
-        $this->assertRegExp( '/^NOTICE:/', $text );
+        phpucConsoleOutput::get()->reset();
+
+        $phpunit->validate();
+        
+        $this->assertRegExp( '/^NOTICE:/', phpucConsoleOutput::get()->getBuffer() );
+    }
+    
+    /**
+     * Tests that the validate method with a bad formated version result.
+     *
+     * @return void
+     */
+    public function testPHPUnitVersionValidateWithBadVersionValue()
+    {
+        $this->createExecutable( 'phpunit', $this->badBin );
+        $phpunit = new phpucPhpUnitTask( $this->args );
+        
+        phpucConsoleOutput::get()->reset();
+
+        $phpunit->validate();
+        
+        $this->assertEquals( 
+            'WARNING: Cannot identify PHPUnit version.', 
+            trim( phpucConsoleOutput::get()->getBuffer() )
+        );
     }
     
     /**
@@ -131,14 +159,19 @@ class phpucPHPUnitTaskTest extends phpucAbstractPearTaskTest
     {
         $this->createCCConfig();
         
-        $file = sprintf( '%s/projects/%s/build.xml', PHPUC_TEST_DIR, $this->projectName );
+        $file = sprintf( 
+            '%s/projects/%s/build.xml', 
+            PHPUC_TEST_DIR, 
+            $this->projectName 
+        );
         
         $this->assertFileNotExists( $file );
         
+        $this->createExecutable( 'phpunit', $this->validBin );
+        
         $phpunit = new phpucPhpUnitTask( $this->args );
-        ob_start();
+        $phpunit->validate();
         $phpunit->execute();
-        ob_end_clean();
         
         $this->assertFileExists( $file );
         
@@ -146,10 +179,85 @@ class phpucPHPUnitTaskTest extends phpucAbstractPearTaskTest
         $dom->load( $file );
         
         $xpath = new DOMXPath( $dom );
-        $result = $xpath->query( '//target[@name="phpunit"]' );
+        $result = $xpath->query( '//target[@name="phpunit"]/exec/@executable' );
         
         $this->assertEquals( 1, $result->length );
+
+        // Check that the executable path begins with the test bin directory.
+        $this->assertEquals( 
+            0, strpos( $result->item( 0 )->nodeValue, PHPUC_TEST_DIR . '/bin/phpunit' )
+        );
+    }
+    
+    /**
+     * Tests that the phpunit task adds an artifact publisher into the 
+     * project configuration.
+     *
+     * @return void
+     */
+    public function testPHPUnitExecuteConfigFileModifiactions()
+    {
+        $this->createCCConfig();
+        $this->createExecutable( 'phpunit', $this->validBin );
         
-        // TODO: Config artifact check
+        $phpunit = new phpucPhpUnitTask( $this->args );
+        $phpunit->validate();
+        $phpunit->execute();
+        
+        $dom = new DOMDocument();
+        $dom->load( PHPUC_TEST_DIR . '/config.xml' );
+        
+        $xpath  = new DOMXPath( $dom );
+        $result = $xpath->query(
+            sprintf( 
+                '/cruisecontrol/project[
+                   @name="%s"
+                 ]/publishers/artifactspublisher[@subdirectory="coverage"]',
+                $this->projectName
+            )
+        );
+        
+        $this->assertEquals( 1, $result->length );
+        $this->assertEquals( 
+            'projects/${project.name}/build/coverage', 
+            $result->item( 0 )->getAttribute( 'dir' )
+        );
+    }
+    
+    /**
+     * Tests that the validate method throws an exception for a not found 
+     * executable.
+     *
+     * @return void
+     */
+    public function testValidateFindPHPUnitExecutableFail()
+    {
+        $phpunit = new phpucPhpUnitTask( $this->args );
+        try
+        {
+            $phpunit->validate();
+            $this->fail( 'phpucValidateException expected.' );
+        }
+        catch ( phpucValidateException $e ) {}
+    }
+    
+    /**
+     * This test runs with phpunit, so there should be a global the phpunit 
+     * executable.
+     *
+     * @return void
+     */
+    public function testValidateFindPHPUnitExecutableInPath()
+    {
+        $this->prepareArgv( array( 'example', PHPUC_TEST_DIR ) );
+        
+        $input = new phpucConsoleInput();
+        $input->parse();
+        
+        $phpunit = new phpucPhpUnitTask( $input->args );
+        $phpunit->validate();
+        
+        $this->assertNotNull( $phpunit->executable );
+        
     }
 }
