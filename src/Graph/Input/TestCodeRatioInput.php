@@ -92,7 +92,7 @@ class phpucTestCodeRatioInput extends phpucAbstractInput
             new phpucInputRule(
                 'Test Classes',
                 '/cruisecontrol/testsuites//testsuite[testcase]',
-                self::MODE_SUM
+                self::MODE_COUNT 
             )
         );
         $this->addRule(

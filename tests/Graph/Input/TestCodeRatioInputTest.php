@@ -138,16 +138,10 @@ class phpucTestCodeRatioInputTest extends phpucAbstractGraphInputTest
         $testcases = $xpath->query( '/cruisecontrol/testsuites//testsuite[testcase]' );
         $tests     = $xpath->query( '/cruisecontrol/testsuites//testsuite/testcase' );
         
-        $cases = 0;
-        foreach ( $testcases as $case )
-        {
-            $cases += (int) $case->nodeValue;
-        }
-        
         return array(
             'Classes'       =>  $classes->length,
             'Methods'       =>  $methods->length,
-            'Test Classes'  =>  $cases,
+            'Test Classes'  =>  $testcases->length,
             'Test Methods'  =>  $tests->length
         );
     }
