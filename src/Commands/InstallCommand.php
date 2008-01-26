@@ -73,6 +73,8 @@ class phpucInstallCommand extends phpucAbstractCommand
         '/phpunit-pmd.jsp',
         '/css/php-under-control.css',
         '/css/SyntaxHighlighter.css',
+        '/images/php-under-control/build-broken.png',
+        '/images/php-under-control/build-good.png',
         '/images/php-under-control/error.png',
         '/images/php-under-control/failed.png',
         '/images/php-under-control/header-center.png',
