@@ -15,11 +15,35 @@
    sodipodi:version="0.32"
    inkscape:version="0.45.1"
    version="1.0"
-   sodipodi:docbase="/home/pichler/Projects/workspace.xplib.de/phpUnderControl/trunk/docs"
+   sodipodi:docbase="/home/manu/Projects/workspace.xplib.de/phpUnderControl/trunk/docs"
    sodipodi:docname="phpUnderControl-kore.svg"
    inkscape:output_extension="org.inkscape.output.svg.inkscape">
   <defs
      id="defs4">
+    <linearGradient
+       inkscape:collect="always"
+       id="linearGradient2298">
+      <stop
+         style="stop-color:#4e9a06;stop-opacity:1;"
+         offset="0"
+         id="stop2300" />
+      <stop
+         style="stop-color:#4e9a06;stop-opacity:0;"
+         offset="1"
+         id="stop2302" />
+    </linearGradient>
+    <linearGradient
+       inkscape:collect="always"
+       id="linearGradient2280">
+      <stop
+         style="stop-color:#ef2929;stop-opacity:1"
+         offset="0"
+         id="stop2282" />
+      <stop
+         style="stop-color:#cc0000;stop-opacity:0"
+         offset="1"
+         id="stop2284" />
+    </linearGradient>
     <linearGradient
        id="linearGradient9094">
       <stop
@@ -233,6 +257,24 @@
          stdDeviation="0.26346555"
          id="feGaussianBlur12219" />
     </filter>
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient2280"
+       id="linearGradient2286"
+       x1="370"
+       y1="330"
+       x2="496"
+       y2="205"
+       gradientUnits="userSpaceOnUse" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient2298"
+       id="linearGradient2304"
+       x1="570"
+       y1="330"
+       x2="700"
+       y2="200"
+       gradientUnits="userSpaceOnUse" />
   </defs>
   <sodipodi:namedview
      id="base"
@@ -245,16 +287,17 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="1"
-     inkscape:cx="555.56254"
+     inkscape:cx="476.31057"
      inkscape:cy="519.27307"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      width="800px"
      height="700px"
-     inkscape:window-width="1024"
-     inkscape:window-height="724"
+     inkscape:window-width="1280"
+     inkscape:window-height="752"
      inkscape:window-x="0"
-     inkscape:window-y="44" />
+     inkscape:window-y="47"
+     showgrid="true" />
   <metadata
      id="metadata7">
     <rdf:RDF>
@@ -720,5 +763,79 @@
          id="tspan16180"
          x="127.05882"
          y="296.59589">Seperators</tspan></text>
+    <rect
+       style="fill:#555753;fill-opacity:1"
+       id="rect2274"
+       width="120"
+       height="120"
+       x="400"
+       y="180"
+       ry="10.207577"
+       inkscape:export-filename="/home/manu/Projects/workspace.xplib.de/phpUnderControl/trunk/data/images/php-under-control/build-broken.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <rect
+       style="fill:#f57900;fill-opacity:1"
+       id="rect2276"
+       width="118"
+       height="118"
+       x="401"
+       y="181.00012"
+       ry="10.03744"
+       inkscape:export-filename="/home/manu/Projects/workspace.xplib.de/phpUnderControl/trunk/data/images/php-under-control/build-broken.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <rect
+       style="fill:url(#linearGradient2286);fill-opacity:1.0"
+       id="rect2278"
+       width="118"
+       height="118"
+       x="401"
+       y="181"
+       ry="10.03744"
+       inkscape:export-filename="/home/manu/Projects/workspace.xplib.de/phpUnderControl/trunk/data/images/php-under-control/build-broken.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <rect
+       style="fill:#555753;fill-opacity:1"
+       id="rect2288"
+       width="120"
+       height="120"
+       x="600"
+       y="180"
+       ry="10.207577"
+       inkscape:export-filename="/home/manu/Projects/workspace.xplib.de/phpUnderControl/trunk/data/images/php-under-control/build-good.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <rect
+       style="fill:#8ae234;fill-opacity:1"
+       id="rect2290"
+       width="118"
+       height="118"
+       x="601"
+       y="181.00012"
+       ry="10.03744"
+       inkscape:export-filename="/home/manu/Projects/workspace.xplib.de/phpUnderControl/trunk/data/images/php-under-control/build-good.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <rect
+       style="fill:url(#linearGradient2304);fill-opacity:1.0"
+       id="rect2296"
+       width="118"
+       height="118"
+       x="601"
+       y="181"
+       ry="10.03744"
+       inkscape:export-filename="/home/manu/Projects/workspace.xplib.de/phpUnderControl/trunk/data/images/php-under-control/build-good.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <rect
+       style="fill:#eeeeec;fill-opacity:1"
+       id="rect2306"
+       width="147"
+       height="80"
+       x="340"
+       y="360"
+       ry="10.03744" />
   </g>
 </svg>

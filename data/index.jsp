@@ -379,6 +379,30 @@
       background-color: white;
       color: darkblue;
     }
+    div#container table a.dashboard-item {
+        background: transparent none 0 0 no-repeat;
+        color: #fff;
+        display: block;
+        float: left;
+        font-size: 11px;
+        font-weight: normal;
+        height: 110px;
+        margin: 10px;
+        padding: 5px;
+        text-decoration: none;
+        width: 110px;     
+    }
+    div#container table a.dashboard-item div {
+        background: none;
+        font-weight: bold;
+        overflow: hidden;
+    }
+    div#container table a.dashboard-broken {
+        background-image: url('images/php-under-control/build-broken.png');
+    }
+    div#container table a.dashboard-good {
+        background-image: url('images/php-under-control/build-good.png');
+    }
 </style>
 
   <script language="JavaScript">
@@ -422,12 +446,12 @@
       phpUnderControl  
     </a>
   </h1>
-  <h1 style="padding: 3px 0;" class="white" align="center">
+  <h1 class="white" align="center">
     <%= name%> phpUnderControl at <%= hostname %><span class="dateNow">[<%= dateNow %>]</span>
   </h1>
   <div id="serverData" class="hidden"></div>
   <form>
-    <table style="width:65%;margin: 20px auto" align="center">
+    <table style="width:100%;margin: 20px auto" align="center">
       <tbody>
 
       <tr><td colspan="2">&nbsp;</td></tr>
@@ -459,42 +483,33 @@
 
           if (projectDirs.length == 0) {
         %><tr><td>no project directories found under <%=logDirPath%></td></tr><%
-        }
-        else {
+        } else {
         %> 
-        <thead class="index-header">
+        <thead>
           <tr>
-            <th><a class='<%= "project".equals(sort) ? "sort" : "sorted" %>' href="<%=thisURL%>?sort=project">Project</a></th>
-            <th><a class="<%= "status".equals(sort) ? "sort" : "sorted" %>" href="<%=thisURL%>?sort=status">Status <em>(since)</em></a></th>
-            <th><a class="<%= "last failure".equals(sort) ? "sort" : "sorted" %>" href="<%=thisURL%>?sort=last failure">Last failure</a></th>
-            <th><a class="<%= "last successful".equals(sort) ? "sort" : "sorted" %>" href="<%=thisURL%>?sort=last successful">Last successful</a></th>
-            <th>Label</th>
-            <% if (jmxEnabled) { %>
-            <th></th>
-            <% } //end if jmxEnabled %>
+            <td colspan="6">
+              <%
+              Info project = null;
+              for (int i = 0; i < projectDirs.length; i++) {
+                  project = new Info(logDir, projectDirs[i]);
+              %>
+              <a class="dashboard-item dashboard-<%= (project.failed() ? "broken" : "good") %>" href="buildresults/<%=project.project%>">
+                <div>
+                  <%= project.project %>
+                </div>
+                <!-- <%= project.getStatus().getImportance() %> -->
+                <%= project.getStatus()%> <em>(<%= project.getStatusSince() %>)</em><br />
+                <%= project.getLastSuccessfulBuildTime() %><br />
+                <%= project.getLabel()%>
+              </a>
+              <% } %>
+            </td>
           </tr>
         </thead>
-
-
-          <tbody>
-            <%
-              Info[] info = new Info[projectDirs.length];
-              for (int i = 0; i < info.length; i++) {
-                info[i] = new Info(logDir, projectDirs[i]);
-              }
-
-              Comparator order = (Comparator) sortOrders.get(sort);
-              if (order == null) {
-                Arrays.sort(info);
-              }
-              else {
-                Arrays.sort(info, order);
-              }
-
-              for (int i = 0; i < info.length; i++) {
-            %>
+        <tbody>
+<%--
             <tr class="<%= (i % 2 == 1) ? "even-row" : "odd-row" %> ">
-              <td class="data"><a href="buildresults/<%=info[i].project%>"><%=info[i].project%></a></td>
+              <td class="data"><a href="buildresults/<%=info[i].project%>"></a></td>
               <td class="data date status-<%= info[i].getStatus().getImportance() %>"><%= info[i].getStatus()%> <em>(<%= info[i].getStatusSince() %>)</em></td>
               <td style="background-color: #fff;" class="data date<%= (info[i].failed() ? " failure" : "") %>"><%= (info[i].failed()) ? info[i].getLastBuildTime() : "" %></td>
               <td class="data date"><%= info[i].getLastSuccessfulBuildTime() %></td>
@@ -506,10 +521,9 @@
                                       class="button" value="Build"/></td>
               <% } %>
             </tr>
-
+--%>
           </tbody>
           <%
-                  }
                 }
               }
             }
