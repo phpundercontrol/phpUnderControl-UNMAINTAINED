@@ -81,6 +81,9 @@ div#container h1 a {
     text-indent: -9999px;
     width: 180px;
 }
+div#container h1 em {
+    font-size: 14px;
+}
 
 /**
  * Header form styles
@@ -266,6 +269,31 @@ div#container table.result tbody td input.button {
     color: #2e3436;
     font-size: 11px;
     padding: 1px 10px;
+}
+
+div#container table a.dashboard-item {
+    background: transparent none 0 0 no-repeat;
+    color: #fff;
+    display: block;
+    float: left;
+    font-size: 11px;
+    font-weight: normal;
+    height: 110px;
+    margin: 10px;
+    padding: 5px;
+    text-decoration: none;
+    width: 110px;     
+}
+div#container table a.dashboard-item div {
+    background: none;
+    font-weight: bold;
+    overflow: hidden;
+}
+div#container table a.dashboard-broken {
+    background-image: url('../images/php-under-control/build-broken.png');
+}
+div#container table a.dashboard-good {
+    background-image: url('../images/php-under-control/build-good.png');
 }
 
 div#container pre.code-fragment,div#container .testresults-output {
