@@ -65,6 +65,7 @@ class phpucInstallCommand extends phpucAbstractCommand
      * @var array(string=>string) $installFiles
      */
     private $installFiles = array(
+        '/dashboard.jsp',
         '/footer.jsp',
         '/header.jsp',
         '/metrics.cewolf.jsp',
@@ -87,6 +88,9 @@ class phpucInstallCommand extends phpucAbstractCommand
         '/images/php-under-control/warning.png',
         '/js/shBrushPhp.js',
         '/js/shCore.js',
+        '/js/effects.js',
+        '/js/prototype.js',
+        '/js/scriptaculous.js',
         '/xsl/phpcs.xsl',
         '/xsl/phpcs-details.xsl',
         '/xsl/phpdoc.xsl',
