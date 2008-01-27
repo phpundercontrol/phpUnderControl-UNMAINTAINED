@@ -70,7 +70,6 @@ final String dateNow = DateFormat.getDateTimeInstance(
     <base href="<%=baseURL%>" />
     <link type="application/rss+xml" rel="alternate" href="rss" title="RSS" />
     <link type="text/css" rel="stylesheet" href="css/php-under-control.css" />
-    <meta HTTP-EQUIV="Refresh" CONTENT="200" URL="<%=thisURL%>?sort=<%=sort%>" />
     <script type="text/javascript" src="js/prototype.js"></script>
     <script language="JavaScript">
     // <![CDATA[
