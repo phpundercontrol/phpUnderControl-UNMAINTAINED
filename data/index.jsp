@@ -438,75 +438,80 @@
 </head>
 
 
-<body onload="checkIframe('<%=baseURL + "css/php-under-control.css"%>')">
-  <div id="container">
-  <cruisecontrol:link id="baseUrl" />
-  <h1>
-    <a href="<%=baseUrl%>">
-      phpUnderControl  
-    </a>
-  </h1>
-  <h1 class="white" align="center">
-    <%= name%> phpUnderControl at <%= hostname %><span class="dateNow">[<%= dateNow %>]</span>
-  </h1>
-  <div id="serverData" class="hidden"></div>
-  <form>
-    <table style="width:100%;margin: 20px auto" align="center">
-      <tbody>
-
-      <tr><td colspan="2">&nbsp;</td></tr>
-      <tr>
-        <td class="header-row"><img border="0" src="images/bluestripestop.gif"/></td>
-        <td class="header-row" align="right"><img border="0" src="images/bluestripestopright.gif"/></td>
-      </tr>
-
-
-      <tr><td colspan="2">
-        <table class="result">
+  <body onload="checkIframe('<%=baseURL + "css/php-under-control.css"%>')">
+    <div id="container">
+      <cruisecontrol:link id="baseUrl" />
+      <h1>
+        <a href="<%=baseUrl%>">phpUnderControl</a>
+      </h1>
+      <h1 class="white" align="center">
+        <%= name%> phpUnderControl at <%= hostname %>
+        <span class="dateNow">[<%= dateNow %>]</span>
+      </h1>
+      <div id="serverData" class="hidden"></div>
+      <form>
+        <table style="width:100%;margin: 10px;">
+          <tbody>
           <%
-            String logDirPath = application.getInitParameter("logDir");
-            if (logDirPath == null) {
-          %><tr><td>You need to provide a value for the context parameter <code>&quot;logDir&quot;</code></td></tr><%
-        }
-        else {
-          java.io.File logDir = new java.io.File(logDirPath);
-          if (logDir.isDirectory() == false) {
-        %><tr><td>Context parameter logDir needs to be set to a directory. Currently set to &quot;<%=logDirPath%>
-          &quot;</td></tr><%
-        }
-        else {
-          String[] projectDirs = logDir.list(new java.io.FilenameFilter() {
-            public boolean accept(File dir, String name) {
-              return (new File(dir, name).isDirectory());
-            }
-          });
+          String logDirPath = application.getInitParameter("logDir");
+          if (logDirPath == null) {
+          %>
+            <tr>
+              <td>
+                You need to provide a value for the context parameter 
+                <code>&quot;logDir&quot;</code>
+              </td>
+            </tr>
+          <% 
+          } else {
+              java.io.File logDir = new java.io.File(logDirPath);
+              if (logDir.isDirectory() == false) {
+          %>
+            <tr>
+              <td>
+                Context parameter logDir needs to be set to a directory. 
+                Currently set to &quot;<%=logDirPath%>&quot;
+              </td>
+            </tr>
+          <%
+              } else {
+                  String[] projectDirs = logDir.list(new java.io.FilenameFilter() {
+                      public boolean accept(File dir, String name) {
+                          return (new File(dir, name).isDirectory());
+                      }
+                  });
 
-          if (projectDirs.length == 0) {
-        %><tr><td>no project directories found under <%=logDirPath%></td></tr><%
-        } else {
-        %> 
-        <thead>
-          <tr>
-            <td colspan="6">
+                  if (projectDirs.length == 0) {
+          %>
+            <tr>
+              <td>
+                no project directories found under &quot;<%=logDirPath%>&quot;
+              </td>
+            </tr>
+          <%
+                  } else {
+          %> 
+            <tr>
+              <td>
               <%
-              Info project = null;
-              for (int i = 0; i < projectDirs.length; i++) {
-                  project = new Info(logDir, projectDirs[i]);
+                      Info project = null;
+                      for (int i = 0; i < projectDirs.length; i++) {
+                          project = new Info(logDir, projectDirs[i]);
               %>
-              <a class="dashboard-item dashboard-<%= (project.failed() ? "broken" : "good") %>" href="buildresults/<%=project.project%>">
-                <div>
-                  <%= project.project %>
-                </div>
-                <!-- <%= project.getStatus().getImportance() %> -->
-                <%= project.getStatus()%> <em>(<%= project.getStatusSince() %>)</em><br />
-                <%= project.getLastSuccessfulBuildTime() %><br />
-                <%= project.getLabel()%>
-              </a>
-              <% } %>
-            </td>
-          </tr>
-        </thead>
-        <tbody>
+                <a class="dashboard-item dashboard-<%= (project.failed() ? "broken" : "good") %>" href="buildresults/<%=project.project%>">
+                  <div>
+                    <%= project.project %>
+                  </div>
+                  <!-- <%= project.getStatus().getImportance() %> -->
+                  <%= project.getStatus()%> <em>(<%= project.getStatusSince() %>)</em><br />
+                  <%= project.getLastSuccessfulBuildTime() %><br />
+                  <%= project.getLabel()%>
+                </a>
+              <%
+                      } 
+              %>
+              </td>
+            </tr>
 <%--
             <tr class="<%= (i % 2 == 1) ? "even-row" : "odd-row" %> ">
               <td class="data"><a href="buildresults/<%=info[i].project%>"></a></td>
@@ -522,31 +527,25 @@
               <% } %>
             </tr>
 --%>
-          </tbody>
           <%
                 }
-              }
             }
-          %></table>
-
-
-      </td></tr>
-      <tr>
-        <td bgcolor="#FFFFFF"><img border="0" src="images/bluestripesbottom.gif"/></td>
-        <td align="right" bgcolor="#FFFFFF"><img border="0" src="images/bluestripesbottomright.gif"/></td>
-      </tr>
-      <tr><td colspan="2">&nbsp;</td></tr>
-
-    </tbody>
-    <tfoot>
-        <tr>
-            <td colspan="2" align="right"><a href="rss"><img border="0" src="images/rss.png"/></a></td>
-        </tr>
-    </tfoot>
-  </table>
-</form>
-</div>
+        }
+          %>
+            <tr>
+              <td>&nbsp;</td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr>
+              <td align="right">
+                <a href="rss"><img border="0" src="images/rss.png"/></a>
+              </td>
+            </tr>
+          </tfoot>
+        </table>
+      </form>
+    </div>
     <%@ include file="footer.jsp" %>
   </body>
 </html>
-
