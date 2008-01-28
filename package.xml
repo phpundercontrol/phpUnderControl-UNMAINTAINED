@@ -390,6 +390,125 @@
           </file>
         </dir>
       </dir>
+      <dir name="phpdoc">
+        <dir name="Converters/HTML/Phpuc">
+          <dir name="templates/phpuc">
+            <dir name="templates">
+              <dir name="media">
+                <file name="empty.png" role="data" />
+                <file name="list-item.gif" role="data" />
+                <file name="style.css" role="data">
+                  <tasks:replace from="@package_version@" to="version" type="package-info" />
+                </file>
+              </dir>
+              <file name="basicindex.tpl" role="data">
+                <tasks:replace from="@package_version@" to="version" type="package-info" />
+              </file>
+              <file name="blank.tpl" role="data">
+                <tasks:replace from="@package_version@" to="version" type="package-info" />
+              </file>
+              <file name="class.tpl" role="data">
+                <tasks:replace from="@package_version@" to="version" type="package-info" />
+              </file>
+              <file name="classleft.tpl" role="data">
+                <tasks:replace from="@package_version@" to="version" type="package-info" />
+              </file>
+              <file name="classtags.tpl" role="data">
+                <tasks:replace from="@package_version@" to="version" type="package-info" />
+              </file>
+              <file name="classtrees.tpl" role="data">
+                <tasks:replace from="@package_version@" to="version" type="package-info" />
+              </file>
+              <file name="const.tpl" role="data">
+                <tasks:replace from="@package_version@" to="version" type="package-info" />
+              </file>
+              <file name="define.tpl" role="data">
+                <tasks:replace from="@package_version@" to="version" type="package-info" />
+              </file>
+              <file name="docblock.tpl" role="data">
+                <tasks:replace from="@package_version@" to="version" type="package-info" />
+              </file>
+              <file name="elementindex.tpl" role="data">
+                <tasks:replace from="@package_version@" to="version" type="package-info" />
+              </file>
+              <file name="errors.tpl" role="data">
+                <tasks:replace from="@package_version@" to="version" type="package-info" />
+              </file>
+              <file name="examplesource.tpl" role="data">
+                <tasks:replace from="@package_version@" to="version" type="package-info" />
+              </file>
+              <file name="fileleft.tpl" role="data">
+                <tasks:replace from="@package_version@" to="version" type="package-info" />
+              </file>
+              <file name="filesource.tpl" role="data">
+                <tasks:replace from="@package_version@" to="version" type="package-info" />
+              </file>
+              <file name="filetags.tpl" role="data">
+                <tasks:replace from="@package_version@" to="version" type="package-info" />
+              </file>
+              <file name="footer.tpl" role="data">
+                <tasks:replace from="@package_version@" to="version" type="package-info" />
+              </file>
+              <file name="function.tpl" role="data">
+                <tasks:replace from="@package_version@" to="version" type="package-info" />
+              </file>
+              <file name="global.tpl" role="data">
+                <tasks:replace from="@package_version@" to="version" type="package-info" />
+              </file>
+              <file name="header.tpl" role="data">
+                <tasks:replace from="@package_version@" to="version" type="package-info" />
+              </file>
+              <file name="include.tpl" role="data">
+                <tasks:replace from="@package_version@" to="version" type="package-info" />
+              </file>
+              <file name="index.tpl" role="data">
+                <tasks:replace from="@package_version@" to="version" type="package-info" />
+              </file>
+              <file name="method.tpl" role="data">
+                <tasks:replace from="@package_version@" to="version" type="package-info" />
+              </file>
+              <file name="packages.tpl" role="data">
+                <tasks:replace from="@package_version@" to="version" type="package-info" />
+              </file>
+              <file name="page.tpl" role="data">
+                <tasks:replace from="@package_version@" to="version" type="package-info" />
+              </file>
+              <file name="pkgelementindex.tpl" role="data">
+                <tasks:replace from="@package_version@" to="version" type="package-info" />
+              </file>
+              <file name="ric.tpl" role="data">
+                <tasks:replace from="@package_version@" to="version" type="package-info" />
+              </file>
+              <file name="tags.tpl" role="data">
+                <tasks:replace from="@package_version@" to="version" type="package-info" />
+              </file>
+              <file name="todolist.tpl" role="data">
+                <tasks:replace from="@package_version@" to="version" type="package-info" />
+              </file>
+              <file name="tutorial_toc.tpl" role="data">
+                <tasks:replace from="@package_version@" to="version" type="package-info" />
+              </file>
+              <file name="tutorial_tree.tpl" role="data">
+                <tasks:replace from="@package_version@" to="version" type="package-info" />
+              </file>
+              <file name="tutorial.tpl" role="data">
+                <tasks:replace from="@package_version@" to="version" type="package-info" />
+              </file>
+              <file name="var.tpl" role="data">
+                <tasks:replace from="@package_version@" to="version" type="package-info" />
+              </file>
+            </dir>
+            <dir name="templates_c">
+            </dir>
+            <file name="options.ini" role="data">
+              <tasks:replace from="@package_version@" to="version" type="package-info" />
+            </file>       
+          </dir>
+          <file name="HTMLPhpucConverter.inc" role="data">
+            <tasks:replace from="@package_version@" to="version" type="package-info" />
+          </file>
+        </dir>
+      </dir>
       <dir name="template">
         <file name="project.xml" role="data">
           <tasks:replace from="@package_version@" to="version" type="package-info" />
