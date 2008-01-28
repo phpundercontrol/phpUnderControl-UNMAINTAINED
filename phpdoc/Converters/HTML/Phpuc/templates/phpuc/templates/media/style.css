@@ -7,16 +7,9 @@ body {
     padding: 0;
 }
 
-
-
-a.menu {
-    background-color: transparent;
-    color: #2E3436;
-}
-
-dd {
-    margin-left: 0px;
-    padding-left: 1em;
+div.menu {
+	font-weight: bold;
+	text-align: center;
 }
 
 div.credit {
@@ -47,45 +40,13 @@ div.warning {
 }
 
 hr {
-    border-color: #BABDB6;
-    border-style: solid;
-    height: 1px;
+	border-top: 1px solid #BABDB6;
     margin-bottom: 10px;
     margin-top: 10px;
 }
 
 td {
     vertical-align: top;
-}
-
-td.class-overview {
-    padding: 2px 2px 2px 1em;
-}
-
-td.header-menu {
-    background-color: #BABDB6;
-    text-align: right;
-}
-
-td.header-top-left img {
-    display: none;
-}
-
-td.header-top-right {
-    background-color: #FFFFFF;
-    color: #2E3436;
-    font-size: 18pt;
-    font-weight: bold;
-    padding: 10px;
-    text-align: center;
-}
-
-td.indent {
-    padding-left: 1em;
-}
-
-td.menu {
-    padding: 2px 2px 2px 5px;
 }
 
 td.type, .folder-title, .method-result, .include-type {
@@ -569,13 +530,16 @@ a {
 a: hover {
     text-decoration: underline;
 }
-
 ol li {
     list-style: none;
 }
 ul li {
+	line-height: 1.5em;
     list-style: inside;
     list-style-image: url("list-item.gif");
+}
+ul li li {
+	padding-left: 10px;
 }
 
 h1, h2, h3, h4, h5, h6 {

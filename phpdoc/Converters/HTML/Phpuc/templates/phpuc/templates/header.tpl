@@ -7,47 +7,10 @@
     <meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'/>
   </head>
   <body>
-    <table border="0" cellspacing="0" cellpadding="0" height="48" width="100%">
-      <tr>
-	<td class="header-top-left">
-          <img src="{$subdir}media/logo.png" border="0" alt="phpDocumentor {$phpdocver}" />
-        </td>
-        <td class="header-top-right">
-          {$package}<br />
-          <div class="header-top-right-subpackage">{$subpackage}</div>
-        </td>
-      </tr>
-      <tr>
-        <td colspan="2" class="header-line">
-          <img src="{$subdir}media/empty.png" width="1" height="1" border="0" alt=""  />
-        </td>
-      </tr>
-      <tr>
-        <td colspan="2" class="header-menu">
-          {assign var="packagehaselements" value=false}
-          {foreach from=$packageindex item=thispackage}
-            {if in_array($package, $thispackage)}
-              {assign var="packagehaselements" value=true}
-            {/if}
-          {/foreach}
-          {if $packagehaselements}
-            [ <a href="{$subdir}classtrees_{$package}.html" class="menu">class tree: {$package}</a> ]
-            [ <a href="{$subdir}elementindex_{$package}.html" class="menu">index: {$package}</a> ]
-          {/if}
-          [ <a href="{$subdir}elementindex.html" class="menu">all elements</a> ]
-        </td>
-      </tr>
-      <tr>
-        <td colspan="2" class="header-line">
-          <img src="{$subdir}media/empty.png" width="1" height="1" border="0" alt=""  />
-        </td>
-      </tr>
-    </table>
 
-    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+    <table width="100%">
       <tr valign="top">
         <td width="195" class="menu">
-          <div class="package-title">{$package}</div>
           {if count($ric) >= 1}
             <div class="package">
               <div id="ric">
@@ -112,7 +75,7 @@
           {/if}
         </td>
         <td>
-          <table style="width:750px;" cellpadding="10" cellspacing="0" width="100%" border="0">
+          <table style="width:750px;" cellpadding="10" cellspacing="10px" width="100%">
             <tr>
               <td valign="top">
                 {if !$hasel}{assign var="hasel" value=false}{/if}
@@ -120,8 +83,18 @@
                   {assign var="eltype" value="interface"}
                 {/if}
                 {if $hasel}
-                  <h1>{$eltype|capitalize}: {$class_name}</h1>
-                  Source Location: {$source_location}<br /><br />
+                  <h1>{$package}{if $subpackage != ''}::{$subpackage}{/if}::{$class_name}</h1>
                 {/if}
-
-
+                <div class="menu">
+          {assign var="packagehaselements" value=false}
+          {foreach from=$packageindex item=thispackage}
+            {if in_array($package, $thispackage)}
+              {assign var="packagehaselements" value=true}
+            {/if}
+          {/foreach}
+          {if $packagehaselements}
+            [ <a href="{$subdir}classtrees_{$package}.html">class tree: {$package}</a> ]
+            [ <a href="{$subdir}elementindex_{$package}.html">index: {$package}</a> ]
+          {/if}
+          [ <a href="{$subdir}elementindex.html">all elements</a> ]
+                </div>
