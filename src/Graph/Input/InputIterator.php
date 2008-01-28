@@ -77,7 +77,7 @@ class phpucInputIterator extends FilterIterator
     private $inputs = null;
     
     /**
-     * Returns <b>true if the file name indicates a valid input file. 
+     * Returns <b>true</b> if the file name indicates a valid input file. 
      *
      * @return boolean
      */
