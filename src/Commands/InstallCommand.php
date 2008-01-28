@@ -66,6 +66,7 @@ class phpucInstallCommand extends phpucAbstractCommand
      */
     private $installFiles = array(
         '/dashboard.jsp',
+        '/favicon.ico',
         '/footer.jsp',
         '/header.jsp',
         '/metrics.cewolf.jsp',

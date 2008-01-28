@@ -63,6 +63,7 @@
     <base href="<%=baseURL%>" />
     <link type="application/rss+xml" rel="alternate" href="rss" title="RSS" />
     <link type="text/css" rel="stylesheet" href="css/php-under-control.css" />
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
     <script type="text/javascript" src="js/prototype.js"></script>
     <script language="JavaScript">
     // <![CDATA[

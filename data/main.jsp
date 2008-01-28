@@ -52,6 +52,7 @@
     <base href="<%=request.getScheme()%>://<%=request.getServerName()%>:<%=request.getServerPort()%><%=request.getContextPath()%>/" />
     <link type="text/css" rel="stylesheet" href="css/SyntaxHighlighter.css"/>
     <link type="text/css" rel="stylesheet" href="css/php-under-control.css"/>
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
     <link type="application/rss+xml" rel="alternate" href="<%= request.getContextPath() %>/rss/<%= project %>" title="RSS"/>
   </head>
   <body>
