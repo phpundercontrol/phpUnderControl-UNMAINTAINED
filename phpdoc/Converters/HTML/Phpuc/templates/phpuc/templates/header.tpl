@@ -10,7 +10,7 @@
 
     <table width="100%">
       <tr valign="top">
-        <td width="195" class="menu">
+        <td class="menu">
           {if count($ric) >= 1}
             <div class="package">
               <div id="ric">
@@ -27,7 +27,7 @@
               </div>
             </div>
           {/if}
-          <b>Packages:</b><br />
+          <h2>Packages:</h2>
           <div class="package">
             <ul>
               {section name=packagelist loop=$packageindex}
@@ -37,9 +37,8 @@
               {/section}
             </ul>
           </div>
-          <br />
           {if $tutorials}
-            <b>Tutorials/Manuals:</b><br />
+            <h2>Tutorials/Manuals:</h2>
             <div class="package">
               {if $tutorials.pkg}
                 <strong>Package-level:</strong>
@@ -63,13 +62,12 @@
           {/if}
           {if !$noleftindex}{assign var="noleftindex" value=false}{/if}
           {if !$noleftindex}
-            <br />
             {if $compiledinterfaceindex}
-              <b>Interfaces:</b><br />
+              <h2>Interfaces:</h2>
               {eval var=$compiledinterfaceindex}
             {/if}
             {if $compiledclassindex}
-              <b>Classes:</b><br />
+              <h2>Classes:</h2>
               {eval var=$compiledclassindex}
             {/if}
           {/if}
@@ -92,9 +90,10 @@
               {assign var="packagehaselements" value=true}
             {/if}
           {/foreach}
+          [ <a href="{$subdir}index.html">Index</a> ]
           {if $packagehaselements}
-            [ <a href="{$subdir}classtrees_{$package}.html">class tree: {$package}</a> ]
-            [ <a href="{$subdir}elementindex_{$package}.html">index: {$package}</a> ]
+            [ <a href="{$subdir}classtrees_{$package}.html">{$package} classes</a> ]
+            [ <a href="{$subdir}elementindex_{$package}.html">{$package} elements</a> ]
           {/if}
-          [ <a href="{$subdir}elementindex.html">all elements</a> ]
+          [ <a href="{$subdir}elementindex.html">All elements</a> ]
                 </div>

@@ -40,6 +40,7 @@ div.warning {
 }
 
 hr {
+	border: 0;
 	border-top: 1px solid #BABDB6;
     margin-bottom: 10px;
     margin-top: 10px;
@@ -49,12 +50,18 @@ td {
     vertical-align: top;
 }
 
-td.type, .folder-title, .method-result, .include-type {
-    font-style: italic;
+td.menu {
+	width: 250px;
+	min-width: 200px;
+	max-width: 250px;
+}
+
+td.menu ul {
+    margin: 0;	
 }
 
 ul {
-    margin-left: 0px;
+    margin-left: 0;
     padding-left: 8px;
     vertical-align: top;
 }

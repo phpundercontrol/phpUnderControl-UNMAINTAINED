@@ -77,7 +77,7 @@
   <table class="summary">
     {section name=consts loop=$consts}
       <tr>
-        <td>
+        <td class="right">
           <a name="const-{$consts[consts].const_name}" id="{$const[consts].const_name}"></a>
           <code>
             <a href="#const-{$consts[consts].const_name}" title="details" class="const-name-summary">{$consts[consts].const_name}</a>
@@ -110,7 +110,7 @@
         <tbody>
           {section name=iconsts2 loop=$iconsts[iconsts].iconsts}
             <tr>
-              <td>
+              <td class="right">
                 <code>{$iconsts[iconsts].iconsts[iconsts2].link}</code>
               </td>
               <td>
