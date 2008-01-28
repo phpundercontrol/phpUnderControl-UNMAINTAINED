@@ -229,8 +229,8 @@ if (logDirPath == null) {
     </tr>
 <% 
 } else {
-	java.io.File logDir = new java.io.File(logDirPath);
-	if (logDir.isDirectory() == false) {
+    java.io.File logDir = new java.io.File(logDirPath);
+    if (logDir.isDirectory() == false) {
 %>
     <tr>
       <td>
@@ -255,32 +255,37 @@ if (logDirPath == null) {
     </tr>
 <%
         } else {
-%> 
-    <tr>
-      <td>
-<%
-            // Sort by project name
-            java.util.Arrays.sort(projectDirs);
             Info project = null;
             for (int i = 0; i < projectDirs.length; i++) {
                 project = new Info(logDir, projectDirs[i]);
 %>
-        <a id="project-<%= project.getLabel()%>"
-           class="dashboard-item dashboard-<%= (project.failed() ? "broken" : "good") %>" 
-           href="buildresults/<%=project.project%>">
+    <tr>
+      <td>
+        <div class="<%= (project.failed() ? "broken" : "good") %>">
           <div>
-            <%= project.project %>
+          <table>
+            <tbody>
+              <tr>
+                <td class="left">
+                  <a href="buildresults/<%=project.project%>"><%= project.project %></a>
+                </td>
+                <td class="right"><%= project.getLabel()%></td>
+              </tr>
+              <tr>
+                <td class="left status-<%= project.getStatus().getImportance() %>">
+                  <%= project.getStatus()%> <em>(<%= project.getStatusSince() %>)</em>
+                </td>
+                <td class="right"><%= project.getLastSuccessfulBuildTime() %></td>
+              </tr>
+            </tbody>
+          </table>
           </div>
-          <!-- <%= project.getStatus().getImportance() %> -->
-          <%= project.getStatus()%> <em>(<%= project.getStatusSince() %>)</em><br />
-          <%= project.getLastSuccessfulBuildTime() %><br />
-          <%= project.getLabel()%>
-        </a>
+        </div>
+      </td>
+    </tr>
 <%
             }
 %>
-      </td>
-    </tr>
 <%--
             <tr class="<%= (i % 2 == 1) ? "even-row" : "odd-row" %> ">
               <td class="data"><a href="buildresults/<%=info[i].project%>"></a></td>

@@ -44,12 +44,6 @@
 
 <cruisecontrol:jmxbase id="jmxBase"/>
 <%
-final String dateNow = DateFormat.getDateTimeInstance(
-        DateFormat.SHORT, 
-        DateFormat.SHORT, 
-        request.getLocale()
-).format(new Date());
-
   String name = System.getProperty("ccname", "");
   String hostname = InetAddress.getLocalHost().getHostName();
   boolean jmxEnabled = true;
@@ -58,8 +52,7 @@ final String dateNow = DateFormat.getDateTimeInstance(
   String baseURL = request.getScheme() 
                  + "://" + request.getServerName() 
                  + ":" + request.getServerPort()
-                 + request.getContextPath() + "/";
-                 
+                 + request.getContextPath() + "/";                 
   String thisURL = request.getRequestURI();
 
   String sort = request.getParameter("sort");
@@ -78,7 +71,14 @@ final String dateNow = DateFormat.getDateTimeInstance(
         'dashboard', 
         'dashboard.jsp', {
             method: 'get',
-            frequency: 2
+            frequency: 5
+        }
+    );
+    new Ajax.PeriodicalUpdater(
+        'servertime', 
+        'servertime.jsp', {
+            method: 'get',
+            frequency: 60
         }
     );
     
@@ -118,17 +118,18 @@ final String dateNow = DateFormat.getDateTimeInstance(
         <a href="<%=baseUrl%>">phpUnderControl</a>
       </h1>
       <h1 class="white" align="center">
-        <%= name%> phpUnderControl at <%= hostname %> [<em><%= dateNow %></em>]
+        <%= name%> phpUnderControl at <%= hostname %> [<em id="servertime"><%@ include file="servertime.jsp" %></em>]
       </h1>
       <div id="serverData" class="hidden"></div>
       <form>
         <table style="width:100%;">
           <tbody>
             <tr>
-              <td>
-                <div id="dashboard" style="background: transparent;">
-                  <%@ include file="dashboard.jsp" %>
-                </div>
+              <td>&nbsp;</td>
+            </tr>
+            <tr>
+              <td id="dashboard">
+                <%@ include file="dashboard.jsp" %>
               </td>
             </tr>
             <tr>
