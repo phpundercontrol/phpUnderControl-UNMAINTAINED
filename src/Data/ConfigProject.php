@@ -69,6 +69,7 @@ class phpucConfigProject
      *
      * @type array<mixed>
      * @var array(string=>mixed) $properties
+     * @ignore
      */
     protected $properties = array(
         'element'      =>  null,
