@@ -1,3 +1,12 @@
+phpUnderControl 0.3.5
+---------------------
+
+- New dashboard like index page, thanks to kore.
+- phpUnderControl favicon added, thanks to kore.
+- Custom PhpDocumentor template based on HTML:Smarty:HandS added.
+- Build breakdown timeline colors fixed. When the first build was broken the
+  color green was choosen for broken builds. 
+
 phpUnderControl 0.3.4
 ---------------------
 
