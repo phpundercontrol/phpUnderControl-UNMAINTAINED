@@ -7,6 +7,8 @@
     <meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'/>
   </head>
   <body>
+  
+    <h1>{$maintitle}{if $title != $maintitle} :: {$title}{/if}</h1>
 
     <table width="100%">
       <tr valign="top">
@@ -81,7 +83,7 @@
                   {assign var="eltype" value="interface"}
                 {/if}
                 {if $hasel}
-                  <h1>{$package}{if $subpackage != ''}::{$subpackage}{/if}::{$class_name}</h1>
+                  <h2>{$package}{if $subpackage != ''}::{$subpackage}{/if}::{$class_name}</h2>
                 {/if}
                 <div class="menu">
           {assign var="packagehaselements" value=false}
