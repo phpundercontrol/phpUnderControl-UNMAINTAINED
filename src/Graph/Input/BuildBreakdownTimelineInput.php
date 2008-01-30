@@ -117,7 +117,7 @@ class phpucBuildBreakdownTimelineInput extends phpucAbstractInput
             $data[$label][$timestamp] = date( 'H:i', $timestamp );
         }
         
-        ksort( $data );
+        krsort( $data );
         
         return $data;
     }
