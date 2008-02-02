@@ -1,0 +1,264 @@
+<?php
+/**
+ * This file is part of phpUnderControl.
+ *
+ * Copyright (c) 2007-2008, Manuel Pichler <mapi@phpundercontrol.org>.
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions
+ * are met:
+ *
+ *   * Redistributions of source code must retain the above copyright
+ *     notice, this list of conditions and the following disclaimer.
+ *
+ *   * Redistributions in binary form must reproduce the above copyright
+ *     notice, this list of conditions and the following disclaimer in
+ *     the documentation and/or other materials provided with the
+ *     distribution.
+ *
+ *   * Neither the name of Manuel Pichler nor the names of his
+ *     contributors may be used to endorse or promote products derived
+ *     from this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+ * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+ * LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
+ * FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
+ * COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
+ * INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
+ * BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+ * LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+ * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+ * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
+ * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+ * POSSIBILITY OF SUCH DAMAGE.
+ * 
+ * @package   Tasks
+ * @author    Manuel Pichler <mapi@phpundercontrol.org>
+ * @copyright 2007-2008 Manuel Pichler. All rights reserved.
+ * @license   http://www.opensource.org/licenses/bsd-license.php  BSD License
+ * @version   SVN: $Id$
+ * @link      http://www.phpundercontrol.org/
+ */
+
+require_once dirname( __FILE__ ) . '/AbstractPearTaskTest.php';
+
+/**
+ * Test case for the php code sniffer task.
+ * 
+ * @package   Tasks
+ * @author    Manuel Pichler <mapi@phpundercontrol.org>
+ * @copyright 2007-2008 Manuel Pichler. All rights reserved.
+ * @license   http://www.opensource.org/licenses/bsd-license.php  BSD License
+ * @version   Release: @package_version@
+ * @link      http://www.phpundercontrol.org/
+ */
+class phpucPHPUnitTaskTest extends phpucAbstractPearTaskTest
+{
+    /**
+     * Content for a fake phpunit bin that works.
+     *
+     * @type string
+     * @var string $validBin
+     */
+    protected $validBin = "#!/usr/bin/env php\n<?php echo 'version 3.2.0';?>";
+    
+    /**
+     * Content for a fake phpunit bin that doesn't work.
+     *
+     * @type string
+     * @var string $invalidBin
+     */
+    protected $invalidBin = "#!/usr/bin/env php\n<?php echo 'version 3.1.9';?>";
+    
+    /**
+     * Content for a fake phpunit bin that returns an invalid version.
+     *
+     * @type string
+     * @var string $badBin
+     */
+    protected $badBin = "#!/usr/bin/env php\n<?php echo ' version-3.2.0';?>";
+    
+    /**
+     * Sets the required binary contents.
+     * 
+     * @return void
+     */
+    protected function setUp()
+    {
+        parent::setUp();
+        
+        $this->clearTestContents(  PHPUC_TEST_DIR . '/projects' );
+        $this->clearTestContents(  PHPUC_TEST_DIR . '/build' );
+        $this->clearTestContents(  PHPUC_TEST_DIR . '/logs' );
+        
+        if ( stripos( PHP_OS, 'WIN' ) !== false )
+        {
+            $this->badBin     = "@echo off\n\recho version-3.2.0";
+            $this->validBin   = "@echo off\n\recho version 3.2.0";
+            $this->invalidBin = "@echo off\n\recho version 3.1.9";
+        }
+    }
+    
+    /**
+     * Tests validate with the required phpunit version. 
+     *
+     * @return void
+     */
+    public function testPHPUnitVersionValidate()
+    {
+        $this->createExecutable( 'phpunit', $this->validBin );
+        $phpunit = new phpucPhpUnitTask( $this->args );
+        $phpunit->validate();
+    }
+    
+    /**
+     * Tests that the validate method fails for an unsupported phpunit version.
+     *
+     * @return void
+     */
+    public function testPHPUnitVersionValidateWithInvalidVersion()
+    {
+        $this->createExecutable( 'phpunit', $this->invalidBin );
+        $phpunit = new phpucPhpUnitTask( $this->args );
+        
+        phpucConsoleOutput::get()->reset();
+
+        $phpunit->validate();
+
+        $this->assertRegExp( '/^NOTICE:/', phpucConsoleOutput::get()->getBuffer() );
+    }
+    
+    /**
+     * Tests that the validate method with a bad formated version result.
+     *
+     * @return void
+     */
+    public function testPHPUnitVersionValidateWithBadVersionValue()
+    {
+        $this->createExecutable( 'phpunit', $this->badBin );
+        $phpunit = new phpucPhpUnitTask( $this->args );
+        
+        phpucConsoleOutput::get()->reset();
+
+        $phpunit->validate();
+		
+		$buffer = trim( phpucConsoleOutput::get()->getBuffer() );
+
+        $this->assertEquals( 
+            0, strpos( $buffer, 'WARNING: Cannot identify PHPUnit version.' ) 
+        );
+    }
+    
+    /**
+     * Tests that the execute method adds a correct build file target.
+     *
+     * @return void
+     */
+    public function testPHPUnitExecuteBuildFileModifications()
+    {
+        $this->createCCConfig();
+        
+        $file = sprintf( 
+            '%s/projects/%s/build.xml', 
+            PHPUC_TEST_DIR, 
+            $this->projectName 
+        );
+        
+        $this->assertFileNotExists( $file );
+        
+        $this->createExecutable( 'phpunit', $this->validBin );
+        
+        $phpunit = new phpucPhpUnitTask( $this->args );
+        $phpunit->validate();
+        $phpunit->execute();
+        
+        $this->assertFileExists( $file );
+        
+        $dom = new DOMDocument();
+        $dom->load( $file );
+        
+        $xpath = new DOMXPath( $dom );
+        $result = $xpath->query( '//target[@name="phpunit"]/exec/@executable' );
+        
+        $this->assertEquals( 1, $result->length );
+
+        // Check that the executable path begins with the test bin directory.
+        $this->assertEquals( 
+            0, strpos( $result->item( 0 )->nodeValue, PHPUC_TEST_DIR . '/bin/phpunit' )
+        );
+    }
+    
+    /**
+     * Tests that the phpunit task adds an artifact publisher into the 
+     * project configuration.
+     *
+     * @return void
+     */
+    public function testPHPUnitExecuteConfigFileModifiactions()
+    {
+        $this->createCCConfig();
+        $this->createExecutable( 'phpunit', $this->validBin );
+        
+        $phpunit = new phpucPhpUnitTask( $this->args );
+        $phpunit->validate();
+        $phpunit->execute();
+        
+        $dom = new DOMDocument();
+        $dom->load( PHPUC_TEST_DIR . '/config.xml' );
+        
+        $xpath  = new DOMXPath( $dom );
+        $result = $xpath->query(
+            sprintf( 
+                '/cruisecontrol/project[
+                   @name="%s"
+                 ]/publishers/artifactspublisher[@subdirectory="coverage"]',
+                $this->projectName
+            )
+        );
+        
+        $this->assertEquals( 1, $result->length );
+        $this->assertEquals( 
+            'projects/${project.name}/build/coverage', 
+            $result->item( 0 )->getAttribute( 'dir' )
+        );
+    }
+    
+    /**
+     * Tests that the validate method throws an exception for a not found 
+     * executable.
+     *
+     * @return void
+     */
+    public function testValidateFindPHPUnitExecutableFail()
+    {
+        $phpunit = new phpucPhpUnitTask( $this->args );
+        try
+        {
+            $phpunit->validate();
+            $this->fail( 'phpucValidateException expected.' );
+        }
+        catch ( phpucValidateException $e ) {}
+    }
+    
+    /**
+     * This test runs with phpunit, so there should be a global the phpunit 
+     * executable.
+     *
+     * @return void
+     */
+    public function testValidateFindPHPUnitExecutableInPath()
+    {
+        $this->prepareArgv( array( 'example', PHPUC_TEST_DIR ) );
+        
+        $input = new phpucConsoleInput();
+        $input->parse();
+        
+        $phpunit = new phpucPhpUnitTask( $input->args );
+        $phpunit->validate();
+        
+        $this->assertNotNull( $phpunit->executable );
+        
+    }
+}

@@ -1,0 +1,56 @@
+phpUnderControl 0.3.5
+---------------------
+
+- New dashboard like index page, thanks to kore.
+- phpUnderControl favicon added, thanks to kore.
+- Custom PhpDocumentor template based on HTML:Smarty:HandS added.
+- Build breakdown timeline colors fixed. When the first build was broken the
+  color green was choosen for broken builds. 
+- Directory structure refactored. Data related stuff is now in a single 
+  directory.
+- New error, success, fail, skipped icons by kore.
+
+phpUnderControl 0.3.4
+---------------------
+
+- In 0.3.3 the class phpucDotChartOptions was missing.
+
+phpUnderControl 0.3.1
+---------------------
+
+- Bugfix for different artifact locations.
+
+phpUnderControl 0.3.0
+---------------------
+
+Core
+- New console input class added.
+- New dynamic command/option layer for console started. 
+- New ezcGraph based metrics view integrated.
+- Changed from static to dynamic autoloading. 
+
+phpUnderControl 0.2.2
+---------------------
+
+Core
+- Default body background color set.
+- Documented example for the CruiseControl config.xml file and an ant build.xml
+  file for the phpUnderControl project added.
+
+phpUnderControl 0.2.1
+---------------------
+
+Core
+- Three new metric views added. Thanks to Sebastian for this great idea.
+   1) Unit Tests vs. Number of Failing Unit Tests.
+   2) Executable Lines of Code vs. Code Coverage in Percent.
+   3) Classes/Methods vs. Number of Tested Classes/Methods 
+- Dependency to latest PHP_CodeSniffer version 1.0.0RC3 increased.
+- CruiseControl config.xml file abstration implemented.
+- Source refactored to make the command line stuff testable.
+- Many code cleanups and documentation fixes.
+
+Tests
+- Test cases for the cli tool added.
+- Test cases for the build file abstraction added.
+- Test cases for some tasks added.
