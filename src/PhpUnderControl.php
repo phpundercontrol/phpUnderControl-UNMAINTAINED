@@ -55,9 +55,9 @@ if ( strpos( '@php_dir@', '@php_dir' ) === false )
 else
 {
     define( 'PHPUC_INSTALL_DIR', dirname( __FILE__ ) );
-    define( 'PHPUC_DATA_DIR', realpath( PHPUC_INSTALL_DIR . '/..' ) );
-    define( 'PHPUC_BIN_DIR', PHPUC_DATA_DIR . '/bin' );
-    define( 'PHPUC_EZC_BASE', PHPUC_DATA_DIR . '/lib/ezc/Base/src/base.php' );
+    define( 'PHPUC_DATA_DIR', realpath( PHPUC_INSTALL_DIR . '/../data' ) );
+    define( 'PHPUC_BIN_DIR', PHPUC_INSTALL_DIR . '/../bin' );
+    define( 'PHPUC_EZC_BASE', PHPUC_INSTALL_DIR . '/../lib/ezc/Base/src/base.php' );
 }
 
 require_once PHPUC_INSTALL_DIR . '/Util/Autoloader.php';

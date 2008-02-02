@@ -130,7 +130,7 @@ class phpucModifyFileTask extends phpucAbstractTask
             
             file_put_contents( 
                 $filepath,
-                file_get_contents( PHPUC_DATA_DIR . '/data/' . $file )
+                file_get_contents( PHPUC_DATA_DIR . '/' . $file )
             );
         }
         
