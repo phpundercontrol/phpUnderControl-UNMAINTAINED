@@ -20,9 +20,9 @@
     <email>mapi@phpundercontrol.org</email>
     <active>yes</active>
   </lead>
-  <date>2008-01-22</date>
+  <date>2008-02-02</date>
   <version>
-    <release>0.3.4</release>
+    <release>0.3.5</release>
     <api>0.2.0</api>
   </version>
   <stability>
@@ -31,7 +31,14 @@
   </stability>
   <license uri="http://www.opensource.org/licenses/bsd-license.php">BSD License</license>
   <notes>
-- In 0.3.3 the class phpucDotChartOptions was missing.
+- New dashboard like index page, thanks to kore.
+- phpUnderControl favicon added, thanks to kore.
+- Custom PhpDocumentor template based on HTML:Smarty:HandS added.
+- Build breakdown timeline colors fixed. When the first build was broken the
+  color green was choosen for broken builds. 
+- Directory structure refactored. Data related stuff is now in a single 
+  directory.
+- New error, success, fail, skipped icons by kore.
   </notes>
   <contents>
     <dir name="/">
@@ -460,10 +467,12 @@
               <file name="header-center.png" role="data" />
               <file name="header-left-logo.png" role="data" />
               <file name="info.png" role="data" />
+              <file name="notice.png" role="data" />
               <file name="skipped.png" role="data" />
               <file name="success.png" role="data" />
               <file name="tab-active.png" role="data" />
               <file name="tab-inactive.png" role="data" />
+              <file name="unknown.png" role="data" />
               <file name="warning.png" role="data" />
             </dir>
           </dir>
@@ -901,6 +910,29 @@
 - Example project fixed for windows.
 - CruiseControl link added to copyright line.
       </notes>
+    </release>
+  </changelog>
+  <changelog>
+    <release>
+      <lead>
+        <name>Manuel Pichler</name>
+        <user>mp</user>
+        <email>mapi@phpundercontrol.org</email>
+        <active>yes</active>
+      </lead>
+      <date>2008-01-22</date>
+      <version>
+        <release>0.3.4</release>
+        <api>0.2.0</api>
+      </version>
+      <stability>
+        <release>beta</release>
+        <api>beta</api>
+      </stability>
+      <license uri="http://www.opensource.org/licenses/bsd-license.php">BSD License</license>
+      <notes>
+- In 0.3.3 the class phpucDotChartOptions was missing.
+      </notes>    
     </release>
   </changelog>
 </package>
