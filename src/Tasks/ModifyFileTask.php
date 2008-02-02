@@ -87,10 +87,7 @@ class phpucModifyFileTask extends phpucAbstractTask
      */
     public function validate()
     {
-        $installDir = sprintf( 
-            '%s/webapps/cruisecontrol', 
-            $this->args->getArgument( 'cc-install-dir' ) 
-        );
+        $installDir = $this->args->getArgument( 'cc-install-dir' );
         
         foreach ( $this->files as $file )
         {
@@ -114,10 +111,7 @@ class phpucModifyFileTask extends phpucAbstractTask
         $out = phpucConsoleOutput::get();
         $out->writeLine( 'Performing modify file task.' );
         
-        $installDir = sprintf(
-            '%s/webapps/cruisecontrol', 
-            $this->args->getArgument( 'cc-install-dir' ) 
-        );
+        $installDir = $this->args->getArgument( 'cc-install-dir' );
         
         $out->startList();
         

@@ -91,10 +91,7 @@ class phpucCreateFileTask extends phpucAbstractTask
         $out = phpucConsoleOutput::get();
         $out->writeLine( 'Performing create file task.' );
         
-        $installDir = sprintf(
-            '%s/webapps/cruisecontrol', 
-            $this->args->getArgument( 'cc-install-dir' ) 
-        );
+        $installDir = $this->args->getArgument( 'cc-install-dir' );
         
         $out->startList();
         
