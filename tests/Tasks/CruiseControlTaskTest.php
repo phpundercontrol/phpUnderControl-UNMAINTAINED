@@ -42,7 +42,7 @@
  * @link      http://www.phpundercontrol.org/
  */
 
-require_once dirname( __FILE__ ) . '/../AbstractTest.php';
+require_once dirname( __FILE__ ) . '/AbstractTaskTest.php';
 
 /**
  * Test case for the cruise control task.
@@ -54,7 +54,7 @@ require_once dirname( __FILE__ ) . '/../AbstractTest.php';
  * @version   Release: @package_version@
  * @link      http://www.phpundercontrol.org/
  */
-class phpucCruiseControlTaskTest extends phpucAbstractTest
+class phpucCruiseControlTaskTest extends phpucAbstractTaskTest
 {
     /**
      * The console arguments.

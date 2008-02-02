@@ -126,9 +126,7 @@ class phpucPhpCodeSnifferTaskTest extends phpucAbstractPearTaskTest
     public function testCodeSnifferExecuteBuildFileModifications()
     {
         $phpcs = new phpucPhpCodeSnifferTask( $this->args );
-        ob_start();
         $phpcs->execute();
-        ob_end_clean();
         
         $sxml = simplexml_load_file( $this->projectDir . '/build.xml' );
         $build = $sxml->xpath( '/project/target[@name="build"]' );

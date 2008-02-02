@@ -98,7 +98,7 @@ abstract class phpucAbstractPearTaskTest extends phpucAbstractTaskTest
     protected function setUp()
     {
         parent::setUp();
-        
+
         $this->projectDir = PHPUC_TEST_DIR . '/projects/php-under-control';
         
         $options = array(
