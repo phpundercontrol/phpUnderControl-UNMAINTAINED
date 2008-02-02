@@ -78,7 +78,7 @@ class phpucPHPUnitTaskTest extends phpucAbstractPearTaskTest
      * @type string
      * @var string $badBin
      */
-    protected $badBin = "#!/usr/bin/env php\n<?php echo 'version-3.2.0';?>";
+    protected $badBin = "#!/usr/bin/env php\n<?php echo ' version-3.2.0';?>";
     
     /**
      * Sets the required binary contents.
@@ -126,7 +126,7 @@ class phpucPHPUnitTaskTest extends phpucAbstractPearTaskTest
         phpucConsoleOutput::get()->reset();
 
         $phpunit->validate();
-        
+
         $this->assertRegExp( '/^NOTICE:/', phpucConsoleOutput::get()->getBuffer() );
     }
     
@@ -143,10 +143,11 @@ class phpucPHPUnitTaskTest extends phpucAbstractPearTaskTest
         phpucConsoleOutput::get()->reset();
 
         $phpunit->validate();
-        
+		
+		$buffer = trim( phpucConsoleOutput::get()->getBuffer() );
+
         $this->assertEquals( 
-            'WARNING: Cannot identify PHPUnit version.', 
-            trim( phpucConsoleOutput::get()->getBuffer() )
+            0, strpos( $buffer, 'WARNING: Cannot identify PHPUnit version.' ) 
         );
     }
     

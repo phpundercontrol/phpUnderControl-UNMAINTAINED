@@ -154,11 +154,30 @@ class phpucPhpUnitTask extends phpucAbstractPearTask
      */
     protected function doValidate()
     {
+        $cwd = getcwd();
+        
+        $binary = basename( $this->executable );
+        
+        if ( ( $execdir = dirname( $this->executable ) ) !== '.' )
+        {
+            chdir( $execdir );
+        
+            if ( stripos( PHP_OS, 'WIN' ) === false )
+            {
+                $binary = "./{$binary}";
+            }
+        }
+            
+        $regexp = '/version\s+([0-9\.]+(RC[0-9])?)/';
+        $retval = exec( escapeshellcmd( "{$binary} --version" ) );
+        
+        chdir( $cwd );
+/*
         ob_start();
-        system( "{$this->executable} --version" );
+        exec( "{$this->executable} --version" );
         $retval = ob_get_contents();
         ob_end_clean();
-
+*/
         if ( preg_match( '/\s+([0-9\.]+(RC[0-9])?)/', $retval, $match ) === 0 )
         {
             phpucConsoleOutput::get()->writeLine(
