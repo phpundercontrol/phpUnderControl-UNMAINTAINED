@@ -1,6 +1,6 @@
 {include file="header.tpl" noleftindex=true}
 <a name="top"></a>
-<h1>Index of All Elements</h1>
+<h2>Index of All Elements</h2>
 <h3>Package Indexes</h3>
 <ul>
 {section name=p loop=$packageindex}

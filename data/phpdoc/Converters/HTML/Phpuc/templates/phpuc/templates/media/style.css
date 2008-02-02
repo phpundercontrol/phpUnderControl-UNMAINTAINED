@@ -8,12 +8,13 @@ body {
 }
 
 div.menu {
-	font-weight: bold;
-	text-align: center;
+    font-weight: bold;
+    text-align: center;
 }
 
 div.credit {
     font-size: 8pt;
+    margin-top: 10px;
     text-align: center;
 }
 
@@ -40,8 +41,8 @@ div.warning {
 }
 
 hr {
-	border: 0;
-	border-top: 1px solid #BABDB6;
+    border: 0;
+    border-top: 1px solid #BABDB6;
     margin-bottom: 10px;
     margin-top: 10px;
 }
@@ -51,13 +52,13 @@ td {
 }
 
 td.menu {
-	width: 250px;
-	min-width: 200px;
-	max-width: 250px;
+    width: 250px;
+    min-width: 200px;
+    max-width: 250px;
 }
 
 td.menu ul {
-    margin: 0;	
+    margin: 0;  
 }
 
 ul {
@@ -541,16 +542,26 @@ ol li {
     list-style: none;
 }
 ul li {
-	line-height: 1.5em;
+    line-height: 1.5em;
     list-style: inside;
     list-style-image: url("list-item.gif");
 }
 ul li li {
-	padding-left: 10px;
+    padding-left: 10px;
 }
 
 h1, h2, h3, h4, h5, h6 {
     color: #555753;
+}
+
+h1 {
+    background: #eeeeec url("logo.png") top left no-repeat;
+    font-size: 1.6em;
+    font-style: italic;
+    height: 30px;
+    margin: 0 0 10px 0;
+    padding-left: 280px;
+    padding-top: 30px;
 }
 /* h2 is used for section headlines */
 h2 {
@@ -569,11 +580,17 @@ h4 {
     font-weight: bold;
 }
 
-pre, ol {
+pre, ol, div.docblock {
     background-color: #d3d7cf;
     border: 1px dashed #555753;
     font-size: 1.1em;
     padding: 10px;
+}
+div.docblock {
+	margin-bottom: 10px;
+}
+div.docblock p {
+	font-family: monospace;
 }
 
 table.detail,
@@ -627,4 +644,3 @@ table.summary tbody td code {
     font-size: 1.3em;
     padding: 5px 10px;
 }
-

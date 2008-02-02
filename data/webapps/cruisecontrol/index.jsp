@@ -119,7 +119,9 @@
         <a href="<%=baseUrl%>">phpUnderControl</a>
       </h1>
       <h1 class="white" align="center">
-        <%= name%> phpUnderControl at <%= hostname %> [<em id="servertime"><%@ include file="servertime.jsp" %></em>]
+        <%= name%> phpUnderControl at <%= hostname %> [
+        <em id="servertime"><%@ include file="servertime.jsp" %></em>
+        ]
       </h1>
       <div id="serverData" class="hidden"></div>
       <form>

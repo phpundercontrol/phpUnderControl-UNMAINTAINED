@@ -75,7 +75,7 @@
           {/if}
         </td>
         <td>
-          <table style="width:750px;" cellpadding="10" cellspacing="10px" width="100%">
+          <table style="width:750px;" cellpadding="10" cellspacing="10px">
             <tr>
               <td valign="top">
                 {if !$hasel}{assign var="hasel" value=false}{/if}

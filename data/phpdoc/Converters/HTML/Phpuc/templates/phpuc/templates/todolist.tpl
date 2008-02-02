@@ -1,5 +1,5 @@
 {include file="header.tpl" title="Todo List"}
-<div align="center"><h1>Todo List</h1></div>
+<h2>Todo List</h2>
 {foreach from=$todos key=todopackage item=todo}
 <h2>{$todopackage}</h2>
 {section name=todo loop=$todo}

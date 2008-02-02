@@ -1,5 +1,5 @@
 {include file="header.tpl" noleftindex=true}
-  <h1>{$title}</h1>
+  <h2>{$title}</h2>
   {if $interfaces}
     {section name=classtrees loop=$interfaces}
       <hr />

@@ -15,8 +15,8 @@
    sodipodi:version="0.32"
    inkscape:version="0.45.1"
    version="1.0"
-   sodipodi:docbase="/home/kore/downloads"
-   sodipodi:docname="phpUnderControl-layout.svg"
+   sodipodi:docbase="/home/manu/Projects/workspace.xplib.de/phpUnderControl/trunk/docs"
+   sodipodi:docname="phpUnderControl-layout-kore.svg"
    inkscape:output_extension="org.inkscape.output.svg.inkscape"
    inkscape:export-filename="/home/kore/downloads/phpUnderControl-favicon.png"
    inkscape:export-xdpi="90"
@@ -2810,10 +2810,16 @@
        height="80"
        width="160"
        id="rect11300"
-       style="opacity:1;fill:#eeeeec;fill-opacity:1;stroke:none;stroke-width:0.5;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+       style="opacity:1;fill:#eeeeec;fill-opacity:1;stroke:none;stroke-width:0.5;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       inkscape:export-filename="/home/manu/Projects/workspace.xplib.de/phpUnderControl/trunk/data/phpdoc/Converters/HTML/Phpuc/templates/phpuc/templates/media/logo.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
     <g
        transform="translate(225,43)"
-       id="g11326">
+       id="g11326"
+       inkscape:export-filename="/home/manu/Projects/workspace.xplib.de/phpUnderControl/trunk/data/phpdoc/Converters/HTML/Phpuc/templates/phpuc/templates/media/logo.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90">
       <text
          xml:space="preserve"
          style="font-size:17.27185822px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;fill:#8ae234;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:URW Gothic L"
@@ -3137,7 +3143,10 @@
     </g>
     <g
        id="g4910"
-       transform="translate(190,0)">
+       transform="translate(190,0)"
+       inkscape:export-filename="/home/manu/Projects/workspace.xplib.de/phpUnderControl/trunk/data/phpdoc/Converters/HTML/Phpuc/templates/phpuc/templates/media/logo.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90">
       <g
          id="g4912"
          transform="matrix(0.7498831,0,0,0.7498831,84.23516,44.1065)">
