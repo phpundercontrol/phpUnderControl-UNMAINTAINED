@@ -306,211 +306,230 @@
         </file>
       </dir>
       <dir name="data">
-        <dir name="css">
-          <file name="php-under-control.css" role="data" />
-          <file name="SyntaxHighlighter.css" role="data" />
-        </dir>
-        <dir name="images">
-          <dir name="php-under-control">
-            <file name="error.png" role="data" />
-            <file name="failed.png" role="data" />
-            <file name="header-center.png" role="data" />
-            <file name="header-left-logo.png" role="data" />
-            <file name="info.png" role="data" />
-            <file name="skipped.png" role="data" />
-            <file name="success.png" role="data" />
-            <file name="tab-active.png" role="data" />
-            <file name="tab-inactive.png" role="data" />
-            <file name="warning.png" role="data" />
+        <dir name="phpdoc">
+          <dir name="Converters/HTML/Phpuc">
+            <dir name="templates/phpuc">
+              <dir name="templates">
+                <dir name="media">
+                  <file name="empty.png" role="data" />
+                  <file name="list-item.gif" role="data" />
+                  <file name="logo.png" role="data" />
+                  <file name="style.css" role="data">
+                    <tasks:replace from="@package_version@" to="version" type="package-info" />
+                  </file>
+                </dir>
+                <file name="basicindex.tpl" role="data">
+                  <tasks:replace from="@package_version@" to="version" type="package-info" />
+                </file>
+                <file name="blank.tpl" role="data">
+                  <tasks:replace from="@package_version@" to="version" type="package-info" />
+                </file>
+                <file name="class.tpl" role="data">
+                  <tasks:replace from="@package_version@" to="version" type="package-info" />
+                </file>
+                <file name="classleft.tpl" role="data">
+                  <tasks:replace from="@package_version@" to="version" type="package-info" />
+                </file>
+                <file name="classtags.tpl" role="data">
+                  <tasks:replace from="@package_version@" to="version" type="package-info" />
+                </file>
+                <file name="classtrees.tpl" role="data">
+                  <tasks:replace from="@package_version@" to="version" type="package-info" />
+                </file>
+                <file name="const.tpl" role="data">
+                  <tasks:replace from="@package_version@" to="version" type="package-info" />
+                </file>
+                <file name="define.tpl" role="data">
+                  <tasks:replace from="@package_version@" to="version" type="package-info" />
+                </file>
+                <file name="docblock.tpl" role="data">
+                  <tasks:replace from="@package_version@" to="version" type="package-info" />
+                </file>
+                <file name="elementindex.tpl" role="data">
+                  <tasks:replace from="@package_version@" to="version" type="package-info" />
+                </file>
+                <file name="errors.tpl" role="data">
+                  <tasks:replace from="@package_version@" to="version" type="package-info" />
+                </file>
+                <file name="examplesource.tpl" role="data">
+                  <tasks:replace from="@package_version@" to="version" type="package-info" />
+                </file>
+                <file name="fileleft.tpl" role="data">
+                  <tasks:replace from="@package_version@" to="version" type="package-info" />
+                </file>
+                <file name="filesource.tpl" role="data">
+                  <tasks:replace from="@package_version@" to="version" type="package-info" />
+                </file>
+                <file name="filetags.tpl" role="data">
+                  <tasks:replace from="@package_version@" to="version" type="package-info" />
+                </file>
+                <file name="footer.tpl" role="data">
+                  <tasks:replace from="@package_version@" to="version" type="package-info" />
+                </file>
+                <file name="function.tpl" role="data">
+                  <tasks:replace from="@package_version@" to="version" type="package-info" />
+                </file>
+                <file name="global.tpl" role="data">
+                  <tasks:replace from="@package_version@" to="version" type="package-info" />
+                </file>
+                <file name="header.tpl" role="data">
+                  <tasks:replace from="@package_version@" to="version" type="package-info" />
+                </file>
+                <file name="include.tpl" role="data">
+                  <tasks:replace from="@package_version@" to="version" type="package-info" />
+                </file>
+                <file name="index.tpl" role="data">
+                  <tasks:replace from="@package_version@" to="version" type="package-info" />
+                </file>
+                <file name="method.tpl" role="data">
+                  <tasks:replace from="@package_version@" to="version" type="package-info" />
+                </file>
+                <file name="packages.tpl" role="data">
+                  <tasks:replace from="@package_version@" to="version" type="package-info" />
+                </file>
+                <file name="page.tpl" role="data">
+                  <tasks:replace from="@package_version@" to="version" type="package-info" />
+                </file>
+                <file name="pkgelementindex.tpl" role="data">
+                  <tasks:replace from="@package_version@" to="version" type="package-info" />
+                </file>
+                <file name="ric.tpl" role="data">
+                  <tasks:replace from="@package_version@" to="version" type="package-info" />
+                </file>
+                <file name="tags.tpl" role="data">
+                  <tasks:replace from="@package_version@" to="version" type="package-info" />
+                </file>
+                <file name="todolist.tpl" role="data">
+                  <tasks:replace from="@package_version@" to="version" type="package-info" />
+                </file>
+                <file name="tutorial_toc.tpl" role="data">
+                  <tasks:replace from="@package_version@" to="version" type="package-info" />
+                </file>
+                <file name="tutorial_tree.tpl" role="data">
+                  <tasks:replace from="@package_version@" to="version" type="package-info" />
+                </file>
+                <file name="tutorial.tpl" role="data">
+                  <tasks:replace from="@package_version@" to="version" type="package-info" />
+                </file>
+                <file name="var.tpl" role="data">
+                  <tasks:replace from="@package_version@" to="version" type="package-info" />
+                </file>
+              </dir>
+              <dir name="templates_c">
+              </dir>
+              <file name="options.ini" role="data">
+                <tasks:replace from="@package_version@" to="version" type="package-info" />
+              </file>       
+            </dir>
+            <file name="HTMLPhpucConverter.inc" role="data">
+              <tasks:replace from="@package_version@" to="version" type="package-info" />
+            </file>
           </dir>
         </dir>
-        <dir name="js">
-          <file name="shBrushPhp.js" role="data" />
-          <file name="shCore.js" role="data" />
+        <dir name="example">
+          <dir name="src">
+            <file name="Math.php" role="data">
+              <tasks:replace from="@package_version@" to="version" type="package-info" />
+            </file>
+          </dir>
+          <dir name="tests">
+            <file name="MathTest.php" role="data">
+              <tasks:replace from="@package_version@" to="version" type="package-info" />
+            </file>
+          </dir>
         </dir>
-        <dir name="xsl">
-          <file name="buildresults.xsl" role="data" />
-          <file name="errors.xsl" role="data" />
-          <file name="header.xsl" role="data" />
-          <file name="modifications.xsl" role="data" />
-          <file name="phpcs.xsl" role="data" />
-          <file name="phpcs-details.xsl" role="data" />
-          <file name="phpdoc.xsl" role="data" />
-          <file name="phphelper.xsl" role="data" />
-          <file name="phpunit.xsl" role="data" />
-          <file name="phpunit-details.xsl" role="data" />
-          <file name="phpunit-pmd.xsl" role="data" />
-          <file name="phpunit-pmd-details.xsl" role="data" />
+        <dir name="template">
+          <file name="project.xml" role="data">
+            <tasks:replace from="@package_version@" to="version" type="package-info" />
+        </file>
         </dir>
-        <file name="footer.jsp" role="data">
-          <tasks:replace from="- SVN" to="version" type="package-info" />
-        </file>
-        <file name="header.jsp" role="data">
-          <tasks:replace from="- SVN" to="version" type="package-info" />
-        </file>
-        <file name="index.jsp" role="data">
-          <tasks:replace from="- SVN" to="version" type="package-info" />
-        </file>
-        <file name="main.jsp" role="data">
-          <tasks:replace from="- SVN" to="version" type="package-info" />
-        </file>
-        <file name="metrics.cewolf.jsp" role="data">
-          <tasks:replace from="- SVN" to="version" type="package-info" />
-        </file>
-        <file name="metrics.jsp" role="data">
-          <tasks:replace from="- SVN" to="version" type="package-info" />
-        </file>
-        <file name="phpcs.jsp" role="data">
-          <tasks:replace from="- SVN" to="version" type="package-info" />
-        </file>
-        <file name="phpunit.jsp" role="data">
-          <tasks:replace from="- SVN" to="version" type="package-info" />
-        </file>
-        <file name="phpunit-pmd.jsp" role="data">
-          <tasks:replace from="- SVN" to="version" type="package-info" />
-        </file>
+        <dir name="webapps">
+          <dir name="cruisecontrol">
+          <dir name="css">
+            <file name="php-under-control.css" role="data" />
+            <file name="SyntaxHighlighter.css" role="data" />
+          </dir>
+          <dir name="images">
+            <dir name="php-under-control">
+              <file name="dashboard-broken-left.png" role="data" />
+              <file name="dashboard-broken-right.png" role="data" />
+              <file name="dashboard-good-left.png" role="data" />
+              <file name="dashboard-good-right.png" role="data" />
+              <file name="error.png" role="data" />
+              <file name="failed.png" role="data" />
+              <file name="header-center.png" role="data" />
+              <file name="header-left-logo.png" role="data" />
+              <file name="info.png" role="data" />
+              <file name="skipped.png" role="data" />
+              <file name="success.png" role="data" />
+              <file name="tab-active.png" role="data" />
+              <file name="tab-inactive.png" role="data" />
+              <file name="warning.png" role="data" />
+            </dir>
+          </dir>
+          <dir name="js">
+            <file name="effects.js" role="data" />
+            <file name="prototype.js" role="data" />
+            <file name="scriptaculous.js" role="data" />
+            <file name="shBrushPhp.js" role="data" />
+            <file name="shCore.js" role="data" />
+          </dir>
+          <dir name="xsl">
+            <file name="buildresults.xsl" role="data" />
+            <file name="errors.xsl" role="data" />
+            <file name="header.xsl" role="data" />
+            <file name="modifications.xsl" role="data" />
+            <file name="phpcs.xsl" role="data" />
+            <file name="phpcs-details.xsl" role="data" />
+            <file name="phpdoc.xsl" role="data" />
+            <file name="phphelper.xsl" role="data" />
+            <file name="phpunit.xsl" role="data" />
+            <file name="phpunit-details.xsl" role="data" />
+            <file name="phpunit-pmd.xsl" role="data" />
+            <file name="phpunit-pmd-details.xsl" role="data" />
+          </dir>
+          <file name="dashboard.jsp" role="data">
+            <tasks:replace from="- SVN" to="version" type="package-info" />
+          </file>
+          <file name="favicon.ico" role="data" />
+          <file name="footer.jsp" role="data">
+            <tasks:replace from="- SVN" to="version" type="package-info" />
+          </file>
+          <file name="header.jsp" role="data">
+            <tasks:replace from="- SVN" to="version" type="package-info" />
+          </file>
+          <file name="index.jsp" role="data">
+            <tasks:replace from="- SVN" to="version" type="package-info" />
+          </file>
+          <file name="main.jsp" role="data">
+            <tasks:replace from="- SVN" to="version" type="package-info" />
+          </file>
+          <file name="metrics.cewolf.jsp" role="data">
+            <tasks:replace from="- SVN" to="version" type="package-info" />
+          </file>
+          <file name="metrics.jsp" role="data">
+            <tasks:replace from="- SVN" to="version" type="package-info" />
+          </file>
+          <file name="phpcs.jsp" role="data">
+            <tasks:replace from="- SVN" to="version" type="package-info" />
+          </file>
+          <file name="phpunit.jsp" role="data">
+            <tasks:replace from="- SVN" to="version" type="package-info" />
+          </file>
+          <file name="phpunit-pmd.jsp" role="data">
+            <tasks:replace from="- SVN" to="version" type="package-info" />
+          </file>
+          <file name="servertime.jsp" role="data">
+            <tasks:replace from="- SVN" to="version" type="package-info" />
+          </file>
+          </dir>
+        </dir>
       </dir>
       <dir name="docs">
         <file name="build.xml" role="doc">
           <tasks:replace from="@package_version@" to="version" type="package-info" />
         </file>
         <file name="config.xml" role="doc">
-          <tasks:replace from="@package_version@" to="version" type="package-info" />
-        </file>
-      </dir>
-      <dir name="example">
-        <dir name="src">
-          <file name="Math.php" role="data">
-            <tasks:replace from="@package_version@" to="version" type="package-info" />
-          </file>
-        </dir>
-        <dir name="tests">
-          <file name="MathTest.php" role="data">
-            <tasks:replace from="@package_version@" to="version" type="package-info" />
-          </file>
-        </dir>
-      </dir>
-      <dir name="phpdoc">
-        <dir name="Converters/HTML/Phpuc">
-          <dir name="templates/phpuc">
-            <dir name="templates">
-              <dir name="media">
-                <file name="empty.png" role="data" />
-                <file name="list-item.gif" role="data" />
-                <file name="style.css" role="data">
-                  <tasks:replace from="@package_version@" to="version" type="package-info" />
-                </file>
-              </dir>
-              <file name="basicindex.tpl" role="data">
-                <tasks:replace from="@package_version@" to="version" type="package-info" />
-              </file>
-              <file name="blank.tpl" role="data">
-                <tasks:replace from="@package_version@" to="version" type="package-info" />
-              </file>
-              <file name="class.tpl" role="data">
-                <tasks:replace from="@package_version@" to="version" type="package-info" />
-              </file>
-              <file name="classleft.tpl" role="data">
-                <tasks:replace from="@package_version@" to="version" type="package-info" />
-              </file>
-              <file name="classtags.tpl" role="data">
-                <tasks:replace from="@package_version@" to="version" type="package-info" />
-              </file>
-              <file name="classtrees.tpl" role="data">
-                <tasks:replace from="@package_version@" to="version" type="package-info" />
-              </file>
-              <file name="const.tpl" role="data">
-                <tasks:replace from="@package_version@" to="version" type="package-info" />
-              </file>
-              <file name="define.tpl" role="data">
-                <tasks:replace from="@package_version@" to="version" type="package-info" />
-              </file>
-              <file name="docblock.tpl" role="data">
-                <tasks:replace from="@package_version@" to="version" type="package-info" />
-              </file>
-              <file name="elementindex.tpl" role="data">
-                <tasks:replace from="@package_version@" to="version" type="package-info" />
-              </file>
-              <file name="errors.tpl" role="data">
-                <tasks:replace from="@package_version@" to="version" type="package-info" />
-              </file>
-              <file name="examplesource.tpl" role="data">
-                <tasks:replace from="@package_version@" to="version" type="package-info" />
-              </file>
-              <file name="fileleft.tpl" role="data">
-                <tasks:replace from="@package_version@" to="version" type="package-info" />
-              </file>
-              <file name="filesource.tpl" role="data">
-                <tasks:replace from="@package_version@" to="version" type="package-info" />
-              </file>
-              <file name="filetags.tpl" role="data">
-                <tasks:replace from="@package_version@" to="version" type="package-info" />
-              </file>
-              <file name="footer.tpl" role="data">
-                <tasks:replace from="@package_version@" to="version" type="package-info" />
-              </file>
-              <file name="function.tpl" role="data">
-                <tasks:replace from="@package_version@" to="version" type="package-info" />
-              </file>
-              <file name="global.tpl" role="data">
-                <tasks:replace from="@package_version@" to="version" type="package-info" />
-              </file>
-              <file name="header.tpl" role="data">
-                <tasks:replace from="@package_version@" to="version" type="package-info" />
-              </file>
-              <file name="include.tpl" role="data">
-                <tasks:replace from="@package_version@" to="version" type="package-info" />
-              </file>
-              <file name="index.tpl" role="data">
-                <tasks:replace from="@package_version@" to="version" type="package-info" />
-              </file>
-              <file name="method.tpl" role="data">
-                <tasks:replace from="@package_version@" to="version" type="package-info" />
-              </file>
-              <file name="packages.tpl" role="data">
-                <tasks:replace from="@package_version@" to="version" type="package-info" />
-              </file>
-              <file name="page.tpl" role="data">
-                <tasks:replace from="@package_version@" to="version" type="package-info" />
-              </file>
-              <file name="pkgelementindex.tpl" role="data">
-                <tasks:replace from="@package_version@" to="version" type="package-info" />
-              </file>
-              <file name="ric.tpl" role="data">
-                <tasks:replace from="@package_version@" to="version" type="package-info" />
-              </file>
-              <file name="tags.tpl" role="data">
-                <tasks:replace from="@package_version@" to="version" type="package-info" />
-              </file>
-              <file name="todolist.tpl" role="data">
-                <tasks:replace from="@package_version@" to="version" type="package-info" />
-              </file>
-              <file name="tutorial_toc.tpl" role="data">
-                <tasks:replace from="@package_version@" to="version" type="package-info" />
-              </file>
-              <file name="tutorial_tree.tpl" role="data">
-                <tasks:replace from="@package_version@" to="version" type="package-info" />
-              </file>
-              <file name="tutorial.tpl" role="data">
-                <tasks:replace from="@package_version@" to="version" type="package-info" />
-              </file>
-              <file name="var.tpl" role="data">
-                <tasks:replace from="@package_version@" to="version" type="package-info" />
-              </file>
-            </dir>
-            <dir name="templates_c">
-            </dir>
-            <file name="options.ini" role="data">
-              <tasks:replace from="@package_version@" to="version" type="package-info" />
-            </file>       
-          </dir>
-          <file name="HTMLPhpucConverter.inc" role="data">
-            <tasks:replace from="@package_version@" to="version" type="package-info" />
-          </file>
-        </dir>
-      </dir>
-      <dir name="template">
-        <file name="project.xml" role="data">
           <tasks:replace from="@package_version@" to="version" type="package-info" />
         </file>
       </dir>
@@ -718,16 +737,16 @@
   <changelog>
     <release>
       <version>
-	    <release>0.2.1</release>
-	    <api>0.2.0</api>
-	  </version>
-	  <stability>
-	    <release>beta</release>
-	    <api>beta</api>
-	  </stability>
-	  <date>2007-12-11</date>
-	  <license uri="http://www.opensource.org/licenses/bsd-license.php">BSD License</license>
-	  <notes>
+        <release>0.2.1</release>
+        <api>0.2.0</api>
+      </version>
+      <stability>
+        <release>beta</release>
+        <api>beta</api>
+      </stability>
+      <date>2007-12-11</date>
+      <license uri="http://www.opensource.org/licenses/bsd-license.php">BSD License</license>
+      <notes>
 - Three new metric views added. Thanks to Sebastian for this great idea.
    1) Unit Tests vs. Number of Failing Unit Tests.
    2) Executable Lines of Code vs. Code Coverage in Percent.
@@ -739,7 +758,7 @@
 - Test cases for the cli tool added.
 - Test cases for the build file abstraction added.
 - Test cases for some tasks added.
-	  </notes>
+      </notes>
     </release>
   </changelog>
   <changelog>
@@ -813,22 +832,22 @@
   </changelog>
   <changelog>
     <release>
-	  <lead>
-	    <name>Manuel Pichler</name>
-	    <user>mp</user>
-	    <email>mapi@phpundercontrol.org</email>
-	    <active>yes</active>
-	  </lead>
-	  <date>2008-01-19</date>
-	  <version>
-	    <release>0.3.1</release>
-	    <api>0.2.0</api>
-	  </version>
-	  <stability>
-	    <release>beta</release>
-	    <api>beta</api>
-	  </stability>
-	  <license uri="http://www.opensource.org/licenses/bsd-license.php">BSD License</license>
+    <lead>
+      <name>Manuel Pichler</name>
+      <user>mp</user>
+      <email>mapi@phpundercontrol.org</email>
+      <active>yes</active>
+    </lead>
+    <date>2008-01-19</date>
+    <version>
+      <release>0.3.1</release>
+      <api>0.2.0</api>
+    </version>
+    <stability>
+      <release>beta</release>
+      <api>beta</api>
+    </stability>
+    <license uri="http://www.opensource.org/licenses/bsd-license.php">BSD License</license>
       <notes>
 - Bugfix for different artifact locations.
       </notes>
@@ -837,51 +856,51 @@
   
   <changelog>
     <release>
-	  <lead>
-	    <name>Manuel Pichler</name>
-	    <user>mp</user>
-	    <email>mapi@phpundercontrol.org</email>
-	    <active>yes</active>
-	  </lead>
-	  <date>2008-01-19</date>
-	  <version>
-	    <release>0.3.2</release>
-	    <api>0.2.0</api>
-	  </version>
-	  <stability>
-	    <release>beta</release>
-	    <api>beta</api>
-	  </stability>
-	  <license uri="http://www.opensource.org/licenses/bsd-license.php">BSD License</license>
-	  <notes>
-	- Allow different locations for logs and artifacts. The graph cli tool now accepts
-	  a second optional output directory for the generated charts.
-	  </notes>
+      <lead>
+        <name>Manuel Pichler</name>
+        <user>mp</user>
+        <email>mapi@phpundercontrol.org</email>
+        <active>yes</active>
+      </lead>
+      <date>2008-01-19</date>
+      <version>
+        <release>0.3.2</release>
+        <api>0.2.0</api>
+      </version>
+      <stability>
+        <release>beta</release>
+        <api>beta</api>
+      </stability>
+      <license uri="http://www.opensource.org/licenses/bsd-license.php">BSD License</license>
+      <notes>
+- Allow different locations for logs and artifacts. The graph cli tool now accepts
+  a second optional output directory for the generated charts.
+      </notes>
     </release>
   </changelog>
   
   <changelog>
     <release>
-	  <lead>
-	    <name>Manuel Pichler</name>
-	    <user>mp</user>
-	    <email>mapi@phpundercontrol.org</email>
-	    <active>yes</active>
-	  </lead>
-	  <date>2008-01-22</date>
-	  <version>
-	    <release>0.3.3</release>
-	    <api>0.2.0</api>
-	  </version>
-	  <stability>
-	    <release>beta</release>
-	    <api>beta</api>
-	  </stability>
-	  <license uri="http://www.opensource.org/licenses/bsd-license.php">BSD License</license>
-	  <notes>
-	- Example project fixed for windows.
-	- CruiseControl link added to copyright line.
-	  </notes>
+      <lead>
+        <name>Manuel Pichler</name>
+        <user>mp</user>
+        <email>mapi@phpundercontrol.org</email>
+        <active>yes</active>
+      </lead>
+      <date>2008-01-22</date>
+      <version>
+        <release>0.3.3</release>
+        <api>0.2.0</api>
+      </version>
+      <stability>
+        <release>beta</release>
+        <api>beta</api>
+      </stability>
+      <license uri="http://www.opensource.org/licenses/bsd-license.php">BSD License</license>
+      <notes>
+- Example project fixed for windows.
+- CruiseControl link added to copyright line.
+      </notes>
     </release>
   </changelog>
 </package>

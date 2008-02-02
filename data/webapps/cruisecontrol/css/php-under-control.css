@@ -240,7 +240,7 @@ div#container table.result tbody tr.failure th {
 div#container table.result tbody td.info,div#container table.result tbody td.error,div#container table.result tbody td.failure,div#container table.result tbody td.warning,div#container table.result tbody td.success
 {
     background: transparent none 4px 50% no-repeat;
-    line-height: 16px;
+    line-height: 19px;
     padding-left: 24px;
 }
 

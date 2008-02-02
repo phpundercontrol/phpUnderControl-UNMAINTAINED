@@ -6,6 +6,9 @@ phpUnderControl 0.3.5
 - Custom PhpDocumentor template based on HTML:Smarty:HandS added.
 - Build breakdown timeline colors fixed. When the first build was broken the
   color green was choosen for broken builds. 
+- Directory structure refactored. Data related stuff is now in a single 
+  directory.
+- New error, success, fail, skipped icons by kore.
 
 phpUnderControl 0.3.4
 ---------------------
