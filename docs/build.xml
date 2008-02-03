@@ -90,7 +90,9 @@
   -->
   <target name="php-documentor">
     <exec executable="phpdoc" dir="${basedir}/source">
-      <arg line="-ct type -ue on -t ${basedir}/build/api -d src/"/>
+      <arg line="-ct type -ue on -t ${basedir}/build/api 
+      	         -tb ...PATH TO YOUR PHPUC DATA.../phpdoc -o HTML:Phpuc:phpuc
+    	         -d src/"/>
     </exec>
   </target>
 
