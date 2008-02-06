@@ -255,6 +255,18 @@ if (logDirPath == null) {
     </tr>
 <%
         } else {
+            Comparator<String> c = new Comparator<String>() {
+                public int compare(String o1, String o2) {
+                        File f1 = new File(o1);
+                        File f2 = new File(o2);
+                        return f1.compareTo(f2);
+                }
+                public boolean equals(Object obj) {
+                        return false;
+                }
+            };
+            Arrays.sort(projectDirs, c);
+            
             Info project = null;
             for (int i = 0; i < projectDirs.length; i++) {
                 project = new Info(logDir, projectDirs[i]);
