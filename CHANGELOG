@@ -1,3 +1,9 @@
+phpUnderControl 0.3.6
+---------------------
+
+- Dashboard bugfix. The projects weren't sorted on the dashboard page. Thanks to
+  kore who notices this behaviour.
+
 phpUnderControl 0.3.5
 ---------------------
 

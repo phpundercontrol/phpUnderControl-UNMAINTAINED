@@ -22,7 +22,7 @@
   </lead>
   <date>2008-02-02</date>
   <version>
-    <release>0.3.5</release>
+    <release>0.3.6</release>
     <api>0.2.0</api>
   </version>
   <stability>
@@ -31,14 +31,8 @@
   </stability>
   <license uri="http://www.opensource.org/licenses/bsd-license.php">BSD License</license>
   <notes>
-- New dashboard like index page, thanks to kore.
-- phpUnderControl favicon added, thanks to kore.
-- Custom PhpDocumentor template based on HTML:Smarty:HandS added.
-- Build breakdown timeline colors fixed. When the first build was broken the
-  color green was choosen for broken builds. 
-- Directory structure refactored. Data related stuff is now in a single 
-  directory.
-- New error, success, fail, skipped icons by kore.
+- Dashboard bugfix. The projects weren't sorted on the dashboard page. Thanks to
+  kore who notices this behaviour.
   </notes>
   <contents>
     <dir name="/">
@@ -743,6 +737,7 @@
       <ignore name="bin/phpuc.bat" />
     </filelist>
   </phprelease>
+  
   <changelog>
     <release>
       <version>
@@ -769,8 +764,7 @@
 - Test cases for some tasks added.
       </notes>
     </release>
-  </changelog>
-  <changelog>
+
     <release>
       <version>
         <release>0.2.2</release>
@@ -788,8 +782,7 @@
   file for the phpUnderControl project added.
       </notes>
     </release>
-  </changelog>
-  <changelog>
+
     <release>
       <lead>
         <name>Manuel Pichler</name>
@@ -812,8 +805,7 @@
 - Improved Windows Support.
       </notes>
     </release>
-  </changelog>
-  <changelog>
+
     <release>
       <lead>
         <name>Manuel Pichler</name>
@@ -838,8 +830,7 @@
 - Changed from static to dynamic autoloading. 
       </notes>
     </release>
-  </changelog>
-  <changelog>
+
     <release>
     <lead>
       <name>Manuel Pichler</name>
@@ -861,9 +852,7 @@
 - Bugfix for different artifact locations.
       </notes>
     </release>
-  </changelog>
-  
-  <changelog>
+
     <release>
       <lead>
         <name>Manuel Pichler</name>
@@ -886,9 +875,7 @@
   a second optional output directory for the generated charts.
       </notes>
     </release>
-  </changelog>
-  
-  <changelog>
+
     <release>
       <lead>
         <name>Manuel Pichler</name>
@@ -911,8 +898,7 @@
 - CruiseControl link added to copyright line.
       </notes>
     </release>
-  </changelog>
-  <changelog>
+
     <release>
       <lead>
         <name>Manuel Pichler</name>
@@ -933,6 +919,35 @@
       <notes>
 - In 0.3.3 the class phpucDotChartOptions was missing.
       </notes>    
+    </release>
+    
+    <release>
+      <lead>
+        <name>Manuel Pichler</name>
+        <user>mp</user>
+        <email>mapi@phpundercontrol.org</email>
+        <active>yes</active>
+      </lead>
+      <date>2008-02-02</date>
+      <version>
+        <release>0.3.5</release>
+        <api>0.2.0</api>
+      </version>
+      <stability>
+        <release>beta</release>
+        <api>beta</api>
+      </stability>
+      <license uri="http://www.opensource.org/licenses/bsd-license.php">BSD License</license>
+      <notes>
+- New dashboard like index page, thanks to kore.
+- phpUnderControl favicon added, thanks to kore.
+- Custom PhpDocumentor template based on HTML:Smarty:HandS added.
+- Build breakdown timeline colors fixed. When the first build was broken the
+  color green was choosen for broken builds. 
+- Directory structure refactored. Data related stuff is now in a single 
+  directory.
+- New error, success, fail, skipped icons by kore.
+      </notes>
     </release>
   </changelog>
 </package>
