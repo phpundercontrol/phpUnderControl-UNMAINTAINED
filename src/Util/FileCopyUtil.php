@@ -163,7 +163,7 @@ class phpucFileCopyUtil
         
         // Extract custom code blocks
         $regex = '#<%-- begin phpUnderControl (\d+) --%>'
-               . '*<%-- end phpUnderControl \\1 --%>#Us';
+               . '.*<%-- end phpUnderControl \\1 --%>#Us';
         // Skip for not customized code
         if ( preg_match_all( $regex, $targetCode, $matches ) === 0 )
         {
