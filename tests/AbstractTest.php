@@ -120,7 +120,7 @@ abstract class phpucAbstractTest extends PHPUnit_Framework_TestCase
     /**
      * Creates a directory structure under the test directory.
      *
-     * @param array $directories Test directories.
+     * @param array(string) $directories Test directories.
      * 
      * @return array(string)
      */
