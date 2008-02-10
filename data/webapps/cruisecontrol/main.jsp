@@ -61,20 +61,31 @@
       <cruisecontrol:tabsheet>
         <tr>
           <td>
+          
+            <%-- phpUnderControl 1 --%>
+          
             <cruisecontrol:tab name="buildResults" label="Overview" >
               <%@ include file="buildresults.jsp" %>
             </cruisecontrol:tab>
-
+            
+            <%-- phpUnderControl 2 --%>
+            
             <cruisecontrol:tab name="testResults" label="Tests" >
               <%@ include file="phpunit.jsp" %>
             </cruisecontrol:tab>
+            
+            <%-- phpUnderControl 3 --%>
 
             <cruisecontrol:loglink id="logs_url"/>
             <cruisecontrol:tab name="log" url="<%=logs_url%>" label="XML Log File" />
+            
+            <%-- phpUnderControl 4 --%>
 
             <cruisecontrol:tab name="metrics" label="Metrics" >
               <%@ include file="metrics.jsp" %>
             </cruisecontrol:tab>
+            
+            <%-- phpUnderControl 5 --%>
               
             <cruisecontrol:tab name="coverage" label="Coverage">
               <cruisecontrol:artifactsLink>
@@ -82,6 +93,8 @@
                 </iframe>
               </cruisecontrol:artifactsLink>
             </cruisecontrol:tab>
+            
+            <%-- phpUnderControl 6 --%>
               
             <cruisecontrol:tab name="documentation" label="Documentation">
               <cruisecontrol:artifactsLink>
@@ -89,14 +102,20 @@
                 </iframe>
               </cruisecontrol:artifactsLink>
             </cruisecontrol:tab>
+            
+            <%-- phpUnderControl 7 --%>
 
             <cruisecontrol:tab name="phpcs" label="CodeSniffer">
               <%@ include file="phpcs.jsp" %>
             </cruisecontrol:tab>
+            
+            <%-- phpUnderControl 8 --%>
               
             <cruisecontrol:tab name="pmd" label="PHPUnit PMD">
               <%@ include file="phpunit-pmd.jsp" %>
             </cruisecontrol:tab>
+            
+            <%-- phpUnderControl 9 --%>
           </td>
         </tr>
       </cruisecontrol:tabsheet>
