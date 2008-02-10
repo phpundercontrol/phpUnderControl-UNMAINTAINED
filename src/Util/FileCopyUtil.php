@@ -35,9 +35,9 @@
  * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
- *
+ * 
  * @category  QualityAssurance
- * @package   Tasks
+ * @package   Util
  * @author    Manuel Pichler <mapi@phpundercontrol.org>
  * @copyright 2007-2008 Manuel Pichler. All rights reserved.
  * @license   http://www.opensource.org/licenses/bsd-license.php  BSD License
@@ -46,92 +46,84 @@
  */
 
 /**
- * Modifies a defined set of files.
+ * Utility class for customized templates and other files.
  *
  * @category  QualityAssurance
- * @package   Tasks
+ * @package   Util
  * @author    Manuel Pichler <mapi@phpundercontrol.org>
  * @copyright 2007-2008 Manuel Pichler. All rights reserved.
  * @license   http://www.opensource.org/licenses/bsd-license.php  BSD License
  * @version   Release: @package_version@
  * @link      http://www.phpundercontrol.org/
  */
-class phpucModifyFileTask extends phpucAbstractTask
+class phpucFileCopyUtil
 {
     /**
-     * List of files to modify.
+     * List of file extensions where this class should look into the contents
+     * for custom tags.
      *
      * @type array<string>
-     * @var array(string) $files
+     * @var array(string) $extensions
      */
-    protected $files = array();
+    protected static $extensions = array( 'jsp' );
     
-    /**
-     * The ctor takes the console arguments and a list of files as arguments.
-     *
-     * @param phpucConsoleArgs $args  The console arguments.
-     * @param array            $files List of files.
-     */
-    public function __construct( phpucConsoleArgs $args, array $files )
+    public function copy( $source, $target )
     {
-        parent::__construct( $args );
+        // First load content
+        $code = file_get_contents( $source );
         
-        $this->files = $files;
-    }
-    
-    /**
-     * Checks that the <b>webapps/cruisecontrol</b> folder exists.
-     *
-     * @return void
-     * @throws phpucValidateException If the validation fails.
-     */
-    public function validate()
-    {
-        $installDir = $this->args->getArgument( 'cc-install-dir' );
+        // Extract file extension from source
+        $ext = pathinfo( $source, PATHINFO_EXTENSION );
         
-        foreach ( $this->files as $file )
+        // Check for prepare extension
+        if ( in_array( $ext, self::$extensions, true ) )
         {
-            if ( !file_exists( $installDir . $file ) )
+            if ( $this->hasPlaceHolders( $code ) === true )
             {
-                throw new phpucValidateException(
-                    sprintf( 'Missing required CruiseControl file "%s".', $file )
-                );
+                $code = $this->prepareCode( $target, $code );
             }
         }
+        
+        file_put_contents( $target, $code );
     }
     
-    /**
-     * Overrides all files from <b>$files</b> in the cc webapps folder.
-     *
-     * @return void
-     * @throws phpucExecuteException If the execution fails.
-     */
-    public function execute()
+    protected function hasPlaceHolders( $code )
     {
-        $out = phpucConsoleOutput::get();
-        $out->writeLine( 'Performing modify file task.' );
-        
-        $installDir = $this->args->getArgument( 'cc-install-dir' );
-        
-        $out->startList();
-        
-        foreach ( $this->files as $file )
+        return ( preg_match_all( 
+            '#<%-- phpUnderControl (\d+) --%>#', $code, $matches 
+        ) !== 0 );
+    }
+    
+    protected function prepareCode( $target, $code )
+    {
+        // First check, that target exists
+        if ( !file_exists( $target ) )
         {
-            $filepath = $installDir . $file;
-            
-            if ( file_exists( "{$filepath}.orig" ) === false )
-            {
-                $out->writeListItem( 'Creating backup "{1}".', $file );
-                
-                copy( $filepath, "{$filepath}.orig" );
-            }
-            
-            $out->writeListItem( 'Modifying file "{1}"', $file );
-            
-            $fileUtil = new phpucFileCopyUtil();
-            $fileUtil->copy( PHPUC_DATA_DIR . '/' . $file, $filepath );
+            return $code;
         }
         
-        $out->writeLine();
+        // Load target code
+        $targetCode = file_get_contents( $target );
+        
+        // Extract custom code blocks
+        $regex = '#<%-- begin phpUnderControl (\d+) --%>.*<%-- end phpUnderControl \\1 --%>#Us';
+        // Skip for not customized code
+        if ( preg_match_all( $regex, $targetCode, $matches ) === 0 )
+        {
+            return $code;
+        }
+        
+        $customBlocks    = $matches[0];
+        $customBlockKeys = $matches[1];
+        
+        $search  = array();
+        $replace = array();
+        foreach ( $customBlockKeys as $idx => $key )
+        {
+            $search[]  = "<%-- phpUnderControl {$key} --%>";
+            $replace[] = $customBlocks[$idx];
+        }
+        
+        return str_replace( $search, $replace, $code );
     }
 }

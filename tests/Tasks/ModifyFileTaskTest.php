@@ -170,4 +170,54 @@ class phpucModifyFileTaskTest extends phpucAbstractTaskTest
             md5_file( PHPUC_TEST_DIR . '/webapps/cruisecontrol/metrics.cewolf.jsp' )
         );
     }
+    
+    /**
+     * Tests the execute method against a java server page that has placeholders
+     * which were replaced in this test.
+     *
+     * @return void
+     */
+    public function testExecuteWithCustomizedJavaServerPage()
+    {
+        // Create test directory
+        $this->createTestDirectories( array( 'webapps/cruisecontrol' ) );
+        
+        $this->assertFileNotExists( PHPUC_TEST_DIR . '/webapps/cruisecontrol/main.jsp' );
+        
+        $custom1 = '<%-- begin phpUnderControl 3 --%>
+            Hello
+            <%-- end phpUnderControl 3 --%>';
+        $custom2 = '<%-- begin phpUnderControl 5 --%>
+            World
+            <%-- end phpUnderControl 5 --%>';
+        $custom3 = '<%-- begin phpUnderControl 6 --%>
+            Baby
+            <%-- end phpUnderControl 6 --%>';
+        
+        // Create test files.
+        $this->createTestFile( 'webapps/cruisecontrol/main.jsp', "
+            {$custom1}
+            {$custom2}
+            {$custom3}
+        " );
+        
+        $this->assertFileExists( PHPUC_TEST_DIR . '/webapps/cruisecontrol/main.jsp' );
+        
+        // Prepare args
+        $this->prepareArgv( array( 'install', PHPUC_TEST_DIR ) );
+        
+        $input = new phpucConsoleInput();
+        $input->parse();
+        
+        $task = new phpucModifyFileTask( 
+            $input->args, array( '/webapps/cruisecontrol/main.jsp' )
+        );
+        $task->execute();
+        
+        $content = file_get_contents( PHPUC_TEST_DIR . '/webapps/cruisecontrol/main.jsp' );
+        
+        $this->assertContains( $custom1, $content );
+        $this->assertContains( $custom2, $content );
+        $this->assertContains( $custom3, $content );
+    }
 }
