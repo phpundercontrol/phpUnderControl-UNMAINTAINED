@@ -47,6 +47,21 @@
 
 /**
  * Utility class for customized templates and other files.
+ * 
+ * Custom code locations are identified by the following tag:
+ * 
+ * <code>
+ *   &lt;%-- phpUnderControl (0-9+) --%&gt;
+ * </code>
+ * 
+ * And the customized code must be surrounded by the following two comments where
+ * the number must match the value of the placeholder.
+ * 
+ * <code>
+ *   &lt;%-- begin phpUnderControl 1 --%&gt;
+ *     Hello World
+ *   &lt;%-- end phpUnderControl 1 --%&gt;
+ * </code> 
  *
  * @category  QualityAssurance
  * @package   Util
@@ -67,6 +82,19 @@ class phpucFileCopyUtil
      */
     protected static $extensions = array( 'jsp' );
     
+    /**
+     * Copies the contents from the <b>$source</b> file to the <b>$target</b> file.
+     * 
+     * If the extension of this file is registered as a possible customization
+     * type this method will search for placeholders and for custom content in
+     * the target file. When the target contains custom content, this will be
+     * transfered to the new file.
+     *
+     * @param string $source The source file name.
+     * @param string $target The target file name.
+     * 
+     * @return void
+     */
     public function copy( $source, $target )
     {
         // First load content
@@ -87,6 +115,18 @@ class phpucFileCopyUtil
         file_put_contents( $target, $code );
     }
     
+    /**
+     * Tests the given code for placeholders.
+     * 
+     * A placeholder is defined as:
+     * <code>
+     *   &lt;%-- phpUnderControl (0-9+) --%&gt;
+     * </code>
+     *
+     * @param string $code The code of a source file.
+     *  
+     * @return boolean
+     */
     protected function hasPlaceHolders( $code )
     {
         return ( preg_match_all( 
@@ -94,6 +134,22 @@ class phpucFileCopyUtil
         ) !== 0 );
     }
     
+    /**
+     * Extracts custom content from the <b>$target</b> file and moves it into 
+     * <b>$code</b>.
+     * 
+     * Customized code must be surrounded by:
+     * <code>
+     *   &lt;%-- begin phpUnderControl 1 --%&gt;
+     *     Hello World
+     *   &lt;%-- end phpUnderControl 1 --%&gt;
+     * </code> 
+     *
+     * @param string $target The target file name.
+     * @param string $code The code of a source file.
+     * 
+     * @return string The prepared code.
+     */
     protected function prepareCode( $target, $code )
     {
         // First check, that target exists
