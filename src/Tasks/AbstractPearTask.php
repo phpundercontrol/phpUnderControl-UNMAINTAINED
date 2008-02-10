@@ -109,7 +109,7 @@ abstract class phpucAbstractPearTask extends phpucAbstractTask
         }
         $paths = array_unique( $paths );
         
-        $windows = ( stripos( PHP_OS, 'WIN' ) !== false );
+        $windows = phpucFileUtil::getOS() == phpucFileUtil::OS_WINDOWS;
 
         foreach ( $paths as $path )
         {

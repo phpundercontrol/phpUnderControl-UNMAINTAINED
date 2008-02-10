@@ -126,8 +126,8 @@ class phpucPhpCodeSnifferTask extends phpucAbstractPearTask
         if ( ( $execdir = dirname( $this->executable ) ) !== '.' )
         {
             chdir( $execdir );
-        
-            if ( stripos( PHP_OS, 'WIN' ) === false )
+
+            if ( phpucFileUtil::getOS() === phpucFileUtil::OS_UNIX )
             {
                 $binary = "./{$binary}";
             }

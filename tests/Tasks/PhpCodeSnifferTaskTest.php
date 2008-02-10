@@ -81,7 +81,7 @@ class phpucPhpCodeSnifferTaskTest extends phpucAbstractPearTaskTest
     {
         parent::setUp();
         
-        if ( stripos( PHP_OS, 'WIN' ) !== false )
+        if ( phpucFileUtil::getOS() === phpucFileUtil::OS_WINDOWS )
         {
             $this->validBin   = "@echo off\n\recho version 1.0.0RC3";
             $this->invalidBin = "@echo off\n\recho version 1.0.0RC2";

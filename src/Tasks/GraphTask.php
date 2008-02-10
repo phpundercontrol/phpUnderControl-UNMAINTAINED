@@ -79,7 +79,8 @@ class phpucGraphTask extends phpucAbstractTask
         $publisher     = $configProject->createExecutePublisher();
         
         $binary = sprintf( '%s/phpuc', PHPUC_BIN_DIR );
-        if ( stripos( PHP_OS, 'WIN' ) !== false )
+
+        if ( phpucFileUtil::getOS() === phpucFileUtil::OS_WINDOWS )
         {
             $binary .= '.bat';
         }

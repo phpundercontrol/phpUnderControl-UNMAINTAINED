@@ -231,7 +231,7 @@ abstract class phpucAbstractTest extends PHPUnit_Framework_TestCase
             mkdir( PHPUC_TEST_DIR );
         }
         
-        self::$windows = ( stripos( PHP_OS, 'WIN' ) !== false );
+        self::$windows = phpucFileUtil::getOS() === phpucFileUtil::OS_WINDOWS;
     }
 }
 

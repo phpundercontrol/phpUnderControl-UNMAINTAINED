@@ -1,0 +1,213 @@
+Index: tests/Tasks/PHPUnitTaskTest.php
+===================================================================
+--- tests/Tasks/PHPUnitTaskTest.php	(revision 2361)
++++ tests/Tasks/PHPUnitTaskTest.php	(working copy)
+@@ -93,7 +93,7 @@
+         $this->clearTestContents(  PHPUC_TEST_DIR . '/build' );
+         $this->clearTestContents(  PHPUC_TEST_DIR . '/logs' );
+         
+-        if ( stripos( PHP_OS, 'WIN' ) !== false )
++        if ( phpucFileUtil::getOS() == phpucFileUtil::OS_WINDOWS )
+         {
+             $this->badBin     = "@echo off\n\recho version-3.2.0";
+             $this->validBin   = "@echo off\n\recho version 3.2.0";
+@@ -261,4 +261,4 @@
+         $this->assertNotNull( $phpunit->executable );
+         
+     }
+-}
+\ No newline at end of file
++}
+Index: tests/Tasks/AbstractPearTaskTest.php
+===================================================================
+--- tests/Tasks/AbstractPearTaskTest.php	(revision 2361)
++++ tests/Tasks/AbstractPearTaskTest.php	(working copy)
+@@ -152,7 +152,7 @@
+             mkdir( PHPUC_TEST_DIR . '/bin' );
+         }
+ 		
+-		if ( stripos( PHP_OS, 'WIN' ) !== false )
++		if ( phpucFileUtil::getOS() == phpucFileUtil::OS_WINDOWS )
+ 		{
+ 		    $executable .= '.bat';
+ 		}
+@@ -162,4 +162,4 @@
+         file_put_contents( $fileName, $content );
+         chmod( $fileName, 0755 );
+     }
+-}
+\ No newline at end of file
++}
+Index: tests/Tasks/PhpCodeSnifferTaskTest.php
+===================================================================
+--- tests/Tasks/PhpCodeSnifferTaskTest.php	(revision 2361)
++++ tests/Tasks/PhpCodeSnifferTaskTest.php	(working copy)
+@@ -81,7 +81,7 @@
+     {
+         parent::setUp();
+         
+-        if ( stripos( PHP_OS, 'WIN' ) !== false )
++        if ( phpucFileUtil::getOS() == phpucFileUtil::OS_WINDOWS )
+         {
+             $this->validBin   = "@echo off\n\recho version 1.0.0RC3";
+             $this->invalidBin = "@echo off\n\recho version 1.0.0RC2";
+@@ -136,4 +136,4 @@
+         $this->assertEquals( 'php-codesniffer', (string) $build[0]['depends'] );
+         $this->assertEquals( 'php-codesniffer', (string) $phpcs[0]['name'] );
+     }
+-}
+\ No newline at end of file
++}
+Index: tests/AbstractTest.php
+===================================================================
+--- tests/AbstractTest.php	(revision 2361)
++++ tests/AbstractTest.php	(working copy)
+@@ -231,8 +231,8 @@
+             mkdir( PHPUC_TEST_DIR );
+         }
+         
+-        self::$windows = ( stripos( PHP_OS, 'WIN' ) !== false );
++        self::$windows = phpucFileUtil::getOS() == phpucFileUtil::OS_WINDOWS;
+     }
+ }
+ 
+-phpucAbstractTest::init();
+\ No newline at end of file
++phpucAbstractTest::init();
+Index: tests/Util/FileUtilTest.php
+===================================================================
+--- tests/Util/FileUtilTest.php	(revision 2361)
++++ tests/Util/FileUtilTest.php	(working copy)
+@@ -211,4 +211,4 @@
+             $this->createTestFile( '/usr/bin/svn' );
+         }
+     }
+-}
+\ No newline at end of file
++}
+Index: src/Tasks/PhpUnitTask.php
+===================================================================
+--- src/Tasks/PhpUnitTask.php	(revision 2361)
++++ src/Tasks/PhpUnitTask.php	(working copy)
+@@ -161,8 +161,8 @@
+         if ( ( $execdir = dirname( $this->executable ) ) !== '.' )
+         {
+             chdir( $execdir );
+-        
+-            if ( stripos( PHP_OS, 'WIN' ) === false )
++
++            if ( phpucFileUtil::getOS() == phpucFileUtil::OS_UNIX )
+             {
+                 $binary = "./{$binary}";
+             }
+Index: src/Tasks/AbstractPearTask.php
+===================================================================
+--- src/Tasks/AbstractPearTask.php	(revision 2361)
++++ src/Tasks/AbstractPearTask.php	(working copy)
+@@ -109,7 +109,7 @@
+         }
+         $paths = array_unique( $paths );
+         
+-        $windows = ( stripos( PHP_OS, 'WIN' ) !== false );
++        $windows = phpucFileUtil::getOS() == phpucFileUtil::OS_WINDOWS;
+ 
+         foreach ( $paths as $path )
+         {
+@@ -200,4 +200,4 @@
+     {
+         // Nothing todo here
+     }
+-}
+\ No newline at end of file
++}
+Index: src/Tasks/PhpCodeSnifferTask.php
+===================================================================
+--- src/Tasks/PhpCodeSnifferTask.php	(revision 2361)
++++ src/Tasks/PhpCodeSnifferTask.php	(working copy)
+@@ -126,8 +126,8 @@
+         if ( ( $execdir = dirname( $this->executable ) ) !== '.' )
+         {
+             chdir( $execdir );
+-        
+-            if ( stripos( PHP_OS, 'WIN' ) === false )
++
++            if ( phpucFileUtil::getOS() == phpucFileUtil::OS_UNIX )
+             {
+                 $binary = "./{$binary}";
+             }
+@@ -163,4 +163,4 @@
+             );
+         }
+     }
+-}
+\ No newline at end of file
++}
+Index: src/Tasks/GraphTask.php
+===================================================================
+--- src/Tasks/GraphTask.php	(revision 2361)
++++ src/Tasks/GraphTask.php	(working copy)
+@@ -79,7 +79,8 @@
+         $publisher     = $configProject->createExecutePublisher();
+         
+         $binary = sprintf( '%s/phpuc', PHPUC_BIN_DIR );
+-        if ( stripos( PHP_OS, 'WIN' ) !== false )
++
++        if ( phpucFileUtil::getOS() == phpucFileUtil::OS_WINDOWS )
+         {
+             $binary .= '.bat';
+         }
+@@ -94,4 +95,4 @@
+         
+         $out->writeLine();
+     }
+-}
+\ No newline at end of file
++}
+Index: src/Util/FileUtil.php
+===================================================================
+--- src/Util/FileUtil.php	(revision 2361)
++++ src/Util/FileUtil.php	(working copy)
+@@ -112,13 +112,13 @@
+     {
+         if ( self::$os === null )
+         {
+-            if ( stripos( PHP_OS, 'win' ) === false )
++            if ( stristr( PHP_OS, 'win') && !stristr( PHP_OS, 'darwin') )
+             {
+-                self::$os = self::OS_UNIX;
++                self::$os = self::OS_WINDOWS;
+             }
+             else
+             {
+-                self::$os = self::OS_WINDOWS;
++                self::$os = self::OS_UNIX;
+             }
+         }
+         return self::$os;
+@@ -260,4 +260,4 @@
+             )
+         );
+     }
+-}
+\ No newline at end of file
++}
+Index: bin/clearSetup.php
+===================================================================
+--- bin/clearSetup.php	(revision 2361)
++++ bin/clearSetup.php	(working copy)
+@@ -42,7 +42,7 @@
+  * @link       http://www.phpundercontrol.org/
+  */
+ 
+-if ( stripos( PHP_OS, 'WIN' ) === false )
++if ( phpucFileUtil::getOS() == phpucFileUtil::OS_UNIX )
+ {
+     $rmcmd      = 'rm -rf';
+     $copycmd    = 'cp -rf';
+@@ -104,4 +104,4 @@
+     system( "{$rmcmd} {$webapps}" );
+     
+     system( "{$copycmd} {$webappsOrig} {$webapps}" );
+-}
+\ No newline at end of file
++}

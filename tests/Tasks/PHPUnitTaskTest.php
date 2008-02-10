@@ -93,7 +93,7 @@ class phpucPHPUnitTaskTest extends phpucAbstractPearTaskTest
         $this->clearTestContents(  PHPUC_TEST_DIR . '/build' );
         $this->clearTestContents(  PHPUC_TEST_DIR . '/logs' );
         
-        if ( stripos( PHP_OS, 'WIN' ) !== false )
+        if ( phpucFileUtil::getOS() === phpucFileUtil::OS_WINDOWS )
         {
             $this->badBin     = "@echo off\n\recho version-3.2.0";
             $this->validBin   = "@echo off\n\recho version 3.2.0";

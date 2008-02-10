@@ -42,7 +42,7 @@
  * @link       http://www.phpundercontrol.org/
  */
 
-if ( stripos( PHP_OS, 'WIN' ) === false )
+if ( phpucFileUtil::getOS() === phpucFileUtil::OS_UNIX )
 {
     $rmcmd      = 'rm -rf';
     $copycmd    = 'cp -rf';
