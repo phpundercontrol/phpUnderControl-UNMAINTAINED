@@ -33,6 +33,10 @@
   <notes>
 - Dashboard bugfix. The projects weren't sorted on the dashboard page. Thanks to
   kore who notices this behaviour.
+- Code cleanup for OS detection and fix for MacOSX Darwin added. Thanks to 
+  Sebastian who provides a patch.
+- Customization support for java server pages added. This new feature allows 
+  custom tabs for further artifacts and build results. 
   </notes>
   <contents>
     <dir name="/">
