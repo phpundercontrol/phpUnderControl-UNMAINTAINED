@@ -121,7 +121,7 @@ class phpucModifyFileTask extends phpucAbstractTask
             
             if ( file_exists( "{$filepath}.orig" ) === false )
             {
-                $out->writeListItem( 'Creating backup "%s.{1}"', $file );
+                $out->writeListItem( 'Creating backup "{1}".', $file );
                 
                 copy( $filepath, "{$filepath}.orig" );
             }
