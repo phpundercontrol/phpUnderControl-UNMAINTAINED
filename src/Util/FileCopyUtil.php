@@ -146,7 +146,7 @@ class phpucFileCopyUtil
      * </code> 
      *
      * @param string $target The target file name.
-     * @param string $code The code of a source file.
+     * @param string $code   The code of a source file.
      * 
      * @return string The prepared code.
      */
@@ -162,7 +162,8 @@ class phpucFileCopyUtil
         $targetCode = file_get_contents( $target );
         
         // Extract custom code blocks
-        $regex = '#<%-- begin phpUnderControl (\d+) --%>.*<%-- end phpUnderControl \\1 --%>#Us';
+        $regex = '#<%-- begin phpUnderControl (\d+) --%>'
+               . '*<%-- end phpUnderControl \\1 --%>#Us';
         // Skip for not customized code
         if ( preg_match_all( $regex, $targetCode, $matches ) === 0 )
         {

@@ -112,7 +112,7 @@ final class phpucFileUtil
     {
         if ( self::$os === null )
         {
-            if ( stristr( PHP_OS, 'win') && !stristr( PHP_OS, 'darwin') )
+            if ( stristr( PHP_OS, 'win' ) && !stristr( PHP_OS, 'darwin' ) )
             {
                 self::$os = self::OS_WINDOWS;
             }
