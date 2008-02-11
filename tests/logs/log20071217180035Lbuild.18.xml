@@ -2184,8 +2184,8 @@ The Change Risk Analysis and Predictions (CRAP) index of a function or method us
     </file>
   </pmd>
   <testsuites>
-    <testsuite name="phpUnderControl - AllTests" tests="37" failures="0" errors="0" time="0.516760">
-      <testsuite name="phpUnderControl - DataAllTest" tests="11" failures="0" errors="0" time="0.122030">
+    <testsuite name="phpUnderControl - AllTests" tests="37" failures="0" errors="0" time="2.516760">
+      <testsuite name="phpUnderControl - DataAllTest" tests="11" failures="0" errors="0" time="1.122030">
         <testsuite name="phpucBuildFileTest" file="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/tests/Data/BuildFileTest.php" package="phpUnderControl" subpackage="Data" tests="3" failures="0" errors="0" time="0.022810">
           <testcase name="testInitNewBuildFile" class="phpucBuildFileTest" file="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/tests/Data/BuildFileTest.php" line="111" time="0.011182" />
           <testcase name="testOpenExistingBuildFile" class="phpucBuildFileTest" file="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/tests/Data/BuildFileTest.php" line="131" time="0.006030" />
@@ -2206,7 +2206,7 @@ The Change Risk Analysis and Predictions (CRAP) index of a function or method us
           <testcase name="testNewConfigProjectInstance" class="phpucConfigProjectTest" file="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/tests/Data/ConfigProjectTest.php" line="88" time="0.010119" />
         </testsuite>
       </testsuite>
-      <testsuite name="phpUnderControl - TasksAllTest" tests="12" failures="0" errors="0" time="0.273071">
+      <testsuite name="phpUnderControl - TasksAllTest" tests="12" failures="0" errors="0" time="1.273071">
         <testsuite name="phpucCruiseControlTaskTest" file="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/tests/Tasks/CruiseControlTaskTest.php" package="phpUnderControl" subpackage="Tasks" tests="4" failures="0" errors="0" time="0.051803">
           <testcase name="testValidateWithInvalidCCInstallDirFail" class="phpucCruiseControlTaskTest" file="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/tests/Tasks/CruiseControlTaskTest.php" line="88" time="0.019177" />
           <testcase name="testValidateWithInValidDirectoryStructureFail" class="phpucCruiseControlTaskTest" file="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/tests/Tasks/CruiseControlTaskTest.php" line="108" time="0.009977" />

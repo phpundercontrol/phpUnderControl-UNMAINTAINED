@@ -2051,8 +2051,8 @@ The Change Risk Analysis and Predictions (CRAP) index of a function or method us
     </file>
   </pmd>
   <testsuites>
-    <testsuite name="phpUnderControl - AllTests" tests="21" failures="0" errors="0" time="0.345025">
-      <testsuite name="phpUnderControl - DataAllTest" tests="6" failures="0" errors="0" time="0.090514">
+    <testsuite name="phpUnderControl - AllTests" tests="21" failures="0" errors="0" time="1.345025">
+      <testsuite name="phpUnderControl - DataAllTest" tests="6" failures="0" errors="0" time="1.090514">
         <testsuite name="phpucBuildFileTest" file="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/tests/Data/BuildFileTest.php" package="phpUnderControl" subpackage="Data" tests="3" failures="0" errors="0" time="0.038485">
           <testcase name="testInitNewBuildFile" class="phpucBuildFileTest" file="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/tests/Data/BuildFileTest.php" line="111" time="0.011773" />
           <testcase name="testOpenExistingBuildFile" class="phpucBuildFileTest" file="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/tests/Data/BuildFileTest.php" line="131" time="0.020880" />

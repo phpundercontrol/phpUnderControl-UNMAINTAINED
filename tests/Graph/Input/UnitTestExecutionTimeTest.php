@@ -68,7 +68,7 @@ class phpucUnitTestExecutionTimeTest extends phpucAbstractGraphInputTest
      * @type array<integer>
      * @var array(integer) $testTime
      */
-    protected $testTime = array( 1, 1, 1, 1, 1, 1, 1, 1, 4, 5 );
+    protected $testTime = array( 1, 2, 3, 4, 5, 4, 8, 16 );
     
     /**
      * The current test data offset.

@@ -3239,8 +3239,8 @@ The Change Risk Analysis and Predictions (CRAP) index of a function or method us
     </file>
   </pmd>
   <testsuites>
-    <testsuite name="phpUnderControl - AllTests" tests="37" failures="0" errors="0" time="0.614294">
-      <testsuite name="phpUnderControl - ConsoleAllTests" tests="8" failures="0" errors="0" time="0.091769">
+    <testsuite name="phpUnderControl - AllTests" tests="37" failures="0" errors="0" time="15.614294">
+      <testsuite name="phpUnderControl - ConsoleAllTests" tests="8" failures="0" errors="0" time="7.091769">
         <testsuite name="phpucConsoleArgsTest" file="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/tests/Console/ConsoleArgsTest.php" package="phpUnderControl" tests="8" failures="0" errors="0" time="0.091769">
           <testcase name="testConsoleWithoutArgv" class="phpucConsoleArgsTest" file="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/tests/Console/ConsoleArgsTest.php" line="66" time="0.011786" />
           <testcase name="testConsoleInstallCommandWithoutOptions" class="phpucConsoleArgsTest" file="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/tests/Console/ConsoleArgsTest.php" line="84" time="0.013257" />
@@ -3252,7 +3252,7 @@ The Change Risk Analysis and Predictions (CRAP) index of a function or method us
           <testcase name="testConsolePrintHelp" class="phpucConsoleArgsTest" file="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/tests/Console/ConsoleArgsTest.php" line="236" time="0.016054" />
         </testsuite>
       </testsuite>
-      <testsuite name="phpUnderControl - DataAllTest" tests="11" failures="0" errors="0" time="0.132960">
+      <testsuite name="phpUnderControl - DataAllTest" tests="11" failures="0" errors="0" time="6.132960">
         <testsuite name="phpucBuildFileTest" file="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/tests/Data/BuildFileTest.php" package="Data" tests="3" failures="0" errors="0" time="0.024897">
           <testcase name="testInitNewBuildFile" class="phpucBuildFileTest" file="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/tests/Data/BuildFileTest.php" line="109" time="0.012122" />
           <testcase name="testOpenExistingBuildFile" class="phpucBuildFileTest" file="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/tests/Data/BuildFileTest.php" line="129" time="0.006443" />
@@ -3273,7 +3273,7 @@ The Change Risk Analysis and Predictions (CRAP) index of a function or method us
           <testcase name="testNewConfigProjectInstance" class="phpucConfigProjectTest" file="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/tests/Data/ConfigProjectTest.php" line="86" time="0.011149" />
         </testsuite>
       </testsuite>
-      <testsuite name="phpUnderControl - TasksAllTest" tests="12" failures="0" errors="0" time="0.328991">
+      <testsuite name="phpUnderControl - TasksAllTest" tests="12" failures="0" errors="0" time="2.328991">
         <testsuite name="phpucCruiseControlTaskTest" file="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/tests/Tasks/CruiseControlTaskTest.php" package="Tasks" tests="4" failures="0" errors="0" time="0.062769">
           <testcase name="testValidateWithInvalidCCInstallDirFail" class="phpucCruiseControlTaskTest" file="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/tests/Tasks/CruiseControlTaskTest.php" line="89" time="0.018389" />
           <testcase name="testValidateWithInValidDirectoryStructureFail" class="phpucCruiseControlTaskTest" file="/opt/cruisecontrol-bin-2.7/projects/phpUnderControl/source/tests/Tasks/CruiseControlTaskTest.php" line="110" time="0.012546" />
