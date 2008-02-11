@@ -82,6 +82,16 @@ abstract class phpucAbstractTest extends PHPUnit_Framework_TestCase
      * @var boolean $windows
      */
     public static $windows = false;
+    
+    /**
+     * Clears the file stat cache.
+     */
+    protected function setUp()
+    {
+        parent::setUp();
+        
+        clearstatcache();
+    }
 
     /**
      * Removes all test contents.
