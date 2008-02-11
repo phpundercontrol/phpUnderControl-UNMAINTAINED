@@ -123,6 +123,13 @@ class phpucUnitTestInputTest extends phpucAbstractGraphInputTest
         return $records;
     }
     
+    /**
+     * Queries the expected log data from the given xpath object.
+     * 
+     * @param DOMXPath $xpath The context xpath instance.
+     * 
+     * @return array(string=>DOMNodeList)
+     */
     protected function queryLogData( DOMXPath $xpath )
     {
         return array(
