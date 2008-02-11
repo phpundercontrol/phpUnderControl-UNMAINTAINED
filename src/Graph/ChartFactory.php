@@ -80,6 +80,10 @@ class phpucChartFactory
             case phpucChartI::TYPE_PIE:
                 $chart = new phpucPieChart();
                 break;
+                
+            case phpucChartI::TYPE_TIME:
+                $chart = new phpucTimeChart();
+                break;
         }
         
         $chart->setInput( $input );

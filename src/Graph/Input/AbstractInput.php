@@ -165,7 +165,8 @@ abstract class phpucAbstractInput implements phpucInputI
         if ( !in_array( $type, array( 
             phpucChartI::TYPE_PIE, 
             phpucChartI::TYPE_LINE, 
-            phpucChartI::TYPE_DOT ) ) )
+            phpucChartI::TYPE_DOT,
+            phpucChartI::TYPE_TIME ) ) )
         {
             throw new InvalidArgumentException( 'Invalid input type given.' );
         }
@@ -274,7 +275,7 @@ abstract class phpucAbstractInput implements phpucInputI
         $sum = 0;
         foreach ( $nodeList as $node )
         {
-            $sum += (int) $node->nodeValue;
+            $sum += (float) $node->nodeValue;
         }
         return $sum;
     }

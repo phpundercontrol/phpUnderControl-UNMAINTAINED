@@ -60,6 +60,7 @@ require_once dirname( __FILE__ ) . '/CodeViolationInputTest.php';
 require_once dirname( __FILE__ ) . '/InputLoaderTest.php';
 require_once dirname( __FILE__ ) . '/TestCodeRatioInputTest.php';
 require_once dirname( __FILE__ ) . '/UnitCoverageInputTest.php';
+require_once dirname( __FILE__ ) . '/UnitTestExecutionTimeTest.php';
 require_once dirname( __FILE__ ) . '/UnitTestInputTest.php';
 
 /**
@@ -100,6 +101,7 @@ class phpucGraphInputAllTests
         $suite->addTestSuite( 'phpucInputLoaderTest' );
         $suite->addTestSuite( 'phpucTestCodeRatioInputTest' );
         $suite->addTestSuite( 'phpucUnitCoverageInputTest' );
+        $suite->addTestSuite( 'phpucUnitTestExecutionTimeTest' );
         $suite->addTestSuite( 'phpucUnitTestInputTest' );
 
         return $suite;

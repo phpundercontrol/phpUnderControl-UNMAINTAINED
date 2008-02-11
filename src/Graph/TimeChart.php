@@ -4,7 +4,7 @@
  * 
  * PHP Version 5.2.4
  *
- * Copyright (c) 2007-2008, Manuel Pichler <mapi@phpundercontrol.org>.
+ * Copyright (c) 2007-2008, Manuel Pichler <mapi@manuel-pichler.de>.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -38,7 +38,7 @@
  * 
  * @category  QualityAssurance
  * @package   Graph
- * @author    Manuel Pichler <mapi@phpundercontrol.org>
+ * @author    Manuel Pichler <mapi@manuel-pichler.de>
  * @copyright 2007-2008 Manuel Pichler. All rights reserved.
  * @license   http://www.opensource.org/licenses/bsd-license.php  BSD License
  * @version   SVN: $Id$
@@ -46,47 +46,30 @@
  */
 
 /**
- * Displays a metrics line chart.
+ * Renders a line chart with a time based y-axis.
  *
  * @category  QualityAssurance
  * @package   Graph
- * @author    Manuel Pichler <mapi@phpundercontrol.org>
+ * @author    Manuel Pichler <mapi@manuel-pichler.de>
  * @copyright 2007-2008 Manuel Pichler. All rights reserved.
  * @license   http://www.opensource.org/licenses/bsd-license.php  BSD License
  * @version   Release: @package_version@
  * @link      http://www.phpundercontrol.org/
- * 
- * @property phpucAbstractInput $input The input data source.
  */
-interface phpucChartI
+class phpucTimeChart extends phpucLineChart
 {
     /**
-     * Identifies an input implementation for pie charts.
-     */
-    const TYPE_PIE = 0;
-    
-    /**
-     * Identifies an input implementation for line charts.
-     */
-    const TYPE_LINE = 1;
-    
-    /**
-     * Identifies an input implementation for line charts without lines but
-     * highlights.
-     */
-    const TYPE_DOT = 2;
-    
-    /**
-     * Identifies an input implementation for time charts.
-     */
-    const TYPE_TIME = 3;
-    
-    /**
-     * Sets the input instance for the next rendering process.
+     * Init's the default chart axis.
      *
-     * @param phpucAbstractInput $input The input object.
-     * 
      * @return void
      */
-    function setInput( phpucAbstractInput $input );
+    protected function initAxis()
+    {
+        parent::initAxis();
+
+        $this->yAxis                    = new ezcGraphChartElementDateAxis();
+        $this->yAxis->axisLabelRenderer = new ezcGraphAxisCenteredLabelRenderer();
+        $this->yAxis->dateFormat        = 'i:s';
+        $this->yAxis->font->maxFontSize = 10;
+    }
 }
