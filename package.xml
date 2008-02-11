@@ -20,7 +20,7 @@
     <email>mapi@phpundercontrol.org</email>
     <active>yes</active>
   </lead>
-  <date>2008-02-02</date>
+  <date>2008-02-11</date>
   <version>
     <release>0.3.6</release>
     <api>0.2.0</api>
@@ -37,6 +37,7 @@
   Sebastian who provides a patch.
 - Customization support for java server pages added. This new feature allows 
   custom tabs for further artifacts and build results. 
+- New chart type for the unit test execution time added.
   </notes>
   <contents>
     <dir name="/">
@@ -150,6 +151,9 @@
             <file name="UnitCoverageInput.php" role="php">
               <tasks:replace from="@package_version@" to="version" type="package-info" />
             </file>
+            <file name="UnitTestExecutionTimeInput.php" role="php">
+              <tasks:replace from="@package_version@" to="version" type="package-info" />
+            </file>
             <file name="UnitTestInput.php" role="php">
               <tasks:replace from="@package_version@" to="version" type="package-info" />
             </file>
@@ -173,6 +177,9 @@
             <tasks:replace from="@package_version@" to="version" type="package-info" />
           </file>
           <file name="PieChart.php" role="php">
+            <tasks:replace from="@package_version@" to="version" type="package-info" />
+          </file>
+          <file name="TimeChart.php" role="php">
             <tasks:replace from="@package_version@" to="version" type="package-info" />
           </file>
         </dir>
@@ -219,6 +226,9 @@
         </dir>
         <dir name="Util">
           <file name="Autoloader.php" role="php">
+            <tasks:replace from="@package_version@" to="version" type="package-info" />
+          </file>
+          <file name="FileCopyUtil.php" role="php">
             <tasks:replace from="@package_version@" to="version" type="package-info" />
           </file>
           <file name="FileUtil.php" role="php">
@@ -277,14 +287,85 @@
             <tasks:replace from="@package_version@" to="version" type="package-info" />
           </file>
         </dir>
+        <dir name="Graph">
+          <dir name="Input">
+            <file name="AbstractGraphInputTest.php" role="test">
+              <tasks:replace from="@package_version@" to="version" type="package-info" />
+            </file>
+            <file name="BuildBreakdownInputTest.php" role="test">
+              <tasks:replace from="@package_version@" to="version" type="package-info" />
+            </file>
+            <file name="BuildBreakdownTimelineInputTest.php" role="test">
+              <tasks:replace from="@package_version@" to="version" type="package-info" />
+            </file>
+            <file name="CodeViolationInputTest.php" role="test">
+              <tasks:replace from="@package_version@" to="version" type="package-info" />
+            </file>
+            <file name="GraphInputAllTests.php" role="test">
+              <tasks:replace from="@package_version@" to="version" type="package-info" />
+            </file>
+            <file name="InputLoaderTest.php" role="test">
+              <tasks:replace from="@package_version@" to="version" type="package-info" />
+            </file>
+            <file name="TestCodeRatioInputTest.php" role="test">
+              <tasks:replace from="@package_version@" to="version" type="package-info" />
+            </file>
+            <file name="UnitCoverageInputTest.php" role="test">
+              <tasks:replace from="@package_version@" to="version" type="package-info" />
+            </file>
+            <file name="UnitTestExecutionTimeTest.php" role="test">
+              <tasks:replace from="@package_version@" to="version" type="package-info" />
+            </file>
+            <file name="UnitTestInputTest.php" role="test">
+              <tasks:replace from="@package_version@" to="version" type="package-info" />
+            </file>
+          </dir>
+          <file name="ChartFactoryTest.php" role="test">
+            <tasks:replace from="@package_version@" to="version" type="package-info" />
+          </file>
+          <file name="DotChartTest.php" role="test">
+            <tasks:replace from="@package_version@" to="version" type="package-info" />
+          </file>
+          <file name="GraphAllTests.php" role="test">
+            <tasks:replace from="@package_version@" to="version" type="package-info" />
+          </file>
+          <file name="LineChartTest.php" role="test">
+            <tasks:replace from="@package_version@" to="version" type="package-info" />
+          </file>
+          <file name="PieChartTest.php" role="test">
+            <tasks:replace from="@package_version@" to="version" type="package-info" />
+          </file>
+          <file name="TimeChartTest.php" role="test">
+            <tasks:replace from="@package_version@" to="version" type="package-info" />
+          </file>
+        </dir>
+        <dir name="logs">
+          <file name="log20071211211853.xml" role="test" />
+          <file name="log20071211220903Lbuild.3.xml" role="test" />
+          <file name="log20071217180035Lbuild.18.xml" role="test" />
+          <file name="log20080106030401Lbuild.24.xml" role="test" />
+          <file name="log20080109182028Lbuild.30.xml" role="test" />
+          <file name="log20080113145726.xml" role="test" />
+          <file name="log20080114115320.xml" role="test" />
+          <file name="log20080118220842Lbuild.57.xml" role="test" />
+        </dir>
         <dir name="Tasks">
           <file name="AbstractPearTaskTest.php" role="test">
+            <tasks:replace from="@package_version@" to="version" type="package-info" />
+          </file>
+          <file name="AbstractTaskTest.php" role="test">
             <tasks:replace from="@package_version@" to="version" type="package-info" />
           </file>
           <file name="CruiseControlTaskTest.php" role="test">
             <tasks:replace from="@package_version@" to="version" type="package-info" />
           </file>
+          <file name="ModifyFileTaskTest.php" role="test">
+            <tasks:replace from="@package_version@" to="version" type="package-info" />
+          </file>
           <file name="PhpCodeSnifferTaskTest.php" role="test">
+            <tasks:replace from="@package_version@" to="version" type="package-info" />
+          </file>
+          <file name="PHPUnitTaskTest.php" role="test">
             <tasks:replace from="@package_version@" to="version" type="package-info" />
           </file>
           <file name="ProjectTaskTest.php" role="test">
@@ -307,6 +388,9 @@
           <tasks:replace from="@php_dir@" to="php_dir" type="pear-config" />
         </file> 
         <file name="AllTests.php" role="test">
+          <tasks:replace from="@package_version@" to="version" type="package-info" />
+        </file>
+        <file name="ConsoleOutputBuffer.php" role="test">
           <tasks:replace from="@package_version@" to="version" type="package-info" />
         </file>
       </dir>
@@ -635,6 +719,7 @@
       <install as="phpUnderControl/Graph/Input/InputRule.php" name="src/Graph/Input/InputRule.php" />
       <install as="phpUnderControl/Graph/Input/TestCodeRatioInput.php" name="src/Graph/Input/TestCodeRatioInput.php" />
       <install as="phpUnderControl/Graph/Input/UnitCoverageInput.php" name="src/Graph/Input/UnitCoverageInput.php" />
+      <install as="phpUnderControl/Graph/Input/UnitTestExecutionTimeInput.php" name="src/Graph/Input/UnitTestExecutionTimeInput.php" />
       <install as="phpUnderControl/Graph/Input/UnitTestInput.php" name="src/Graph/Input/UnitTestInput.php" />
       
       <install as="phpUnderControl/Graph/ChartFactory.php" name="src/Graph/ChartFactory.php" />
@@ -644,6 +729,7 @@
       <install as="phpUnderControl/Graph/GraphPalette.php" name="src/Graph/GraphPalette.php" />
       <install as="phpUnderControl/Graph/LineChart.php" name="src/Graph/LineChart.php" />
       <install as="phpUnderControl/Graph/PieChart.php" name="src/Graph/PieChart.php" />
+      <install as="phpUnderControl/Graph/TimeChart.php" name="src/Graph/TimeChart.php" />
       
       <install as="phpUnderControl/Tasks/AbstractPearTask.php" name="src/Tasks/AbstractPearTask.php" />
       <install as="phpUnderControl/Tasks/AbstractTask.php" name="src/Tasks/AbstractTask.php" />
@@ -660,6 +746,7 @@
       <install as="phpUnderControl/Tasks/TaskI.php" name="src/Tasks/TaskI.php" />
       
       <install as="phpUnderControl/Util/Autoloader.php" name="src/Util/Autoloader.php" />
+      <install as="phpUnderControl/Util/FileCopyUtil.php" name="src/Util/FileCopyUtil.php" />
       <install as="phpUnderControl/Util/FileUtil.php" name="src/Util/FileUtil.php" />
       <install as="phpUnderControl/Util/PhpFileFilterIterator.php" name="src/Util/PhpFileFilterIterator.php" />
       
@@ -709,6 +796,7 @@
       <install as="phpUnderControl/Graph/Input/InputRule.php" name="src/Graph/Input/InputRule.php" />
       <install as="phpUnderControl/Graph/Input/TestCodeRatioInput.php" name="src/Graph/Input/TestCodeRatioInput.php" />
       <install as="phpUnderControl/Graph/Input/UnitCoverageInput.php" name="src/Graph/Input/UnitCoverageInput.php" />
+      <install as="phpUnderControl/Graph/Input/UnitTestExecutionTimeInput.php" name="src/Graph/Input/UnitTestExecutionTimeInput.php" />
       <install as="phpUnderControl/Graph/Input/UnitTestInput.php" name="src/Graph/Input/UnitTestInput.php" />
       
       <install as="phpUnderControl/Graph/ChartFactory.php" name="src/Graph/ChartFactory.php" />
@@ -718,6 +806,7 @@
       <install as="phpUnderControl/Graph/GraphPalette.php" name="src/Graph/GraphPalette.php" />
       <install as="phpUnderControl/Graph/LineChart.php" name="src/Graph/LineChart.php" />
       <install as="phpUnderControl/Graph/PieChart.php" name="src/Graph/PieChart.php" />
+      <install as="phpUnderControl/Graph/TimeChart.php" name="src/Graph/TimeChart.php" />
       
       <install as="phpUnderControl/Tasks/AbstractPearTask.php" name="src/Tasks/AbstractPearTask.php" />
       <install as="phpUnderControl/Tasks/AbstractTask.php" name="src/Tasks/AbstractTask.php" />
@@ -734,6 +823,7 @@
       <install as="phpUnderControl/Tasks/TaskI.php" name="src/Tasks/TaskI.php" />
       
       <install as="phpUnderControl/Util/Autoloader.php" name="src/Util/Autoloader.php" />
+      <install as="phpUnderControl/Util/FileCopyUtil.php" name="src/Util/FileCopyUtil.php" />
       <install as="phpUnderControl/Util/FileUtil.php" name="src/Util/FileUtil.php" />
       <install as="phpUnderControl/Util/PhpFileFilterIterator.php" name="src/Util/PhpFileFilterIterator.php" />
       

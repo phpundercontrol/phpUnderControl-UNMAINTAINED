@@ -42,17 +42,17 @@
  * @link       http://www.phpundercontrol.org/
  */
 
-if ( phpucFileUtil::getOS() === phpucFileUtil::OS_UNIX )
-{
-    $rmcmd      = 'rm -rf';
-    $copycmd    = 'cp -rf';
-    $installDir = '/opt/cruisecontrol';
-}
-else
+if ( stripos( PHP_OS, 'WIN' ) !== false )
 {
     $rmcmd      = 'rmdir /S /Q';
     $copycmd    = 'xcopy /S /E /I';
     $installDir = 'c:\Programme\CruiseControl';
+}
+else
+{
+    $rmcmd      = 'rm -rf';
+    $copycmd    = 'cp -rf';
+    $installDir = '/opt/cruisecontrol';
 }
 if ( count( $GLOBALS['argv'] ) > 1 )
 {
