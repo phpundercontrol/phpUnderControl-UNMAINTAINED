@@ -54,6 +54,7 @@ require_once dirname( __FILE__ ) . '/CruiseControlTaskTest.php';
 require_once dirname( __FILE__ ) . '/GraphTaskTest.php';
 require_once dirname( __FILE__ ) . '/ModifyFileTaskTest.php';
 require_once dirname( __FILE__ ) . '/PhpCodeSnifferTaskTest.php';
+require_once dirname( __FILE__ ) . '/PhpDocumentorTaskTest.php';
 require_once dirname( __FILE__ ) . '/PHPUnitTaskTest.php';
 require_once dirname( __FILE__ ) . '/ProjectTaskTest.php';
 
@@ -92,6 +93,7 @@ class phpucTasksAllTest
         $suite->addTestSuite( 'phpucModifyFileTaskTest' );
         $suite->addTestSuite( 'phpucPhpCodeSnifferTaskTest' );
         $suite->addTestSuite( 'phpucPHPUnitTaskTest' );
+        $suite->addTestSuite( 'phpucPhpDocumentorTaskTest' );
         $suite->addTestSuite( 'phpucProjectTaskTest' );
 
         return $suite;

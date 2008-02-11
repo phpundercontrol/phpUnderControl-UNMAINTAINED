@@ -88,7 +88,8 @@ class phpucPhpDocumentorTask extends phpucAbstractPearTask
         $out->writeListItem( 
             'Creating apidoc dir:  project/{1}/build/api', $projectName
         );
-        mkdir( $projectPath . '/build/api' );
+        
+        mkdir( $projectPath . '/build/api', 0755, true );
         
         $out->writeListItem(
             'Modifying build file: project/{1}/build.xml', $projectName
@@ -109,12 +110,22 @@ class phpucPhpDocumentorTask extends phpucAbstractPearTask
         $buildFile->save();
         
         $out->writeListItem( 'Modifying config file:          config.xml' );
+        
         $configFile    = new phpucConfigFile( $installDir . '/config.xml' );
         $configProject = $configFile->getProject( $projectName );
         $publisher     = $configProject->createArtifactsPublisher();
         
         $publisher->dir          = 'projects/${project.name}/build/api';
         $publisher->subdirectory = 'api';
+        
+        if ( $this->artifacts )
+        {
+            $publisher->dest = 'artifacts/${project.name}';
+        }
+        else
+        {
+            $publisher->dest = 'logs/${project.name}';
+        }
         
         $configFile->save();
 

@@ -76,7 +76,7 @@ class phpucConfigArtifactsPublisher implements phpucConfigPublisherI
         'project'       =>  null,
         'dir'           =>  null,
         'file'          =>  null,
-        'dest'          =>  'logs/${project.name}',
+        'dest'          =>  null,
         'subdirectory'  =>  null,
     );
     
