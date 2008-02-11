@@ -20,7 +20,7 @@
     <email>mapi@phpundercontrol.org</email>
     <active>yes</active>
   </lead>
-  <date>2008-02-02</date>
+  <date>2008-02-11</date>
   <version>
     <release>0.3.6</release>
     <api>0.2.0</api>
@@ -719,6 +719,7 @@
       <install as="phpUnderControl/Graph/Input/InputRule.php" name="src/Graph/Input/InputRule.php" />
       <install as="phpUnderControl/Graph/Input/TestCodeRatioInput.php" name="src/Graph/Input/TestCodeRatioInput.php" />
       <install as="phpUnderControl/Graph/Input/UnitCoverageInput.php" name="src/Graph/Input/UnitCoverageInput.php" />
+      <install as="phpUnderControl/Graph/Input/UnitTestExecutionTimeInput.php" name="src/Graph/Input/UnitTestExecutionTimeInput.php" />
       <install as="phpUnderControl/Graph/Input/UnitTestInput.php" name="src/Graph/Input/UnitTestInput.php" />
       
       <install as="phpUnderControl/Graph/ChartFactory.php" name="src/Graph/ChartFactory.php" />
@@ -728,6 +729,7 @@
       <install as="phpUnderControl/Graph/GraphPalette.php" name="src/Graph/GraphPalette.php" />
       <install as="phpUnderControl/Graph/LineChart.php" name="src/Graph/LineChart.php" />
       <install as="phpUnderControl/Graph/PieChart.php" name="src/Graph/PieChart.php" />
+      <install as="phpUnderControl/Graph/TimeChart.php" name="src/Graph/TimeChart.php" />
       
       <install as="phpUnderControl/Tasks/AbstractPearTask.php" name="src/Tasks/AbstractPearTask.php" />
       <install as="phpUnderControl/Tasks/AbstractTask.php" name="src/Tasks/AbstractTask.php" />
@@ -744,6 +746,7 @@
       <install as="phpUnderControl/Tasks/TaskI.php" name="src/Tasks/TaskI.php" />
       
       <install as="phpUnderControl/Util/Autoloader.php" name="src/Util/Autoloader.php" />
+      <install as="phpUnderControl/Util/FileCopyUtil.php" name="src/Util/FileCopyUtil.php" />
       <install as="phpUnderControl/Util/FileUtil.php" name="src/Util/FileUtil.php" />
       <install as="phpUnderControl/Util/PhpFileFilterIterator.php" name="src/Util/PhpFileFilterIterator.php" />
       
@@ -793,6 +796,7 @@
       <install as="phpUnderControl/Graph/Input/InputRule.php" name="src/Graph/Input/InputRule.php" />
       <install as="phpUnderControl/Graph/Input/TestCodeRatioInput.php" name="src/Graph/Input/TestCodeRatioInput.php" />
       <install as="phpUnderControl/Graph/Input/UnitCoverageInput.php" name="src/Graph/Input/UnitCoverageInput.php" />
+      <install as="phpUnderControl/Graph/Input/UnitTestExecutionTimeInput.php" name="src/Graph/Input/UnitTestExecutionTimeInput.php" />
       <install as="phpUnderControl/Graph/Input/UnitTestInput.php" name="src/Graph/Input/UnitTestInput.php" />
       
       <install as="phpUnderControl/Graph/ChartFactory.php" name="src/Graph/ChartFactory.php" />
@@ -802,6 +806,7 @@
       <install as="phpUnderControl/Graph/GraphPalette.php" name="src/Graph/GraphPalette.php" />
       <install as="phpUnderControl/Graph/LineChart.php" name="src/Graph/LineChart.php" />
       <install as="phpUnderControl/Graph/PieChart.php" name="src/Graph/PieChart.php" />
+      <install as="phpUnderControl/Graph/TimeChart.php" name="src/Graph/TimeChart.php" />
       
       <install as="phpUnderControl/Tasks/AbstractPearTask.php" name="src/Tasks/AbstractPearTask.php" />
       <install as="phpUnderControl/Tasks/AbstractTask.php" name="src/Tasks/AbstractTask.php" />
@@ -818,6 +823,7 @@
       <install as="phpUnderControl/Tasks/TaskI.php" name="src/Tasks/TaskI.php" />
       
       <install as="phpUnderControl/Util/Autoloader.php" name="src/Util/Autoloader.php" />
+      <install as="phpUnderControl/Util/FileCopyUtil.php" name="src/Util/FileCopyUtil.php" />
       <install as="phpUnderControl/Util/FileUtil.php" name="src/Util/FileUtil.php" />
       <install as="phpUnderControl/Util/PhpFileFilterIterator.php" name="src/Util/PhpFileFilterIterator.php" />
       
