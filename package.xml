@@ -37,6 +37,7 @@
   Sebastian who provides a patch.
 - Customization support for java server pages added. This new feature allows 
   custom tabs for further artifacts and build results. 
+- New chart type for the unit test execution time added.
   </notes>
   <contents>
     <dir name="/">
@@ -150,6 +151,9 @@
             <file name="UnitCoverageInput.php" role="php">
               <tasks:replace from="@package_version@" to="version" type="package-info" />
             </file>
+            <file name="UnitTestExecutionTimeInput.php" role="php">
+              <tasks:replace from="@package_version@" to="version" type="package-info" />
+            </file>
             <file name="UnitTestInput.php" role="php">
               <tasks:replace from="@package_version@" to="version" type="package-info" />
             </file>
@@ -173,6 +177,9 @@
             <tasks:replace from="@package_version@" to="version" type="package-info" />
           </file>
           <file name="PieChart.php" role="php">
+            <tasks:replace from="@package_version@" to="version" type="package-info" />
+          </file>
+          <file name="TimeChart.php" role="php">
             <tasks:replace from="@package_version@" to="version" type="package-info" />
           </file>
         </dir>
@@ -219,6 +226,9 @@
         </dir>
         <dir name="Util">
           <file name="Autoloader.php" role="php">
+            <tasks:replace from="@package_version@" to="version" type="package-info" />
+          </file>
+          <file name="FileCopyUtil.php" role="php">
             <tasks:replace from="@package_version@" to="version" type="package-info" />
           </file>
           <file name="FileUtil.php" role="php">
@@ -277,14 +287,85 @@
             <tasks:replace from="@package_version@" to="version" type="package-info" />
           </file>
         </dir>
+        <dir name="Graph">
+          <dir name="Input">
+            <file name="AbstractGraphInputTest.php" role="test">
+              <tasks:replace from="@package_version@" to="version" type="package-info" />
+            </file>
+            <file name="BuildBreakdownInputTest.php" role="test">
+              <tasks:replace from="@package_version@" to="version" type="package-info" />
+            </file>
+            <file name="BuildBreakdownTimelineInputTest.php" role="test">
+              <tasks:replace from="@package_version@" to="version" type="package-info" />
+            </file>
+            <file name="CodeViolationInputTest.php" role="test">
+              <tasks:replace from="@package_version@" to="version" type="package-info" />
+            </file>
+            <file name="GraphInputAllTests.php" role="test">
+              <tasks:replace from="@package_version@" to="version" type="package-info" />
+            </file>
+            <file name="InputLoaderTest.php" role="test">
+              <tasks:replace from="@package_version@" to="version" type="package-info" />
+            </file>
+            <file name="TestCodeRatioInputTest.php" role="test">
+              <tasks:replace from="@package_version@" to="version" type="package-info" />
+            </file>
+            <file name="UnitCoverageInputTest.php" role="test">
+              <tasks:replace from="@package_version@" to="version" type="package-info" />
+            </file>
+            <file name="UnitTestExecutionTimeTest.php" role="test">
+              <tasks:replace from="@package_version@" to="version" type="package-info" />
+            </file>
+            <file name="UnitTestInputTest.php" role="test">
+              <tasks:replace from="@package_version@" to="version" type="package-info" />
+            </file>
+          </dir>
+          <file name="ChartFactoryTest.php" role="test">
+            <tasks:replace from="@package_version@" to="version" type="package-info" />
+          </file>
+          <file name="DotChartTest.php" role="test">
+            <tasks:replace from="@package_version@" to="version" type="package-info" />
+          </file>
+          <file name="GraphAllTests.php" role="test">
+            <tasks:replace from="@package_version@" to="version" type="package-info" />
+          </file>
+          <file name="LineChartTest.php" role="test">
+            <tasks:replace from="@package_version@" to="version" type="package-info" />
+          </file>
+          <file name="PieChartTest.php" role="test">
+            <tasks:replace from="@package_version@" to="version" type="package-info" />
+          </file>
+          <file name="TimeChartTest.php" role="test">
+            <tasks:replace from="@package_version@" to="version" type="package-info" />
+          </file>
+        </dir>
+        <dir name="logs">
+          <file name="log20071211211853.xml" role="test" />
+          <file name="log20071211220903Lbuild.3.xml" role="test" />
+          <file name="log20071217180035Lbuild.18.xml" role="test" />
+          <file name="log20080106030401Lbuild.24.xml" role="test" />
+          <file name="log20080109182028Lbuild.30.xml" role="test" />
+          <file name="log20080113145726.xml" role="test" />
+          <file name="log20080114115320.xml" role="test" />
+          <file name="log20080118220842Lbuild.57.xml" role="test" />
+        </dir>
         <dir name="Tasks">
           <file name="AbstractPearTaskTest.php" role="test">
+            <tasks:replace from="@package_version@" to="version" type="package-info" />
+          </file>
+          <file name="AbstractTaskTest.php" role="test">
             <tasks:replace from="@package_version@" to="version" type="package-info" />
           </file>
           <file name="CruiseControlTaskTest.php" role="test">
             <tasks:replace from="@package_version@" to="version" type="package-info" />
           </file>
+          <file name="ModifyFileTaskTest.php" role="test">
+            <tasks:replace from="@package_version@" to="version" type="package-info" />
+          </file>
           <file name="PhpCodeSnifferTaskTest.php" role="test">
+            <tasks:replace from="@package_version@" to="version" type="package-info" />
+          </file>
+          <file name="PHPUnitTaskTest.php" role="test">
             <tasks:replace from="@package_version@" to="version" type="package-info" />
           </file>
           <file name="ProjectTaskTest.php" role="test">
@@ -307,6 +388,9 @@
           <tasks:replace from="@php_dir@" to="php_dir" type="pear-config" />
         </file> 
         <file name="AllTests.php" role="test">
+          <tasks:replace from="@package_version@" to="version" type="package-info" />
+        </file>
+        <file name="ConsoleOutputBuffer.php" role="test">
           <tasks:replace from="@package_version@" to="version" type="package-info" />
         </file>
       </dir>

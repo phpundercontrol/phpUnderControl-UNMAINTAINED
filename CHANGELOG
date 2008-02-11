@@ -7,6 +7,7 @@ phpUnderControl 0.3.6
   Sebastian who provides a patch.
 - Customization support for java server pages added. This new feature allows 
   custom tabs for further artifacts and build results. 
+- New chart type for the unit test execution time added.
 
 phpUnderControl 0.3.5
 ---------------------
