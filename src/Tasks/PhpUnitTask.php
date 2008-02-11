@@ -142,6 +142,15 @@ class phpucPhpUnitTask extends phpucAbstractPearTask
         $publisher->dir          = 'projects/${project.name}/build/coverage';
         $publisher->subdirectory = 'coverage';
         
+        if ( $this->artifacts )
+        {
+            $publisher->dest = 'artifacts/${project.name}';
+        }
+        else
+        {
+            $publisher->dest = 'logs/${project.name}';
+        }
+        
         $configFile->save();
         
         $out->writeLine();
@@ -172,12 +181,7 @@ class phpucPhpUnitTask extends phpucAbstractPearTask
         $retval = exec( escapeshellcmd( "{$binary} --version" ) );
         
         chdir( $cwd );
-/*
-        ob_start();
-        exec( "{$this->executable} --version" );
-        $retval = ob_get_contents();
-        ob_end_clean();
-*/
+
         if ( preg_match( '/\s+([0-9\.]+(RC[0-9])?)/', $retval, $match ) === 0 )
         {
             phpucConsoleOutput::get()->writeLine(

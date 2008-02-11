@@ -196,32 +196,43 @@ class phpucPHPUnitTaskTest extends phpucAbstractPearTaskTest
      *
      * @return void
      */
-    public function testPHPUnitExecuteConfigFileModifiactions()
+    public function testPHPUnitExecuteConfigFileWithoutArtifactsDirectory()
     {
-        $this->createCCConfig();
-        $this->createExecutable( 'phpunit', $this->validBin );
+        $node = $this->prepareTestAndReturnsPublisherNode();
         
-        $phpunit = new phpucPhpUnitTask( $this->args );
-        $phpunit->validate();
-        $phpunit->execute();
-        
-        $dom = new DOMDocument();
-        $dom->load( PHPUC_TEST_DIR . '/config.xml' );
-        
-        $xpath  = new DOMXPath( $dom );
-        $result = $xpath->query(
-            sprintf( 
-                '/cruisecontrol/project[
-                   @name="%s"
-                 ]/publishers/artifactspublisher[@subdirectory="coverage"]',
-                $this->projectName
-            )
-        );
-        
-        $this->assertEquals( 1, $result->length );
         $this->assertEquals( 
             'projects/${project.name}/build/coverage', 
-            $result->item( 0 )->getAttribute( 'dir' )
+            $node->getAttribute( 'dir' )
+        );
+        $this->assertEquals(
+            'logs/${project.name}', $node->getAttribute( 'dest' )
+        );
+        $this->assertEquals(
+            'coverage', $node->getAttribute( 'subdirectory' )
+        );
+    }
+    
+    /**
+     * Tests that the phpunit task adds an artifact publisher into the 
+     * project configuration and uses the artifacts directory for the generated
+     * coverage report.
+     *
+     * @return void
+     */
+    public function testPHPUnitExecuteConfigFileWithArtifactsDirectory()
+    {
+        $dirs = array( "artifacts/{$this->projectName}" );
+        $node = $this->prepareTestAndReturnsPublisherNode( $dirs );
+        
+        $this->assertEquals( 
+            'projects/${project.name}/build/coverage', 
+            $node->getAttribute( 'dir' )
+        );
+        $this->assertEquals(
+            'artifacts/${project.name}', $node->getAttribute( 'dest' )
+        );
+        $this->assertEquals(
+            'coverage', $node->getAttribute( 'subdirectory' )
         );
     }
     
@@ -259,6 +270,48 @@ class phpucPHPUnitTaskTest extends phpucAbstractPearTaskTest
         $phpunit->validate();
         
         $this->assertNotNull( $phpunit->executable );
+    }
+    
+    /**
+     * Executes the phpunit task and return the created artifactspublisher node.
+     *
+     * @param array(string) $dirs Optional list of test directories.
+     * 
+     * @return DOMElement The artifactspublisher element
+     */
+    protected function prepareTestAndReturnsPublisherNode( array $dirs = array() )
+    {
+        // Create dummy cc config
+        $this->createCCConfig();
         
+        // Create dummy phpunit executable
+        $this->createExecutable( 'phpunit', $this->validBin );
+        
+        // Append project log directory
+        $dirs[] = "logs/{$this->projectName}";
+        
+        // Create test directories
+        $this->createTestDirectories( $dirs );
+        
+        $phpunit = new phpucPhpUnitTask( $this->args );
+        $phpunit->validate();
+        $phpunit->execute();
+        
+        $dom = new DOMDocument();
+        $dom->load( PHPUC_TEST_DIR . '/config.xml' );
+        
+        $xpath  = new DOMXPath( $dom );
+        $result = $xpath->query(
+            sprintf( 
+                '/cruisecontrol/project[
+                   @name="%s"
+                 ]/publishers/artifactspublisher[@subdirectory="coverage"]',
+                $this->projectName
+            )
+        );
+        
+        $this->assertEquals( 1, $result->length );
+        
+        return $result->item( 0 );
     }
 }
