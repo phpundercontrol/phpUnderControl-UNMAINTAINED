@@ -1,0 +1,30 @@
+Index: data/webapps/cruisecontrol/css/SyntaxHighlighter.css
+===================================================================
+--- data/webapps/cruisecontrol/css/SyntaxHighlighter.css	(revision 2426)
++++ data/webapps/cruisecontrol/css/SyntaxHighlighter.css	(working copy)
+@@ -1,4 +1,4 @@
+-﻿.dp-highlighter
++.dp-highlighter
+ {
+ 	font-family: "Consolas", "Courier New", Courier, mono, serif;
+ 	font-size: 12px;
+Index: src/Tasks/AbstractPearTask.php
+===================================================================
+--- src/Tasks/AbstractPearTask.php	(revision 2426)
++++ src/Tasks/AbstractPearTask.php	(working copy)
+@@ -1,4 +1,4 @@
+-﻿<?php
++<?php
+ /**
+  * This file is part of phpUnderControl.
+  * 
+Index: src/Tasks/GenerateGraphTask.php
+===================================================================
+--- src/Tasks/GenerateGraphTask.php	(revision 2426)
++++ src/Tasks/GenerateGraphTask.php	(working copy)
+@@ -1,4 +1,4 @@
+-﻿<?php
++<?php
+ /**
+  * This file is part of phpUnderControl.
+  * 
