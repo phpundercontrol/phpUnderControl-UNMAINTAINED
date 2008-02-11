@@ -88,8 +88,17 @@ class phpucGraphTask extends phpucAbstractTask
         {
             $binary .= '.php';
         }
+        
+        // Build default command string
+        $command = sprintf( '%s graph logs/${project.name}', $binary );
+        
+        // Check for an artifacts directory
+        if ( $this->artifacts )
+        {
+            $command .= ' artifacts/${project.name}';
+        }
 
-        $publisher->command = sprintf( '%s graph logs/${project.name}', $binary ); 
+        $publisher->command = $command;
         
         $configFile->save();
         

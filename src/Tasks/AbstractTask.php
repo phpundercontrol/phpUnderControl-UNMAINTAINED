@@ -55,6 +55,10 @@
  * @license   http://www.opensource.org/licenses/bsd-license.php  BSD License
  * @version   Release: @package_version@
  * @link      http://www.phpundercontrol.org/
+ * 
+ * @property-read boolean $artifacts 
+ *                If the value of this property is set to <b>true</b> an artifacts
+ *                directory exists.
  */
 abstract class phpucAbstractTask implements phpucTaskI
 {
@@ -82,6 +86,11 @@ abstract class phpucAbstractTask implements phpucTaskI
     public function __construct( phpucConsoleArgs $args )
     {
         $this->args = $args;
+        
+        // Check for an artifacts directory
+        $this->properties['artifacts'] = ( 
+            is_dir( $args->getArgument( 'cc-install-dir' ) . '/artifacts' )
+        );
     }
 
     /**
