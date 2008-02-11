@@ -60,7 +60,19 @@ require_once dirname( __FILE__ ) . '/../AbstractTest.php';
  */
 abstract class phpucAbstractTaskTest extends phpucAbstractTest
 {
+    /**
+     * Name of the default test project
+     *
+     * @type string
+     * @var string $projectName
+     */
+    protected $projectName = 'test-project';
     
+    /**
+     * Creates a default cruisecontrol config with the test project.
+     *
+     * @return void
+     */
     protected function createCCConfig()
     {
         file_put_contents(
