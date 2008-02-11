@@ -45,23 +45,10 @@
  * @link      http://www.phpundercontrol.org/
  */
 
-if ( defined( 'PHPUnit_MAIN_METHOD' ) === false )
-{
-    define( 'PHPUnit_MAIN_METHOD', 'phpucGraphAllTests::main' );
-}
-
-require_once 'PHPUnit/Framework/TestSuite.php';
-require_once 'PHPUnit/TextUI/TestRunner.php';
-
-require_once dirname( __FILE__ ) . '/Input/GraphInputAllTests.php';
-require_once dirname( __FILE__ ) . '/ChartFactoryTest.php';
-require_once dirname( __FILE__ ) . '/DotChartTest.php';
-require_once dirname( __FILE__ ) . '/LineChartTest.php';
-require_once dirname( __FILE__ ) . '/PieChartTest.php';
-require_once dirname( __FILE__ ) . '/TimeChartTest.php';
+require_once dirname( __FILE__ ) . '/../AbstractTest.php';
 
 /**
- * Test suite for the graph package
+ * Test case for the time chart.
  *
  * @category  QualityAssurance
  * @package   Graph
@@ -71,38 +58,28 @@ require_once dirname( __FILE__ ) . '/TimeChartTest.php';
  * @version   Release: @package_version@
  * @link      http://www.phpundercontrol.org/
  */
-class phpucGraphAllTests
+class phpucTimeChartTest extends phpucAbstractTest
 {
     /**
-     * Test suite main method.
+     * Tests the line chart render method.
      *
      * @return void
      */
-    public static function main()
+    public function testRender()
     {
-        PHPUnit_TextUI_TestRunner::run( self::suite() );
+        $dom = new DOMDocument();
+        $dom->load( PHPUC_TEST_LOG_FILE );
+        
+        $input = new phpucUnitTestExecutionTimeInput();
+        $input->processLog( new DOMXPath( $dom ) );
+        
+        $chart = new phpucTimeChart();
+        $chart->setInput( $input );
+        
+        $file = PHPUC_TEST_DIR . '/test.png';
+        
+        $chart->render( 230, 420, $file );
+        
+        $this->assertFileExists( $file );
     }
-    
-    /**
-     * Creates the phpunit test suite for this package.
-     *
-     * @return PHPUnit_Framework_TestSuite
-     */
-    public static function suite()
-    {
-        $suite = new PHPUnit_Framework_TestSuite( 'phpUnderControl - GraphAllTests' );
-        $suite->addTest( phpucGraphInputAllTests::suite() );
-        $suite->addTestSuite( 'phpucChartFactoryTest' );
-        $suite->addTestSuite( 'phpucDotChartTest' );
-        $suite->addTestSuite( 'phpucLineChartTest' );
-        $suite->addTestSuite( 'phpucPieChartTest' );
-        $suite->addTestSuite( 'phpucTimeChartTest' );
-
-        return $suite;
-    }
-}
-
-if ( PHPUnit_MAIN_METHOD === 'phpucGraphAllTests::main' )
-{
-    phpucGraphAllTests::main();
 }
