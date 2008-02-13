@@ -56,8 +56,7 @@
  * @version   Release: @package_version@
  * @link      http://www.phpundercontrol.org/
  * 
- * @property-read boolean $metrics  Enable metrics support?
- * @property-read boolean $coverage Enable coverage support?
+ * @property-read boolean $metrics  Enable metrics and coverage support?
  */
 class phpucPhpUnitTask extends phpucAbstractPearTask
 {
@@ -76,7 +75,6 @@ class phpucPhpUnitTask extends phpucAbstractPearTask
         parent::__construct( 'phpunit', $args );
         
         $this->properties['metrics']  = true;
-        $this->properties['coverage'] = true;
     }
     
     /**
@@ -106,14 +104,10 @@ class phpucPhpUnitTask extends phpucAbstractPearTask
             'Modifying build file:  project/{1}/build.xml', $projectName
         );
         $logs  = ' --log-xml ${basedir}/build/logs/phpunit.xml';
-        $logs .= ' --log-pmd ${basedir}/build/logs/phpunit.pmd.xml ';
         if ( $this->metrics === true )
         {
+            $logs .= ' --log-pmd ${basedir}/build/logs/phpunit.pmd.xml ';
             $logs .= ' --log-metrics ${basedir}/build/logs/phpunit.metrics.xml';
-        }
-        $coverage = '';
-        if ( $this->coverage === true )
-        {
             $logs .= ' --coverage-xml  ${basedir}/build/logs/phpunit.coverage.xml';
             $logs .= ' --coverage-html ${basedir}/build/coverage';
         }
@@ -206,7 +200,6 @@ class phpucPhpUnitTask extends phpucAbstractPearTask
                 'You may switch to PHPUnit {1} for cooler features.', 
                 self::PHP_UNIT_VERSION 
             );
-            $this->properties['metrics'] = false;
         }
 
         // Check xdebug installation
@@ -222,7 +215,7 @@ class phpucPhpUnitTask extends phpucAbstractPearTask
                 '  pecl install xdebug'
             );
             
-            $this->properties['coverage'] = false;
+            $this->properties['metrics'] = false;
         }
     }
 }
