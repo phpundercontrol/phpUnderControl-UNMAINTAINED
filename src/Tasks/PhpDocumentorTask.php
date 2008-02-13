@@ -102,7 +102,7 @@ class phpucPhpDocumentorTask extends phpucAbstractPearTask
         $buildTarget->logerror   = true;
         $buildTarget->argLine    = sprintf(
             '--title \'${ant.project.name}\' -ue on -t ${basedir}/build/api -d %s ' .
-            '-tb %s/phpdoc -o HTML:Phpuc:phpuc',
+            '-tb \'%s/phpdoc\' -o HTML:Phpuc:phpuc',
             $this->args->getOption( 'source-dir' ),
             PHPUC_DATA_DIR
         );
