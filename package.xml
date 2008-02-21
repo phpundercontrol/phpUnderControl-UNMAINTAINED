@@ -550,10 +550,14 @@
               <file name="header-left-logo.png" role="data" />
               <file name="info.png" role="data" />
               <file name="notice.png" role="data" />
+              <file name="play-broken.png" role="data" />
+              <file name="play-good.png" role="data" />
               <file name="skipped.png" role="data" />
               <file name="success.png" role="data" />
               <file name="tab-active.png" role="data" />
               <file name="tab-inactive.png" role="data" />
+              <file name="throbber-broken.gif" role="data" />
+              <file name="throbber-good.gif" role="data" />
               <file name="unknown.png" role="data" />
               <file name="warning.png" role="data" />
             </dir>
