@@ -2,7 +2,7 @@
 /**
  * This file is part of phpUnderControl.
  * 
- * PHP Version 5.2.4
+ * PHP Version 5
  *
  * Copyright (c) 2007-2008, Manuel Pichler <mapi@phpundercontrol.org>.
  * All rights reserved.
@@ -84,11 +84,15 @@ class phpucInstallCommand extends phpucAbstractCommand
         '/webapps/cruisecontrol/images/php-under-control/failed.png',
         '/webapps/cruisecontrol/images/php-under-control/header-center.png',
         '/webapps/cruisecontrol/images/php-under-control/header-left-logo.png',
+        '/webapps/cruisecontrol/images/php-under-control/play-broken.png',
+        '/webapps/cruisecontrol/images/php-under-control/play-good.png',
         '/webapps/cruisecontrol/images/php-under-control/info.png',
         '/webapps/cruisecontrol/images/php-under-control/skipped.png',
         '/webapps/cruisecontrol/images/php-under-control/success.png',
         '/webapps/cruisecontrol/images/php-under-control/tab-active.png',
         '/webapps/cruisecontrol/images/php-under-control/tab-inactive.png',
+        '/webapps/cruisecontrol/images/php-under-control/throbber-broken.gif',
+        '/webapps/cruisecontrol/images/php-under-control/throbber-good.png',
         '/webapps/cruisecontrol/images/php-under-control/warning.png',
         '/webapps/cruisecontrol/js/shBrushPhp.js',
         '/webapps/cruisecontrol/js/shCore.js',

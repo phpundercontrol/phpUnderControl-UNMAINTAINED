@@ -48,6 +48,10 @@
 <%@ page import="java.util.Date" %>
 <%@ page import="java.util.Comparator" %>
 <%@ page import="java.util.Map" %>
+<%@ page import="java.net.InetAddress" %>
+<%@ page import="java.net.URL" %>
+
+<cruisecontrol:jmxbase id="jmxBase"/>
 
 <%
 final DateFormat dateTimeFormat = DateFormat.getDateTimeInstance(DateFormat.SHORT, DateFormat.SHORT, request.getLocale());
@@ -56,6 +60,8 @@ final DateFormat timeOnlyFormat = DateFormat.getTimeInstance(DateFormat.SHORT, r
   
 final Date now = new Date();
 final String statusFileName = application.getInitParameter("currentBuildStatusFile");
+
+URL jmxURLPrefix = new URL(jmxBase, "invoke?operation=build&objectname=CruiseControl+Project%3Aname%3D");
 
 class SortableStatus implements Comparable {
     private ProjectState state;
@@ -271,8 +277,10 @@ if (logDirPath == null) {
             for (int i = 0; i < projectDirs.length; i++) {
                 project = new Info(logDir, projectDirs[i]);
 %>
-    <tr>
-      <td>
+    <tr onmouseover="over(this);" 
+        onmouseout="out(this);" 
+        onclick="callServer('<%= jmxURLPrefix.toExternalForm() + project.project %>', '<%=project.project%>');">
+      <td class="status-<%= project.getStatus().getImportance() %>">
         <div class="<%= (project.failed() ? "broken" : "good") %>">
           <div>
           <table>
@@ -297,23 +305,6 @@ if (logDirPath == null) {
     </tr>
 <%
             }
-%>
-<%--
-            <tr class="<%= (i % 2 == 1) ? "even-row" : "odd-row" %> ">
-              <td class="data"><a href="buildresults/<%=info[i].project%>"></a></td>
-              <td class="data date status-<%= info[i].getStatus().getImportance() %>"><%= info[i].getStatus()%> <em>(<%= info[i].getStatusSince() %>)</em></td>
-              <td style="background-color: #fff;" class="data date<%= (info[i].failed() ? " failure" : "") %>"><%= (info[i].failed()) ? info[i].getLastBuildTime() : "" %></td>
-              <td class="data date"><%= info[i].getLastSuccessfulBuildTime() %></td>
-              <td class="data"><%= info[i].getLabel()%></td>
-
-              <% if (jmxEnabled) { %>
-              <td class="data"><input id="<%= "force_" + info[i].project %>" type="button"
-                                      onclick="callServer('<%= jmxURLPrefix.toExternalForm() + info[i].project %>', '<%=info[i].project%>')"
-                                      class="button" value="Build"/></td>
-              <% } %>
-            </tr>
---%>
-<%
         }
     }
 }

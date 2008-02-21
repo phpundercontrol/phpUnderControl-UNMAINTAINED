@@ -15,7 +15,7 @@
    sodipodi:version="0.32"
    inkscape:version="0.45.1"
    version="1.0"
-   sodipodi:docbase="/home/kore/devel/phpuc/docs"
+   sodipodi:docbase="/home/manu/Projects/workspace.xplib.de/phpUnderControl/trunk/docs"
    sodipodi:docname="phpUnderControl-layout-kore.svg"
    inkscape:output_extension="org.inkscape.output.svg.inkscape"
    inkscape:export-filename="/home/kore/downloads/phpUnderControl-favicon.png"
@@ -2531,6 +2531,17 @@
        fx="21.929186"
        fy="-3.2182934"
        r="13" />
+    <radialGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3340"
+       id="radialGradient2899"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(3.658819,0,0,2.080782,-62.4164,12.76204)"
+       cx="21.929186"
+       cy="-3.2182934"
+       fx="21.929186"
+       fy="-3.2182934"
+       r="13" />
   </defs>
   <metadata
      id="metadata7">
@@ -3687,7 +3698,10 @@
        style="display:inline"
        inkscape:label="Layer 1"
        id="g3746"
-       transform="matrix(0.9165957,0,0,0.9165957,272.74215,398.20041)">
+       transform="matrix(0.9165957,0,0,0.9165957,272.74215,398.20041)"
+       inkscape:export-filename="/home/manu/Projects/workspace.xplib.de/phpUnderControl/trunk/docs/throbber/1.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90">
       <path
          transform="matrix(0.894862,0,0,0.9657,3.855776,2.660348)"
          d="M 36.5 22 A 14 13 0 1 1  8.5,22 A 14 13 0 1 1  36.5 22 z"
@@ -3801,7 +3815,10 @@
        transform="matrix(0.9165957,0,0,0.9165957,302.74215,398.20041)"
        id="g4769"
        inkscape:label="Layer 1"
-       style="display:inline">
+       style="display:inline"
+       inkscape:export-filename="/home/manu/Projects/workspace.xplib.de/phpUnderControl/trunk/docs/throbber/2.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90">
       <path
          sodipodi:type="arc"
          style="color:#000000;fill:#babdb6;fill-opacity:1;fill-rule:evenodd;stroke:#888a85;stroke-width:1.17360854;stroke-linecap:square;stroke-linejoin:round;marker:none;marker-start:none;marker-mid:none;marker-end:none;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;visibility:visible;display:inline;overflow:visible"
@@ -3916,7 +3933,10 @@
        style="display:inline"
        inkscape:label="Layer 1"
        id="g4797"
-       transform="matrix(0.9165957,0,0,0.9165957,332.74215,398.20041)">
+       transform="matrix(0.9165957,0,0,0.9165957,332.74215,398.20041)"
+       inkscape:export-filename="/home/manu/Projects/workspace.xplib.de/phpUnderControl/trunk/docs/throbber/3.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90">
       <path
          transform="matrix(0.894862,0,0,0.9657,3.855776,2.660348)"
          d="M 36.5 22 A 14 13 0 1 1  8.5,22 A 14 13 0 1 1  36.5 22 z"
@@ -4031,7 +4051,10 @@
        transform="matrix(0.9165957,0,0,0.9165957,362.74215,398.20041)"
        id="g4825"
        inkscape:label="Layer 1"
-       style="display:inline">
+       style="display:inline"
+       inkscape:export-filename="/home/manu/Projects/workspace.xplib.de/phpUnderControl/trunk/docs/throbber/4.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90">
       <path
          sodipodi:type="arc"
          style="color:#000000;fill:#babdb6;fill-opacity:1;fill-rule:evenodd;stroke:#888a85;stroke-width:1.17360854;stroke-linecap:square;stroke-linejoin:round;marker:none;marker-start:none;marker-mid:none;marker-end:none;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;visibility:visible;display:inline;overflow:visible"
@@ -4146,7 +4169,10 @@
        transform="matrix(0.9165957,0,0,0.9165957,272.74215,428.20041)"
        id="g4853"
        inkscape:label="Layer 1"
-       style="display:inline">
+       style="display:inline"
+       inkscape:export-filename="/home/manu/Projects/workspace.xplib.de/phpUnderControl/trunk/docs/throbber/5.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90">
       <path
          sodipodi:type="arc"
          style="color:#000000;fill:#babdb6;fill-opacity:1;fill-rule:evenodd;stroke:#888a85;stroke-width:1.17360854;stroke-linecap:square;stroke-linejoin:round;marker:none;marker-start:none;marker-mid:none;marker-end:none;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;visibility:visible;display:inline;overflow:visible"
@@ -4261,7 +4287,10 @@
        style="display:inline"
        inkscape:label="Layer 1"
        id="g4879"
-       transform="matrix(0.9165957,0,0,0.9165957,302.74215,428.20041)">
+       transform="matrix(0.9165957,0,0,0.9165957,302.74215,428.20041)"
+       inkscape:export-filename="/home/manu/Projects/workspace.xplib.de/phpUnderControl/trunk/docs/throbber/6.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90">
       <path
          transform="matrix(0.894862,0,0,0.9657,3.855776,2.660348)"
          d="M 36.5 22 A 14 13 0 1 1  8.5,22 A 14 13 0 1 1  36.5 22 z"
@@ -4376,7 +4405,10 @@
        transform="matrix(0.9165957,0,0,0.9165957,332.74215,428.20041)"
        id="g4905"
        inkscape:label="Layer 1"
-       style="display:inline">
+       style="display:inline"
+       inkscape:export-filename="/home/manu/Projects/workspace.xplib.de/phpUnderControl/trunk/docs/throbber/7.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90">
       <path
          sodipodi:type="arc"
          style="color:#000000;fill:#babdb6;fill-opacity:1;fill-rule:evenodd;stroke:#888a85;stroke-width:1.17360854;stroke-linecap:square;stroke-linejoin:round;marker:none;marker-start:none;marker-mid:none;marker-end:none;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;visibility:visible;display:inline;overflow:visible"
@@ -4491,7 +4523,10 @@
        style="display:inline"
        inkscape:label="Layer 1"
        id="g4931"
-       transform="matrix(0.9165957,0,0,0.9165957,362.74215,428.20041)">
+       transform="matrix(0.9165957,0,0,0.9165957,362.74215,428.20041)"
+       inkscape:export-filename="/home/manu/Projects/workspace.xplib.de/phpUnderControl/trunk/docs/throbber/8.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90">
       <path
          transform="matrix(0.894862,0,0,0.9657,3.855776,2.660348)"
          d="M 36.5 22 A 14 13 0 1 1  8.5,22 A 14 13 0 1 1  36.5 22 z"
@@ -4601,6 +4636,49 @@
            d="M 290.875 403.3125 A 1.75 1.5625 0 1 1  287.375,403.3125 A 1.75 1.5625 0 1 1  290.875 403.3125 z"
            transform="matrix(-0.881656,0.881656,-0.9874546,-0.9874546,671.67544,172.76015)" />
       </g>
+    </g>
+    <g
+       id="g2887"
+       transform="matrix(0.9165957,0,0,0.9165957,623.1382,120.41683)"
+       inkscape:export-filename="/home/manu/Projects/workspace.xplib.de/phpUnderControl/trunk/data/webapps/cruisecontrol/images/php-under-control/play.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90">
+      <g
+         style="display:inline"
+         inkscape:label="Layer 1"
+         id="g2889"
+         transform="translate(95.86835,136.01555)">
+        <path
+           transform="matrix(0.894862,0,0,0.9657,3.855776,2.660348)"
+           d="M 36.5 22 A 14 13 0 1 1  8.5,22 A 14 13 0 1 1  36.5 22 z"
+           sodipodi:ry="13"
+           sodipodi:rx="14"
+           sodipodi:cy="22"
+           sodipodi:cx="22.5"
+           id="path2891"
+           style="color:#000000;fill:#73d216;fill-opacity:1;fill-rule:evenodd;stroke:#4e9a06;stroke-width:1.17360854;stroke-linecap:square;stroke-linejoin:round;marker:none;marker-start:none;marker-mid:none;marker-end:none;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;visibility:visible;display:inline;overflow:visible"
+           sodipodi:type="arc" />
+        <path
+           transform="matrix(0.821429,0,0,0.821429,4.285117,4.191455)"
+           d="M 38 24 A 14 14 0 1 1  10,24 A 14 14 0 1 1  38 24 z"
+           sodipodi:ry="14"
+           sodipodi:rx="14"
+           sodipodi:cy="24"
+           sodipodi:cx="24"
+           id="path2893"
+           style="color:#000000;fill:none;fill-opacity:1;fill-rule:evenodd;stroke:#8ae234;stroke-width:1.32816648;stroke-linecap:square;stroke-linejoin:round;marker:none;marker-start:none;marker-mid:none;marker-end:none;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;visibility:visible;display:inline;overflow:visible"
+           sodipodi:type="arc" />
+        <path
+           sodipodi:nodetypes="cccsc"
+           id="path2895"
+           d="M 23.84315,11.90574 C 17.563618,11.985335 12.438727,16.897799 12.03065,23.09324 C 18.148473,25.61002 25.90107,21.642017 35.172655,19.711354 C 34.484245,16.962785 30.617935,11.90574 23.9994,11.90574 C 23.947693,11.90574 23.894703,11.905087 23.84315,11.90574 z "
+           style="opacity:0.6;fill:url(#radialGradient2899);fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:0.25pt;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline" />
+      </g>
+      <path
+         style="fill:#ffffff;fill-opacity:0.59490087;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         d="M 116.24088,153.31702 L 116.24088,166.18795 L 125.93611,160.13104 L 116.24088,153.31702 z "
+         id="path2897"
+         sodipodi:nodetypes="cccc" />
     </g>
   </g>
 </svg>

@@ -37,17 +37,14 @@
 <%@ page errorPage="/error.jsp" contentType="text/html; charset=UTF-8"%>
 <%@ taglib uri="/WEB-INF/cruisecontrol-jsp11.tld" prefix="cruisecontrol"%>
 <%@ page import="net.sourceforge.cruisecontrol.*" %>
-<%@ page import="java.net.InetAddress" %>
-<%@ page import="java.net.URL" %>
 <%@ page import="java.text.DateFormat" %>
 <%@ page import="java.util.Date" %>
 
-<cruisecontrol:jmxbase id="jmxBase"/>
 <%
   String name = System.getProperty("ccname", "");
   String hostname = InetAddress.getLocalHost().getHostName();
   boolean jmxEnabled = true;
-  URL jmxURLPrefix = new URL(jmxBase, "invoke?operation=build&objectname=CruiseControl+Project%3Aname%3D");
+  
 
   String baseURL = request.getScheme() 
                  + "://" + request.getServerName() 
@@ -59,11 +56,51 @@
 %>
 <html>
   <head>
-    <title><%= name%> phpUnderControl - SVN at <%= hostname %></title>
+    <title><%= name%> phpUnderControl 0.3.6 at <%= hostname %></title>
     <base href="<%=baseURL%>" />
     <link type="application/rss+xml" rel="alternate" href="rss" title="RSS" />
     <link type="text/css" rel="stylesheet" href="css/php-under-control.css" />
     <link rel="icon" href="favicon.ico" type="image/x-icon" />
+  </head>
+  <body onload="checkIframe('<%=baseURL + "css/php-under-control.css"%>')">
+    <div id="serverData" style="display:none;"></div>
+    <div id="container">
+      <cruisecontrol:link id="baseUrl" />
+      <h1>
+        <a href="<%=baseUrl%>">phpUnderControl</a>
+      </h1>
+      <h1 class="white" align="center">
+        <%= name%> phpUnderControl at <%= hostname %> [
+        <em id="servertime"><%@ include file="servertime.jsp" %></em>
+        ]
+      </h1>
+      <div id="serverData" class="hidden"></div>
+      <form>
+        <table style="width:100%;">
+          <tbody>
+            <tr>
+              <td>&nbsp;</td>
+            </tr>
+            <tr>
+              <td id="dashboard">
+                <%@ include file="dashboard.jsp" %>
+              </td>
+            </tr>
+            <tr>
+              <td>&nbsp;</td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr>
+              <td align="right">
+                <a href="rss"><img border="0" src="images/rss.png"/></a>
+              </td>
+            </tr>
+          </tfoot>
+        </table>
+      </form>
+    </div>
+    <%@ include file="footer.jsp" %>
     <script type="text/javascript" src="js/prototype.js"></script>
     <script language="JavaScript">
     // <![CDATA[
@@ -109,46 +146,14 @@
         }
       }
     }
+    
+    function over(elem) {
+        elem.className = 'mouseover';
+    }
+    function out(elem) {
+        elem.className = '';
+    }
     // ]]>
     </script>
-  </head>
-  <body onload="checkIframe('<%=baseURL + "css/php-under-control.css"%>')">
-    <div id="container">
-      <cruisecontrol:link id="baseUrl" />
-      <h1>
-        <a href="<%=baseUrl%>">phpUnderControl</a>
-      </h1>
-      <h1 class="white" align="center">
-        <%= name%> phpUnderControl at <%= hostname %> [
-        <em id="servertime"><%@ include file="servertime.jsp" %></em>
-        ]
-      </h1>
-      <div id="serverData" class="hidden"></div>
-      <form>
-        <table style="width:100%;">
-          <tbody>
-            <tr>
-              <td>&nbsp;</td>
-            </tr>
-            <tr>
-              <td id="dashboard">
-                <%@ include file="dashboard.jsp" %>
-              </td>
-            </tr>
-            <tr>
-              <td>&nbsp;</td>
-            </tr>
-          </tbody>
-          <tfoot>
-            <tr>
-              <td align="right">
-                <a href="rss"><img border="0" src="images/rss.png"/></a>
-              </td>
-            </tr>
-          </tfoot>
-        </table>
-      </form>
-    </div>
-    <%@ include file="footer.jsp" %>
   </body>
 </html>
