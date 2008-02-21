@@ -87,10 +87,13 @@ abstract class phpucAbstractTask implements phpucTaskI
     {
         $this->args = $args;
         
-        // Check for an artifacts directory
-        $this->properties['artifacts'] = ( 
-            is_dir( $args->getArgument( 'cc-install-dir' ) . '/artifacts' )
-        );
+        if ( $args->hasArgument( 'cc-install-dir' ) )
+        {
+            // Check for an artifacts directory
+            $this->properties['artifacts'] = ( 
+                is_dir( $args->getArgument( 'cc-install-dir' ) . '/artifacts' )
+            );
+        }
     }
 
     /**
