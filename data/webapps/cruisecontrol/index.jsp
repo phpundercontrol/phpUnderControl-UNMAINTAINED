@@ -122,7 +122,7 @@
     
     function callServer(url, projectName) {
       document.getElementById('serverData').innerHTML = '<iframe src="' + url + '" width="0" height="0" frameborder="0"></iframe>';
-      alert('Scheduling build for ' + projectName);
+      //alert('Scheduling build for ' + projectName);
     }
 
     function checkIframe(stylesheetURL) {

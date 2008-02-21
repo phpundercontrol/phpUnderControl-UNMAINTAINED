@@ -279,7 +279,7 @@ if (logDirPath == null) {
 %>
     <tr onmouseover="over(this);" 
         onmouseout="out(this);" 
-        onclick="callServer('<%= jmxURLPrefix.toExternalForm() + project.project %>', '<%=project.project%>');">
+        onmouseup="callServer('<%= jmxURLPrefix.toExternalForm() + project.project %>', '<%=project.project%>');">
       <td class="status-<%= project.getStatus().getImportance() %>">
         <div class="<%= (project.failed() ? "broken" : "good") %>">
           <div>
@@ -287,7 +287,7 @@ if (logDirPath == null) {
             <tbody>
               <tr>
                 <td class="left">
-                  <a href="buildresults/<%=project.project%>"><%= project.project %></a>
+                  <a href="#" onmousedown="window.location.href='buildresults/<%=project.project%>';return false;"><%= project.project %></a>
                 </td>
                 <td class="right"><%= project.getLabel()%></td>
               </tr>
