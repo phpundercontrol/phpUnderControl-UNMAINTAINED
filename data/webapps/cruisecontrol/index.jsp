@@ -40,10 +40,14 @@
 <%@ page import="java.text.DateFormat" %>
 <%@ page import="java.util.Date" %>
 
+<cruisecontrol:jmxbase id="jmxBase"/>
+
 <%
   String name = System.getProperty("ccname", "");
   String hostname = InetAddress.getLocalHost().getHostName();
   boolean jmxEnabled = true;
+
+  URL jmxURLPrefix = new URL(jmxBase, "invoke?operation=build&objectname=CruiseControl+Project%3Aname%3D");
   
 
   String baseURL = request.getScheme() 
@@ -120,7 +124,8 @@
         }
     );
     
-    function callServer(url, projectName) {
+    function callServer(projectName) {
+      var url = '<%= jmxURLPrefix.toExternalForm() %>' + projectName;
       document.getElementById('serverData').innerHTML = '<iframe src="' + url + '" width="0" height="0" frameborder="0"></iframe>';
       //alert('Scheduling build for ' + projectName);
     }

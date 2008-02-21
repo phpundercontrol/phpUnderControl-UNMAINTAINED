@@ -51,8 +51,6 @@
 <%@ page import="java.net.InetAddress" %>
 <%@ page import="java.net.URL" %>
 
-<cruisecontrol:jmxbase id="jmxBase"/>
-
 <%
 final DateFormat dateTimeFormat = DateFormat.getDateTimeInstance(DateFormat.SHORT, DateFormat.SHORT, request.getLocale());
 final DateFormat dateOnlyFormat = DateFormat.getDateInstance(DateFormat.SHORT, request.getLocale());
@@ -60,8 +58,6 @@ final DateFormat timeOnlyFormat = DateFormat.getTimeInstance(DateFormat.SHORT, r
   
 final Date now = new Date();
 final String statusFileName = application.getInitParameter("currentBuildStatusFile");
-
-URL jmxURLPrefix = new URL(jmxBase, "invoke?operation=build&objectname=CruiseControl+Project%3Aname%3D");
 
 class SortableStatus implements Comparable {
     private ProjectState state;
@@ -277,9 +273,7 @@ if (logDirPath == null) {
             for (int i = 0; i < projectDirs.length; i++) {
                 project = new Info(logDir, projectDirs[i]);
 %>
-    <tr onmouseover="over(this);" 
-        onmouseout="out(this);" 
-        onmouseup="callServer('<%= jmxURLPrefix.toExternalForm() + project.project %>', '<%=project.project%>');">
+    <tr onmouseover="over(this);" onmouseout="out(this);">
       <td class="status-<%= project.getStatus().getImportance() %>">
         <div class="<%= (project.failed() ? "broken" : "good") %>">
           <div>
@@ -287,15 +281,15 @@ if (logDirPath == null) {
             <tbody>
               <tr>
                 <td class="left">
-                  <a href="#" onmousedown="window.location.href='buildresults/<%=project.project%>';return false;"><%= project.project %></a>
+                  <a href="buildresults/<%=project.project%>"><%= project.project %></a>
                 </td>
-                <td class="right"><%= project.getLabel()%></td>
+                <td class="right" onclick="callServer('<%=project.project%>');"><%= project.getLabel()%></td>
               </tr>
               <tr>
                 <td class="left status-<%= project.getStatus().getImportance() %>">
                   <%= project.getStatus()%> <em>(<%= project.getStatusSince() %>)</em>
                 </td>
-                <td class="right"><%= project.getLastSuccessfulBuildTime() %></td>
+                <td class="right" onclick="callServer('<%=project.project%>');"><%= project.getLastSuccessfulBuildTime() %></td>
               </tr>
             </tbody>
           </table>

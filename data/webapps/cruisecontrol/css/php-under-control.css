@@ -345,11 +345,12 @@ div#container td#dashboard div.broken div td {
 
 div#container td#dashboard div div td.left {
     padding-left: 10px;
+    white-space: nowrap;
 }
 div#container td#dashboard div div td.right {
     padding-right: 10px;
     text-align: right;
-    width: 100px;
+    width: 95%;
 }
 div#container td#dashboard div div td.status-normal {
     font-style: italic;
