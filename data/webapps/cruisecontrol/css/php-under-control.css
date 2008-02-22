@@ -290,7 +290,6 @@ div#container td#dashboard div.broken {
     background: transparent none 0 0 no-repeat;
     height: 40px;
     margin: 0 80px 6px 80px;
-    padding-left: 40px; 
 }
 div#container td#dashboard td.status-important div.good {
     background-image: url('../images/php-under-control/throbber-good.gif');
@@ -341,6 +340,14 @@ div#container td#dashboard div.good div td {
 }
 div#container td#dashboard div.broken div td {
     background-color: #fcaf3e;
+}
+div#container td#dashboard div div td.play {
+    background-color: transparent;
+}
+div#container td#dashboard div div td.play a {
+    display: block;
+    height: 40px;
+    width: 40px;
 }
 
 div#container td#dashboard div div td.left {

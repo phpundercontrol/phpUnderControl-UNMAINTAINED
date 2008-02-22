@@ -280,16 +280,23 @@ if (logDirPath == null) {
           <table>
             <tbody>
               <tr>
+                <td class="play" rowspan="2">
+                  <a href="#" onclick="callServer('<%=project.project%>');">
+                  </a>
+                </td>
                 <td class="left">
                   <a href="buildresults/<%=project.project%>"><%= project.project %></a>
                 </td>
-                <td class="right" onclick="callServer('<%=project.project%>');"><%= project.getLabel()%></td>
+                <td class="right" 
+                    onclick="callServer('<%=project.project%>');"><%= project.getLabel()%></td>
               </tr>
               <tr>
-                <td class="left status-<%= project.getStatus().getImportance() %>">
+                <td class="left status-<%= project.getStatus().getImportance() %>"
+                    onclick="callServer('<%=project.project%>');">
                   <%= project.getStatus()%> <em>(<%= project.getStatusSince() %>)</em>
                 </td>
-                <td class="right" onclick="callServer('<%=project.project%>');"><%= project.getLastSuccessfulBuildTime() %></td>
+                <td class="right" 
+                    onclick="callServer('<%=project.project%>');"><%= project.getLastSuccessfulBuildTime() %></td>
               </tr>
             </tbody>
           </table>
