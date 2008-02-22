@@ -133,9 +133,9 @@ final class phpucFileUtil
      * @throws InvalidArgumentException If the given $os property is not a valid
      *         operation system, known by this class.
      */
-    public static function setOS( $os )
+    public static function setOS( $os = null )
     {
-        if ( in_array( $os, self::$validOS, true ) === false )
+        if ( $os !== null && in_array( $os, self::$validOS, true ) === false )
         {
             throw new InvalidArgumentException(
                 sprintf( 'Invalid operation system type %d.', $os )
@@ -170,7 +170,7 @@ final class phpucFileUtil
      * 
      * @return void
      */
-    public static function setPaths( array $paths )
+    public static function setPaths( array $paths = null )
     {
         self::$paths = $paths;
     }
