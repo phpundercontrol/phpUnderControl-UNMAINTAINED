@@ -194,10 +194,13 @@ abstract class phpucAbstractTest extends PHPUnit_Framework_TestCase
             {
                 continue;
             }
-            else if ( $entry->isDir() && $entry->getFilename() !== '.svn' )
+            else if ( $entry->isDir() )
             {
-                $this->clearTestContents( $entry->getPathname() );
-                rmdir( $entry->getPathname() );
+                if ( $entry->getFilename() !== '.svn' || $directory !== PHPUC_TEST_DIR )
+                {
+                    $this->clearTestContents( $entry->getPathname() );
+                    rmdir( $entry->getPathname() );
+                }
             } 
             else if ( $entry->isFile() )
             {
