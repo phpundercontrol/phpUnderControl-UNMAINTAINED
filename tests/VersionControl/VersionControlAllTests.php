@@ -34,7 +34,7 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  * 
- * @package   phpUnderControl
+ * @package   Util
  * @author    Manuel Pichler <mapi@phpundercontrol.org>
  * @copyright 2007-2008 Manuel Pichler. All rights reserved.
  * @license   http://www.opensource.org/licenses/bsd-license.php  BSD License
@@ -44,30 +44,25 @@
 
 if ( defined( 'PHPUnit_MAIN_METHOD' ) === false )
 {
-    define( 'PHPUnit_MAIN_METHOD', 'phpucAllTests::main' );
+    define( 'PHPUnit_MAIN_METHOD', 'phpucVersionControlAllTests::main' );
 }
 
 require_once 'PHPUnit/Framework/TestSuite.php';
 require_once 'PHPUnit/TextUI/TestRunner.php';
 
-require_once dirname( __FILE__ ) . '/Console/ConsoleAllTests.php';
-require_once dirname( __FILE__ ) . '/Data/DataAllTests.php';
-require_once dirname( __FILE__ ) . '/Graph/GraphAllTests.php';
-require_once dirname( __FILE__ ) . '/Tasks/TasksAllTests.php';
-require_once dirname( __FILE__ ) . '/Util/UtilAllTests.php';
-require_once dirname( __FILE__ ) . '/VersionControl/VersionControlAllTests.php';
+require_once dirname( __FILE__ ) . '/SubversionCheckoutTest.php';
 
 /**
- * Main test suite for phpUnderControl.
+ * Main test suite for phpUnderControl VersionControl package.
  *
- * @package   phpUnderControl
+ * @package   VersionControl
  * @author    Manuel Pichler <mapi@phpundercontrol.org>
  * @copyright 2007-2008 Manuel Pichler. All rights reserved.
  * @license   http://www.opensource.org/licenses/bsd-license.php  BSD License
  * @version   Release: @package_version@
  * @link      http://www.phpundercontrol.org/
  */
-class phpucAllTests
+class phpucVersionControlAllTests
 {
     /**
      * Test suite main method.
@@ -86,19 +81,14 @@ class phpucAllTests
      */
     public static function suite()
     {
-        $suite = new PHPUnit_Framework_TestSuite( 'phpUnderControl - AllTests' );
-        $suite->addTest( phpucConsoleAllTests::suite() );
-        $suite->addTest( phpucDataAllTest::suite() );
-        $suite->addTest( phpucGraphAllTests::suite() );
-        $suite->addTest( phpucTasksAllTest::suite() );
-        $suite->addTest( phpucUtilAllTests::suite() );
-        $suite->addTest( phpucVersionControlAllTests::suite() );
+        $suite = new PHPUnit_Framework_TestSuite( 'phpUnderControl - VersionControlAllTests' );
+        $suite->addTestSuite( 'phpucSubversionCheckoutTest' );
 
         return $suite;
     }
 }
 
-if ( PHPUnit_MAIN_METHOD === 'phpucAllTests::main' )
+if ( PHPUnit_MAIN_METHOD === 'phpucVersionControlAllTests::main' )
 {
-    phpucAllTests::main();
+    phpucVersionControlAllTests::main();
 }
