@@ -60,6 +60,8 @@
  *           The subversion repository url.
  * @property string $dest
  *           The checkout destination directory.
+ * @property string $password
+ *           Password for the subversion repository. 
  */
 class phpucSubversionCheckout
 {
@@ -70,8 +72,10 @@ class phpucSubversionCheckout
      * @var array(string=>mixed) $properties
      */
     protected $properties = array(
-        'url'   =>  null,
-        'dest'  =>  null
+        'url'       =>  null,
+        'dest'      =>  null,
+        'username'  =>  null,
+        'password'  =>  null,
     );
     
     /**
@@ -81,10 +85,52 @@ class phpucSubversionCheckout
      */
     public function checkout()
     {
+        $options = ' --no-auth-cache --non-interactive';
+        if ( $this->username !== null )
+        {
+            $options .= " --username {$this->username}";
+        }
+        if ( $this->password !== null )
+        {
+            $options .= " --password {$this->password}";
+        }
+        
         $svn = phpucFileUtil::findExecutable( 'svn' );
-        $cmd = escapeshellcmd( "{$svn} co {$this->url} {$this->dest}" );
+        $cmd = escapeshellcmd( "{$svn} co {$options} {$this->url} {$this->dest}" );
+        
+        $spec = array(
+            0 => array("pipe", "r"),  // stdin 
+            1 => array("pipe", "w"),  // stdout
+            2 => array("pipe", "w")   // stderr
+        );
 
-        exec( $cmd );
+        $cwd = getcwd();
+        $env = array();
+        
+        $error = '';
+
+        $proc = proc_open( $cmd, $spec, $pipes, $cmd, $env );
+        if ( is_resource( $proc ) )
+        {
+            while ( !feof( $pipes[1] ) )
+            {
+                fgets( $pipes[1], 128 );
+            }
+            
+            while ( !feof( $pipes[2] ) )
+            {
+                $error .= fgets( $pipes[2], 128 );
+            }
+            
+            $error = trim( $error );
+            
+            proc_close($proc);            
+        }
+        
+        if ( $error !== '' )
+        {
+            throw new phpucErrorException( $error );
+        }
     }
     
     /**
@@ -133,6 +179,8 @@ class phpucSubversionCheckout
         {
             case 'url':
             case 'dest':
+            case 'username':
+            case 'password':
                 $this->properties[$name] = $value;
                 break;
                 

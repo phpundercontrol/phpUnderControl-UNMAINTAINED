@@ -89,7 +89,7 @@ class phpucSubversionCheckoutTest extends phpucAbstractTest
         $this->assertFileNotExists( $checkFile2 );
         $this->assertFileNotExists( $checkFile3 );
         
-        $checkout = new phpucSubversionCheckout();
+        $checkout       = new phpucSubversionCheckout();
         $checkout->url  = 'svn://svn.xplib.de/PHP_Depend/trunk';
         $checkout->dest = $destination;
         
@@ -107,7 +107,11 @@ class phpucSubversionCheckoutTest extends phpucAbstractTest
      */
     public function testSvnCheckoutInvalidUrlFail()
     {
-        $this->markTestIncomplete( 'To be implemented' );
+        $this->setExpectedException( 'phpucErrorException' );
+        
+        $checkout      = new phpucSubversionCheckout();
+        $checkout->url = 'svn://svn.xplib.de/PHP_Depened/trunk';
+        $checkout->checkout();
     }
     
     /**
@@ -117,7 +121,23 @@ class phpucSubversionCheckoutTest extends phpucAbstractTest
      */
     public function testSvnCheckoutWithLogin()
     {
-        $this->markTestIncomplete( 'To be implemented' );
+        $destination = PHPUC_TEST_DIR . '/pdepend';
+        $checkFile1  = $destination . '/Commands/AbstractCommand.php';
+        $checkFile2  = $destination . '/Commands/InstallCommand.php';
+        
+        $this->assertFileNotExists( $checkFile1 );
+        $this->assertFileNotExists( $checkFile2 );
+        
+        $checkout           = new phpucSubversionCheckout();
+        $checkout->url      = 'svn://svn.xplib.de/phpuc-test';
+        $checkout->dest     = $destination;
+        $checkout->username = 'mapi17';
+        $checkout->password = 'foobar42';
+
+        $checkout->checkout();
+        
+        $this->assertFileExists( $checkFile1 );
+        $this->assertFileExists( $checkFile2 );
     }
     
     /**
@@ -127,7 +147,14 @@ class phpucSubversionCheckoutTest extends phpucAbstractTest
      */
     public function testSvnCheckoutWithInvalidUsernameFail()
     {
-        $this->markTestIncomplete( 'To be implemented' );
+        $this->setExpectedException( 'phpucErrorException' );
+        
+        $checkout           = new phpucSubversionCheckout();
+        $checkout->url      = 'svn://svn.xplib.de/phpuc-test';
+        $checkout->dest     = PHPUC_TEST_DIR;
+        $checkout->username = 'mapi';
+        $checkout->password = 'foobar42';
+        $checkout->checkout();
     }
     
     /**
@@ -137,7 +164,14 @@ class phpucSubversionCheckoutTest extends phpucAbstractTest
      */
     public function testSvnCheckoutWithInvalidPasswordFail()
     {
-        $this->markTestIncomplete( 'To be implemented' );
+        $this->setExpectedException( 'phpucErrorException' );
+        
+        $checkout           = new phpucSubversionCheckout();
+        $checkout->url      = 'svn://svn.xplib.de/phpuc-test';
+        $checkout->dest     = PHPUC_TEST_DIR;
+        $checkout->username = 'mapi17';
+        $checkout->password = 'foobar';
+        $checkout->checkout();
     }
     
     /**
@@ -147,17 +181,52 @@ class phpucSubversionCheckoutTest extends phpucAbstractTest
      */
     public function testHttpCheckout()
     {
-        $this->markTestIncomplete( 'To be implemented' );
+        $destination = PHPUC_TEST_DIR . '/pdepend';
+        $checkFile1  = $destination . '/pdepend.php';
+        $checkFile2  = $destination . '/PHP/Depend.php';
+        $checkFile3  = $destination . '/PHP/Depend/Code/Class.php';
+        
+        $this->assertFileNotExists( $checkFile1 );
+        $this->assertFileNotExists( $checkFile2 );
+        $this->assertFileNotExists( $checkFile3 );
+        
+        $checkout       = new phpucSubversionCheckout();
+        $checkout->url  = 'http://svn.xplib.de/PHP_Depend/trunk';
+        $checkout->dest = $destination;
+        
+        $checkout->checkout();
+        
+        $this->assertFileExists( $checkFile1 );
+        $this->assertFileExists( $checkFile2 );
+        $this->assertFileExists( $checkFile3 );
     }
     
     /**
-     * Tests a http://example.com checkout with an invalid uri.
+     * Tests a http://example.com checkout with an invalid domain name.
+     *
+     * @return void
+     */
+    public function testHttpCheckoutWithInvalidDomainNameFail()
+    {
+        $this->setExpectedException( 'phpucErrorException' );
+        
+        $checkout      = new phpucSubversionCheckout();
+        $checkout->url = 'http://svn.xplib.de_/PHP_Depend/trunk';
+        $checkout->checkout();
+    }
+    
+    /**
+     * Tests a http://example.com checkout with an invalid repository uri.
      *
      * @return void
      */
     public function testHttpCheckoutWithInvalidUrlFail()
     {
-        $this->markTestIncomplete( 'To be implemented' );
+        $this->setExpectedException( 'phpucErrorException' );
+        
+        $checkout      = new phpucSubversionCheckout();
+        $checkout->url = 'http://svn.xplib.de/PHP_Depened/trunk';
+        $checkout->checkout();
     }
     
     /**
@@ -172,6 +241,24 @@ class phpucSubversionCheckoutTest extends phpucAbstractTest
             $this->markTestSkipped( 'Invalid host for key checkout test.' );
             return;
         }
-        $this->markTestIncomplete( 'To be implemented' );
+
+        $destination = PHPUC_TEST_DIR . '/pdepend';
+        $checkFile1  = $destination . '/pdepend.php';
+        $checkFile2  = $destination . '/PHP/Depend.php';
+        $checkFile3  = $destination . '/PHP/Depend/Code/Class.php';
+        
+        $this->assertFileNotExists( $checkFile1 );
+        $this->assertFileNotExists( $checkFile2 );
+        $this->assertFileNotExists( $checkFile3 );
+        
+        $checkout       = new phpucSubversionCheckout();
+        $checkout->url  = 'svn+ssh://mapi@xplib.de/srv/pdepend/trunk';
+        $checkout->dest = $destination;
+        
+        $checkout->checkout();
+        
+        $this->assertFileExists( $checkFile1 );
+        $this->assertFileExists( $checkFile2 );
+        $this->assertFileExists( $checkFile3 );
     }
 }
