@@ -63,7 +63,7 @@
  * @property string $password
  *           Password for the subversion repository. 
  */
-class phpucSubversionCheckout
+class phpucSubversionCheckout implements phpucCheckoutI
 {
     /**
      * Virtual properties for the setting implementation.
@@ -97,7 +97,21 @@ class phpucSubversionCheckout
         
         $svn = phpucFileUtil::findExecutable( 'svn' );
         $cmd = escapeshellcmd( "{$svn} co {$options} {$this->url} {$this->dest}" );
+/*
+//echo $cmd . "\n";return;
         
+        ob_start();
+        system( $cmd, $retval );
+        $error = ob_get_contents();
+        ob_end_clean();
+var_dump($retval);
+        if ( $retval !== 0 )
+        {
+            throw new phpucErrorException( $error );
+        }
+        
+        return;
+        */
         $spec = array(
             0 => array("pipe", "r"),  // stdin 
             1 => array("pipe", "w"),  // stdout
@@ -116,13 +130,13 @@ class phpucSubversionCheckout
             {
                 fgets( $pipes[1], 128 );
             }
-            
+            fclose( $pipes[1] );
+
             while ( !feof( $pipes[2] ) )
             {
                 $error .= fgets( $pipes[2], 128 );
             }
-            
-            $error = trim( $error );
+            fclose( $pipes[2] );
             
             proc_close($proc);            
         }
