@@ -4,7 +4,7 @@
  * 
  * PHP Version 5.2.4
  *
- * Copyright (c) 2007-2008, Manuel Pichler <mapi@phpundercontrol.org>.
+ * Copyright (c) 2007-2008, Manuel Pichler <mapi@manuel-pichler.de>.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -38,7 +38,7 @@
  * 
  * @category  QualityAssurance
  * @package   Commands
- * @author    Manuel Pichler <mapi@phpundercontrol.org>
+ * @author    Manuel Pichler <mapi@manuel-pichler.de>
  * @copyright 2007-2008 Manuel Pichler. All rights reserved.
  * @license   http://www.opensource.org/licenses/bsd-license.php  BSD License
  * @version   SVN: $Id$
@@ -46,65 +46,22 @@
  */
 
 /**
- * Implementation mode of the example mode.
+ * Base interface for custom command implementations.
  *
  * @category  QualityAssurance
  * @package   Commands
- * @author    Manuel Pichler <mapi@phpundercontrol.org>
+ * @author    Manuel Pichler <mapi@manuel-pichler.de>
  * @copyright 2007-2008 Manuel Pichler. All rights reserved.
  * @license   http://www.opensource.org/licenses/bsd-license.php  BSD License
  * @version   Release: @package_version@
  * @link      http://www.phpundercontrol.org/
  */
-abstract class phpucAbstractCommand implements phpucCommandI
+interface phpucCommandI
 {
-    /**
-     * Factory method for the different cli modes.
-     *
-     * @param phpucConsoleArgs $args The console arguments.
-     * 
-     * @return phpucAbstractCommand
-     */
-    public static function createCommand( phpucConsoleArgs $args )
-    {
-        // Generate class name
-        $className = sprintf( 'phpuc%sCommand', ucfirst( $args->command ) );
-        
-        if ( class_exists( $className, true ) === false )
-        {
-            throw new ErrorException(
-                sprintf( 'Unknown command "%s" used.', $args->command )
-            );
-        }
-        
-        $command = new $className();
-        $command->setConsoleArgs( $args );
-        
-        return $command;
-    }
-    
-    /**
-     * The console argument object.
-     *
-     * @type phpucConsoleArgs
-     * @var phpucConsoleArgs $args
-     */
-    protected $args = null;
-    
-    /**
-     * List of command specific tasks.
-     *
-     * @type array<phpucTaskI>
-     * @var array(phpucTaskI)
-     */
-    protected $tasks = null;
-    
     /**
      * Constructs a new command instance.
      */
-    public final function __construct()
-    {
-    }
+    function __construct();
     
     /**
      * Setter for the console arguments.
@@ -113,55 +70,26 @@ abstract class phpucAbstractCommand implements phpucCommandI
      * 
      * @return void
      */
-    public function setConsoleArgs( phpucConsoleArgs $args )
-    {
-        $this->args = $args;
-    }
+    function setConsoleArgs( phpucConsoleArgs $args );
     
     /**
      * Validates all command tasks.
      *
      * @return void
      */
-    public function validate()
-    {
-        foreach ( $this->createTasks() as $task )
-        {
-            $task->validate();
-        }
-    }
+    function validate();
     
     /**
      * Executes all command tasks.
      * 
      * @return void
      */
-    public function execute()
-    {
-        foreach ( $this->createTasks() as $task )
-        {
-            $task->execute();
-        }
-    }
+    function execute();
     
     /**
      * Creates a set of command specific tasks.
      *
      * @return array(phpucTaskI)
      */
-    public final function createTasks()
-    {
-        if ( $this->tasks === null )
-        {
-            $this->tasks = $this->doCreateTasks();
-        }
-        return $this->tasks;
-    }
-    
-    /**
-     * Creates all command specific {@link phpucTaskI} objects.
-     * 
-     * @return array(phpucTaskI)
-     */
-    protected abstract function doCreateTasks();
+    function createTasks();
 }
