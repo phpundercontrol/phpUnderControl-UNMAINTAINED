@@ -76,16 +76,14 @@ class phpucAutoloader
      */
     public function __construct()
     {
-        $it = new phpucPhpFileFilterIterator( 
+        $files = new phpucPhpFileFilterIterator( 
             new RecursiveIteratorIterator(
                 new RecursiveDirectoryIterator( PHPUC_INSTALL_DIR )
             )
         );
-        foreach ( $it as $item )
+        foreach ( $files as $file )
         {
-            $className = 'phpuc' . substr( $it->getFilename(), 0, -4 );
-            
-            $this->classMap[$className] = $it->getRealPath();
+            $this->classMap[$files->getClassName()] = $file->getRealPath();
         }
     }
     

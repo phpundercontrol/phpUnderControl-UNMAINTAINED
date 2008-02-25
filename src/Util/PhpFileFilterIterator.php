@@ -69,4 +69,14 @@ class phpucPhpFileFilterIterator extends FilterIterator
         
         return ( $it->isFile() && substr( $it->getFilename(), -4 ) === '.php' );
     }
+    
+    /**
+     * Returns the class name for the current file.
+     *
+     * @return string
+     */
+    public function getClassName()
+    {
+        return 'phpuc' . substr( $this->getInnerIterator()->getFilename(), 0, -4 );
+    }
 }
