@@ -50,6 +50,7 @@ if ( defined( 'PHPUnit_MAIN_METHOD' ) === false )
 require_once 'PHPUnit/Framework/TestSuite.php';
 require_once 'PHPUnit/TextUI/TestRunner.php';
 
+require_once dirname( __FILE__ ) . '/CheckoutTaskTest.php';
 require_once dirname( __FILE__ ) . '/CruiseControlTaskTest.php';
 require_once dirname( __FILE__ ) . '/GraphTaskTest.php';
 require_once dirname( __FILE__ ) . '/ModifyFileTaskTest.php';
@@ -68,7 +69,7 @@ require_once dirname( __FILE__ ) . '/ProjectTaskTest.php';
  * @version   Release: @package_version@
  * @link      http://www.phpundercontrol.org/
  */
-class phpucTasksAllTest
+class phpucTasksAllTests
 {
     /**
      * Test suite main method.
@@ -88,6 +89,7 @@ class phpucTasksAllTest
     public static function suite()
     {
         $suite = new PHPUnit_Framework_TestSuite( 'phpUnderControl - TasksAllTest' );
+        $suite->addTestSuite( 'phpucCheckoutTaskTest' );
         $suite->addTestSuite( 'phpucCruiseControlTaskTest' );
         $suite->addTestSuite( 'phpucGraphTaskTest' );
         $suite->addTestSuite( 'phpucModifyFileTaskTest' );
