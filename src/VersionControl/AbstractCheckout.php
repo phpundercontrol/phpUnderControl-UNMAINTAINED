@@ -46,7 +46,7 @@
  */
 
 /**
- * Subversion checkout implementation. 
+ * Abstract checkout implementation. 
  *
  * @category  QualityAssurance
  * @package   VersionControl
@@ -55,63 +55,87 @@
  * @license   http://www.opensource.org/licenses/bsd-license.php  BSD License
  * @version   Release: @package_version@
  * @link      http://www.phpundercontrol.org/
+ * 
+ * @property string $url
+ *           The subversion repository url.
+ * @property string $dest
+ *           The checkout destination directory. 
+ * @property string $username
+ *           Username for the subversion repository.
+ * @property string $password
+ *           Password for the subversion repository. 
  */
-class phpucSubversionCheckout extends phpucAbstractCheckout
+abstract class phpucAbstractCheckout implements phpucCheckoutI
 {
     /**
-     * Performs a subversion checkout.
+     * Virtual properties for the setting implementation.
      *
-     * @return void
-     * @throws phpucErrorException
-     *         If the subversion checkout fails.
+     * @type array<mixed>
+     * @var array(string=>mixed) $properties
      */
-    public function checkout()
+    protected $properties = array(
+        'url'       =>  null,
+        'dest'      =>  null,
+        'password'  =>  null,
+        'username'  =>  null,
+    );
+    
+    /**
+     * Magic property isset method.
+     *
+     * @param string $name The property name.
+     * 
+     * @return boolean
+     */
+    public function __isset( $name )
     {
-        $options = ' --no-auth-cache --non-interactive';
-        if ( $this->username !== null )
+        return array_key_exists( $name, $this->properties );
+    }
+    
+    /**
+     * Magic property getter method.
+     *
+     * @param string $name The property name.
+     * 
+     * @return mixed
+     * @throws OutOfRangeException If the property doesn't exist or is writonly.
+     */
+    public function __get( $name )
+    {
+        if ( array_key_exists( $name, $this->properties ) === true )
         {
-            $options .= " --username {$this->username}";
+            return $this->properties[$name];
         }
-        if ( $this->password !== null )
-        {
-            $options .= " --password {$this->password}";
-        }
-        
-        $svn = phpucFileUtil::findExecutable( 'svn' );
-        $cmd = escapeshellcmd( "{$svn} co {$options} {$this->url} {$this->dest}" );
-
-        $spec = array(
-            0 => array("pipe", "r"),  // stdin 
-            1 => array("pipe", "w"),  // stdout
-            2 => array("pipe", "w")   // stderr
+        throw new OutOfRangeException( 
+            sprintf( 'Unknown or writonly property $%s.', $name )
         );
-
-        $cwd = getcwd();
-        $env = array();
-        
-        $error = '';
-
-        $proc = proc_open( $cmd, $spec, $pipes, $cmd, $env );
-        if ( is_resource( $proc ) )
+    }
+    
+    /**
+     * Magic property setter method.
+     *
+     * @param string $name  The property name.
+     * @param mixed  $value The property value.
+     * 
+     * @return void
+     * @throws OutOfRangeException If the property doesn't exist or is readonly.
+     */
+    public function __set( $name, $value )
+    {
+        switch ( $name )
         {
-            while ( !feof( $pipes[1] ) )
-            {
-                fgets( $pipes[1], 128 );
-            }
-            fclose( $pipes[1] );
-
-            while ( !feof( $pipes[2] ) )
-            {
-                $error .= fgets( $pipes[2], 128 );
-            }
-            fclose( $pipes[2] );
-            
-            proc_close($proc);            
-        }
-        
-        if ( $error !== '' )
-        {
-            throw new phpucErrorException( $error );
+            case 'url':
+            case 'dest':
+            case 'password':
+            case 'username':
+                $this->properties[$name] = $value;
+                break;
+                
+            default:
+                throw new OutOfRangeException(
+                    sprintf( 'Unknown or readonly property $%s.', $name )
+                );
+                break;                
         }
     }
 }

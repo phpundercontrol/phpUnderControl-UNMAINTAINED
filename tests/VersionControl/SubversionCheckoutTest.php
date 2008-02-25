@@ -121,7 +121,7 @@ class phpucSubversionCheckoutTest extends phpucAbstractTest
      */
     public function testSvnCheckoutWithLogin()
     {
-        $destination = PHPUC_TEST_DIR . '/pdepend';
+        $destination = PHPUC_TEST_DIR . '/phpundercontrol';
         $checkFile1  = $destination . '/Commands/AbstractCommand.php';
         $checkFile2  = $destination . '/Commands/InstallCommand.php';
         
