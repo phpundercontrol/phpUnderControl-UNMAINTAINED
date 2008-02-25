@@ -65,7 +65,7 @@ require_once dirname( __FILE__ ) . '/ConfigProjectTest.php';
  * @version   Release: @package_version@
  * @link      http://www.phpundercontrol.org/
  */
-class phpucDataAllTest
+class phpucDataAllTests
 {
     /**
      * Test suite main method.
@@ -94,7 +94,7 @@ class phpucDataAllTest
     }
 }
 
-if ( PHPUnit_MAIN_METHOD === 'phpucDataAllTest::main' )
+if ( PHPUnit_MAIN_METHOD === 'phpucDataAllTests::main' )
 {
-    phpucDataAllTest::main();
+    phpucDataAllTests::main();
 }

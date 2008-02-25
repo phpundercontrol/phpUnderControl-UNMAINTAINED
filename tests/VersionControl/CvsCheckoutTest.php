@@ -159,7 +159,7 @@ class phpucCvsCheckoutTest extends phpucAbstractTest
         
         $checkout           = new phpucCvsCheckout();
         $checkout->url      = 'xplib.de:/cvs';
-        $checkout->dest     = '';
+        $checkout->dest     = 'pdepend';
         $checkout->module   = 'PHP_Depend';
         $checkout->password = '';
         $checkout->username = 'mapi';
@@ -179,7 +179,7 @@ class phpucCvsCheckoutTest extends phpucAbstractTest
         
         $checkout           = new phpucCvsCheckout();
         $checkout->url      = 'xplib.de:/cvs';
-        $checkout->dest     = '';
+        $checkout->dest     = 'pdepend';
         $checkout->module   = 'PHP_Depend';
         $checkout->password = 'foobar';
         $checkout->username = 'anonymous';

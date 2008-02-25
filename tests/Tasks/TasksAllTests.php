@@ -44,7 +44,7 @@
 
 if ( defined( 'PHPUnit_MAIN_METHOD' ) === false )
 {
-    define( 'PHPUnit_MAIN_METHOD', 'phpucTasksAllTest::main' );
+    define( 'PHPUnit_MAIN_METHOD', 'phpucTasksAllTests::main' );
 }
 
 require_once 'PHPUnit/Framework/TestSuite.php';
@@ -102,7 +102,7 @@ class phpucTasksAllTests
     }
 }
 
-if ( PHPUnit_MAIN_METHOD === 'phpucTasksAllTest::main' )
+if ( PHPUnit_MAIN_METHOD === 'phpucTasksAllTests::main' )
 {
-    phpucTasksAllTest::main();
+    phpucTasksAllTests::main();
 }

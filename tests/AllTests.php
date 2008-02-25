@@ -88,7 +88,7 @@ class phpucAllTests
     {
         $suite = new PHPUnit_Framework_TestSuite( 'phpUnderControl - AllTests' );
         $suite->addTest( phpucConsoleAllTests::suite() );
-        $suite->addTest( phpucDataAllTest::suite() );
+        $suite->addTest( phpucDataAllTests::suite() );
         $suite->addTest( phpucGraphAllTests::suite() );
         $suite->addTest( phpucTasksAllTests::suite() );
         $suite->addTest( phpucUtilAllTests::suite() );
