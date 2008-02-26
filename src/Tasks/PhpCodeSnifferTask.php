@@ -61,7 +61,7 @@ class phpucPhpCodeSnifferTask extends phpucAbstractPearTask
     /**
      * Minimum code sniffer version.
      */
-    const CODE_SNIFFER_VERSION = '1.0.0RC3';
+    const CODE_SNIFFER_VERSION = '1.0.0';
     
     /**
      * Does nothing.
