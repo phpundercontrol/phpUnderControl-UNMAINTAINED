@@ -241,6 +241,18 @@ class phpucConsoleInputDefinition implements ArrayAccess, IteratorAggregate
         $this->registerCommands();
     }
     
+    /**
+     * Adds a new command to the input definition.
+     *
+     * @param string  $cmd  The unique command identifier.
+     * @param string  $help The command help text.
+     * @param integer $mode The command mode, hidden or visible(normal).
+     * 
+     * @return void
+     * @todo phpucErrorException
+     *       If a command for the given command idenfier already exists or an
+     *       input value has an invalid format. 
+     */
     public function addCommand( $cmd, $help, $mode = self::MODE_NORMAL )
     {
         if ( isset( $this->definition[$cmd] ) )
