@@ -232,6 +232,122 @@ class phpucConsoleInputDefinition implements ArrayAccess, IteratorAggregate
     );
     
     /**
+     * Constructs a new input definition and asks the command implementations 
+     * for their input definition. 
+     *
+     */
+    public function __construct()
+    {
+        $this->registerCommands();
+    }
+    
+    public function addCommand( $cmd, $help, $mode = self::MODE_NORMAL )
+    {
+        if ( isset( $this->definition[$cmd] ) )
+        {
+            throw new phpucErrorException(
+                "The command name '{$cmd}' is already in use."
+            );
+        }
+    
+        if ( !in_array( $mode, array( self::MODE_NORMAL, self::MODE_HIDDEN ) ) )
+        {
+            throw new phpucErrorException( 'Invalid value for mode given.' );
+        }
+        
+        $this->definition[$cmd] = array(
+            'mode'     =>  $mode,
+            'help'     =>  $help,
+            'args'     =>  array(),
+            'options'  =>  array(),
+        );
+    }
+    
+    public function addArgument( $cmd, $arg, $help, $mandatory = true )
+    {
+        if ( !isset( $this->definition[$cmd] ) )
+        {
+            throw new phpucErrorException(
+                "The command '{$cmd}' for '{$arg}' doesn't exist."
+            );
+        }
+        if ( isset( $this->definition[$cmd]['args'][$arg] ) )
+        {
+            throw new phpucErrorException(
+                "An argument '{$arg}' for command '{$cmd}' already exists."
+            );
+        }
+        if ( !is_bool( $mandatory ) )
+        {
+            throw new phpucErrorException( 
+                'The mandatory parameter must be of type boolean.' 
+            );
+        }
+        
+        $this->definition[$cmd]['args'][$arg] = array(
+            'help'       =>  $help,
+            'mandatory'  =>  $mandatory
+        );
+    }
+    
+    public function hasOption( $cmd, $opt )
+    {
+        foreach ( $this->definition[$cmd]['options'] as $option )
+        {
+            if ( $option['short'] === $opt || $option['long'] === $opt )
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    public function addOption( $cmd, $short, $long, $help, $arg = null, $default = null, $mandatory = false, $mode = self::MODE_HIDDEN )
+    {
+        if ( !isset( $this->definition[$cmd] ) )
+        {
+            throw new phpucErrorException(
+                "The command '{$cmd}' for '{$arg}' doesn't exist."
+            );
+        }
+        
+        if ( $this->hasOption( $cmd, $short ) )
+        {
+            throw new phpucErrorException(
+                "An option '{$short}' already exists for command '{$cmd}'."
+            );
+        }
+        if ( $this->hasOption( $cmd, $long ) )
+        {
+            throw new phpucErrorException(
+                "An option '{$long}' already exists for command '{$cmd}'."
+            );
+        }
+        
+        if ( !is_bool( $mandatory ) )
+        {
+            throw new phpucErrorException( 
+                'The mandatory parameter must be of type boolean.' 
+            );
+        }
+    
+        if ( !in_array( $mode, array( self::MODE_NORMAL, self::MODE_HIDDEN ) ) )
+        {
+            throw new phpucErrorException( 'Invalid value for mode given.' );
+        }
+        
+        $this->definition[$cmd]['options'][] = array(
+            'short'      =>  $short,
+            'long'       =>  $long,
+            'arg'        =>  $arg,
+            'help'       =>  $help,
+            'mode'       =>  $mode,
+            'default'    =>  $default,
+            'mandatory'  =>  $mandatory,
+        );
+    }
+    
+    /**
      * Returns an iterator with all registered cli commands.
      *
      * @return Iterator
@@ -305,5 +421,33 @@ class phpucConsoleInputDefinition implements ArrayAccess, IteratorAggregate
     public function offsetUnset( $name )
     {
         // Nothing todo here
+    }
+    
+    protected function registerCommands()
+    {
+        $files = new phpucPhpFileFilterIterator(
+            new DirectoryIterator( PHPUC_INSTALL_DIR . '/Commands' )
+        );
+        
+        foreach ( $files as $file )
+        {
+            // Load reflection class
+            $refClass = new ReflectionClass( $files->getClassName() );
+            
+            // Skip abstract classes and interfaces
+            if ( $refClass->isInterface() || $refClass->isAbstract() )
+            {
+                continue;
+            }
+            
+            // Check for extension interface
+            if ( !$refClass->implementsInterface( 'phpucConsoleExtensionI' ) )
+            {
+                continue;
+            }
+            
+            $command = $refClass->newInstance();
+            $command->register( $this );
+        } 
     }
 }

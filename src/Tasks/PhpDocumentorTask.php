@@ -56,7 +56,7 @@
  * @version   Release: @package_version@
  * @link      http://www.phpundercontrol.org/
  */
-class phpucPhpDocumentorTask extends phpucAbstractPearTask
+class phpucPhpDocumentorTask extends phpucAbstractPearTask implements phpucConsoleExtensionI
 {
     /**
      * Creates the api documentation build directory.
@@ -120,6 +120,49 @@ class phpucPhpDocumentorTask extends phpucAbstractPearTask
         $configFile->save();
 
         $out->writeLine();
+    }
+    
+    /**
+     * Callback method that registers the interested commands or options. 
+     *
+     * @param phpucConsoleInputDefinition $def The input definition container.
+     * 
+     * @return void
+     */
+    public function register( phpucConsoleInputDefinition $def )
+    {
+        $def->addOption(
+            'project',
+            'wc',
+            'without-code-sniffer',
+            'Disable PHP CodeSniffer support.',
+            false
+        );
+        
+        if ( !$def->hasOption( 'project', 'source-dir' ) )
+        {
+            $def->addOption(
+                'project',
+                'sd',
+                'source-dir',
+                'The source directory in the project.',
+                true,
+                'src',
+                true
+            );
+        }
+        if ( !$def->hasOption( 'project', 'ignore-dir' ) )
+        {
+            $def->addOption(
+                'project',
+                'id',
+                'ignore-dir',
+                'List of ignorable directories, separated by comma.',
+                true,
+                null,
+                false
+            );
+        }
     }
     
     /**

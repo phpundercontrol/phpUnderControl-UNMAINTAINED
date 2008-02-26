@@ -56,7 +56,7 @@
  * @version   Release: @package_version@
  * @link      http://www.phpundercontrol.org/
  */
-class phpucPhpCodeSnifferTask extends phpucAbstractPearTask
+class phpucPhpCodeSnifferTask extends phpucAbstractPearTask implements phpucConsoleExtensionI
 {
     /**
      * Minimum code sniffer version.
@@ -100,6 +100,57 @@ class phpucPhpCodeSnifferTask extends phpucAbstractPearTask
         $buildFile->save();
         
         $out->writeLine();
+    }
+    
+    /**
+     * Callback method that registers the interested commands or options. 
+     *
+     * @param phpucConsoleInputDefinition $def The input definition container.
+     * 
+     * @return void
+     */
+    public function register( phpucConsoleInputDefinition $def )
+    {
+        $def->addOption(
+            'project',
+            'wd',
+            'without-php-documentor',
+            'Disable phpDocumentor support.',
+            false
+        );
+        $def->addOption(
+            'project',
+            'cg',
+            'coding-guideline',
+            'The used PHP_CodeSniffer coding guideline.',
+            true,
+            'PEAR',
+            true
+        );
+        if ( !$def->hasOption( 'project', 'source-dir' ) )
+        {
+            $def->addOption(
+                'project',
+                'sd',
+                'source-dir',
+                'The source directory in the project.',
+                true,
+                'src',
+                true
+            );
+        }
+        if ( !$def->hasOption( 'project', 'ignore-dir' ) )
+        {
+            $def->addOption(
+                'project',
+                'id',
+                'ignore-dir',
+                'List of ignorable directories, separated by comma.',
+                true,
+                null,
+                false
+            );
+        }
     }
     
     /**

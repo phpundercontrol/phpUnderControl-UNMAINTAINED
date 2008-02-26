@@ -66,7 +66,11 @@ class phpucProjectCommand extends phpucAbstractCommand implements phpucConsoleEx
     protected function doCreateTasks()
     {
         return array(
-
+            new phpucProjectTask(),
+            new phpucCheckoutTask(),
+            new phpucPhpUnitTask(),
+            new phpucPhpCodeSnifferTask(),
+            new phpucPhpDocumentorTask(),
         );
     }
     
@@ -79,6 +83,16 @@ class phpucProjectCommand extends phpucAbstractCommand implements phpucConsoleEx
      */
     public function register( phpucConsoleInputDefinition $def )
     {
+        $def->addCommand( 'project', 'Creates a new CruiseControl project.' );
+        $def->addArgument( 
+            'project',
+            'cc-install-dir',
+            'The installation directory of CruiseControl.'
+        );
         
+        foreach ( $this->createTasks() as $task )
+        {
+            $task->register( $def );
+        }
     }
 }

@@ -58,7 +58,7 @@
  * 
  * @property-read boolean $metrics  Enable metrics and coverage support?
  */
-class phpucPhpUnitTask extends phpucAbstractPearTask
+class phpucPhpUnitTask extends phpucAbstractPearTask implements phpucConsoleExtensionI
 {
     /**
      * Minimum code sniffer version.
@@ -149,6 +149,51 @@ class phpucPhpUnitTask extends phpucAbstractPearTask
     }
     
     /**
+     * Callback method that registers the interested commands or options. 
+     *
+     * @param phpucConsoleInputDefinition $def The input definition container.
+     * 
+     * @return void
+     */
+    public function register( phpucConsoleInputDefinition $def )
+    {
+        $def->addOption(
+            'project',
+            'wu',
+            'without-phpunit',
+            'Disable PHPUnit support.',
+            false
+        );
+        $def->addOption(
+            'project',
+            'td',
+            'test-dir',
+            'The test directory in the project.',
+            true,
+            null,
+            false
+        );
+        $def->addOption(
+            'project',
+            'tc',
+            'test-case',
+            'Name of the test case class.',
+            true,
+            null,
+            false
+        );
+        $def->addOption(
+            'project',
+            'tf',
+            'test-file',
+            'Name of the test case file.',
+            true,
+            null,
+            false
+        );
+    }
+    
+    /**
      * Validates the existing code sniffer version.
      *
      * @return void
@@ -169,7 +214,7 @@ class phpucPhpUnitTask extends phpucAbstractPearTask
             }
         }
             
-        $regexp = '/version\s+([0-9\.]+(RC[0-9])?)/';
+        $regexp = '/PHPUnit\s+([0-9\.]+(RC[0-9])?)/';
         $retval = exec( escapeshellcmd( "{$binary} --version" ) );
         
         chdir( $cwd );

@@ -56,7 +56,7 @@
  * @version   Release: @package_version@
  * @link      http://www.phpundercontrol.org/
  */
-class phpucProjectTask extends phpucAbstractTask
+class phpucProjectTask extends phpucAbstractTask implements phpucConsoleExtensionI
 {
     /**
      * Validates that the required <cc-install-dir>/projects directory exists.
@@ -149,5 +149,35 @@ class phpucProjectTask extends phpucAbstractTask
         $config->save();
                 
         $out->writeLine();
+    }
+    
+    /**
+     * Callback method that registers the interested commands or options. 
+     *
+     * @param phpucConsoleInputDefinition $def The input definition container.
+     * 
+     * @return void
+     */
+    public function register( phpucConsoleInputDefinition $def )
+    {
+        $def->addOption(
+            'project',
+            'n',
+            'project-name',
+            'The name of the generated project.',
+            true,
+            null,
+            true
+        );
+        
+        $def->addOption(
+            'project',
+            'i',
+            'schedule-interval',
+            'Schedule interval.',
+            true,
+            300,
+            true
+        );
     }
 }
