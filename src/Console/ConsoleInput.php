@@ -435,6 +435,8 @@ class phpucConsoleInput
             $opts = $this->commands[$command]['options'];
         }
         
+        usort( $opts, array( $this, 'sortCommandOptions' ) );
+        
         foreach ( $opts as $opt )
         {
             $tokens = $this->tokenizeHelp( $opt['help'] );
@@ -485,6 +487,20 @@ class phpucConsoleInput
     {
         $tokens = preg_split( '#(\r\n|\n|\r)#', wordwrap( $help, 44 ) );
         return array_map( 'trim', $tokens );
+    }
+    
+    /**
+     * Helper method that is used to sort the command options by the long 
+     * option identifier.
+     *
+     * @param array(string=>mixed) $option1 Compare option one.
+     * @param array(string=>mixed) $option2 Compare option two.
+     * 
+     * @return integer
+     */
+    private function sortCommandOptions( $option1, $option2 )
+    {
+        return strcasecmp( $option1['long'], $option2['long'] );
     }
     
     /**
