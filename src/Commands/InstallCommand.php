@@ -134,9 +134,15 @@ class phpucInstallCommand extends phpucAbstractCommand
     {
         $tasks = array();
         
-        $tasks[] = new phpucCruiseControlTask( $this->args );
-        $tasks[] = new phpucModifyFileTask( $this->args, $this->modifiedFiles );
-        $tasks[] = new phpucCreateFileTask( $this->args, $this->installFiles );
+        $modifyFileTask = new phpucModifyFileTask();
+        $modifyFileTask->setFiles( $this->modifiedFiles );
+        
+        $createFileTask = new phpucCreateFileTask();
+        $createFileTask->setFiles( $this->installFiles );
+        
+        $tasks[] = new phpucCruiseControlTask();
+        $tasks[] = $modifyFileTask;
+        $tasks[] = $createFileTask;
         
         return $tasks;
     }

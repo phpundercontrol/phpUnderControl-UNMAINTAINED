@@ -93,7 +93,8 @@ class phpucCruiseControlTaskTest extends phpucAbstractTaskTest
         $input = new phpucConsoleInput();
         $input->parse();
         
-        $ccTask = new phpucCruiseControlTask( $input->args );
+        $ccTask = new phpucCruiseControlTask();
+        $ccTask->setConsoleArgs( $input->args );
         try
         {
             $ccTask->validate();
@@ -118,7 +119,8 @@ class phpucCruiseControlTaskTest extends phpucAbstractTaskTest
             )
         );
         
-        $ccTask = new phpucCruiseControlTask( $this->args );
+        $ccTask = new phpucCruiseControlTask();
+        $ccTask->setConsoleArgs( $this->args );
         try
         {
             $ccTask->validate();
@@ -145,7 +147,8 @@ class phpucCruiseControlTaskTest extends phpucAbstractTaskTest
             )
         );
         
-        $ccTask = new phpucCruiseControlTask( $this->args );
+        $ccTask = new phpucCruiseControlTask();
+        $ccTask->setConsoleArgs( $this->args );
         $ccTask->validate();
     }
     
@@ -166,10 +169,9 @@ class phpucCruiseControlTaskTest extends phpucAbstractTaskTest
             )
         );
         
-        $ccTask = new phpucCruiseControlTask( $this->args );
-        ob_start();
+        $ccTask = new phpucCruiseControlTask();
+        $ccTask->setConsoleArgs( $this->args );
         $ccTask->execute();
-        ob_end_clean();
         
         $basedir =  PHPUC_TEST_DIR . '/webapps/cruisecontrol';
         

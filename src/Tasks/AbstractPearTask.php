@@ -63,26 +63,34 @@
 abstract class phpucAbstractPearTask extends phpucAbstractTask
 {
     /**
-     * The ctor takes the command line arguments as argument.
-     *
-     * @param phpucConsoleArgs $args    The command line arguments.
+     * Constructs a new pear task.
      */
-    public function __construct( phpucConsoleArgs $args )
+    public function __construct()
     {
-        parent::__construct( $args );
+        parent::__construct();
         
         $this->properties['cliTool']       = null;
         $this->properties['executable']    = null;
         $this->properties['pearBinaryDir'] = null;
         
-        $bindir = null;
+        $this->cliTool = $this->getCliToolName();
+    }
+    
+    /**
+     * Sets the parsed console arguments.
+     *
+     * @param phpucConsoleArgs $args The console arguments.
+     * 
+     * @return void
+     */
+    public function setConsoleArgs( phpucConsoleArgs $args )
+    {
+        parent::setConsoleArgs( $args );
+        
         if ( $args->hasOption( 'pear-executables-dir' ) )
         {
-            $bindir = $args->getOption( 'pear-executables-dir' );
+            $this->pearBinaryDir = $args->getOption( 'pear-executables-dir' );
         }
-        
-        $this->cliTool       = $this->getCliToolName();
-        $this->pearBinaryDir = $bindir;
     }
     
     /**

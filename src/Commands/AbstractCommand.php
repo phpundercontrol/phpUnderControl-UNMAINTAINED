@@ -127,6 +127,7 @@ abstract class phpucAbstractCommand implements phpucCommandI
     {
         foreach ( $this->createTasks() as $task )
         {
+            $task->setConsoleArgs( $this->args );
             $task->validate();
         }
     }
@@ -140,6 +141,7 @@ abstract class phpucAbstractCommand implements phpucCommandI
     {
         foreach ( $this->createTasks() as $task )
         {
+            $task->setConsoleArgs( $this->args );
             $task->execute();
         }
     }

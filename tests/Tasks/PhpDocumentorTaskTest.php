@@ -144,7 +144,8 @@ class phpucPhpDocumentorTaskTest extends phpucAbstractPearTaskTest
         // Create dummy phpdoc executable
         $this->createExecutable( 'phpdoc', $this->validBin );
         
-        $phpdoc = new phpucPhpDocumentorTask( $this->args );
+        $phpdoc = new phpucPhpDocumentorTask();
+        $phpdoc->setConsoleArgs( $this->args );
         $phpdoc->validate();
         $phpdoc->execute();
         

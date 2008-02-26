@@ -103,7 +103,8 @@ class phpucProjectTaskTest extends phpucAbstractTest
      */
     public function testValidateProjectTaskNoError()
     {
-        $task = new phpucProjectTask( $this->args );
+        $task = new phpucProjectTask();
+        $task->setConsoleArgs( $this->args );
         $task->validate();
     }
     
@@ -117,7 +118,8 @@ class phpucProjectTaskTest extends phpucAbstractTest
     {
         rmdir( PHPUC_TEST_DIR . '/projects' );
         
-        $task = new phpucProjectTask( $this->args );
+        $task = new phpucProjectTask();
+        $task->setConsoleArgs( $this->args );
         try
         {
             $task->validate();
@@ -136,7 +138,8 @@ class phpucProjectTaskTest extends phpucAbstractTest
     {
         $this->createTestDirectories( array( '/projects/phpUnderControl' ) );
         
-        $task = new phpucProjectTask( $this->args );
+        $task = new phpucProjectTask();
+        $task->setConsoleArgs( $this->args );
         try
         {
             $task->validate();
@@ -153,11 +156,9 @@ class phpucProjectTaskTest extends phpucAbstractTest
      */
     public function testExecuteProjectTaskNoError()
     {
-        $task = new phpucProjectTask( $this->args );
-        
-        ob_start();
+        $task = new phpucProjectTask();
+        $task->setConsoleArgs( $this->args );
         $task->execute();
-        ob_end_clean();
         
         $this->assertFileExists( PHPUC_TEST_DIR . '/projects/phpUnderControl' );
         $this->assertFileExists( PHPUC_TEST_DIR . '/projects/phpUnderControl/source' );
@@ -182,14 +183,14 @@ class phpucProjectTaskTest extends phpucAbstractTest
     {
         rmdir( PHPUC_TEST_DIR . '/apache-ant-1.7.0' );
         
-        $task = new phpucProjectTask( $this->args );
-        ob_start();
+        $task = new phpucProjectTask();
+        $task->setConsoleArgs( $this->args );
+
         try
         {
             $task->execute();
             $this->fail( 'phpucExecuteException expected.' );
         }
         catch ( phpucExecuteException $e ) {}
-        ob_end_clean();
     }
 }

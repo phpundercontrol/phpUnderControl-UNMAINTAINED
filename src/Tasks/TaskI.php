@@ -59,6 +59,20 @@
 interface phpucTaskI
 {
     /**
+     * Default task ctor must be empty.
+     */
+    function __construct();
+    
+    /**
+     * Sets the parsed console arguments.
+     *
+     * @param phpucConsoleArgs $args The console arguments.
+     * 
+     * @return void
+     */
+    function setConsoleArgs( phpucConsoleArgs $args );
+    
+    /**
      * Validates the task constrains.
      *
      * @return void

@@ -67,15 +67,14 @@ class phpucCreateFileTask extends phpucAbstractTask
     protected $files = array();
     
     /**
-     * The ctor takes the console arguments and a list of files as arguments.
+     * Sets a list of create files.
      *
-     * @param phpucConsoleArgs $args  The console arguments.
-     * @param array            $files List of files.
+     * @param array $files List of files.
+     * 
+     * @return void
      */
-    public function __construct( phpucConsoleArgs $args, array $files )
+    public function setFiles( array $files )
     {
-        parent::__construct( $args );
-        
         $this->files = $files;
     }
     

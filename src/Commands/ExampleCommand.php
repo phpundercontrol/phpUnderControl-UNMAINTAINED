@@ -78,24 +78,24 @@ class phpucExampleCommand extends phpucAbstractCommand
     {
         $tasks = array();
         
-        $tasks[] = new phpucProjectTask( $this->args );
-        $tasks[] = new phpucExampleTask( $this->args );
+        $tasks[] = new phpucProjectTask();
+        $tasks[] = new phpucExampleTask();
         
         if ( !$this->args->hasOption( 'without-php-documentor' ) )
         {
-            $tasks[] = new phpucPhpDocumentorTask( $this->args );
+            $tasks[] = new phpucPhpDocumentorTask();
         }
         if ( !$this->args->hasOption( 'without-code-sniffer' ) )
         {
-            $tasks[] = new phpucPhpCodeSnifferTask( $this->args );
+            $tasks[] = new phpucPhpCodeSnifferTask();
         }
         if ( !$this->args->hasOption( 'without-phpunit' ) )
         {
-            $tasks[] = new phpucPhpUnitTask( $this->args );
+            $tasks[] = new phpucPhpUnitTask();
         }
         if ( !$this->args->hasOption( 'without-ezc-graph' ) )
         {
-            $tasks[] = new phpucGraphTask( $this->args );
+            $tasks[] = new phpucGraphTask();
         }
         
         return $tasks;

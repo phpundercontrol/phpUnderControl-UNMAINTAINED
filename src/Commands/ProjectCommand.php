@@ -56,9 +56,8 @@
  * @version   Release: @package_version@
  * @link      http://www.phpundercontrol.org/
  */
-class phpucProjectCommand extends phpucAbstractCommand
+class phpucProjectCommand extends phpucAbstractCommand implements phpucConsoleExtensionI
 {
-    
     /**
      * Creates all command specific {@link phpucTaskI} objects.
      * 
@@ -66,6 +65,20 @@ class phpucProjectCommand extends phpucAbstractCommand
      */
     protected function doCreateTasks()
     {
-        return array();
+        return array(
+
+        );
+    }
+    
+    /**
+     * Callback method that registers the interested commands or options. 
+     *
+     * @param phpucConsoleInputDefinition $def The input definition container.
+     * 
+     * @return void
+     */
+    public function register( phpucConsoleInputDefinition $def )
+    {
+        
     }
 }

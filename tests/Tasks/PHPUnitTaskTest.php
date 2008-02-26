@@ -109,7 +109,8 @@ class phpucPHPUnitTaskTest extends phpucAbstractPearTaskTest
     public function testPHPUnitVersionValidate()
     {
         $this->createExecutable( 'phpunit', $this->validBin );
-        $phpunit = new phpucPhpUnitTask( $this->args );
+        $phpunit = new phpucPhpUnitTask();
+        $phpunit->setConsoleArgs( $this->args );
         $phpunit->validate();
     }
     
@@ -121,7 +122,8 @@ class phpucPHPUnitTaskTest extends phpucAbstractPearTaskTest
     public function testPHPUnitVersionValidateWithInvalidVersion()
     {
         $this->createExecutable( 'phpunit', $this->invalidBin );
-        $phpunit = new phpucPhpUnitTask( $this->args );
+        $phpunit = new phpucPhpUnitTask();
+        $phpunit->setConsoleArgs( $this->args );
         
         phpucConsoleOutput::get()->reset();
 
@@ -138,7 +140,8 @@ class phpucPHPUnitTaskTest extends phpucAbstractPearTaskTest
     public function testPHPUnitVersionValidateWithBadVersionValue()
     {
         $this->createExecutable( 'phpunit', $this->badBin );
-        $phpunit = new phpucPhpUnitTask( $this->args );
+        $phpunit = new phpucPhpUnitTask();
+        $phpunit->setConsoleArgs( $this->args );
         
         phpucConsoleOutput::get()->reset();
 
@@ -170,7 +173,8 @@ class phpucPHPUnitTaskTest extends phpucAbstractPearTaskTest
         
         $this->createExecutable( 'phpunit', $this->validBin );
         
-        $phpunit = new phpucPhpUnitTask( $this->args );
+        $phpunit = new phpucPhpUnitTask();
+        $phpunit->setConsoleArgs( $this->args );
         $phpunit->validate();
         $phpunit->execute();
         
@@ -244,7 +248,8 @@ class phpucPHPUnitTaskTest extends phpucAbstractPearTaskTest
      */
     public function testValidateFindPHPUnitExecutableFail()
     {
-        $phpunit = new phpucPhpUnitTask( $this->args );
+        $phpunit = new phpucPhpUnitTask();
+        $phpunit->setConsoleArgs( $this->args );
         try
         {
             $phpunit->validate();
@@ -266,7 +271,8 @@ class phpucPHPUnitTaskTest extends phpucAbstractPearTaskTest
         $input = new phpucConsoleInput();
         $input->parse();
         
-        $phpunit = new phpucPhpUnitTask( $input->args );
+        $phpunit = new phpucPhpUnitTask();
+        $phpunit->setConsoleArgs( $input->args );
         $phpunit->validate();
         
         $this->assertNotNull( $phpunit->executable );
@@ -293,7 +299,8 @@ class phpucPHPUnitTaskTest extends phpucAbstractPearTaskTest
         // Create test directories
         $this->createTestDirectories( $dirs );
         
-        $phpunit = new phpucPhpUnitTask( $this->args );
+        $phpunit = new phpucPhpUnitTask();
+        $phpunit->setConsoleArgs( $this->args );
         $phpunit->validate();
         $phpunit->execute();
         

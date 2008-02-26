@@ -79,11 +79,21 @@ abstract class phpucAbstractTask implements phpucTaskI
     protected $args = null;
     
     /**
-     * The ctor takes the consol arguments as parameter.
+     * Constructs a new task instance.
+     */
+    public function __construct()
+    {
+
+    }
+    
+    /**
+     * Sets the parsed console arguments.
      *
      * @param phpucConsoleArgs $args The console arguments.
+     * 
+     * @return void
      */
-    public function __construct( phpucConsoleArgs $args )
+    public function setConsoleArgs( phpucConsoleArgs $args )
     {
         $this->args = $args;
         

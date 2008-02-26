@@ -121,7 +121,8 @@ class phpucGraphTaskTest extends phpucAbstractTaskTest
         $input = new phpucConsoleInput();
         $input->parse();
         
-        $task = new phpucGraphTask( $input->args );
+        $task = new phpucGraphTask();
+        $task->setConsoleArgs( $input->args );
         $task->execute();
         
         $dom = new DOMDocument();

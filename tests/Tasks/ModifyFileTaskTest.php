@@ -84,9 +84,9 @@ class phpucModifyFileTaskTest extends phpucAbstractTaskTest
         $input = new phpucConsoleInput();
         $input->parse();
         
-        $task = new phpucModifyFileTask( 
-            $input->args, array( '/test/test1.jsp', '/test/test2.jsp' )
-        );
+        $task = new phpucModifyFileTask();
+        $task->setConsoleArgs( $input->args );
+        $task->setFiles( array( '/test/test1.jsp', '/test/test2.jsp' ) );
         $task->validate();
     }
     
@@ -117,9 +117,9 @@ class phpucModifyFileTaskTest extends phpucAbstractTaskTest
         $input = new phpucConsoleInput();
         $input->parse();
         
-        $task = new phpucModifyFileTask( 
-            $input->args, array( '/test/test1.jsp', '/test/test2.jsp' )
-        );
+        $task = new phpucModifyFileTask();
+        $task->setConsoleArgs( $input->args );
+        $task->setFiles( array( '/test/test1.jsp', '/test/test2.jsp' ) );
         $task->validate();
     }
     
@@ -149,8 +149,9 @@ class phpucModifyFileTaskTest extends phpucAbstractTaskTest
         $input = new phpucConsoleInput();
         $input->parse();
         
-        $task = new phpucModifyFileTask( 
-            $input->args, 
+        $task = new phpucModifyFileTask();
+        $task->setConsoleArgs( $input->args );
+        $task->setFiles(
             array( 
                 '/webapps/cruisecontrol/index.jsp', 
                 '/webapps/cruisecontrol/metrics.cewolf.jsp' 
@@ -209,9 +210,9 @@ class phpucModifyFileTaskTest extends phpucAbstractTaskTest
         $input = new phpucConsoleInput();
         $input->parse();
         
-        $task = new phpucModifyFileTask( 
-            $input->args, array( '/webapps/cruisecontrol/main.jsp' )
-        );
+        $task = new phpucModifyFileTask();
+        $task->setConsoleArgs( $input->args );
+        $task->setFiles( array( '/webapps/cruisecontrol/main.jsp' ) );
         $task->execute();
         
         $content = file_get_contents( PHPUC_TEST_DIR . '/webapps/cruisecontrol/main.jsp' );

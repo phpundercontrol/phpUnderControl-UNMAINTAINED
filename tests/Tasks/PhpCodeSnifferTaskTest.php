@@ -96,7 +96,8 @@ class phpucPhpCodeSnifferTaskTest extends phpucAbstractPearTaskTest
     public function testCodeSnifferVersionValidate()
     {
         $this->createExecutable( 'phpcs', $this->validBin );
-        $phpcs = new phpucPhpCodeSnifferTask( $this->args );
+        $phpcs = new phpucPhpCodeSnifferTask();
+        $phpcs->setConsoleArgs( $this->args );
         $phpcs->validate();
     }
     
@@ -109,7 +110,8 @@ class phpucPhpCodeSnifferTaskTest extends phpucAbstractPearTaskTest
     public function testCodeSnifferVersionValidateWithInvalidVersion()
     {
         $this->createExecutable( 'phpcs', $this->invalidBin );
-        $phpcs = new phpucPhpCodeSnifferTask( $this->args );
+        $phpcs = new phpucPhpCodeSnifferTask();
+        $phpcs->setConsoleArgs( $this->args );
         try
         {
             $phpcs->validate();
@@ -125,7 +127,8 @@ class phpucPhpCodeSnifferTaskTest extends phpucAbstractPearTaskTest
      */
     public function testCodeSnifferExecuteBuildFileModifications()
     {
-        $phpcs = new phpucPhpCodeSnifferTask( $this->args );
+        $phpcs = new phpucPhpCodeSnifferTask();
+        $phpcs->setConsoleArgs( $this->args );
         $phpcs->execute();
         
         $sxml = simplexml_load_file( $this->projectDir . '/build.xml' );

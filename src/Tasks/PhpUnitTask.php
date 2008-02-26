@@ -66,13 +66,11 @@ class phpucPhpUnitTask extends phpucAbstractPearTask
     const PHP_UNIT_VERSION = '3.2.0';
     
     /**
-     * The ctor takes the PEAR install dir as an optional argument.
-     * 
-     * @param phpucConsoleArgs $args The command line arguments.
+     * Constructs a new phpunit task.
      */
-    public function __construct( phpucConsoleArgs $args )
+    public function __construct()
     {
-        parent::__construct( $args );
+        parent::__construct();
         
         $this->properties['metrics']  = true;
     }

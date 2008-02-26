@@ -67,7 +67,7 @@ class phpucGraphCommand extends phpucAbstractCommand
     protected function doCreateTasks()
     {
         return array(
-            new phpucGenerateGraphTask( $this->args )
+            new phpucGenerateGraphTask()
         );
     }
 }
