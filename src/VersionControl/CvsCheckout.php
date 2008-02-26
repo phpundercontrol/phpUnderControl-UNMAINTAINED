@@ -152,7 +152,7 @@ class phpucCvsCheckout extends phpucAbstractCheckout
             2  =>  array("pipe", "w")   // stderr
         );
         
-        $proc = proc_open( escapeshellcmd( $cmd ), $spec, $pipes, null, $env);
+        $proc = proc_open( escapeshellcmd( $cmd ), $spec, $pipes, null, $env );
         if ( is_resource( $proc ) === false )
         {
             throw new phpucErrorException( "Cannot execute command '{$cmd}'." );
@@ -174,7 +174,7 @@ class phpucCvsCheckout extends phpucAbstractCheckout
         }
         fclose( $pipes[2] );
             
-        proc_close($proc);
+        proc_close( $proc );
         
         // For any reason cvs writes to stderr during the checkout?
         if ( $stdout === '' && $stderr !== '' )

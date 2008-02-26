@@ -314,7 +314,14 @@ class phpucConsoleInputDefinition implements ArrayAccess, IteratorAggregate
         return false;
     }
     
-    public function addOption( $cmd, $short, $long, $help, $arg = null, $default = null, $mandatory = false, $mode = self::MODE_HIDDEN )
+    public function addOption( $cmd, 
+                               $short, 
+                               $long, 
+                               $help, 
+                               $arg = null, 
+                               $default = null, 
+                               $mandatory = false, 
+                               $mode = self::MODE_HIDDEN )
     {
         if ( !isset( $this->definition[$cmd] ) )
         {

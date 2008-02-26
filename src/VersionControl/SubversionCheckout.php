@@ -106,7 +106,7 @@ class phpucSubversionCheckout extends phpucAbstractCheckout
             }
             fclose( $pipes[2] );
             
-            proc_close($proc);            
+            proc_close( $proc );            
         }
         
         if ( $error !== '' )
