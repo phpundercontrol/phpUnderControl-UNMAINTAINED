@@ -65,13 +65,33 @@ class phpucProjectCommand extends phpucAbstractCommand implements phpucConsoleEx
      */
     protected function doCreateTasks()
     {
-        return array(
+        $tasks = array(
             new phpucProjectTask(),
-            new phpucCheckoutTask(),
-            new phpucPhpUnitTask(),
-            new phpucPhpCodeSnifferTask(),
-            new phpucPhpDocumentorTask(),
+            new phpucCheckoutTask(),        
         );
+        
+        if ( $this->args === null 
+         || !$this->args->hasOption( 'without-php-documentor' ) )
+        {
+            $tasks[] = new phpucPhpDocumentorTask();
+        }
+        if ( $this->args === null 
+         || !$this->args->hasOption( 'without-code-sniffer' ) )
+        {
+            $tasks[] = new phpucPhpCodeSnifferTask();
+        }
+        if ( $this->args === null 
+         || !$this->args->hasOption( 'without-phpunit' ) )
+        {
+            $tasks[] = new phpucPhpUnitTask();
+        }
+        if ( $this->args === null 
+         || !$this->args->hasOption( 'without-ezc-graph' ) )
+        {
+            $tasks[] = new phpucGraphTask();
+        }
+        
+        return $tasks;
     }
     
     /**

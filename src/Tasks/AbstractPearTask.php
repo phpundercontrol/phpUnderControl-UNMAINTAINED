@@ -60,7 +60,7 @@
  * @property      string $pearBinaryDir An optional PEAR install directory.
  * @property-read string $executable    The full command file name.
  */
-abstract class phpucAbstractPearTask extends phpucAbstractTask
+abstract class phpucAbstractPearTask extends phpucAbstractTask implements phpucConsoleExtensionI
 {
     /**
      * Constructs a new pear task.
@@ -157,6 +157,26 @@ abstract class phpucAbstractPearTask extends phpucAbstractTask
         }
         
         $this->doValidate();
+    }
+    
+    /**
+     * Callback method that registers the interested commands or options. 
+     *
+     * @param phpucConsoleInputDefinition $def The input definition container.
+     * 
+     * @return void
+     */
+    public function register( phpucConsoleInputDefinition $def )
+    {
+        if ( !$def->hasOption( 'project', 'pear-executables-dir' ) )
+        {
+            $def->addOption(
+                'project',
+                'e',
+                'pear-executables-dir',
+                'The pear directory with cli scripts.'
+            );
+        }
     }
     
     /**

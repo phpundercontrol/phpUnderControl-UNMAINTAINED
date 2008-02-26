@@ -56,7 +56,7 @@
  * @version   Release: @package_version@
  * @link      http://www.phpundercontrol.org/
  */
-class phpucGraphTask extends phpucAbstractTask
+class phpucGraphTask extends phpucAbstractTask implements phpucConsoleExtensionI
 {
     /**
      * Performs the primary task and adds an execute publisher to the config.xml.
@@ -103,5 +103,22 @@ class phpucGraphTask extends phpucAbstractTask
         $configFile->save();
         
         $out->writeLine();
+    }
+    
+    /**
+     * Callback method that registers the interested commands or options. 
+     *
+     * @param phpucConsoleInputDefinition $def The input definition container.
+     * 
+     * @return void
+     */
+    public function register( phpucConsoleInputDefinition $def )
+    {
+        $def->addOption(
+            'project',
+            'z',
+            'without-ezc-graph',
+            'Disable ezcGraph support.'
+        );
     }
 }

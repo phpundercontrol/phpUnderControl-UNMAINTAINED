@@ -109,7 +109,7 @@ class phpucCheckoutTask extends phpucAbstractTask implements phpucConsoleExtensi
     {
         $def->addOption(
             'project',
-            'vc',
+            'y',
             'version-control',
             'The used version control system.',
             array( 'svn', 'cvs' ),
@@ -118,7 +118,7 @@ class phpucCheckoutTask extends phpucAbstractTask implements phpucConsoleExtensi
         );
         $def->addOption(
             'project',
-            'vu',
+            'x',
             'version-control-url',
             'The version control system project url.',
             true,

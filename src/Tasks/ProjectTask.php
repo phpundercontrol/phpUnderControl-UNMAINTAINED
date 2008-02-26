@@ -162,7 +162,7 @@ class phpucProjectTask extends phpucAbstractTask implements phpucConsoleExtensio
     {
         $def->addOption(
             'project',
-            'n',
+            'j',
             'project-name',
             'The name of the generated project.',
             true,

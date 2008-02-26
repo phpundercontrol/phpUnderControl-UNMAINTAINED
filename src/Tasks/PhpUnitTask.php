@@ -58,7 +58,7 @@
  * 
  * @property-read boolean $metrics  Enable metrics and coverage support?
  */
-class phpucPhpUnitTask extends phpucAbstractPearTask implements phpucConsoleExtensionI
+class phpucPhpUnitTask extends phpucAbstractPearTask
 {
     /**
      * Minimum code sniffer version.
@@ -157,16 +157,18 @@ class phpucPhpUnitTask extends phpucAbstractPearTask implements phpucConsoleExte
      */
     public function register( phpucConsoleInputDefinition $def )
     {
+        parent::register( $def );
+        
         $def->addOption(
             'project',
-            'wu',
+            'n',
             'without-phpunit',
             'Disable PHPUnit support.',
             false
         );
         $def->addOption(
             'project',
-            'td',
+            't',
             'test-dir',
             'The test directory in the project.',
             true,
@@ -175,7 +177,7 @@ class phpucPhpUnitTask extends phpucAbstractPearTask implements phpucConsoleExte
         );
         $def->addOption(
             'project',
-            'tc',
+            'a',
             'test-case',
             'Name of the test case class.',
             true,
@@ -184,7 +186,7 @@ class phpucPhpUnitTask extends phpucAbstractPearTask implements phpucConsoleExte
         );
         $def->addOption(
             'project',
-            'tf',
+            'l',
             'test-file',
             'Name of the test case file.',
             true,
