@@ -63,13 +63,11 @@
 abstract class phpucAbstractPearTask extends phpucAbstractTask
 {
     /**
-     * The ctor takes the cli script name as argument and the PEAR install dir 
-     * as an optional argument.
+     * The ctor takes the command line arguments as argument.
      *
-     * @param string           $cliTool The PEAR cli tool.
      * @param phpucConsoleArgs $args    The command line arguments.
      */
-    public function __construct( $cliTool, phpucConsoleArgs $args )
+    public function __construct( phpucConsoleArgs $args )
     {
         parent::__construct( $args );
         
@@ -83,7 +81,7 @@ abstract class phpucAbstractPearTask extends phpucAbstractTask
             $bindir = $args->getOption( 'pear-executables-dir' );
         }
         
-        $this->cliTool       = $cliTool;
+        $this->cliTool       = $this->getCliToolName();
         $this->pearBinaryDir = $bindir;
     }
     
@@ -200,4 +198,11 @@ abstract class phpucAbstractPearTask extends phpucAbstractTask
     {
         // Nothing todo here
     }
+    
+    /**
+     * Must return the name of the used cli tool.
+     *
+     * @return string
+     */
+    protected abstract function getCliToolName();
 }

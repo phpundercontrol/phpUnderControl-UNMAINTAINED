@@ -59,16 +59,6 @@
 class phpucPhpDocumentorTask extends phpucAbstractPearTask
 {
     /**
-     * The ctor takes the PEAR install dir as an optional argument.
-     *
-     * @param phpucConsoleArgs $args The command line arguments.
-     */
-    public function __construct( phpucConsoleArgs $args )
-    {
-        parent::__construct( 'phpdoc', $args );
-    }
-    
-    /**
      * Creates the api documentation build directory.
      *
      * @return void
@@ -130,5 +120,15 @@ class phpucPhpDocumentorTask extends phpucAbstractPearTask
         $configFile->save();
 
         $out->writeLine();
+    }
+    
+    /**
+     * Must return the name of the used cli tool.
+     *
+     * @return string
+     */
+    protected function getCliToolName()
+    {
+        return 'phpdoc';
     }
 }

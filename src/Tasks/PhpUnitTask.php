@@ -72,7 +72,7 @@ class phpucPhpUnitTask extends phpucAbstractPearTask
      */
     public function __construct( phpucConsoleArgs $args )
     {
-        parent::__construct( 'phpunit', $args );
+        parent::__construct( $args );
         
         $this->properties['metrics']  = true;
     }
@@ -212,10 +212,20 @@ class phpucPhpUnitTask extends phpucAbstractPearTask
                 'you must install xdebug with the following command:'
             );
             phpucConsoleOutput::get()->writeLine(
-                '  pecl install xdebug'
+                '  pear install pecl/xdebug'
             );
             
             $this->properties['metrics'] = false;
         }
+    }
+    
+    /**
+     * Must return the name of the used cli tool.
+     *
+     * @return string
+     */
+    protected function getCliToolName()
+    {
+        return 'phpunit';
     }
 }

@@ -64,16 +64,6 @@ class phpucPhpCodeSnifferTask extends phpucAbstractPearTask
     const CODE_SNIFFER_VERSION = '1.0.0RC3';
     
     /**
-     * The ctor takes the PEAR install dir as an optional argument.
-     * 
-     * @param phpucConsoleArgs $args The command line arguments.
-     */
-    public function __construct( phpucConsoleArgs $args )
-    {
-        parent::__construct( 'phpcs', $args );
-    }
-    
-    /**
      * Does nothing.
      *
      * @return void
@@ -162,5 +152,15 @@ class phpucPhpCodeSnifferTask extends phpucAbstractPearTask
                 )
             );
         }
+    }
+    
+    /**
+     * Must return the name of the used cli tool.
+     *
+     * @return string
+     */
+    protected function getCliToolName()
+    {
+        return 'phpcs';
     }
 }
