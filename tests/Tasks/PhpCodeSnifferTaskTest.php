@@ -62,7 +62,7 @@ class phpucPhpCodeSnifferTaskTest extends phpucAbstractPearTaskTest
      * @type string
      * @var string $validBin
      */
-    protected $validBin = "#!/usr/bin/env php\n<?php echo 'version 1.0.0RC3';?>";
+    protected $validBin = "#!/usr/bin/env php\n<?php echo 'version 1.0.0';?>";
     
     /**
      * Content for a fake code sniffer bin that doesn't work.
@@ -83,7 +83,7 @@ class phpucPhpCodeSnifferTaskTest extends phpucAbstractPearTaskTest
         
         if ( phpucFileUtil::getOS() === phpucFileUtil::OS_WINDOWS )
         {
-            $this->validBin   = "@echo off\n\recho version 1.0.0RC3";
+            $this->validBin   = "@echo off\n\recho version 1.0.0";
             $this->invalidBin = "@echo off\n\recho version 1.0.0RC2";
         }
     }
