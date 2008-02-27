@@ -342,9 +342,7 @@ class phpucConsoleInput
                    && preg_match( $opt['arg'], $value ) === 0 )
             {
                 throw new phpucConsoleException(
-                    sprintf( 
-                        'The value for option %s has an invalid format.%s', $option
-                    )
+                    "The value for option '{$option}' has an invalid format."
                 );
             }
             $this->options[$opt['long']] = $value;
