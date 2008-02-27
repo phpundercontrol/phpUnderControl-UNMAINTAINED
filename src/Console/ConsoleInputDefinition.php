@@ -500,13 +500,7 @@ class phpucConsoleInputDefinition implements ArrayAccess, IteratorAggregate
      */
     public function offsetSet( $name, $value )
     {
-        if ( !is_array( $value ) )
-        {
-            throw new InvalidArgumentException( 
-                'A new definition must be an array.' 
-            );
-        }
-        $this->definition[$name] = $value;
+        // Nothing todo here
     }
     
     /**
