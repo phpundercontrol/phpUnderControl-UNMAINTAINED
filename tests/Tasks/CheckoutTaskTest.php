@@ -60,5 +60,8 @@ require_once dirname( __FILE__ ) . '/AbstractTaskTest.php';
  */
 class phpucCheckoutTaskTest extends phpucAbstractTest
 {
-    
+    public function testCheckout()
+    {
+        $this->markTestIncomplete( 'Implementation missing...' );
+    }
 }

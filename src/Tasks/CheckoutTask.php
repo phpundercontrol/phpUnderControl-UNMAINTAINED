@@ -58,6 +58,11 @@
  */
 class phpucCheckoutTask extends phpucAbstractTask implements phpucConsoleExtensionI
 {
+    /**
+     * Performs a project checkout against the specified repository.
+     *
+     * @return void
+     */
     public function execute()
     {
         $out = phpucConsoleOutput::get();
