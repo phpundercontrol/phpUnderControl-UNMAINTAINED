@@ -319,7 +319,7 @@ class phpucConsoleInput
               || strpos( $this->argv[$idx], '-' ) === 0 )
             {
                 throw new phpucConsoleException(
-                    sprintf( 'The option %s requires an additional value.', $option )
+                    "The option '{$option}' requires an additional value."
                 );
             }
             $value = $this->argv[$idx];

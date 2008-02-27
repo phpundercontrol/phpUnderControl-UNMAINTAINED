@@ -242,6 +242,18 @@ class phpucConsoleInputDefinition implements ArrayAccess, IteratorAggregate
     }
     
     /**
+     * Checks if a command with the given <b>$cmd</b> identifier already exists. 
+     *
+     * @param string $cmd  The unique command identifier.
+     * 
+     * @return boolean
+     */
+    public function hasCommand( $cmd )
+    {
+        return isset( $this->definition[$cmd] );
+    }
+    
+    /**
      * Adds a new command to the input definition.
      *
      * @param string  $cmd  The unique command identifier.
@@ -249,9 +261,9 @@ class phpucConsoleInputDefinition implements ArrayAccess, IteratorAggregate
      * @param integer $mode The command mode, hidden or visible(normal).
      * 
      * @return void
-     * @todo phpucErrorException
-     *       If a command for the given command idenfier already exists or an
-     *       input value has an invalid format. 
+     * throws phpucErrorException
+     *        If a command for the given command idenfier already exists or an
+     *        input value has an invalid format. 
      */
     public function addCommand( $cmd, $help, $mode = self::MODE_NORMAL )
     {
@@ -275,6 +287,34 @@ class phpucConsoleInputDefinition implements ArrayAccess, IteratorAggregate
         );
     }
     
+    /**
+     * Checks if an argument named <b>$arg</b> for the given command <b>$cmd</b>
+     * exists.
+     *
+     * @param string $cmd The command identifier.
+     * @param string $arg The argument identifier.
+     * 
+     * @return boolean
+     */
+    public function hasArgument( $cmd, $arg )
+    {
+        return isset( $this->definition[$cmd]['args'][$arg] );
+    }
+    
+    /**
+     * Adds a new command line argument for the specified <b>$cmd</b>.
+     *
+     * @param string  $cmd       The associated command identifier.
+     * @param string  $arg       The argument identifier.
+     * @param string  $help      The help text for the argument.
+     * @param boolean $mandatory Marks this argument as mandatory.
+     * 
+     * @return void
+     * @throws phpucErrorException
+     *         If no command for the given identifier exists. If an argument with
+     *         an equal argument identifier exists. If the mandatory parameter
+     *         is not of type <b>boolean</b>.
+     */
     public function addArgument( $cmd, $arg, $help, $mandatory = true )
     {
         if ( !isset( $this->definition[$cmd] ) )
@@ -302,6 +342,15 @@ class phpucConsoleInputDefinition implements ArrayAccess, IteratorAggregate
         );
     }
     
+    /**
+     * Checks if an option named <b>$opt</b> for the given command <b>$cmd</b>
+     * exists.
+     *
+     * @param string $cmd The command identifier.
+     * @param string $opt The option identifier.
+     * 
+     * @return boolean
+     */
     public function hasOption( $cmd, $opt )
     {
         foreach ( $this->definition[$cmd]['options'] as $option )
@@ -314,6 +363,36 @@ class phpucConsoleInputDefinition implements ArrayAccess, IteratorAggregate
         return false;
     }
     
+    /**
+     * Adds a new option to the given command <b>$cmd</b>.
+     *
+     * @param string $cmd 
+     *        The command identifier.
+     * @param string $short
+     *        The short cli identifier for this option. 
+     * @param string $long 
+     *        The long cli identifier for this option.  
+     * @param string $help
+     *        The cli help text for this option.
+     * @param boolean|string|array|null $arg
+     *        Defines if this option has an argument and what it should be. If
+     *        this parameter is of type <b>string</b> it is used as a regular
+     *        expression for input validation. If this parameter is an <b>array</b>
+     *        it is used as whitelist. 
+     * @param string|null $default
+     *        An optional default value for this option.
+     * @param boolean $mandatory
+     *        Marks this option as mandatory.
+     * @param integer $mode 
+     *        The command mode, hidden or visible(normal).
+     *        
+     * @return void
+     * @throws phpucErrorException
+     *         If no command for the given identifier exists. If an option with
+     *         an equal <b>$long</b> or <b>$short</b> identifier exists. If the 
+     *         mandatory parameter is not of type <b>boolean</b>. If the 
+     *         <b>$mode</b> parameter has an invalid format. 
+     */
     public function addOption( $cmd, 
                                $short, 
                                $long, 
@@ -326,7 +405,7 @@ class phpucConsoleInputDefinition implements ArrayAccess, IteratorAggregate
         if ( !isset( $this->definition[$cmd] ) )
         {
             throw new phpucErrorException(
-                "The command '{$cmd}' for '{$arg}' doesn't exist."
+                "The command '{$cmd}' for option '{$long}' doesn't exist."
             );
         }
         
@@ -346,7 +425,7 @@ class phpucConsoleInputDefinition implements ArrayAccess, IteratorAggregate
         if ( !is_bool( $mandatory ) )
         {
             throw new phpucErrorException( 
-                'The mandatory parameter must be of type boolean.' 
+                'The mandatory parameter must be of type boolean.'
             );
         }
     
@@ -442,6 +521,11 @@ class phpucConsoleInputDefinition implements ArrayAccess, IteratorAggregate
         // Nothing todo here
     }
     
+    /**
+     * Registers the available phpUnderControl commands and their options.
+     *
+     * @return void
+     */
     protected function registerCommands()
     {
         $files = new phpucPhpFileFilterIterator(

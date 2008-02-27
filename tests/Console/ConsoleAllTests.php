@@ -51,6 +51,8 @@ require_once 'PHPUnit/Framework/TestSuite.php';
 require_once 'PHPUnit/TextUI/TestRunner.php';
 
 require_once dirname( __FILE__ ) . '/ConsoleArgsTest.php';
+require_once dirname( __FILE__ ) . '/ConsoleInputDefinitionTest.php';
+require_once dirname( __FILE__ ) . '/ConsoleInputTest.php';
 
 /**
  * Main test suite for phpUnderControl Console package.
@@ -83,6 +85,8 @@ class phpucConsoleAllTests
     {
         $suite = new PHPUnit_Framework_TestSuite( 'phpUnderControl - ConsoleAllTests' );
         $suite->addTestSuite( 'phpucConsoleArgsTest' );
+        $suite->addTestSuite( 'phpucConsoleInputDefinitionTest' );
+        $suite->addTestSuite( 'phpucConsoleInputTest' );
 
         return $suite;
     }
