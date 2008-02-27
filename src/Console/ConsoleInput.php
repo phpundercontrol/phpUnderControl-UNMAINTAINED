@@ -115,10 +115,21 @@ class phpucConsoleInput
     
     /**
      * The ctor checks the current script environment.
+     * 
+     * @param phpucConsoleInputDefinition $definition
+     *        An optional input definition instance that is used by the input
+     *        parser.
      */
-    public function __construct()
+    public function __construct( phpucConsoleInputDefinition $definition = null )
     {
-        $this->commands = new phpucConsoleInputDefinition();
+        if ( $definition === null )
+        {
+            $this->commands = new phpucConsoleInputDefinition();
+        }
+        else
+        {
+            $this->commands = $definition;
+        }
         
         if ( isset( $GLOBALS['argv'] ) )
         {
@@ -279,10 +290,7 @@ class phpucConsoleInput
                 else if ( !isset( $opt['default'] ) )
                 {
                     throw new phpucConsoleException(
-                        sprintf( 
-                            'The option %s is marked as mandatory and not set.', 
-                            $long
-                        ) 
+                        "The option '{$long}' is marked as mandatory and not set."
                     );                 
                 }
                 
