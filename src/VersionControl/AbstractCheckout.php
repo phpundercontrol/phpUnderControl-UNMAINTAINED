@@ -67,6 +67,41 @@
  */
 abstract class phpucAbstractCheckout implements phpucCheckoutI
 {
+    public static function createCheckout( phpucConsoleArgs $args )
+    {
+        switch ( $args->getOption( 'version-control' ) )
+        {
+            case 'svn':
+                $checkout = new phpucSubversionCheckout(); 
+                break;
+                
+            case 'cvs':
+                $checkout         = new phpucCvsCheckout();
+                $checkout->module = $args->getOption( 'module' );
+                break;
+                
+                
+            default:
+                throw new phpucErrorException(
+                    "Unknown checkout type '{$args->getOption( 'version-control' )}'"
+                );
+        }
+        
+        $checkout->url  = $args->getOption( 'version-control-url' );
+        $checkout->dest = $args->getOption( 'destination' );
+        
+        if ( $args->hasOption( 'username' ) )
+        {
+            $checkout->username = $args->getOption( 'username' );
+        }
+        if ( $args->hasOption( 'password' ) )
+        {
+            $checkout->username = $args->getOption( 'password' );
+        }
+        
+        return $checkout;
+    }
+    
     /**
      * Virtual properties for the setting implementation.
      *

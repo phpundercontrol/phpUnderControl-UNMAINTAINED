@@ -80,22 +80,7 @@ class phpucCheckoutTask extends phpucAbstractTask implements phpucConsoleExtensi
         // Switch working dir to the CruiseControl project directory
         chdir( $projectPath );
         
-        $checkout = null;
-        switch ( $this->args->getOption( 'version-control' ) )
-        {
-            case 'svn':
-                $checkout = new phpucSubversionCheckout();
-                break;
-                
-            case 'cvs':
-                $checkout = new phpucCvsCheckout();
-                break;
-        }
-        
-        
-        
-        $checkout->url  = $this->args->getOption( 'version-control-url' );
-        $checkout->dest = $this->args->getOption( 'destination' );
+        $checkout = phpucAbstractCheckout::createCheckout( $this->args );
         $checkout->checkout();
         
         chdir( $cwd );

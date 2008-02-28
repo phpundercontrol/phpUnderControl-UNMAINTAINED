@@ -60,8 +60,43 @@ require_once dirname( __FILE__ ) . '/AbstractTaskTest.php';
  */
 class phpucCheckoutTaskTest extends phpucAbstractTest
 {
+    protected function setUp()
+    {
+        parent::setUp();
+        
+        $this->createTestDirectories(
+            array( 'projects', 'projects/php-under-control' )
+        );
+    }
+    
     public function testCheckout()
     {
-        $this->markTestIncomplete( 'Implementation missing...' );
+        $directory = PHPUC_TEST_DIR . '/projects/php-under-control/source/PHP';
+        
+        $this->prepareArgv(
+            array(
+                'project',
+                '-j',
+                'php-under-control',
+                '-y',
+                'svn',
+                '-x',
+                'svn://svn.xplib.de/PHP_Depend/trunk',
+                '-d',
+                'source',
+                PHPUC_TEST_DIR
+            )
+        );
+        
+        $input = new phpucConsoleInput();
+        $input->parse();
+        
+        $this->assertFileNotExists( $directory );
+        
+        $checkout = new phpucCheckoutTask();
+        $checkout->setConsoleArgs( $input->args );
+        $checkout->execute();
+        
+        $this->assertFileExists( $directory );
     }
 }
