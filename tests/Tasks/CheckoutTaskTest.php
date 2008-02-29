@@ -61,30 +61,77 @@ require_once dirname( __FILE__ ) . '/AbstractTaskTest.php';
 class phpucCheckoutTaskTest extends phpucAbstractTaskTest
 {
     /**
+     * Creates a dummy CruiseControl structure.
+     *
+     * @return void
+     */
+    protected function setUp()
+    {
+        parent::setUp();
+        
+        $this->createCCSkeleton();
+    }
+    
+    /**
      * Tests a subversion checkout.
      *
      * @return void
      */
     public function testSubversionCheckout()
     {
-        $this->createCCSkeleton();
-        
-        $directory = PHPUC_TEST_DIR . "/projects/{$this->projectName}/source";
-        
         $this->prepareArgv(
             array(
                 'project',
                 '-j',
                 $this->projectName,
-                '-y',
+                '-v',
                 'svn',
                 '-x',
                 'svn://svn.xplib.de/PHP_Depend/trunk',
-                '-d',
-                'source',
                 PHPUC_TEST_DIR
             )
         );
+        
+        $this->doTestCheckout( 'svn' );
+    }
+    
+    /**
+     * Tests a CVS checkout.
+     *
+     * @return void
+     */
+    public function testCvsCheckout()
+    {
+        $this->prepareArgv(
+            array(
+                'project',
+                '-j',
+                $this->projectName,
+                '-v',
+                'cvs',
+                '-x',
+                'xplib.de:/cvs',
+                '-u',
+                'anonymous',
+                '-m',
+                'PHP_Depend',
+                PHPUC_TEST_DIR
+            )
+        );
+        
+        $this->doTestCheckout( 'cvs' );
+    }
+    
+    /**
+     * Executes the {@link phpucCheckoutTask} and tests the generated contents.
+     *
+     * @param string $type The version control system.
+     * 
+     * @return void
+     */
+    protected function doTestCheckout( $type )
+    {
+        $directory = PHPUC_TEST_DIR . "/projects/{$this->projectName}/source";
         
         $input = new phpucConsoleInput();
         $input->parse();
@@ -99,10 +146,19 @@ class phpucCheckoutTaskTest extends phpucAbstractTaskTest
         
         $config = new DOMDocument();
         $config->load( PHPUC_TEST_DIR . '/config.xml' );
-        
         $xpath  = new DOMXPath( $config );
-        $result = $xpath->query( "//svnbootstrapper[@localWorkingCopy='{$directory}']" );
         
+        $result = $xpath->query( "//{$type}bootstrapper[@localWorkingCopy='{$directory}']" );
         $this->assertEquals( 1, $result->length );
-    } 
+        
+        $result = $xpath->query( "//modificationset/{$type}[@localWorkingCopy='{$directory}']" );
+        $this->assertEquals( 1, $result->length );
+        
+        $build = new DOMDocument();
+        $build->load( PHPUC_TEST_DIR . "/projects/{$this->projectName}/build.xml" );
+        $xpath = new DOMXPath( $build );
+
+        $result = $xpath->query( '//target[@name="checkout"]/exec[@dir="${basedir}/source"]' );
+        $this->assertEquals( 1, $result->length );
+    }
 }

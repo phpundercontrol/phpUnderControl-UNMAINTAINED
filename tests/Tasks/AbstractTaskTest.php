@@ -102,6 +102,7 @@ abstract class phpucAbstractTaskTest extends phpucAbstractTest
             sprintf(
                 '<?xml version="1.0" encoding="UTF-8"?>
                  <project name="%s" basedir="." default="build">
+                   <target name="build" />
                  </project>',
                  $this->projectName
             )    
