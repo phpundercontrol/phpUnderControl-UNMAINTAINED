@@ -208,7 +208,7 @@ class phpucBuildTarget
                 if ( !is_bool( $value ) )
                 {
                     throw new InvalidArgumentException(
-                        sprintf( 'The property $%s must be an boolean.', $name )
+                        sprintf( 'The property $%s must be a boolean.', $name )
                     );
                 }
                 $this->properties[$name] = $value;
