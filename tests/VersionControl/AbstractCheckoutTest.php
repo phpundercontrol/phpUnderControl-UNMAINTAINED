@@ -1,8 +1,10 @@
 <?php
 /**
  * This file is part of phpUnderControl.
+ * 
+ * PHP Version 5.2.4
  *
- * Copyright (c) 2007-2008, Manuel Pichler <mapi@phpundercontrol.org>.
+ * Copyright (c) 2007-2008, Manuel Pichler <mapi@manuel-pichler.de>.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -34,69 +36,69 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  * 
- * @package   Data
- * @author    Manuel Pichler <mapi@phpundercontrol.org>
+ * @category  QualityAssurance
+ * @package   VersionControl
+ * @author    Manuel Pichler <mapi@manuel-pichler.de>
  * @copyright 2007-2008 Manuel Pichler. All rights reserved.
  * @license   http://www.opensource.org/licenses/bsd-license.php  BSD License
  * @version   SVN: $Id$
  * @link      http://www.phpundercontrol.org/
  */
 
-if ( defined( 'PHPUnit_MAIN_METHOD' ) === false )
-{
-    define( 'PHPUnit_MAIN_METHOD', 'phpucDataAllTests::main' );
-}
-
-require_once 'PHPUnit/Framework/TestSuite.php';
-require_once 'PHPUnit/TextUI/TestRunner.php';
-
-require_once dirname( __FILE__ ) . '/BuildFileTest.php';
-require_once dirname( __FILE__ ) . '/BuildTargetTest.php';
-require_once dirname( __FILE__ ) . '/ConfigFileTest.php';
-require_once dirname( __FILE__ ) . '/ConfigProjectTest.php';
-require_once dirname( __FILE__ ) . '/LogFileTest.php';
+require_once dirname( __FILE__ ) . '/../AbstractTest.php';
 
 /**
- * Main test suite for phpUnderControl Data.
+ * Abstract base test case.
  *
- * @package   Data
- * @author    Manuel Pichler <mapi@phpundercontrol.org>
+ * @category  QualityAssurance
+ * @package   VersionControl
+ * @author    Manuel Pichler <mapi@manuel-pichler.de>
  * @copyright 2007-2008 Manuel Pichler. All rights reserved.
  * @license   http://www.opensource.org/licenses/bsd-license.php  BSD License
  * @version   Release: @package_version@
  * @link      http://www.phpundercontrol.org/
  */
-class phpucDataAllTests
+abstract class phpucAbstractCheckoutTest extends phpucAbstractTest
 {
     /**
-     * Test suite main method.
+     * Tests that the magic __get() method fails with an exception for an unknown
+     * property.
      *
      * @return void
      */
-    public static function main()
+    public function testGetterUnknownPropertyFail()
     {
-        PHPUnit_TextUI_TestRunner::run( self::suite() );
+        $this->setExpectedException(
+            'OutOfRangeException',
+            'Unknown or writonly property $phpuc.'
+        );
+        
+        $checkout = $this->createCheckout();
+        echo $checkout->phpuc;
     }
     
     /**
-     * Creates the phpunit test suite for this package.
+     * Tests that the magic __set() method fails with an exception for an unknown
+     * property.
      *
-     * @return PHPUnit_Framework_TestSuite
+     * @return void
      */
-    public static function suite()
+    public function testSetterUnknownPropertyFail()
     {
-        $suite = new PHPUnit_Framework_TestSuite( 'phpUnderControl - DataAllTest' );
-        $suite->addTestSuite( 'phpucBuildFileTest' );
-        $suite->addTestSuite( 'phpucBuildTargetTest' );
-        $suite->addTestSuite( 'phpucConfigFileTest' );
-        $suite->addTestSuite( 'phpucConfigProjectTest' );
-        $suite->addTestSuite( 'phpucLogFileTest' );
-
-        return $suite;
+        $this->setExpectedException(
+            'OutOfRangeException',
+            'Unknown or readonly property $phpuc.'
+        );
+        
+        $checkout = $this->createCheckout();
+        $checkout->phpuc = true;
     }
-}
-
-if ( PHPUnit_MAIN_METHOD === 'phpucDataAllTests::main' )
-{
-    phpucDataAllTests::main();
+    
+    /**
+     * Test factory method.
+     *
+     * @return phpucCheckoutI
+     */
+    protected abstract function createCheckout();
+    
 }

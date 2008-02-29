@@ -1,8 +1,10 @@
 <?php
 /**
  * This file is part of phpUnderControl.
+ * 
+ * PHP Version 5.2.4
  *
- * Copyright (c) 2007-2008, Manuel Pichler <mapi@phpundercontrol.org>.
+ * Copyright (c) 2007-2008, Manuel Pichler <mapi@manuel-pichler.de>.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -34,69 +36,83 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  * 
+ * @category  QualityAssurance
  * @package   Data
- * @author    Manuel Pichler <mapi@phpundercontrol.org>
+ * @author    Manuel Pichler <mapi@manuel-pichler.de>
  * @copyright 2007-2008 Manuel Pichler. All rights reserved.
  * @license   http://www.opensource.org/licenses/bsd-license.php  BSD License
  * @version   SVN: $Id$
  * @link      http://www.phpundercontrol.org/
  */
 
-if ( defined( 'PHPUnit_MAIN_METHOD' ) === false )
-{
-    define( 'PHPUnit_MAIN_METHOD', 'phpucDataAllTests::main' );
-}
-
-require_once 'PHPUnit/Framework/TestSuite.php';
-require_once 'PHPUnit/TextUI/TestRunner.php';
-
-require_once dirname( __FILE__ ) . '/BuildFileTest.php';
-require_once dirname( __FILE__ ) . '/BuildTargetTest.php';
-require_once dirname( __FILE__ ) . '/ConfigFileTest.php';
-require_once dirname( __FILE__ ) . '/ConfigProjectTest.php';
-require_once dirname( __FILE__ ) . '/LogFileTest.php';
+require_once dirname( __FILE__ ) . '/../AbstractTest.php';
 
 /**
- * Main test suite for phpUnderControl Data.
+ * Test case for the CruiseControl log file.
  *
+ * @category  QualityAssurance
  * @package   Data
- * @author    Manuel Pichler <mapi@phpundercontrol.org>
+ * @author    Manuel Pichler <mapi@manuel-pichler.de>
  * @copyright 2007-2008 Manuel Pichler. All rights reserved.
  * @license   http://www.opensource.org/licenses/bsd-license.php  BSD License
  * @version   Release: @package_version@
  * @link      http://www.phpundercontrol.org/
  */
-class phpucDataAllTests
+class phpucLogFileTest extends phpucAbstractTest
 {
     /**
-     * Test suite main method.
+     * Test the timestamp extraction for a good build.
      *
      * @return void
      */
-    public static function main()
+    public function testLogTimestampGoodBuild()
     {
-        PHPUnit_TextUI_TestRunner::run( self::suite() );
+        $log = new phpucLogFile( PHPUC_TEST_LOGS . '/log20071211220903Lbuild.3.xml' );
+        $this->assertEquals( '20071211220903', $log->timestamp );
+    }
+
+    /**
+     * Test the timestamp extraction for a broken build.
+     *
+     * @return void
+     */
+    public function testLogTimestampBrokenBuild()
+    {
+        $log = new phpucLogFile( PHPUC_TEST_LOGS . '/log20080113145726.xml' );
+        $this->assertEquals( '20080113145726', $log->timestamp );
     }
     
     /**
-     * Creates the phpunit test suite for this package.
+     * Tests that the magic __get() method fails with an exception for an unknown
+     * property.
      *
-     * @return PHPUnit_Framework_TestSuite
+     * @return void
      */
-    public static function suite()
+    public function testGetterUnknownPropertyFail()
     {
-        $suite = new PHPUnit_Framework_TestSuite( 'phpUnderControl - DataAllTest' );
-        $suite->addTestSuite( 'phpucBuildFileTest' );
-        $suite->addTestSuite( 'phpucBuildTargetTest' );
-        $suite->addTestSuite( 'phpucConfigFileTest' );
-        $suite->addTestSuite( 'phpucConfigProjectTest' );
-        $suite->addTestSuite( 'phpucLogFileTest' );
-
-        return $suite;
+        $this->setExpectedException(
+            'OutOfRangeException',
+            'Unknown or writonly property $phpuc.'
+        );
+        
+        $log = new phpucLogFile( PHPUC_TEST_LOGS . '/log20080113145726.xml' );
+        $tmp = $log->phpuc;
     }
-}
-
-if ( PHPUnit_MAIN_METHOD === 'phpucDataAllTests::main' )
-{
-    phpucDataAllTests::main();
+    
+    /**
+     * Tests that every call to the magic __set() method fails with an exception.
+     *
+     * @return void
+     */
+    public function testPropertySetterFail()
+    {
+        $this->setExpectedException(
+            'OutOfRangeException',
+            'Unknown or readonly property $timestamp.'
+        );
+        
+        $log = new phpucLogFile( PHPUC_TEST_LOGS . '/log20080113145726.xml' );
+        
+        $log->timestamp = '1234567890';
+    }
 }

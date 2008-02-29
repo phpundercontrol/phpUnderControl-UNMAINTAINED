@@ -165,4 +165,22 @@ class phpucBuildFileTest extends phpucAbstractTest
         }
         catch ( OutOfRangeException $e ) {}
     }
+    
+    /**
+     * Tests that the magic __get() method fails with an exception for an unknown
+     * property.
+     *
+     * @return void
+     */
+    public function testGetterUnknownPropertyFail()
+    {
+        $this->setExpectedException(
+            'OutOfRangeException',
+            'Unknown or writonly property $phpuc.'
+        );
+        
+        $buildFile = new phpucBuildFile( $this->fileName, $this->projectName );
+        
+        echo $buildFile->phpuc;
+    }
 }

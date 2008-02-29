@@ -91,4 +91,100 @@ class phpucConfigProjectTest extends phpucAbstractConfigTest
         $this->assertSame( $this->config, $project->configFile );
         $this->assertEquals( 'phpUnderControl', $project->projectName );
     }
+    
+    /**
+     * Tests that the magic __get() method fails with an exception for an unknown
+     * property.
+     *
+     * @return void
+     */
+    public function testGetterUnknownPropertyFail()
+    {
+        $this->setExpectedException(
+            'OutOfRangeException',
+            'Unknown or writonly property $phpuc.'
+        );
+        
+        $project = new phpucConfigProject( $this->config, 'phpUnderControl' );
+        $phpuc   = $project->phpuc;
+    }
+    
+    /**
+     * Tests that the magic setter method for the $interval property fails with
+     * an exception for a non integer.
+     *
+     * @return void
+     */
+    public function testIntervalSetterInvalidTypeFail()
+    {
+        $this->setExpectedException(
+            'InvalidArgumentException',
+            'Property $interval must be a positive integer.'
+        );
+        
+        $project = new phpucConfigProject( $this->config, 'phpUnderControl' );
+        $project->interval = false;
+    }
+    
+    /**
+     * Tests that the magic setter method for the $interval property fails with
+     * an exception for a negative integer.
+     *
+     * @return void
+     */
+    public function testIntervalSetterNegativeValueFail()
+    {
+        $this->setExpectedException(
+            'InvalidArgumentException',
+            'Property $interval must be a positive integer.'
+        );
+        
+        $project = new phpucConfigProject( $this->config, 'phpUnderControl' );
+        $project->interval = -1;
+    }
+    
+    /**
+     * Tests that the magic __set() method fails with an exception for an unknown
+     * property.
+     *
+     * @return void
+     */
+    public function testSetterUnknownPropertyFail()
+    {
+        $this->setExpectedException(
+            'OutOfRangeException',
+            'Unknown or readonly property $phpuc.'
+        );
+        
+        $project = new phpucConfigProject( $this->config, 'phpUnderControl' );
+        $project->phpuc = true;
+    }
+    
+    /**
+     * Tests that the config project fails with an exception if there is more 
+     * than one project with the same name.
+     *
+     * @return void
+     */
+    public function testProjectCtorWithTwoEqualProjectsFail()
+    {
+        $this->createTestFile( 
+            '/config.xml',
+            '<?xml version="1.0"?>
+             <cruisecontrol>
+               <project name="phpUnderControl" />
+               <project name="phpUnderControl" />
+             </cruisecontrol>'
+        );
+        
+        $this->setExpectedException(
+            'phpucErrorException',
+            "There is more than one project named 'phpUnderControl'."
+        );
+        
+        $config  = new phpucConfigFile( $this->testFile );
+        $project = new phpucConfigProject( $config, 'phpUnderControl' );
+        
+        $this->config = new phpucConfigFile( $this->testFile );
+    }
 }

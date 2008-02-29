@@ -45,7 +45,7 @@
  * @link      http://www.phpundercontrol.org/
  */
 
-require_once dirname( __FILE__ ) . '/../AbstractTest.php';
+require_once dirname( __FILE__ ) . '/AbstractCheckoutTest.php';
 
 /**
  * Test case for the cvs checkout.
@@ -58,7 +58,7 @@ require_once dirname( __FILE__ ) . '/../AbstractTest.php';
  * @version   Release: @package_version@
  * @link      http://www.phpundercontrol.org/
  */
-class phpucCvsCheckoutTest extends phpucAbstractTest
+class phpucCvsCheckoutTest extends phpucAbstractCheckoutTest
 {
     /**
      * The current working directory.
@@ -182,4 +182,13 @@ class phpucCvsCheckoutTest extends phpucAbstractTest
         $checkout->checkout();
     }
     
+    /**
+     * Test factory method.
+     *
+     * @return phpucCheckoutI
+     */
+    protected function createCheckout()
+    {
+        return new phpucCvsCheckout();
+    }
 }

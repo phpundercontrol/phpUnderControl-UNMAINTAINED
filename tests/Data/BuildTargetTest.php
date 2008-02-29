@@ -172,4 +172,42 @@ class phpucBuildTargetTest extends phpucAbstractTest
         }
         catch ( OutOfRangeException $e ) {}
     }
+    
+    /**
+     * Tests that the magic __get() method fails with an exception for an unknown
+     * property.
+     *
+     * @return void
+     */
+    public function testGetterUnknownPropertyFail()
+    {
+        $buildFile = new phpucBuildFile( $this->fileName, $this->projectName );
+        
+        $this->setExpectedException(
+            'OutOfRangeException',
+            'Unknown or writonly property $phpuc.'
+        );
+        
+        $target = $buildFile->createBuildTarget( 'phpuc' );
+        echo $target->phpuc;
+    }
+    
+    /**
+     * Tests that the magic setter method for the $failonerror property fails 
+     * with an exception for a non boolean value.
+     *
+     * @return void
+     */
+    public function testFailOnErrorSetterInvalidTypeFail()
+    {
+        $buildFile = new phpucBuildFile( $this->fileName, $this->projectName );
+        
+        $this->setExpectedException(
+            'InvalidArgumentException',
+            'The property $failonerror must be a boolean.'
+        );
+        
+        $target = $buildFile->createBuildTarget( 'phpuc' );
+        $target->failonerror = 'Test';
+    }
 }

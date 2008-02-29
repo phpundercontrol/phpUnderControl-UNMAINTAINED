@@ -45,7 +45,7 @@
  * @link      http://www.phpundercontrol.org/
  */
 
-require_once dirname( __FILE__ ) . '/../AbstractTest.php';
+require_once dirname( __FILE__ ) . '/AbstractCheckoutTest.php';
 
 /**
  * Test case for the subversion checkout.
@@ -58,7 +58,7 @@ require_once dirname( __FILE__ ) . '/../AbstractTest.php';
  * @version   Release: @package_version@
  * @link      http://www.phpundercontrol.org/
  */
-class phpucSubversionCheckoutTest extends phpucAbstractTest
+class phpucSubversionCheckoutTest extends phpucAbstractCheckoutTest
 {
     /**
      * The current working directory.
@@ -277,5 +277,15 @@ class phpucSubversionCheckoutTest extends phpucAbstractTest
         $this->assertFileExists( $checkFile1 );
         $this->assertFileExists( $checkFile2 );
         $this->assertFileExists( $checkFile3 );
+    }
+    
+    /**
+     * Test factory method.
+     *
+     * @return phpucCheckoutI
+     */
+    protected function createCheckout()
+    {
+        return new phpucSubversionCheckout();
     }
 }

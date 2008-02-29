@@ -155,4 +155,48 @@ class phpucConsoleInputTest extends phpucAbstractTest
         $input = new phpucConsoleInput( $definition );
         $input->parse();
     }
+    
+    /**
+     * Tests that the magic __get() method fails with an exception for an unknown
+     * property.
+     *
+     * @return void
+     */
+    public function testGetterUnknownPropertyFail()
+    {
+        $this->setExpectedException(
+            'OutOfRangeException',
+            'Unknown or writonly property $phpuc.'
+        );
+        
+        $definition = new phpucConsoleInputDefinition();
+        
+        $this->prepareArgv( array( '--version' ) );
+        
+        $input = new phpucConsoleInput( $definition );
+        $phpuc = $input->phpuc;
+    }
+    
+    /**
+     * Tests the returns version information.
+     * 
+     * @return void
+     */
+    public function testConsoleInputVersion()
+    {
+        phpucConsoleOutput::get()->reset();
+        
+        $definition = new phpucConsoleInputDefinition();
+        
+        $this->prepareArgv( array( '--version' ) );
+        
+        $input = new phpucConsoleInput( $definition );
+        $input->parse();
+        
+        $text = trim( phpucConsoleOutput::get()->getBuffer() );
+        
+        $this->assertEquals( 
+            'phpUnderControl @package_version@ by Manuel Pichler.', $text
+        );
+    }
 }
