@@ -88,6 +88,14 @@ class phpucConfigProject
     protected $publishers = array();
     
     /**
+     * List of all registered boot strappers.
+     *
+     * @type array<phpucConfigBootStrapper>
+     * @var array(phpucConfigBootStrapper) $bootStrappers
+     */
+    protected $bootStrappers = array();
+    
+    /**
      * Denotes that this project object is new and not loaded from the 
      * config.xml file.
      *
@@ -240,6 +248,20 @@ class phpucConfigProject
     }
     
     /**
+     * Creates a new boot strapper for this project.
+     *
+     * @return phpucConfigBootStrapper
+     */
+    public function createBootStrapper()
+    {
+        $bootStrapper = new phpucConfigBootStrapper( $this );
+        
+        $this->bootStrappers[] = $bootStrapper;
+        
+        return $bootStrapper;
+    }
+    
+    /**
      * Builds/Rebuilds the project xml document.
      *
      * @return void
@@ -253,6 +275,10 @@ class phpucConfigProject
         foreach ( $this->publishers as $publisher )
         {
             $publisher->buildXml();
+        }
+        foreach ( $this->bootStrappers as $bootStrapper )
+        {
+            $bootStrapper->buildXml();
         }
     }
     

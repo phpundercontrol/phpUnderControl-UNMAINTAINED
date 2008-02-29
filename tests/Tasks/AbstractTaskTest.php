@@ -69,6 +69,46 @@ abstract class phpucAbstractTaskTest extends phpucAbstractTest
     protected $projectName = 'test-project';
     
     /**
+     * Creates some directories that fake the CruiseControl directory structure.
+     *
+     * @return void
+     */
+    protected function createCCSkeleton()
+    {
+        $this->createTestDirectories(
+            array(
+                'projects',
+                "projects/{$this->projectName}",
+                'logs',
+                "logs/{$this->projectName}",
+            )
+        );
+        
+        // Create CruiseControl config
+        $this->createCCConfig();
+        // Create empty and build file
+        $this->createCCBuild();
+    }
+    
+    /**
+     * Create an empty ant build xml file.
+     *
+     * @return void
+     */
+    protected function createCCBuild()
+    {
+        file_put_contents(
+            PHPUC_TEST_DIR . "/projects/{$this->projectName}/build.xml",
+            sprintf(
+                '<?xml version="1.0" encoding="UTF-8"?>
+                 <project name="%s" basedir="." default="build">
+                 </project>',
+                 $this->projectName
+            )    
+        );
+    }
+    
+    /**
      * Creates a default cruisecontrol config with the test project.
      *
      * @return void
@@ -81,6 +121,8 @@ abstract class phpucAbstractTaskTest extends phpucAbstractTest
                 '<?xml version="1.0"?>
                  <cruisecontrol>
                    <project name="%s" buildafterfailed="false">
+                     <modificationset />
+                     <bootstrappers />
                      <schedule>
                        <ant anthome="/" interval="0" />
                      </schedule>

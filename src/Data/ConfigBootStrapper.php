@@ -4,7 +4,7 @@
  * 
  * PHP Version 5.2.4
  *
- * Copyright (c) 2007-2008, Manuel Pichler <mapi@phpundercontrol.org>.
+ * Copyright (c) 2007-2008, Manuel Pichler <mapi@manuel-pichler.de>.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -38,7 +38,7 @@
  * 
  * @category  QualityAssurance
  * @package   Data
- * @author    Manuel Pichler <mapi@phpundercontrol.org>
+ * @author    Manuel Pichler <mapi@manuel-pichler.de>
  * @copyright 2007-2008 Manuel Pichler. All rights reserved.
  * @license   http://www.opensource.org/licenses/bsd-license.php  BSD License
  * @version   SVN: $Id$
@@ -46,21 +46,26 @@
  */
 
 /**
- * Abstraction for the CruiseControl <execute> tag.
+ * Abstraction for the CruiseControl <(cvs|svn)bootstrapper> tags.
  *
  * @category  QualityAssurance
  * @package   Data
- * @author    Manuel Pichler <mapi@phpundercontrol.org>
+ * @author    Manuel Pichler <mapi@manuel-pichler.de>
  * @copyright 2007-2008 Manuel Pichler. All rights reserved.
  * @license   http://www.opensource.org/licenses/bsd-license.php  BSD License
  * @version   Release: @package_version@
  * @link      http://www.phpundercontrol.org/
  * 
- * @property      string             $command The full command for execution.
- * @property-read DOMElement         $element The execute xml element. 
- * @property-read phpucConfigProject $project The parent project instance.
+ * @property string $localWorkingCopy
+ *           Path to the local copy of the Subversion repository or the CVS 
+ *           module which contains the project sources.
+ * @property string $strapperType
+ *           The used boot strapper type. At the moment only CVS and Subversion
+ *           are supported types.
+ * @property-read phpucConfigProject $project 
+ *                The parent project instance.
  */
-class phpucConfigExecutePublisher implements phpucConfigPublisherI
+class phpucConfigBootStrapper
 {
     /**
      * Magic properties for the artifact publisher tag.
@@ -69,9 +74,9 @@ class phpucConfigExecutePublisher implements phpucConfigPublisherI
      * @var array(string=>mixed) $properties
      */
     protected $properties = array(
-        'element'  =>  null,
-        'project'  =>  null,
-        'command'  =>  null
+        'localWorkingCopy'  =>  null,
+        'strapperType'      =>  null,
+        'project'           =>  null,
     );
     
     /**
@@ -82,12 +87,6 @@ class phpucConfigExecutePublisher implements phpucConfigPublisherI
     public function __construct( phpucConfigProject $project )
     {
         $this->properties['project'] = $project;
-        $this->properties['element'] = $project->element
-                                               ->ownerDocument
-                                               ->createElement( 'execute' );
-                                               
-        $publishers = $project->element->getElementsByTagName( 'publishers' );
-        $publishers->item( 0 )->appendChild( $this->element );
     }
     
     /**
@@ -128,7 +127,17 @@ class phpucConfigExecutePublisher implements phpucConfigPublisherI
     {
         switch ( $name )
         {
-            case 'command':
+            case 'localWorkingCopy':
+                $this->properties[$name] = $value;
+                break;
+                
+            case 'strapperType':
+                if ( !in_array( $value, array( 'cvs', 'svn' ) ) )
+                {
+                    throw new InvalidArgumentException(
+                        'Invalid value for the $strapperType property.'
+                    );
+                }
                 $this->properties[$name] = $value;
                 break;
 
@@ -147,6 +156,17 @@ class phpucConfigExecutePublisher implements phpucConfigPublisherI
      */
     public function buildXml()
     {
-        $this->element->setAttribute( 'command', $this->command );
+        $elemName = "{$this->strapperType}bootstrapper";
+        
+        $element = $this->project
+                        ->element
+                        ->ownerDocument
+                        ->createElement( $elemName );
+        $element->setAttribute( 'localWorkingCopy', $this->localWorkingCopy );
+                        
+        $bootstrappers = $this->project
+                              ->element
+                              ->getElementsByTagName( 'bootstrappers' );
+        $bootstrappers->item( 0 )->appendChild( $element );
     }
 }

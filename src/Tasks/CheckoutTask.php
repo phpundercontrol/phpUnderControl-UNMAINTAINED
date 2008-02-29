@@ -67,9 +67,12 @@ class phpucCheckoutTask extends phpucAbstractTask implements phpucConsoleExtensi
     {
         $out = phpucConsoleOutput::get();
         $out->writeLine( 'Performing checkout task.' );
+        $out->startList();
         
         // Get current working dir
         $cwd = getcwd();
+        
+        $out->writeListItem( 'Checking out project.' );
         
         $projectPath = sprintf(
             '%s/projects/%s',
@@ -84,6 +87,22 @@ class phpucCheckoutTask extends phpucAbstractTask implements phpucConsoleExtensi
         $checkout->checkout();
         
         chdir( $cwd );
+        
+        $out->writeListItem( 'Preparing config.xml file.' );
+        
+        $fileName = sprintf(
+            '%s/config.xml',
+            $this->args->getArgument( 'cc-install-dir' )
+        );
+        
+        $config  = new phpucConfigFile( $fileName );
+        $project = $config->getProject( $this->args->getOption( 'project-name' ) );
+        
+        $strapper                   = $project->createBootStrapper();
+        $strapper->localWorkingCopy = "{$projectPath}/source";
+        $strapper->strapperType     = $this->args->getOption( 'version-control' );
+        
+        $config->save();
         
         $out->writeLine();
     }

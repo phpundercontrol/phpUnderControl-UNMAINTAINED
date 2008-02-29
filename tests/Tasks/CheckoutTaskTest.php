@@ -58,26 +58,24 @@ require_once dirname( __FILE__ ) . '/AbstractTaskTest.php';
  * @version   Release: @package_version@
  * @link      http://www.phpundercontrol.org/
  */
-class phpucCheckoutTaskTest extends phpucAbstractTest
+class phpucCheckoutTaskTest extends phpucAbstractTaskTest
 {
-    protected function setUp()
+    /**
+     * Tests a subversion checkout.
+     *
+     * @return void
+     */
+    public function testSubversionCheckout()
     {
-        parent::setUp();
+        $this->createCCSkeleton();
         
-        $this->createTestDirectories(
-            array( 'projects', 'projects/php-under-control' )
-        );
-    }
-    
-    public function testCheckout()
-    {
-        $directory = PHPUC_TEST_DIR . '/projects/php-under-control/source/PHP';
+        $directory = PHPUC_TEST_DIR . "/projects/{$this->projectName}/source";
         
         $this->prepareArgv(
             array(
                 'project',
                 '-j',
-                'php-under-control',
+                $this->projectName,
                 '-y',
                 'svn',
                 '-x',
@@ -91,12 +89,20 @@ class phpucCheckoutTaskTest extends phpucAbstractTest
         $input = new phpucConsoleInput();
         $input->parse();
         
-        $this->assertFileNotExists( $directory );
+        $this->assertFileNotExists( "{$directory}/PHP" );
         
         $checkout = new phpucCheckoutTask();
         $checkout->setConsoleArgs( $input->args );
         $checkout->execute();
         
-        $this->assertFileExists( $directory );
-    }
+        $this->assertFileExists( "{$directory}/PHP" );
+        
+        $config = new DOMDocument();
+        $config->load( PHPUC_TEST_DIR . '/config.xml' );
+        
+        $xpath  = new DOMXPath( $config );
+        $result = $xpath->query( "//svnbootstrapper[@localWorkingCopy='{$directory}']" );
+        
+        $this->assertEquals( 1, $result->length );
+    } 
 }
