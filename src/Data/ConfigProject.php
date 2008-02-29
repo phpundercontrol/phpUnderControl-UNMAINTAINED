@@ -96,6 +96,14 @@ class phpucConfigProject
     protected $bootStrappers = array();
     
     /**
+     * List of all registered build triggers.
+     *
+     * @type array<phpucConfigBuildTrigger>
+     * @var array(phpucConfigBuildTrigger) $buildTriggers
+     */
+    protected $buildTriggers = array();
+    
+    /**
      * Denotes that this project object is new and not loaded from the 
      * config.xml file.
      *
@@ -262,6 +270,20 @@ class phpucConfigProject
     }
     
     /**
+     * Creates a new build trigger for this project.
+     *
+     * @return phpucConfigBuildTrigger
+     */
+    public function createBuildTrigger()
+    {
+        $buildTrigger = new phpucConfigBuildTrigger( $this );
+        
+        $this->buildTriggers[] = $buildTrigger;
+        
+        return $buildTrigger;
+    }
+    
+    /**
      * Builds/Rebuilds the project xml document.
      *
      * @return void
@@ -279,6 +301,10 @@ class phpucConfigProject
         foreach ( $this->bootStrappers as $bootStrapper )
         {
             $bootStrapper->buildXml();
+        }
+        foreach ( $this->buildTriggers as $buildTrigger )
+        {
+            $buildTrigger->buildXml();
         }
     }
     
