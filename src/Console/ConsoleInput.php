@@ -166,7 +166,7 @@ class phpucConsoleInput
             $this->printHelp();
             return false;
         }
-        else if ( $this->hasUsageOption() === true )
+        else if ( $this->hasCommand() === false && $this->hasUsageOption() === true )
         {
             $this->printUsage();
             return false;
@@ -231,6 +231,16 @@ class phpucConsoleInput
     private function hasUsageOption()
     {
         return in_array( '-u', $this->argv ) || in_array( '--usage', $this->argv );
+    }
+    
+    /**
+     * Checks the the first command line parameter is a valid command identfier.
+     *
+     * @return boolean
+     */
+    private function hasCommand()
+    {
+        return isset( $this->commands[reset( $this->argv )] );
     }
     
     /**
