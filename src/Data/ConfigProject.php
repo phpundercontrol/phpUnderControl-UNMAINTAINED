@@ -144,19 +144,6 @@ class phpucConfigProject
     }
     
     /**
-     * Magic property isset method.
-     *
-     * @param string $name The property name.
-     * 
-     * @return boolean
-     * @ignore 
-     */
-    public function __isset( $name )
-    {
-        return array_key_exists( $name, $this->properties );
-    }
-    
-    /**
      * Magic property getter method.
      *
      * @param string $name The property name.
