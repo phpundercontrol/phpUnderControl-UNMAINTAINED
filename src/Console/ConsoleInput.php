@@ -582,6 +582,8 @@ class phpucConsoleInput
      */
     private function printVersion()
     {
-        echo 'phpUnderControl @package_version@ by Manuel Pichler.', PHP_EOL, PHP_EOL;
+        $out = phpucConsoleOutput::get();
+        $out->writeLine( 'phpUnderControl @package_version@ by Manuel Pichler.' );
+        $out->writeLine();
     }
 }
