@@ -102,7 +102,23 @@ class phpucCheckoutTask extends phpucAbstractTask implements phpucConsoleExtensi
         $strapper->localWorkingCopy = "{$projectPath}/source";
         $strapper->strapperType     = $this->args->getOption( 'version-control' );
         
+        $trigger                   = $project->createBuildTrigger();
+        $trigger->localWorkingCopy = "{$projectPath}/source";
+        $trigger->triggerType      = $this->args->getOption( 'version-control' );
+        
         $config->save();
+        
+        $out->writeListItem( 'Preparing build.xml checkout target.' );
+        
+        $build  = new phpucBuildFile( "{$projectPath}/build.xml" );
+        $target = $build->createBuildTarget( 'checkout' );
+        
+        $target->executable  = phpucFileUtil::findExecutable(
+            $this->args->getOption( 'version-control' )
+        );
+        $target->failonerror = true;
+        
+        $build->save();
         
         $out->writeLine();
     }
@@ -118,7 +134,7 @@ class phpucCheckoutTask extends phpucAbstractTask implements phpucConsoleExtensi
     {
         $def->addOption(
             'project',
-            'y',
+            'v',
             'version-control',
             'The used version control system.',
             array( 'svn', 'cvs' ),
