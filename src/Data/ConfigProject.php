@@ -317,7 +317,7 @@ class phpucConfigProject
         else if ( $result->length > 1 )
         {
             throw new phpucErrorException( 
-                "There is more than one project named '{$projectName}'."
+                "There is more than one project named '{$this->projectName}'."
             );
         }
         else
