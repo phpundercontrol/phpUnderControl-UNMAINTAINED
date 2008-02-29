@@ -161,14 +161,19 @@ class phpucConsoleInput
      */
     public function parse()
     {
-        if ( $this->hasHelpOption() === true )
+        if ( $this->hasHelpOption() )
         {
             $this->printHelp();
             return false;
         }
-        else if ( $this->hasCommand() === false && $this->hasUsageOption() === true )
+        else if ( !$this->hasCommand() && $this->hasUsageOption() )
         {
             $this->printUsage();
+            return false;
+        }
+        else if ( !$this->hasCommand() && $this->hasVersionOption() )
+        {
+            $this->printVersion();
             return false;
         }
         
@@ -231,6 +236,16 @@ class phpucConsoleInput
     private function hasUsageOption()
     {
         return in_array( '-u', $this->argv ) || in_array( '--usage', $this->argv );
+    }
+    
+    /**
+     * Checks if the version option isset in the arguments.
+     *
+     * @return boolean
+     */
+    private function hasVersionOption()
+    {
+        return in_array( '-v', $this->argv ) || in_array( '--version', $this->argv );
     }
     
     /**
@@ -413,7 +428,7 @@ class phpucConsoleInput
             }
             
             printf(
-                ' -% -2s --% -23s %s%s -% -2s --% -23s %s%s',
+                ' -% -2s --% -23s %s%s -% -2s --% -23s %s%s -% -2s --% -23s %s%s',
                 'h',
                 'help',
                 'Print this help text.',
@@ -421,6 +436,10 @@ class phpucConsoleInput
                 'u',
                 'usage',
                 'Print a short usage example.',
+                PHP_EOL,
+                'v',
+                'version',
+                'Print the phpUnderControl version.',
                 PHP_EOL
             );
         }
@@ -554,5 +573,15 @@ class phpucConsoleInput
             PHP_EOL,
             $commands
         );
+    }
+    
+    /**
+     * Prints the phpUnderControl version number.
+     *
+     * @return void
+     */
+    private function printVersion()
+    {
+        echo 'phpUnderControl @package_version@ by Manuel Pichler.', PHP_EOL, PHP_EOL;
     }
 }
