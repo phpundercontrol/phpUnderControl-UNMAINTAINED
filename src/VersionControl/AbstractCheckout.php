@@ -107,22 +107,9 @@ abstract class phpucAbstractCheckout implements phpucCheckoutI
      */
     protected $properties = array(
         'url'       =>  null,
-        'dest'      =>  null,
         'password'  =>  null,
         'username'  =>  null,
     );
-    
-    /**
-     * Magic property isset method.
-     *
-     * @param string $name The property name.
-     * 
-     * @return boolean
-     */
-    public function __isset( $name )
-    {
-        return array_key_exists( $name, $this->properties );
-    }
     
     /**
      * Magic property getter method.
