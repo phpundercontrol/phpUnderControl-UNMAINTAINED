@@ -120,10 +120,10 @@ class phpucCvsCheckout extends phpucAbstractCheckout
      */
     public function checkout()
     {
-        $url = ":pserver:{$this->username}";
+        $url = ":pserver:{$this->username}:";
         if ( $this->password !== null )
         {
-            $url .= ":{$this->password}";
+            $url .= $this->password;
         }
         $url .= "@{$this->url}";
         
