@@ -78,7 +78,7 @@ class phpucSubversionCheckout extends phpucAbstractCheckout
         }
         
         $svn = phpucFileUtil::findExecutable( 'svn' );
-        $cmd = escapeshellcmd( "{$svn} co {$options} {$this->url} {$this->dest}" );
+        $cmd = escapeshellcmd( "{$svn} co {$options} {$this->url} source" );
 
         $spec = array(
             0 => array("pipe", "r"),  // stdin 

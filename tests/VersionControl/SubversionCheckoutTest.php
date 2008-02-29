@@ -61,6 +61,14 @@ require_once dirname( __FILE__ ) . '/../AbstractTest.php';
 class phpucSubversionCheckoutTest extends phpucAbstractTest
 {
     /**
+     * The current working directory.
+     *
+     * @type string
+     * @var string $cwd
+     */
+    protected $cwd = null;
+    
+    /**
      * Resets the path and os settings in {@link phpucFileUtil}.
      *
      * @return void
@@ -71,6 +79,22 @@ class phpucSubversionCheckoutTest extends phpucAbstractTest
         
         phpucFileUtil::setOS();
         phpucFileUtil::setPaths();
+        
+        $this->cwd = getcwd();
+        
+        chdir( PHPUC_TEST_DIR );
+    }
+    
+    /**
+     * Changes back to the current working dir.
+     *
+     * @return void
+     */
+    protected function tearDown()
+    {
+        chdir( $this->cwd );
+        
+        parent::tearDown();
     }
     
     /**
@@ -80,7 +104,7 @@ class phpucSubversionCheckoutTest extends phpucAbstractTest
      */
     public function testSvnCheckoutNoLogin()
     {
-        $destination = PHPUC_TEST_DIR . '/pdepend';
+        $destination = PHPUC_TEST_DIR . '/source';
         $checkFile1  = $destination . '/pdepend.php';
         $checkFile2  = $destination . '/PHP/Depend.php';
         $checkFile3  = $destination . '/PHP/Depend/Code/Class.php';
@@ -89,9 +113,8 @@ class phpucSubversionCheckoutTest extends phpucAbstractTest
         $this->assertFileNotExists( $checkFile2 );
         $this->assertFileNotExists( $checkFile3 );
         
-        $checkout       = new phpucSubversionCheckout();
-        $checkout->url  = 'svn://svn.xplib.de/PHP_Depend/trunk';
-        $checkout->dest = $destination;
+        $checkout      = new phpucSubversionCheckout();
+        $checkout->url = 'svn://svn.xplib.de/PHP_Depend/trunk';
         
         $checkout->checkout();
         
@@ -121,7 +144,7 @@ class phpucSubversionCheckoutTest extends phpucAbstractTest
      */
     public function testSvnCheckoutWithLogin()
     {
-        $destination = PHPUC_TEST_DIR . '/phpundercontrol';
+        $destination = PHPUC_TEST_DIR . '/source';
         $checkFile1  = $destination . '/Commands/AbstractCommand.php';
         $checkFile2  = $destination . '/Commands/InstallCommand.php';
         
@@ -130,7 +153,6 @@ class phpucSubversionCheckoutTest extends phpucAbstractTest
         
         $checkout           = new phpucSubversionCheckout();
         $checkout->url      = 'svn://svn.xplib.de/phpuc-test';
-        $checkout->dest     = $destination;
         $checkout->username = 'mapi17';
         $checkout->password = 'foobar42';
 
@@ -151,7 +173,6 @@ class phpucSubversionCheckoutTest extends phpucAbstractTest
         
         $checkout           = new phpucSubversionCheckout();
         $checkout->url      = 'svn://svn.xplib.de/phpuc-test';
-        $checkout->dest     = PHPUC_TEST_DIR;
         $checkout->username = 'mapi';
         $checkout->password = 'foobar42';
         $checkout->checkout();
@@ -168,7 +189,6 @@ class phpucSubversionCheckoutTest extends phpucAbstractTest
         
         $checkout           = new phpucSubversionCheckout();
         $checkout->url      = 'svn://svn.xplib.de/phpuc-test';
-        $checkout->dest     = PHPUC_TEST_DIR;
         $checkout->username = 'mapi17';
         $checkout->password = 'foobar';
         $checkout->checkout();
@@ -181,7 +201,7 @@ class phpucSubversionCheckoutTest extends phpucAbstractTest
      */
     public function testHttpCheckout()
     {
-        $destination = PHPUC_TEST_DIR . '/pdepend';
+        $destination = PHPUC_TEST_DIR . '/source';
         $checkFile1  = $destination . '/pdepend.php';
         $checkFile2  = $destination . '/PHP/Depend.php';
         $checkFile3  = $destination . '/PHP/Depend/Code/Class.php';
@@ -192,8 +212,6 @@ class phpucSubversionCheckoutTest extends phpucAbstractTest
         
         $checkout       = new phpucSubversionCheckout();
         $checkout->url  = 'http://svn.xplib.de/PHP_Depend/trunk';
-        $checkout->dest = $destination;
-        
         $checkout->checkout();
         
         $this->assertFileExists( $checkFile1 );
@@ -242,7 +260,7 @@ class phpucSubversionCheckoutTest extends phpucAbstractTest
             return;
         }
 
-        $destination = PHPUC_TEST_DIR . '/pdepend';
+        $destination = PHPUC_TEST_DIR . '/source';
         $checkFile1  = $destination . '/pdepend.php';
         $checkFile2  = $destination . '/PHP/Depend.php';
         $checkFile3  = $destination . '/PHP/Depend/Code/Class.php';
@@ -251,9 +269,8 @@ class phpucSubversionCheckoutTest extends phpucAbstractTest
         $this->assertFileNotExists( $checkFile2 );
         $this->assertFileNotExists( $checkFile3 );
         
-        $checkout       = new phpucSubversionCheckout();
-        $checkout->url  = 'svn+ssh://mapi@xplib.de/srv/pdepend/trunk';
-        $checkout->dest = $destination;
+        $checkout      = new phpucSubversionCheckout();
+        $checkout->url = 'svn+ssh://mapi@xplib.de/srv/pdepend/trunk';
         
         $checkout->checkout();
         

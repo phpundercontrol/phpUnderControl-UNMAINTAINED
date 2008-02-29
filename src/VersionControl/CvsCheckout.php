@@ -131,7 +131,7 @@ class phpucCvsCheckout extends phpucAbstractCheckout
         $cvs = "cvs -d {$url}";
 
         $this->runShellCommand( "{$cvs} login" );
-        $this->runShellCommand( "{$cvs} co -d {$this->dest} {$this->module}" );
+        $this->runShellCommand( "{$cvs} co -d source {$this->module}" );
     }
     
     /**

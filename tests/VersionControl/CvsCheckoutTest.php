@@ -104,7 +104,7 @@ class phpucCvsCheckoutTest extends phpucAbstractTest
      */
     public function testPServerCheckout()
     {        
-        $destination = PHPUC_TEST_DIR . '/pdepend';
+        $destination = PHPUC_TEST_DIR . '/source';
         $checkFile1  = $destination . '/pdepend.php';
         $checkFile2  = $destination . '/PHP/Depend.php';
         $checkFile3  = $destination . '/PHP/Depend/Code/Class.php';
@@ -115,7 +115,6 @@ class phpucCvsCheckoutTest extends phpucAbstractTest
         
         $checkout           = new phpucCvsCheckout();
         $checkout->url      = 'xplib.de:/cvs';
-        $checkout->dest     = 'pdepend';
         $checkout->module   = 'PHP_Depend';
         $checkout->username = 'anonymous';
         $checkout->password = '';
@@ -139,7 +138,6 @@ class phpucCvsCheckoutTest extends phpucAbstractTest
         
         $checkout           = new phpucCvsCheckout();
         $checkout->url      = 'xplib.de:/cvs';
-        $checkout->dest     = 'pdepend';
         $checkout->module   = 'PHP_Depend2';
         $checkout->username = 'anonymous';
         $checkout->password = '';
@@ -159,7 +157,6 @@ class phpucCvsCheckoutTest extends phpucAbstractTest
         
         $checkout           = new phpucCvsCheckout();
         $checkout->url      = 'xplib.de:/cvs';
-        $checkout->dest     = 'pdepend';
         $checkout->module   = 'PHP_Depend';
         $checkout->password = '';
         $checkout->username = 'mapi';
@@ -179,7 +176,6 @@ class phpucCvsCheckoutTest extends phpucAbstractTest
         
         $checkout           = new phpucCvsCheckout();
         $checkout->url      = 'xplib.de:/cvs';
-        $checkout->dest     = 'pdepend';
         $checkout->module   = 'PHP_Depend';
         $checkout->password = 'foobar';
         $checkout->username = 'anonymous';

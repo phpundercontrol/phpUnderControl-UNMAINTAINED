@@ -58,8 +58,6 @@
  * 
  * @property string $url
  *           The subversion repository url.
- * @property string $dest
- *           The checkout destination directory. 
  * @property string $username
  *           Username for the subversion repository.
  * @property string $password
@@ -87,8 +85,7 @@ abstract class phpucAbstractCheckout implements phpucCheckoutI
                 );
         }
         
-        $checkout->url  = $args->getOption( 'version-control-url' );
-        $checkout->dest = $args->getOption( 'destination' );
+        $checkout->url = $args->getOption( 'version-control-url' );
         
         if ( $args->hasOption( 'username' ) )
         {
@@ -160,7 +157,6 @@ abstract class phpucAbstractCheckout implements phpucCheckoutI
         switch ( $name )
         {
             case 'url':
-            case 'dest':
             case 'password':
             case 'username':
                 $this->properties[$name] = $value;
