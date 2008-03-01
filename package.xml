@@ -31,13 +31,12 @@
   </stability>
   <license uri="http://www.opensource.org/licenses/bsd-license.php">BSD License</license>
   <notes>
-- Dashboard bugfix. The projects weren't sorted on the dashboard page. Thanks to
-  kore who notices this behaviour.
-- Code cleanup for OS detection and fix for MacOSX Darwin added. Thanks to 
-  Sebastian who provides a patch.
-- Customization support for java server pages added. This new feature allows 
-  custom tabs for further artifacts and build results. 
-- New chart type for the unit test execution time added.
+- Checkouts for subversion and cvs added.
+- Switch to the new pluggable cli system.
+- Project command/wizard implemented.  
+- Height of embedded iframes optimized.
+- New dashboard project is building throbber and force project build button 
+  added. Thanks to kore.
   </notes>
   <contents>
     <dir name="/">
@@ -1045,6 +1044,34 @@
 - Directory structure refactored. Data related stuff is now in a single 
   directory.
 - New error, success, fail, skipped icons by kore.
+      </notes>
+    </release>
+    
+    <release>
+      <lead>
+        <name>Manuel Pichler</name>
+        <user>mp</user>
+        <email>mapi@phpundercontrol.org</email>
+        <active>yes</active>
+      </lead>
+      <date>2008-02-11</date>
+      <version>
+        <release>0.3.6</release>
+        <api>0.2.0</api>
+      </version>
+      <stability>
+        <release>beta</release>
+        <api>beta</api>
+      </stability>
+      <license uri="http://www.opensource.org/licenses/bsd-license.php">BSD License</license>
+      <notes>
+- Dashboard bugfix. The projects weren't sorted on the dashboard page. Thanks to
+  kore who notices this behaviour.
+- Code cleanup for OS detection and fix for MacOSX Darwin added. Thanks to 
+  Sebastian who provides a patch.
+- Customization support for java server pages added. This new feature allows 
+  custom tabs for further artifacts and build results. 
+- New chart type for the unit test execution time added.
       </notes>
     </release>
   </changelog>

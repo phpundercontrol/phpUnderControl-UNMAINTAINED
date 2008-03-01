@@ -1,3 +1,14 @@
+phpUnderControl 0.4.0
+---------------------
+
+- Checkouts for subversion and cvs added.
+- Switch to the new pluggable cli system.
+- Project command/wizard implemented.  
+- Height of embedded iframes optimized.
+- New dashboard project is building throbber and force project build button 
+  added. Thanks to kore.
+   
+
 phpUnderControl 0.3.6
 ---------------------
 
