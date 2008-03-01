@@ -60,11 +60,15 @@
 interface phpucConsoleExtensionI
 {
     /**
-     * Callback method that registers the interested commands or options. 
+     * Callback method that registers a command extension. 
      *
-     * @param phpucConsoleInputDefinition $def The input definition container.
+     * @param phpucConsoleInputDefinition $def 
+     *        The input definition container.
+     * @param phpucConsoleCommandI  $command
+     *        The context cli command instance.
      * 
      * @return void
      */
-    function register( phpucConsoleInputDefinition $def );
+    function registerCommandExtension( phpucConsoleInputDefinition $def,
+                                       phpucConsoleCommandI $command );
 }

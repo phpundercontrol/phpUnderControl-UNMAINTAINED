@@ -56,7 +56,7 @@
  * @version   Release: @package_version@
  * @link      http://www.phpundercontrol.org/
  */
-class phpucExampleCommand extends phpucAbstractCommand
+class phpucExampleCommand extends phpucAbstractCommand implements phpucConsoleCommandI
 {
     /**
      * List of example files.
@@ -70,6 +70,52 @@ class phpucExampleCommand extends phpucAbstractCommand
     );
     
     /**
+     * Setter for the console arguments.
+     * 
+     * @param phpucConsoleArgs $args The console arguments.
+     * 
+     * @return void
+     */
+    public function setConsoleArgs( phpucConsoleArgs $args )
+    {
+        parent::setConsoleArgs( $args );
+        
+        $args->setOption( 'test-case', 'PhpUnderControl_Example_MathTest' );
+        $args->setOption( 'test-file', 'MathTest.php' );
+        $args->setOption( 'test-dir', 'tests' );
+    }
+    
+    /**
+     * Returns the cli command identifier.
+     *
+     * @return string
+     */
+    public function getCommandId()
+    {
+        return 'example';
+    }
+    
+    /**
+     * Callback method that registers a cli command.
+     *
+     * @param phpucConsoleInputDefinition $def The input definition container.
+     * 
+     * @return void
+     */
+    public function registerCommand( phpucConsoleInputDefinition $def )
+    {
+        $def->addCommand( 
+            $this->getCommandId(), 
+            'Creates a small CruiseControl example.'
+        );
+        $def->addArgument( 
+            $this->getCommandId(),
+            'cc-install-dir',
+            'The installation directory of CruiseControl.'
+        );
+    }
+    
+    /**
      * Creates all command specific {@link phpucTaskI} objects.
      * 
      * @return array(phpucTaskI)
@@ -81,19 +127,23 @@ class phpucExampleCommand extends phpucAbstractCommand
         $tasks[] = new phpucProjectTask();
         $tasks[] = new phpucExampleTask();
         
-        if ( !$this->args->hasOption( 'without-php-documentor' ) )
+        if ( $this->args === null 
+         || !$this->args->hasOption( 'without-php-documentor' ) )
         {
             $tasks[] = new phpucPhpDocumentorTask();
         }
-        if ( !$this->args->hasOption( 'without-code-sniffer' ) )
+        if ( $this->args === null 
+         || !$this->args->hasOption( 'without-code-sniffer' ) )
         {
             $tasks[] = new phpucPhpCodeSnifferTask();
         }
-        if ( !$this->args->hasOption( 'without-phpunit' ) )
+        if ( $this->args === null 
+         || !$this->args->hasOption( 'without-phpunit' ) )
         {
             $tasks[] = new phpucPhpUnitTask();
         }
-        if ( !$this->args->hasOption( 'without-ezc-graph' ) )
+        if ( $this->args === null 
+         || !$this->args->hasOption( 'without-ezc-graph' ) )
         {
             $tasks[] = new phpucGraphTask();
         }

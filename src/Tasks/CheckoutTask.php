@@ -124,16 +124,20 @@ class phpucCheckoutTask extends phpucAbstractTask implements phpucConsoleExtensi
     }
     
     /**
-     * Callback method that registers the interested commands or options. 
+     * Callback method that registers a command extension. 
      *
-     * @param phpucConsoleInputDefinition $def The input definition container.
+     * @param phpucConsoleInputDefinition $def 
+     *        The input definition container.
+     * @param phpucConsoleCommandI  $command
+     *        The context cli command instance.
      * 
      * @return void
      */
-    public function register( phpucConsoleInputDefinition $def )
+    public function registerCommandExtension( phpucConsoleInputDefinition $def,
+                                              phpucConsoleCommandI $command ) 
     {
         $def->addOption(
-            'project',
+            $command->getCommandId(),
             'v',
             'version-control',
             'The used version control system.',
@@ -142,7 +146,7 @@ class phpucCheckoutTask extends phpucAbstractTask implements phpucConsoleExtensi
             true
         );
         $def->addOption(
-            'project',
+            $command->getCommandId(),
             'x',
             'version-control-url',
             'The version control system project url.',
@@ -151,21 +155,21 @@ class phpucCheckoutTask extends phpucAbstractTask implements phpucConsoleExtensi
             true
         );
         $def->addOption(
-            'project',
+            $command->getCommandId(),
             'u',
             'username',
             'Optional username for the version control system.',
             true
         );
         $def->addOption(
-            'project',
+            $command->getCommandId(),
             'p',
             'password',
             'Optional password for the version control system.',
             true
         );
         $def->addOption(
-            'project',
+            $command->getCommandId(),
             'd',
             'destination',
             'A destination directory for the source code checkout. Default is "source".',
@@ -174,7 +178,7 @@ class phpucCheckoutTask extends phpucAbstractTask implements phpucConsoleExtensi
             true
         );
         $def->addOption(
-            'project',
+            $command->getCommandId(),
             'm',
             'module',
             'A CVS project module.',

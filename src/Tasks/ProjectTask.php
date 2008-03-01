@@ -152,26 +152,30 @@ class phpucProjectTask extends phpucAbstractTask implements phpucConsoleExtensio
     }
     
     /**
-     * Callback method that registers the interested commands or options. 
+     * Callback method that registers a command extension. 
      *
-     * @param phpucConsoleInputDefinition $def The input definition container.
+     * @param phpucConsoleInputDefinition $def 
+     *        The input definition container.
+     * @param phpucConsoleCommandI  $command
+     *        The context cli command instance.
      * 
      * @return void
      */
-    public function register( phpucConsoleInputDefinition $def )
+    public function registerCommandExtension( phpucConsoleInputDefinition $def,
+                                              phpucConsoleCommandI $command ) 
     {
         $def->addOption(
-            'project',
+            $command->getCommandId(),
             'j',
             'project-name',
             'The name of the generated project.',
             true,
-            null,
+            'php-under-control',
             true
         );
         
         $def->addOption(
-            'project',
+            $command->getCommandId(),
             'i',
             'schedule-interval',
             'Schedule interval.',

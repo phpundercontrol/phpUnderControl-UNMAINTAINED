@@ -103,18 +103,22 @@ class phpucPhpCodeSnifferTask extends phpucAbstractPearTask
     }
     
     /**
-     * Callback method that registers the interested commands or options. 
+     * Callback method that registers a command extension. 
      *
-     * @param phpucConsoleInputDefinition $def The input definition container.
+     * @param phpucConsoleInputDefinition $def 
+     *        The input definition container.
+     * @param phpucConsoleCommandI  $command
+     *        The context cli command instance.
      * 
      * @return void
      */
-    public function register( phpucConsoleInputDefinition $def )
+    public function registerCommandExtension( phpucConsoleInputDefinition $def,
+                                              phpucConsoleCommandI $command ) 
     {
-        parent::register( $def );
+        parent::registerCommandExtension( $def, $command );
         
         $def->addOption(
-            'project',
+            $command->getCommandId(),
             'f',
             'without-code-sniffer',
             'Disable PHP CodeSniffer support.',
@@ -122,7 +126,7 @@ class phpucPhpCodeSnifferTask extends phpucAbstractPearTask
         );
         
         $def->addOption(
-            'project',
+            $command->getCommandId(),
             'g',
             'coding-guideline',
             'The used PHP_CodeSniffer coding guideline.',
@@ -130,10 +134,10 @@ class phpucPhpCodeSnifferTask extends phpucAbstractPearTask
             'PEAR',
             true
         );
-        if ( !$def->hasOption( 'project', 'source-dir' ) )
+        if ( !$def->hasOption( $command->getCommandId(), 'source-dir' ) )
         {
             $def->addOption(
-                'project',
+                $command->getCommandId(),
                 's',
                 'source-dir',
                 'The source directory in the project.',
@@ -142,10 +146,10 @@ class phpucPhpCodeSnifferTask extends phpucAbstractPearTask
                 true
             );
         }
-        if ( !$def->hasOption( 'project', 'ignore-dir' ) )
+        if ( !$def->hasOption( $command->getCommandId(), 'ignore-dir' ) )
         {
             $def->addOption(
-                'project',
+                $command->getCommandId(),
                 'r',
                 'ignore-dir',
                 'List of ignorable directories, separated by comma.',

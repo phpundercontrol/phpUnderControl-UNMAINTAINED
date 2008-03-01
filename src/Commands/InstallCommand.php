@@ -56,7 +56,7 @@
  * @version   Release: @package_version@
  * @link      http://www.phpundercontrol.org/
  */
-class phpucInstallCommand extends phpucAbstractCommand
+class phpucInstallCommand extends phpucAbstractCommand implements phpucConsoleCommandI 
 {
     /**
      * List of new files.
@@ -125,6 +125,36 @@ class phpucInstallCommand extends phpucAbstractCommand
         '/webapps/cruisecontrol/xsl/header.xsl',
         '/webapps/cruisecontrol/xsl/modifications.xsl',
     );
+    
+    /**
+     * Returns the cli command identifier.
+     *
+     * @return string
+     */
+    public function getCommandId()
+    {
+        return 'install';
+    }
+    
+    /**
+     * Callback method that registers a cli command. 
+     *
+     * @param phpucConsoleInputDefinition $def The input definition container.
+     * 
+     * @return void
+     */
+    public function registerCommand( phpucConsoleInputDefinition $def )
+    {
+        $def->addCommand( 
+            $this->getCommandId(), 
+            'Installs the CruiseControl patches.'
+        );
+        $def->addArgument( 
+            $this->getCommandId(),
+            'cc-install-dir',
+            'The installation directory of CruiseControl.'
+        );
+    }
     
     /**
      * Creates all command specific {@link phpucTaskI} objects.

@@ -56,7 +56,7 @@
  * @version   Release: @package_version@
  * @link      http://www.phpundercontrol.org/
  */
-class phpucGenerateGraphTask extends phpucAbstractTask
+class phpucGenerateGraphTask extends phpucAbstractTask implements phpucConsoleExtensionI
 {
     /**
      * The log directory.
@@ -160,5 +160,26 @@ class phpucGenerateGraphTask extends phpucAbstractTask
                 }
             }
         }
+    }
+    
+    /**
+     * Callback method that registers a command extension. 
+     *
+     * @param phpucConsoleInputDefinition $def 
+     *        The input definition container.
+     * @param phpucConsoleCommandI  $command
+     *        The context cli command instance.
+     * 
+     * @return void
+     */
+    public function registerCommandExtension( phpucConsoleInputDefinition $def,
+                                              phpucConsoleCommandI $command ) 
+    {
+        $def->addOption(
+            $command->getCommandId(),
+            'u',
+            'force-update',
+            'Force graphic creation and overwrite existing files.'
+        );
     }
 }

@@ -153,6 +153,19 @@ class phpucConsoleArgs
     }
     
     /**
+     * Sets and option value.
+     *
+     * @param string $name  The option identifier.
+     * @param string $value The option value.
+     * 
+     * @return void 
+     */
+    public function setOption( $name, $value )
+    {
+        $this->properties['options'][$name] = $value;
+    }
+    
+    /**
      * Magic property getter method.
      *
      * @param string $name The property name.

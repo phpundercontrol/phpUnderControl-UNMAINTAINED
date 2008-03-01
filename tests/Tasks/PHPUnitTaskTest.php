@@ -81,6 +81,21 @@ class phpucPHPUnitTaskTest extends phpucAbstractPearTaskTest
     protected $badBin = "#!/usr/bin/env php\n<?php echo ' version-3.2.0';?>";
     
     /**
+     * Optional list of command line options.
+     *
+     * @type array<string>
+     * @var array(string) $options
+     */
+    protected $options = array(
+        '--test-case',
+        'PhpUnderControl_Example_MathTest',
+        '--test-dir',
+        'tests',
+        '--test-file',
+        'MathTest.php'
+    );
+    
+    /**
      * Sets the required binary contents.
      * 
      * @return void

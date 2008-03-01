@@ -114,7 +114,7 @@ abstract class phpucAbstractPearTask extends phpucAbstractTask implements phpucC
             $paths = array( $this->pearBinaryDir );
         }
         $paths = array_unique( $paths );
-        
+
         $windows = phpucFileUtil::getOS() == phpucFileUtil::OS_WINDOWS;
 
         foreach ( $paths as $path )
@@ -141,10 +141,7 @@ abstract class phpucAbstractPearTask extends phpucAbstractTask implements phpucC
         if ( $this->executable === null )
         {
             throw new phpucValidateException(
-                sprintf(
-                    'Missing cli tool "%s". Please check the PATH variable.',
-                    $this->cliTool
-                )
+                "Missing cli tool '{$this->cliTool}', check the PATH variable."
             );
         }
         else if ( $this->pearBinaryDir === null )
@@ -160,21 +157,26 @@ abstract class phpucAbstractPearTask extends phpucAbstractTask implements phpucC
     }
     
     /**
-     * Callback method that registers the interested commands or options. 
+     * Callback method that registers a command extension. 
      *
-     * @param phpucConsoleInputDefinition $def The input definition container.
+     * @param phpucConsoleInputDefinition $def 
+     *        The input definition container.
+     * @param phpucConsoleCommandI  $command
+     *        The context cli command instance.
      * 
      * @return void
      */
-    public function register( phpucConsoleInputDefinition $def )
+    public function registerCommandExtension( phpucConsoleInputDefinition $def,
+                                              phpucConsoleCommandI $command ) 
     {
-        if ( !$def->hasOption( 'project', 'pear-executables-dir' ) )
+        if ( !$def->hasOption( $command->getCommandId(), 'pear-executables-dir' ) )
         {
             $def->addOption(
-                'project',
+                $command->getCommandId(),
                 'e',
                 'pear-executables-dir',
-                'The pear directory with cli scripts.'
+                'The pear directory with cli scripts.',
+                true
             );
         }
     }

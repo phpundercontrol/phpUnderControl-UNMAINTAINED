@@ -78,7 +78,7 @@ class phpucPhpDocumentorTask extends phpucAbstractPearTask
         $out->writeListItem( 
             'Creating apidoc dir:  project/{1}/build/api', $projectName
         );
-        
+
         mkdir( $projectPath . '/build/api', 0755, true );
         
         $out->writeListItem(
@@ -123,28 +123,32 @@ class phpucPhpDocumentorTask extends phpucAbstractPearTask
     }
     
     /**
-     * Callback method that registers the interested commands or options. 
+     * Callback method that registers a command extension. 
      *
-     * @param phpucConsoleInputDefinition $def The input definition container.
+     * @param phpucConsoleInputDefinition $def 
+     *        The input definition container.
+     * @param phpucConsoleCommandI  $command
+     *        The context cli command instance.
      * 
      * @return void
      */
-    public function register( phpucConsoleInputDefinition $def )
+    public function registerCommandExtension( phpucConsoleInputDefinition $def,
+                                              phpucConsoleCommandI $command ) 
     {
-        parent::register( $def );
+        parent::registerCommandExtension( $def, $command );
         
         $def->addOption(
-            'project',
+            $command->getCommandId(),
             'c',
             'without-php-documentor',
             'Disable phpDocumentor support.',
             false
         );
         
-        if ( !$def->hasOption( 'project', 'source-dir' ) )
+        if ( !$def->hasOption( $command->getCommandId(), 'source-dir' ) )
         {
             $def->addOption(
-                'project',
+                $command->getCommandId(),
                 's',
                 'source-dir',
                 'The source directory in the project.',
@@ -153,10 +157,10 @@ class phpucPhpDocumentorTask extends phpucAbstractPearTask
                 true
             );
         }
-        if ( !$def->hasOption( 'project', 'ignore-dir' ) )
+        if ( !$def->hasOption( $command->getCommandId(), 'ignore-dir' ) )
         {
             $def->addOption(
-                'project',
+                $command->getCommandId(),
                 'r',
                 'ignore-dir',
                 'List of ignorable directories, separated by comma.',

@@ -149,25 +149,29 @@ class phpucPhpUnitTask extends phpucAbstractPearTask
     }
     
     /**
-     * Callback method that registers the interested commands or options. 
+     * Callback method that registers a command extension. 
      *
-     * @param phpucConsoleInputDefinition $def The input definition container.
+     * @param phpucConsoleInputDefinition $def 
+     *        The input definition container.
+     * @param phpucConsoleCommandI  $command
+     *        The context cli command instance.
      * 
      * @return void
      */
-    public function register( phpucConsoleInputDefinition $def )
+    public function registerCommandExtension( phpucConsoleInputDefinition $def,
+                                              phpucConsoleCommandI $command ) 
     {
-        parent::register( $def );
+        parent::registerCommandExtension( $def, $command );
         
         $def->addOption(
-            'project',
+            $command->getCommandId(),
             'n',
             'without-phpunit',
             'Disable PHPUnit support.',
             false
         );
         $def->addOption(
-            'project',
+            $command->getCommandId(),
             't',
             'test-dir',
             'The test directory in the project.',
@@ -176,7 +180,7 @@ class phpucPhpUnitTask extends phpucAbstractPearTask
             false
         );
         $def->addOption(
-            'project',
+            $command->getCommandId(),
             'a',
             'test-case',
             'Name of the test case class.',
@@ -185,7 +189,7 @@ class phpucPhpUnitTask extends phpucAbstractPearTask
             false
         );
         $def->addOption(
-            'project',
+            $command->getCommandId(),
             'l',
             'test-file',
             'Name of the test case file.',

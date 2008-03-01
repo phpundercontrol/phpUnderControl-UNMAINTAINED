@@ -4,7 +4,7 @@
  * 
  * PHP Version 5.2.4
  *
- * Copyright (c) 2007-2008, Manuel Pichler <mapi@phpundercontrol.org>.
+ * Copyright (c) 2007-2008, Manuel Pichler <mapi@manuel-pichler.de>.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -37,8 +37,8 @@
  * POSSIBILITY OF SUCH DAMAGE.
  * 
  * @category  QualityAssurance
- * @package   Commands
- * @author    Manuel Pichler <mapi@phpundercontrol.org>
+ * @package   Console
+ * @author    Manuel Pichler <mapi@manuel-pichler.de>
  * @copyright 2007-2008 Manuel Pichler. All rights reserved.
  * @license   http://www.opensource.org/licenses/bsd-license.php  BSD License
  * @version   SVN: $Id$
@@ -46,63 +46,25 @@
  */
 
 /**
- * Implementation mode of the example mode.
+ * A class that implement this interface signalizes that it wants to register
+ * a command to the cli interface.
  *
  * @category  QualityAssurance
- * @package   Commands
- * @author    Manuel Pichler <mapi@phpundercontrol.org>
+ * @package   Console
+ * @author    Manuel Pichler <mapi@manuel-pichler.de>
  * @copyright 2007-2008 Manuel Pichler. All rights reserved.
  * @license   http://www.opensource.org/licenses/bsd-license.php  BSD License
  * @version   Release: @package_version@
  * @link      http://www.phpundercontrol.org/
  */
-class phpucProjectCommand extends phpucAbstractCommand implements phpucConsoleCommandI
+interface phpucConsoleCommandI
 {
-    /**
-     * Creates all command specific {@link phpucTaskI} objects.
-     * 
-     * @return array(phpucTaskI)
-     */
-    protected function doCreateTasks()
-    {
-        $tasks = array(
-            new phpucProjectTask(),
-            new phpucCheckoutTask(),        
-        );
-        
-        if ( $this->args === null 
-         || !$this->args->hasOption( 'without-php-documentor' ) )
-        {
-            $tasks[] = new phpucPhpDocumentorTask();
-        }
-        if ( $this->args === null 
-         || !$this->args->hasOption( 'without-code-sniffer' ) )
-        {
-            $tasks[] = new phpucPhpCodeSnifferTask();
-        }
-        if ( $this->args === null 
-         || !$this->args->hasOption( 'without-phpunit' ) )
-        {
-            $tasks[] = new phpucPhpUnitTask();
-        }
-        if ( $this->args === null 
-         || !$this->args->hasOption( 'without-ezc-graph' ) )
-        {
-            $tasks[] = new phpucGraphTask();
-        }
-        
-        return $tasks;
-    }
-    
     /**
      * Returns the cli command identifier.
      *
      * @return string
      */
-    public function getCommandId()
-    {
-        return 'project';
-    }
+    function getCommandId();
     
     /**
      * Callback method that registers a cli command. 
@@ -111,16 +73,5 @@ class phpucProjectCommand extends phpucAbstractCommand implements phpucConsoleCo
      * 
      * @return void
      */
-    public function registerCommand( phpucConsoleInputDefinition $def )
-    {
-        $def->addCommand( 
-            $this->getCommandId(), 
-            'Creates a new CruiseControl project.'
-        );
-        $def->addArgument( 
-            $this->getCommandId(),
-            'cc-install-dir',
-            'The installation directory of CruiseControl.'
-        );
-    }
+    function registerCommand( phpucConsoleInputDefinition $def );
 }

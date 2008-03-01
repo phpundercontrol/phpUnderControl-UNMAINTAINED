@@ -60,6 +60,43 @@
 class phpucGraphCommand extends phpucAbstractCommand
 {
     /**
+     * Returns the cli command identifier.
+     *
+     * @return string
+     */
+    public function getCommandId()
+    {
+        return 'graph';
+    }
+    
+    /**
+     * Callback method that registers a cli command. 
+     *
+     * @param phpucConsoleInputDefinition $def The input definition container.
+     * 
+     * @return void
+     */
+    public function registerCommand( phpucConsoleInputDefinition $def )
+    {
+        $def->addCommand( 
+            $this->getCommandId(), 
+            'Generates the metric graphs with ezcGraph'
+        );
+
+        $def->addArgument(
+            $this->getCommandId(),
+            'project-log-dir',
+            'The project log directory.'
+        );
+        $def->addArgument(
+            $this->getCommandId(),
+            'project-output-dir',
+            'The graph output directory.',
+            false
+        );
+    }
+    
+    /**
      * Creates all command specific {@link phpucTaskI} objects.
      * 
      * @return array(phpucTaskI)

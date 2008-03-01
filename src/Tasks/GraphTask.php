@@ -106,16 +106,20 @@ class phpucGraphTask extends phpucAbstractTask implements phpucConsoleExtensionI
     }
     
     /**
-     * Callback method that registers the interested commands or options. 
+     * Callback method that registers a command extension. 
      *
-     * @param phpucConsoleInputDefinition $def The input definition container.
+     * @param phpucConsoleInputDefinition $def 
+     *        The input definition container.
+     * @param phpucConsoleCommandI  $command
+     *        The context cli command instance.
      * 
      * @return void
      */
-    public function register( phpucConsoleInputDefinition $def )
+    public function registerCommandExtension( phpucConsoleInputDefinition $def,
+                                              phpucConsoleCommandI $command ) 
     {
         $def->addOption(
-            'project',
+            $command->getCommandId(),
             'z',
             'without-ezc-graph',
             'Disable ezcGraph support.'

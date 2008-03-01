@@ -126,7 +126,7 @@ abstract class phpucAbstractPearTaskTest extends phpucAbstractTaskTest
         $this->createTestDirectories(
             array(
                 'projects',
-                'projects/php-under-control',
+                "projects/{$this->projectName}",
             )
         );
         

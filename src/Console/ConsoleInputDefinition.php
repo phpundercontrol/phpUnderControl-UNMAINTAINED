@@ -76,7 +76,7 @@ class phpucConsoleInputDefinition implements ArrayAccess, IteratorAggregate
      * @var array(string=>array) $definition
      */
     private $definition = array(
-        'install'  =>  array(
+        'install2'  =>  array(
             'mode'  =>  self::MODE_NORMAL,
             'help'  =>  'Installs the CruiseControl patches.',
             'options'  =>  array(
@@ -95,7 +95,7 @@ class phpucConsoleInputDefinition implements ArrayAccess, IteratorAggregate
                 )
             )
         ),
-        'example'  =>  array(
+        'example2'  =>  array(
             'mode'  =>  self::MODE_NORMAL,
             'help'  =>  'Creates a small example project.',
             'options'  =>  array(
@@ -212,7 +212,7 @@ class phpucConsoleInputDefinition implements ArrayAccess, IteratorAggregate
             'options'  =>  array(
                 array(
                     'short'      =>  'u',
-                    'long'       =>  'force-update',
+                    'long'       =>  '',
                     'arg'        =>  null,
                     'help'       =>  'Force graphic creation and overwrite existing files.',
                     'mandatory'  =>  false,
@@ -526,6 +526,8 @@ class phpucConsoleInputDefinition implements ArrayAccess, IteratorAggregate
             new DirectoryIterator( PHPUC_INSTALL_DIR . '/Commands' )
         );
         
+        $commands = array();
+        
         foreach ( $files as $file )
         {
             // Load reflection class
@@ -538,13 +540,26 @@ class phpucConsoleInputDefinition implements ArrayAccess, IteratorAggregate
             }
             
             // Check for extension interface
-            if ( !$refClass->implementsInterface( 'phpucConsoleExtensionI' ) )
+            if ( !$refClass->implementsInterface( 'phpucConsoleCommandI' ) )
             {
                 continue;
             }
             
             $command = $refClass->newInstance();
-            $command->register( $this );
-        } 
+            $command->registerCommand( $this );
+            
+            $commands[] = $command;
+        }
+        
+        foreach ( $commands as $command )
+        {
+            foreach ( $command->createTasks() as $task )
+            {
+                if ( $task instanceof phpucConsoleExtensionI )
+                {
+                    $task->registerCommandExtension( $this, $command );
+                }
+            }
+        }
     }
 }
