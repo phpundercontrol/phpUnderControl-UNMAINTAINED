@@ -89,7 +89,7 @@
               
             <cruisecontrol:tab name="coverage" label="Coverage">
               <cruisecontrol:artifactsLink>
-                <iframe src="<%= artifacts_url %>/coverage/index.html" width="100%" height="550" frameborder="0" />
+                <iframe src="<%= artifacts_url %>/coverage/index.html" class="tab-content">
                 </iframe>
               </cruisecontrol:artifactsLink>
             </cruisecontrol:tab>
@@ -98,7 +98,7 @@
               
             <cruisecontrol:tab name="documentation" label="Documentation">
               <cruisecontrol:artifactsLink>
-                <iframe src="<%= artifacts_url %>/api/index.html" width="100%" height="550" frameborder="0" />
+                <iframe src="<%= artifacts_url %>/api/index.html" class="tab-content">
                 </iframe>
               </cruisecontrol:artifactsLink>
             </cruisecontrol:tab>

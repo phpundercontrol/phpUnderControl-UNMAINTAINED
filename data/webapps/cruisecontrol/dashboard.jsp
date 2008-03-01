@@ -51,7 +51,12 @@
 <%@ page import="java.net.InetAddress" %>
 <%@ page import="java.net.URL" %>
 
+<cruisecontrol:jmxbase id="jmxBase" />
+
 <%
+
+URL jmxURLPrefix = new URL(jmxBase, "invoke?operation=build&objectname=CruiseControl+Project%3Aname%3D");
+
 final DateFormat dateTimeFormat = DateFormat.getDateTimeInstance(DateFormat.SHORT, DateFormat.SHORT, request.getLocale());
 final DateFormat dateOnlyFormat = DateFormat.getDateInstance(DateFormat.SHORT, request.getLocale());
 final DateFormat timeOnlyFormat = DateFormat.getTimeInstance(DateFormat.SHORT, request.getLocale());
@@ -281,22 +286,19 @@ if (logDirPath == null) {
             <tbody>
               <tr>
                 <td class="play" rowspan="2">
-                  <a href="#" onclick="callServer('<%=project.project%>');">
+                  <a href="#" onclick="callServer('<%= jmxURLPrefix.toExternalForm() + project.project%>');">
                   </a>
                 </td>
                 <td class="left">
                   <a href="buildresults/<%=project.project%>"><%= project.project %></a>
                 </td>
-                <td class="right" 
-                    onclick="callServer('<%=project.project%>');"><%= project.getLabel()%></td>
+                <td class="right"><%= project.getLabel()%></td>
               </tr>
               <tr>
-                <td class="left status-<%= project.getStatus().getImportance() %>"
-                    onclick="callServer('<%=project.project%>');">
+                <td class="left status-<%= project.getStatus().getImportance() %>">
                   <%= project.getStatus()%> <em>(<%= project.getStatusSince() %>)</em>
                 </td>
-                <td class="right" 
-                    onclick="callServer('<%=project.project%>');"><%= project.getLastSuccessfulBuildTime() %></td>
+                <td class="right"><%= project.getLastSuccessfulBuildTime() %></td>
               </tr>
             </tbody>
           </table>

@@ -40,15 +40,10 @@
 <%@ page import="java.text.DateFormat" %>
 <%@ page import="java.util.Date" %>
 
-<cruisecontrol:jmxbase id="jmxBase"/>
-
 <%
   String name = System.getProperty("ccname", "");
   String hostname = InetAddress.getLocalHost().getHostName();
   boolean jmxEnabled = true;
-
-  URL jmxURLPrefix = new URL(jmxBase, "invoke?operation=build&objectname=CruiseControl+Project%3Aname%3D");
-  
 
   String baseURL = request.getScheme() 
                  + "://" + request.getServerName() 
@@ -106,59 +101,6 @@
     </div>
     <%@ include file="footer.jsp" %>
     <script type="text/javascript" src="js/prototype.js"></script>
-    <script language="JavaScript">
-    // <![CDATA[
-    
-    new Ajax.PeriodicalUpdater(
-        'dashboard', 
-        'dashboard.jsp', {
-            method: 'get',
-            frequency: 5
-        }
-    );
-    new Ajax.PeriodicalUpdater(
-        'servertime', 
-        'servertime.jsp', {
-            method: 'get',
-            frequency: 60
-        }
-    );
-    
-    function callServer(projectName) {
-      var url = '<%= jmxURLPrefix.toExternalForm() %>' + projectName;
-      document.getElementById('serverData').innerHTML = '<iframe src="' + url + '" width="0" height="0" frameborder="0"></iframe>';
-      //alert('Scheduling build for ' + projectName);
-    }
-
-    function checkIframe(stylesheetURL) {
-      if (top != self) {//We are being framed!
-
-        //For Internet Explorer
-        if (document.createStyleSheet) {
-          document.createStyleSheet(stylesheetURL);
-        }
-        else { //Non-ie browsers
-
-          var styles = "@import url('" + stylesheetURL + "');";
-
-          var newSS = document.createElement('link');
-
-          newSS.rel = 'stylesheet';
-
-          newSS.href = 'data:text/css,' + escape(styles);
-
-          document.getElementsByTagName("head")[0].appendChild(newSS);
-        }
-      }
-    }
-    
-    function over(elem) {
-        elem.className = 'mouseover';
-    }
-    function out(elem) {
-        elem.className = '';
-    }
-    // ]]>
-    </script>
+    <script type="text/javascript" src="js/php-under-control.js"></script>
   </body>
 </html>

@@ -291,23 +291,21 @@ div#container td#dashboard div.broken {
     height: 40px;
     margin: 0 80px 6px 80px;
 }
-div#container td#dashboard td.status-important div.good {
-    background-image: url('../images/php-under-control/throbber-good.gif');
-}
 div#container td#dashboard tr.mouseover div.good {
     background-image: url('../images/php-under-control/play-good.png');
-    cursor: pointer;
+}
+div#container td#dashboard td.status-important div.good {
+    background-image: url('../images/php-under-control/throbber-good.gif');
 }
 div#container td#dashboard div.good {
     background-image: url('../images/php-under-control/dashboard-good-left.png');
 }
 
-div#container td#dashboard td.status-important div.broken {
-    background-image: url('../images/php-under-control/throbber-broken.gif');
-}
 div#container td#dashboard tr.mouseover div.broken {
     background-image: url('../images/php-under-control/play-broken.png');
-    cursor: pointer;
+}
+div#container td#dashboard td.status-important div.broken {
+    background-image: url('../images/php-under-control/throbber-broken.gif');
 }
 div#container td#dashboard div.broken {
     background-image: url('../images/php-under-control/dashboard-broken-left.png');
