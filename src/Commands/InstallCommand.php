@@ -94,6 +94,7 @@ class phpucInstallCommand extends phpucAbstractCommand
         '/webapps/cruisecontrol/images/php-under-control/throbber-broken.gif',
         '/webapps/cruisecontrol/images/php-under-control/throbber-good.gif',
         '/webapps/cruisecontrol/images/php-under-control/warning.png',
+        '/webapps/cruisecontrol/js/php-under-control.js',
         '/webapps/cruisecontrol/js/shBrushPhp.js',
         '/webapps/cruisecontrol/js/shCore.js',
         '/webapps/cruisecontrol/js/effects.js',

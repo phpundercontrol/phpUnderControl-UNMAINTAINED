@@ -427,3 +427,9 @@ div#footer {
     margin: 12px;
     text-align: center;
 }
+iframe.tab-content {
+    border: 0;
+    heigth: 100px;
+    margin: 0;
+    width: 100%;
+}

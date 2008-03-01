@@ -121,5 +121,7 @@
       </cruisecontrol:tabsheet>
     </div>
     <%@ include file="footer.jsp" %>
+    <script type="text/javascript" src="js/prototype.js"></script>
+    <script type="text/javascript" src="js/php-under-control.js"></script>
   </body>
 </html>
