@@ -93,6 +93,36 @@ class phpucConfigProjectTest extends phpucAbstractConfigTest
     }
     
     /**
+     * Test that {@link phpucConfigProject#delete()} removes the context project
+     * from the config.xml file.
+     *
+     * @return void
+     */
+    public function testDeleteConfigProjectFromConfigFile()
+    {
+        // Create a dummy project
+        $project0 = new phpucConfigProject( $this->config, 'phpUnderControl0' );
+        $project1 = new phpucConfigProject( $this->config, 'phpUnderControl1' );
+        $this->config->save();
+        
+        $dom = new DOMDocument();
+        $dom->load( $this->testFile );
+        $this->assertEquals( 2, $dom->getElementsByTagName( 'project' )->length );
+        
+        // Load project again
+        $config  = new phpucConfigFile( $this->testFile );
+        $project = $config->getProject( 'phpUnderControl0' );
+        
+        // Remove project and save again
+        $project->delete();
+        $config->save();
+        
+        $dom = new DOMDocument();
+        $dom->load( $this->testFile );
+        $this->assertEquals( 1, $dom->getElementsByTagName( 'project' )->length );
+    }
+    
+    /**
      * Tests that the magic __get() method fails with an exception for an unknown
      * property.
      *

@@ -65,6 +65,21 @@
 class phpucConfigProject
 {
     /**
+     * Marks a clean project instance.
+     */
+    const STATE_CLEAN = 1;
+    
+    /**
+     * Marks a dirty or new project instance.
+     */
+    const STATE_DIRTY = 2;
+    
+    /**
+     * Marks a deleted project instance.
+     */
+    const STATE_DELETED = 3;
+    
+    /**
      * Magic properties for the project tag.
      *
      * @type array<mixed>
@@ -104,13 +119,12 @@ class phpucConfigProject
     protected $buildTriggers = array();
     
     /**
-     * Denotes that this project object is new and not loaded from the 
-     * config.xml file.
+     * Denotes the actual state of this project object.
      *
-     * @type boolean
-     * @var boolean $isNew
+     * @type integer
+     * @var integer $state
      */
-    protected $isNew = false;
+    protected $state = self::STATE_CLEAN;
     
     /**
      * The <schedule> element from the project configuration.
@@ -193,7 +207,7 @@ class phpucConfigProject
                     );
                 }
                 $this->properties[$name] = $value;
-                return;
+                break;
             
             default:
                 throw new OutOfRangeException(
@@ -201,6 +215,8 @@ class phpucConfigProject
                 );
                 break;
         }
+        
+        $this->state = self::STATE_DIRTY;
     }
     
     /**
@@ -211,7 +227,7 @@ class phpucConfigProject
      */
     public function isNew()
     {
-        return $this->isNew;
+        return ( $this->state === self::STATE_DIRTY );
     }
     
     /**
@@ -221,6 +237,8 @@ class phpucConfigProject
      */
     public function createArtifactsPublisher()
     {
+        $this->state = self::STATE_DIRTY;
+        
         $publisher = new phpucConfigArtifactsPublisher( $this );
         
         $this->publishers[] = $publisher;
@@ -235,6 +253,8 @@ class phpucConfigProject
      */
     public function createExecutePublisher()
     {
+        $this->state = self::STATE_DIRTY;
+        
         $execute = new phpucConfigExecutePublisher( $this );
         
         $this->publishers[] = $execute;
@@ -249,6 +269,8 @@ class phpucConfigProject
      */
     public function createBootStrapper()
     {
+        $this->state = self::STATE_DIRTY;
+        
         $bootStrapper = new phpucConfigBootStrapper( $this );
         
         $this->bootStrappers[] = $bootStrapper;
@@ -271,6 +293,18 @@ class phpucConfigProject
     }
     
     /**
+     * Removes the project section for this project from the configuration file.
+     *
+     * @return void
+     */
+    public function delete()
+    {
+        $this->state = self::STATE_DELETED;
+        
+        $this->element->parentNode->removeChild( $this->element );
+    }
+    
+    /**
      * Builds/Rebuilds the project xml document.
      *
      * @return void
@@ -278,6 +312,12 @@ class phpucConfigProject
      */
     public function buildXml()
     {
+        // Skip if this project is not dirty
+        if ( $this->state !== self::STATE_DIRTY )
+        {
+            return;
+        }
+        
         $this->scheduleElement->setAttribute( 'interval', $this->interval );
         $this->toolElement->setAttribute( 'anthome', $this->anthome );
         
@@ -293,6 +333,8 @@ class phpucConfigProject
         {
             $buildTrigger->buildXml();
         }
+        
+        $this->state = self::STATE_CLEAN;
     }
     
     /**
@@ -342,7 +384,7 @@ class phpucConfigProject
             
         $this->properties['element'] = $element;
             
-        $this->isNew = true;
+        $this->state = self::STATE_DIRTY;
     }
     
     /**
