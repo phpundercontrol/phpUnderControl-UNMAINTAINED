@@ -76,7 +76,7 @@ class phpucCvsCheckout extends phpucAbstractCheckout
     {
         $this->properties['module'] = null;
         
-        $this->passFile = tempnam( sys_get_temp_dir(), 'cvs' );
+        $this->passFile = tempnam( phpucFileUtil::getSysTempDir(), 'cvs' );
     }
     
     /**

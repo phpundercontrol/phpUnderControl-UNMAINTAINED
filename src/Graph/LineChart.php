@@ -93,7 +93,8 @@ class phpucLineChart extends ezcGraphLineChart implements phpucChartI
         
         $this->data = new ezcGraphChartDataContainer( $this );
         
-        foreach ( $input->data as $label => $data )
+        $data = $input->data;
+        foreach ( $data as $label => $data )
         {
             $this->data[$label]         = new ezcGraphArrayDataSet( $data );
             $this->data[$label]->symbol = ezcGraph::BULLET;

@@ -203,6 +203,36 @@ final class phpucFileUtil
     }
     
     /**
+     * Returns the system temp directory.
+     *
+     * @return string
+     */
+    public static function getSysTempDir()
+    {
+        if ( function_exists( 'sys_get_temp_dir' ) )
+        {
+            return sys_get_temp_dir();
+        }
+        else if ( $tmp = getenv( 'TMP' ) )
+        {
+            return $tmp;
+        }
+        else if ( $tmp = getenv( 'TMPDIR' ) )
+        {
+            return $tmp;
+        }
+        else if ( $tmp = getenv( 'TEMP' ) )
+        {
+            return $tmp;
+        }
+        else if ( file_exists( '/tmp' ) )
+        {
+            return '/tmp';
+        }
+        throw new ErrorException( 'Cannot get system temp directory.' );
+    }
+    
+    /**
      * Tries to find the given executable on an unix system.
      *
      * @param string $executable The pure executable name without an extension.
