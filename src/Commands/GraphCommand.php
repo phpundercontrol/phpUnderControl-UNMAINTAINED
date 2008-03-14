@@ -57,7 +57,7 @@
  * @version   Release: @package_version@
  * @link      http://www.phpundercontrol.org/
  */
-class phpucGraphCommand extends phpucAbstractCommand
+class phpucGraphCommand extends phpucAbstractCommand implements phpucConsoleCommandI
 {
     /**
      * Returns the cli command identifier.
