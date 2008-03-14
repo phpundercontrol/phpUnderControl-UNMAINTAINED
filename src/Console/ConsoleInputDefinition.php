@@ -408,5 +408,7 @@ class phpucConsoleInputDefinition implements ArrayAccess, IteratorAggregate
                 }
             }
         }
+        
+        ksort( $this->definition );
     }
 }
