@@ -491,7 +491,8 @@ class phpucConsoleInput
             }
         }
         
-        foreach ( $this->commands[$command]['args'] as $name => $arg )
+        $cmdArgs = $this->commands[$command]['args'];
+        foreach ( $cmdArgs as $name => $arg )
         {
             $tokens = $this->tokenizeHelp( $arg['help'] );
             

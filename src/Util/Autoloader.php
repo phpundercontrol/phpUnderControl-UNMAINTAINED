@@ -83,7 +83,7 @@ class phpucAutoloader
         );
         foreach ( $files as $file )
         {
-            $this->classMap[$files->getClassName()] = $file->getRealPath();
+            $this->classMap[$files->getClassName()] = $file->getPathname();
         }
     }
     
