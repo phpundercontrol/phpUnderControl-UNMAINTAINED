@@ -1,8 +1,10 @@
 <?php
 /**
  * This file is part of phpUnderControl.
+ * 
+ * PHP Version 5.2.4
  *
- * Copyright (c) 2007-2008, Manuel Pichler <mapi@phpundercontrol.org>.
+ * Copyright (c) 2007-2008, Manuel Pichler <mapi@manuel-pichler.de>.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -34,77 +36,76 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  * 
- * @package   Tasks
- * @author    Manuel Pichler <mapi@phpundercontrol.org>
+ * @category  QualityAssurance
+ * @package   Commands
+ * @author    Manuel Pichler <mapi@manuel-pichler.de>
  * @copyright 2007-2008 Manuel Pichler. All rights reserved.
  * @license   http://www.opensource.org/licenses/bsd-license.php  BSD License
  * @version   SVN: $Id$
  * @link      http://www.phpundercontrol.org/
  */
 
-if ( defined( 'PHPUnit_MAIN_METHOD' ) === false )
-{
-    define( 'PHPUnit_MAIN_METHOD', 'phpucTasksAllTests::main' );
-}
-
-require_once 'PHPUnit/Framework/TestSuite.php';
-require_once 'PHPUnit/TextUI/TestRunner.php';
-
-require_once dirname( __FILE__ ) . '/CheckoutTaskTest.php';
-require_once dirname( __FILE__ ) . '/CruiseControlTaskTest.php';
-require_once dirname( __FILE__ ) . '/GraphTaskTest.php';
-require_once dirname( __FILE__ ) . '/ModifyFileTaskTest.php';
-require_once dirname( __FILE__ ) . '/PhpCodeSnifferTaskTest.php';
-require_once dirname( __FILE__ ) . '/PhpDocumentorTaskTest.php';
-require_once dirname( __FILE__ ) . '/PHPUnitTaskTest.php';
-require_once dirname( __FILE__ ) . '/ProjectDeleteTaskTest.php';
-require_once dirname( __FILE__ ) . '/ProjectTaskTest.php';
-
 /**
- * Main test suite for phpUnderControl Tasks.
+ * Deletes the project configuration and all project contents.
  *
- * @package   Tasks
- * @author    Manuel Pichler <mapi@phpundercontrol.org>
+ * @category  QualityAssurance
+ * @package   Commands
+ * @author    Manuel Pichler <mapi@manuel-pichler.de>
  * @copyright 2007-2008 Manuel Pichler. All rights reserved.
  * @license   http://www.opensource.org/licenses/bsd-license.php  BSD License
  * @version   Release: @package_version@
  * @link      http://www.phpundercontrol.org/
  */
-class phpucTasksAllTests
+class phpucDeleteCommand extends phpucAbstractCommand implements phpucConsoleCommandI
 {
     /**
-     * Test suite main method.
+     * Returns the cli command identifier.
      *
-     * @return void
+     * @return string
      */
-    public static function main()
+    public function getCommandId()
     {
-        PHPUnit_TextUI_TestRunner::run( self::suite() );
+        return 'delete';
     }
     
     /**
-     * Creates the phpunit test suite for this package.
+     * Callback method that registers a cli command.
      *
-     * @return PHPUnit_Framework_TestSuite
+     * @param phpucConsoleInputDefinition $def The input definition container.
+     * 
+     * @return void
      */
-    public static function suite()
+    public function registerCommand( phpucConsoleInputDefinition $def )
     {
-        $suite = new PHPUnit_Framework_TestSuite( 'phpUnderControl - TasksAllTest' );
-        $suite->addTestSuite( 'phpucCheckoutTaskTest' );
-        $suite->addTestSuite( 'phpucCruiseControlTaskTest' );
-        $suite->addTestSuite( 'phpucGraphTaskTest' );
-        $suite->addTestSuite( 'phpucModifyFileTaskTest' );
-        $suite->addTestSuite( 'phpucPhpCodeSnifferTaskTest' );
-        $suite->addTestSuite( 'phpucPHPUnitTaskTest' );
-        $suite->addTestSuite( 'phpucPhpDocumentorTaskTest' );
-        $suite->addTestSuite( 'phpucProjectDeleteTaskTest' );
-        $suite->addTestSuite( 'phpucProjectTaskTest' );
-
-        return $suite;
+        $def->addCommand( 
+            $this->getCommandId(), 
+            'Deletes a CruiseControl project with all logs and artifacts.'
+        );
+        $def->addArgument( 
+            $this->getCommandId(),
+            'cc-install-dir',
+            'The installation directory of CruiseControl.'
+        );
+        $def->addOption(
+            $this->getCommandId(),
+            'j',
+            'project-name',
+            'The name of the project to be deleted.',
+            true,
+            null,
+            true
+        );
     }
-}
 
-if ( PHPUnit_MAIN_METHOD === 'phpucTasksAllTests::main' )
-{
-    phpucTasksAllTests::main();
+    /**
+     * Creates all command specific {@link phpucTaskI} objects.
+     * 
+     * @return array(phpucTaskI)
+     */
+    protected function doCreateTasks()
+    {
+        return array(
+            new phpucProjectDeleteTask(),
+        );
+    }
 }

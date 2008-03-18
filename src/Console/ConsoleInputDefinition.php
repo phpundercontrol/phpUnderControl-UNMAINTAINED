@@ -247,7 +247,7 @@ class phpucConsoleInputDefinition implements ArrayAccess, IteratorAggregate
                                $arg = null, 
                                $default = null, 
                                $mandatory = false, 
-                               $mode = self::MODE_HIDDEN )
+                               $mode = self::MODE_NORMAL )
     {
         if ( !isset( $this->definition[$cmd] ) )
         {
