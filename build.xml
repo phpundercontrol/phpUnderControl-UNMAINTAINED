@@ -8,6 +8,15 @@
       <arg line="up"/>
   	</exec>
   </target> 
+	
+  <target name="checkphp">
+    <apply executable="php" failonerror="true">
+      <arg value="-l" />
+      <fileset dir="tests">
+        <include name="**/*.php" />
+      </fileset>
+    </apply>
+  </target>
   
   <target name="test">
     <mkdir dir="${output.dir}/logs"/>

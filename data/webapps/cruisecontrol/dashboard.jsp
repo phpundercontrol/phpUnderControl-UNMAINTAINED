@@ -115,6 +115,7 @@ class SortableStatus implements Comparable {
   statuses.add(ProjectState.MODIFICATIONSET, "important");
   statuses.add(ProjectState.BUILDING, "important");
   statuses.add(ProjectState.MERGING_LOGS, "important");
+  statuses.add(ProjectState.BOOTSTRAPPING, "normal");
   statuses.add(ProjectState.QUEUED, "normal");
   statuses.add(ProjectState.WAITING, "dull");
   statuses.add(ProjectState.IDLE, "dull");
