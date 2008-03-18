@@ -83,7 +83,13 @@ class phpucProjectCleanTask extends phpucAbstractTask implements phpucConsoleExt
         );
     }
     
-    
+    /**
+     * Removes all project log files.
+     *
+     * @param array $timestamps List of all removable logs files.
+     * 
+     * @return void
+     */
     protected function cleanProjectLogs( array $timestamps )
     {
         foreach ( array_keys( $timestamps ) as $file )
@@ -92,6 +98,14 @@ class phpucProjectCleanTask extends phpucAbstractTask implements phpucConsoleExt
         }
     }
     
+    /**
+     * Removes all project artifact subdirectories that match one of the given
+     * timestamps.
+     *
+     * @param array $timestamps List of all removable timestamps.
+     * 
+     * @return void
+     */
     protected function cleanProjectArtifacts( $basePath, array $timestamps )
     {
         foreach ( $timestamps as $timestamp )
