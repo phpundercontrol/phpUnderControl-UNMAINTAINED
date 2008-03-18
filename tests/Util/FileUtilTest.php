@@ -196,10 +196,10 @@ class phpucFileUtilTest extends phpucAbstractTest
             )
         );
         
-        file_put_contents( PHPUC_TEST_DIR . '/artifacts/foo/12345/bar.txt', 'foo' );
-        file_put_contents( PHPUC_TEST_DIR . '/artifacts/foo/67890/bar.txt', 'foo' );
-        file_put_contents( PHPUC_TEST_DIR . '/artifacts/foo/bar.txt', 'foo' );
-        file_put_contents( PHPUC_TEST_DIR . '/artifacts/bar.txt', 'foo' );
+        $this->createTestFile( '/artifacts/foo/12345/bar.txt' );
+        $this->createTestFile( '/artifacts/foo/67890/bar.txt' );
+        $this->createTestFile( '/artifacts/foo/bar.txt' );
+        $this->createTestFile( '/artifacts/bar.txt' );
         
         phpucFileUtil::deleteDirectory( PHPUC_TEST_DIR . '/artifacts' );
         
@@ -221,10 +221,9 @@ class phpucFileUtilTest extends phpucAbstractTest
         }
         
         $this->createTestDirectories( array( '/logs/foo/12345' ) );
+        $this->createTestFile( '/logs/foo/12345/bar.txt' );
         
         $file = PHPUC_TEST_DIR . '/logs/foo/12345/bar.txt';
-        
-        file_put_contents( $file, 'foo' );
         
         link( $file, PHPUC_TEST_DIR . '/logs/bar.txt' );
         symlink( $file, PHPUC_TEST_DIR . '/logs/foo/bar.txt' );
