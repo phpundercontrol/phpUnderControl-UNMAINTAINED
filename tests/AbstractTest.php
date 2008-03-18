@@ -128,6 +128,24 @@ abstract class phpucAbstractTest extends PHPUnit_Framework_TestCase
     }
     
     /**
+     * Prepares the cli <b>$argv</b> array and create a {@link phpucConsoleArgs}
+     * instance.
+     *
+     * @param array $argv A new argument array.
+     * 
+     * @return phpucConsoleArgs
+     */
+    protected function prepareConsoleArgs( array $argv = null )
+    {
+        $this->prepareArgv( $argv );
+        
+        $input = new phpucConsoleInput();
+        $input->parse();
+        
+        return $input->args;
+    }
+    
+    /**
      * Creates a directory structure under the test directory.
      *
      * @param array(string) $directories Test directories.
