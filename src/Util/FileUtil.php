@@ -217,11 +217,11 @@ final class phpucFileUtil
         {
             return $tmp;
         }
-        else if ( $tmp = getenv( 'TMPDIR' ) )
+        else if ( $tmp = getenv( 'TEMP' ) )
         {
             return $tmp;
         }
-        else if ( $tmp = getenv( 'TEMP' ) )
+        else if ( $tmp = getenv( 'TMPDIR' ) )
         {
             return $tmp;
         }
@@ -230,6 +230,48 @@ final class phpucFileUtil
             return '/tmp';
         }
         throw new ErrorException( 'Cannot get system temp directory.' );
+    }
+    
+    /**
+     * Removes the given directory recursive.
+     *
+     * @param string $path The directory to delete.
+     * 
+     * @return void
+     */
+    public static function deleteDirectory( $path )
+    {
+        self::deleteDirectoryRecursive( new RecursiveDirectoryIterator( $path ) );
+        
+        rmdir( $path );
+    }
+    
+    /**
+     * Removes the given directory recursive.
+     *
+     * @param deleteDirectoryRecursive $it The context directory iterator.
+     * 
+     * @return void
+     */
+    private static function deleteDirectoryRecursive( RecursiveDirectoryIterator $it )
+    {
+        foreach ( $it as $file )
+        {
+            if ( $it->isDot() )
+            {
+                continue;
+            }
+            else if ( $it->isDir() )
+            {
+                self::deleteDirectoryRecursive( $it->getChildren() );
+                
+                rmdir( $it->getPathname() );
+            }
+            else
+            {
+                unlink( $it->getPathname() );
+            }
+        }
     }
     
     /**

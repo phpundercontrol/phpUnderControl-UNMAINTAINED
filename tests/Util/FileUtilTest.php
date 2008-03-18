@@ -183,6 +183,58 @@ class phpucFileUtilTest extends phpucAbstractTest
     }
     
     /**
+     * Tests the recursive delete implementation works as expected.
+     *
+     * @return void
+     */
+    public function testDeleteDirectory()
+    {
+        $this->createTestDirectories(
+            array(
+                '/artifacts/foo/12345',
+                '/artifacts/foo/67890',
+            )
+        );
+        
+        file_put_contents( PHPUC_TEST_DIR . '/artifacts/foo/12345/bar.txt', 'foo' );
+        file_put_contents( PHPUC_TEST_DIR . '/artifacts/foo/67890/bar.txt', 'foo' );
+        file_put_contents( PHPUC_TEST_DIR . '/artifacts/foo/bar.txt', 'foo' );
+        file_put_contents( PHPUC_TEST_DIR . '/artifacts/bar.txt', 'foo' );
+        
+        phpucFileUtil::deleteDirectory( PHPUC_TEST_DIR . '/artifacts' );
+        
+        $this->assertFileNotExists( PHPUC_TEST_DIR . '/artifacts' );
+    }
+    
+    /**
+     * Tests the recursive delete implementation works also for directories with
+     * linked contents.
+     *
+     * @return void
+     */
+    public function testDeleteDirectoryWithLinksAndSymlinks()
+    {
+        if ( !function_exists( 'link' ) || !function_exists( 'symlink' ) )
+        {
+            $this->markTestSkipped( 'Missing "link" or "symlink" function.' );
+            return;
+        }
+        
+        $this->createTestDirectories( array( '/logs/foo/12345' ) );
+        
+        $file = PHPUC_TEST_DIR . '/logs/foo/12345/bar.txt';
+        
+        file_put_contents( $file, 'foo' );
+        
+        link( $file, PHPUC_TEST_DIR . '/logs/bar.txt' );
+        symlink( $file, PHPUC_TEST_DIR . '/logs/foo/bar.txt' );
+        
+        phpucFileUtil::deleteDirectory( PHPUC_TEST_DIR . '/logs' );
+        
+        $this->assertFileNotExists( PHPUC_TEST_DIR . '/logs' );
+    }
+    
+    /**
      * Initializes the test directories and files for the executable test.
      *
      * @param integer $os The operation system.
