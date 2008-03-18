@@ -2,7 +2,7 @@
 /**
  * This file is part of phpUnderControl.
  * 
- * PHP Version 5.2.4
+ * PHP Version 5.2.0
  *
  * Copyright (c) 2007-2008, Manuel Pichler <mapi@manuel-pichler.de>.
  * All rights reserved.
