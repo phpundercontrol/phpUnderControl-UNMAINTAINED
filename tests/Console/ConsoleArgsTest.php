@@ -57,25 +57,6 @@ require_once dirname( __FILE__ ) . '/../AbstractTest.php';
 class phpucConsoleArgsTest extends phpucAbstractTest
 {
     /**
-     * Tests that the console arg ctor throws an exception if no $argv variable
-     * exists.
-     *
-     * @return void
-     * @todo TODO: Move this into a console input test case.
-     */
-    public function testConsoleWithoutArgv()
-    {
-        $this->prepareArgv();
-        
-        try
-        {
-            $input = new phpucConsoleInput();
-            $this->fail( 'phpucConsoleException expected.' );
-        }
-        catch ( phpucConsoleException $e ) {}
-    }
-    
-    /**
      * Tests the console args object without options. It also checks that only
      * the defined arguments are present.
      *
@@ -94,88 +75,69 @@ class phpucConsoleArgsTest extends phpucAbstractTest
         $input = new phpucConsoleInput();
         $input->parse();
         
-        $console = $input->args;
+        $args = $input->args;
         
-        $this->assertTrue( 
-            $console->hasArgument( 'cc-install-dir' ) 
-        );
+        $this->assertTrue( $args->hasArgument( 'cc-install-dir' ) );
         $this->assertEquals(
             '/opt/cruisecontrol',
-            $console->getArgument( 'cc-install-dir' )
+            $args->getArgument( 'cc-install-dir' )
         );
-        $this->assertEquals( 1, count( $console->arguments ) );
+        $this->assertEquals( 1, count( $args->arguments ) );
         
         // Every other argument request must result in an OutOfRangeException
         try
         {
-            $console->getArgument( 'phpUnderControl' );
+            $args->getArgument( 'phpUnderControl' );
             $this->fail( 'OutOfRangeException expected.' );
         }
         catch ( OutOfRangeException $e ) {}
     }
     
     /**
-     * Tests the install command without the cc-install-dir argument which must
-     * result in an {@link phpucConsoleException}.
-     *
-     * @return void
-     * @todo TODO: Move this into a console input test case.
-     */
-    public function testConsoleInstallCommandButWithoutArguments()
-    {
-        $this->prepareArgv( array( 'install' ) );
-        
-        $input = new phpucConsoleInput();
-        
-        try
-        {
-            $input->parse();
-            $this->fail( 'phpucConsoleException expected.' );
-        }
-        catch ( phpucConsoleException $e ) {}
-    }
-    
-    /**
-     * Tests that the parse method throws an {@link phpucConsoleException} for
-     * invalid command identifiers.
-     *
-     * @return void
-     * @todo TODO: Move this into a console input test case.
-     */
-    public function testConsoleWithInvalidCommandIdentifier()
-    {
-        $this->prepareArgv( array( 'phpUnderControl' ) );
-        
-        $input = new phpucConsoleInput();
-        
-        ob_start();
-        
-        try
-        {
-            $input->parse();
-            $this->fail( 'phpucConsoleException expected.' );
-        }
-        catch ( phpucConsoleException $e ) {}
-        
-        ob_end_clean();
-    }
-    
-    /**
+     * Tests that {@link phpucConsoleArgs#getOption()} fails with an exception 
+     * for an unknown option identifier.
      * 
+     * @return void
+     */
+    public function testConsoleArgsWithUnknownOptionFail()
+    {
+        $this->setExpectedException(
+            'OutOfRangeException', 'Unknown option "phpuc".'
+        );
+        
+        $args = new phpucConsoleArgs( 'phpuc', array(), array() );
+        $args->getOption( 'phpuc' );
+    }
+    
+    /**
+     * Tests that {@link phpucConsoleArgs#setOption()} works as expected.
      *
      * @return void
-     * @todo TODO: Move this into a console input test case.
      */
-    public function testConsolePrintHelp()
+    public function testConsoleArgsSetOption()
     {
-        $this->prepareArgv( array( '-h' ) );
-        $input = new phpucConsoleInput();
-        
-        ob_start();
-        $input->parse();
-        $content = ob_get_contents();
-        ob_end_clean();
-        
-        $this->assertRegExp( '/Command line options and arguments for "\w+"/', $content );
+        $args = new phpucConsoleArgs( 'phpuc', array(), array() );
+        $this->assertFalse( $args->hasOption( 'phpuc' ) );
+        $args->setOption( 'phpuc', 'phpUnderControl' );
+        $this->assertTrue( $args->hasOption( 'phpuc' ) );
+        $this->assertEquals( 'phpUnderControl', $args->getOption( 'phpuc' ) );
     }
+    
+    /**
+     * Tests that {@link phpucConsoleArgs::__get()} fails with an exception for
+     * an unknown property.
+     *
+     * @return void
+     */
+    public function testConsoleArgsMagicGetterWithUnknownPropertyFail()
+    {
+        $this->setExpectedException(
+            'OutOfRangeException', 
+            'Unknown or writonly property $phpUnderControl.'
+        );
+        
+        $args  = new phpucConsoleArgs( 'phpuc', array(), array() );
+        $value = $args->phpUnderControl;
+    }
+    
 }

@@ -1,8 +1,10 @@
 <?php
 /**
  * This file is part of phpUnderControl.
+ * 
+ * PHP Version 5.2.0
  *
- * Copyright (c) 2007-2008, Manuel Pichler <mapi@phpundercontrol.org>.
+ * Copyright (c) 2007-2008, Manuel Pichler <mapi@manuel-pichler.de>.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -34,65 +36,56 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  * 
- * @package   Commands
- * @author    Manuel Pichler <mapi@phpundercontrol.org>
+ * @category  QualityAssurance
+ * @package   Tasks
+ * @author    Manuel Pichler <mapi@manuel-pichler.de>
  * @copyright 2007-2008 Manuel Pichler. All rights reserved.
  * @license   http://www.opensource.org/licenses/bsd-license.php  BSD License
  * @version   SVN: $Id$
  * @link      http://www.phpundercontrol.org/
  */
 
-if ( defined( 'PHPUnit_MAIN_METHOD' ) === false )
-{
-    define( 'PHPUnit_MAIN_METHOD', 'phpucCommandsAllTests::main' );
-}
-
-require_once 'PHPUnit/Framework/TestSuite.php';
-require_once 'PHPUnit/TextUI/TestRunner.php';
-
-require_once dirname( __FILE__ ) . '/CleanCommandTest.php';
-require_once dirname( __FILE__ ) . '/CommandTest.php';
-require_once dirname( __FILE__ ) . '/DeleteCommandTest.php';
+require_once dirname( __FILE__ ) . '/AbstractTaskTest.php';
 
 /**
- * Main test suite for phpUnderControl Commands package.
+ * Test case for the {@link phpucCreateFileTask} class.
  *
- * @package   Commands
- * @author    Manuel Pichler <mapi@phpundercontrol.org>
+ * @category  QualityAssurance
+ * @package   Tasks
+ * @author    Manuel Pichler <mapi@manuel-pichler.de>
  * @copyright 2007-2008 Manuel Pichler. All rights reserved.
  * @license   http://www.opensource.org/licenses/bsd-license.php  BSD License
  * @version   Release: @package_version@
  * @link      http://www.phpundercontrol.org/
  */
-class phpucCommandsAllTests
+class phpucCreateFileTaskTest extends phpucAbstractTaskTest
 {
-    /**
-     * Test suite main method.
-     *
-     * @return void
-     */
-    public static function main()
+    public function testCreateFiles()
     {
-        PHPUnit_TextUI_TestRunner::run( self::suite() );
-    }
-    
-    /**
-     * Creates the phpunit test suite for this package.
-     *
-     * @return PHPUnit_Framework_TestSuite
-     */
-    public static function suite()
-    {
-        $suite = new PHPUnit_Framework_TestSuite( 'phpUnderControl - CommandsAllTests' );
-        $suite->addTestSuite( 'phpucCommandTest' );
-        $suite->addTestSuite( 'phpucCleanCommandTest' );
-        $suite->addTestSuite( 'phpucDeleteCommandTest' );
+        // Create empty directories
+        $this->createTestDirectories(
+            array( '/webapps/cruisecontrol/js', '/webapps/cruisecontrol/xsl' )
+        );
         
-        return $suite;
+        $files = array(
+            '/webapps/cruisecontrol/js/scriptaculous.js',
+            '/webapps/cruisecontrol/xsl/phpcs.xsl',
+        );
+        
+        foreach ( $files as $file )
+        {
+            $this->assertFileNotExists( PHPUC_TEST_DIR . $file );
+        }
+        
+        $args = $this->prepareConsoleArgs( array( 'example', PHPUC_TEST_DIR ) );
+        $task = new phpucCreateFileTask();
+        $task->setFiles( $files );
+        $task->setConsoleArgs( $args );
+        $task->execute();
+        
+        foreach ( $files as $file )
+        {
+            $this->assertFileExists( PHPUC_TEST_DIR . $file );
+        }
     }
-}
-
-if ( PHPUnit_MAIN_METHOD === 'phpucCommandsAllTests::main' )
-{
-    phpucCommandsAllTests::main();
 }

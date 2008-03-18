@@ -126,6 +126,8 @@ class phpucProjectDeleteTask extends phpucAbstractTask
      *        The CruiseControl installation directory.
      * @param string $projectName
      *        The project name.
+     * 
+     * @return void
      */
     protected function deleteProjectConfig( $installDir, $projectName )
     {
@@ -141,6 +143,8 @@ class phpucProjectDeleteTask extends phpucAbstractTask
      *        The CruiseControl installation directory.
      * @param string $projectName
      *        The project name.
+     * 
+     * @return void
      */
     protected function deleteProjectStatusFile( $installDir, $projectName )
     {
@@ -158,6 +162,8 @@ class phpucProjectDeleteTask extends phpucAbstractTask
      *        The CruiseControl installation directory.
      * @param string $projectName
      *        The project name.
+     * 
+     * @return void
      */
     protected function deleteProjectArtifacts( $installDir, $projectName )
     {
@@ -175,6 +181,8 @@ class phpucProjectDeleteTask extends phpucAbstractTask
      *        The CruiseControl installation directory.
      * @param string $projectName
      *        The project name.
+     * 
+     * @return void
      */
     protected function deleteProjectLogs( $installDir, $projectName )
     {
@@ -192,6 +200,8 @@ class phpucProjectDeleteTask extends phpucAbstractTask
      *        The CruiseControl installation directory.
      * @param string $projectName
      *        The project name.
+     * 
+     * @return void
      */
     protected function deleteProjectDirectory( $installDir, $projectName )
     {

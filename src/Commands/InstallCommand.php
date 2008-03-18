@@ -56,7 +56,7 @@
  * @version   Release: @package_version@
  * @link      http://www.phpundercontrol.org/
  */
-class phpucInstallCommand extends phpucAbstractCommand implements phpucConsoleCommandI 
+class phpucInstallCommand extends phpucAbstractCommand implements phpucConsoleCommandI
 {
     /**
      * List of new files.

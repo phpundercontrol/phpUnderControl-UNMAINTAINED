@@ -51,12 +51,14 @@ require_once 'PHPUnit/Framework/TestSuite.php';
 require_once 'PHPUnit/TextUI/TestRunner.php';
 
 require_once dirname( __FILE__ ) . '/CheckoutTaskTest.php';
+require_once dirname( __FILE__ ) . '/CreateFileTaskTest.php';
 require_once dirname( __FILE__ ) . '/CruiseControlTaskTest.php';
 require_once dirname( __FILE__ ) . '/GraphTaskTest.php';
 require_once dirname( __FILE__ ) . '/ModifyFileTaskTest.php';
 require_once dirname( __FILE__ ) . '/PhpCodeSnifferTaskTest.php';
 require_once dirname( __FILE__ ) . '/PhpDocumentorTaskTest.php';
 require_once dirname( __FILE__ ) . '/PHPUnitTaskTest.php';
+require_once dirname( __FILE__ ) . '/ProjectCleanTaskTest.php';
 require_once dirname( __FILE__ ) . '/ProjectDeleteTaskTest.php';
 require_once dirname( __FILE__ ) . '/ProjectTaskTest.php';
 
@@ -91,12 +93,14 @@ class phpucTasksAllTests
     {
         $suite = new PHPUnit_Framework_TestSuite( 'phpUnderControl - TasksAllTest' );
         $suite->addTestSuite( 'phpucCheckoutTaskTest' );
+        $suite->addTestSuite( 'phpucCreateFileTaskTest' );
         $suite->addTestSuite( 'phpucCruiseControlTaskTest' );
         $suite->addTestSuite( 'phpucGraphTaskTest' );
         $suite->addTestSuite( 'phpucModifyFileTaskTest' );
         $suite->addTestSuite( 'phpucPhpCodeSnifferTaskTest' );
         $suite->addTestSuite( 'phpucPHPUnitTaskTest' );
         $suite->addTestSuite( 'phpucPhpDocumentorTaskTest' );
+        $suite->addTestSuite( 'phpucProjectCleanTaskTest' );
         $suite->addTestSuite( 'phpucProjectDeleteTaskTest' );
         $suite->addTestSuite( 'phpucProjectTaskTest' );
 

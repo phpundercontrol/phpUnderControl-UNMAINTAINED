@@ -65,6 +65,18 @@
  */
 abstract class phpucAbstractCheckout implements phpucCheckoutI
 {
+    /**
+     * Factory methid that create a checkout implementation for the console
+     * arguments.
+     *
+     * @param phpucConsoleArgs $args
+     *        The given console arguments.
+     * 
+     * @return phpucCheckoutI
+     * @throws phpucErrorException 
+     *         If the defined version control system is not valid, but this
+     *         should never happen.
+     */
     public static function createCheckout( phpucConsoleArgs $args )
     {
         switch ( $args->getOption( 'version-control' ) )

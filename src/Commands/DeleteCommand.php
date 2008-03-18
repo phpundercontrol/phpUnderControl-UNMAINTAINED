@@ -59,6 +59,26 @@
 class phpucDeleteCommand extends phpucAbstractCommand implements phpucConsoleCommandI
 {
     /**
+     * Validates all command tasks.
+     *
+     * @return void
+     */
+    public function validate()
+    {
+        // Check that the cc-install-dir exists.
+        $path = $this->args->getArgument( 'cc-install-dir' );
+
+        if ( !is_dir( $path ) )
+        {
+            throw new phpucValidateException(
+                "The CruiseControl directory '{$path}' doesn't exist."
+            );
+        }
+        
+        parent::validate();
+    }
+    
+    /**
      * Returns the cli command identifier.
      *
      * @return string

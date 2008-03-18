@@ -148,7 +148,7 @@ class phpucConsoleArgs
             return $this->properties['options'][$name];
         }
         throw new OutOfRangeException(
-            sprintf( 'Unknown option "%s"."', $name )
+            sprintf( 'Unknown option "%s".', $name )
         );
     }
     

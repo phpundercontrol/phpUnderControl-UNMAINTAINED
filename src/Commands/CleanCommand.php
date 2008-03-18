@@ -1,8 +1,10 @@
 <?php
 /**
  * This file is part of phpUnderControl.
+ * 
+ * PHP Version 5.2.0
  *
- * Copyright (c) 2007-2008, Manuel Pichler <mapi@phpundercontrol.org>.
+ * Copyright (c) 2007-2008, Manuel Pichler <mapi@manuel-pichler.de>.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -34,65 +36,87 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  * 
+ * @category  QualityAssurance
  * @package   Commands
- * @author    Manuel Pichler <mapi@phpundercontrol.org>
+ * @author    Manuel Pichler <mapi@manuel-pichler.de>
  * @copyright 2007-2008 Manuel Pichler. All rights reserved.
  * @license   http://www.opensource.org/licenses/bsd-license.php  BSD License
  * @version   SVN: $Id$
  * @link      http://www.phpundercontrol.org/
  */
 
-if ( defined( 'PHPUnit_MAIN_METHOD' ) === false )
-{
-    define( 'PHPUnit_MAIN_METHOD', 'phpucCommandsAllTests::main' );
-}
-
-require_once 'PHPUnit/Framework/TestSuite.php';
-require_once 'PHPUnit/TextUI/TestRunner.php';
-
-require_once dirname( __FILE__ ) . '/CleanCommandTest.php';
-require_once dirname( __FILE__ ) . '/CommandTest.php';
-require_once dirname( __FILE__ ) . '/DeleteCommandTest.php';
-
 /**
- * Main test suite for phpUnderControl Commands package.
+ * Utility command that allows to delete old build results.
  *
+ * @category  QualityAssurance
  * @package   Commands
- * @author    Manuel Pichler <mapi@phpundercontrol.org>
+ * @author    Manuel Pichler <mapi@manuel-pichler.de>
  * @copyright 2007-2008 Manuel Pichler. All rights reserved.
  * @license   http://www.opensource.org/licenses/bsd-license.php  BSD License
  * @version   Release: @package_version@
  * @link      http://www.phpundercontrol.org/
  */
-class phpucCommandsAllTests
+class phpucCleanCommand extends phpucAbstractCommand implements phpucConsoleCommandI
 {
     /**
-     * Test suite main method.
+     * Validates all command tasks.
      *
      * @return void
      */
-    public static function main()
+    public function validate()
     {
-        PHPUnit_TextUI_TestRunner::run( self::suite() );
+        // Check that the cc-install-dir exists.
+        $path = $this->args->getArgument( 'cc-install-dir' );
+
+        if ( !is_dir( $path ) )
+        {
+            throw new phpucValidateException(
+                "The CruiseControl directory '{$path}' doesn't exist."
+            );
+        }
+        
+        parent::validate();
     }
     
     /**
-     * Creates the phpunit test suite for this package.
+     * Returns the cli command identifier.
      *
-     * @return PHPUnit_Framework_TestSuite
+     * @return string
      */
-    public static function suite()
+    public function getCommandId()
     {
-        $suite = new PHPUnit_Framework_TestSuite( 'phpUnderControl - CommandsAllTests' );
-        $suite->addTestSuite( 'phpucCommandTest' );
-        $suite->addTestSuite( 'phpucCleanCommandTest' );
-        $suite->addTestSuite( 'phpucDeleteCommandTest' );
-        
-        return $suite;
+        return 'clean';
     }
-}
+    
+    /**
+     * Callback method that registers a cli command.
+     *
+     * @param phpucConsoleInputDefinition $def The input definition container.
+     * 
+     * @return void
+     */
+    public function registerCommand( phpucConsoleInputDefinition $def )
+    {
+        $def->addCommand( 
+            $this->getCommandId(), 
+            'Removes old build artifacts and logs for a specified project.'
+        );
+        $def->addArgument( 
+            $this->getCommandId(),
+            'cc-install-dir',
+            'The installation directory of CruiseControl.'
+        );
+    }
 
-if ( PHPUnit_MAIN_METHOD === 'phpucCommandsAllTests::main' )
-{
-    phpucCommandsAllTests::main();
+    /**
+     * Creates all command specific {@link phpucTaskI} objects.
+     * 
+     * @return array(phpucTaskI)
+     */
+    protected function doCreateTasks()
+    {
+        return array(
+            new phpucProjectCleanTask()
+        );
+    }
 }

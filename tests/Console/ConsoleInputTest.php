@@ -178,25 +178,127 @@ class phpucConsoleInputTest extends phpucAbstractTest
     }
     
     /**
-     * Tests the returns version information.
+     * Tests that the console arg ctor throws an exception if no $argv variable
+     * exists.
+     *
+     * @return void
+     */
+    public function testConsoleWithoutArgv()
+    {
+        $this->prepareArgv();
+        
+        try
+        {
+            $input = new phpucConsoleInput();
+            $this->fail( 'phpucConsoleException expected.' );
+        }
+        catch ( phpucConsoleException $e ) {}
+    }
+    
+    /**
+     * Tests the install command without the cc-install-dir argument which must
+     * result in an {@link phpucConsoleException}.
+     *
+     * @return void
+     */
+    public function testConsoleInstallCommandButWithoutArguments()
+    {
+        $this->prepareArgv( array( 'install' ) );
+        
+        $input = new phpucConsoleInput();
+        
+        try
+        {
+            $input->parse();
+            $this->fail( 'phpucConsoleException expected.' );
+        }
+        catch ( phpucConsoleException $e ) {}
+    }
+    
+    /**
+     * Tests that the input returns the help for -h and --help.
+     *
+     * @return void
+     */
+    public function testConsoleInputPrintHelp()
+    {
+        $out1 = $this->fetchConsoleInputOutput( '-h' );
+        $out2 = $this->fetchConsoleInputOutput( '--help' );
+        
+        $this->assertEquals( $out1, $out2 );
+        $this->assertRegExp( '/Command line options and arguments for "\w+"/', $out1 );
+    }
+    
+    /**
+     * Tests the returned version information.
      * 
      * @return void
      */
-    public function testConsoleInputVersion()
+    public function testConsoleInputPrintVersion()
     {
-        phpucConsoleOutput::get()->reset();
+        $out1 = $this->fetchConsoleInputOutput( '-v' );
+        $out2 = $this->fetchConsoleInputOutput( '--version' );
         
-        $definition = new phpucConsoleInputDefinition();
+        $this->assertEquals( $out1, $out2 );
+        $this->assertEquals( 'phpUnderControl @package_version@ by Manuel Pichler.', $out1 );
+    }
+    
+    /**
+     * Tests the returned usage information.
+     * 
+     * @return void
+     */
+    public function testConsoleInputPrintUsage()
+    {
+        $out1 = $this->fetchConsoleInputOutput( '-u' );
+        $out2 = $this->fetchConsoleInputOutput( '--usage' );
         
-        $this->prepareArgv( array( '--version' ) );
+        $this->assertEquals( $out1, $out2 );
+        $this->assertRegExp( '/^Usage: phpuc.php <command> <options> <arguments>/', $out1 );
+    }
+    
+    /**
+     * Tests that the parse method throws an {@link phpucConsoleException} for
+     * invalid command identifiers.
+     *
+     * @return void
+     */
+    public function testConsoleWithInvalidCommandIdentifier()
+    {
+        $this->prepareArgv( array( 'phpUnderControl' ) );
         
-        $input = new phpucConsoleInput( $definition );
+        $input = new phpucConsoleInput();
+        
+        ob_start();
+        
+        try
+        {
+            $input->parse();
+            $this->fail( 'phpucConsoleException expected.' );
+        }
+        catch ( phpucConsoleException $e ) {}
+        
+        ob_end_clean();
+    }
+    
+    /**
+     * Returns the console output of {@link phpucConsoleInput} for the given
+     * <b>$option</b>
+     *
+     * @param string $option The option to use.
+     * 
+     * @return string
+     */
+    protected function fetchConsoleInputOutput( $option )
+    {
+        $this->prepareArgv( array( $option ) );
+        $input = new phpucConsoleInput();
+        
+        ob_start();
         $input->parse();
+        $content = ob_get_contents();
+        ob_end_clean();
         
-        $text = trim( phpucConsoleOutput::get()->getBuffer() );
-        
-        $this->assertEquals( 
-            'phpUnderControl @package_version@ by Manuel Pichler.', $text
-        );
+        return trim( $content );
     }
 }
