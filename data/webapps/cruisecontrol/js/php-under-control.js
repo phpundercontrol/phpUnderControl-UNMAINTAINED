@@ -1,5 +1,5 @@
 Event.observe( window, "load", function() {
-    var height = document.viewport.getHeight() - 160;
+    var height = document.viewport.getHeight() - 173;
     
     $$( 'iframe.tab-content.' ).each( function(el) {
         el.setStyle( {
