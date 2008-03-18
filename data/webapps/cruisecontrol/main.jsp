@@ -36,14 +36,33 @@
  ********************************************************************************--%>
 <%@page contentType="text/html; charset=utf-8"%>
 <%@page errorPage="/error.jsp"%>
-<%@ taglib uri="/WEB-INF/cruisecontrol-jsp11.tld" prefix="cruisecontrol"%>
+<%@page import="java.io.File" %>
+<%@taglib uri="/WEB-INF/cruisecontrol-jsp11.tld" prefix="cruisecontrol"%>
 <%
     String rmiPort = System.getProperty("cruisecontrol.rmiport");
     boolean rmiEnabled = rmiPort != null;
 
     String ccname  = System.getProperty("ccname", "");
     String project = request.getPathInfo().substring(1);
+
+    boolean apidoc   = false;
+    boolean coverage = false;
 %>
+<cruisecontrol:artifactsLink>
+<% 
+    String log = new File(application.getInitParameter("logDir")).getAbsolutePath();
+    String ts  = artifacts_url.substring(artifacts_url.lastIndexOf('/') + 1);
+
+    File artifacts = new File(log + "/" + project + "/" + ts);
+
+    if (!artifacts.exists()) {
+        artifacts = new File(log + "/../artifacts/" + project + "/" + ts);
+    }
+
+    apidoc   = new File(artifacts.getAbsolutePath() + "/api").exists();
+    coverage = new File(artifacts.getAbsolutePath() + "/coverage").exists();
+%>
+</cruisecontrol:artifactsLink>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
                       "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html>
@@ -82,21 +101,25 @@
             
             <%-- phpUnderControl 4 --%>
               
+            <% if (coverage) { %>
             <cruisecontrol:tab name="coverage" label="Coverage">
               <cruisecontrol:artifactsLink>
                 <iframe src="<%= artifacts_url %>/coverage/index.html" class="tab-content">
                 </iframe>
               </cruisecontrol:artifactsLink>
             </cruisecontrol:tab>
+            <% } %>
             
             <%-- phpUnderControl 5 --%>
               
+            <% if (apidoc) { %>
             <cruisecontrol:tab name="documentation" label="Documentation">
               <cruisecontrol:artifactsLink>
                 <iframe src="<%= artifacts_url %>/api/index.html" class="tab-content">
                 </iframe>
               </cruisecontrol:artifactsLink>
             </cruisecontrol:tab>
+            <% } %>
             
             <%-- phpUnderControl 6 --%>
 
