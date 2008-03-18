@@ -134,7 +134,10 @@ class phpucPhpUnderControl
             {
                 phpucConsoleOutput::set( new phpucConsoleOutput() );
                 
-                $command = phpucAbstractCommand::createCommand( $this->input->args );
+                $command = phpucAbstractCommand::createCommand( 
+                    $this->input->args->command
+                );
+                $command->setConsoleArgs( $this->input->args );
         
                 $command->validate();
                 $command->execute();

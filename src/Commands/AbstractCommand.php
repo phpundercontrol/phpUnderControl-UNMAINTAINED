@@ -61,26 +61,23 @@ abstract class phpucAbstractCommand implements phpucCommandI
     /**
      * Factory method for the different cli modes.
      *
-     * @param phpucConsoleArgs $args The console arguments.
+     * @param string $commandId The command identifier.
      * 
      * @return phpucAbstractCommand
      */
-    public static function createCommand( phpucConsoleArgs $args )
+    public static function createCommand( $commandId )
     {
         // Generate class name
-        $className = sprintf( 'phpuc%sCommand', ucfirst( $args->command ) );
+        $className = sprintf( 'phpuc%sCommand', ucfirst( $commandId ) );
         
         if ( class_exists( $className, true ) === false )
         {
-            throw new ErrorException(
-                sprintf( 'Unknown command "%s" used.', $args->command )
+            throw new phpucErrorException(
+                sprintf( 'Unknown command "%s" used.', $commandId )
             );
         }
         
-        $command = new $className();
-        $command->setConsoleArgs( $args );
-        
-        return $command;
+        return new $className();
     }
     
     /**
