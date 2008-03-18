@@ -96,7 +96,7 @@
         </tr>
       </thead>
       <tbody>
-        <xsl:for-each select="/cruisecontrol/checkstyle/file">
+        <xsl:for-each select="/cruisecontrol/checkstyle/file[error]">
           <xsl:variable name="errors" select="/cruisecontrol/checkstyle/file[@name=current()/@name]/error"/>
           <xsl:variable name="errorCount" select="count($errors)"/>
           <xsl:variable name="fileCount" select="count($errors/..)"/>
