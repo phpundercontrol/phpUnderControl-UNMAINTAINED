@@ -76,16 +76,11 @@
             
             <%-- phpUnderControl 3 --%>
 
-            <cruisecontrol:loglink id="logs_url"/>
-            <cruisecontrol:tab name="log" url="<%=logs_url%>" label="XML Log File" />
-            
-            <%-- phpUnderControl 4 --%>
-
             <cruisecontrol:tab name="metrics" label="Metrics" >
               <%@ include file="metrics.jsp" %>
             </cruisecontrol:tab>
             
-            <%-- phpUnderControl 5 --%>
+            <%-- phpUnderControl 4 --%>
               
             <cruisecontrol:tab name="coverage" label="Coverage">
               <cruisecontrol:artifactsLink>
@@ -94,7 +89,7 @@
               </cruisecontrol:artifactsLink>
             </cruisecontrol:tab>
             
-            <%-- phpUnderControl 6 --%>
+            <%-- phpUnderControl 5 --%>
               
             <cruisecontrol:tab name="documentation" label="Documentation">
               <cruisecontrol:artifactsLink>
@@ -103,19 +98,19 @@
               </cruisecontrol:artifactsLink>
             </cruisecontrol:tab>
             
-            <%-- phpUnderControl 7 --%>
+            <%-- phpUnderControl 6 --%>
 
             <cruisecontrol:tab name="phpcs" label="CodeSniffer">
               <%@ include file="phpcs.jsp" %>
             </cruisecontrol:tab>
             
-            <%-- phpUnderControl 8 --%>
+            <%-- phpUnderControl 7 --%>
               
             <cruisecontrol:tab name="pmd" label="PHPUnit PMD">
               <%@ include file="phpunit-pmd.jsp" %>
             </cruisecontrol:tab>
             
-            <%-- phpUnderControl 9 --%>
+            <%-- phpUnderControl 8 --%>
           </td>
         </tr>
       </cruisecontrol:tabsheet>
