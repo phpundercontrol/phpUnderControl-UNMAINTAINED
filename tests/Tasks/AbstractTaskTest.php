@@ -112,12 +112,14 @@ abstract class phpucAbstractTaskTest extends phpucAbstractTest
     /**
      * Creates a default cruisecontrol config with the test project.
      *
-     * @return void
+     * @return string The config.xml path.
      */
     protected function createCCConfig()
     {
+        $file = PHPUC_TEST_DIR . '/config.xml'; 
+        
         file_put_contents(
-            PHPUC_TEST_DIR . '/config.xml',
+            $file,
             sprintf(
                 '<?xml version="1.0"?>
                  <cruisecontrol>
@@ -133,5 +135,15 @@ abstract class phpucAbstractTaskTest extends phpucAbstractTest
                  $this->projectName
             )    
         );
+        
+        $dom = new DOMDocument();
+        $dom->load( $file );
+        
+        $xpath = new DOMXPath( $dom );
+        $nodes = $xpath->query( "/cruisecontrol/project[@name='{$this->projectName}']" );
+
+        $this->assertEquals( 1, $nodes->length );
+        
+        return $file;
     }
 }
