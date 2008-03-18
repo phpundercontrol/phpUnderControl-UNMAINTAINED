@@ -384,7 +384,8 @@ div#container h3 {
     color: #a40000;
 }
 
-div#container dl {
+div#container dl,
+div#container ul {
     margin: 4px 0 8px 20px;
     font-size: 12px;
 }
@@ -396,6 +397,10 @@ div#container dl dt {
 
 div#container dl dd {
     margin-bottom: 3px;
+}
+
+div#container ul {
+    list-style: none;
 }
 
 div#container a.failure {

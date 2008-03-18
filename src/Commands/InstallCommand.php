@@ -117,6 +117,7 @@ class phpucInstallCommand extends phpucAbstractCommand implements phpucConsoleCo
      * @var array(string=>string) $modifiedFiles
      */
     private $modifiedFiles = array(
+        '/webapps/cruisecontrol/buildresults.jsp',
         '/webapps/cruisecontrol/index.jsp',
         '/webapps/cruisecontrol/main.jsp',
         '/webapps/cruisecontrol/metrics.jsp',
