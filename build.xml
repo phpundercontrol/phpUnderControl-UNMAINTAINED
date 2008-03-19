@@ -10,7 +10,7 @@
   </target> 
 	
   <target name="checkphp">
-    <apply executable="php" failonerror="true">
+    <apply executable="php" logerror="true" failonerror="true">
       <arg value="-l" />
       <fileset dir="tests">
         <include name="**/*.php" />
@@ -44,7 +44,7 @@
     </exec>
   </target>
 	
-  <target name="build">
+  <target name="build" depends="checkphp">
 
   </target>
 	
