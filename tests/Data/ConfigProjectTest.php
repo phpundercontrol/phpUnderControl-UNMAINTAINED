@@ -101,8 +101,8 @@ class phpucConfigProjectTest extends phpucAbstractConfigTest
     public function testDeleteConfigProjectFromConfigFile()
     {
         // Create a dummy project
-        $project0 = new phpucConfigProject( $this->config, 'phpUnderControl0' );
-        $project1 = new phpucConfigProject( $this->config, 'phpUnderControl1' );
+        new phpucConfigProject( $this->config, 'phpUnderControl0' );
+        new phpucConfigProject( $this->config, 'phpUnderControl1' );
         $this->config->save();
         
         $dom = new DOMDocument();
@@ -136,7 +136,7 @@ class phpucConfigProjectTest extends phpucAbstractConfigTest
         );
         
         $project = new phpucConfigProject( $this->config, 'phpUnderControl' );
-        $phpuc   = $project->phpuc;
+        echo $project->phpuc;
     }
     
     /**
@@ -212,8 +212,8 @@ class phpucConfigProjectTest extends phpucAbstractConfigTest
             "There is more than one project named 'phpUnderControl'."
         );
         
-        $config  = new phpucConfigFile( $this->testFile );
-        $project = new phpucConfigProject( $config, 'phpUnderControl' );
+        $config = new phpucConfigFile( $this->testFile );
+        new phpucConfigProject( $config, 'phpUnderControl' );
         
         $this->config = new phpucConfigFile( $this->testFile );
     }

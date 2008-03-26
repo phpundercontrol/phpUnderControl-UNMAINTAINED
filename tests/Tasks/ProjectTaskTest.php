@@ -120,12 +120,10 @@ class phpucProjectTaskTest extends phpucAbstractTest
         
         $task = new phpucProjectTask();
         $task->setConsoleArgs( $this->args );
-        try
-        {
-            $task->validate();
-            $this->fail( 'phpucValidateException expected.' );
-        }
-        catch ( phpucValidateException $e ) {}
+        
+        $this->setExpectedException( 'phpucValidateException' );
+        
+        $task->validate();
     }
     
     /**
@@ -140,12 +138,10 @@ class phpucProjectTaskTest extends phpucAbstractTest
         
         $task = new phpucProjectTask();
         $task->setConsoleArgs( $this->args );
-        try
-        {
-            $task->validate();
-            $this->fail( 'phpucValidateException expected.' );
-        }
-        catch ( phpucValidateException $e ) {}
+        
+        $this->setExpectedException( 'phpucValidateException' );
+        
+        $task->validate();
     }
     
     /**
@@ -185,12 +181,9 @@ class phpucProjectTaskTest extends phpucAbstractTest
         
         $task = new phpucProjectTask();
         $task->setConsoleArgs( $this->args );
+        
+        $this->setExpectedException( 'phpucExecuteException' );
 
-        try
-        {
-            $task->execute();
-            $this->fail( 'phpucExecuteException expected.' );
-        }
-        catch ( phpucExecuteException $e ) {}
+        $task->execute();
     }
 }

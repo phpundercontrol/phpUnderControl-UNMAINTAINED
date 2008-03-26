@@ -96,7 +96,7 @@ class phpucLogFileTest extends phpucAbstractTest
         );
         
         $log = new phpucLogFile( PHPUC_TEST_LOGS . '/log20080113145726.xml' );
-        $tmp = $log->phpuc;
+        echo $log->phpuc;
     }
     
     /**

@@ -112,12 +112,9 @@ class phpucPhpCodeSnifferTaskTest extends phpucAbstractPearTaskTest
         $this->createExecutable( 'phpcs', $this->invalidBin );
         $phpcs = new phpucPhpCodeSnifferTask();
         $phpcs->setConsoleArgs( $this->args );
-        try
-        {
-            $phpcs->validate();
-            $this->fail( 'phpucValidateException expected.' );
-        }
-        catch ( phpucValidateException $e ) {}
+        
+        $this->setExpectedException( 'phpucValidateException' );
+        $phpcs->validate();
     }
     
     /**

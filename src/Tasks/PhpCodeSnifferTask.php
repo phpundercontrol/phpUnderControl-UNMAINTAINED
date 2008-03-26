@@ -85,11 +85,15 @@ class phpucPhpCodeSnifferTask extends phpucAbstractPearTask
             'Modifying build file: project/{1}/build.xml', $projectName
         );
         
+        // Create error log file
+        $errorLog = phpucFileUtil::getSysTempDir() . '/checkstyle.error.log';
+        
         $buildFile = new phpucBuildFile( $projectPath . '/build.xml', $projectName );
         
         $buildTarget = $buildFile->createBuildTarget( 'php-codesniffer' );
         
         $buildTarget->executable = $this->executable;
+        $buildTarget->error      = $errorLog;
         $buildTarget->output     = '${basedir}/build/logs/checkstyle.xml';
         $buildTarget->argLine    = sprintf(
             '--report=checkstyle --standard=%s %s',

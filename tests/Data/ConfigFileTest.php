@@ -81,12 +81,9 @@ class phpucConfigFileTest extends phpucAbstractConfigTest
      */
     public function testNewConfigFileInstanceFail()
     {
-        try
-        {
-            new phpucConfigFile( $this->testFile );
-            $this->fail( 'phpucErrorException expected.' );
-        }
-        catch ( phpucErrorException $e ) {}
+        $this->setExpectedException( 'phpucErrorException' );
+        
+        new phpucConfigFile( $this->testFile );
     }
     
     /**
@@ -126,15 +123,11 @@ class phpucConfigFileTest extends phpucAbstractConfigTest
      */
     public function testGetProjectFail()
     {
+        $this->setExpectedException('phpucErrorException');
+        
         $this->createTestFile( '/config.xml', $this->testXml );
         
         $config = new phpucConfigFile( $this->testFile );
-        
-        try
-        {
-            $config->getProject( 'phpUnderControl' );
-            $this->fail( 'phpucErrorException expected.' );
-        }
-        catch ( phpucErrorException $e ) {}
+        $config->getProject( 'phpUnderControl' );
     }
 }

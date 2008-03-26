@@ -60,7 +60,8 @@
  * @property      string         $executable  The command line executable.
  * @property      string         $dir         Optional working directory.
  * @property      string         $argLine     Optional command line arguments.
- * @property      string         $output      Optional output directory. 
+ * @property      string         $output      Optional output file. 
+ * @property      string         $error       Optional error log file.
  * @property      boolean        $failonerror Should the target fail on an error.
  * @property      boolean        $logerror    Should the target log all errors.
  * @property-read string         $targetName  The unique identifier for this target.
@@ -82,6 +83,7 @@ class phpucBuildTarget
         'logerror'     =>  false,
         'argLine'      =>  null,
         'output'       =>  null,
+        'error'        =>  null,
         'dir'          =>  '${basedir}/source',
     );
     
@@ -123,6 +125,10 @@ class phpucBuildTarget
         if ( $this->output !== null )
         {
             $exec->setAttribute( 'output', $this->output );
+        }
+        if ( $this->error !== null )
+        {
+            $exec->setAttribute( 'error', $this->error );
         }
         
         if ( $this->argLine !== null )
@@ -199,6 +205,7 @@ class phpucBuildTarget
             case 'executable':
             case 'argLine':
             case 'output':
+            case 'error':
             case 'dir':
                 $this->properties[$name] = $value;
                 break;

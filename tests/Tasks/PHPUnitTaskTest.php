@@ -265,12 +265,9 @@ class phpucPHPUnitTaskTest extends phpucAbstractPearTaskTest
     {
         $phpunit = new phpucPhpUnitTask();
         $phpunit->setConsoleArgs( $this->args );
-        try
-        {
-            $phpunit->validate();
-            $this->fail( 'phpucValidateException expected.' );
-        }
-        catch ( phpucValidateException $e ) {}
+        
+        $this->setExpectedException( 'phpucValidateException' );
+        $phpunit->validate();
     }
     
     /**

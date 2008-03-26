@@ -95,12 +95,9 @@ class phpucCruiseControlTaskTest extends phpucAbstractTaskTest
         
         $ccTask = new phpucCruiseControlTask();
         $ccTask->setConsoleArgs( $input->args );
-        try
-        {
-            $ccTask->validate();
-            $this->fail( 'phpucValidateException expected.' );
-        }
-        catch ( phpucValidateException $e ) {}        
+        
+        $this->setExpectedException( 'phpucValidateException' );
+        $ccTask->validate();        
     }
     
     /**
@@ -121,12 +118,9 @@ class phpucCruiseControlTaskTest extends phpucAbstractTaskTest
         
         $ccTask = new phpucCruiseControlTask();
         $ccTask->setConsoleArgs( $this->args );
-        try
-        {
-            $ccTask->validate();
-            $this->fail( 'phpucValidateException expected.' );
-        }
-        catch ( phpucValidateException $e ) {}
+        
+        $this->setExpectedException( 'phpucValidateException' );
+        $ccTask->validate();
     }
     
     /**

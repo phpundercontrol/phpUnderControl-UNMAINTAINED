@@ -128,13 +128,18 @@ class phpucBuildTargetTest extends phpucAbstractTest
         $this->assertEquals( 'example /opt/cruisecontrol', (string) $exec->arg['line'] );
     }
     
+    /**
+     * Tests that the build depend list gets extended for each new target.
+     *
+     * @return void
+     */
     public function testBuildTargetDependsList()
     {
         // Use build file factory method here so that it is also tested :)
         $buildFile = new phpucBuildFile( $this->fileName, $this->projectName );
-        $target1   = $buildFile->createBuildTarget( 'phpuc1' );
-        $target2   = $buildFile->createBuildTarget( 'phpuc2' );
-        $target3   = $buildFile->createBuildTarget( 'phpuc3' );
+        $buildFile->createBuildTarget( 'phpuc1' );
+        $buildFile->createBuildTarget( 'phpuc2' );
+        $buildFile->createBuildTarget( 'phpuc3' );
         
         $buildFile->save();
         

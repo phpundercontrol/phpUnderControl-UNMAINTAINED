@@ -174,7 +174,7 @@ class phpucConsoleInputTest extends phpucAbstractTest
         $this->prepareArgv( array( '--version' ) );
         
         $input = new phpucConsoleInput( $definition );
-        $phpuc = $input->phpuc;
+        echo $input->phpuc;
     }
     
     /**
@@ -186,13 +186,9 @@ class phpucConsoleInputTest extends phpucAbstractTest
     public function testConsoleWithoutArgv()
     {
         $this->prepareArgv();
+        $this->setExpectedException( 'phpucConsoleException' );
         
-        try
-        {
-            $input = new phpucConsoleInput();
-            $this->fail( 'phpucConsoleException expected.' );
-        }
-        catch ( phpucConsoleException $e ) {}
+        new phpucConsoleInput();
     }
     
     /**
@@ -204,15 +200,10 @@ class phpucConsoleInputTest extends phpucAbstractTest
     public function testConsoleInstallCommandButWithoutArguments()
     {
         $this->prepareArgv( array( 'install' ) );
+        $this->setExpectedException( 'phpucConsoleException' );
         
         $input = new phpucConsoleInput();
-        
-        try
-        {
-            $input->parse();
-            $this->fail( 'phpucConsoleException expected.' );
-        }
-        catch ( phpucConsoleException $e ) {}
+        $input->parse();
     }
     
     /**

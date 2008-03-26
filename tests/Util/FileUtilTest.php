@@ -146,12 +146,10 @@ class phpucFileUtilTest extends phpucAbstractTest
             return;
         }
         $this->initExecutableTest();
-        try
-        {
-            phpucFileUtil::findExecutable( 'cvs' );
-            $this->fail( 'phpucErrorException expected.' );
-        }
-        catch ( phpucErrorException $e ) {}        
+        
+        $this->setExpectedException( 'phpucErrorException' );
+        
+        phpucFileUtil::findExecutable( 'cvs' );        
     }
     
     /**
@@ -174,12 +172,10 @@ class phpucFileUtilTest extends phpucAbstractTest
     public function testFindExecutableWindowsFail()
     {
         $this->initExecutableTest( phpucFileUtil::OS_WINDOWS );
-        try
-        {
-            phpucFileUtil::findExecutable( 'cvs' );
-            $this->fail( 'phpucErrorException expected.' );
-        }
-        catch ( phpucErrorException $e ) {}        
+        
+        $this->setExpectedException( 'phpucErrorException' );
+        
+        phpucFileUtil::findExecutable( 'cvs' );        
     }
     
     /**
