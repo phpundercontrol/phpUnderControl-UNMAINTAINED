@@ -53,7 +53,7 @@
  * @author    Manuel Pichler <mapi@phpundercontrol.org>
  * @copyright 2007-2008 Manuel Pichler. All rights reserved.
  * @license   http://www.opensource.org/licenses/bsd-license.php  BSD License
- * @version   Release: @package_version@
+ * @version   Release: 0.4.0
  * @link      http://www.phpundercontrol.org/
  */
 final class phpucFileUtil
@@ -264,7 +264,7 @@ final class phpucFileUtil
             else if ( $it->isDir() )
             {
                 self::deleteDirectoryRecursive( $it->getChildren() );
-                
+
                 rmdir( $it->getPathname() );
             }
             else
@@ -318,11 +318,11 @@ final class phpucFileUtil
         {
             foreach ( self::$windowsExts as $ext )
             {
-                $fullPath = "{$path}/{$executable}.{$ext}";
+                $fullPath = "{$path}\\{$executable}.{$ext}";
             
                 if ( file_exists( $fullPath ) )
                 {
-                    return $executable;
+                    return $fullPath;
                 }
             }
         }

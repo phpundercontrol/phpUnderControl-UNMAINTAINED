@@ -20,9 +20,9 @@
     <email>mapi@phpundercontrol.org</email>
     <active>yes</active>
   </lead>
-  <date>2008-02-11</date>
+  <date>2008-03-28</date>
   <version>
-    <release>0.3.6</release>
+    <release>0.4.0</release>
     <api>0.2.0</api>
   </version>
   <stability>
@@ -45,6 +45,15 @@
           <file name="AbstractCommand.php" role="php">
             <tasks:replace from="@package_version@" to="version" type="package-info" />
           </file>
+          <file name="CleanCommand.php" role="php">
+            <tasks:replace from="@package_version@" to="version" type="package-info" />
+          </file>
+          <file name="CommandI.php" role="php">
+            <tasks:replace from="@package_version@" to="version" type="package-info" />
+          </file>
+          <file name="DeleteCommand.php" role="php">
+            <tasks:replace from="@package_version@" to="version" type="package-info" />
+          </file>
           <file name="ExampleCommand.php" role="php">
             <tasks:replace from="@package_version@" to="version" type="package-info" />
           </file>
@@ -60,6 +69,9 @@
         </dir>
         <dir name="Console">
           <file name="ConsoleArgs.php" role="php">
+            <tasks:replace from="@package_version@" to="version" type="package-info" />
+          </file>
+          <file name="ConsoleCommandI.php" role="php">
             <tasks:replace from="@package_version@" to="version" type="package-info" />
           </file>
           <file name="ConsoleExtensionI.php" role="php">
@@ -83,6 +95,12 @@
             <tasks:replace from="@package_version@" to="version" type="package-info" />
           </file>
           <file name="ConfigArtifactsPublisher.php" role="php">
+            <tasks:replace from="@package_version@" to="version" type="package-info" />
+          </file>
+          <file name="ConfigBootStrapper.php" role="php">
+            <tasks:replace from="@package_version@" to="version" type="package-info" />
+          </file>
+          <file name="ConfigBuildTrigger.php" role="php">
             <tasks:replace from="@package_version@" to="version" type="package-info" />
           </file>
           <file name="ConfigExecutePublisher.php" role="php">
@@ -189,6 +207,9 @@
           <file name="AbstractTask.php" role="php">
             <tasks:replace from="@package_version@" to="version" type="package-info" />
           </file>
+          <file name="CheckoutTask.php" role="php">
+            <tasks:replace from="@package_version@" to="version" type="package-info" />
+          </file>
           <file name="CreateFileTask.php" role="php">
             <tasks:replace from="@package_version@" to="version" type="package-info" />
           </file>
@@ -216,6 +237,12 @@
           <file name="PhpUnitTask.php" role="php">
             <tasks:replace from="@package_version@" to="version" type="package-info" />
           </file>
+          <file name="ProjectCleanTask.php" role="php">
+            <tasks:replace from="@package_version@" to="version" type="package-info" />
+          </file>
+          <file name="ProjectDeleteTask.php" role="php">
+            <tasks:replace from="@package_version@" to="version" type="package-info" />
+          </file>
           <file name="ProjectTask.php" role="php">
             <tasks:replace from="@package_version@" to="version" type="package-info" />
           </file>
@@ -234,6 +261,20 @@
             <tasks:replace from="@package_version@" to="version" type="package-info" />
           </file>
           <file name="PhpFileFilterIterator.php" role="php">
+            <tasks:replace from="@package_version@" to="version" type="package-info" />
+          </file>
+        </dir>
+        <dir name="VersionControl">
+          <file name="AbstractCheckout.php" role="php">
+            <tasks:replace from="@package_version@" to="version" type="package-info" />
+          </file>
+          <file name="CheckoutI.php" role="php">
+            <tasks:replace from="@package_version@" to="version" type="package-info" />
+          </file>
+          <file name="CvsCheckout.php" role="php">
+            <tasks:replace from="@package_version@" to="version" type="package-info" />
+          </file>
+          <file name="SubversionCheckout.php" role="php">
             <tasks:replace from="@package_version@" to="version" type="package-info" />
           </file>
         </dir>
@@ -258,11 +299,34 @@
         </file>
       </dir>
       <dir name="tests">
+        <dir name="Commands">
+          <file name="CleanCommandTest.php" role="test">
+            <tasks:replace from="@package_version@" to="version" type="package-info" />
+          </file>
+          <file name="CommandsAllTests.php" role="test">
+            <tasks:replace from="@package_version@" to="version" type="package-info" />
+          </file>
+          <file name="CommandTest.php" role="test">
+            <tasks:replace from="@package_version@" to="version" type="package-info" />
+          </file>
+          <file name="DeleteCommandTest.php" role="test">
+            <tasks:replace from="@package_version@" to="version" type="package-info" />
+          </file>
+        </dir>
         <dir name="Console">
           <file name="ConsoleAllTests.php" role="test">
             <tasks:replace from="@package_version@" to="version" type="package-info" />
           </file>
           <file name="ConsoleArgsTest.php" role="test">
+            <tasks:replace from="@package_version@" to="version" type="package-info" />
+          </file>
+          <file name="ConsoleInputDefinitionTest.php" role="test">
+            <tasks:replace from="@package_version@" to="version" type="package-info" />
+          </file>
+          <file name="ConsoleInputTest.php" role="test">
+            <tasks:replace from="@package_version@" to="version" type="package-info" />
+          </file>
+          <file name="ConsoleOutputTest.php" role="test">
             <tasks:replace from="@package_version@" to="version" type="package-info" />
           </file>
         </dir>
@@ -283,6 +347,9 @@
             <tasks:replace from="@package_version@" to="version" type="package-info" />
           </file>
           <file name="DataAllTests.php" role="test">
+            <tasks:replace from="@package_version@" to="version" type="package-info" />
+          </file>
+          <file name="LogFileTest.php" role="test">
             <tasks:replace from="@package_version@" to="version" type="package-info" />
           </file>
         </dir>
@@ -355,7 +422,16 @@
           <file name="AbstractTaskTest.php" role="test">
             <tasks:replace from="@package_version@" to="version" type="package-info" />
           </file>
+          <file name="CheckoutTaskTest.php" role="test">
+            <tasks:replace from="@package_version@" to="version" type="package-info" />
+          </file>
+          <file name="CreateFileTaskTest.php" role="test">
+            <tasks:replace from="@package_version@" to="version" type="package-info" />
+          </file>
           <file name="CruiseControlTaskTest.php" role="test">
+            <tasks:replace from="@package_version@" to="version" type="package-info" />
+          </file>
+          <file name="GraphTaskTest.php" role="test">
             <tasks:replace from="@package_version@" to="version" type="package-info" />
           </file>
           <file name="ModifyFileTaskTest.php" role="test">
@@ -364,7 +440,16 @@
           <file name="PhpCodeSnifferTaskTest.php" role="test">
             <tasks:replace from="@package_version@" to="version" type="package-info" />
           </file>
+          <file name="PhpDocumentorTaskTest.php" role="test">
+            <tasks:replace from="@package_version@" to="version" type="package-info" />
+          </file>
           <file name="PHPUnitTaskTest.php" role="test">
+            <tasks:replace from="@package_version@" to="version" type="package-info" />
+          </file>
+          <file name="ProjectCleanTaskTest.php" role="test">
+            <tasks:replace from="@package_version@" to="version" type="package-info" />
+          </file>
+          <file name="ProjectDeleteTaskTest.php" role="test">
             <tasks:replace from="@package_version@" to="version" type="package-info" />
           </file>
           <file name="ProjectTaskTest.php" role="test">
@@ -381,7 +466,21 @@
           <file name="UtilAllTests.php" role="test">
             <tasks:replace from="@package_version@" to="version" type="package-info" />
           </file>
-        </dir>  
+        </dir>
+        <dir name="VersionControl">
+          <file name="AbstractCheckoutTest.php" role="test">
+            <tasks:replace from="@package_version@" to="version" type="package-info" />
+          </file>
+          <file name="CvsCheckoutTest.php" role="test">
+            <tasks:replace from="@package_version@" to="version" type="package-info" />
+          </file>
+          <file name="SubversionCheckoutTest.php" role="test">
+            <tasks:replace from="@package_version@" to="version" type="package-info" />
+          </file>
+          <file name="VersionControlAllTests.php" role="test">
+            <tasks:replace from="@package_version@" to="version" type="package-info" />
+          </file>
+        </dir>
         <file name="AbstractTest.php" role="test">
           <tasks:replace from="@package_version@" to="version" type="package-info" />
           <tasks:replace from="@php_dir@" to="php_dir" type="pear-config" />
@@ -393,232 +492,233 @@
           <tasks:replace from="@package_version@" to="version" type="package-info" />
         </file>
       </dir>
-      <dir name="data">
-        <dir name="phpdoc">
-          <dir name="Converters/HTML/Phpuc">
-            <dir name="templates/phpuc">
-              <dir name="templates">
-                <dir name="media">
-                  <file name="empty.png" role="data" />
-                  <file name="list-item.gif" role="data" />
-                  <file name="logo.png" role="data" />
-                  <file name="style.css" role="data">
-                    <tasks:replace from="@package_version@" to="version" type="package-info" />
-                  </file>
-                </dir>
-                <file name="basicindex.tpl" role="data">
-                  <tasks:replace from="@package_version@" to="version" type="package-info" />
-                </file>
-                <file name="blank.tpl" role="data">
-                  <tasks:replace from="@package_version@" to="version" type="package-info" />
-                </file>
-                <file name="class.tpl" role="data">
-                  <tasks:replace from="@package_version@" to="version" type="package-info" />
-                </file>
-                <file name="classleft.tpl" role="data">
-                  <tasks:replace from="@package_version@" to="version" type="package-info" />
-                </file>
-                <file name="classtags.tpl" role="data">
-                  <tasks:replace from="@package_version@" to="version" type="package-info" />
-                </file>
-                <file name="classtrees.tpl" role="data">
-                  <tasks:replace from="@package_version@" to="version" type="package-info" />
-                </file>
-                <file name="const.tpl" role="data">
-                  <tasks:replace from="@package_version@" to="version" type="package-info" />
-                </file>
-                <file name="define.tpl" role="data">
-                  <tasks:replace from="@package_version@" to="version" type="package-info" />
-                </file>
-                <file name="docblock.tpl" role="data">
-                  <tasks:replace from="@package_version@" to="version" type="package-info" />
-                </file>
-                <file name="elementindex.tpl" role="data">
-                  <tasks:replace from="@package_version@" to="version" type="package-info" />
-                </file>
-                <file name="errors.tpl" role="data">
-                  <tasks:replace from="@package_version@" to="version" type="package-info" />
-                </file>
-                <file name="examplesource.tpl" role="data">
-                  <tasks:replace from="@package_version@" to="version" type="package-info" />
-                </file>
-                <file name="fileleft.tpl" role="data">
-                  <tasks:replace from="@package_version@" to="version" type="package-info" />
-                </file>
-                <file name="filesource.tpl" role="data">
-                  <tasks:replace from="@package_version@" to="version" type="package-info" />
-                </file>
-                <file name="filetags.tpl" role="data">
-                  <tasks:replace from="@package_version@" to="version" type="package-info" />
-                </file>
-                <file name="footer.tpl" role="data">
-                  <tasks:replace from="@package_version@" to="version" type="package-info" />
-                </file>
-                <file name="function.tpl" role="data">
-                  <tasks:replace from="@package_version@" to="version" type="package-info" />
-                </file>
-                <file name="global.tpl" role="data">
-                  <tasks:replace from="@package_version@" to="version" type="package-info" />
-                </file>
-                <file name="header.tpl" role="data">
-                  <tasks:replace from="@package_version@" to="version" type="package-info" />
-                </file>
-                <file name="include.tpl" role="data">
-                  <tasks:replace from="@package_version@" to="version" type="package-info" />
-                </file>
-                <file name="index.tpl" role="data">
-                  <tasks:replace from="@package_version@" to="version" type="package-info" />
-                </file>
-                <file name="method.tpl" role="data">
-                  <tasks:replace from="@package_version@" to="version" type="package-info" />
-                </file>
-                <file name="packages.tpl" role="data">
-                  <tasks:replace from="@package_version@" to="version" type="package-info" />
-                </file>
-                <file name="page.tpl" role="data">
-                  <tasks:replace from="@package_version@" to="version" type="package-info" />
-                </file>
-                <file name="pkgelementindex.tpl" role="data">
-                  <tasks:replace from="@package_version@" to="version" type="package-info" />
-                </file>
-                <file name="ric.tpl" role="data">
-                  <tasks:replace from="@package_version@" to="version" type="package-info" />
-                </file>
-                <file name="tags.tpl" role="data">
-                  <tasks:replace from="@package_version@" to="version" type="package-info" />
-                </file>
-                <file name="todolist.tpl" role="data">
-                  <tasks:replace from="@package_version@" to="version" type="package-info" />
-                </file>
-                <file name="tutorial_toc.tpl" role="data">
-                  <tasks:replace from="@package_version@" to="version" type="package-info" />
-                </file>
-                <file name="tutorial_tree.tpl" role="data">
-                  <tasks:replace from="@package_version@" to="version" type="package-info" />
-                </file>
-                <file name="tutorial.tpl" role="data">
-                  <tasks:replace from="@package_version@" to="version" type="package-info" />
-                </file>
-                <file name="var.tpl" role="data">
-                  <tasks:replace from="@package_version@" to="version" type="package-info" />
-                </file>
-              </dir>
-              <dir name="templates_c">
-              </dir>
-              <file name="options.ini" role="data">
+ 
+      <dir name="data/phpdoc/Converters/HTML/Phpuc">
+        <dir name="templates/phpuc">
+          <dir name="templates">
+            <dir name="media">
+              <file name="empty.png" role="data" />
+              <file name="list-item.gif" role="data" />
+              <file name="logo.png" role="data" />
+              <file name="style.css" role="data">
                 <tasks:replace from="@package_version@" to="version" type="package-info" />
-              </file>       
+              </file>
             </dir>
-            <file name="HTMLPhpucConverter.inc" role="data">
+            <file name="basicindex.tpl" role="data">
+              <tasks:replace from="@package_version@" to="version" type="package-info" />
+            </file>
+            <file name="blank.tpl" role="data">
+              <tasks:replace from="@package_version@" to="version" type="package-info" />
+            </file>
+            <file name="class.tpl" role="data">
+              <tasks:replace from="@package_version@" to="version" type="package-info" />
+            </file>
+            <file name="classleft.tpl" role="data">
+              <tasks:replace from="@package_version@" to="version" type="package-info" />
+            </file>
+            <file name="classtags.tpl" role="data">
+              <tasks:replace from="@package_version@" to="version" type="package-info" />
+            </file>
+            <file name="classtrees.tpl" role="data">
+              <tasks:replace from="@package_version@" to="version" type="package-info" />
+            </file>
+            <file name="const.tpl" role="data">
+              <tasks:replace from="@package_version@" to="version" type="package-info" />
+            </file>
+            <file name="define.tpl" role="data">
+              <tasks:replace from="@package_version@" to="version" type="package-info" />
+            </file>
+            <file name="docblock.tpl" role="data">
+              <tasks:replace from="@package_version@" to="version" type="package-info" />
+            </file>
+            <file name="elementindex.tpl" role="data">
+              <tasks:replace from="@package_version@" to="version" type="package-info" />
+            </file>
+            <file name="errors.tpl" role="data">
+              <tasks:replace from="@package_version@" to="version" type="package-info" />
+            </file>
+            <file name="examplesource.tpl" role="data">
+              <tasks:replace from="@package_version@" to="version" type="package-info" />
+            </file>
+            <file name="fileleft.tpl" role="data">
+              <tasks:replace from="@package_version@" to="version" type="package-info" />
+            </file>
+            <file name="filesource.tpl" role="data">
+              <tasks:replace from="@package_version@" to="version" type="package-info" />
+            </file>
+            <file name="filetags.tpl" role="data">
+              <tasks:replace from="@package_version@" to="version" type="package-info" />
+            </file>
+            <file name="footer.tpl" role="data">
+              <tasks:replace from="@package_version@" to="version" type="package-info" />
+            </file>
+            <file name="function.tpl" role="data">
+              <tasks:replace from="@package_version@" to="version" type="package-info" />
+            </file>
+            <file name="global.tpl" role="data">
+              <tasks:replace from="@package_version@" to="version" type="package-info" />
+            </file>
+            <file name="header.tpl" role="data">
+              <tasks:replace from="@package_version@" to="version" type="package-info" />
+            </file>
+            <file name="include.tpl" role="data">
+              <tasks:replace from="@package_version@" to="version" type="package-info" />
+            </file>
+            <file name="index.tpl" role="data">
+              <tasks:replace from="@package_version@" to="version" type="package-info" />
+            </file>
+            <file name="method.tpl" role="data">
+              <tasks:replace from="@package_version@" to="version" type="package-info" />
+            </file>
+            <file name="packages.tpl" role="data">
+              <tasks:replace from="@package_version@" to="version" type="package-info" />
+            </file>
+            <file name="page.tpl" role="data">
+              <tasks:replace from="@package_version@" to="version" type="package-info" />
+            </file>
+            <file name="pkgelementindex.tpl" role="data">
+              <tasks:replace from="@package_version@" to="version" type="package-info" />
+            </file>
+            <file name="ric.tpl" role="data">
+              <tasks:replace from="@package_version@" to="version" type="package-info" />
+            </file>
+            <file name="tags.tpl" role="data">
+              <tasks:replace from="@package_version@" to="version" type="package-info" />
+            </file>
+            <file name="todolist.tpl" role="data">
+              <tasks:replace from="@package_version@" to="version" type="package-info" />
+            </file>
+            <file name="tutorial_toc.tpl" role="data">
+              <tasks:replace from="@package_version@" to="version" type="package-info" />
+            </file>
+            <file name="tutorial_tree.tpl" role="data">
+              <tasks:replace from="@package_version@" to="version" type="package-info" />
+            </file>
+            <file name="tutorial.tpl" role="data">
+              <tasks:replace from="@package_version@" to="version" type="package-info" />
+            </file>
+            <file name="var.tpl" role="data">
               <tasks:replace from="@package_version@" to="version" type="package-info" />
             </file>
           </dir>
-        </dir>
-        <dir name="example">
-          <dir name="src">
-            <file name="Math.php" role="data">
-              <tasks:replace from="@package_version@" to="version" type="package-info" />
-            </file>
+          <dir name="templates_c">
+            <file name="empty.txt" role="data" />
           </dir>
-          <dir name="tests">
-            <file name="MathTest.php" role="data">
-              <tasks:replace from="@package_version@" to="version" type="package-info" />
-            </file>
-          </dir>
-        </dir>
-        <dir name="template">
-          <file name="project.xml" role="data">
+          <file name="options.ini" role="data">
             <tasks:replace from="@package_version@" to="version" type="package-info" />
+          </file>       
+        </dir>
+        <file name="HTMLPhpucConverter.inc" role="data">
+          <tasks:replace from="@package_version@" to="version" type="package-info" />
         </file>
-        </dir>
-        <dir name="webapps">
-          <dir name="cruisecontrol">
-          <dir name="css">
-            <file name="php-under-control.css" role="data" />
-            <file name="SyntaxHighlighter.css" role="data" />
-          </dir>
-          <dir name="images">
-            <dir name="php-under-control">
-              <file name="dashboard-broken-left.png" role="data" />
-              <file name="dashboard-broken-right.png" role="data" />
-              <file name="dashboard-good-left.png" role="data" />
-              <file name="dashboard-good-right.png" role="data" />
-              <file name="error.png" role="data" />
-              <file name="failed.png" role="data" />
-              <file name="header-center.png" role="data" />
-              <file name="header-left-logo.png" role="data" />
-              <file name="info.png" role="data" />
-              <file name="notice.png" role="data" />
-              <file name="play-broken.png" role="data" />
-              <file name="play-good.png" role="data" />
-              <file name="skipped.png" role="data" />
-              <file name="success.png" role="data" />
-              <file name="tab-active.png" role="data" />
-              <file name="tab-inactive.png" role="data" />
-              <file name="throbber-broken.gif" role="data" />
-              <file name="throbber-good.gif" role="data" />
-              <file name="unknown.png" role="data" />
-              <file name="warning.png" role="data" />
-            </dir>
-          </dir>
-          <dir name="js">
-            <file name="effects.js" role="data" />
-            <file name="prototype.js" role="data" />
-            <file name="scriptaculous.js" role="data" />
-            <file name="shBrushPhp.js" role="data" />
-            <file name="shCore.js" role="data" />
-          </dir>
-          <dir name="xsl">
-            <file name="buildresults.xsl" role="data" />
-            <file name="errors.xsl" role="data" />
-            <file name="header.xsl" role="data" />
-            <file name="modifications.xsl" role="data" />
-            <file name="phpcs.xsl" role="data" />
-            <file name="phpcs-details.xsl" role="data" />
-            <file name="phpdoc.xsl" role="data" />
-            <file name="phphelper.xsl" role="data" />
-            <file name="phpunit.xsl" role="data" />
-            <file name="phpunit-details.xsl" role="data" />
-            <file name="phpunit-pmd.xsl" role="data" />
-            <file name="phpunit-pmd-details.xsl" role="data" />
-          </dir>
-          <file name="dashboard.jsp" role="data">
-            <tasks:replace from="- SVN" to="version" type="package-info" />
-          </file>
-          <file name="favicon.ico" role="data" />
-          <file name="footer.jsp" role="data">
-            <tasks:replace from="- SVN" to="version" type="package-info" />
-          </file>
-          <file name="header.jsp" role="data">
-            <tasks:replace from="- SVN" to="version" type="package-info" />
-          </file>
-          <file name="index.jsp" role="data">
-            <tasks:replace from="- SVN" to="version" type="package-info" />
-          </file>
-          <file name="main.jsp" role="data">
-            <tasks:replace from="- SVN" to="version" type="package-info" />
-          </file>
-          <file name="metrics.cewolf.jsp" role="data">
-            <tasks:replace from="- SVN" to="version" type="package-info" />
-          </file>
-          <file name="metrics.jsp" role="data">
-            <tasks:replace from="- SVN" to="version" type="package-info" />
-          </file>
-          <file name="phpcs.jsp" role="data">
-            <tasks:replace from="- SVN" to="version" type="package-info" />
-          </file>
-          <file name="phpunit.jsp" role="data">
-            <tasks:replace from="- SVN" to="version" type="package-info" />
-          </file>
-          <file name="phpunit-pmd.jsp" role="data">
-            <tasks:replace from="- SVN" to="version" type="package-info" />
-          </file>
-          <file name="servertime.jsp" role="data">
-            <tasks:replace from="- SVN" to="version" type="package-info" />
-          </file>
-          </dir>
-        </dir>
       </dir>
+      
+      <dir name="data/example/src">
+        <file name="Math.php" role="data">
+          <tasks:replace from="@package_version@" to="version" type="package-info" />
+        </file>
+      </dir>
+        
+      <dir name="data/example/tests">
+        <file name="MathTest.php" role="data">
+          <tasks:replace from="@package_version@" to="version" type="package-info" />
+        </file>
+      </dir>
+
+      <dir name="data/template">
+        <file name="project.xml" role="data">
+          <tasks:replace from="@package_version@" to="version" type="package-info" />
+        </file>
+      </dir>
+
+      <dir name="data/webapps/cruisecontrol">
+        <dir name="css">
+          <file name="php-under-control.css" role="data" />
+          <file name="SyntaxHighlighter.css" role="data" />
+        </dir>
+        <dir name="images/php-under-control">
+          <file name="dashboard-broken-left.png" role="data" />
+          <file name="dashboard-broken-right.png" role="data" />
+          <file name="dashboard-good-left.png" role="data" />
+          <file name="dashboard-good-right.png" role="data" />
+          <file name="error.png" role="data" />
+          <file name="failed.png" role="data" />
+          <file name="header-center.png" role="data" />
+          <file name="header-left-logo.png" role="data" />
+          <file name="info.png" role="data" />
+          <file name="notice.png" role="data" />
+          <file name="play-broken.png" role="data" />
+          <file name="play-good.png" role="data" />
+          <file name="skipped.png" role="data" />
+          <file name="success.png" role="data" />
+          <file name="tab-active.png" role="data" />
+          <file name="tab-inactive.png" role="data" />
+          <file name="throbber-broken.gif" role="data" />
+          <file name="throbber-good.gif" role="data" />
+          <file name="unknown.png" role="data" />
+          <file name="warning.png" role="data" />
+        </dir>
+        <dir name="js">
+          <file name="effects.js" role="data" />
+          <file name="php-under-control.js" role="data" />
+          <file name="prototype.js" role="data" />
+          <file name="scriptaculous.js" role="data" />
+          <file name="shBrushPhp.js" role="data" />
+          <file name="shCore.js" role="data" />
+        </dir>
+        <dir name="xsl">
+          <file name="buildresults.xsl" role="data" />
+          <file name="errors.xsl" role="data" />
+          <file name="header.xsl" role="data" />
+          <file name="modifications.xsl" role="data" />
+          <file name="phpcs.xsl" role="data" />
+          <file name="phpcs-details.xsl" role="data" />
+          <file name="phpdoc.xsl" role="data" />
+          <file name="phphelper.xsl" role="data" />
+          <file name="phpunit.xsl" role="data" />
+          <file name="phpunit-details.xsl" role="data" />
+          <file name="phpunit-pmd.xsl" role="data" />
+          <file name="phpunit-pmd-details.xsl" role="data" />
+        </dir>
+        <file name="buildresults.jsp" role="data">
+          <tasks:replace from="- SVN" to="version" type="package-info" />
+        </file>
+        <file name="dashboard.jsp" role="data">
+          <tasks:replace from="- SVN" to="version" type="package-info" />
+        </file>
+        <file name="favicon.ico" role="data" />
+        <file name="footer.jsp" role="data">
+          <tasks:replace from="- SVN" to="version" type="package-info" />
+        </file>
+        <file name="header.jsp" role="data">
+          <tasks:replace from="- SVN" to="version" type="package-info" />
+        </file>
+        <file name="index.jsp" role="data">
+          <tasks:replace from="- SVN" to="version" type="package-info" />
+        </file>
+        <file name="main.jsp" role="data">
+          <tasks:replace from="- SVN" to="version" type="package-info" />
+        </file>
+        <file name="metrics.cewolf.jsp" role="data">
+          <tasks:replace from="- SVN" to="version" type="package-info" />
+        </file>
+        <file name="metrics.jsp" role="data">
+          <tasks:replace from="- SVN" to="version" type="package-info" />
+        </file>
+        <file name="phpcs.jsp" role="data">
+          <tasks:replace from="- SVN" to="version" type="package-info" />
+        </file>
+        <file name="phpunit.jsp" role="data">
+          <tasks:replace from="- SVN" to="version" type="package-info" />
+        </file>
+        <file name="phpunit-pmd.jsp" role="data">
+          <tasks:replace from="- SVN" to="version" type="package-info" />
+        </file>
+        <file name="servertime.jsp" role="data">
+          <tasks:replace from="- SVN" to="version" type="package-info" />
+        </file>
+      </dir>
+
       <dir name="docs">
         <file name="build.xml" role="doc">
           <tasks:replace from="@package_version@" to="version" type="package-info" />
@@ -628,6 +728,7 @@
         </file>
       </dir>
       <file name="CHANGELOG" role="doc" />
+      <file name="LICENSE" role="doc" />
     </dir>
   </contents>
   <dependencies>
@@ -686,12 +787,16 @@
       <install as="phpUnderControl/PhpUnderControl.php" name="src/PhpUnderControl.php"/>
       
       <install as="phpUnderControl/Commands/AbstractCommand.php" name="src/Commands/AbstractCommand.php" />
+      <install as="phpUnderControl/Commands/CleanCommand.php" name="src/Commands/CleanCommand.php" />
+      <install as="phpUnderControl/Commands/CommandI.php" name="src/Commands/CommandI.php" />
+      <install as="phpUnderControl/Commands/DeleteCommand.php" name="src/Commands/DeleteCommand.php" />
       <install as="phpUnderControl/Commands/ExampleCommand.php" name="src/Commands/ExampleCommand.php" />
       <install as="phpUnderControl/Commands/GraphCommand.php" name="src/Commands/GraphCommand.php" />
       <install as="phpUnderControl/Commands/InstallCommand.php" name="src/Commands/InstallCommand.php" />
       <install as="phpUnderControl/Commands/ProjectCommand.php" name="src/Commands/ProjectCommand.php" />
       
       <install as="phpUnderControl/Console/ConsoleArgs.php" name="src/Console/ConsoleArgs.php" />
+      <install as="phpUnderControl/Console/ConsoleCommandI.php" name="src/Console/ConsoleCommandI.php" />
       <install as="phpUnderControl/Console/ConsoleExtensionI.php" name="src/Console/ConsoleExtensionI.php" />
       <install as="phpUnderControl/Console/ConsoleInput.php" name="src/Console/ConsoleInput.php" />
       <install as="phpUnderControl/Console/ConsoleInputDefinition.php" name="src/Console/ConsoleInputDefinition.php" />
@@ -700,6 +805,8 @@
       <install as="phpUnderControl/Data/BuildFile.php" name="src/Data/BuildFile.php" />
       <install as="phpUnderControl/Data/BuildTarget.php" name="src/Data/BuildTarget.php" />
       <install as="phpUnderControl/Data/ConfigArtifactsPublisher.php" name="src/Data/ConfigArtifactsPublisher.php" />
+      <install as="phpUnderControl/Data/ConfigBootStrapper.php" name="src/Data/ConfigBootStrapper.php" />
+      <install as="phpUnderControl/Data/ConfigBuildTrigger.php" name="src/Data/ConfigBuildTrigger.php" />
       <install as="phpUnderControl/Data/ConfigExecutePublisher.php" name="src/Data/ConfigExecutePublisher.php" />
       <install as="phpUnderControl/Data/ConfigFile.php" name="src/Data/ConfigFile.php" />
       <install as="phpUnderControl/Data/ConfigProject.php" name="src/Data/ConfigProject.php" />
@@ -736,6 +843,7 @@
       
       <install as="phpUnderControl/Tasks/AbstractPearTask.php" name="src/Tasks/AbstractPearTask.php" />
       <install as="phpUnderControl/Tasks/AbstractTask.php" name="src/Tasks/AbstractTask.php" />
+      <install as="phpUnderControl/Tasks/CheckoutTask.php" name="src/Tasks/CheckoutTask.php" />
       <install as="phpUnderControl/Tasks/CreateFileTask.php" name="src/Tasks/CreateFileTask.php" />
       <install as="phpUnderControl/Tasks/CruiseControlTask.php" name="src/Tasks/CruiseControlTask.php" />
       <install as="phpUnderControl/Tasks/ExampleTask.php" name="src/Tasks/ExampleTask.php" />
@@ -745,6 +853,8 @@
       <install as="phpUnderControl/Tasks/PhpCodeSnifferTask.php" name="src/Tasks/PhpCodeSnifferTask.php" />
       <install as="phpUnderControl/Tasks/PhpDocumentorTask.php" name="src/Tasks/PhpDocumentorTask.php" />
       <install as="phpUnderControl/Tasks/PhpUnitTask.php" name="src/Tasks/PhpUnitTask.php" />
+      <install as="phpUnderControl/Tasks/ProjectCleanTask.php" name="src/Tasks/ProjectCleanTask.php" />
+      <install as="phpUnderControl/Tasks/ProjectDeleteTask.php" name="src/Tasks/ProjectDeleteTask.php" />
       <install as="phpUnderControl/Tasks/ProjectTask.php" name="src/Tasks/ProjectTask.php" />
       <install as="phpUnderControl/Tasks/TaskI.php" name="src/Tasks/TaskI.php" />
       
@@ -752,6 +862,11 @@
       <install as="phpUnderControl/Util/FileCopyUtil.php" name="src/Util/FileCopyUtil.php" />
       <install as="phpUnderControl/Util/FileUtil.php" name="src/Util/FileUtil.php" />
       <install as="phpUnderControl/Util/PhpFileFilterIterator.php" name="src/Util/PhpFileFilterIterator.php" />
+      
+      <install as="phpUnderControl/VersionControl/AbstractCheckout.php" name="src/VersionControl/AbstractCheckout.php" />
+      <install as="phpUnderControl/VersionControl/CheckoutI.php" name="src/VersionControl/CheckoutI.php" />
+      <install as="phpUnderControl/VersionControl/CvsCheckout.php" name="src/VersionControl/CvsCheckout.php" />
+      <install as="phpUnderControl/VersionControl/SubversionCheckout.php" name="src/VersionControl/SubversionCheckout.php" />
       
       <install as="phpuc" name="bin/phpuc.php" />
       <install as="phpuc.bat" name="bin/phpuc.bat" />
@@ -763,12 +878,16 @@
       <install as="phpUnderControl/PhpUnderControl.php" name="src/PhpUnderControl.php"/>
       
       <install as="phpUnderControl/Commands/AbstractCommand.php" name="src/Commands/AbstractCommand.php" />
+      <install as="phpUnderControl/Commands/CleanCommand.php" name="src/Commands/CleanCommand.php" />
+      <install as="phpUnderControl/Commands/CommandI.php" name="src/Commands/CommandI.php" />
+      <install as="phpUnderControl/Commands/DeleteCommand.php" name="src/Commands/DeleteCommand.php" />
       <install as="phpUnderControl/Commands/ExampleCommand.php" name="src/Commands/ExampleCommand.php" />
       <install as="phpUnderControl/Commands/GraphCommand.php" name="src/Commands/GraphCommand.php" />
       <install as="phpUnderControl/Commands/InstallCommand.php" name="src/Commands/InstallCommand.php" />
       <install as="phpUnderControl/Commands/ProjectCommand.php" name="src/Commands/ProjectCommand.php" />
       
       <install as="phpUnderControl/Console/ConsoleArgs.php" name="src/Console/ConsoleArgs.php" />
+      <install as="phpUnderControl/Console/ConsoleCommandI.php" name="src/Console/ConsoleCommandI.php" />
       <install as="phpUnderControl/Console/ConsoleExtensionI.php" name="src/Console/ConsoleExtensionI.php" />
       <install as="phpUnderControl/Console/ConsoleInput.php" name="src/Console/ConsoleInput.php" />
       <install as="phpUnderControl/Console/ConsoleInputDefinition.php" name="src/Console/ConsoleInputDefinition.php" />
@@ -777,6 +896,8 @@
       <install as="phpUnderControl/Data/BuildFile.php" name="src/Data/BuildFile.php" />
       <install as="phpUnderControl/Data/BuildTarget.php" name="src/Data/BuildTarget.php" />
       <install as="phpUnderControl/Data/ConfigArtifactsPublisher.php" name="src/Data/ConfigArtifactsPublisher.php" />
+      <install as="phpUnderControl/Data/ConfigBootStrapper.php" name="src/Data/ConfigBootStrapper.php" />
+      <install as="phpUnderControl/Data/ConfigBuildTrigger.php" name="src/Data/ConfigBuildTrigger.php" />
       <install as="phpUnderControl/Data/ConfigExecutePublisher.php" name="src/Data/ConfigExecutePublisher.php" />
       <install as="phpUnderControl/Data/ConfigFile.php" name="src/Data/ConfigFile.php" />
       <install as="phpUnderControl/Data/ConfigProject.php" name="src/Data/ConfigProject.php" />
@@ -813,6 +934,7 @@
       
       <install as="phpUnderControl/Tasks/AbstractPearTask.php" name="src/Tasks/AbstractPearTask.php" />
       <install as="phpUnderControl/Tasks/AbstractTask.php" name="src/Tasks/AbstractTask.php" />
+      <install as="phpUnderControl/Tasks/CheckoutTask.php" name="src/Tasks/CheckoutTask.php" />
       <install as="phpUnderControl/Tasks/CreateFileTask.php" name="src/Tasks/CreateFileTask.php" />
       <install as="phpUnderControl/Tasks/CruiseControlTask.php" name="src/Tasks/CruiseControlTask.php" />
       <install as="phpUnderControl/Tasks/ExampleTask.php" name="src/Tasks/ExampleTask.php" />
@@ -822,6 +944,8 @@
       <install as="phpUnderControl/Tasks/PhpCodeSnifferTask.php" name="src/Tasks/PhpCodeSnifferTask.php" />
       <install as="phpUnderControl/Tasks/PhpDocumentorTask.php" name="src/Tasks/PhpDocumentorTask.php" />
       <install as="phpUnderControl/Tasks/PhpUnitTask.php" name="src/Tasks/PhpUnitTask.php" />
+      <install as="phpUnderControl/Tasks/ProjectCleanTask.php" name="src/Tasks/ProjectCleanTask.php" />
+      <install as="phpUnderControl/Tasks/ProjectDeleteTask.php" name="src/Tasks/ProjectDeleteTask.php" />
       <install as="phpUnderControl/Tasks/ProjectTask.php" name="src/Tasks/ProjectTask.php" />
       <install as="phpUnderControl/Tasks/TaskI.php" name="src/Tasks/TaskI.php" />
       
@@ -829,6 +953,11 @@
       <install as="phpUnderControl/Util/FileCopyUtil.php" name="src/Util/FileCopyUtil.php" />
       <install as="phpUnderControl/Util/FileUtil.php" name="src/Util/FileUtil.php" />
       <install as="phpUnderControl/Util/PhpFileFilterIterator.php" name="src/Util/PhpFileFilterIterator.php" />
+      
+      <install as="phpUnderControl/VersionControl/AbstractCheckout.php" name="src/VersionControl/AbstractCheckout.php" />
+      <install as="phpUnderControl/VersionControl/CheckoutI.php" name="src/VersionControl/CheckoutI.php" />
+      <install as="phpUnderControl/VersionControl/CvsCheckout.php" name="src/VersionControl/CvsCheckout.php" />
+      <install as="phpUnderControl/VersionControl/SubversionCheckout.php" name="src/VersionControl/SubversionCheckout.php" />
       
       <install as="phpuc" name="bin/phpuc.php" />
       <ignore name="bin/phpuc.bat" />
@@ -887,7 +1016,6 @@
         <email>mapi@phpundercontrol.org</email>
         <active>yes</active>
       </lead>
-      <date>2008-01-18</date>
       <version>
         <release>0.3.0</release>
         <api>0.2.0</api>
@@ -896,6 +1024,7 @@
         <release>beta</release>
         <api>beta</api>
       </stability>
+      <date>2008-01-18</date>
       <license uri="http://www.opensource.org/licenses/bsd-license.php">BSD License</license>
       <notes>
 - New console output class added.
@@ -910,7 +1039,6 @@
         <email>mapi@phpundercontrol.org</email>
         <active>yes</active>
       </lead>
-      <date>2008-01-18</date>
       <version>
         <release>0.3.0</release>
         <api>0.2.0</api>
@@ -919,6 +1047,7 @@
         <release>beta</release>
         <api>beta</api>
       </stability>
+      <date>2008-01-18</date>
       <license uri="http://www.opensource.org/licenses/bsd-license.php">BSD License</license>
       <notes>
 - New console input class added.
@@ -935,7 +1064,6 @@
       <email>mapi@phpundercontrol.org</email>
       <active>yes</active>
     </lead>
-    <date>2008-01-19</date>
     <version>
       <release>0.3.1</release>
       <api>0.2.0</api>
@@ -944,6 +1072,7 @@
       <release>beta</release>
       <api>beta</api>
     </stability>
+    <date>2008-01-19</date>
     <license uri="http://www.opensource.org/licenses/bsd-license.php">BSD License</license>
       <notes>
 - Bugfix for different artifact locations.
@@ -957,7 +1086,6 @@
         <email>mapi@phpundercontrol.org</email>
         <active>yes</active>
       </lead>
-      <date>2008-01-19</date>
       <version>
         <release>0.3.2</release>
         <api>0.2.0</api>
@@ -966,6 +1094,7 @@
         <release>beta</release>
         <api>beta</api>
       </stability>
+      <date>2008-01-19</date>
       <license uri="http://www.opensource.org/licenses/bsd-license.php">BSD License</license>
       <notes>
 - Allow different locations for logs and artifacts. The graph cli tool now accepts
@@ -980,7 +1109,6 @@
         <email>mapi@phpundercontrol.org</email>
         <active>yes</active>
       </lead>
-      <date>2008-01-22</date>
       <version>
         <release>0.3.3</release>
         <api>0.2.0</api>
@@ -989,6 +1117,7 @@
         <release>beta</release>
         <api>beta</api>
       </stability>
+      <date>2008-01-22</date>
       <license uri="http://www.opensource.org/licenses/bsd-license.php">BSD License</license>
       <notes>
 - Example project fixed for windows.
@@ -1003,7 +1132,6 @@
         <email>mapi@phpundercontrol.org</email>
         <active>yes</active>
       </lead>
-      <date>2008-01-22</date>
       <version>
         <release>0.3.4</release>
         <api>0.2.0</api>
@@ -1012,6 +1140,7 @@
         <release>beta</release>
         <api>beta</api>
       </stability>
+      <date>2008-01-22</date>
       <license uri="http://www.opensource.org/licenses/bsd-license.php">BSD License</license>
       <notes>
 - In 0.3.3 the class phpucDotChartOptions was missing.
@@ -1025,7 +1154,6 @@
         <email>mapi@phpundercontrol.org</email>
         <active>yes</active>
       </lead>
-      <date>2008-02-02</date>
       <version>
         <release>0.3.5</release>
         <api>0.2.0</api>
@@ -1034,6 +1162,7 @@
         <release>beta</release>
         <api>beta</api>
       </stability>
+      <date>2008-02-02</date>
       <license uri="http://www.opensource.org/licenses/bsd-license.php">BSD License</license>
       <notes>
 - New dashboard like index page, thanks to kore.
@@ -1054,7 +1183,6 @@
         <email>mapi@phpundercontrol.org</email>
         <active>yes</active>
       </lead>
-      <date>2008-02-11</date>
       <version>
         <release>0.3.6</release>
         <api>0.2.0</api>
@@ -1063,6 +1191,7 @@
         <release>beta</release>
         <api>beta</api>
       </stability>
+      <date>2008-02-11</date>
       <license uri="http://www.opensource.org/licenses/bsd-license.php">BSD License</license>
       <notes>
 - Dashboard bugfix. The projects weren't sorted on the dashboard page. Thanks to
