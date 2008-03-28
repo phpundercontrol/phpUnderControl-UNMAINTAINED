@@ -160,7 +160,9 @@ class phpucFileUtilTest extends phpucAbstractTest
     public function testFindExecutableWindows()
     {
         $this->initExecutableTest( phpucFileUtil::OS_WINDOWS );
-        $this->assertEquals( 'svn', phpucFileUtil::findExecutable( 'svn' ) );
+        $this->assertEquals( 
+            'svn.cmd', basename( phpucFileUtil::findExecutable( 'svn' ) )
+        );
     }
     
     /**

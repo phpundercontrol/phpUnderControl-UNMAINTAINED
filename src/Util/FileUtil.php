@@ -318,8 +318,8 @@ final class phpucFileUtil
         {
             foreach ( self::$windowsExts as $ext )
             {
-                $fullPath = "{$path}\\{$executable}.{$ext}";
-            
+                $fullPath = $path . DIRECTORY_SEPARATOR . "{$executable}.{$ext}";
+
                 if ( file_exists( $fullPath ) )
                 {
                     return $fullPath;
