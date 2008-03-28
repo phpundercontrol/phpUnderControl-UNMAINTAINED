@@ -81,6 +81,11 @@ class phpucSubversionCheckout extends phpucAbstractCheckout
 		$url = escapeshellarg( $this->url );
         $cmd = "{$svn} co {$options} {$url} source";
 		
-		system($cmd);
+        popen("{$cmd} 2>&1", "r");
+        
+        if ( !file_exists( 'source' ) )
+        {
+            throw new phpucErrorException( 'The project checkout has failed.' );
+        }
     }
 }
