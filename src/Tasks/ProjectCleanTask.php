@@ -102,7 +102,10 @@ class phpucProjectCleanTask extends phpucAbstractTask implements phpucConsoleExt
      * Removes all project artifact subdirectories that match one of the given
      * timestamps.
      *
-     * @param array $timestamps List of all removable timestamps.
+     * @param string $basePath
+     *        Base directory where the method starts to clean up.
+     * @param array $timestamps 
+     *        List of all removable timestamps.
      * 
      * @return void
      */
@@ -167,7 +170,7 @@ class phpucProjectCleanTask extends phpucAbstractTask implements phpucConsoleExt
     
     /**
      * Callback method that registers a command extension. 
-     
+     *
      * @param phpucConsoleInputDefinition $def 
      *        The input definition container.
      * @param phpucConsoleCommandI  $command
