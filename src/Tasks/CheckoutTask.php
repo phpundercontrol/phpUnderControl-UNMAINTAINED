@@ -116,6 +116,7 @@ class phpucCheckoutTask extends phpucAbstractTask implements phpucConsoleExtensi
         $target->executable  = phpucFileUtil::findExecutable(
             $this->args->getOption( 'version-control' )
         );
+        $target->argLine     = 'up';
         $target->failonerror = true;
         
         $build->save();

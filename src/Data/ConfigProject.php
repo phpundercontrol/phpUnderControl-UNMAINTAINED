@@ -200,7 +200,7 @@ class phpucConfigProject
                 break;
                 
             case 'interval':
-                if ( !is_integer( $value ) || $value < 0 )
+                if ( !is_numeric( $value ) || $value < 0 )
                 {
                     throw new InvalidArgumentException(
                         sprintf( 'Property $%s must be a positive integer.', $name )
