@@ -98,4 +98,5 @@
             [ <a href="{$subdir}elementindex_{$package}.html">{$package} elements</a> ]
           {/if}
           [ <a href="{$subdir}elementindex.html">All elements</a> ]
+          [ <a href="{$subdir}errors.html">Errors</a> ]
                 </div>
