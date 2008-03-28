@@ -5,6 +5,8 @@
   </listeners>
 
   <modificationset/>
+  
+  <bootstrappers />
 
   <schedule interval="@interval@">
     <ant anthome="@anthome@" buildfile="projects/${project.name}/build.xml"/>
