@@ -55,7 +55,7 @@
 %>
 <html>
   <head>
-    <title><%= name%> phpUnderControl 0.3.6 at <%= hostname %></title>
+    <title><%= name%> phpUnderControl - SVN at <%= hostname %></title>
     <base href="<%=baseURL%>" />
     <link type="application/rss+xml" rel="alternate" href="rss" title="RSS" />
     <link type="text/css" rel="stylesheet" href="css/php-under-control.css" />
