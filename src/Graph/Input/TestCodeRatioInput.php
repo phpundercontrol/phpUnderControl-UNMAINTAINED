@@ -66,7 +66,7 @@ class phpucTestCodeRatioInput extends phpucAbstractInput
     public function __construct()
     {
         parent::__construct( 
-            'Test to Code ratio', 
+            'Test to Code Ratio', 
             '05-test-to-code-ratio', 
             phpucChartI::TYPE_LINE 
         );

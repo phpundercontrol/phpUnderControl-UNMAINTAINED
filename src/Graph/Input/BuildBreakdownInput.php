@@ -64,7 +64,7 @@ class phpucBuildBreakdownInput extends phpucAbstractInput
     public function __construct()
     {
         parent::__construct( 
-            'Breakdown of build types', 
+            'Breakdown of Build Types', 
             '01-breakdown-of-build-types', 
             phpucChartI::TYPE_PIE
         );

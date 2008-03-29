@@ -66,7 +66,7 @@ class phpucUnitCoverageInput extends phpucAbstractInput
     public function __construct()
     {
         parent::__construct( 
-            'Unit coverage', 
+            'Unit Coverage', 
             '03-unit-coverage', 
             phpucChartI::TYPE_LINE
         );

@@ -66,7 +66,7 @@ class phpucBuildBreakdownTimelineInput extends phpucAbstractInput
     public function __construct()
     {
         parent::__construct(
-            'Breakdown of build timeline', 
+            'Breakdown of Build Timeline', 
             '02-breakdown-of-build-timeline', 
             phpucChartI::TYPE_DOT
         );
