@@ -20,7 +20,7 @@
     <email>mapi@phpundercontrol.org</email>
     <active>yes</active>
   </lead>
-  <date>2008-03-28</date>
+  <date>2008-03-30</date>
   <version>
     <release>0.4.0</release>
     <api>0.2.0</api>
@@ -37,6 +37,11 @@
 - Height of embedded iframes optimized.
 - New dashboard project is building throbber and force project build button 
   added. Thanks to kore.
+- Two new cli commands implemented. 1. Project-delete to delete a complete 
+  project with all the generated contents. 2) Project-clean to remove a defined
+  number of old builds.
+- Minor UI improvements.
+   
   </notes>
   <contents>
     <dir name="/">
