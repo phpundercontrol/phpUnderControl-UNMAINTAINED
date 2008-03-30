@@ -7,6 +7,12 @@ phpUnderControl 0.4.0
 - Height of embedded iframes optimized.
 - New dashboard project is building throbber and force project build button 
   added. Thanks to kore.
+- New dashboard project is building throbber and force project build button 
+  added. Thanks to kore.
+- Two new cli commands implemented. 1. Project-delete to delete a complete 
+  project with all the generated contents. 2) Project-clean to remove a defined
+  number of old builds.
+- Minor UI improvements.
    
 
 phpUnderControl 0.3.6

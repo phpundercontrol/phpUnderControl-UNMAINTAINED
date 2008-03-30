@@ -53,7 +53,7 @@
  * @author    Manuel Pichler <mapi@phpundercontrol.org>
  * @copyright 2007-2008 Manuel Pichler. All rights reserved.
  * @license   http://www.opensource.org/licenses/bsd-license.php  BSD License
- * @version   Release: @package_version@
+ * @version   Release: 0.4.0
  * @link      http://www.phpundercontrol.org/
  */
 class phpucSubversionCheckout extends phpucAbstractCheckout
@@ -70,48 +70,22 @@ class phpucSubversionCheckout extends phpucAbstractCheckout
         $options = ' --no-auth-cache --non-interactive';
         if ( $this->username !== null )
         {
-            $options .= " --username {$this->username}";
+            $options .= ' --username ' . escapeshellarg( $this->username );
         }
         if ( $this->password !== null )
         {
-            $options .= " --password {$this->password}";
+            $options .= ' --password ' . escapeshellarg( $this->password );
         }
-        
+		
         $svn = phpucFileUtil::findExecutable( 'svn' );
-        $cmd = escapeshellcmd( "{$svn} co {$options} {$this->url} source" );
-
-        $spec = array(
-            0 => array("pipe", "r"),  // stdin 
-            1 => array("pipe", "w"),  // stdout
-            2 => array("pipe", "w")   // stderr
-        );
-
-        $cwd = getcwd();
-        $env = array();
+		$url = escapeshellarg( $this->url );
+        $cmd = "{$svn} co {$options} {$url} source";
+		
+        popen("{$cmd} 2>&1", "r");
         
-        $error = '';
-
-        $proc = proc_open( $cmd, $spec, $pipes, $cmd, $env );
-        if ( is_resource( $proc ) )
+        if ( !file_exists( 'source' ) )
         {
-            while ( !feof( $pipes[1] ) )
-            {
-                fgets( $pipes[1], 128 );
-            }
-            fclose( $pipes[1] );
-
-            while ( !feof( $pipes[2] ) )
-            {
-                $error .= fgets( $pipes[2], 128 );
-            }
-            fclose( $pipes[2] );
-            
-            proc_close( $proc );            
-        }
-        
-        if ( $error !== '' )
-        {
-            throw new phpucErrorException( $error );
+            throw new phpucErrorException( 'The project checkout has failed.' );
         }
     }
 }
