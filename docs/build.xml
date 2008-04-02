@@ -102,10 +102,15 @@
   uses the Checkstyle report generator that is supported by CruiseControl. The
   'output' attribute for the exec element pipes the command line output into the 
   <project>/build/logs/checkstyle.xml file.
+  
+  You should always declare the optional @error attribute for the codesniffer 
+  task. Otherwise all errors will be logged in the checkstyle.xml file, which
+  results in an invalid xml document.
   -->
   <target name="php-codesniffer">
     <exec executable="phpcs" 
           dir="${basedir}/source" 
+          error="/dev/null"
           output="${basedir}/build/logs/checkstyle.xml">
       <arg line="--report=checkstyle 
                  --standard=PEAR
