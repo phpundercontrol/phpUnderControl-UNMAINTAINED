@@ -88,8 +88,9 @@
     
     <!--
     The tasks defined in the bootstrapper section are run before CruiseControl 
-    starts the project build process. The plugins defined here update the local
-    working copy of the project from the used revision control system.
+    starts the project build process. The plugins defined here update common
+    resources of the local working copy of the project from the used revision 
+    control system.
     
       * http://cruisecontrol.sourceforge.net/main/configxml.html#bootstrappers
     -->
