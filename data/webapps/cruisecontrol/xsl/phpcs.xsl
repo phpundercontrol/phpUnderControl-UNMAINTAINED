@@ -37,64 +37,15 @@
  ********************************************************************************-->
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
   <xsl:output method="html"/>
+  
+  <xsl:include href="phpcs-summary.xsl" />
 
   <!-- Controls whether all PHP CodeSniffer errors and warnings should be listed.
        Set to 'false' for showing the warnings -->
   <xsl:param name="checkstyle.hide.warnings" select="'true'"/>
 
   <xsl:template match="/" mode="checkstyle">
-    <xsl:variable name="total.error.count" select="count(cruisecontrol/checkstyle/file/error[@severity='error'])" />
-    <xsl:variable name="total.warning.count" select="count(cruisecontrol/checkstyle/file/error[@severity='warning'])" />
-
-    <table class="result" align="center">
-      <thead>
-        <tr>
-          <th colspan="3">
-            PHP CodeSniffer errors/warnings (<xsl:value-of select="$total.error.count"/>
-            / <xsl:value-of select="$total.warning.count"/>)
-          </th>
-        </tr>
-      </thead>
-      <tbody>
-        <xsl:for-each select="cruisecontrol/checkstyle">
-          <xsl:apply-templates select="." mode="checkstyle">
-            <xsl:with-param name="total.error.count" select="$total.error.count" />
-            <xsl:with-param name="total.warning.count" select="$total.warning.count" />
-          </xsl:apply-templates>
-        </xsl:for-each>
-      </tbody>
-    </table>
-  </xsl:template>
-
-  <xsl:template match="checkstyle[file/error]" mode="checkstyle">
-    <xsl:param name="total.error.count" />
-    <xsl:param name="total.warning.count" />
-    <xsl:choose>
-      <xsl:when test="$checkstyle.hide.warnings = 'true' and $total.error.count = 0">
-        <tr>
-          <td class="checkstyle-data" colspan="3">
-            <xsl:value-of select="$total.warning.count"/> warnings
-          </td>
-        </tr>
-      </xsl:when>
-      <xsl:when test="$checkstyle.hide.warnings = 'true'">
-        <xsl:apply-templates select="file/error[@severity='error']" mode="checkstyle"/>
-      </xsl:when>
-      <xsl:otherwise>
-        <xsl:apply-templates select="file/error" mode="checkstyle"/>
-      </xsl:otherwise>
-    </xsl:choose>
-  </xsl:template>
-
-  <xsl:template match="error" mode="checkstyle">
-    <tr>
-      <xsl:if test="position() mod 2 = 1">
-        <xsl:attribute name="class">oddrow</xsl:attribute>
-      </xsl:if>
-      <td class="{@severity}"><xsl:value-of select="../@name" /></td>
-      <td><xsl:value-of select="@line" /></td>
-      <td><xsl:value-of select="@message" /></td>
-    </tr>
+    <xsl:call-template name="phpcs-summary"/>
   </xsl:template>
 
   <xsl:template match="/">

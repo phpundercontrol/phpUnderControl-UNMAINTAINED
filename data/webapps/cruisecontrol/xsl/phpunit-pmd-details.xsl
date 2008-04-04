@@ -37,15 +37,18 @@
  ********************************************************************************-->
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
   <xsl:output method="html"/>
+  
   <xsl:param name="viewcvs.url"/>
-  <xsl:variable name="project" select="/cruisecontrol/info/property[@name='projectname']/@value"/>
   <xsl:param name="cvsmodule" select="concat($project, '/source/src/')"/>
-  <xsl:key name="rules" match="//file/violation" use="@rule"/>
-
+  
+  <xsl:variable name="project" select="/cruisecontrol/info/property[@name='projectname']/@value"/>
+  
+  <xsl:include href="./phpunit-pmd-summary.xsl" />
   <xsl:include href="./phphelper.xsl" />
 
   <xsl:template match="/">
     <xsl:apply-templates select="cruisecontrol/pmd"/>
+    
     <script language="javascript" src="js/shCore.js"></script>
     <script language="javascript" src="js/shBrushPhp.js"></script>
     <script language="javascript">
@@ -57,7 +60,9 @@
 
   <xsl:template match="pmd">
     <xsl:variable name="total.error.count" select="count(file/violation)" />
-    <xsl:apply-templates select="." mode="summary"/>
+    
+    <h2>PHPUnit PMD</h2>
+    
     <xsl:apply-templates select="." mode="rule-summary"/>
     
     <table class="result" align="center">
@@ -74,74 +79,6 @@
     </table>
 
     <xsl:apply-templates select="//pmd-cpd/duplication" />
-  </xsl:template>
-
-  <xsl:template match="pmd" mode="summary">
-    <h2>PHPUnit PMD Summary</h2>
-    <dl>
-      <dt>Files:</dt>
-      <dd><xsl:value-of select="count(file[violation]) + count(//pmd-cpd/duplication/file[@path != //pmd/file[violation]/@name])"/></dd>
-      <dt>Violations:</dt>
-      <dd><xsl:value-of select="count(file/violation) + count(//pmd-cpd/duplication)"/></dd>
-    </dl>
-  </xsl:template>
-
-  <xsl:template match="pmd" mode="rule-summary">
-    <p/>
-    <table class="result" align="center">
-      <colgroup>
-        <col width="5%"></col>
-        <col width="85%"></col>
-        <col width="5%"></col>
-        <col width="3%"></col>
-      </colgroup>
-      <thead>
-        <tr>
-          <th></th>
-          <th>PHPUnit PMD rule</th>
-          <th>Files</th>
-          <th>Error/Warnings</th>
-        </tr>
-      </thead>
-      <tbody>
-        <xsl:for-each select="file/violation[generate-id() = generate-id(key('rules', @rule)[1])]">
-          <xsl:sort data-type="number" order="descending" select="count(key('rules', @rule))"/>
-
-          <xsl:variable name="errorCount" select="count(key('rules', @rule))"/>
-          <xsl:variable name="fileCount" select="count(../../file[violation/@rule=current()/@rule])"/>
-          <tr>
-            <xsl:if test="position() mod 2 = 0">
-              <xsl:attribute name="class">oddrow</xsl:attribute>
-            </xsl:if>
-            <td></td>
-            <td>              
-              <xsl:choose>
-                <xsl:when test="@ruleset">
-                  <xsl:value-of select="@ruleset"/>
-                </xsl:when>
-                <xsl:otherwise>
-                  <xsl:text>PHPUnit PMD</xsl:text>
-                </xsl:otherwise>
-              </xsl:choose> / <xsl:value-of select="@rule"/></td>
-            <td align="right"><xsl:value-of select="$fileCount"/></td>
-            <td align="right"><xsl:value-of select="$errorCount"/></td>
-          </tr>
-        </xsl:for-each>
-        <xsl:if test="count(//pmd-cpd/duplication) &gt; 0">
-          <xsl:variable name="duplication.count" select="count(//pmd-cpd/duplication)" />
-          <xsl:variable name="duplication.file.count" select="count(//pmd-cpd/duplication/file)" />
-          <tr>
-            <xsl:if test="count(file/violation[generate-id() = generate-id(key('rules', @rule)[1])]) mod 2 != 0">
-              <xsl:attribute name="class">oddrow</xsl:attribute>
-            </xsl:if>
-            <td></td>
-            <td>PHPUnit CPD / CopyPasteDetection</td>
-            <td align="right"><xsl:value-of select="$duplication.file.count" /></td>
-            <td align="right"><xsl:value-of select="$duplication.count" /></td>
-          </tr>
-        </xsl:if>
-      </tbody>
-    </table>
   </xsl:template>
 
   <xsl:template match="duplication">

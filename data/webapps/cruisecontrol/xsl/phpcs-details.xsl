@@ -37,15 +37,19 @@
  ********************************************************************************-->
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
   <xsl:output method="html"/>
+  
   <xsl:param name="viewcvs.url"/>
   <xsl:param name="cvsmodule" select="concat(/cruisecontrol/info/property[@name='projectname']/@value, '/source/src/')"/>
+  
   <xsl:key name="source" match="error" use="@source"/>
 
+  <xsl:include href="phpcs-summary.xsl" />
   <xsl:include href="phphelper.xsl" />
 
   <xsl:template match="/">
-    <xsl:call-template name="checkstyle-summary" />
-    <xsl:call-template name="checkstyle-check-summary"/>
+    <h2>PHP CodeSniffer Summary</h2>
+    <xsl:call-template name="phpcs-summary"/>
+    
     <table class="result">
       <colgroup>
         <col width="5%"></col>
@@ -64,54 +68,6 @@
       <xsl:sort data-type="number" order="descending" select="count(error)"/>
       <xsl:apply-templates select="."/>
     </xsl:for-each>
-  </xsl:template>
-
-  <xsl:template name="checkstyle-summary">
-    <h2>PHP CodeSniffer Summary</h2>
-    <dl>
-      <dt>Files: </dt>
-      <dd><xsl:value-of select="count(/cruisecontrol/checkstyle/file[error])"/></dd>
-      <dt>Errors: </dt>
-      <dd><xsl:value-of select="count(/cruisecontrol/checkstyle/file/error[@severity='error'])"/></dd>
-      <dt>Warnings: </dt>
-      <dd><xsl:value-of select="count(/cruisecontrol/checkstyle/file/error[@severity='warning'])"/></dd>
-    </dl>
-  </xsl:template>
-
-  <xsl:template name="checkstyle-check-summary">
-    <p/>
-    <table class="result">
-      <colgroup>
-        <col width="5%"></col>
-        <col width="85%"></col>
-        <col width="5%"></col>
-        <col width="5%"></col>
-      </colgroup>
-      <thead>
-        <tr>
-          <th></th>
-          <th>PHP CodeSniffer violation</th>
-          <th>Files</th>
-          <th>Error/Warnings</th>
-        </tr>
-      </thead>
-      <tbody>
-        <xsl:for-each select="/cruisecontrol/checkstyle/file[error]">
-          <xsl:variable name="errors" select="/cruisecontrol/checkstyle/file[@name=current()/@name]/error"/>
-          <xsl:variable name="errorCount" select="count($errors)"/>
-          <xsl:variable name="fileCount" select="count($errors/..)"/>
-          <tr>
-            <xsl:if test="position() mod 2 = 0">
-              <xsl:attribute name="class">oddrow</xsl:attribute>
-            </xsl:if>
-            <td></td>
-            <td><xsl:value-of select="@name"/></td>
-            <td align="right"><xsl:value-of select="$fileCount"/></td>
-            <td align="right"><xsl:value-of select="$errorCount"/></td>
-          </tr>
-        </xsl:for-each>
-      </tbody>
-    </table>
   </xsl:template>
 
   <xsl:template match="file">

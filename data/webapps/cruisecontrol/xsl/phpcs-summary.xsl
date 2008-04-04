@@ -37,13 +37,58 @@
  ********************************************************************************-->
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
   <xsl:output method="html"/>
-  
-  <xsl:include href="./phpunit-pmd-summary.xsl" />
-  
-  <xsl:param name="pmd.warning.threshold" select="11"/>
 
-  <xsl:template match="/" mode="pmd">
-    <xsl:apply-templates select="cruisecontrol/pmd" mode="rule-summary"/>
+  <xsl:template name="phpcs-summary">
+    <p/>
+    <table class="result">
+      <colgroup>
+        <col width="1%"></col>
+        <col width="85%"></col>
+        <col width="5%"></col>
+        <col width="9%"></col>
+      </colgroup>
+      <thead>
+        <tr>
+          <th colspan="2">PHP CodeSniffer violation</th>
+          <th>Files</th>
+          <th>Error / Warnings</th>
+        </tr>
+      </thead>
+      <tbody>
+        <xsl:for-each select="/cruisecontrol/checkstyle/file[error]">
+          <xsl:variable name="errors" select="/cruisecontrol/checkstyle/file[@name=current()/@name]/error"/>
+          <xsl:variable name="errorCount" select="count($errors[@severity='error'])"/>
+          <xsl:variable name="warningCount" select="count($errors[@severity='warning'])"/>
+          <xsl:variable name="fileCount" select="count($errors/..)"/>
+          <tr>
+            <xsl:if test="position() mod 2 = 0">
+              <xsl:attribute name="class">oddrow</xsl:attribute>
+            </xsl:if>
+            <td></td>
+            <td><xsl:value-of select="@name"/></td>
+            <td align="right"><xsl:value-of select="$fileCount"/></td>
+            <td align="right">
+              <xsl:value-of select="$errorCount"/>
+              /
+              <xsl:value-of select="$warningCount"/>
+            </td>
+          </tr>
+        </xsl:for-each>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td colspan="2"></td>
+          <td align="right" >
+            <xsl:value-of select="count(/cruisecontrol/checkstyle/file[error])"/>
+          </td>
+          <td align="right">
+            <xsl:value-of select="count(/cruisecontrol/checkstyle/file/error[@severity='error'])"/>
+            /
+            <xsl:value-of select="count(/cruisecontrol/checkstyle/file/error[@severity='warning'])"/>
+          </td>
+        </tr>
+      </tfoot>
+    </table>
   </xsl:template>
-
+  
 </xsl:stylesheet>

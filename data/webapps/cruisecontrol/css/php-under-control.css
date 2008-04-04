@@ -200,6 +200,11 @@ div#container table.result thead th {
     white-space: nowrap;
 }
 
+div#container table.result tfoot td {
+    border-top: 1px solid #babdb6;
+    font-weight: bold;
+}
+
 div#container table.result thead th a {
     color: #555753;
     text-decoration: none;
