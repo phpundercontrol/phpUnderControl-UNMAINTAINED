@@ -42,46 +42,49 @@
     Root template
   -->
   <xsl:template match="/">
-        <script type="text/javascript" language="JavaScript">
-          <!--
-            Function show/hide given div
-          -->
-          function toggleDivVisibility(_div) {
-            if (_div.style.display=="none") {
-              _div.style.display="block";
-            } else {
-              _div.style.display="none";
-            }
-          }
-        </script>
+    <script type="text/javascript" language="JavaScript">
+    // <!--
+    // Function show/hide given div
+    // -->
+    function toggleDivVisibility(_div) {
+        if (_div.style.display=="none") {
+            _div.style.display="block";
+        } else {
+            _div.style.display="none";
+        }
+    }
+    </script>
            
-        <!-- Main table -->
-        <table class="result">
-          <colgroup>
-            <col width="10%"/>
-            <col width="45%"/>
-            <col width="25%"/>
-            <col width="10%"/>
-            <col width="10%"/>
-          </colgroup>
-          <thead>
-            <tr>
-              <th colspan="3">Name</th>
-              <th>Status</th>
-              <th nowrap="nowrap">Time(s)</th>
-            </tr>
-          </thead>
-          <tbody>
-            <!-- display test suites -->
-            <xsl:apply-templates select="//testsuite">
-              <xsl:sort select="count(testcase/error)" data-type="number" order="descending"/>
-              <xsl:sort select="count(testcase/failure)" data-type="number" order="descending"/>
-              <xsl:sort select="@package"/>
-              <xsl:sort select="@name"/>
-            </xsl:apply-templates>
-          </tbody>
-        </table>
-    
+    <!-- Main table -->
+    <table class="result">
+      <colgroup>
+        <col width="10%"/>
+        <col width="45%"/>
+        <col width="25%"/>
+        <col width="10%"/>
+        <col width="10%"/>
+      </colgroup>
+      <thead>
+        <tr>
+          <th colspan="3">Name</th>
+          <th>Status</th>
+          <th nowrap="nowrap">Time(s)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- display test suites -->
+        <xsl:apply-templates select="//testsuite">
+          <xsl:sort select="count(testcase/error)" 
+                    data-type="number" 
+                    order="descending"/>
+          <xsl:sort select="count(testcase/failure)" 
+                    data-type="number" 
+                    order="descending"/>
+          <xsl:sort select="@package"/>
+          <xsl:sort select="@name"/>
+        </xsl:apply-templates>
+      </tbody>
+    </table>
   </xsl:template>
   
   <!--
@@ -92,11 +95,20 @@
     <tr>
       <xsl:attribute name="class">
         <xsl:choose>
-          <xsl:when test="testcase/error">error</xsl:when>
+           <xsl:when test="testcase/error">error</xsl:when>
           <xsl:when test="testcase/failure">failure</xsl:when>
         </xsl:choose>
       </xsl:attribute>
-      <th colspan="5"><xsl:value-of select="concat(@package,'.',@name)"/></th>
+      <th colspan="5">
+        <xsl:choose>
+          <xsl:when test="@fullPackage">
+            <xsl:value-of select="concat(@fullPackage, '::', @name)"/>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:value-of select="@name"/>
+          </xsl:otherwise>
+        </xsl:choose>
+      </th>
     </tr>
     <!-- Display tests -->
     <xsl:apply-templates select="testcase"/>
@@ -114,19 +126,19 @@
         <xsl:choose>
           <xsl:when test="error">
             <xsl:text>error</xsl:text>
-            <xsl:if test="position() mod 2 = 0">
+            <xsl:if test="position() mod 2 = 1">
               <xsl:text> oddrow</xsl:text>
             </xsl:if>
           </xsl:when>
           <xsl:when test="failure">
             <xsl:text>failure</xsl:text>
-            <xsl:if test="position() mod 2 = 0">
+            <xsl:if test="position() mod 2 = 1">
               <xsl:text> oddrow</xsl:text>
             </xsl:if>
           </xsl:when>
           <xsl:otherwise>
             <xsl:text>success</xsl:text>
-            <xsl:if test="position() mod 2 = 0">
+            <xsl:if test="position() mod 2 = 1">
               <xsl:text> oddrow</xsl:text>
             </xsl:if>
           </xsl:otherwise>
