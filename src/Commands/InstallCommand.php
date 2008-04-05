@@ -102,12 +102,14 @@ class phpucInstallCommand extends phpucAbstractCommand implements phpucConsoleCo
         '/webapps/cruisecontrol/js/scriptaculous.js',
         '/webapps/cruisecontrol/xsl/phpcs.xsl',
         '/webapps/cruisecontrol/xsl/phpcs-details.xsl',
+        '/webapps/cruisecontrol/xsl/phpcs-summary.xsl',
         '/webapps/cruisecontrol/xsl/phpdoc.xsl',
         '/webapps/cruisecontrol/xsl/phphelper.xsl',
         '/webapps/cruisecontrol/xsl/phpunit.xsl',
         '/webapps/cruisecontrol/xsl/phpunit-details.xsl',
         '/webapps/cruisecontrol/xsl/phpunit-pmd.xsl',
         '/webapps/cruisecontrol/xsl/phpunit-pmd-details.xsl',
+        '/webapps/cruisecontrol/xsl/phpunit-pmd-summary.xsl',
     );
     
     /**

@@ -678,12 +678,14 @@
           <file name="modifications.xsl" role="data" />
           <file name="phpcs.xsl" role="data" />
           <file name="phpcs-details.xsl" role="data" />
+          <file name="phpcs-summary.xsl" role="data" />
           <file name="phpdoc.xsl" role="data" />
           <file name="phphelper.xsl" role="data" />
           <file name="phpunit.xsl" role="data" />
           <file name="phpunit-details.xsl" role="data" />
           <file name="phpunit-pmd.xsl" role="data" />
           <file name="phpunit-pmd-details.xsl" role="data" />
+          <file name="phpunit-pmd-summary.xsl" role="data" />
         </dir>
         <file name="buildresults.jsp" role="data">
           <tasks:replace from="- SVN" to="version" type="package-info" />
