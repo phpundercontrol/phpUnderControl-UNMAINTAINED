@@ -63,7 +63,7 @@
           <xsl:variable name="errorCount" select="count(key('rules', @rule))"/>
           <xsl:variable name="fileCount" select="count(../../file[violation/@rule=current()/@rule])"/>
           <tr>
-            <xsl:if test="position() mod 2 = 0">
+            <xsl:if test="position() mod 2 = 1">
               <xsl:attribute name="class">oddrow</xsl:attribute>
             </xsl:if>
             <td></td>
@@ -84,7 +84,7 @@
           <xsl:variable name="duplication.count" select="count(//pmd-cpd/duplication)" />
           <xsl:variable name="duplication.file.count" select="count(//pmd-cpd/duplication/file)" />
           <tr>
-            <xsl:if test="count(file/violation[generate-id() = generate-id(key('rules', @rule)[1])]) mod 2 != 0">
+            <xsl:if test="count(file/violation[generate-id() = generate-id(key('rules', @rule)[1])]) mod 2 != 1">
               <xsl:attribute name="class">oddrow</xsl:attribute>
             </xsl:if>
             <td></td>

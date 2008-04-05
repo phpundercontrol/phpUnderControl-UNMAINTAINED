@@ -61,7 +61,7 @@
           <xsl:variable name="warningCount" select="count($errors[@severity='warning'])"/>
           <xsl:variable name="fileCount" select="count($errors/..)"/>
           <tr>
-            <xsl:if test="position() mod 2 = 0">
+            <xsl:if test="position() mod 2 = 1">
               <xsl:attribute name="class">oddrow</xsl:attribute>
             </xsl:if>
             <td></td>

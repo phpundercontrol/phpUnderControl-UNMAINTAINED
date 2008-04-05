@@ -73,20 +73,6 @@
             </xsl:for-each>
           </tbody>
         </xsl:if>
-        <xsl:if test="count($phpdoc.warn.messages) > 0">
-          <tbody>
-            <xsl:for-each select="$phpdoc.warn.messages">
-              <tr>
-                <xsl:if test="position() mod 2 = 1">
-                  <xsl:attribute name="class">oddrow</xsl:attribute>
-                </xsl:if>
-                <td class="warning">
-                  <xsl:value-of select="text()"/>
-                </td>
-              </tr>
-            </xsl:for-each>
-          </tbody>
-        </xsl:if>
       </table>
     </xsl:if>
   </xsl:template>

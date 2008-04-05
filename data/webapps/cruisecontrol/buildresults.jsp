@@ -41,6 +41,7 @@
 <cruisecontrol:xsl xslFile="/xsl/header.xsl"/>
 
 <cruisecontrol:loglink id="logs_url"/>
+<br style="clear:both;" />
 <cruisecontrol:artifactsLink>
   <ul>
     <li>
