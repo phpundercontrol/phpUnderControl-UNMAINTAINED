@@ -264,6 +264,9 @@
             <xsl:when test="testcase/failure">
               <xsl:text>failure</xsl:text>
             </xsl:when>
+            <xsl:otherwise>
+              <xsl:text>success</xsl:text>
+            </xsl:otherwise>
           </xsl:choose>
         </xsl:attribute>
         <xsl:value-of select="substring-after(@name, '::')" />
