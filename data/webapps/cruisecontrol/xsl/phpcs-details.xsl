@@ -42,13 +42,14 @@
   <xsl:param name="cvsmodule" select="concat(/cruisecontrol/info/property[@name='projectname']/@value, '/source/src/')"/>
   
   <xsl:key name="source" match="error" use="@source"/>
+  <xsl:key name="phpcs.files" match="/cruisecontrol/checkstyle/file" use="@name" />
 
   <xsl:include href="phpcs-summary.xsl" />
   <xsl:include href="phphelper.xsl" />
 
   <xsl:template match="/">
     <h2>PHP CodeSniffer Summary</h2>
-    <xsl:call-template name="phpcs-summary"/>
+    <xsl:call-template name="phpcs-summary" />
     
     <table class="result">
       <colgroup>
@@ -56,18 +57,14 @@
         <col width="5%"></col>
         <col width="90%"></col>
       </colgroup>
-      <xsl:for-each select="cruisecontrol/checkstyle">
-        <xsl:apply-templates select="."/>
-      </xsl:for-each>
+      <xsl:apply-templates select="cruisecontrol/checkstyle" />
     </table>
   </xsl:template>
 
   <xsl:template match="checkstyle[file/error]">
-
-    <xsl:for-each select="file[error]">
-      <xsl:sort data-type="number" order="descending" select="count(error)"/>
-      <xsl:apply-templates select="."/>
-    </xsl:for-each>
+    <xsl:apply-templates select="file[error]">
+      <xsl:sort select="@name" />
+    </xsl:apply-templates>
   </xsl:template>
 
   <xsl:template match="file">
@@ -78,9 +75,17 @@
       </xsl:call-template>
     </xsl:variable>
     <thead>
-      <tr><td colspan="3"><br/></td></tr>
+      <tr>
+        <td colspan="3"><br /></td>
+      </tr>
       <tr>
         <th colspan="3">
+          <a>
+            <xsl:attribute name="name">
+              <xsl:text>a</xsl:text>
+              <xsl:value-of select="position()" /> 
+            </xsl:attribute>
+          </a> 
           <xsl:value-of select="$javaclass"/>
           (<xsl:value-of select="count(error[@severity='error'])"/>
           / <xsl:value-of select="count(error)"/>)

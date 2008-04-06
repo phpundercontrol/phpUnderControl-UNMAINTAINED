@@ -51,6 +51,13 @@ body {
 a {
     color: #437610;
 }
+a.stealth {
+    color: #2e3436;
+    text-decoration: none;
+}
+a.stealth:hover {
+    text-decoration: underline;
+}
 
 * {
     border: 0;

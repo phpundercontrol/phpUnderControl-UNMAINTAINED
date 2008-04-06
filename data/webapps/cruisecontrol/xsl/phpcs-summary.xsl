@@ -37,8 +37,11 @@
  ********************************************************************************-->
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
   <xsl:output method="html"/>
+  
+  <xsl:variable name="project.name" select="/cruisecontrol/info/property[@name='projectname']/@value" />
 
   <xsl:template name="phpcs-summary">
+  
     <p/>
     <table class="result">
       <colgroup>
@@ -56,6 +59,7 @@
       </thead>
       <tbody>
         <xsl:for-each select="/cruisecontrol/checkstyle/file[error]">
+          <xsl:sort select="@name" />
           <xsl:variable name="errors" select="/cruisecontrol/checkstyle/file[@name=current()/@name]/error"/>
           <xsl:variable name="errorCount" select="count($errors[@severity='error'])"/>
           <xsl:variable name="warningCount" select="count($errors[@severity='warning'])"/>
@@ -64,8 +68,21 @@
             <xsl:if test="position() mod 2 = 1">
               <xsl:attribute name="class">oddrow</xsl:attribute>
             </xsl:if>
-            <td></td>
-            <td><xsl:value-of select="@name"/></td>
+            <td colspan="2">
+              <xsl:attribute name="class">
+                <xsl:choose>
+                  <xsl:when test="$errorCount &gt; 0">
+                    <xsl:text>error</xsl:text>
+                  </xsl:when>
+                  <xsl:otherwise>
+                    <xsl:text>warning</xsl:text>
+                  </xsl:otherwise>
+                </xsl:choose>
+              </xsl:attribute>
+              <a class="stealth" href="buildresults/{$project.name}?tab=phpcs#a{position()}">
+                <xsl:value-of select="@name"/>
+              </a>
+            </td>
             <td align="right"><xsl:value-of select="$fileCount"/></td>
             <td align="right">
               <xsl:value-of select="$errorCount"/>
