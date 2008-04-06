@@ -193,6 +193,11 @@
             </xsl:otherwise>
           </xsl:choose>
         </xsl:attribute>
+        <xsl:if test="$sub.testcase">
+          <xsl:text>#</xsl:text>
+          <xsl:value-of select="position()" />
+          <xsl:text> - </xsl:text>
+        </xsl:if>
         <xsl:value-of select="@name"/>
       </td>
       <td>
@@ -255,7 +260,7 @@
           <xsl:text>oddrow</xsl:text>
         </xsl:attribute>
       </xsl:if>
-      <td colspan="4">
+      <td colspan="3">
         <xsl:attribute name="class">
           <xsl:choose>
             <xsl:when test="testcase/error">
@@ -270,6 +275,11 @@
           </xsl:choose>
         </xsl:attribute>
         <xsl:value-of select="substring-after(@name, '::')" />
+      </td>
+      <td>
+        <xsl:if test="not(testcase/failure|testcase/error)">
+          <xsl:text>Success</xsl:text>
+        </xsl:if>
       </td>
       <td>
         <xsl:value-of select="format-number(@time,'0.000')"/>
