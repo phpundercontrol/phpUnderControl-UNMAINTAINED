@@ -81,7 +81,7 @@ class PhpUnderControl_Example_MathTest extends PHPUnit_Framework_TestCase
      */
     public function testSubSuccess()
     {
-        $this->assertEquals(-2, $this->math->sub(1, 3));
+        $this->assertEquals( -2, $this->math->sub( 1, 3 ) );
     }
     
     /**
@@ -89,7 +89,17 @@ class PhpUnderControl_Example_MathTest extends PHPUnit_Framework_TestCase
      */
     public function testSubFail()
     {
-        $this->assertEquals(0, $this->math->sub(2,1));
+        $this->assertEquals( 0, $this->math->sub( 2, 1 ) );
+    }
+    
+    /**
+     * Test case with data provider.
+     *
+     * @dataProvider dataProvider
+     */
+    public function testDataProviderOneWillFail( $x, $y )
+    {
+        $this->assertEquals( 1, $this->math->sub( $x, $y ) );
     }
     
     /**
@@ -103,8 +113,31 @@ class PhpUnderControl_Example_MathTest extends PHPUnit_Framework_TestCase
     /**
      * Skipping test.
      */
-    public function testSkip()
+    public function testMarkSkip()
     {
         $this->markTestSkipped('Skipped because...');
+    }
+    
+    /**
+     * Skipping test.
+     */
+    public function testMarkIncomplete()
+    {
+        $this->markTestIncomplete('Incomplete because...');
+    }
+    
+    /**
+     * Example data provider.
+     *
+     * @return array(array)
+     */
+    public static function dataProvider()
+    {
+        return array(
+            array( 2, 1 ),
+            array( 3, 2 ),
+            array( 7, 1 ),
+            array( 9, 8 ),
+        );
     }
 }

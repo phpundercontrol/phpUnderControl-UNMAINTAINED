@@ -243,11 +243,20 @@ div#container table.result tbody tr.failure th {
     
 }
 
-div#container table.result tbody td.info,div#container table.result tbody td.error,div#container table.result tbody td.failure,div#container table.result tbody td.warning,div#container table.result tbody td.success
-{
+div#container table.result tbody td.info,
+div#container table.result tbody td.error,
+div#container table.result tbody td.failure,
+div#container table.result tbody td.warning,
+div#container table.result tbody td.success,
+div#container table.result tbody td.skipped,
+div#container table.result tbody td.unknown {
     background: transparent none 4px 50% no-repeat;
     line-height: 19px;
     padding-left: 24px;
+}
+div#container table.result tbody td.sub {
+    background-position: 20px 50%;
+    padding-left: 40px;
 }
 
 div#container table.result tbody td.info {
@@ -265,9 +274,14 @@ div#container table.result tbody td.error {
 div#container table.result tbody td.warning {
     background-image: url('../images/php-under-control/warning.png');
 }
-
+div#container table.result tbody td.skipped {
+    background-image: url('../images/php-under-control/skipped.png');
+}
 div#container table.result tbody td.success {
     background-image: url('../images/php-under-control/success.png');
+}
+div#container table.result tbody td.unknown {
+    background-image: url('../images/php-under-control/unknown.png');
 }
 
 div#container table.result tbody td input.button {

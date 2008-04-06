@@ -73,7 +73,7 @@
       </thead>
       <tbody>
         <!-- display test suites -->
-        <xsl:apply-templates select="//testsuite">
+        <xsl:apply-templates select="//testsuites/testsuite">
           <xsl:sort select="count(testcase/error)" 
                     data-type="number" 
                     order="descending"/>
@@ -95,11 +95,11 @@
     <tr>
       <xsl:attribute name="class">
         <xsl:choose>
-           <xsl:when test="testcase/error">error</xsl:when>
+          <xsl:when test="testcase/error">error</xsl:when>
           <xsl:when test="testcase/failure">failure</xsl:when>
         </xsl:choose>
       </xsl:attribute>
-      <th colspan="5">
+      <th colspan="4">
         <xsl:choose>
           <xsl:when test="@fullPackage">
             <xsl:value-of select="concat(@fullPackage, '::', @name)"/>
@@ -109,11 +109,31 @@
           </xsl:otherwise>
         </xsl:choose>
       </th>
+      <th>
+        <xsl:value-of select="format-number(@time,'0.000')"/>
+      </th>
     </tr>
+    <xsl:variable name="data.provider.prefix" select="concat(@name, '::')" />
     <!-- Display tests -->
     <xsl:apply-templates select="testcase"/>
-    <!-- Display details links -->
-    <xsl:apply-templates select="current()" mode="details"/>
+    <!-- Display @dataProvider testsuites -->
+    <xsl:apply-templates select="./testsuite[starts-with(@name, $data.provider.prefix)]" mode="data.provider">
+      <xsl:with-param name="odd.or.even" select="count(testcase) mod 2" />
+    </xsl:apply-templates>
+    
+    <tr><td colspan="5"><br /></td></tr>
+    
+    <!-- Include all sub test suites -->
+    <xsl:apply-templates select="./testsuite[starts-with(@name, $data.provider.prefix) = false()]">
+      <xsl:sort select="count(testcase/error)" 
+                data-type="number" 
+                order="descending"/>
+      <xsl:sort select="count(testcase/failure)" 
+                data-type="number" 
+                order="descending"/>
+      <xsl:sort select="@package"/>
+      <xsl:sort select="@name"/>
+    </xsl:apply-templates>
   </xsl:template>
   
   <!--
@@ -121,24 +141,26 @@
     Construct testcase section
   -->
   <xsl:template match="testcase">
+    <xsl:param name="odd.or.even" select="0" />
+    <xsl:param name="sub.testcase" select="false()" />
     <tr>
       <xsl:attribute name="class">
         <xsl:choose>
           <xsl:when test="error">
             <xsl:text>error</xsl:text>
-            <xsl:if test="position() mod 2 = 1">
+            <xsl:if test="position() mod 2 != $odd.or.even">
               <xsl:text> oddrow</xsl:text>
             </xsl:if>
           </xsl:when>
           <xsl:when test="failure">
             <xsl:text>failure</xsl:text>
-            <xsl:if test="position() mod 2 = 1">
+            <xsl:if test="position() mod 2 != $odd.or.even">
               <xsl:text> oddrow</xsl:text>
             </xsl:if>
           </xsl:when>
           <xsl:otherwise>
             <xsl:text>success</xsl:text>
-            <xsl:if test="position() mod 2 = 1">
+            <xsl:if test="position() mod 2 != $odd.or.even">
               <xsl:text> oddrow</xsl:text>
             </xsl:if>
           </xsl:otherwise>
@@ -146,9 +168,22 @@
       </xsl:attribute>
       <td colspan="3">
         <xsl:attribute name="class">
+          <xsl:if test="$sub.testcase">
+            <xsl:text>sub </xsl:text>
+          </xsl:if>
           <xsl:choose>
             <xsl:when test="error">
-              <xsl:text>error</xsl:text>
+              <xsl:choose>
+                <xsl:when test="error/@type = 'PHPUnit_Framework_SkippedTestError'">
+                  <xsl:text>skipped</xsl:text>
+                </xsl:when>
+                <xsl:when test="error/@type = 'PHPUnit_Framework_IncompleteTestError'">
+                  <xsl:text>unknown</xsl:text>
+                </xsl:when>
+                <xsl:otherwise>
+                  <xsl:text>error</xsl:text>
+                </xsl:otherwise>
+              </xsl:choose>
             </xsl:when>
             <xsl:when test="failure">
               <xsl:text>failure</xsl:text>
@@ -209,98 +244,38 @@
   </xsl:template>
   
   <!--
-    Display Properties and Output links
-    and construct hidden div's with data
+    TestSuite/TestCase template
+    for @dataProvider tests.
   -->
-  <xsl:template match="testsuite" mode="details">
-    <tr class="unittests-data">
-      <td colspan="2">
-        <xsl:if test="count(properties/property)&gt;0">
-          <a class="failure" href="javascript:void(0)" onClick="toggleDivVisibility(document.getElementById('{concat('properties.',@package,'.',@name)}'))">Properties &#187;</a>
-        </xsl:if>&#xA0;
-      </td>
-      <td>
-        <xsl:if test="system-out/text()">
-          <a class="failure" href="javascript:void(0)" onClick="toggleDivVisibility(document.getElementById('{concat('system_out.',@package,'.',@name)}'))">System.out &#187;</a>
-        </xsl:if>&#xA0;
-      </td>
-      <td>
-        <xsl:if test="system-err/text()">
-          <a class="failure" href="javascript:void(0)" onClick="toggleDivVisibility(document.getElementById('{concat('system_err.',@package,'.',@name)}'))">System.err &#187;</a>
-        </xsl:if>&#xA0;
-      </td>
-      <td>&#xA0;</td>
-    </tr>
+  <xsl:template match="testsuite" mode="data.provider">
+    <xsl:param name="odd.or.even" select="0" />
     <tr>
-      <td colspan="5">
-        <!-- Construct details div's -->
-        <!-- System Error -->
-        <xsl:apply-templates select="system-err" mode="system-err-div">
-          <xsl:with-param name="div-id" select="concat('system_err.',@package,'.',@name)"/>
-        </xsl:apply-templates>
-        <!-- System Output -->
-        <xsl:apply-templates select="system-out" mode="system-out-div">
-          <xsl:with-param name="div-id" select="concat('system_out.',@package,'.',@name)"/>
-        </xsl:apply-templates>
-        <!-- Properties -->
-        <xsl:apply-templates select="properties" mode="properties-div">          
-          <xsl:with-param name="div-id" select="concat('properties.',@package,'.',@name)"/>
-        </xsl:apply-templates>
-        &#xA0;
+      <xsl:if test="position() mod 2 != $odd.or.even">
+        <xsl:attribute name="class">
+          <xsl:text>oddrow</xsl:text>
+        </xsl:attribute>
+      </xsl:if>
+      <td colspan="4">
+        <xsl:attribute name="class">
+          <xsl:choose>
+            <xsl:when test="testcase/error">
+              <xsl:text>error</xsl:text>
+            </xsl:when>
+            <xsl:when test="testcase/failure">
+              <xsl:text>failure</xsl:text>
+            </xsl:when>
+          </xsl:choose>
+        </xsl:attribute>
+        <xsl:value-of select="substring-after(@name, '::')" />
+      </td>
+      <td>
+        <xsl:value-of select="format-number(@time,'0.000')"/>
       </td>
     </tr>
+    <xsl:apply-templates select="testcase">
+      <xsl:with-param name="odd.or.even" select="($odd.or.even + 1) mod 2" />
+      <xsl:with-param name="sub.testcase" select="true()" />
+    </xsl:apply-templates>
   </xsl:template>
-  
-  <!--
-    Create div with detailed system output
-  -->
-  <xsl:template match="system-out" mode="system-out-div" >
-    <xsl:param name="div-id"/>
-    <span id="{$div-id}" class="testresults-output" style="display: none;">
-      <span style="font-weight:bold">System out:</span><br/>
-      <xsl:apply-templates select="current()" mode="newline-to-br"/>
-    </span>  
-  </xsl:template>
-  
-  <!--
-    Create div with detailed errors output
-  -->
-  <xsl:template match="system-err" mode="system-err-div" >
-    <xsl:param name="div-id"/>
-    <span id="{$div-id}" class="testresults-output" style="display: none;">
-      <span style="font-weight:bold">System err:</span><br/>
-      <xsl:apply-templates select="current()" mode="newline-to-br"/>
-    </span>  
-  </xsl:template>
-  
-  <!--
-    Create div with properties
-  -->
-  <xsl:template match="properties" mode="properties-div" >
-    <xsl:param name="div-id"/>
-    <div id="{$div-id}" class="testresults-output" style="display: none;">
-      <span style="font-weight:bold">Properties:</span><br/>
-      <table>
-        <tr>
-          <th>Property</th>
-          <th>Value</th>
-        </tr>
-        <xsl:for-each select="property">
-          <xsl:sort select="@name"/>
-          <tr>
-            <td><xsl:value-of select="@name"/>&#xA0;</td>
-            <td><xsl:value-of select="@value"/>&#xA0;</td>
-          </tr>          
-        </xsl:for-each>
-      </table>
-    </div>  
-  </xsl:template>
-  
-  <!--
-    Convert line brakes in given text into <br/>
-  -->
-  <xsl:template match="text()" mode="newline-to-br">    
-    <xsl:value-of select="replace(current(), '(\n)|(\r)|(\r\n)', '&lt;br/&gt;')" disable-output-escaping="yes"/>          
-  </xsl:template>   
 
 </xsl:stylesheet>

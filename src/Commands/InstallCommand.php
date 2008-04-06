@@ -93,6 +93,7 @@ class phpucInstallCommand extends phpucAbstractCommand implements phpucConsoleCo
         '/webapps/cruisecontrol/images/php-under-control/tab-inactive.png',
         '/webapps/cruisecontrol/images/php-under-control/throbber-broken.gif',
         '/webapps/cruisecontrol/images/php-under-control/throbber-good.gif',
+        '/webapps/cruisecontrol/images/php-under-control/unknown.png',
         '/webapps/cruisecontrol/images/php-under-control/warning.png',
         '/webapps/cruisecontrol/js/php-under-control.js',
         '/webapps/cruisecontrol/js/shBrushPhp.js',
