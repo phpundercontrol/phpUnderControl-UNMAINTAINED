@@ -20,9 +20,9 @@
     <email>mapi@phpundercontrol.org</email>
     <active>yes</active>
   </lead>
-  <date>2008-03-30</date>
+  <date>2008-04-06</date>
   <version>
-    <release>0.4.0</release>
+    <release>0.4.1</release>
     <api>0.2.0</api>
   </version>
   <stability>
@@ -31,17 +31,12 @@
   </stability>
   <license uri="http://www.opensource.org/licenses/bsd-license.php">BSD License</license>
   <notes>
-- Checkouts for subversion and cvs added.
-- Switch to the new pluggable cli system.
-- Project command/wizard implemented.  
-- Height of embedded iframes optimized.
-- New dashboard project is building throbber and force project build button 
-  added. Thanks to kore.
-- Two new cli commands implemented. 1. Project-delete to delete a complete 
-  project with all the generated contents. 2) Project-clean to remove a defined
-  number of old builds.
-- Minor UI improvements.
-   
+- New compact project overview page that doesn't show all CodeSniffer, PMD and
+  PHPDoc errors and warnings. Suggested by Sebastian, kore, norro.
+- Improved navigation for the CodeSniffer view.
+- PHPDoc errors integrated into generated documentation.
+- Better visualization for @dataProvider tests.
+- Improved PHPUnit view. 
   </notes>
   <contents>
     <dir name="/">
@@ -1209,6 +1204,37 @@
   custom tabs for further artifacts and build results. 
 - New chart type for the unit test execution time added.
       </notes>
+    </release>
+    
+    <release>
+      <lead>
+        <name>Manuel Pichler</name>
+        <user>mp</user>
+        <email>mapi@phpundercontrol.org</email>
+        <active>yes</active>
+      </lead>
+      <version>
+        <release>0.4.0</release>
+        <api>0.2.0</api>
+      </version>
+      <stability>
+        <release>beta</release>
+        <api>beta</api>
+      </stability>
+      <date>2008-03-30</date>
+      <license uri="http://www.opensource.org/licenses/bsd-license.php">BSD License</license>
+      <notes>
+- Checkouts for subversion and cvs added.
+- Switch to the new pluggable cli system.
+- Project command/wizard implemented.  
+- Height of embedded iframes optimized.
+- New dashboard project is building throbber and force project build button 
+  added. Thanks to kore.
+- Two new cli commands implemented. 1. Project-delete to delete a complete 
+  project with all the generated contents. 2) Project-clean to remove a defined
+  number of old builds.
+- Minor UI improvements.
+      </notes>    
     </release>
   </changelog>
 </package>

@@ -1,3 +1,13 @@
+phpUnderControl 0.4.1
+---------------------
+
+- New compact project overview page that doesn't show all CodeSniffer, PMD and
+  PHPDoc errors and warnings. Suggested by Sebastian, kore, norro.
+- Improved navigation for the CodeSniffer view.
+- PHPDoc errors integrated into generated documentation.
+- Better visualization for @dataProvider tests.
+- Improved PHPUnit view.
+
 phpUnderControl 0.4.0
 ---------------------
 
@@ -13,7 +23,6 @@ phpUnderControl 0.4.0
   project with all the generated contents. 2) Project-clean to remove a defined
   number of old builds.
 - Minor UI improvements.
-   
 
 phpUnderControl 0.3.6
 ---------------------
