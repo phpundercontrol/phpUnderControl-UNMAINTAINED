@@ -1,10 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<metrics files="1" functions="0" cls="1" clsa="0" clsc="1" roots="0" leafs="1" interfs="0" maxdit="0">
-  <file name="/home/manu/Projects/workspace.zend-studio/phpUnderControl/trunk/docs/log-merge/MergeCode.php" classes="1" functions="0" loc="208" cloc="104" ncloc="104" locExecutable="53" locExecuted="15" coverage="28.301887">
-    <class name="phpucMergeCode" loc="148" locExecutable="53" locExecuted="15" aif="0.000000" ahf="0.000000" ca="0" ce="0" csz="5" cis="2" coverage="28.301887" dit="0" i="0.000000" impl="0" mif="0.000000" mhf="60.000000" noc="0" pf="0.000000" vars="0" varsnp="0" varsi="0" wmc="17" wmcnp="14" wmci="17">
-      <method name="versionSpecific" loc="17" locExecutable="11" locExecuted="6" coverage="54.545455" ccn="3" crap="3.845229" npath="4" parameters="0"/>
-      <method name="notVersionSpecific" loc="53" locExecutable="39" locExecuted="8" coverage="20.512821" ccn="11" crap="71.768236" npath="65" parameters="2"/>
+<metrics files="2" functions="0" cls="2" clsa="0" clsc="2" roots="0" leafs="2" interfs="0" maxdit="0">
+  <file name="/home/manu/Projects/workspace.zend-studio/phpUnderControl/trunk/docs/log-merge/MergeCodeHelper.php" classes="1" functions="0" loc="93" cloc="73" ncloc="20" locExecutable="3" locExecuted="1" coverage="33.333333">
+    <class name="phpucMergeCodeHelper" loc="33" locExecutable="3" locExecuted="1" aif="0.000000" ahf="0.000000" ca="1" ce="0" csz="3" cis="3" coverage="33.333333" dit="0" i="0.000000" impl="0" mif="0.000000" mhf="0.000000" noc="0" pf="0.000000" vars="0" varsnp="0" varsi="0" wmc="3" wmcnp="3" wmci="3">
       <method name="version520" loc="4" locExecutable="1" locExecuted="1" coverage="100.000000" ccn="1" crap="1.000000" npath="1" parameters="0"/>
+      <method name="version525" loc="4" locExecutable="1" locExecuted="0" coverage="0.000000" ccn="1" crap="2.000000" npath="1" parameters="0"/>
+      <method name="versionAny" loc="5" locExecutable="1" locExecuted="0" coverage="0.000000" ccn="1" crap="2.000000" npath="1" parameters="0"/>
+    </class>
+  </file>
+  <file name="/home/manu/Projects/workspace.zend-studio/phpUnderControl/trunk/docs/log-merge/MergeCode.php" classes="1" functions="0" loc="212" cloc="104" ncloc="108" locExecutable="54" locExecuted="15" coverage="27.777778">
+    <class name="phpucMergeCode" loc="150" locExecutable="54" locExecuted="15" aif="0.000000" ahf="0.000000" ca="0" ce="1" csz="5" cis="2" coverage="27.777778" dit="0" i="1.000000" impl="0" mif="0.000000" mhf="60.000000" noc="0" pf="0.000000" vars="0" varsnp="0" varsi="0" wmc="17" wmcnp="14" wmci="17">
+      <method name="versionSpecific" loc="19" locExecutable="12" locExecuted="7" coverage="58.333333" ccn="3" crap="3.651042" npath="4" parameters="0"/>
+      <method name="notVersionSpecific" loc="53" locExecutable="39" locExecuted="8" coverage="20.512821" ccn="11" crap="71.768236" npath="65" parameters="2"/>
+      <method name="version520" loc="4" locExecutable="1" locExecuted="0" coverage="0.000000" ccn="1" crap="2.000000" npath="1" parameters="0"/>
       <method name="version525" loc="4" locExecutable="1" locExecuted="0" coverage="0.000000" ccn="1" crap="2.000000" npath="1" parameters="0"/>
       <method name="versionAny" loc="5" locExecutable="1" locExecuted="0" coverage="0.000000" ccn="1" crap="2.000000" npath="1" parameters="0"/>
     </class>

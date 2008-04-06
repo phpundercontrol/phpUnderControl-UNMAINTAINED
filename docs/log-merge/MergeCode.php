@@ -46,6 +46,8 @@
  * @link       http://www.phpundercontrol.org/
  */
 
+require_once dirname( __FILE__ ) . '/MergeCodeHelper.php';
+
 /**
  * Documentation/Example/Test class for environment specific code.
  *
@@ -97,18 +99,20 @@ class phpucMergeCode
      */
     public function versionSpecific()
     {
+        $helper = new phpucMergeCodeHelper();
+        
         $value = null;
         if (version_compare(phpversion(), '5.2.0') === 0)
         {
-            $value = $this->version520();
+            $value = $helper->version520();
         }
         else if (version_compare(phpversion(), '5.2.5') === 0)
         {
-            $value = $this->version525();
+            $value = $helper->version525();
         }
         else
         {
-            $value = $this->versionAny();
+            $value = $helper->versionAny();
         }
         return $value;
     }
