@@ -77,7 +77,10 @@ abstract class phpucAbstractLogAggregator
      */
     public function save( $fileName )
     {
-        $this->log->save( $fileName );
+        if ( $this->log !== null )
+        {
+            $this->log->save( $fileName );
+        }
     }
     
     /**

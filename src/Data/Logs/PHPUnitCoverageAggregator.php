@@ -77,18 +77,6 @@ class phpucPHPUnitCoverageAggregator extends phpucAbstractLogAggregator
     protected $lines = array();
     
     /**
-     * Stores the generated coverage log file.
-     *
-     * @param string $fileName The log file name.
-     * 
-     * @return void
-     */
-    public function save( $fileName )
-    {
-        $this->log->save( $fileName );
-    }
-    
-    /**
      * Aggregates the results of all log files in the given iterator.
      *
      * @param Iterator $files List of coverage log files.
@@ -104,7 +92,12 @@ class phpucPHPUnitCoverageAggregator extends phpucAbstractLogAggregator
             $log->preserveWhiteSpace = false;
             $log->formatOutput       = true;
             
-            $log->load( $file );
+            // Try to load the log file
+            if ( !$log->load( $file ) || !$this->isValidCoverageLog( $log ) )
+            {
+                // Skip broken logs
+                continue;
+            }
             
             if ( $this->log === null )
             {
@@ -120,6 +113,12 @@ class phpucPHPUnitCoverageAggregator extends phpucAbstractLogAggregator
             {
                 $this->synchronizeFiles( $log );
             }
+        }
+        
+        // Skip for broken logs
+        if ( $this->log === null )
+        {
+            return;
         }
         
         $this->updateFileMetrics();
@@ -317,5 +316,22 @@ class phpucPHPUnitCoverageAggregator extends phpucAbstractLogAggregator
             $lines[$line->getAttribute( 'num' )] = $line;
         }
         return $lines;
+    }
+    
+    /**
+     * Checks that the log file matches the expected structure.
+     *
+     * @param DOMDocument $log The context log file instance.
+     * 
+     * @return boolean
+     */
+    protected function isValidCoverageLog( DOMDocument $log )
+    {
+        $project = $log->getElementsByTagName( 'project' )->item( 0 );
+        if ( $project === null )
+        {
+            return false;
+        }
+        return ( $project->parentNode->nodeName === 'coverage' );
     }
 }

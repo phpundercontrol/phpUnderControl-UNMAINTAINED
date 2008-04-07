@@ -34,8 +34,8 @@
  * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
  * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
- * POSSIBILITY OF SUCH DAMAGE.
- * 
+ * POSSIBILITY OF SUCH DAMAGE. 
+ *
  * @category   QualityAssurance
  * @package    Data
  * @subpackage Logs
@@ -49,8 +49,8 @@
 require_once dirname( __FILE__ ) . '/AbstractLogAggregatorTest.php';
 
 /**
- * Test case for the code coverage log aggregator.
- * 
+ * Test case for the test log aggregator.
+ *
  * @category   QualityAssurance
  * @package    Data
  * @subpackage Logs
@@ -60,38 +60,15 @@ require_once dirname( __FILE__ ) . '/AbstractLogAggregatorTest.php';
  * @version    Release: @package_version@
  * @link       http://www.phpundercontrol.org/
  */
-class phpucPHPUnitCoverageAggregatorTest extends phpucAbstractLogAggregatorTest
-{    
-    /**
-     * Tests the generated log file against a sample log file.
-     *
-     * @return void
-     */
+class phpucPHPUnitTestLogAggregatorTest extends phpucAbstractLogAggregatorTest
+{
     public function testAggregateLogFiles()
     {
-        $aggregator = new phpucPHPUnitCoverageAggregator();
-        $aggregator->aggregate( $this->createValidFileIterator( 'cov' ) );
+        $aggregator = new phpucPHPUnitTestLogAggregator();
+        $aggregator->aggregate( $this->createValidFileIterator( 'log' ) );
         
-        $expected = sprintf( '%s/phpunit/expected/cov.xml', PHPUC_TEST_DATA );
-        $result   = sprintf( '%s/cov.xml', PHPUC_TEST_DIR );
-        
-        $aggregator->save( $result );
-        
-        $this->assertXmlFileEqualsXmlFile( $expected, $result );
-    }
-    
-    /**
-     * Tests that the log aggregator handles invalid or broken log files correct.
-     *
-     * @return void
-     */
-    public function testAggregateLogFilesWithInvalidLogFile()
-    {
-        $aggregator = new phpucPHPUnitCoverageAggregator();
-        $aggregator->aggregate( $this->createBrokenFileIterator( 'cov' ) );
-        
-        $expected = sprintf( '%s/phpunit/expected/cov.xml', PHPUC_TEST_DATA );
-        $result   = sprintf( '%s/cov.xml', PHPUC_TEST_DIR );
+        $expected = sprintf( '%s/phpunit/expected/log.xml', PHPUC_TEST_DATA );
+        $result   = sprintf( '%s/log.xml', PHPUC_TEST_DIR );
         
         $aggregator->save( $result );
         

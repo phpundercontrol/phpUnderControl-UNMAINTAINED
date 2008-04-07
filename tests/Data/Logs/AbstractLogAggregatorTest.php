@@ -69,9 +69,9 @@ abstract class phpucAbstractLogAggregatorTest extends phpucAbstractTest
      * @var array(string) $builds
      */
     protected $builds = array(
-        'php520', 
-        'php525', 
-        'php526RC2'
+        'php-5.2.0'     =>  'php520', 
+        'php-5.2.5'     =>  'php525', 
+        'php-5.2.6RC2'  =>  'php526RC2'
     );
     
     /**
@@ -81,12 +81,40 @@ abstract class phpucAbstractLogAggregatorTest extends phpucAbstractTest
      * 
      * @return Iterator
      */
-    protected function createFileIterator( $baseName )
+    protected function createValidFileIterator( $baseName )
     {
         $files = array();
-        foreach ( $this->builds as $build )
+        foreach ( $this->builds as $key => $build )
         {
-            $files[] = sprintf( 
+            $files[$key] = sprintf( 
+                '%s/phpunit/%s/%s.xml', 
+                PHPUC_TEST_DATA, 
+                $build,
+                $baseName
+            );
+        }
+        return new ArrayIterator( $files );
+    }
+    
+    /**
+     * Returns an iterator with test log files.
+     *
+     * @param string $baseName The log file basename.
+     * 
+     * @return Iterator
+     */
+    protected function createBrokenFileIterator( $baseName )
+    {
+        $files = array(
+            'php-5.1.9'  =>  sprintf(
+                '%s/phpunit/php519/%s.xml', 
+                PHPUC_TEST_DATA, 
+                $baseName
+            )
+        );
+        foreach ( $this->builds as $key => $build )
+        {
+            $files[$key] = sprintf( 
                 '%s/phpunit/%s/%s.xml', 
                 PHPUC_TEST_DATA, 
                 $build,
