@@ -60,10 +60,28 @@
  */
 class phpucPHPUnitTestLogAggregator extends phpucAbstractLogAggregator
 {
+    /**
+     * Identifier for the current build log file.
+     *
+     * @type string
+     * @var string $currentBuild
+     */
     protected $currentBuild = null;
     
+    /**
+     * Array with created test suite elements.
+     *
+     * @type array<DOMElement>
+     * @var array(string=>DOMElement) $testSuites
+     */
     protected $testSuites = array();
     
+    /**
+     * Array with created test case aggregate suite elements.
+     *
+     * @type array<DOMElement>
+     * @var array(string=>DOMElement) $mergeSuites
+     */
     protected $mergeSuites = array();
     
     /**
@@ -100,10 +118,22 @@ class phpucPHPUnitTestLogAggregator extends phpucAbstractLogAggregator
             
             $this->currentBuild = $build;
             
-            $this->traverseTestSuites( $log->documentElement, $this->log->documentElement );
+            $this->traverseTestSuites( 
+                $log->documentElement, 
+                $this->log->documentElement
+            );
         }
     }
     
+    /**
+     * Traverses one level of testsuite elements and adds the required contents
+     * to the given <b>$target</b> element. 
+     *
+     * @param DOMElement $source The input testsuite element.
+     * @param DOMElement $target The output testsuite element.
+     * 
+     * @return void
+     */
     protected function traverseTestSuites( DOMElement $source, DOMElement $target )
     {
         foreach ( $source->childNodes as $node )
@@ -118,51 +148,20 @@ class phpucPHPUnitTestLogAggregator extends phpucAbstractLogAggregator
 
                 if ( !isset( $this->testSuites[$name] ) )
                 {
-                    $suite = $this->log->createElement( 'testsuite' );
-                    foreach ( $node->attributes as $attribute )
-                    {
-                        $suite->setAttribute( $attribute->nodeName, $attribute->nodeValue );
-                    }
-                    $target->appendChild( $suite );
-                    
-                    $this->testSuites[$name] = $suite;
+                    $this->testSuites[$name] = $this->copyTestSuite( $node, $target );
                 }
                 else
                 {
-                    $suite = $this->testSuites[$name];
-                    
-                    $suite->setAttribute(
-                        'tests',
-                        (integer) $suite->getAttribute( 'tests' ) +
-                        (integer) $node->getAttribute( 'tests' )
-                    );
-                    $suite->setAttribute(
-                        'failures',
-                        (integer) $suite->getAttribute( 'failures' ) +
-                        (integer) $node->getAttribute( 'failures' )
-                    );
-                    $suite->setAttribute(
-                        'errors',
-                        (integer) $suite->getAttribute( 'errors' ) +
-                        (integer) $node->getAttribute( 'errors' )
-                    );
-                    $suite->setAttribute(
-                        'time',
-                        (float) $suite->getAttribute( 'time' ) +
-                        (float) $node->getAttribute( 'time' )
-                    );
+                    $this->updateTestSuite( $this->testSuites[$name], $node );
                 }
                 
                 if ( strpos( $name, '::' ) === false )
                 {
-                    $this->traverseTestSuites( $node, $suite );
+                    $this->traverseTestSuites( $node, $this->testSuites[$name] );
                 }
                 else
                 {
-                    $new = $this->log->importNode( $node, true );
-                    $new->setAttribute( 'build', $this->currentBuild );
-                    
-                    $suite->appendChild( $new );
+                    $this->appendTestCase( $this->testSuites[$name], $node );
                 }
             }
             else if ( $node->nodeName === 'testcase' )
@@ -175,49 +174,144 @@ class phpucPHPUnitTestLogAggregator extends phpucAbstractLogAggregator
                 
                 if ( !isset( $this->mergeSuites[$name] ) )
                 {
-                    $suite = $this->log->createElement( 'testsuite' );
-                    $suite->setAttribute( 'name', $name );
-                    $suite->setAttribute( 'time', '0.0' );
-                    $suite->setAttribute( 'tests', '0' );
-                    $suite->setAttribute( 'errors', '0' );
-                    $suite->setAttribute( 'failures', '0' );
-                    
-                    $this->mergeSuites[$name] = $suite;
-                    
-                    $target->appendChild( $suite );
-                }
-                else
-                {
-                    $suite = $this->mergeSuites[$name];
+                    $this->mergeSuites[$name] = $this->createTestCase( $name, $target );
                 }
                 
-                $suite->setAttribute(
-                    'tests', 1 + (integer) $suite->getAttribute( 'tests' )
-                );
-                $suite->setAttribute(
-                    'errors',
-                    (integer) $suite->getAttribute( 'errors' ) +
-                    $node->getElementsByTagName( 'error' )->length
-                );
-                $suite->setAttribute(
-                    'failures',
-                    (integer) $suite->getAttribute( 'failures' ) +
-                    $node->getElementsByTagName( 'failure' )->length
-                );
-                $suite->setAttribute(
-                    'time',
-                    (float) $suite->getAttribute( 'time' ) +
-                    (float) $node->getAttribute( 'time' )
-                );
-                
-                $test = $this->log->importNode( $node, true );
-                $test->setAttribute( 'build', $this->currentBuild );
-                
-                $suite->appendChild( $test );
+                $this->updateTestCase( $this->mergeSuites[$name], $node );
+                $this->appendTestCase( $this->mergeSuites[$name], $node );
             }
         }
     }
     
+    /**
+     * Copies a test suite element.
+     *
+     * @param DOMElement $contextSuite The context test suite to copy.
+     * @param DOMElement $parentSuite  The parent test suite element.
+     * 
+     * @return $parentSuite
+     */
+    protected function copyTestSuite( DOMElement $contextSuite, DOMElement $parentSuite )
+    {
+        $suite = $this->log->createElement( 'testsuite' );
+        foreach ( $contextSuite->attributes as $attribute )
+        {
+            $suite->setAttribute( $attribute->nodeName, $attribute->nodeValue );
+        }
+        $parentSuite->appendChild( $suite );
+        
+        return $suite;
+    }
+    
+    /**
+     * Updates some attributes in <b>$contextSuite</b> with the attribute values
+     * in <b>$inputSuite</b>.
+     *
+     * @param DOMElement $contextSuite The context suite to update.
+     * @param DOMElement $inputSuite   The test suite with additional values.
+     * 
+     * @return void
+     */
+    protected function updateTestSuite( DOMElement $contextSuite, DOMElement $inputSuite )
+    {
+        $contextSuite->setAttribute(
+            'tests',
+            (integer) $contextSuite->getAttribute( 'tests' ) +
+            (integer) $inputSuite->getAttribute( 'tests' )
+        );
+        $contextSuite->setAttribute(
+            'failures',
+            (integer) $contextSuite->getAttribute( 'failures' ) +
+            (integer) $inputSuite->getAttribute( 'failures' )
+        );
+        $contextSuite->setAttribute(
+            'errors',
+            (integer) $contextSuite->getAttribute( 'errors' ) +
+            (integer) $inputSuite->getAttribute( 'errors' )
+        );
+        $contextSuite->setAttribute(
+            'time',
+            (float) $contextSuite->getAttribute( 'time' ) +
+            (float) $inputSuite->getAttribute( 'time' )
+        ); 
+    }
+    
+    /**
+     * Creates a new test case - test suite container.
+     *
+     * @param string     $name        The name of the new test case/suite.
+     * @param DOMElement $parentSuite The parent test suite element.
+     * 
+     * @return DOMElement
+     */
+    protected function createTestCase( $name, DOMElement $parentSuite )
+    {
+        $suite = $this->log->createElement( 'testsuite' );
+        $suite->setAttribute( 'name', $name );
+        $suite->setAttribute( 'time', '0.0' );
+        $suite->setAttribute( 'tests', '0' );
+        $suite->setAttribute( 'errors', '0' );
+        $suite->setAttribute( 'failures', '0' );
+        
+        $parentSuite->appendChild( $suite );
+
+        return $suite;
+    }
+    
+    /**
+     * Updates a set of attributes in <b>$contextTest</b> with values of the
+     * given <b>$inputTest</b>.
+     *
+     * @param DOMElement $contextTest The context test case/suite element.
+     * @param DOMElement $inputTest   The input test case element.
+     * 
+     * @return void
+     */
+    protected function updateTestCase(DOMElement $contextTest, DOMElement $inputTest)
+    {
+        $contextTest->setAttribute(
+            'tests', 1 + (integer) $contextTest->getAttribute( 'tests' )
+        );
+        $contextTest->setAttribute(
+            'errors',
+            (integer) $contextTest->getAttribute( 'errors' ) +
+            $inputTest->getElementsByTagName( 'error' )->length
+        );
+        $contextTest->setAttribute(
+            'failures',
+            (integer) $contextTest->getAttribute( 'failures' ) +
+            $inputTest->getElementsByTagName( 'failure' )->length
+        );
+        $contextTest->setAttribute(
+            'time',
+            (float) $contextTest->getAttribute( 'time' ) +
+            (float) $inputTest->getAttribute( 'time' )
+        );
+    }
+    
+    /**
+     * Appends the given <b>$inputTest</b> to the <b>$contextSuite</b> element.
+     *
+     * @param DOMElement $contextSuite The context test suite.
+     * @param DOMElement $inputTest    The input test case.
+     * 
+     * @return void
+     */
+    protected function appendTestCase( DOMElement $contextSuite, DOMElement $inputTest )
+    {
+        $test = $this->log->importNode( $inputTest, true );
+        $test->setAttribute( 'build', $this->currentBuild );
+                    
+        $contextSuite->appendChild( $test );
+    }
+    
+    /**
+     * Checks that the given <b>$log</b> fills the minimum xml log requirements.
+     *
+     * @param DOMDocument $log The log file instance to check.
+     * 
+     * @return boolean
+     */
     protected function isValidTestLog( DOMDocument $log )
     {
         if ( $log->documentElement === null )
@@ -227,6 +321,11 @@ class phpucPHPUnitTestLogAggregator extends phpucAbstractLogAggregator
         return ( $log->documentElement->nodeName === 'testsuites' );
     }
     
+    /**
+     * Creates a new empty log instance.
+     *
+     * @return DOMDocument
+     */
     protected function createLog()
     {
         $log               = new DOMDocument( '1.0', 'UTF-8' );
