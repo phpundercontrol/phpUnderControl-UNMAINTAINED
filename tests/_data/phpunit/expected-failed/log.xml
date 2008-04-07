@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+  <testsuite name="phpucMergeCodeTest" file="/home/manu/Projects/workspace.zend-studio/phpUnderControl/trunk/docs/log-merge/MergeCodeTest.php" fullPackage="PhpUnderControl.Documentation" category="QualityAssurance" package="PhpUnderControl" subpackage="Documentation" tests="24" failures="4" errors="6" time="0.081376">
+    <testsuite name="phpucMergeCodeTest::testVersionSpecific" time="0.047997" tests="4" errors="1" failures="0">
+      <testcase name="testVersionSpecific" class="phpucMergeCodeTest" file="/home/manu/Projects/workspace.zend-studio/phpUnderControl/trunk/docs/log-merge/MergeCodeTest.php" line="72" time="0.001766" build="php-5.2.0"/>
+      <testcase name="testVersionSpecific" class="phpucMergeCodeTest" file="/home/manu/Projects/workspace.zend-studio/phpUnderControl/trunk/docs/log-merge/MergeCodeTest.php" line="72" time="0.043849" build="php-5.2.5"/>
+      <testcase name="testVersionSpecific" class="phpucMergeCodeTest" file="/home/manu/Projects/workspace.zend-studio/phpUnderControl/trunk/docs/log-merge/MergeCodeTest.php" line="72" time="0.002382" build="php-5.2.6RC2"/>
+      <testcase name="testVersionSpecific" class="phpucMergeCodeTest" file="/home/manu/Projects/workspace.zend-studio/phpUnderControl/trunk/docs/log-merge/MergeCodeTest.php" line="72" time="0.000000" build="php-5.1.9">
+        <error type="PHPUnit_Framework_Error"><![CDATA[testVersionSpecific(phpucMergeCodeTest)
+Was never executed.
+]]></error>
+      </testcase>
+    </testsuite>
+    <testsuite name="phpucMergeCodeTest::testNotVersionSpecific" time="0.007821" tests="4" errors="1" failures="1">
+      <testcase name="testNotVersionSpecific" class="phpucMergeCodeTest" file="/home/manu/Projects/workspace.zend-studio/phpUnderControl/trunk/docs/log-merge/MergeCodeTest.php" line="78" time="0.001754" build="php-5.2.0"/>
+      <testcase name="testNotVersionSpecific" class="phpucMergeCodeTest" file="/home/manu/Projects/workspace.zend-studio/phpUnderControl/trunk/docs/log-merge/MergeCodeTest.php" line="78" time="0.001859" build="php-5.2.5"/>
+      <testcase name="testNotVersionSpecific" class="phpucMergeCodeTest" file="/home/manu/Projects/workspace.zend-studio/phpUnderControl/trunk/docs/log-merge/MergeCodeTest.php" line="78" time="0.004208" build="php-5.2.6RC2">
+        <failure type="PHPUnit_Framework_ExpectationFailedException"><![CDATA[testNotVersionSpecific(phpucMergeCodeTest)
+Failed asserting that two strings are equal.
+expected string <ilc>
+difference      <xxx>
+got string      <cli>
+
+/home/manu/Projects/workspace.zend-studio/phpUnderControl/trunk/docs/log-merge/MergeCodeTest.php:91
+]]></failure>
+      </testcase>
+      <testcase name="testNotVersionSpecific" class="phpucMergeCodeTest" file="/home/manu/Projects/workspace.zend-studio/phpUnderControl/trunk/docs/log-merge/MergeCodeTest.php" line="78" time="0.000000" build="php-5.1.9">
+        <error type="PHPUnit_Framework_Error"><![CDATA[testNotVersionSpecific(phpucMergeCodeTest)
+Was never executed.
+]]></error>
+      </testcase>
+    </testsuite>
+    <testsuite name="phpucMergeCodeTest::testCalculate" tests="16" failures="3" errors="4" time="0.025558">
+      <testsuite name="phpucMergeCodeTest::testCalculate" tests="4" failures="1" errors="0" time="0.007542" build="php-5.2.0">
+        <testcase name="testCalculate" class="phpucMergeCodeTest" file="/home/manu/Projects/workspace.zend-studio/phpUnderControl/trunk/docs/log-merge/MergeCodeTest.php" line="103" time="0.001496"/>
+        <testcase name="testCalculate" class="phpucMergeCodeTest" file="/home/manu/Projects/workspace.zend-studio/phpUnderControl/trunk/docs/log-merge/MergeCodeTest.php" line="103" time="0.001501"/>
+        <testcase name="testCalculate" class="phpucMergeCodeTest" file="/home/manu/Projects/workspace.zend-studio/phpUnderControl/trunk/docs/log-merge/MergeCodeTest.php" line="103" time="0.003035">
+          <failure type="PHPUnit_Framework_ExpectationFailedException"><![CDATA[testCalculate(phpucMergeCodeTest) with data set #2 (2, 2)
+Failed asserting that <integer:4> matches expected value <integer:3>.
+
+/home/manu/Projects/workspace.zend-studio/phpUnderControl/trunk/docs/log-merge/MergeCodeTest.php:107
+]]></failure>
+        </testcase>
+        <testcase name="testCalculate" class="phpucMergeCodeTest" file="/home/manu/Projects/workspace.zend-studio/phpUnderControl/trunk/docs/log-merge/MergeCodeTest.php" line="103" time="0.001510"/>
+      </testsuite>
+      <testsuite name="phpucMergeCodeTest::testCalculate" tests="4" failures="1" errors="0" time="0.007984" build="php-5.2.5">
+        <testcase name="testCalculate" class="phpucMergeCodeTest" file="/home/manu/Projects/workspace.zend-studio/phpUnderControl/trunk/docs/log-merge/MergeCodeTest.php" line="103" time="0.001595"/>
+        <testcase name="testCalculate" class="phpucMergeCodeTest" file="/home/manu/Projects/workspace.zend-studio/phpUnderControl/trunk/docs/log-merge/MergeCodeTest.php" line="103" time="0.001579"/>
+        <testcase name="testCalculate" class="phpucMergeCodeTest" file="/home/manu/Projects/workspace.zend-studio/phpUnderControl/trunk/docs/log-merge/MergeCodeTest.php" line="103" time="0.003200">
+          <failure type="PHPUnit_Framework_ExpectationFailedException"><![CDATA[testCalculate(phpucMergeCodeTest) with data set #2 (2, 2)
+Failed asserting that <integer:4> matches expected value <integer:3>.
+
+/home/manu/Projects/workspace.zend-studio/phpUnderControl/trunk/docs/log-merge/MergeCodeTest.php:107
+]]></failure>
+        </testcase>
+        <testcase name="testCalculate" class="phpucMergeCodeTest" file="/home/manu/Projects/workspace.zend-studio/phpUnderControl/trunk/docs/log-merge/MergeCodeTest.php" line="103" time="0.001610"/>
+      </testsuite>
+      <testsuite name="phpucMergeCodeTest::testCalculate" tests="4" failures="1" errors="0" time="0.010032" build="php-5.2.6RC2">
+        <testcase name="testCalculate" class="phpucMergeCodeTest" file="/home/manu/Projects/workspace.zend-studio/phpUnderControl/trunk/docs/log-merge/MergeCodeTest.php" line="103" time="0.001987"/>
+        <testcase name="testCalculate" class="phpucMergeCodeTest" file="/home/manu/Projects/workspace.zend-studio/phpUnderControl/trunk/docs/log-merge/MergeCodeTest.php" line="103" time="0.001953"/>
+        <testcase name="testCalculate" class="phpucMergeCodeTest" file="/home/manu/Projects/workspace.zend-studio/phpUnderControl/trunk/docs/log-merge/MergeCodeTest.php" line="103" time="0.004110">
+          <failure type="PHPUnit_Framework_ExpectationFailedException"><![CDATA[testCalculate(phpucMergeCodeTest) with data set #2 (2, 2)
+Failed asserting that <integer:4> matches expected value <integer:3>.
+
+/home/manu/Projects/workspace.zend-studio/phpUnderControl/trunk/docs/log-merge/MergeCodeTest.php:107
+]]></failure>
+        </testcase>
+        <testcase name="testCalculate" class="phpucMergeCodeTest" file="/home/manu/Projects/workspace.zend-studio/phpUnderControl/trunk/docs/log-merge/MergeCodeTest.php" line="103" time="0.001982"/>
+      </testsuite>
+      <testsuite name="phpucMergeCodeTest::testCalculate" tests="4" failures="0" errors="4" time="0.000000" build="php-5.1.9">
+        <testcase name="testCalculate" class="phpucMergeCodeTest" file="/home/manu/Projects/workspace.zend-studio/phpUnderControl/trunk/docs/log-merge/MergeCodeTest.php" line="103" time="0.000000">
+          <error type="PHPUnit_Framework_Error"><![CDATA[testCalculate(phpucMergeCodeTest)
+Was never executed.
+]]></error>
+        </testcase>
+        <testcase name="testCalculate" class="phpucMergeCodeTest" file="/home/manu/Projects/workspace.zend-studio/phpUnderControl/trunk/docs/log-merge/MergeCodeTest.php" line="103" time="0.000000">
+          <error type="PHPUnit_Framework_Error"><![CDATA[testCalculate(phpucMergeCodeTest)
+Was never executed.
+]]></error>
+        </testcase>
+        <testcase name="testCalculate" class="phpucMergeCodeTest" file="/home/manu/Projects/workspace.zend-studio/phpUnderControl/trunk/docs/log-merge/MergeCodeTest.php" line="103" time="0.000000">
+          <error type="PHPUnit_Framework_Error"><![CDATA[testCalculate(phpucMergeCodeTest)
+Was never executed.
+]]></error>
+        </testcase>
+        <testcase name="testCalculate" class="phpucMergeCodeTest" file="/home/manu/Projects/workspace.zend-studio/phpUnderControl/trunk/docs/log-merge/MergeCodeTest.php" line="103" time="0.000000">
+          <error type="PHPUnit_Framework_Error"><![CDATA[testCalculate(phpucMergeCodeTest)
+Was never executed.
+]]></error>
+        </testcase>
+      </testsuite>
+    </testsuite>
+  </testsuite>
+</testsuites>

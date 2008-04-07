@@ -34,8 +34,8 @@
  * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
  * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
- * POSSIBILITY OF SUCH DAMAGE. 
- *
+ * POSSIBILITY OF SUCH DAMAGE.
+ * 
  * @category   QualityAssurance
  * @package    Data
  * @subpackage Logs
@@ -46,11 +46,9 @@
  * @link       http://www.phpundercontrol.org/
  */
 
-require_once dirname( __FILE__ ) . '/AbstractLogAggregatorTest.php';
-
 /**
- * Test case for the test log aggregator.
- *
+ * Aggregates a set of metric log files.
+ * 
  * @category   QualityAssurance
  * @package    Data
  * @subpackage Logs
@@ -60,31 +58,7 @@ require_once dirname( __FILE__ ) . '/AbstractLogAggregatorTest.php';
  * @version    Release: @package_version@
  * @link       http://www.phpundercontrol.org/
  */
-class phpucPHPUnitTestLogAggregatorTest extends phpucAbstractLogAggregatorTest
+class phpucPHPUnitMetricsAggregator extends phpucAbstractLogAggregator
 {
-    public function testAggregateLogFiles()
-    {
-        $aggregator = new phpucPHPUnitTestLogAggregator();
-        $aggregator->aggregate( $this->createValidFileIterator( 'log' ) );
-        
-        $expected = sprintf( '%s/phpunit/expected/log.xml', PHPUC_TEST_DATA );
-        $result   = sprintf( '%s/log.xml', PHPUC_TEST_DIR );
-        
-        $aggregator->save( $result );
-        
-        $this->assertXmlFileEqualsXmlFile( $expected, $result );
-    }
     
-    public function testAggregateLogFilesWithInvalidLogFile()
-    {
-        $aggregator = new phpucPHPUnitTestLogAggregator();
-        $aggregator->aggregate( $this->createBrokenFileIterator( 'log' ) );
-        
-        $expected = sprintf( '%s/phpunit/expected-failed/log.xml', PHPUC_TEST_DATA );
-        $result   = sprintf( '%s/log.xml', PHPUC_TEST_DIR );
-        
-        $aggregator->save( $result );
-        
-        $this->assertXmlFileEqualsXmlFile( $expected, $result );
-    }
 }

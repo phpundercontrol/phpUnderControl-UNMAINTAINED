@@ -101,6 +101,14 @@ class phpucPHPUnitTestLogAggregator extends phpucAbstractLogAggregator
         
         foreach ( $files as $build => $file )
         {
+            if ( !file_exists( $file ) )
+            {
+                // Store broken build identifier.
+                $brokenBuilds[] = $build;
+                
+                continue;
+            }
+            
             $log = new DOMDocument( '1.0', 'UTF-8' );
             
             $log->preserveWhiteSpace = false;
@@ -122,6 +130,11 @@ class phpucPHPUnitTestLogAggregator extends phpucAbstractLogAggregator
                 $log->documentElement, 
                 $this->log->documentElement
             );
+        }
+        
+        if ( count( $brokenBuilds ) > 0 )
+        {
+            $this->appendBrokenBuilds( $brokenBuilds );
         }
     }
     
@@ -304,6 +317,113 @@ class phpucPHPUnitTestLogAggregator extends phpucAbstractLogAggregator
                     
         $contextSuite->appendChild( $test );
     }
+    
+    /**
+     * Appends all broken builds to th log file.
+     *
+     * @param array(string) $brokenBuilds The broken link identifiers.
+     * 
+     * @return void
+     */
+    protected function appendBrokenBuilds( array $brokenBuilds )
+    {
+        // Create an xpath instance for the context log
+        $xpath = new DOMXPath( $this->log );
+        
+        // First collect all test cases and append broken build test cases
+        $query = sprintf( '//testcase[@build="%s"]', $this->currentBuild );
+        foreach ( $xpath->query( $query ) as $node )
+        {
+            foreach ( $brokenBuilds as $build )
+            {
+                $this->createErrorTestCase( $node, $node->parentNode, $build );
+                $this->increment( $node->parentNode, 1 );
+            }
+        }
+        
+        // Collect all test suites with unexecuted test cases
+        $query = sprintf( '//testsuite[@build="%s"]', $this->currentBuild );
+        foreach ( $xpath->query( $query ) as $node )
+        {
+            foreach ( $brokenBuilds as $build )
+            {
+                $tests = $node->getElementsByTagName( 'testcase' );
+                $suite = $node->parentNode->appendChild(
+                    $node->cloneNode( false )
+                );
+                $suite->setAttribute( 'tests', $tests->length );
+                $suite->setAttribute( 'errors', $tests->length );
+                $suite->setAttribute( 'failures', '0' );
+                $suite->setAttribute( 'time', '0.000000' );
+                $suite->setAttribute( 'build', $build );
+                
+                foreach ( $tests as $test )
+                {
+                    $this->createErrorTestCase( $test, $suite );
+                }
+                
+                $this->increment( $node->parentNode, $tests->length );
+            }
+        }
+    }
+    
+    /**
+     * Creates a failed test case
+     *
+     * @param DOMElement $node       The context node.
+     * @param DOMElement $parentNode The parent test suite.
+     * @param string     $build      An optional build identifier.
+     * 
+     * @return void
+     */
+    protected function createErrorTestCase( $node, $parentNode, $build = null )
+    {
+        $error = $this->log->createElement( 'error' );
+        $error->setAttribute( 'type', 'PHPUnit_Framework_Error' );
+        $error->appendChild(
+            $this->log->createCDATASection(
+                sprintf( 
+                    "%s(%s)\nWas never executed.\n", 
+                    $node->getAttribute( 'name' ),
+                    $node->getAttribute( 'class' )
+                )
+            )
+        );
+                
+        $test = $node->cloneNode( false );
+        $test->setAttribute( 'time', '0.000000' );
+        $test->appendChild( $error );
+        
+        if ( $build !== null )
+        {
+            $test->setAttribute( 'build', $build );
+        }
+                
+        $parentNode->appendChild( $test );
+    }
+    
+    /**
+     * Increments the error and test count up the tree
+     *
+     * @param DOMElement $node  The context element
+     * @param integer    $count Number to increment.
+     * 
+     * @return void
+     */
+    protected function increment( $node, $count )
+    {
+        while ( $node->nodeName === 'testsuite' )
+        {
+            $node->setAttribute(
+                'tests', $count + (int) $node->getAttribute( 'tests' )
+            );
+            $node->setAttribute(
+                'errors', $count + (int) $node->getAttribute( 'errors' )
+            );
+            $node = $node->parentNode;
+        }
+    }
+    
     
     /**
      * Checks that the given <b>$log</b> fills the minimum xml log requirements.
