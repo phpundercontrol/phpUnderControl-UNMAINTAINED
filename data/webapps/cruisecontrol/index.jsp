@@ -58,7 +58,7 @@
     <title><%= name%> phpUnderControl - SVN at <%= hostname %></title>
     <base href="<%=baseURL%>" />
     <link type="application/rss+xml" rel="alternate" href="rss" title="RSS" />
-    <link type="text/css" rel="stylesheet" href="css/php-under-control.css" />
+    <link type="text/css" rel="stylesheet" href="css/php-under-control.css?v=2" />
     <link rel="icon" href="favicon.ico" type="image/x-icon" />
   </head>
   <body onload="checkIframe('<%=baseURL + "css/php-under-control.css"%>')">
