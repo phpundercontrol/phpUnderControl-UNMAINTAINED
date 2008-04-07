@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1207577518" phpunit="3.2.18">
-  <project name="phpucMergeCodeTest" timestamp="1207577518">
+<coverage generated="1207566134" phpunit="3.2.18">
+  <project name="phpucMergeCodeTest" timestamp="1207566134">
     <file name="/home/manu/Projects/workspace.zend-studio/phpUnderControl/trunk/docs/log-merge/MergeCode525.php">
       <class name="phpucMergeCode525" namespace="global" fullPackage="PhpUnderControl.Documentation" category="QualityAssurance" package="PhpUnderControl" subpackage="Documentation">
         <metrics methods="1" coveredmethods="1" statements="2" coveredstatements="1" elements="3" coveredelements="2"/>
@@ -22,8 +22,8 @@
       <line num="82" type="stmt" count="1"/>
       <line num="84" type="stmt" count="1"/>
       <line num="92" type="method" count="0"/>
-      <line num="94" type="stmt" count="0"/>
-      <metrics loc="96" ncloc="23" executablelines="5" executedlines="3" classes="1" methods="3" coveredmethods="1" statements="8" coveredstatements="3" elements="11" coveredelements="4"/>
+      <line num="95" type="stmt" count="0"/>
+      <metrics loc="97" ncloc="24" executablelines="5" executedlines="3" classes="1" methods="3" coveredmethods="1" statements="8" coveredstatements="3" elements="11" coveredelements="4"/>
     </file>
     <file name="/home/manu/Projects/workspace.zend-studio/phpUnderControl/trunk/docs/log-merge/MergeCode.php">
       <class name="phpucMergeCode" namespace="global" fullPackage="PhpUnderControl.Documentation" category="QualityAssurance" package="PhpUnderControl" subpackage="Documentation">
@@ -86,6 +86,6 @@
       <line num="192" type="stmt" count="4"/>
       <metrics loc="194" ncloc="97" executablelines="52" executedlines="18" classes="1" methods="3" coveredmethods="3" statements="55" coveredstatements="18" elements="58" coveredelements="21"/>
     </file>
-    <metrics files="3" loc="362" ncloc="129" executablelines="60" executedlines="24" classes="3" methods="7" coveredmethods="5" statements="65" coveredstatements="22" elements="72" coveredelements="27"/>
+    <metrics files="3" loc="363" ncloc="130" executablelines="60" executedlines="24" classes="3" methods="7" coveredmethods="5" statements="65" coveredstatements="22" elements="72" coveredelements="27"/>
   </project>
 </coverage>

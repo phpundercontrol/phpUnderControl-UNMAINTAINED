@@ -77,7 +77,11 @@ class phpucMergeCodeHelper
      */
     public function version525()
     {
-        return '5.2.5';
+        include dirname( __FILE__ ) . '/MergeCode525.php';
+        
+        $obj = new phpucMergeCode525();
+        
+        return $obj->version();
     }
     
     /**
@@ -87,7 +91,6 @@ class phpucMergeCodeHelper
      */
     public function versionAny()
     {
-        
         return phpversion();
     }
 }

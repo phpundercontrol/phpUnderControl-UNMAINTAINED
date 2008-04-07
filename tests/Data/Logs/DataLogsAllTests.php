@@ -1,8 +1,10 @@
 <?php
 /**
  * This file is part of phpUnderControl.
+ * 
+ * PHP Version 5.2.0
  *
- * Copyright (c) 2007-2008, Manuel Pichler <mapi@phpundercontrol.org>.
+ * Copyright (c) 2007-2008, Manuel Pichler <mapi@manuel-pichler.de>.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -34,42 +36,39 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  * 
- * @category  QualityAssurance
- * @package   Data
- * @author    Manuel Pichler <mapi@phpundercontrol.org>
- * @copyright 2007-2008 Manuel Pichler. All rights reserved.
- * @license   http://www.opensource.org/licenses/bsd-license.php  BSD License
- * @version   SVN: $Id$
- * @link      http://www.phpundercontrol.org/
+ * @category   QualityAssurance
+ * @package    Data
+ * @subpackage Logs
+ * @author     Manuel Pichler <mapi@manuel-pichler.de>
+ * @copyright  2007-2008 Manuel Pichler. All rights reserved.
+ * @license    http://www.opensource.org/licenses/bsd-license.php  BSD License
+ * @version    SVN: $Id$
+ * @link       http://www.phpundercontrol.org/
  */
 
 if ( defined( 'PHPUnit_MAIN_METHOD' ) === false )
 {
-    define( 'PHPUnit_MAIN_METHOD', 'phpucDataAllTests::main' );
+    define( 'PHPUnit_MAIN_METHOD', 'phpucDataLogsAllTests::main' );
 }
 
 require_once 'PHPUnit/Framework/TestSuite.php';
 require_once 'PHPUnit/TextUI/TestRunner.php';
 
-require_once dirname( __FILE__ ) . '/Logs/DataLogsAllTests.php';
-require_once dirname( __FILE__ ) . '/BuildFileTest.php';
-require_once dirname( __FILE__ ) . '/BuildTargetTest.php';
-require_once dirname( __FILE__ ) . '/ConfigFileTest.php';
-require_once dirname( __FILE__ ) . '/ConfigProjectTest.php';
-require_once dirname( __FILE__ ) . '/LogFileTest.php';
+require_once dirname( __FILE__ ) . '/PHPUnitCoverageAggregatorTest.php';
 
 /**
- * Main test suite for phpUnderControl Data.
+ * Test suite for the data logs package.
  *
- * @category  QualityAssurance
- * @package   Data
- * @author    Manuel Pichler <mapi@phpundercontrol.org>
- * @copyright 2007-2008 Manuel Pichler. All rights reserved.
- * @license   http://www.opensource.org/licenses/bsd-license.php  BSD License
- * @version   Release: @package_version@
- * @link      http://www.phpundercontrol.org/
+ * @category   QualityAssurance
+ * @package    Data
+ * @subpackage Logs
+ * @author     Manuel Pichler <mapi@manuel-pichler.de>
+ * @copyright  2007-2008 Manuel Pichler. All rights reserved.
+ * @license    http://www.opensource.org/licenses/bsd-license.php  BSD License
+ * @version    Release: @package_version@
+ * @link       http://www.phpundercontrol.org/
  */
-class phpucDataAllTests
+class phpucDataLogsAllTests
 {
     /**
      * Test suite main method.
@@ -88,19 +87,14 @@ class phpucDataAllTests
      */
     public static function suite()
     {
-        $suite = new PHPUnit_Framework_TestSuite( 'phpUnderControl - DataAllTests' );
-        $suite->addTest( phpucDataLogsAllTests::suite() );
-        $suite->addTestSuite( 'phpucBuildFileTest' );
-        $suite->addTestSuite( 'phpucBuildTargetTest' );
-        $suite->addTestSuite( 'phpucConfigFileTest' );
-        $suite->addTestSuite( 'phpucConfigProjectTest' );
-        $suite->addTestSuite( 'phpucLogFileTest' );
+        $suite = new PHPUnit_Framework_TestSuite( 'phpUnderControl - DataLogsAllTests' );
+        $suite->addTestSuite( 'phpucPHPUnitCoverageAggregatorTest' );
 
         return $suite;
     }
 }
 
-if ( PHPUnit_MAIN_METHOD === 'phpucDataAllTests::main' )
+if ( PHPUnit_MAIN_METHOD === 'phpucDataLogsAllTests::main' )
 {
-    phpucDataAllTests::main();
+    phpucDataLogsAllTests::main();
 }

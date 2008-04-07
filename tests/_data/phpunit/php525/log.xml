@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+  <testsuite name="phpucMergeCodeTest" file="/home/manu/Projects/workspace.zend-studio/phpUnderControl/trunk/docs/log-merge/MergeCodeTest.php" fullPackage="PhpUnderControl.Documentation" category="QualityAssurance" package="PhpUnderControl" subpackage="Documentation" tests="6" failures="1" errors="0" time="0.053692">
+    <testcase name="testVersionSpecific" class="phpucMergeCodeTest" file="/home/manu/Projects/workspace.zend-studio/phpUnderControl/trunk/docs/log-merge/MergeCodeTest.php" line="72" time="0.043849"/>
+    <testcase name="testNotVersionSpecific" class="phpucMergeCodeTest" file="/home/manu/Projects/workspace.zend-studio/phpUnderControl/trunk/docs/log-merge/MergeCodeTest.php" line="78" time="0.001859"/>
+    <testsuite name="phpucMergeCodeTest::testCalculate" tests="4" failures="1" errors="0" time="0.007984">
+      <testcase name="testCalculate" class="phpucMergeCodeTest" file="/home/manu/Projects/workspace.zend-studio/phpUnderControl/trunk/docs/log-merge/MergeCodeTest.php" line="103" time="0.001595"/>
+      <testcase name="testCalculate" class="phpucMergeCodeTest" file="/home/manu/Projects/workspace.zend-studio/phpUnderControl/trunk/docs/log-merge/MergeCodeTest.php" line="103" time="0.001579"/>
+      <testcase name="testCalculate" class="phpucMergeCodeTest" file="/home/manu/Projects/workspace.zend-studio/phpUnderControl/trunk/docs/log-merge/MergeCodeTest.php" line="103" time="0.003200">
+        <failure type="PHPUnit_Framework_ExpectationFailedException"><![CDATA[testCalculate(phpucMergeCodeTest) with data set #2 (2, 2)
+Failed asserting that <integer:4> matches expected value <integer:3>.
+
+/home/manu/Projects/workspace.zend-studio/phpUnderControl/trunk/docs/log-merge/MergeCodeTest.php:107
+]]></failure>
+      </testcase>
+      <testcase name="testCalculate" class="phpucMergeCodeTest" file="/home/manu/Projects/workspace.zend-studio/phpUnderControl/trunk/docs/log-merge/MergeCodeTest.php" line="103" time="0.001610"/>
+    </testsuite>
+  </testsuite>
+</testsuites>

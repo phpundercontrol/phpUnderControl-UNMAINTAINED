@@ -3,11 +3,10 @@
   <violation rule="CRAP" priority="1" package="global">More than 5.00% of the project's methods have a Change Risk Analysis and Predictions (CRAP) index that is above the threshold of 30.
 The CRAP index of a function or method uses cyclomatic complexity and code coverage from automated tests to help estimate the effort and risk associated with maintaining legacy code. A CRAP index over 30 is a good indicator of crappy code.</violation>
   <file name="/home/manu/Projects/workspace.zend-studio/phpUnderControl/trunk/docs/log-merge/MergeCodeHelper.php">
-    <violation rule="CodeCoverage" priority="1" line="78" to-line="85" package="PhpUnderControl.Documentation" class="phpucMergeCodeHelper" method="version525">The code coverage is 0.00 which is considered low.</violation>
-    <violation rule="CodeCoverage" priority="1" line="92" to-line="95" package="PhpUnderControl.Documentation" class="phpucMergeCodeHelper" method="versionAny">The code coverage is 0.00 which is considered low.</violation>
+    <violation rule="CodeCoverage" priority="1" line="68" to-line="71" package="PhpUnderControl.Documentation" class="phpucMergeCodeHelper" method="version520">The code coverage is 0.00 which is considered low.</violation>
+    <violation rule="CodeCoverage" priority="1" line="92" to-line="96" package="PhpUnderControl.Documentation" class="phpucMergeCodeHelper" method="versionAny">The code coverage is 0.00 which is considered low.</violation>
   </file>
   <file name="/home/manu/Projects/workspace.zend-studio/phpUnderControl/trunk/docs/log-merge/MergeCode.php">
-    <violation rule="CodeCoverage" priority="1" line="100" to-line="118" package="PhpUnderControl.Documentation" class="phpucMergeCode" method="versionSpecific">The code coverage is 58.33 which is considered medium.</violation>
     <violation rule="CodeCoverage" priority="1" line="128" to-line="180" package="PhpUnderControl.Documentation" class="phpucMergeCode" method="notVersionSpecific">The code coverage is 20.51 which is considered low.</violation>
     <violation rule="CRAP" priority="1" line="128" to-line="180" package="PhpUnderControl.Documentation" class="phpucMergeCode" method="notVersionSpecific">The CRAP index is 71.
 The Change Risk Analysis and Predictions (CRAP) index of a function or method uses cyclomatic complexity and code coverage from automated tests to help estimate the effort and risk associated with maintaining legacy code. A CRAP index over 30 is a good indicator of crappy code.</violation>

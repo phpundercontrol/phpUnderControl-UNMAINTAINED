@@ -4,7 +4,7 @@
  * 
  * PHP Version 5.2.0
  *
- * Copyright (c) 2007-2008, Manuel Pichler <mapi@phpundercontrol.org>.
+ * Copyright (c) 2007-2008, Manuel Pichler <mapi@manuel-pichler.de>.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -35,90 +35,64 @@
  * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
- *
+ * 
  * @category   QualityAssurance
- * @package    PhpUnderControl
- * @subpackage Documentation
- * @author     Manuel Pichler <mapi@phpundercontrol.org>
+ * @package    Data
+ * @subpackage Logs
+ * @author     Manuel Pichler <mapi@manuel-pichler.de>
  * @copyright  2007-2008 Manuel Pichler. All rights reserved.
  * @license    http://www.opensource.org/licenses/bsd-license.php  BSD License
- * @version    SVN: $Id: PhpUnderControl.php 2631 2008-03-18 15:23:55Z mapi $
+ * @version    SVN: $Id$
  * @link       http://www.phpundercontrol.org/
  */
 
-require_once dirname( __FILE__ ) . '/MergeCode.php';
-
-require_once 'PHPUnit/Framework/TestCase.php';
+require_once dirname( __FILE__ ) . '/../../AbstractTest.php';
 
 /**
- * Documentation/Example/Test testcase for environment specific code.
- *
+ * Abstract base class for log aggregators.
+ * 
  * @category   QualityAssurance
- * @package    PhpUnderControl
- * @subpackage Documentation
- * @author     Manuel Pichler <mapi@phpundercontrol.org>
+ * @package    Data
+ * @subpackage Logs
+ * @author     Manuel Pichler <mapi@manuel-pichler.de>
  * @copyright  2007-2008 Manuel Pichler. All rights reserved.
  * @license    http://www.opensource.org/licenses/bsd-license.php  BSD License
  * @version    Release: @package_version@
  * @link       http://www.phpundercontrol.org/
  */
-class phpucMergeCodeTest extends PHPUnit_Framework_TestCase
+abstract class phpucAbstractLogAggregatorTest extends phpucAbstractTest
 {
     /**
-     * Version specific test case.
+     * List of test build results/logs.
      *
-     * @return void
+     * @type array<string>
+     * @var array(string) $builds
      */
-    public function testVersionSpecific()
-    {
-        $obj = new phpucMergeCode();
-        $this->assertEquals( phpversion(), $obj->versionSpecific() );
-    }
-    
-    public function testNotVersionSpecific()
-    {
-        $obj = new phpucMergeCode();
-        
-        $mode = phpucMergeCode::REVERSE;
-        if ( version_compare( phpversion(), '5.2.5' ) === 1 )
-        {
-            $mode = phpucMergeCode::NORMAL;
-        }
-        
-        $this->assertEquals( 
-            strrev( php_sapi_name() ), 
-            $obj->notVersionSpecific( phpucMergeCode::SAPI, $mode )
-        );
-    }
+    protected $builds = array(
+        'php520', 
+        'php525', 
+        'php526RC2'
+    );
     
     /**
-     * phpunit dataProvider test.
+     * Returns an iterator with test log files.
      *
-     * @param integer $x Test value one.
-     * @param integer $y Test value two.
+     * @param string $baseName The log file basename.
      * 
-     * @return void
-     * @dataProvider dataProvider
+     * @return Iterator
      */
-    public function testCalculate($x, $y)
+    protected function createFileIterator( $baseName )
     {
-        $obj = new phpucMergeCode();
-        
-        $this->assertEquals( 3, $obj->calculate( $x, $y ) );
-    }
-    
-    /**
-     * Test data provider.
-     *
-     * @return array(array)
-     */
-    public static function dataProvider()
-    {
-        return array(
-            array( 1, 2 ),
-            array( -2, 5 ),
-            array( 2, 2 ),
-            array( 9, -6 )
-        );
+        $files = array();
+        foreach ( $this->builds as $build )
+        {
+            $files[] = sprintf( 
+                '%s/phpunit/%s/%s.xml', 
+                PHPUC_TEST_DATA, 
+                $build,
+                $baseName
+            );
+        }
+        return new ArrayIterator( $files );
     }
 }

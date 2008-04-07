@@ -4,7 +4,7 @@
  * 
  * PHP Version 5.2.0
  *
- * Copyright (c) 2007-2008, Manuel Pichler <mapi@phpundercontrol.org>.
+ * Copyright (c) 2007-2008, Manuel Pichler <mapi@manuel-pichler.de>.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -35,90 +35,38 @@
  * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
- *
+ * 
  * @category   QualityAssurance
  * @package    PhpUnderControl
  * @subpackage Documentation
- * @author     Manuel Pichler <mapi@phpundercontrol.org>
+ * @author     Manuel Pichler <mapi@manuel-pichler.de>
  * @copyright  2007-2008 Manuel Pichler. All rights reserved.
  * @license    http://www.opensource.org/licenses/bsd-license.php  BSD License
- * @version    SVN: $Id: PhpUnderControl.php 2631 2008-03-18 15:23:55Z mapi $
+ * @version    SVN: $Id$
  * @link       http://www.phpundercontrol.org/
  */
 
-require_once dirname( __FILE__ ) . '/MergeCode.php';
-
-require_once 'PHPUnit/Framework/TestCase.php';
-
 /**
- * Documentation/Example/Test testcase for environment specific code.
+ * php 5.2.5 code only.
  *
  * @category   QualityAssurance
  * @package    PhpUnderControl
  * @subpackage Documentation
- * @author     Manuel Pichler <mapi@phpundercontrol.org>
+ * @author     Manuel Pichler <mapi@manuel-pichler.de>
  * @copyright  2007-2008 Manuel Pichler. All rights reserved.
  * @license    http://www.opensource.org/licenses/bsd-license.php  BSD License
  * @version    Release: @package_version@
  * @link       http://www.phpundercontrol.org/
  */
-class phpucMergeCodeTest extends PHPUnit_Framework_TestCase
+class phpucMergeCode525
 {
     /**
-     * Version specific test case.
+     * Returns a php 5.2.5 specific version string.
      *
-     * @return void
+     * @return string
      */
-    public function testVersionSpecific()
+    public function version()
     {
-        $obj = new phpucMergeCode();
-        $this->assertEquals( phpversion(), $obj->versionSpecific() );
-    }
-    
-    public function testNotVersionSpecific()
-    {
-        $obj = new phpucMergeCode();
-        
-        $mode = phpucMergeCode::REVERSE;
-        if ( version_compare( phpversion(), '5.2.5' ) === 1 )
-        {
-            $mode = phpucMergeCode::NORMAL;
-        }
-        
-        $this->assertEquals( 
-            strrev( php_sapi_name() ), 
-            $obj->notVersionSpecific( phpucMergeCode::SAPI, $mode )
-        );
-    }
-    
-    /**
-     * phpunit dataProvider test.
-     *
-     * @param integer $x Test value one.
-     * @param integer $y Test value two.
-     * 
-     * @return void
-     * @dataProvider dataProvider
-     */
-    public function testCalculate($x, $y)
-    {
-        $obj = new phpucMergeCode();
-        
-        $this->assertEquals( 3, $obj->calculate( $x, $y ) );
-    }
-    
-    /**
-     * Test data provider.
-     *
-     * @return array(array)
-     */
-    public static function dataProvider()
-    {
-        return array(
-            array( 1, 2 ),
-            array( -2, 5 ),
-            array( 2, 2 ),
-            array( 9, -6 )
-        );
+        return '5.2.5';
     }
 }

@@ -180,33 +180,15 @@ class phpucMergeCode
     }
     
     /**
-     * Returns a php 5.2.0 specific token
+     * Adds two values.
      *
-     * @return string
+     * @param integer $x Test value one.
+     * @param integer $y Test value two.
+     * 
+     * @return integer
      */
-    protected function version520()
+    public function calculate( $x, $y )
     {
-        return '5.2.0';
-    }
-    
-    /**
-     * Returns a php 5.2.5 specific token
-     *
-     * @return string
-     */
-    protected function version525()
-    {
-        return '5.2.5';
-    }
-    
-    /**
-     * Returns current php version specific token.
-     *
-     * @return string
-     */
-    protected function versionAny()
-    {
-        
-        return phpversion();
+        return ( $x + $y );
     }
 }
