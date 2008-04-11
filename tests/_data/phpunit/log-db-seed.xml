@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+  <table name="code_class">
+    <column>code_file_id</column>
+    <column>code_class_id</column>
+    <column>code_class_parent_id</column>
+    <column>code_class_name</column>
+    <column>code_class_start_line</column>
+    <column>code_class_end_line</column>
+  </table>
+  <table name="code_coverage">
+    <column>test_id</column>
+    <column>code_line_id</column>
+  </table>
+  <table name="code_file">
+    <column>code_file_id</column>
+    <column>code_file_name</column>
+    <column>code_file_md5</column>
+    <column>revision</column>
+  </table>
+  <table name="code_function">
+    <column>code_file_id</column>
+    <column>code_function_id</column>
+    <column>code_function_name</column>
+    <column>code_function_start_line</column>
+    <column>code_function_end_line</column>
+  </table>
+  <table name="code_line">
+    <column>code_file_id</column>
+    <column>code_line_id</column>
+    <column>code_line_number</column>
+    <column>code_line</column>
+    <column>code_line_covered</column>
+  </table>
+  <table name="code_method">
+    <column>code_class_id</column>
+    <column>code_method_id</column>
+    <column>code_method_name</column>
+    <column>code_method_start_line</column>
+    <column>code_method_end_line</column>
+  </table>
+  <table name="metrics_class">
+    <column>run_id</column>
+    <column>code_class_id</column>
+    <column>metrics_class_coverage</column>
+    <column>metrics_class_loc</column>
+    <column>metrics_class_loc_executable</column>
+    <column>metrics_class_loc_executed</column>
+    <column>metrics_class_aif</column>
+    <column>metrics_class_ahf</column>
+    <column>metrics_class_cis</column>
+    <column>metrics_class_csz</column>
+    <column>metrics_class_dit</column>
+    <column>metrics_class_impl</column>
+    <column>metrics_class_mif</column>
+    <column>metrics_class_mhf</column>
+    <column>metrics_class_noc</column>
+    <column>metrics_class_pf</column>
+    <column>metrics_class_vars</column>
+    <column>metrics_class_varsnp</column>
+    <column>metrics_class_varsi</column>
+    <column>metrics_class_wmc</column>
+    <column>metrics_class_wmcnp</column>
+    <column>metrics_class_wmci</column>
+  </table>
+  <table name="metrics_file">
+    <column>run_id</column>
+    <column>code_file_id</column>
+    <column>metrics_file_coverage</column>
+    <column>metrics_file_loc</column>
+    <column>metrics_file_cloc</column>
+    <column>metrics_file_ncloc</column>
+    <column>metrics_file_loc_executable</column>
+    <column>metrics_file_loc_executed</column>
+  </table>
+  <table name="metrics_function">
+    <column>run_id</column>
+    <column>code_function_id</column>
+    <column>metrics_function_coverage</column>
+    <column>metrics_function_loc</column>
+    <column>metrics_function_loc_executable</column>
+    <column>metrics_function_loc_executed</column>
+    <column>metrics_function_ccn</column>
+    <column>metrics_function_crap</column>
+    <column>metrics_function_npath</column>
+  </table>
+  <table name="metrics_method">
+    <column>run_id</column>
+    <column>code_method_id</column>
+    <column>metrics_method_coverage</column>
+    <column>metrics_method_loc</column>
+    <column>metrics_method_loc_executable</column>
+    <column>metrics_method_loc_executed</column>
+    <column>metrics_method_ccn</column>
+    <column>metrics_method_crap</column>
+    <column>metrics_method_npath</column>
+  </table>
+  <table name="metrics_project">
+    <column>run_id</column>
+    <column>metrics_project_cls</column>
+    <column>metrics_project_clsa</column>
+    <column>metrics_project_clsc</column>
+    <column>metrics_project_roots</column>
+    <column>metrics_project_leafs</column>
+    <column>metrics_project_interfs</column>
+    <column>metrics_project_maxdit</column>
+  </table>
+  <table name="run">
+    <column>run_id</column>
+    <column>timestamp</column>
+    <column>revision</column>
+    <column>information</column>
+    <column>completed</column>
+  </table>
+  <table name="test">
+    <column>run_id</column>
+    <column>test_id</column>
+    <column>test_name</column>
+    <column>test_result</column>
+    <column>test_message</column>
+    <column>test_execution_time</column>
+    <column>code_method_id</column>
+    <column>node_root</column>
+    <column>node_left</column>
+    <column>node_right</column>
+    <column>node_is_leaf</column>
+  </table>
+</dataset>

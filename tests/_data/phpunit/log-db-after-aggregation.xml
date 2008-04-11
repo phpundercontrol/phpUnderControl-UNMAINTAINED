@@ -1,0 +1,5315 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+  <table name="code_class">
+    <column>code_file_id</column>
+    <column>code_class_id</column>
+    <column>code_class_parent_id</column>
+    <column>code_class_name</column>
+    <column>code_class_start_line</column>
+    <column>code_class_end_line</column>
+    <row>
+      <value>1</value>
+      <value>1</value>
+      <null />
+      <value>phpucMergeCodeTest</value>
+      <value>65</value>
+      <value>124</value>
+    </row>
+    <row>
+      <value>2</value>
+      <value>2</value>
+      <null />
+      <value>phpucMergeCodeHelper</value>
+      <value>61</value>
+      <value>96</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>3</value>
+      <null />
+      <value>phpucMergeCode</value>
+      <value>63</value>
+      <value>194</value>
+    </row>
+    <row>
+      <value>4</value>
+      <value>4</value>
+      <null />
+      <value>phpucMergeCode525</value>
+      <value>61</value>
+      <value>72</value>
+    </row>
+  </table>
+  <table name="code_coverage">
+    <column>test_id</column>
+    <column>code_line_id</column>
+    <row>
+      <value>3</value>
+      <value>74</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>75</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>76</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>194</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>322</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>324</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>325</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>326</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>327</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>328</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>337</value>
+    </row>
+    <row>
+      <value>4</value>
+      <value>80</value>
+    </row>
+    <row>
+      <value>4</value>
+      <value>82</value>
+    </row>
+    <row>
+      <value>4</value>
+      <value>83</value>
+    </row>
+    <row>
+      <value>4</value>
+      <value>84</value>
+    </row>
+    <row>
+      <value>4</value>
+      <value>88</value>
+    </row>
+    <row>
+      <value>4</value>
+      <value>89</value>
+    </row>
+    <row>
+      <value>4</value>
+      <value>90</value>
+    </row>
+    <row>
+      <value>4</value>
+      <value>91</value>
+    </row>
+    <row>
+      <value>4</value>
+      <value>92</value>
+    </row>
+    <row>
+      <value>4</value>
+      <value>350</value>
+    </row>
+    <row>
+      <value>4</value>
+      <value>353</value>
+    </row>
+    <row>
+      <value>4</value>
+      <value>354</value>
+    </row>
+    <row>
+      <value>4</value>
+      <value>355</value>
+    </row>
+    <row>
+      <value>4</value>
+      <value>356</value>
+    </row>
+    <row>
+      <value>4</value>
+      <value>357</value>
+    </row>
+    <row>
+      <value>4</value>
+      <value>366</value>
+    </row>
+    <row>
+      <value>4</value>
+      <value>399</value>
+    </row>
+    <row>
+      <value>6</value>
+      <value>105</value>
+    </row>
+    <row>
+      <value>6</value>
+      <value>107</value>
+    </row>
+    <row>
+      <value>6</value>
+      <value>108</value>
+    </row>
+    <row>
+      <value>6</value>
+      <value>412</value>
+    </row>
+    <row>
+      <value>7</value>
+      <value>105</value>
+    </row>
+    <row>
+      <value>7</value>
+      <value>107</value>
+    </row>
+    <row>
+      <value>7</value>
+      <value>108</value>
+    </row>
+    <row>
+      <value>7</value>
+      <value>412</value>
+    </row>
+    <row>
+      <value>8</value>
+      <value>105</value>
+    </row>
+    <row>
+      <value>8</value>
+      <value>107</value>
+    </row>
+    <row>
+      <value>8</value>
+      <value>412</value>
+    </row>
+    <row>
+      <value>9</value>
+      <value>105</value>
+    </row>
+    <row>
+      <value>9</value>
+      <value>107</value>
+    </row>
+    <row>
+      <value>9</value>
+      <value>108</value>
+    </row>
+    <row>
+      <value>9</value>
+      <value>412</value>
+    </row>
+    <row>
+      <value>11</value>
+      <value>74</value>
+    </row>
+    <row>
+      <value>11</value>
+      <value>75</value>
+    </row>
+    <row>
+      <value>11</value>
+      <value>76</value>
+    </row>
+    <row>
+      <value>11</value>
+      <value>476</value>
+    </row>
+    <row>
+      <value>11</value>
+      <value>484</value>
+    </row>
+    <row>
+      <value>11</value>
+      <value>486</value>
+    </row>
+    <row>
+      <value>11</value>
+      <value>204</value>
+    </row>
+    <row>
+      <value>11</value>
+      <value>206</value>
+    </row>
+    <row>
+      <value>11</value>
+      <value>208</value>
+    </row>
+    <row>
+      <value>11</value>
+      <value>322</value>
+    </row>
+    <row>
+      <value>11</value>
+      <value>324</value>
+    </row>
+    <row>
+      <value>11</value>
+      <value>325</value>
+    </row>
+    <row>
+      <value>11</value>
+      <value>326</value>
+    </row>
+    <row>
+      <value>11</value>
+      <value>329</value>
+    </row>
+    <row>
+      <value>11</value>
+      <value>330</value>
+    </row>
+    <row>
+      <value>11</value>
+      <value>331</value>
+    </row>
+    <row>
+      <value>11</value>
+      <value>332</value>
+    </row>
+    <row>
+      <value>11</value>
+      <value>337</value>
+    </row>
+    <row>
+      <value>12</value>
+      <value>80</value>
+    </row>
+    <row>
+      <value>12</value>
+      <value>82</value>
+    </row>
+    <row>
+      <value>12</value>
+      <value>83</value>
+    </row>
+    <row>
+      <value>12</value>
+      <value>84</value>
+    </row>
+    <row>
+      <value>12</value>
+      <value>88</value>
+    </row>
+    <row>
+      <value>12</value>
+      <value>89</value>
+    </row>
+    <row>
+      <value>12</value>
+      <value>90</value>
+    </row>
+    <row>
+      <value>12</value>
+      <value>91</value>
+    </row>
+    <row>
+      <value>12</value>
+      <value>92</value>
+    </row>
+    <row>
+      <value>12</value>
+      <value>350</value>
+    </row>
+    <row>
+      <value>12</value>
+      <value>353</value>
+    </row>
+    <row>
+      <value>12</value>
+      <value>354</value>
+    </row>
+    <row>
+      <value>12</value>
+      <value>355</value>
+    </row>
+    <row>
+      <value>12</value>
+      <value>356</value>
+    </row>
+    <row>
+      <value>12</value>
+      <value>357</value>
+    </row>
+    <row>
+      <value>12</value>
+      <value>366</value>
+    </row>
+    <row>
+      <value>12</value>
+      <value>399</value>
+    </row>
+    <row>
+      <value>14</value>
+      <value>105</value>
+    </row>
+    <row>
+      <value>14</value>
+      <value>107</value>
+    </row>
+    <row>
+      <value>14</value>
+      <value>108</value>
+    </row>
+    <row>
+      <value>14</value>
+      <value>412</value>
+    </row>
+    <row>
+      <value>15</value>
+      <value>105</value>
+    </row>
+    <row>
+      <value>15</value>
+      <value>107</value>
+    </row>
+    <row>
+      <value>15</value>
+      <value>108</value>
+    </row>
+    <row>
+      <value>15</value>
+      <value>412</value>
+    </row>
+    <row>
+      <value>16</value>
+      <value>105</value>
+    </row>
+    <row>
+      <value>16</value>
+      <value>107</value>
+    </row>
+    <row>
+      <value>16</value>
+      <value>412</value>
+    </row>
+    <row>
+      <value>17</value>
+      <value>105</value>
+    </row>
+    <row>
+      <value>17</value>
+      <value>107</value>
+    </row>
+    <row>
+      <value>17</value>
+      <value>108</value>
+    </row>
+    <row>
+      <value>17</value>
+      <value>412</value>
+    </row>
+    <row>
+      <value>19</value>
+      <value>74</value>
+    </row>
+    <row>
+      <value>19</value>
+      <value>75</value>
+    </row>
+    <row>
+      <value>19</value>
+      <value>76</value>
+    </row>
+    <row>
+      <value>19</value>
+      <value>218</value>
+    </row>
+    <row>
+      <value>19</value>
+      <value>322</value>
+    </row>
+    <row>
+      <value>19</value>
+      <value>324</value>
+    </row>
+    <row>
+      <value>19</value>
+      <value>325</value>
+    </row>
+    <row>
+      <value>19</value>
+      <value>326</value>
+    </row>
+    <row>
+      <value>19</value>
+      <value>329</value>
+    </row>
+    <row>
+      <value>19</value>
+      <value>330</value>
+    </row>
+    <row>
+      <value>19</value>
+      <value>335</value>
+    </row>
+    <row>
+      <value>19</value>
+      <value>337</value>
+    </row>
+    <row>
+      <value>20</value>
+      <value>80</value>
+    </row>
+    <row>
+      <value>20</value>
+      <value>82</value>
+    </row>
+    <row>
+      <value>20</value>
+      <value>83</value>
+    </row>
+    <row>
+      <value>20</value>
+      <value>84</value>
+    </row>
+    <row>
+      <value>20</value>
+      <value>85</value>
+    </row>
+    <row>
+      <value>20</value>
+      <value>86</value>
+    </row>
+    <row>
+      <value>20</value>
+      <value>88</value>
+    </row>
+    <row>
+      <value>20</value>
+      <value>89</value>
+    </row>
+    <row>
+      <value>20</value>
+      <value>90</value>
+    </row>
+    <row>
+      <value>20</value>
+      <value>91</value>
+    </row>
+    <row>
+      <value>20</value>
+      <value>350</value>
+    </row>
+    <row>
+      <value>20</value>
+      <value>353</value>
+    </row>
+    <row>
+      <value>20</value>
+      <value>354</value>
+    </row>
+    <row>
+      <value>20</value>
+      <value>355</value>
+    </row>
+    <row>
+      <value>20</value>
+      <value>358</value>
+    </row>
+    <row>
+      <value>20</value>
+      <value>359</value>
+    </row>
+    <row>
+      <value>20</value>
+      <value>364</value>
+    </row>
+    <row>
+      <value>20</value>
+      <value>366</value>
+    </row>
+    <row>
+      <value>20</value>
+      <value>399</value>
+    </row>
+    <row>
+      <value>22</value>
+      <value>105</value>
+    </row>
+    <row>
+      <value>22</value>
+      <value>107</value>
+    </row>
+    <row>
+      <value>22</value>
+      <value>108</value>
+    </row>
+    <row>
+      <value>22</value>
+      <value>412</value>
+    </row>
+    <row>
+      <value>23</value>
+      <value>105</value>
+    </row>
+    <row>
+      <value>23</value>
+      <value>107</value>
+    </row>
+    <row>
+      <value>23</value>
+      <value>108</value>
+    </row>
+    <row>
+      <value>23</value>
+      <value>412</value>
+    </row>
+    <row>
+      <value>24</value>
+      <value>105</value>
+    </row>
+    <row>
+      <value>24</value>
+      <value>107</value>
+    </row>
+    <row>
+      <value>24</value>
+      <value>412</value>
+    </row>
+    <row>
+      <value>25</value>
+      <value>105</value>
+    </row>
+    <row>
+      <value>25</value>
+      <value>107</value>
+    </row>
+    <row>
+      <value>25</value>
+      <value>108</value>
+    </row>
+    <row>
+      <value>25</value>
+      <value>412</value>
+    </row>
+  </table>
+  <table name="code_file">
+    <column>code_file_id</column>
+    <column>code_file_name</column>
+    <column>code_file_md5</column>
+    <column>revision</column>
+    <row>
+      <value>1</value>
+      <value>MergeCodeTest.php</value>
+      <value>e351e83d55bb94ebe062241b0971b66f</value>
+      <value>3</value>
+    </row>
+    <row>
+      <value>2</value>
+      <value>MergeCodeHelper.php</value>
+      <value>bc012b27d9be244ff29ad15a680725e0</value>
+      <value>3</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>MergeCode.php</value>
+      <value>db318e76208588a7ff357c94d7cd67d3</value>
+      <value>3</value>
+    </row>
+    <row>
+      <value>4</value>
+      <value>MergeCode525.php</value>
+      <value>eb6638d334993181679a86c1b5c0513a</value>
+      <value>3</value>
+    </row>
+  </table>
+  <table name="code_function">
+    <column>code_file_id</column>
+    <column>code_function_id</column>
+    <column>code_function_name</column>
+    <column>code_function_start_line</column>
+    <column>code_function_end_line</column>
+  </table>
+  <table name="code_line">
+    <column>code_file_id</column>
+    <column>code_line_id</column>
+    <column>code_line_number</column>
+    <column>code_line</column>
+    <column>code_line_covered</column>
+    <row>
+      <value>1</value>
+      <value>1</value>
+      <value>1</value>
+      <value><![CDATA[<?php
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>1</value>
+      <value>2</value>
+      <value>2</value>
+      <value><![CDATA[/**
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>1</value>
+      <value>3</value>
+      <value>3</value>
+      <value><![CDATA[ * This file is part of phpUnderControl.
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>1</value>
+      <value>4</value>
+      <value>4</value>
+      <value><![CDATA[ * 
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>1</value>
+      <value>5</value>
+      <value>5</value>
+      <value><![CDATA[ * PHP Version 5.2.0
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>1</value>
+      <value>6</value>
+      <value>6</value>
+      <value><![CDATA[ *
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>1</value>
+      <value>7</value>
+      <value>7</value>
+      <value><![CDATA[ * Copyright (c) 2007-2008, Manuel Pichler <mapi@phpundercontrol.org>.
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>1</value>
+      <value>8</value>
+      <value>8</value>
+      <value><![CDATA[ * All rights reserved.
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>1</value>
+      <value>9</value>
+      <value>9</value>
+      <value><![CDATA[ *
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>1</value>
+      <value>10</value>
+      <value>10</value>
+      <value><![CDATA[ * Redistribution and use in source and binary forms, with or without
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>1</value>
+      <value>11</value>
+      <value>11</value>
+      <value><![CDATA[ * modification, are permitted provided that the following conditions
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>1</value>
+      <value>12</value>
+      <value>12</value>
+      <value><![CDATA[ * are met:
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>1</value>
+      <value>13</value>
+      <value>13</value>
+      <value><![CDATA[ *
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>1</value>
+      <value>14</value>
+      <value>14</value>
+      <value><![CDATA[ *   * Redistributions of source code must retain the above copyright
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>1</value>
+      <value>15</value>
+      <value>15</value>
+      <value><![CDATA[ *     notice, this list of conditions and the following disclaimer.
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>1</value>
+      <value>16</value>
+      <value>16</value>
+      <value><![CDATA[ *
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>1</value>
+      <value>17</value>
+      <value>17</value>
+      <value><![CDATA[ *   * Redistributions in binary form must reproduce the above copyright
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>1</value>
+      <value>18</value>
+      <value>18</value>
+      <value><![CDATA[ *     notice, this list of conditions and the following disclaimer in
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>1</value>
+      <value>19</value>
+      <value>19</value>
+      <value><![CDATA[ *     the documentation and/or other materials provided with the
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>1</value>
+      <value>20</value>
+      <value>20</value>
+      <value><![CDATA[ *     distribution.
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>1</value>
+      <value>21</value>
+      <value>21</value>
+      <value><![CDATA[ *
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>1</value>
+      <value>22</value>
+      <value>22</value>
+      <value><![CDATA[ *   * Neither the name of Manuel Pichler nor the names of his
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>1</value>
+      <value>23</value>
+      <value>23</value>
+      <value><![CDATA[ *     contributors may be used to endorse or promote products derived
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>1</value>
+      <value>24</value>
+      <value>24</value>
+      <value><![CDATA[ *     from this software without specific prior written permission.
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>1</value>
+      <value>25</value>
+      <value>25</value>
+      <value><![CDATA[ *
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>1</value>
+      <value>26</value>
+      <value>26</value>
+      <value><![CDATA[ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>1</value>
+      <value>27</value>
+      <value>27</value>
+      <value><![CDATA[ * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>1</value>
+      <value>28</value>
+      <value>28</value>
+      <value><![CDATA[ * LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>1</value>
+      <value>29</value>
+      <value>29</value>
+      <value><![CDATA[ * FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>1</value>
+      <value>30</value>
+      <value>30</value>
+      <value><![CDATA[ * COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>1</value>
+      <value>31</value>
+      <value>31</value>
+      <value><![CDATA[ * INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>1</value>
+      <value>32</value>
+      <value>32</value>
+      <value><![CDATA[ * BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>1</value>
+      <value>33</value>
+      <value>33</value>
+      <value><![CDATA[ * LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>1</value>
+      <value>34</value>
+      <value>34</value>
+      <value><![CDATA[ * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>1</value>
+      <value>35</value>
+      <value>35</value>
+      <value><![CDATA[ * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>1</value>
+      <value>36</value>
+      <value>36</value>
+      <value><![CDATA[ * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>1</value>
+      <value>37</value>
+      <value>37</value>
+      <value><![CDATA[ * POSSIBILITY OF SUCH DAMAGE.
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>1</value>
+      <value>38</value>
+      <value>38</value>
+      <value><![CDATA[ *
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>1</value>
+      <value>39</value>
+      <value>39</value>
+      <value><![CDATA[ * @category   QualityAssurance
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>1</value>
+      <value>40</value>
+      <value>40</value>
+      <value><![CDATA[ * @package    PhpUnderControl
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>1</value>
+      <value>41</value>
+      <value>41</value>
+      <value><![CDATA[ * @subpackage Documentation
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>1</value>
+      <value>42</value>
+      <value>42</value>
+      <value><![CDATA[ * @author     Manuel Pichler <mapi@phpundercontrol.org>
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>1</value>
+      <value>43</value>
+      <value>43</value>
+      <value><![CDATA[ * @copyright  2007-2008 Manuel Pichler. All rights reserved.
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>1</value>
+      <value>44</value>
+      <value>44</value>
+      <value><![CDATA[ * @license    http://www.opensource.org/licenses/bsd-license.php  BSD License
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>1</value>
+      <value>45</value>
+      <value>45</value>
+      <value><![CDATA[ * @version    SVN: $Id: PhpUnderControl.php 2631 2008-03-18 15:23:55Z mapi $
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>1</value>
+      <value>46</value>
+      <value>46</value>
+      <value><![CDATA[ * @link       http://www.phpundercontrol.org/
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>1</value>
+      <value>47</value>
+      <value>47</value>
+      <value><![CDATA[ */
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>1</value>
+      <value>48</value>
+      <value>48</value>
+      <value><![CDATA[
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>1</value>
+      <value>49</value>
+      <value>49</value>
+      <value><![CDATA[require_once dirname( __FILE__ ) . '/MergeCode.php';
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>1</value>
+      <value>50</value>
+      <value>50</value>
+      <value><![CDATA[
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>1</value>
+      <value>51</value>
+      <value>51</value>
+      <value><![CDATA[require_once 'PHPUnit/Framework/TestCase.php';
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>1</value>
+      <value>52</value>
+      <value>52</value>
+      <value><![CDATA[
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>1</value>
+      <value>53</value>
+      <value>53</value>
+      <value><![CDATA[/**
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>1</value>
+      <value>54</value>
+      <value>54</value>
+      <value><![CDATA[ * Documentation/Example/Test testcase for environment specific code.
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>1</value>
+      <value>55</value>
+      <value>55</value>
+      <value><![CDATA[ *
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>1</value>
+      <value>56</value>
+      <value>56</value>
+      <value><![CDATA[ * @category   QualityAssurance
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>1</value>
+      <value>57</value>
+      <value>57</value>
+      <value><![CDATA[ * @package    PhpUnderControl
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>1</value>
+      <value>58</value>
+      <value>58</value>
+      <value><![CDATA[ * @subpackage Documentation
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>1</value>
+      <value>59</value>
+      <value>59</value>
+      <value><![CDATA[ * @author     Manuel Pichler <mapi@phpundercontrol.org>
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>1</value>
+      <value>60</value>
+      <value>60</value>
+      <value><![CDATA[ * @copyright  2007-2008 Manuel Pichler. All rights reserved.
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>1</value>
+      <value>61</value>
+      <value>61</value>
+      <value><![CDATA[ * @license    http://www.opensource.org/licenses/bsd-license.php  BSD License
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>1</value>
+      <value>62</value>
+      <value>62</value>
+      <value><![CDATA[ * @version    Release: @package_version@
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>1</value>
+      <value>63</value>
+      <value>63</value>
+      <value><![CDATA[ * @link       http://www.phpundercontrol.org/
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>1</value>
+      <value>64</value>
+      <value>64</value>
+      <value><![CDATA[ */
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>1</value>
+      <value>65</value>
+      <value>65</value>
+      <value><![CDATA[class phpucMergeCodeTest extends PHPUnit_Framework_TestCase
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>1</value>
+      <value>66</value>
+      <value>66</value>
+      <value><![CDATA[{
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>1</value>
+      <value>67</value>
+      <value>67</value>
+      <value><![CDATA[    /**
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>1</value>
+      <value>68</value>
+      <value>68</value>
+      <value><![CDATA[     * Version specific test case.
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>1</value>
+      <value>69</value>
+      <value>69</value>
+      <value><![CDATA[     *
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>1</value>
+      <value>70</value>
+      <value>70</value>
+      <value><![CDATA[     * @return void
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>1</value>
+      <value>71</value>
+      <value>71</value>
+      <value><![CDATA[     */
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>1</value>
+      <value>72</value>
+      <value>72</value>
+      <value><![CDATA[    public function testVersionSpecific()
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>1</value>
+      <value>73</value>
+      <value>73</value>
+      <value><![CDATA[    {
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>1</value>
+      <value>74</value>
+      <value>74</value>
+      <value><![CDATA[        $obj = new phpucMergeCode();
+]]></value>
+      <value>1</value>
+    </row>
+    <row>
+      <value>1</value>
+      <value>75</value>
+      <value>75</value>
+      <value><![CDATA[        $this->assertEquals( phpversion(), $obj->versionSpecific() );
+]]></value>
+      <value>1</value>
+    </row>
+    <row>
+      <value>1</value>
+      <value>76</value>
+      <value>76</value>
+      <value><![CDATA[    }
+]]></value>
+      <value>1</value>
+    </row>
+    <row>
+      <value>1</value>
+      <value>77</value>
+      <value>77</value>
+      <value><![CDATA[    
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>1</value>
+      <value>78</value>
+      <value>78</value>
+      <value><![CDATA[    public function testNotVersionSpecific()
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>1</value>
+      <value>79</value>
+      <value>79</value>
+      <value><![CDATA[    {
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>1</value>
+      <value>80</value>
+      <value>80</value>
+      <value><![CDATA[        $obj = new phpucMergeCode();
+]]></value>
+      <value>1</value>
+    </row>
+    <row>
+      <value>1</value>
+      <value>81</value>
+      <value>81</value>
+      <value><![CDATA[        
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>1</value>
+      <value>82</value>
+      <value>82</value>
+      <value><![CDATA[        $mode = phpucMergeCode::REVERSE;
+]]></value>
+      <value>1</value>
+    </row>
+    <row>
+      <value>1</value>
+      <value>83</value>
+      <value>83</value>
+      <value><![CDATA[        if ( version_compare( phpversion(), '5.2.5' ) === 1 )
+]]></value>
+      <value>1</value>
+    </row>
+    <row>
+      <value>1</value>
+      <value>84</value>
+      <value>84</value>
+      <value><![CDATA[        {
+]]></value>
+      <value>1</value>
+    </row>
+    <row>
+      <value>1</value>
+      <value>85</value>
+      <value>85</value>
+      <value><![CDATA[            $mode = phpucMergeCode::NORMAL;
+]]></value>
+      <value>1</value>
+    </row>
+    <row>
+      <value>1</value>
+      <value>86</value>
+      <value>86</value>
+      <value><![CDATA[        }
+]]></value>
+      <value>1</value>
+    </row>
+    <row>
+      <value>1</value>
+      <value>87</value>
+      <value>87</value>
+      <value><![CDATA[        
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>1</value>
+      <value>88</value>
+      <value>88</value>
+      <value><![CDATA[        $this->assertEquals( 
+]]></value>
+      <value>1</value>
+    </row>
+    <row>
+      <value>1</value>
+      <value>89</value>
+      <value>89</value>
+      <value><![CDATA[            strrev( php_sapi_name() ), 
+]]></value>
+      <value>1</value>
+    </row>
+    <row>
+      <value>1</value>
+      <value>90</value>
+      <value>90</value>
+      <value><![CDATA[            $obj->notVersionSpecific( phpucMergeCode::SAPI, $mode )
+]]></value>
+      <value>1</value>
+    </row>
+    <row>
+      <value>1</value>
+      <value>91</value>
+      <value>91</value>
+      <value><![CDATA[        );
+]]></value>
+      <value>1</value>
+    </row>
+    <row>
+      <value>1</value>
+      <value>92</value>
+      <value>92</value>
+      <value><![CDATA[    }
+]]></value>
+      <value>1</value>
+    </row>
+    <row>
+      <value>1</value>
+      <value>93</value>
+      <value>93</value>
+      <value><![CDATA[    
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>1</value>
+      <value>94</value>
+      <value>94</value>
+      <value><![CDATA[    /**
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>1</value>
+      <value>95</value>
+      <value>95</value>
+      <value><![CDATA[     * phpunit dataProvider test.
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>1</value>
+      <value>96</value>
+      <value>96</value>
+      <value><![CDATA[     *
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>1</value>
+      <value>97</value>
+      <value>97</value>
+      <value><![CDATA[     * @param integer $x Test value one.
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>1</value>
+      <value>98</value>
+      <value>98</value>
+      <value><![CDATA[     * @param integer $y Test value two.
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>1</value>
+      <value>99</value>
+      <value>99</value>
+      <value><![CDATA[     * 
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>1</value>
+      <value>100</value>
+      <value>100</value>
+      <value><![CDATA[     * @return void
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>1</value>
+      <value>101</value>
+      <value>101</value>
+      <value><![CDATA[     * @dataProvider dataProvider
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>1</value>
+      <value>102</value>
+      <value>102</value>
+      <value><![CDATA[     */
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>1</value>
+      <value>103</value>
+      <value>103</value>
+      <value><![CDATA[    public function testCalculate($x, $y)
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>1</value>
+      <value>104</value>
+      <value>104</value>
+      <value><![CDATA[    {
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>1</value>
+      <value>105</value>
+      <value>105</value>
+      <value><![CDATA[        $obj = new phpucMergeCode();
+]]></value>
+      <value>1</value>
+    </row>
+    <row>
+      <value>1</value>
+      <value>106</value>
+      <value>106</value>
+      <value><![CDATA[        
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>1</value>
+      <value>107</value>
+      <value>107</value>
+      <value><![CDATA[        $this->assertEquals( 3, $obj->calculate( $x, $y ) );
+]]></value>
+      <value>1</value>
+    </row>
+    <row>
+      <value>1</value>
+      <value>108</value>
+      <value>108</value>
+      <value><![CDATA[    }
+]]></value>
+      <value>1</value>
+    </row>
+    <row>
+      <value>1</value>
+      <value>109</value>
+      <value>109</value>
+      <value><![CDATA[    
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>1</value>
+      <value>110</value>
+      <value>110</value>
+      <value><![CDATA[    /**
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>1</value>
+      <value>111</value>
+      <value>111</value>
+      <value><![CDATA[     * Test data provider.
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>1</value>
+      <value>112</value>
+      <value>112</value>
+      <value><![CDATA[     *
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>1</value>
+      <value>113</value>
+      <value>113</value>
+      <value><![CDATA[     * @return array(array)
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>1</value>
+      <value>114</value>
+      <value>114</value>
+      <value><![CDATA[     */
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>1</value>
+      <value>115</value>
+      <value>115</value>
+      <value><![CDATA[    public static function dataProvider()
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>1</value>
+      <value>116</value>
+      <value>116</value>
+      <value><![CDATA[    {
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>1</value>
+      <value>117</value>
+      <value>117</value>
+      <value><![CDATA[        return array(
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>1</value>
+      <value>118</value>
+      <value>118</value>
+      <value><![CDATA[            array( 1, 2 ),
+]]></value>
+      <value>-1</value>
+    </row>
+    <row>
+      <value>1</value>
+      <value>119</value>
+      <value>119</value>
+      <value><![CDATA[            array( -2, 5 ),
+]]></value>
+      <value>-1</value>
+    </row>
+    <row>
+      <value>1</value>
+      <value>120</value>
+      <value>120</value>
+      <value><![CDATA[            array( 2, 2 ),
+]]></value>
+      <value>-1</value>
+    </row>
+    <row>
+      <value>1</value>
+      <value>121</value>
+      <value>121</value>
+      <value><![CDATA[            array( 9, -6 )
+]]></value>
+      <value>-1</value>
+    </row>
+    <row>
+      <value>1</value>
+      <value>122</value>
+      <value>122</value>
+      <value><![CDATA[        );
+]]></value>
+      <value>-1</value>
+    </row>
+    <row>
+      <value>1</value>
+      <value>123</value>
+      <value>123</value>
+      <value><![CDATA[    }
+]]></value>
+      <value>-2</value>
+    </row>
+    <row>
+      <value>1</value>
+      <value>124</value>
+      <value>124</value>
+      <value><![CDATA[}]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>2</value>
+      <value>125</value>
+      <value>1</value>
+      <value><![CDATA[<?php
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>2</value>
+      <value>126</value>
+      <value>2</value>
+      <value><![CDATA[/**
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>2</value>
+      <value>127</value>
+      <value>3</value>
+      <value><![CDATA[ * This file is part of phpUnderControl.
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>2</value>
+      <value>128</value>
+      <value>4</value>
+      <value><![CDATA[ * 
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>2</value>
+      <value>129</value>
+      <value>5</value>
+      <value><![CDATA[ * PHP Version 5.2.0
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>2</value>
+      <value>130</value>
+      <value>6</value>
+      <value><![CDATA[ *
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>2</value>
+      <value>131</value>
+      <value>7</value>
+      <value><![CDATA[ * Copyright (c) 2007-2008, Manuel Pichler <mapi@phpundercontrol.org>.
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>2</value>
+      <value>132</value>
+      <value>8</value>
+      <value><![CDATA[ * All rights reserved.
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>2</value>
+      <value>133</value>
+      <value>9</value>
+      <value><![CDATA[ *
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>2</value>
+      <value>134</value>
+      <value>10</value>
+      <value><![CDATA[ * Redistribution and use in source and binary forms, with or without
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>2</value>
+      <value>135</value>
+      <value>11</value>
+      <value><![CDATA[ * modification, are permitted provided that the following conditions
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>2</value>
+      <value>136</value>
+      <value>12</value>
+      <value><![CDATA[ * are met:
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>2</value>
+      <value>137</value>
+      <value>13</value>
+      <value><![CDATA[ *
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>2</value>
+      <value>138</value>
+      <value>14</value>
+      <value><![CDATA[ *   * Redistributions of source code must retain the above copyright
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>2</value>
+      <value>139</value>
+      <value>15</value>
+      <value><![CDATA[ *     notice, this list of conditions and the following disclaimer.
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>2</value>
+      <value>140</value>
+      <value>16</value>
+      <value><![CDATA[ *
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>2</value>
+      <value>141</value>
+      <value>17</value>
+      <value><![CDATA[ *   * Redistributions in binary form must reproduce the above copyright
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>2</value>
+      <value>142</value>
+      <value>18</value>
+      <value><![CDATA[ *     notice, this list of conditions and the following disclaimer in
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>2</value>
+      <value>143</value>
+      <value>19</value>
+      <value><![CDATA[ *     the documentation and/or other materials provided with the
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>2</value>
+      <value>144</value>
+      <value>20</value>
+      <value><![CDATA[ *     distribution.
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>2</value>
+      <value>145</value>
+      <value>21</value>
+      <value><![CDATA[ *
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>2</value>
+      <value>146</value>
+      <value>22</value>
+      <value><![CDATA[ *   * Neither the name of Manuel Pichler nor the names of his
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>2</value>
+      <value>147</value>
+      <value>23</value>
+      <value><![CDATA[ *     contributors may be used to endorse or promote products derived
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>2</value>
+      <value>148</value>
+      <value>24</value>
+      <value><![CDATA[ *     from this software without specific prior written permission.
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>2</value>
+      <value>149</value>
+      <value>25</value>
+      <value><![CDATA[ *
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>2</value>
+      <value>150</value>
+      <value>26</value>
+      <value><![CDATA[ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>2</value>
+      <value>151</value>
+      <value>27</value>
+      <value><![CDATA[ * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>2</value>
+      <value>152</value>
+      <value>28</value>
+      <value><![CDATA[ * LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>2</value>
+      <value>153</value>
+      <value>29</value>
+      <value><![CDATA[ * FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>2</value>
+      <value>154</value>
+      <value>30</value>
+      <value><![CDATA[ * COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>2</value>
+      <value>155</value>
+      <value>31</value>
+      <value><![CDATA[ * INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>2</value>
+      <value>156</value>
+      <value>32</value>
+      <value><![CDATA[ * BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>2</value>
+      <value>157</value>
+      <value>33</value>
+      <value><![CDATA[ * LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>2</value>
+      <value>158</value>
+      <value>34</value>
+      <value><![CDATA[ * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>2</value>
+      <value>159</value>
+      <value>35</value>
+      <value><![CDATA[ * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>2</value>
+      <value>160</value>
+      <value>36</value>
+      <value><![CDATA[ * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>2</value>
+      <value>161</value>
+      <value>37</value>
+      <value><![CDATA[ * POSSIBILITY OF SUCH DAMAGE.
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>2</value>
+      <value>162</value>
+      <value>38</value>
+      <value><![CDATA[ *
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>2</value>
+      <value>163</value>
+      <value>39</value>
+      <value><![CDATA[ * @category   QualityAssurance
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>2</value>
+      <value>164</value>
+      <value>40</value>
+      <value><![CDATA[ * @package    PhpUnderControl
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>2</value>
+      <value>165</value>
+      <value>41</value>
+      <value><![CDATA[ * @subpackage Documentation
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>2</value>
+      <value>166</value>
+      <value>42</value>
+      <value><![CDATA[ * @author     Manuel Pichler <mapi@phpundercontrol.org>
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>2</value>
+      <value>167</value>
+      <value>43</value>
+      <value><![CDATA[ * @copyright  2007-2008 Manuel Pichler. All rights reserved.
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>2</value>
+      <value>168</value>
+      <value>44</value>
+      <value><![CDATA[ * @license    http://www.opensource.org/licenses/bsd-license.php  BSD License
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>2</value>
+      <value>169</value>
+      <value>45</value>
+      <value><![CDATA[ * @version    SVN: $Id: PhpUnderControl.php 2631 2008-03-18 15:23:55Z mapi $
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>2</value>
+      <value>170</value>
+      <value>46</value>
+      <value><![CDATA[ * @link       http://www.phpundercontrol.org/
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>2</value>
+      <value>171</value>
+      <value>47</value>
+      <value><![CDATA[ */
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>2</value>
+      <value>172</value>
+      <value>48</value>
+      <value><![CDATA[
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>2</value>
+      <value>173</value>
+      <value>49</value>
+      <value><![CDATA[/**
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>2</value>
+      <value>174</value>
+      <value>50</value>
+      <value><![CDATA[ * Documentation/Example/Test class for environment specific code.
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>2</value>
+      <value>175</value>
+      <value>51</value>
+      <value><![CDATA[ *
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>2</value>
+      <value>176</value>
+      <value>52</value>
+      <value><![CDATA[ * @category   QualityAssurance
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>2</value>
+      <value>177</value>
+      <value>53</value>
+      <value><![CDATA[ * @package    PhpUnderControl
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>2</value>
+      <value>178</value>
+      <value>54</value>
+      <value><![CDATA[ * @subpackage Documentation
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>2</value>
+      <value>179</value>
+      <value>55</value>
+      <value><![CDATA[ * @author     Manuel Pichler <mapi@phpundercontrol.org>
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>2</value>
+      <value>180</value>
+      <value>56</value>
+      <value><![CDATA[ * @copyright  2007-2008 Manuel Pichler. All rights reserved.
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>2</value>
+      <value>181</value>
+      <value>57</value>
+      <value><![CDATA[ * @license    http://www.opensource.org/licenses/bsd-license.php  BSD License
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>2</value>
+      <value>182</value>
+      <value>58</value>
+      <value><![CDATA[ * @version    Release: @package_version@
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>2</value>
+      <value>183</value>
+      <value>59</value>
+      <value><![CDATA[ * @link       http://www.phpundercontrol.org/
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>2</value>
+      <value>184</value>
+      <value>60</value>
+      <value><![CDATA[ */
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>2</value>
+      <value>185</value>
+      <value>61</value>
+      <value><![CDATA[class phpucMergeCodeHelper
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>2</value>
+      <value>186</value>
+      <value>62</value>
+      <value><![CDATA[{
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>2</value>
+      <value>187</value>
+      <value>63</value>
+      <value><![CDATA[    /**
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>2</value>
+      <value>188</value>
+      <value>64</value>
+      <value><![CDATA[     * Returns a php 5.2.0 specific token
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>2</value>
+      <value>189</value>
+      <value>65</value>
+      <value><![CDATA[     *
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>2</value>
+      <value>190</value>
+      <value>66</value>
+      <value><![CDATA[     * @return string
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>2</value>
+      <value>191</value>
+      <value>67</value>
+      <value><![CDATA[     */
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>2</value>
+      <value>192</value>
+      <value>68</value>
+      <value><![CDATA[    public function version520()
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>2</value>
+      <value>193</value>
+      <value>69</value>
+      <value><![CDATA[    {
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>2</value>
+      <value>194</value>
+      <value>70</value>
+      <value><![CDATA[        return '5.2.0';
+]]></value>
+      <value>1</value>
+    </row>
+    <row>
+      <value>2</value>
+      <value>195</value>
+      <value>71</value>
+      <value><![CDATA[    }
+]]></value>
+      <value>-2</value>
+    </row>
+    <row>
+      <value>2</value>
+      <value>196</value>
+      <value>72</value>
+      <value><![CDATA[    
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>2</value>
+      <value>197</value>
+      <value>73</value>
+      <value><![CDATA[    /**
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>2</value>
+      <value>198</value>
+      <value>74</value>
+      <value><![CDATA[     * Returns a php 5.2.5 specific token
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>2</value>
+      <value>199</value>
+      <value>75</value>
+      <value><![CDATA[     *
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>2</value>
+      <value>200</value>
+      <value>76</value>
+      <value><![CDATA[     * @return string
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>2</value>
+      <value>201</value>
+      <value>77</value>
+      <value><![CDATA[     */
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>2</value>
+      <value>202</value>
+      <value>78</value>
+      <value><![CDATA[    public function version525()
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>2</value>
+      <value>203</value>
+      <value>79</value>
+      <value><![CDATA[    {
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>2</value>
+      <value>204</value>
+      <value>80</value>
+      <value><![CDATA[        include dirname( __FILE__ ) . '/MergeCode525.php';
+]]></value>
+      <value>1</value>
+    </row>
+    <row>
+      <value>2</value>
+      <value>205</value>
+      <value>81</value>
+      <value><![CDATA[        
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>2</value>
+      <value>206</value>
+      <value>82</value>
+      <value><![CDATA[        $obj = new phpucMergeCode525();
+]]></value>
+      <value>1</value>
+    </row>
+    <row>
+      <value>2</value>
+      <value>207</value>
+      <value>83</value>
+      <value><![CDATA[        
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>2</value>
+      <value>208</value>
+      <value>84</value>
+      <value><![CDATA[        return $obj->version();
+]]></value>
+      <value>1</value>
+    </row>
+    <row>
+      <value>2</value>
+      <value>209</value>
+      <value>85</value>
+      <value><![CDATA[    }
+]]></value>
+      <value>-2</value>
+    </row>
+    <row>
+      <value>2</value>
+      <value>210</value>
+      <value>86</value>
+      <value><![CDATA[    
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>2</value>
+      <value>211</value>
+      <value>87</value>
+      <value><![CDATA[    /**
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>2</value>
+      <value>212</value>
+      <value>88</value>
+      <value><![CDATA[     * Returns current php version specific token.
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>2</value>
+      <value>213</value>
+      <value>89</value>
+      <value><![CDATA[     *
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>2</value>
+      <value>214</value>
+      <value>90</value>
+      <value><![CDATA[     * @return string
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>2</value>
+      <value>215</value>
+      <value>91</value>
+      <value><![CDATA[     */
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>2</value>
+      <value>216</value>
+      <value>92</value>
+      <value><![CDATA[    public function versionAny()
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>2</value>
+      <value>217</value>
+      <value>93</value>
+      <value><![CDATA[    {
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>2</value>
+      <value>218</value>
+      <value>94</value>
+      <value><![CDATA[        return phpversion();
+]]></value>
+      <value>1</value>
+    </row>
+    <row>
+      <value>2</value>
+      <value>219</value>
+      <value>95</value>
+      <value><![CDATA[    }
+]]></value>
+      <value>-2</value>
+    </row>
+    <row>
+      <value>2</value>
+      <value>220</value>
+      <value>96</value>
+      <value><![CDATA[}]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>221</value>
+      <value>1</value>
+      <value><![CDATA[<?php
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>222</value>
+      <value>2</value>
+      <value><![CDATA[/**
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>223</value>
+      <value>3</value>
+      <value><![CDATA[ * This file is part of phpUnderControl.
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>224</value>
+      <value>4</value>
+      <value><![CDATA[ * 
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>225</value>
+      <value>5</value>
+      <value><![CDATA[ * PHP Version 5.2.0
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>226</value>
+      <value>6</value>
+      <value><![CDATA[ *
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>227</value>
+      <value>7</value>
+      <value><![CDATA[ * Copyright (c) 2007-2008, Manuel Pichler <mapi@phpundercontrol.org>.
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>228</value>
+      <value>8</value>
+      <value><![CDATA[ * All rights reserved.
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>229</value>
+      <value>9</value>
+      <value><![CDATA[ *
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>230</value>
+      <value>10</value>
+      <value><![CDATA[ * Redistribution and use in source and binary forms, with or without
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>231</value>
+      <value>11</value>
+      <value><![CDATA[ * modification, are permitted provided that the following conditions
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>232</value>
+      <value>12</value>
+      <value><![CDATA[ * are met:
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>233</value>
+      <value>13</value>
+      <value><![CDATA[ *
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>234</value>
+      <value>14</value>
+      <value><![CDATA[ *   * Redistributions of source code must retain the above copyright
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>235</value>
+      <value>15</value>
+      <value><![CDATA[ *     notice, this list of conditions and the following disclaimer.
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>236</value>
+      <value>16</value>
+      <value><![CDATA[ *
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>237</value>
+      <value>17</value>
+      <value><![CDATA[ *   * Redistributions in binary form must reproduce the above copyright
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>238</value>
+      <value>18</value>
+      <value><![CDATA[ *     notice, this list of conditions and the following disclaimer in
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>239</value>
+      <value>19</value>
+      <value><![CDATA[ *     the documentation and/or other materials provided with the
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>240</value>
+      <value>20</value>
+      <value><![CDATA[ *     distribution.
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>241</value>
+      <value>21</value>
+      <value><![CDATA[ *
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>242</value>
+      <value>22</value>
+      <value><![CDATA[ *   * Neither the name of Manuel Pichler nor the names of his
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>243</value>
+      <value>23</value>
+      <value><![CDATA[ *     contributors may be used to endorse or promote products derived
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>244</value>
+      <value>24</value>
+      <value><![CDATA[ *     from this software without specific prior written permission.
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>245</value>
+      <value>25</value>
+      <value><![CDATA[ *
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>246</value>
+      <value>26</value>
+      <value><![CDATA[ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>247</value>
+      <value>27</value>
+      <value><![CDATA[ * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>248</value>
+      <value>28</value>
+      <value><![CDATA[ * LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>249</value>
+      <value>29</value>
+      <value><![CDATA[ * FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>250</value>
+      <value>30</value>
+      <value><![CDATA[ * COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>251</value>
+      <value>31</value>
+      <value><![CDATA[ * INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>252</value>
+      <value>32</value>
+      <value><![CDATA[ * BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>253</value>
+      <value>33</value>
+      <value><![CDATA[ * LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>254</value>
+      <value>34</value>
+      <value><![CDATA[ * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>255</value>
+      <value>35</value>
+      <value><![CDATA[ * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>256</value>
+      <value>36</value>
+      <value><![CDATA[ * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>257</value>
+      <value>37</value>
+      <value><![CDATA[ * POSSIBILITY OF SUCH DAMAGE.
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>258</value>
+      <value>38</value>
+      <value><![CDATA[ *
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>259</value>
+      <value>39</value>
+      <value><![CDATA[ * @category   QualityAssurance
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>260</value>
+      <value>40</value>
+      <value><![CDATA[ * @package    PhpUnderControl
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>261</value>
+      <value>41</value>
+      <value><![CDATA[ * @subpackage Documentation
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>262</value>
+      <value>42</value>
+      <value><![CDATA[ * @author     Manuel Pichler <mapi@phpundercontrol.org>
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>263</value>
+      <value>43</value>
+      <value><![CDATA[ * @copyright  2007-2008 Manuel Pichler. All rights reserved.
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>264</value>
+      <value>44</value>
+      <value><![CDATA[ * @license    http://www.opensource.org/licenses/bsd-license.php  BSD License
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>265</value>
+      <value>45</value>
+      <value><![CDATA[ * @version    SVN: $Id: PhpUnderControl.php 2631 2008-03-18 15:23:55Z mapi $
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>266</value>
+      <value>46</value>
+      <value><![CDATA[ * @link       http://www.phpundercontrol.org/
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>267</value>
+      <value>47</value>
+      <value><![CDATA[ */
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>268</value>
+      <value>48</value>
+      <value><![CDATA[
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>269</value>
+      <value>49</value>
+      <value><![CDATA[require_once dirname( __FILE__ ) . '/MergeCodeHelper.php';
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>270</value>
+      <value>50</value>
+      <value><![CDATA[
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>271</value>
+      <value>51</value>
+      <value><![CDATA[/**
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>272</value>
+      <value>52</value>
+      <value><![CDATA[ * Documentation/Example/Test class for environment specific code.
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>273</value>
+      <value>53</value>
+      <value><![CDATA[ *
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>274</value>
+      <value>54</value>
+      <value><![CDATA[ * @category   QualityAssurance
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>275</value>
+      <value>55</value>
+      <value><![CDATA[ * @package    PhpUnderControl
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>276</value>
+      <value>56</value>
+      <value><![CDATA[ * @subpackage Documentation
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>277</value>
+      <value>57</value>
+      <value><![CDATA[ * @author     Manuel Pichler <mapi@phpundercontrol.org>
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>278</value>
+      <value>58</value>
+      <value><![CDATA[ * @copyright  2007-2008 Manuel Pichler. All rights reserved.
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>279</value>
+      <value>59</value>
+      <value><![CDATA[ * @license    http://www.opensource.org/licenses/bsd-license.php  BSD License
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>280</value>
+      <value>60</value>
+      <value><![CDATA[ * @version    Release: @package_version@
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>281</value>
+      <value>61</value>
+      <value><![CDATA[ * @link       http://www.phpundercontrol.org/
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>282</value>
+      <value>62</value>
+      <value><![CDATA[ */
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>283</value>
+      <value>63</value>
+      <value><![CDATA[class phpucMergeCode
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>284</value>
+      <value>64</value>
+      <value><![CDATA[{
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>285</value>
+      <value>65</value>
+      <value><![CDATA[    /**
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>286</value>
+      <value>66</value>
+      <value><![CDATA[     * Return used sapi.
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>287</value>
+      <value>67</value>
+      <value><![CDATA[     */
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>288</value>
+      <value>68</value>
+      <value><![CDATA[    const SAPI = 1;
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>289</value>
+      <value>69</value>
+      <value><![CDATA[    
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>290</value>
+      <value>70</value>
+      <value><![CDATA[    /**
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>291</value>
+      <value>71</value>
+      <value><![CDATA[     * Return used php version
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>292</value>
+      <value>72</value>
+      <value><![CDATA[     */
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>293</value>
+      <value>73</value>
+      <value><![CDATA[    const VERSION = 2;
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>294</value>
+      <value>74</value>
+      <value><![CDATA[    
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>295</value>
+      <value>75</value>
+      <value><![CDATA[    /**
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>296</value>
+      <value>76</value>
+      <value><![CDATA[     * Return tested class name.
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>297</value>
+      <value>77</value>
+      <value><![CDATA[     */
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>298</value>
+      <value>78</value>
+      <value><![CDATA[    const NAME = 3;
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>299</value>
+      <value>79</value>
+      <value><![CDATA[    
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>300</value>
+      <value>80</value>
+      <value><![CDATA[    /**
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>301</value>
+      <value>81</value>
+      <value><![CDATA[     * Return normal token.
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>302</value>
+      <value>82</value>
+      <value><![CDATA[     */
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>303</value>
+      <value>83</value>
+      <value><![CDATA[    const NORMAL = 1;
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>304</value>
+      <value>84</value>
+      <value><![CDATA[    
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>305</value>
+      <value>85</value>
+      <value><![CDATA[    /**
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>306</value>
+      <value>86</value>
+      <value><![CDATA[     * Return reverse token.
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>307</value>
+      <value>87</value>
+      <value><![CDATA[     */
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>308</value>
+      <value>88</value>
+      <value><![CDATA[    const REVERSE = 2;
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>309</value>
+      <value>89</value>
+      <value><![CDATA[    
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>310</value>
+      <value>90</value>
+      <value><![CDATA[    /**
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>311</value>
+      <value>91</value>
+      <value><![CDATA[     * Return base64 token.
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>312</value>
+      <value>92</value>
+      <value><![CDATA[     */
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>313</value>
+      <value>93</value>
+      <value><![CDATA[    const BASE64 = 3;
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>314</value>
+      <value>94</value>
+      <value><![CDATA[    
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>315</value>
+      <value>95</value>
+      <value><![CDATA[    /**
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>316</value>
+      <value>96</value>
+      <value><![CDATA[     * Returns a php version specific token.
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>317</value>
+      <value>97</value>
+      <value><![CDATA[     *
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>318</value>
+      <value>98</value>
+      <value><![CDATA[     * @return string
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>319</value>
+      <value>99</value>
+      <value><![CDATA[     */
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>320</value>
+      <value>100</value>
+      <value><![CDATA[    public function versionSpecific()
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>321</value>
+      <value>101</value>
+      <value><![CDATA[    {
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>322</value>
+      <value>102</value>
+      <value><![CDATA[        $helper = new phpucMergeCodeHelper();
+]]></value>
+      <value>1</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>323</value>
+      <value>103</value>
+      <value><![CDATA[        
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>324</value>
+      <value>104</value>
+      <value><![CDATA[        $value = null;
+]]></value>
+      <value>1</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>325</value>
+      <value>105</value>
+      <value><![CDATA[        if (version_compare(phpversion(), '5.2.0') === 0)
+]]></value>
+      <value>1</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>326</value>
+      <value>106</value>
+      <value><![CDATA[        {
+]]></value>
+      <value>1</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>327</value>
+      <value>107</value>
+      <value><![CDATA[            $value = $helper->version520();
+]]></value>
+      <value>1</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>328</value>
+      <value>108</value>
+      <value><![CDATA[        }
+]]></value>
+      <value>1</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>329</value>
+      <value>109</value>
+      <value><![CDATA[        else if (version_compare(phpversion(), '5.2.5') === 0)
+]]></value>
+      <value>1</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>330</value>
+      <value>110</value>
+      <value><![CDATA[        {
+]]></value>
+      <value>1</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>331</value>
+      <value>111</value>
+      <value><![CDATA[            $value = $helper->version525();
+]]></value>
+      <value>1</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>332</value>
+      <value>112</value>
+      <value><![CDATA[        }
+]]></value>
+      <value>1</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>333</value>
+      <value>113</value>
+      <value><![CDATA[        else
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>334</value>
+      <value>114</value>
+      <value><![CDATA[        {
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>335</value>
+      <value>115</value>
+      <value><![CDATA[            $value = $helper->versionAny();
+]]></value>
+      <value>1</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>336</value>
+      <value>116</value>
+      <value><![CDATA[        }
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>337</value>
+      <value>117</value>
+      <value><![CDATA[        return $value;
+]]></value>
+      <value>1</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>338</value>
+      <value>118</value>
+      <value><![CDATA[    }
+]]></value>
+      <value>-2</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>339</value>
+      <value>119</value>
+      <value><![CDATA[    
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>340</value>
+      <value>120</value>
+      <value><![CDATA[    /**
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>341</value>
+      <value>121</value>
+      <value><![CDATA[     * Returns a not version specific token.
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>342</value>
+      <value>122</value>
+      <value><![CDATA[     * 
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>343</value>
+      <value>123</value>
+      <value><![CDATA[     * @param integer $what What token?
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>344</value>
+      <value>124</value>
+      <value><![CDATA[     * @param integer $mode Reverse, normal or base64 token string?
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>345</value>
+      <value>125</value>
+      <value><![CDATA[     *
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>346</value>
+      <value>126</value>
+      <value><![CDATA[     * @return string
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>347</value>
+      <value>127</value>
+      <value><![CDATA[     */
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>348</value>
+      <value>128</value>
+      <value><![CDATA[    public function notVersionSpecific($what, $mode)
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>349</value>
+      <value>129</value>
+      <value><![CDATA[    {
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>350</value>
+      <value>130</value>
+      <value><![CDATA[        $value = null;
+]]></value>
+      <value>1</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>351</value>
+      <value>131</value>
+      <value><![CDATA[        switch ( $what )
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>352</value>
+      <value>132</value>
+      <value><![CDATA[        {
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>353</value>
+      <value>133</value>
+      <value><![CDATA[            case self::SAPI:
+]]></value>
+      <value>1</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>354</value>
+      <value>134</value>
+      <value><![CDATA[                if ( $mode === self::REVERSE )
+]]></value>
+      <value>1</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>355</value>
+      <value>135</value>
+      <value><![CDATA[                {
+]]></value>
+      <value>1</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>356</value>
+      <value>136</value>
+      <value><![CDATA[                    $value = strrev( php_sapi_name() );
+]]></value>
+      <value>1</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>357</value>
+      <value>137</value>
+      <value><![CDATA[                }
+]]></value>
+      <value>1</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>358</value>
+      <value>138</value>
+      <value><![CDATA[                else if ( $mode === self::BASE64 )
+]]></value>
+      <value>1</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>359</value>
+      <value>139</value>
+      <value><![CDATA[                {
+]]></value>
+      <value>1</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>360</value>
+      <value>140</value>
+      <value><![CDATA[                    $value = base64_encode( php_sapi_name() );
+]]></value>
+      <value>-1</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>361</value>
+      <value>141</value>
+      <value><![CDATA[                }
+]]></value>
+      <value>-1</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>362</value>
+      <value>142</value>
+      <value><![CDATA[                else
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>363</value>
+      <value>143</value>
+      <value><![CDATA[                {
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>364</value>
+      <value>144</value>
+      <value><![CDATA[                    $value = php_sapi_name();
+]]></value>
+      <value>1</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>365</value>
+      <value>145</value>
+      <value><![CDATA[                }
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>366</value>
+      <value>146</value>
+      <value><![CDATA[                break;
+]]></value>
+      <value>1</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>367</value>
+      <value>147</value>
+      <value><![CDATA[                
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>368</value>
+      <value>148</value>
+      <value><![CDATA[            case self::VERSION:
+]]></value>
+      <value>-1</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>369</value>
+      <value>149</value>
+      <value><![CDATA[                if ($mode === self::REVERSE)
+]]></value>
+      <value>-1</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>370</value>
+      <value>150</value>
+      <value><![CDATA[                {
+]]></value>
+      <value>-1</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>371</value>
+      <value>151</value>
+      <value><![CDATA[                    $value = strrev( phpversion() );
+]]></value>
+      <value>-1</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>372</value>
+      <value>152</value>
+      <value><![CDATA[                }
+]]></value>
+      <value>-1</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>373</value>
+      <value>153</value>
+      <value><![CDATA[                else if ( $mode === self::BASE64 )
+]]></value>
+      <value>-1</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>374</value>
+      <value>154</value>
+      <value><![CDATA[                {
+]]></value>
+      <value>-1</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>375</value>
+      <value>155</value>
+      <value><![CDATA[                    $value = base64_encode( phpversion() );
+]]></value>
+      <value>-1</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>376</value>
+      <value>156</value>
+      <value><![CDATA[                }
+]]></value>
+      <value>-1</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>377</value>
+      <value>157</value>
+      <value><![CDATA[                else if ( $mode === self::NORMAL )
+]]></value>
+      <value>-1</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>378</value>
+      <value>158</value>
+      <value><![CDATA[                {
+]]></value>
+      <value>-1</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>379</value>
+      <value>159</value>
+      <value><![CDATA[                    $value = phpversion();
+]]></value>
+      <value>-1</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>380</value>
+      <value>160</value>
+      <value><![CDATA[                }
+]]></value>
+      <value>-1</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>381</value>
+      <value>161</value>
+      <value><![CDATA[                break;
+]]></value>
+      <value>-1</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>382</value>
+      <value>162</value>
+      <value><![CDATA[                
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>383</value>
+      <value>163</value>
+      <value><![CDATA[            case self::NAME:
+]]></value>
+      <value>-1</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>384</value>
+      <value>164</value>
+      <value><![CDATA[                switch ($mode)
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>385</value>
+      <value>165</value>
+      <value><![CDATA[                {
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>386</value>
+      <value>166</value>
+      <value><![CDATA[                    case self::REVERSE:
+]]></value>
+      <value>-1</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>387</value>
+      <value>167</value>
+      <value><![CDATA[                        $value = strrev( __CLASS__ );
+]]></value>
+      <value>-1</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>388</value>
+      <value>168</value>
+      <value><![CDATA[                        break;
+]]></value>
+      <value>-1</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>389</value>
+      <value>169</value>
+      <value><![CDATA[                        
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>390</value>
+      <value>170</value>
+      <value><![CDATA[                    case self::NORMAL:
+]]></value>
+      <value>-1</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>391</value>
+      <value>171</value>
+      <value><![CDATA[                        $value = __CLASS__;
+]]></value>
+      <value>-1</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>392</value>
+      <value>172</value>
+      <value><![CDATA[                        break;
+]]></value>
+      <value>-1</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>393</value>
+      <value>173</value>
+      <value><![CDATA[                        
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>394</value>
+      <value>174</value>
+      <value><![CDATA[                    default:
+]]></value>
+      <value>-1</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>395</value>
+      <value>175</value>
+      <value><![CDATA[                        $value = base64_encode( __CLASS__ );
+]]></value>
+      <value>-1</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>396</value>
+      <value>176</value>
+      <value><![CDATA[                        break;
+]]></value>
+      <value>-1</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>397</value>
+      <value>177</value>
+      <value><![CDATA[                }
+]]></value>
+      <value>-1</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>398</value>
+      <value>178</value>
+      <value><![CDATA[        }
+]]></value>
+      <value>-1</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>399</value>
+      <value>179</value>
+      <value><![CDATA[        return $value;
+]]></value>
+      <value>1</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>400</value>
+      <value>180</value>
+      <value><![CDATA[    }
+]]></value>
+      <value>-2</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>401</value>
+      <value>181</value>
+      <value><![CDATA[    
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>402</value>
+      <value>182</value>
+      <value><![CDATA[    /**
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>403</value>
+      <value>183</value>
+      <value><![CDATA[     * Adds two values.
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>404</value>
+      <value>184</value>
+      <value><![CDATA[     *
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>405</value>
+      <value>185</value>
+      <value><![CDATA[     * @param integer $x Test value one.
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>406</value>
+      <value>186</value>
+      <value><![CDATA[     * @param integer $y Test value two.
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>407</value>
+      <value>187</value>
+      <value><![CDATA[     * 
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>408</value>
+      <value>188</value>
+      <value><![CDATA[     * @return integer
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>409</value>
+      <value>189</value>
+      <value><![CDATA[     */
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>410</value>
+      <value>190</value>
+      <value><![CDATA[    public function calculate( $x, $y )
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>411</value>
+      <value>191</value>
+      <value><![CDATA[    {
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>412</value>
+      <value>192</value>
+      <value><![CDATA[        return ( $x + $y );
+]]></value>
+      <value>1</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>413</value>
+      <value>193</value>
+      <value><![CDATA[    }
+]]></value>
+      <value>-2</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>414</value>
+      <value>194</value>
+      <value><![CDATA[}]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>4</value>
+      <value>415</value>
+      <value>1</value>
+      <value><![CDATA[<?php
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>4</value>
+      <value>416</value>
+      <value>2</value>
+      <value><![CDATA[/**
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>4</value>
+      <value>417</value>
+      <value>3</value>
+      <value><![CDATA[ * This file is part of phpUnderControl.
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>4</value>
+      <value>418</value>
+      <value>4</value>
+      <value><![CDATA[ * 
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>4</value>
+      <value>419</value>
+      <value>5</value>
+      <value><![CDATA[ * PHP Version 5.2.0
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>4</value>
+      <value>420</value>
+      <value>6</value>
+      <value><![CDATA[ *
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>4</value>
+      <value>421</value>
+      <value>7</value>
+      <value><![CDATA[ * Copyright (c) 2007-2008, Manuel Pichler <mapi@manuel-pichler.de>.
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>4</value>
+      <value>422</value>
+      <value>8</value>
+      <value><![CDATA[ * All rights reserved.
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>4</value>
+      <value>423</value>
+      <value>9</value>
+      <value><![CDATA[ *
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>4</value>
+      <value>424</value>
+      <value>10</value>
+      <value><![CDATA[ * Redistribution and use in source and binary forms, with or without
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>4</value>
+      <value>425</value>
+      <value>11</value>
+      <value><![CDATA[ * modification, are permitted provided that the following conditions
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>4</value>
+      <value>426</value>
+      <value>12</value>
+      <value><![CDATA[ * are met:
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>4</value>
+      <value>427</value>
+      <value>13</value>
+      <value><![CDATA[ *
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>4</value>
+      <value>428</value>
+      <value>14</value>
+      <value><![CDATA[ *   * Redistributions of source code must retain the above copyright
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>4</value>
+      <value>429</value>
+      <value>15</value>
+      <value><![CDATA[ *     notice, this list of conditions and the following disclaimer.
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>4</value>
+      <value>430</value>
+      <value>16</value>
+      <value><![CDATA[ *
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>4</value>
+      <value>431</value>
+      <value>17</value>
+      <value><![CDATA[ *   * Redistributions in binary form must reproduce the above copyright
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>4</value>
+      <value>432</value>
+      <value>18</value>
+      <value><![CDATA[ *     notice, this list of conditions and the following disclaimer in
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>4</value>
+      <value>433</value>
+      <value>19</value>
+      <value><![CDATA[ *     the documentation and/or other materials provided with the
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>4</value>
+      <value>434</value>
+      <value>20</value>
+      <value><![CDATA[ *     distribution.
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>4</value>
+      <value>435</value>
+      <value>21</value>
+      <value><![CDATA[ *
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>4</value>
+      <value>436</value>
+      <value>22</value>
+      <value><![CDATA[ *   * Neither the name of Manuel Pichler nor the names of his
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>4</value>
+      <value>437</value>
+      <value>23</value>
+      <value><![CDATA[ *     contributors may be used to endorse or promote products derived
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>4</value>
+      <value>438</value>
+      <value>24</value>
+      <value><![CDATA[ *     from this software without specific prior written permission.
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>4</value>
+      <value>439</value>
+      <value>25</value>
+      <value><![CDATA[ *
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>4</value>
+      <value>440</value>
+      <value>26</value>
+      <value><![CDATA[ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>4</value>
+      <value>441</value>
+      <value>27</value>
+      <value><![CDATA[ * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>4</value>
+      <value>442</value>
+      <value>28</value>
+      <value><![CDATA[ * LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>4</value>
+      <value>443</value>
+      <value>29</value>
+      <value><![CDATA[ * FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>4</value>
+      <value>444</value>
+      <value>30</value>
+      <value><![CDATA[ * COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>4</value>
+      <value>445</value>
+      <value>31</value>
+      <value><![CDATA[ * INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>4</value>
+      <value>446</value>
+      <value>32</value>
+      <value><![CDATA[ * BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>4</value>
+      <value>447</value>
+      <value>33</value>
+      <value><![CDATA[ * LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>4</value>
+      <value>448</value>
+      <value>34</value>
+      <value><![CDATA[ * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>4</value>
+      <value>449</value>
+      <value>35</value>
+      <value><![CDATA[ * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>4</value>
+      <value>450</value>
+      <value>36</value>
+      <value><![CDATA[ * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>4</value>
+      <value>451</value>
+      <value>37</value>
+      <value><![CDATA[ * POSSIBILITY OF SUCH DAMAGE.
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>4</value>
+      <value>452</value>
+      <value>38</value>
+      <value><![CDATA[ * 
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>4</value>
+      <value>453</value>
+      <value>39</value>
+      <value><![CDATA[ * @category   QualityAssurance
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>4</value>
+      <value>454</value>
+      <value>40</value>
+      <value><![CDATA[ * @package    PhpUnderControl
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>4</value>
+      <value>455</value>
+      <value>41</value>
+      <value><![CDATA[ * @subpackage Documentation
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>4</value>
+      <value>456</value>
+      <value>42</value>
+      <value><![CDATA[ * @author     Manuel Pichler <mapi@manuel-pichler.de>
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>4</value>
+      <value>457</value>
+      <value>43</value>
+      <value><![CDATA[ * @copyright  2007-2008 Manuel Pichler. All rights reserved.
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>4</value>
+      <value>458</value>
+      <value>44</value>
+      <value><![CDATA[ * @license    http://www.opensource.org/licenses/bsd-license.php  BSD License
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>4</value>
+      <value>459</value>
+      <value>45</value>
+      <value><![CDATA[ * @version    SVN: $Id$
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>4</value>
+      <value>460</value>
+      <value>46</value>
+      <value><![CDATA[ * @link       http://www.phpundercontrol.org/
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>4</value>
+      <value>461</value>
+      <value>47</value>
+      <value><![CDATA[ */
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>4</value>
+      <value>462</value>
+      <value>48</value>
+      <value><![CDATA[
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>4</value>
+      <value>463</value>
+      <value>49</value>
+      <value><![CDATA[/**
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>4</value>
+      <value>464</value>
+      <value>50</value>
+      <value><![CDATA[ * php 5.2.5 code only.
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>4</value>
+      <value>465</value>
+      <value>51</value>
+      <value><![CDATA[ *
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>4</value>
+      <value>466</value>
+      <value>52</value>
+      <value><![CDATA[ * @category   QualityAssurance
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>4</value>
+      <value>467</value>
+      <value>53</value>
+      <value><![CDATA[ * @package    PhpUnderControl
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>4</value>
+      <value>468</value>
+      <value>54</value>
+      <value><![CDATA[ * @subpackage Documentation
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>4</value>
+      <value>469</value>
+      <value>55</value>
+      <value><![CDATA[ * @author     Manuel Pichler <mapi@manuel-pichler.de>
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>4</value>
+      <value>470</value>
+      <value>56</value>
+      <value><![CDATA[ * @copyright  2007-2008 Manuel Pichler. All rights reserved.
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>4</value>
+      <value>471</value>
+      <value>57</value>
+      <value><![CDATA[ * @license    http://www.opensource.org/licenses/bsd-license.php  BSD License
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>4</value>
+      <value>472</value>
+      <value>58</value>
+      <value><![CDATA[ * @version    Release: @package_version@
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>4</value>
+      <value>473</value>
+      <value>59</value>
+      <value><![CDATA[ * @link       http://www.phpundercontrol.org/
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>4</value>
+      <value>474</value>
+      <value>60</value>
+      <value><![CDATA[ */
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>4</value>
+      <value>475</value>
+      <value>61</value>
+      <value><![CDATA[class phpucMergeCode525
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>4</value>
+      <value>476</value>
+      <value>62</value>
+      <value><![CDATA[{
+]]></value>
+      <value>1</value>
+    </row>
+    <row>
+      <value>4</value>
+      <value>477</value>
+      <value>63</value>
+      <value><![CDATA[    /**
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>4</value>
+      <value>478</value>
+      <value>64</value>
+      <value><![CDATA[     * Returns a php 5.2.5 specific version string.
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>4</value>
+      <value>479</value>
+      <value>65</value>
+      <value><![CDATA[     *
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>4</value>
+      <value>480</value>
+      <value>66</value>
+      <value><![CDATA[     * @return string
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>4</value>
+      <value>481</value>
+      <value>67</value>
+      <value><![CDATA[     */
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>4</value>
+      <value>482</value>
+      <value>68</value>
+      <value><![CDATA[    public function version()
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>4</value>
+      <value>483</value>
+      <value>69</value>
+      <value><![CDATA[    {
+]]></value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>4</value>
+      <value>484</value>
+      <value>70</value>
+      <value><![CDATA[        return '5.2.5';
+]]></value>
+      <value>1</value>
+    </row>
+    <row>
+      <value>4</value>
+      <value>485</value>
+      <value>71</value>
+      <value><![CDATA[    }
+]]></value>
+      <value>-2</value>
+    </row>
+    <row>
+      <value>4</value>
+      <value>486</value>
+      <value>72</value>
+      <value><![CDATA[}]]></value>
+      <value>1</value>
+    </row>
+  </table>
+  <table name="code_method">
+    <column>code_class_id</column>
+    <column>code_method_id</column>
+    <column>code_method_name</column>
+    <column>code_method_start_line</column>
+    <column>code_method_end_line</column>
+    <row>
+      <value>1</value>
+      <value>1</value>
+      <value>testVersionSpecific</value>
+      <value>72</value>
+      <value>76</value>
+    </row>
+    <row>
+      <value>1</value>
+      <value>2</value>
+      <value>testNotVersionSpecific</value>
+      <value>78</value>
+      <value>92</value>
+    </row>
+    <row>
+      <value>1</value>
+      <value>3</value>
+      <value>testCalculate</value>
+      <value>103</value>
+      <value>108</value>
+    </row>
+    <row>
+      <value>1</value>
+      <value>4</value>
+      <value>dataProvider</value>
+      <value>115</value>
+      <value>123</value>
+    </row>
+    <row>
+      <value>2</value>
+      <value>5</value>
+      <value>version520</value>
+      <value>68</value>
+      <value>71</value>
+    </row>
+    <row>
+      <value>2</value>
+      <value>6</value>
+      <value>version525</value>
+      <value>78</value>
+      <value>85</value>
+    </row>
+    <row>
+      <value>2</value>
+      <value>7</value>
+      <value>versionAny</value>
+      <value>92</value>
+      <value>95</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>8</value>
+      <value>versionSpecific</value>
+      <value>100</value>
+      <value>118</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>9</value>
+      <value>notVersionSpecific</value>
+      <value>128</value>
+      <value>180</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>10</value>
+      <value>calculate</value>
+      <value>190</value>
+      <value>193</value>
+    </row>
+    <row>
+      <value>4</value>
+      <value>11</value>
+      <value>version</value>
+      <value>68</value>
+      <value>71</value>
+    </row>
+  </table>
+  <table name="metrics_class">
+    <column>run_id</column>
+    <column>code_class_id</column>
+    <column>metrics_class_coverage</column>
+    <column>metrics_class_loc</column>
+    <column>metrics_class_loc_executable</column>
+    <column>metrics_class_loc_executed</column>
+    <column>metrics_class_aif</column>
+    <column>metrics_class_ahf</column>
+    <column>metrics_class_cis</column>
+    <column>metrics_class_csz</column>
+    <column>metrics_class_dit</column>
+    <column>metrics_class_impl</column>
+    <column>metrics_class_mif</column>
+    <column>metrics_class_mhf</column>
+    <column>metrics_class_noc</column>
+    <column>metrics_class_pf</column>
+    <column>metrics_class_vars</column>
+    <column>metrics_class_varsnp</column>
+    <column>metrics_class_varsi</column>
+    <column>metrics_class_wmc</column>
+    <column>metrics_class_wmcnp</column>
+    <column>metrics_class_wmci</column>
+    <row>
+      <value>1</value>
+      <value>1</value>
+      <value>77.27273</value>    
+      <value>60</value>
+      <value>22</value>
+      <value>17</value>
+      <value>100</value>
+      <value>100</value>
+      <value>4</value>
+      <value>4</value>
+      <value>2</value>
+      <value>3</value>
+      <value>96.491228070175</value>   
+      <value>16.666666666667</value>
+      <value>0</value>
+      <value>0</value>
+      <value>0</value>
+      <value>0</value>
+      <value>14</value>
+      <value>5</value>
+      <value>5</value>
+      <value>234</value>
+    </row>
+    <row>
+      <value>1</value>
+      <value>2</value>
+      <value>100</value>
+      <value>36</value>
+      <value>5</value>
+      <value>5</value>
+      <value>0</value>
+      <value>0</value>
+      <value>3</value>
+      <value>3</value>
+      <value>0</value>
+      <value>0</value>
+      <value>0</value>
+      <value>0</value>
+      <value>0</value>
+      <value>0</value>
+      <value>0</value>
+      <value>0</value>
+      <value>0</value>
+      <value>3</value>
+      <value>3</value>
+      <value>3</value>
+    </row>
+    <row>
+      <value>1</value>
+      <value>3</value>
+      <value>46.15385</value>
+      <value>132</value>
+      <value>52</value>
+      <value>24</value>
+      <value>0</value>
+      <value>0</value>
+      <value>3</value>
+      <value>3</value>
+      <value>0</value>
+      <value>0</value>
+      <value>0</value>
+      <value>0</value>
+      <value>0</value>
+      <value>0</value>
+      <value>0</value>
+      <value>0</value>
+      <value>0</value>
+      <value>15</value>
+      <value>15</value>
+      <value>15</value>
+    </row>
+    <row>
+      <value>1</value>
+      <value>4</value>
+      <value>100</value>
+      <value>12</value>
+      <value>3</value>
+      <value>3</value>
+      <value>0</value>
+      <value>0</value>
+      <value>1</value>
+      <value>1</value>
+      <value>0</value>
+      <value>0</value>
+      <value>0</value>
+      <value>0</value>
+      <value>0</value>
+      <value>0</value>
+      <value>0</value>
+      <value>0</value>
+      <value>0</value>
+      <value>1</value>
+      <value>1</value>
+      <value>1</value>
+    </row>
+  </table>
+  <table name="metrics_file">
+    <column>run_id</column>
+    <column>code_file_id</column>
+    <column>metrics_file_coverage</column>
+    <column>metrics_file_loc</column>
+    <column>metrics_file_cloc</column>
+    <column>metrics_file_ncloc</column>
+    <column>metrics_file_loc_executable</column>
+    <column>metrics_file_loc_executed</column>
+    <row>
+      <value>1</value>
+      <value>1</value>
+      <value>77.27273</value>
+      <value>124</value>
+      <value>77</value>
+      <value>47</value>
+      <value>22</value>
+      <value>17</value>
+    </row>
+    <row>
+      <value>1</value>
+      <value>2</value>
+      <value>100</value>
+      <value>96</value>
+      <value>73</value>
+      <value>23</value>
+      <value>5</value>
+      <value>5</value>
+    </row>
+    <row>
+      <value>1</value>
+      <value>3</value>
+      <value>46.15385</value>
+      <value>194</value>
+      <value>97</value>
+      <value>97</value>
+      <value>52</value>
+      <value>24</value>
+    </row>
+    <row>
+      <value>1</value>
+      <value>4</value>
+      <value>100</value>
+      <value>72</value>
+      <value>63</value>
+      <value>9</value>
+      <value>3</value>
+      <value>3</value>
+    </row>
+  </table>
+  <table name="metrics_function">
+    <column>run_id</column>
+    <column>code_function_id</column>
+    <column>metrics_function_coverage</column>
+    <column>metrics_function_loc</column>
+    <column>metrics_function_loc_executable</column>
+    <column>metrics_function_loc_executed</column>
+    <column>metrics_function_ccn</column>
+    <column>metrics_function_crap</column>
+    <column>metrics_function_npath</column>
+  </table>
+  <table name="metrics_method">
+    <column>run_id</column>
+    <column>code_method_id</column>
+    <column>metrics_method_coverage</column>
+    <column>metrics_method_loc</column>
+    <column>metrics_method_loc_executable</column>
+    <column>metrics_method_loc_executed</column>
+    <column>metrics_method_ccn</column>
+    <column>metrics_method_crap</column>
+    <column>metrics_method_npath</column>
+    <row>
+      <value>1</value>
+      <value>1</value>
+      <value>100</value>
+      <value>5</value>
+      <value>3</value>
+      <value>3</value>
+      <value>1</value>
+      <value>1</value>
+      <value>1</value>
+    </row>
+    <row>
+      <value>1</value>
+      <value>2</value>
+      <value>100</value>
+      <value>15</value>
+      <value>11</value>
+      <value>11</value>
+      <value>2</value>
+      <value>2</value>
+      <value>2</value>
+    </row>
+    <row>
+      <value>1</value>
+      <value>3</value>
+      <value>100</value>
+      <value>6</value>
+      <value>3</value>
+      <value>3</value>
+      <value>1</value>
+      <value>1</value>
+      <value>1</value>
+    </row>
+    <row>
+      <value>1</value>
+      <value>4</value>
+      <value>0</value>
+      <value>9</value>
+      <value>5</value>
+      <value>0</value>
+      <value>1</value>
+      <value>2</value>
+      <value>1</value>
+    </row>
+    <row>
+      <value>1</value>
+      <value>5</value>
+      <value>100</value>
+      <value>4</value>
+      <value>1</value>
+      <value>1</value>
+      <value>1</value>
+      <value>1</value>
+      <value>1</value>
+    </row>
+    <row>
+      <value>1</value>
+      <value>6</value>
+      <value>100</value>
+      <value>8</value>
+      <value>3</value>
+      <value>3</value>
+      <value>1</value>
+      <value>1</value>
+      <value>1</value>
+    </row>
+    <row>
+      <value>1</value>
+      <value>7</value>
+      <value>100</value>
+      <value>4</value>
+      <value>1</value>
+      <value>1</value>
+      <value>1</value>
+      <value>1</value>
+      <value>1</value>
+    </row>
+    <row>
+      <value>1</value>
+      <value>8</value>
+      <value>100</value>
+      <value>19</value>
+      <value>12</value>
+      <value>12</value>
+      <value>3</value>
+      <value>3</value>
+      <value>4</value>
+    </row>
+    <row>
+      <value>1</value>
+      <value>9</value>
+      <value>28.20513</value>
+      <value>53</value>
+      <value>39</value>
+      <value>11</value>
+      <value>11</value>
+      <value>55.778095</value>
+      <value>65</value>
+    </row>
+    <row>
+      <value>1</value>
+      <value>10</value>
+      <value>100</value>
+      <value>4</value>
+      <value>1</value>
+      <value>1</value>
+      <value>1</value>
+      <value>1</value>
+      <value>1</value>
+    </row>
+    <row>
+      <value>1</value>
+      <value>11</value>
+      <value>100</value>
+      <value>4</value>
+      <value>1</value>
+      <value>1</value>
+      <value>1</value>
+      <value>1</value>
+      <value>1</value>
+    </row>
+  </table>
+  <table name="metrics_project">
+    <column>run_id</column>
+    <column>metrics_project_cls</column>
+    <column>metrics_project_clsa</column>
+    <column>metrics_project_clsc</column>
+    <column>metrics_project_roots</column>
+    <column>metrics_project_leafs</column>
+    <column>metrics_project_interfs</column>
+    <column>metrics_project_maxdit</column>
+    <row>
+      <value>1</value>
+      <value>3</value>
+      <value>0</value>
+      <value>3</value>
+      <value>0</value>
+      <value>3</value>
+      <value>0</value>
+      <value>2</value>
+    </row>
+  </table>
+  <table name="run">
+    <column>run_id</column>
+    <column>timestamp</column>
+    <column>revision</column>
+    <column>information</column>
+    <column>completed</column>
+    <row>
+      <value>1</value>
+      <value>1207927890</value>
+      <value>3</value>
+      <value></value>
+      <value>1</value>
+    </row>
+  </table>
+  <table name="test">
+    <column>run_id</column>
+    <column>test_id</column>
+    <column>test_name</column>
+    <column>test_result</column>
+    <column>test_message</column>
+    <column>test_execution_time</column>
+    <column>code_method_id</column>
+    <column>node_root</column>
+    <column>node_left</column>
+    <column>node_right</column>
+    <column>node_is_leaf</column>
+    <row>
+      <value>1</value>
+      <value>1</value>
+      <value>Merged Test Suite</value>
+      <value>0</value>
+      <value></value>
+      <value>0.048074</value>
+      <null />
+      <value>1</value>
+      <value>1</value>
+      <value>50</value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>1</value>
+      <value>2</value>
+      <value>phpucMergeCodeTest</value>
+      <value>3</value>
+      <value></value>
+      <value>0.0145998001098632</value>
+      <null />
+      <value>1</value>
+      <value>2</value>
+      <value>17</value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>1</value>
+      <value>3</value>
+      <value>testVersionSpecific</value>
+      <value>0</value>
+      <value></value>
+      <value>0.0022199153900146</value>
+      <value>1</value>
+      <value>1</value>
+      <value>3</value>
+      <value>4</value>
+      <value>1</value>
+    </row>
+    <row>
+      <value>1</value>
+      <value>4</value>
+      <value>testNotVersionSpecific</value>
+      <value>0</value>
+      <value></value>
+      <value>0.0020079612731934</value>
+      <value>2</value>
+      <value>1</value>
+      <value>5</value>
+      <value>6</value>
+      <value>1</value>
+    </row>
+    <row>
+      <value>1</value>
+      <value>5</value>
+      <value>phpucMergeCodeTest::testCalculate</value>
+      <value>3</value>
+      <value></value>
+      <value>0.0103719234466552</value>
+      <null />
+      <value>1</value>
+      <value>7</value>
+      <value>16</value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>1</value>
+      <value>6</value>
+      <value>testCalculate</value>
+      <value>0</value>
+      <value></value>
+      <value>0.0017731189727783</value>
+      <value>3</value>
+      <value>1</value>
+      <value>8</value>
+      <value>9</value>
+      <value>1</value>
+    </row>
+    <row>
+      <value>1</value>
+      <value>7</value>
+      <value>testCalculate</value>
+      <value>0</value>
+      <value></value>
+      <value>0.001802921295166</value>
+      <value>3</value>
+      <value>1</value>
+      <value>10</value>
+      <value>11</value>
+      <value>1</value>
+    </row>
+    <row>
+      <value>1</value>
+      <value>8</value>
+      <value>testCalculate</value>
+      <value>3</value>
+      <value><![CDATA[Failed asserting that <integer:4> matches expected value <integer:3>.
+
+/home/manu/Projects/workspace.zend-studio/phpUnderControl/trunk/docs/log-merge/MergeCodeTest.php:107
+]]></value>
+      <value>0.0047140121459961</value>
+      <value>3</value>
+      <value>1</value>
+      <value>12</value>
+      <value>13</value>
+      <value>1</value>
+    </row>
+    <row>
+      <value>1</value>
+      <value>9</value>
+      <value>testCalculate</value>
+      <value>0</value>
+      <value></value>
+      <value>0.0020818710327148</value>
+      <value>3</value>
+      <value>1</value>
+      <value>14</value>
+      <value>15</value>
+      <value>1</value>
+    </row>
+    <row>
+      <value>1</value>
+      <value>10</value>
+      <value>phpucMergeCodeTest</value>
+      <value>3</value>
+      <value></value>
+      <value>0.01444</value>
+      <null />
+      <value>1</value>
+      <value>18</value>
+      <value>33</value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>1</value>
+      <value>11</value>
+      <value>testVersionSpecific</value>
+      <value>0</value>
+      <value></value>
+      <value>0.002628</value>
+      <value>1</value>
+      <value>1</value>
+      <value>19</value>
+      <value>20</value>
+      <value>1</value>
+    </row>
+    <row>
+      <value>1</value>
+      <value>12</value>
+      <value>testNotVersionSpecific</value>
+      <value>0</value>
+      <value></value>
+      <value>0.002149</value>
+      <value>2</value>
+      <value>1</value>
+      <value>21</value>
+      <value>22</value>
+      <value>1</value>
+    </row>
+    <row>
+      <value>1</value>
+      <value>13</value>
+      <value>phpucMergeCodeTest::testCalculate</value>
+      <value>3</value>
+      <value></value>
+      <value>0.009663</value>
+      <null />
+      <value>1</value>
+      <value>23</value>
+      <value>32</value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>1</value>
+      <value>14</value>
+      <value>testCalculate</value>
+      <value>0</value>
+      <value></value>
+      <value>0.001863</value>
+      <value>3</value>
+      <value>1</value>
+      <value>24</value>
+      <value>25</value>
+      <value>1</value>
+    </row>
+    <row>
+      <value>1</value>
+      <value>15</value>
+      <value>testCalculate</value>
+      <value>0</value>
+      <value></value>
+      <value>0.00196</value>
+      <value>3</value>
+      <value>1</value>
+      <value>26</value>
+      <value>27</value>
+      <value>1</value>
+    </row>
+    <row>
+      <value>1</value>
+      <value>16</value>
+      <value>testCalculate</value>
+      <value>3</value>
+      <value><![CDATA[Failed asserting that <integer:4> matches expected value <integer:3>.
+
+/home/manu/Projects/workspace.zend-studio/phpUnderControl/trunk/docs/log-merge/MergeCodeTest.php:107
+]]></value>
+      <value>0.003866</value>
+      <value>3</value>
+      <value>1</value>
+      <value>28</value>
+      <value>29</value>
+      <value>1</value>
+    </row>
+    <row>
+      <value>1</value>
+      <value>17</value>
+      <value>testCalculate</value>
+      <value>0</value>
+      <value></value>
+      <value>0.001974</value>
+      <value>3</value>
+      <value>1</value>
+      <value>30</value>
+      <value>31</value>
+      <value>1</value>
+    </row>
+    <row>
+      <value>1</value>
+      <value>18</value>
+      <value>phpucMergeCodeTest</value>
+      <value>3</value>
+      <value></value>
+      <value>0.019034</value>
+      <null />
+      <value>1</value>
+      <value>34</value>
+      <value>49</value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>1</value>
+      <value>19</value>
+      <value>testVersionSpecific</value>
+      <value>0</value>
+      <value></value>
+      <value>0.0026</value>
+      <value>1</value>
+      <value>1</value>
+      <value>35</value>
+      <value>36</value>
+      <value>1</value>
+    </row>
+    <row>
+      <value>1</value>
+      <value>20</value>
+      <value>testNotVersionSpecific</value>
+      <value>3</value>
+      <value><![CDATA[Failed asserting that two strings are equal.
+expected string <ilc>
+difference      <xxx>
+got string      <cli>
+
+/home/manu/Projects/workspace.zend-studio/phpUnderControl/trunk/docs/log-merge/MergeCodeTest.php:91
+]]></value>
+      <value>0.005043</value>
+      <value>2</value>
+      <value>1</value>
+      <value>37</value>
+      <value>38</value>
+      <value>1</value>
+    </row>
+    <row>
+      <value>1</value>
+      <value>21</value>
+      <value>phpucMergeCodeTest::testCalculate</value>
+      <value>3</value>
+      <value></value>
+      <value>0.011391</value>
+      <null />
+      <value>1</value>
+      <value>39</value>
+      <value>48</value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>1</value>
+      <value>22</value>
+      <value>testCalculate</value>
+      <value>0</value>
+      <value></value>
+      <value>0.002364</value>
+      <value>3</value>
+      <value>1</value>
+      <value>40</value>
+      <value>41</value>
+      <value>1</value>
+    </row>
+    <row>
+      <value>1</value>
+      <value>23</value>
+      <value>testCalculate</value>
+      <value>0</value>
+      <value></value>
+      <value>0.002175</value>
+      <value>3</value>
+      <value>1</value>
+      <value>42</value>
+      <value>43</value>
+      <value>1</value>
+    </row>
+    <row>
+      <value>1</value>
+      <value>24</value>
+      <value>testCalculate</value>
+      <value>3</value>
+      <value><![CDATA[Failed asserting that <integer:4> matches expected value <integer:3>.
+
+/home/manu/Projects/workspace.zend-studio/phpUnderControl/trunk/docs/log-merge/MergeCodeTest.php:107
+]]></value>
+      <value>0.004649</value>
+      <value>3</value>
+      <value>1</value>
+      <value>44</value>
+      <value>45</value>
+      <value>1</value>
+    </row>
+    <row>
+      <value>1</value>
+      <value>25</value>
+      <value>testCalculate</value>
+      <value>0</value>
+      <value></value>
+      <value>0.002203</value>
+      <value>3</value>
+      <value>1</value>
+      <value>46</value>
+      <value>47</value>
+      <value>1</value>
+    </row>
+  </table>
+</dataset>
