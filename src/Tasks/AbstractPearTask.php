@@ -60,7 +60,9 @@
  * @property      string $pearBinaryDir An optional PEAR install directory.
  * @property-read string $executable    The full command file name.
  */
-abstract class phpucAbstractPearTask extends phpucAbstractTask implements phpucConsoleExtensionI
+abstract class phpucAbstractPearTask 
+       extends phpucAbstractTask 
+    implements phpucConsoleExtensionI
 {
     /**
      * Constructs a new pear task.

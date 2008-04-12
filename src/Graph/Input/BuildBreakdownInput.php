@@ -80,7 +80,11 @@ class phpucBuildBreakdownInput extends phpucAbstractInput
         $this->addRule(
             new phpucInputRule(
                 'builddate_error',
-                '/cruisecontrol[build/@error]/info/property[@name = "builddate"]/@value',
+                '/cruisecontrol[
+                     build/@error
+                 ]/info/property[
+                     @name = "builddate"
+                 ]/@value',
                 self::MODE_VALUE
                 
             )

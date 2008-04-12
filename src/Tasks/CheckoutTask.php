@@ -173,7 +173,8 @@ class phpucCheckoutTask extends phpucAbstractTask implements phpucConsoleExtensi
             $command->getCommandId(),
             'd',
             'destination',
-            'A destination directory for the source code checkout. Default is "source".',
+            'A destination directory for the source code checkout. ' .
+            'Default is "source".',
             true,
             'source',
             true

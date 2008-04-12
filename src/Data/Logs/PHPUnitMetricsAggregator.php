@@ -60,5 +60,14 @@
  */
 class phpucPHPUnitMetricsAggregator extends phpucAbstractLogAggregator
 {
-    
+    /**
+     * Aggregates the results of all log files in the given iterator.
+     *
+     * @param Iterator $files List of coverage log files.
+     * 
+     * @return void
+     */
+    public function aggregate( Iterator $files )
+    {
+    }
 }

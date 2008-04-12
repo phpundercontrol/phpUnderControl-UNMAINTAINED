@@ -76,12 +76,12 @@ class phpucSubversionCheckout extends phpucAbstractCheckout
         {
             $options .= ' --password ' . escapeshellarg( $this->password );
         }
-		
+        
         $svn = phpucFileUtil::findExecutable( 'svn' );
-		$url = escapeshellarg( $this->url );
+        $url = escapeshellarg( $this->url );
         $cmd = "{$svn} co {$options} {$url} source";
-		
-        popen("{$cmd} 2>&1", "r");
+        
+        popen( "{$cmd} 2>&1", "r" );
         
         if ( !file_exists( 'source' ) )
         {
