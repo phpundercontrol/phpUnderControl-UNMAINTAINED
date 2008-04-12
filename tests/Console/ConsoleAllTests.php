@@ -1,6 +1,8 @@
 <?php
 /**
  * This file is part of phpUnderControl.
+ * 
+ * PHP Version 5.2.0
  *
  * Copyright (c) 2007-2008, Manuel Pichler <mapi@phpundercontrol.org>.
  * All rights reserved.
@@ -34,6 +36,7 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  * 
+ * @category  QualityAssurance
  * @package   Console
  * @author    Manuel Pichler <mapi@phpundercontrol.org>
  * @copyright 2007-2008 Manuel Pichler. All rights reserved.
@@ -58,6 +61,7 @@ require_once dirname( __FILE__ ) . '/ConsoleOutputTest.php';
 /**
  * Main test suite for phpUnderControl Console package.
  *
+ * @category  QualityAssurance
  * @package   Console
  * @author    Manuel Pichler <mapi@phpundercontrol.org>
  * @copyright 2007-2008 Manuel Pichler. All rights reserved.
@@ -84,7 +88,9 @@ class phpucConsoleAllTests
      */
     public static function suite()
     {
-        $suite = new PHPUnit_Framework_TestSuite( 'phpUnderControl - ConsoleAllTests' );
+        $suite = new PHPUnit_Framework_TestSuite( 
+            'phpUnderControl - ConsoleAllTests' 
+        );
         $suite->addTestSuite( 'phpucConsoleArgsTest' );
         $suite->addTestSuite( 'phpucConsoleInputDefinitionTest' );
         $suite->addTestSuite( 'phpucConsoleInputTest' );

@@ -1,6 +1,8 @@
 <?php
 /**
  * This file is part of phpUnderControl.
+ * 
+ * PHP Version 5.2.0
  *
  * Copyright (c) 2007-2008, Manuel Pichler <mapi@phpundercontrol.org>.
  * All rights reserved.
@@ -34,7 +36,8 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  * 
- * @package   phpUnderControl
+ * @category  QualityAssurance
+ * @package   Console
  * @author    Manuel Pichler <mapi@phpundercontrol.org>
  * @copyright 2007-2008 Manuel Pichler. All rights reserved.
  * @license   http://www.opensource.org/licenses/bsd-license.php  BSD License
@@ -47,7 +50,8 @@ require_once dirname( __FILE__ ) . '/../AbstractTest.php';
 /**
  * Test case for the console arguments.
  *
- * @package   phpUnderControl
+ * @category  QualityAssurance
+ * @package   Console
  * @author    Manuel Pichler <mapi@phpundercontrol.org>
  * @copyright 2007-2008 Manuel Pichler. All rights reserved.
  * @license   http://www.opensource.org/licenses/bsd-license.php  BSD License
@@ -90,7 +94,10 @@ class phpucConsoleArgsTest extends phpucAbstractTest
             $args->getArgument( 'phpUnderControl' );
             $this->fail( 'OutOfRangeException expected.' );
         }
-        catch ( OutOfRangeException $e ) {}
+        catch ( OutOfRangeException $e ) 
+        {
+            
+        }
     }
     
     /**

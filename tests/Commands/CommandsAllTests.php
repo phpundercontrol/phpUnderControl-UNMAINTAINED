@@ -1,6 +1,8 @@
 <?php
 /**
  * This file is part of phpUnderControl.
+ * 
+ * PHP Version 5.2.0
  *
  * Copyright (c) 2007-2008, Manuel Pichler <mapi@phpundercontrol.org>.
  * All rights reserved.
@@ -34,6 +36,7 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  * 
+ * @category  QualityAssurance
  * @package   Commands
  * @author    Manuel Pichler <mapi@phpundercontrol.org>
  * @copyright 2007-2008 Manuel Pichler. All rights reserved.
@@ -57,6 +60,7 @@ require_once dirname( __FILE__ ) . '/DeleteCommandTest.php';
 /**
  * Main test suite for phpUnderControl Commands package.
  *
+ * @category  QualityAssurance
  * @package   Commands
  * @author    Manuel Pichler <mapi@phpundercontrol.org>
  * @copyright 2007-2008 Manuel Pichler. All rights reserved.
@@ -83,7 +87,9 @@ class phpucCommandsAllTests
      */
     public static function suite()
     {
-        $suite = new PHPUnit_Framework_TestSuite( 'phpUnderControl - CommandsAllTests' );
+        $suite = new PHPUnit_Framework_TestSuite( 
+            'phpUnderControl - CommandsAllTests' 
+        );
         $suite->addTestSuite( 'phpucCommandTest' );
         $suite->addTestSuite( 'phpucCleanCommandTest' );
         $suite->addTestSuite( 'phpucDeleteCommandTest' );

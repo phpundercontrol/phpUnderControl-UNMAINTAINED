@@ -101,8 +101,12 @@ class phpucConsoleInputDefinitionTest extends phpucAbstractTest
     public function testAddCommandWithInvalidModeFail()
     {
         $definition = new phpucConsoleInputDefinition();
-        $definition->addCommand( 'mapi0', 'Hello World.', phpucConsoleInputDefinition::MODE_HIDDEN );
-        $definition->addCommand( 'mapi1', 'Hello World.', phpucConsoleInputDefinition::MODE_NORMAL );
+        $definition->addCommand( 
+            'mapi0', 'Hello World.', phpucConsoleInputDefinition::MODE_HIDDEN 
+        );
+        $definition->addCommand( 
+            'mapi1', 'Hello World.', phpucConsoleInputDefinition::MODE_NORMAL 
+        );
         
         $this->setExpectedException(
             'phpucErrorException',
@@ -253,7 +257,9 @@ class phpucConsoleInputDefinitionTest extends phpucAbstractTest
         
         $definition = new phpucConsoleInputDefinition();
         $definition->addCommand( 'manuel', 'Hello World.' );
-        $definition->addOption( 'manuel', 'p', 'pichler', 'Hello World.', null, null, null );
+        $definition->addOption( 
+            'manuel', 'p', 'pichler', 'Hello World.', null, null, null 
+        );
     }
     
     /**

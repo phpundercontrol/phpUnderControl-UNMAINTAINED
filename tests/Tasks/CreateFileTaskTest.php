@@ -60,6 +60,11 @@ require_once dirname( __FILE__ ) . '/AbstractTaskTest.php';
  */
 class phpucCreateFileTaskTest extends phpucAbstractTaskTest
 {
+    /**
+     * Tests the create file task.
+     * 
+     * @return void
+     */
     public function testCreateFiles()
     {
         // Create empty directories

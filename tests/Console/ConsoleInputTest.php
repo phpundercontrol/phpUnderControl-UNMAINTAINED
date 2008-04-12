@@ -70,7 +70,15 @@ class phpucConsoleInputTest extends phpucAbstractTest
     {
         $definition = new phpucConsoleInputDefinition();
         $definition->addCommand( 'foo', 'The foo command.' );
-        $definition->addOption( 'foo', 'b', 'bar', 'The bar option', true, null, true );
+        $definition->addOption( 
+            'foo', 
+            'b', 
+            'bar', 
+            'The bar option',
+            true, 
+            null, 
+            true
+        );
         
         $this->prepareArgv( array( 'foo' ) );
         
@@ -93,7 +101,15 @@ class phpucConsoleInputTest extends phpucAbstractTest
     {
         $definition = new phpucConsoleInputDefinition();
         $definition->addCommand( 'foo', 'The foo command.' );
-        $definition->addOption( 'foo', 'b', 'bar', 'The bar option', true, null, true );
+        $definition->addOption( 
+            'foo', 
+            'b', 
+            'bar', 
+            'The bar option', 
+            true, 
+            null, 
+            true 
+        );
         
         $this->prepareArgv( array( 'foo', '-b', '-a' ) );
         
@@ -142,7 +158,13 @@ class phpucConsoleInputTest extends phpucAbstractTest
         $definition = new phpucConsoleInputDefinition();
         $definition->addCommand( 'foo', 'The foo command.' );
         $definition->addOption( 
-            'foo', 'b', 'bar', 'The bar option', '/^[0-9a-f]{4}\-[0-9a-f]{2}$/D', null, true
+            'foo', 
+            'b', 
+            'bar', 
+            'The bar option', 
+            '/^[0-9a-f]{4}\-[0-9a-f]{2}$/D', 
+            null, 
+            true
         );
         
         $this->prepareArgv( array( 'foo', '--bar', '071a-0' ) );
@@ -217,7 +239,9 @@ class phpucConsoleInputTest extends phpucAbstractTest
         $out2 = $this->fetchConsoleInputOutput( '--help' );
         
         $this->assertEquals( $out1, $out2 );
-        $this->assertRegExp( '/Command line options and arguments for "\w+"/', $out1 );
+        $this->assertRegExp( 
+            '/Command line options and arguments for "\w+"/', $out1 
+        );
     }
     
     /**
@@ -231,7 +255,9 @@ class phpucConsoleInputTest extends phpucAbstractTest
         $out2 = $this->fetchConsoleInputOutput( '--version' );
         
         $this->assertEquals( $out1, $out2 );
-        $this->assertEquals( 'phpUnderControl @package_version@ by Manuel Pichler.', $out1 );
+        $this->assertEquals( 
+            'phpUnderControl @package_version@ by Manuel Pichler.', $out1 
+        );
     }
     
     /**
@@ -245,7 +271,9 @@ class phpucConsoleInputTest extends phpucAbstractTest
         $out2 = $this->fetchConsoleInputOutput( '--usage' );
         
         $this->assertEquals( $out1, $out2 );
-        $this->assertRegExp( '/^Usage: phpuc.php <command> <options> <arguments>/', $out1 );
+        $this->assertRegExp( 
+            '/^Usage: phpuc.php <command> <options> <arguments>/', $out1 
+        );
     }
     
     /**
@@ -267,7 +295,10 @@ class phpucConsoleInputTest extends phpucAbstractTest
             $input->parse();
             $this->fail( 'phpucConsoleException expected.' );
         }
-        catch ( phpucConsoleException $e ) {}
+        catch ( phpucConsoleException $e ) 
+        {
+            
+        }
         
         ob_end_clean();
     }
