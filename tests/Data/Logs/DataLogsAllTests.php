@@ -55,6 +55,7 @@ require_once 'PHPUnit/Framework/TestSuite.php';
 require_once 'PHPUnit/TextUI/TestRunner.php';
 
 require_once dirname( __FILE__ ) . '/PHPUnitCoverageAggregatorTest.php';
+require_once dirname( __FILE__ ) . '/PHPUnitLogDatabaseAggregatorTest.php';
 require_once dirname( __FILE__ ) . '/PHPUnitTestLogAggregatorTest.php';
 
 /**
@@ -90,6 +91,7 @@ class phpucDataLogsAllTests
     {
         $suite = new PHPUnit_Framework_TestSuite( 'phpUnderControl - DataLogsAllTests' );
         $suite->addTestSuite( 'phpucPHPUnitCoverageAggregatorTest' );
+        $suite->addTestSuite( 'phpucPHPUnitLogDatabaseAggregatorTest' );
         $suite->addTestSuite( 'phpucPHPUnitTestLogAggregatorTest' );
 
         return $suite;
