@@ -55,7 +55,7 @@ require_once 'PHPUnit/Extensions/Database/TestCase.php';
 require_once dirname( __FILE__ ) . '/../../AbstractTest.php';
 
 /**
- * 
+ * Test the log database aggregator.
  *
  * @category   QualityAssurance
  * @package    Data
@@ -68,17 +68,28 @@ require_once dirname( __FILE__ ) . '/../../AbstractTest.php';
  */
 class phpucPHPUnitLogDatabaseAggregatorTest extends phpucAbstractTest
 {
+    /**
+     * The used pdo database connection.
+     *
+     * @type PDO 
+     * @var PDO $pdo
+     */
     protected $pdo = null;
     
+    /**
+     * Creates the required database and a new pdo connection.
+     *
+     * @return void
+     */
     protected function setUp()
     {
         $emptydb = sprintf( '%s/phpunit/log.db', PHPUC_TEST_DATA );
         $testdb  = sprintf( '%s/log.db', PHPUC_TEST_DIR );
         
-        @unlink( $testdb );
         copy( $emptydb, $testdb );
         
         $this->pdo = new PDO( "sqlite://{$testdb}" );
+        $this->pdo->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
     }
     
     /**
@@ -109,9 +120,15 @@ class phpucPHPUnitLogDatabaseAggregatorTest extends phpucAbstractTest
         return $tester;
     }
     
-    
+    /**
+     * Tests the aggregate logs method.
+     *
+     * @return void
+     */
     public function testAggregateLogs()
     {
+        $revision = 3;
+        
         $tester = $this->getDatabaseTester();
         $tester->onSetUp();
         
@@ -122,35 +139,57 @@ class phpucPHPUnitLogDatabaseAggregatorTest extends phpucAbstractTest
             
             $conns[] = new PDO( "sqlite:{$file}" );
         }
-        /*
-        copy( PHPUC_TEST_DATA . '/phpunit/log.db', PHPUC_TEST_DIR . '/log.db' );
         
-        $conn = new PDO( 'mysql:host=localhost;dbname=phpunit_merge', 'root', 'beenden'  );
-        $conn->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
-        $conn->query( 'TRUNCATE `code_class`;' );
-        $conn->query( 'TRUNCATE `code_coverage`;');
-        $conn->query( 'TRUNCATE `code_file`;');
-        $conn->query( 'TRUNCATE `code_function`;');
-        $conn->query( 'TRUNCATE `code_line`;');
-        $conn->query( 'TRUNCATE `code_method`;');
-        $conn->query( 'TRUNCATE `metrics_class`;');
-        $conn->query( 'TRUNCATE `metrics_file`;');
-        $conn->query( 'TRUNCATE `metrics_function`;');
-        $conn->query( 'TRUNCATE `metrics_method`;');
-        $conn->query( 'TRUNCATE `metrics_project`;');
-        $conn->query( 'TRUNCATE `run`;');
-        $conn->query( 'TRUNCATE `test`;');
-        //$conn = new PDO( sprintf( 'sqlite:%s/log.db', PHPUC_TEST_DIR ) );
-        */
-        $aggregator = new phpucPHPUnitLogDatabaseAggregator( $this->pdo, 3 );
+        $aggregator = new phpucPHPUnitLogDatabaseAggregator( $this->pdo, $revision );
         $aggregator->aggregate( new ArrayIterator( $conns ) );
 
-        
-        $dataSet = new PHPUnit_Extensions_Database_DataSet_XmlDataSet(
-            PHPUC_TEST_DATA . '/phpunit/log-db-after-aggregation.xml'
+        $dataSet = $this->createLogAfterAggregation( $revision );
+        PHPUnit_Extensions_Database_TestCase::assertDataSetsEqual(
+            $dataSet, 
+            $tester->getConnection()->createDataSet()
         );
-        PHPUnit_Extensions_Database_TestCase::assertDataSetsEqual($dataSet, $tester->getConnection()->createDataSet());
         
         $tester->onTearDown();
+    }
+    
+    /**
+     * Creates a prepared xml data set.
+     *
+     * @param integer $revision The test/merge revision
+     * 
+     * @return PHPUnit_Extensions_Database_DataSet_XmlDataSet
+     */
+    protected function createLogAfterAggregation( $revision )
+    {
+        $stmt = $this->pdo->prepare(
+            'SELECT timestamp
+               FROM run
+              WHERE revision = :revision'
+        );
+        $stmt->bindValue( ':revision', $revision );
+        $stmt->execute();
+        
+        $timestamp = $stmt->fetchColumn();
+        
+        $stmt->closeCursor();
+        
+        $dom = new DOMDocument();
+        $dom->load( PHPUC_TEST_DATA . '/phpunit/log-db-after-aggregation.xml' );
+        
+        $xpath  = new DOMXPath( $dom );
+        $result = $xpath->query( 
+            "//table[@name='run']/row[value[3]/text() = '{$revision}']/value[2]"
+        );
+        
+        foreach ( $result as $node )
+        {
+            $node->firstChild->nodeValue = $timestamp;
+        }
+        
+        $dom->save( PHPUC_TEST_DIR . '/log-db-after-aggregation.xml' );
+        
+        return new PHPUnit_Extensions_Database_DataSet_XmlDataSet(
+            PHPUC_TEST_DIR . '/log-db-after-aggregation.xml'
+        );
     }
 }

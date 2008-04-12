@@ -223,11 +223,17 @@ class phpucPHPUnitLogDatabaseAggregator
     protected function createRunAndTest()
     {
         $stmt = $this->conn->prepare(
-            'INSERT INTO run 
-                         (timestamp, revision, completed)
-                  VALUES (:timestamp, :revision, 1)'
+            'INSERT INTO run (
+                         timestamp, 
+                         revision, 
+                         completed
+              ) VALUES (
+                         :timestamp, 
+                         :revision, 
+                         1
+                       )'
         );
-        $stmt->bindValue( ':timestamp', 1207927890 );
+        $stmt->bindValue( ':timestamp', time() );
         $stmt->bindValue( ':revision', $this->revision ); 
         $stmt->execute();
         
@@ -773,7 +779,7 @@ class phpucPHPUnitLogDatabaseAggregator
               ) VALUES (
                          :code_file_id, 
                          :parent_id,
-                         :code_class_name, 
+                         :class_name, 
                          :start_line, 
                          :end_line
                        )'
@@ -950,7 +956,7 @@ class phpucPHPUnitLogDatabaseAggregator
                          :end_line
                        )'
         );
-        $stmt1->bindValue( ':code_class_id', $newClassId );
+        $stmt1->bindValue( ':class_id', $newClassId );
         
         $stmt2 = $conn->prepare(
             'SELECT m0.code_method_id,
@@ -963,7 +969,7 @@ class phpucPHPUnitLogDatabaseAggregator
                  ON c0.code_class_id = m0.code_class_id
               WHERE m0.code_class_id = :code_class_id'
         );
-        $stmt2->bindValue( ':class_id', $oldClassId );
+        $stmt2->bindValue( ':code_class_id', $oldClassId );
         $stmt2->execute();
         
         foreach ( $stmt2->fetchAll( PDO::FETCH_ASSOC ) as $method )
