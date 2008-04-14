@@ -1182,7 +1182,7 @@ class phpucPHPUnitLogDatabaseAggregator
         
         foreach ( $metrics as $fileId => $metric )
         {
-            $coverage = round( ( $metric['eloc'] / $metric['loc'] ) * 100, 5 );
+            $coverage = $this->calculateCoverage( $metric['loc'], $metric['eloc'] );
             
             $update->bindValue( ':file_id', $fileId );
             $update->bindValue( ':coverage', $coverage );
@@ -1262,7 +1262,7 @@ class phpucPHPUnitLogDatabaseAggregator
         
         foreach ( $metrics as $functionId => $metric )
         {
-            $coverage = round( ( $metric['eloc'] / $metric['loc'] ) * 100, 5 );
+            $coverage = $this->calculateCoverage( $metric['loc'], $metric['eloc'] );
             
             $ccn  = $metric['ccn'];
             $crap = pow( $ccn, 2 ) * pow( ( 1 - $coverage / 100 ), 3 ) + $ccn; 
@@ -1349,7 +1349,7 @@ class phpucPHPUnitLogDatabaseAggregator
         
         foreach ( $metrics as $methodId => $metric )
         {
-            $coverage = round( ( $metric['eloc'] / $metric['loc'] ) * 100, 5 );
+            $coverage = $this->calculateCoverage( $metric['loc'], $metric['eloc'] );
             
             $ccn  = $metric['ccn'];
             $crap = pow( $ccn, 2 ) * pow( ( 1 - $coverage / 100 ), 3 ) + $ccn; 
@@ -1427,7 +1427,7 @@ class phpucPHPUnitLogDatabaseAggregator
         
         foreach ( $metrics as $classId => $metric )
         {
-            $coverage = round( ( $metric['eloc'] / $metric['loc'] ) * 100, 5 ); 
+            $coverage = $this->calculateCoverage( $metric['loc'], $metric['eloc'] ); 
             
             $update->bindValue( ':class_id', $classId );
             $update->bindValue( ':coverage', $coverage );
@@ -1435,5 +1435,24 @@ class phpucPHPUnitLogDatabaseAggregator
             $update->bindValue( ':executable', $metric['loc'] );
             $update->execute();
         }
+    }
+    
+    /**
+     * Calculates the code coverage value based on exectuable and executed lines
+     * of code.
+     *
+     * @param integer $executable Number of executable lines.
+     * @param integer $executed   Number of executed lines.
+     * 
+     * @return float
+     */
+    protected function calculateCoverage( $executable, $executed )
+    {
+        $coverage = 100;
+        if ( $executable > 0 )
+        {
+            $coverage = ( $executed / $executable ) * 100;
+        }
+        return round( $coverage, 5 );
     }
 }
