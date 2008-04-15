@@ -46,11 +46,11 @@
  * @link       http://www.phpundercontrol.org/
  */
 
-require_once dirname( __FILE__ ) . '/AbstractLogAggregatorTest.php';
+require_once dirname( __FILE__ ) . '/../../AbstractTest.php';
 
 /**
- * Test case for the code coverage log aggregator.
- * 
+ * Test case for the coverage log generator.
+ *
  * @category   QualityAssurance
  * @package    Data
  * @subpackage Logs
@@ -60,40 +60,48 @@ require_once dirname( __FILE__ ) . '/AbstractLogAggregatorTest.php';
  * @version    Release: @package_version@
  * @link       http://www.phpundercontrol.org/
  */
-class phpucPHPUnitCoverageAggregatorTest extends phpucAbstractLogAggregatorTest
-{    
+class phpucPHPUnitCoverageXmlGeneratorTest extends phpucAbstractTest
+{
     /**
-     * Tests the generated log file against a sample log file.
+     * Tests the generated coverage xml report.
      *
      * @return void
      */
-    public function testAggregateLogFiles()
+    public function testGenerateCoverageXml()
     {
-        $aggregator = new phpucPHPUnitCoverageAggregator();
-        $aggregator->aggregate( $this->createValidFileIterator( 'cov' ) );
+        $rev = 3;
+        $pdo = new PDO(
+            sprintf( 'sqlite:%s/phpunit/php525/log.db', PHPUC_TEST_DATA ) 
+        );
         
-        $expected = sprintf( '%s/phpunit/expected/cov.xml', PHPUC_TEST_DATA );
-        $result   = sprintf( '%s/cov.xml', PHPUC_TEST_DIR );
+        $result   = PHPUC_TEST_DIR . '/result.xml';
+        $expected = PHPUC_TEST_DIR . '/expected.xml';
         
-        $aggregator->save( $result );
+        copy( PHPUC_TEST_DATA . '/phpunit/expected/cov.xml', $expected );
         
-        $this->assertXmlFileEqualsXmlFile( $expected, $result );
-    }
-    
-    /**
-     * Tests that the log aggregator handles invalid or broken log files correct.
-     *
-     * @return void
-     */
-    public function testAggregateLogFilesWithInvalidLogFile()
-    {
-        $aggregator = new phpucPHPUnitCoverageAggregator();
-        $aggregator->aggregate( $this->createBrokenFileIterator( 'cov' ) );
+        $generator = new phpucPHPUnitCoverageXmlGenerator( $pdo, $rev );
+        $generator->save( $result );
         
-        $expected = sprintf( '%s/phpunit/expected/cov.xml', PHPUC_TEST_DATA );
-        $result   = sprintf( '%s/cov.xml', PHPUC_TEST_DIR );
+        $this->assertFileExists( $result );
         
-        $aggregator->save( $result );
+        // Set timestamp
+        $time = time();
+        
+        $dom1 = new DOMDocument();
+        $dom1->load( $result );
+        $dom1->documentElement->setAttribute( 'generated', $time );
+        $dom1->getElementsByTagName( 'project' )
+             ->item( 0 )
+             ->setAttribute( 'timestamp', $time );
+        $dom1->save( $result );
+        
+        $dom2 = new DOMDocument();
+        $dom2->load( $expected );
+        $dom2->documentElement->setAttribute( 'generated', $time );
+        $dom2->getElementsByTagName( 'project' )
+             ->item( 0 )
+             ->setAttribute( 'timestamp', $time );
+        $dom2->save( $expected );
         
         $this->assertXmlFileEqualsXmlFile( $expected, $result );
     }
