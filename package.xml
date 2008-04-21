@@ -20,9 +20,9 @@
     <email>mapi@phpundercontrol.org</email>
     <active>yes</active>
   </lead>
-  <date>2008-04-06</date>
+  <date>2008-04-21</date>
   <version>
-    <release>0.4.1</release>
+    <release>0.4.2</release>
     <api>0.2.0</api>
   </version>
   <stability>
@@ -31,12 +31,7 @@
   </stability>
   <license uri="http://www.opensource.org/licenses/bsd-license.php">BSD License</license>
   <notes>
-- New compact project overview page that doesn't show all CodeSniffer, PMD and
-  PHPDoc errors and warnings. Suggested by Sebastian, kore, norro.
-- Improved navigation for the CodeSniffer view.
-- PHPDoc errors integrated into generated documentation.
-- Better visualization for @dataProvider tests.
-- Improved PHPUnit view. 
+- Hide empty CodeSniffer results on the project overview page.  
   </notes>
   <contents>
     <dir name="/">
@@ -1235,6 +1230,33 @@
   number of old builds.
 - Minor UI improvements.
       </notes>    
+    </release>
+    
+    <release>
+      <lead>
+        <name>Manuel Pichler</name>
+        <user>mp</user>
+        <email>mapi@phpundercontrol.org</email>
+        <active>yes</active>
+      </lead>
+      <version>
+        <release>0.4.1</release>
+        <api>0.2.0</api>
+      </version>
+      <stability>
+        <release>beta</release>
+        <api>beta</api>
+      </stability>
+      <date>2008-04-06</date>
+      <license uri="http://www.opensource.org/licenses/bsd-license.php">BSD License</license>
+      <notes>
+- New compact project overview page that doesn't show all CodeSniffer, PMD and
+  PHPDoc errors and warnings. Suggested by Sebastian, kore, norro.
+- Improved navigation for the CodeSniffer view.
+- PHPDoc errors integrated into generated documentation.
+- Better visualization for @dataProvider tests.
+- Improved PHPUnit view. 
+      </notes>
     </release>
   </changelog>
 </package>
