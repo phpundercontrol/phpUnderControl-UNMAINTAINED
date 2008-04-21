@@ -45,7 +45,9 @@
   <xsl:param name="checkstyle.hide.warnings" select="'true'"/>
 
   <xsl:template match="/" mode="checkstyle">
-    <xsl:call-template name="phpcs-summary"/>
+    <xsl:if test="count(/cruisecontrol/checkstyle/file[error]) &gt; 0">
+      <xsl:call-template name="phpcs-summary"/>
+    </xsl:if>
   </xsl:template>
 
   <xsl:template match="/">
