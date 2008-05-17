@@ -204,11 +204,11 @@
         <xsl:choose>
           <xsl:when test="error">
             <a href="javascript:void(0)"
-               onClick="toggleDivVisibility(document.getElementById('{concat('error.',../@package,'.',../@name,'.',@name)}'))">Error &#187;</a>
+               onClick="toggleDivVisibility(document.getElementById('{concat('error.',../@package,'.',../@name,'.',@name,'.',position())}'))">Error &#187;</a>
           </xsl:when>
           <xsl:when test="failure">
             <a href="javascript:void(0)"
-               onClick="toggleDivVisibility(document.getElementById('{concat('failure.',../@package,'.',../@name,'.',@name)}'))">Failure &#187;</a>
+               onClick="toggleDivVisibility(document.getElementById('{concat('failure.',../@package,'.',../@name,'.',@name,'.',position())}'))">Failure &#187;</a>
           </xsl:when>
           <xsl:otherwise>Success</xsl:otherwise>
         </xsl:choose>
@@ -228,7 +228,7 @@
       <tr>
         <td></td>
         <td colspan="4">
-          <span id="{concat('error.',../@package,'.',../@name,'.',@name)}" class="testresults-output-div" style="display: none;">
+          <span id="{concat('error.',../@package,'.',../@name,'.',@name,'.',position())}" class="testresults-output-div" style="display: none;">
             <h3>Error:</h3>
             <xsl:apply-templates select="error/text()" mode="newline-to-br"/>
           </span>
@@ -239,7 +239,7 @@
       <tr>
         <td></td>
         <td colspan="4">
-          <span id="{concat('failure.',../@package,'.',../@name,'.',@name)}" class="testresults-output" style="display: none;">
+          <span id="{concat('failure.',../@package,'.',../@name,'.',@name,'.',position())}" class="testresults-output" style="display: none;">
             <h3>Failure:</h3>
             <xsl:apply-templates select="failure/text()" mode="newline-to-br"/>
           </span>
