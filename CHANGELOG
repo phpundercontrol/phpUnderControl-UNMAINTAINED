@@ -1,3 +1,8 @@
+phpUnderControl 0.4.3
+---------------------
+
+- Broken element identifier for failure message DIVs fixed. (#477)
+
 phpUnderControl 0.4.2
 ---------------------
 

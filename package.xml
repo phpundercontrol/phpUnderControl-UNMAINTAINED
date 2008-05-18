@@ -22,7 +22,7 @@
   </lead>
   <date>2008-04-21</date>
   <version>
-    <release>0.4.2</release>
+    <release>0.4.3</release>
     <api>0.2.0</api>
   </version>
   <stability>
@@ -31,7 +31,7 @@
   </stability>
   <license uri="http://www.opensource.org/licenses/bsd-license.php">BSD License</license>
   <notes>
-- Hide empty CodeSniffer results on the project overview page.  
+- Broken element identifier for failure message DIVs fixed. (#477)  
   </notes>
   <contents>
     <dir name="/">
@@ -1256,6 +1256,28 @@
 - PHPDoc errors integrated into generated documentation.
 - Better visualization for @dataProvider tests.
 - Improved PHPUnit view. 
+      </notes>
+    </release>
+    
+    <release>
+      <lead>
+        <name>Manuel Pichler</name>
+        <user>mp</user>
+        <email>mapi@phpundercontrol.org</email>
+        <active>yes</active>
+      </lead>
+      <version>
+        <release>0.4.2</release>
+        <api>0.2.0</api>
+      </version>
+      <stability>
+        <release>beta</release>
+        <api>beta</api>
+      </stability>
+      <date>2008-04-21</date>
+      <license uri="http://www.opensource.org/licenses/bsd-license.php">BSD License</license>
+      <notes>
+- Hide empty CodeSniffer results on the project overview page.  
       </notes>
     </release>
   </changelog>
