@@ -104,7 +104,7 @@
   <!-- UnitTest Failures -->
   <xsl:template match="failure" mode="unittests">
     <tr>
-      <xsl:if test="($testsuite.error.count + position()) mod 2 = 1">
+      <xsl:if test="($testsuite.error.count + position() + 1) mod 2 = 1">
         <xsl:attribute name="class">oddrow</xsl:attribute>
       </xsl:if>
       <td class="failure" width="50">
