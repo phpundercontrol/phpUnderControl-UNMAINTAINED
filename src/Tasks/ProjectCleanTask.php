@@ -155,14 +155,37 @@ class phpucProjectCleanTask extends phpucAbstractTask implements phpucConsoleExt
      */
     protected function reduceTimestamps( array $timestamps )
     {
-        $keepBuilds = (int) $this->args->getOption( 'keep-builds' );
-        if ( $keepBuilds < 1 )
-        {
-            $keepBuilds = 20;
-        }
-        
         // Sort reverse, newest first
         arsort( $timestamps );
+        
+        if ( $this->args->hasOption('keep-days') === false )
+        {
+            $keepBuilds = (int) $this->args->getOption( 'keep-builds' );
+            if ( $keepBuilds < 1 )
+            {
+                $keepBuilds = 20;
+            }
+        }
+        else
+        {
+            $time = (int) $this->args->getOption( 'keep-days' );
+            $time = mktime( 0, 0, 0 ) - ( $time * 86400 ); 
+            
+            $keepBuilds = count( $timestamps );
+            foreach ( $timestamps as $timestamp )
+            {
+                if ( preg_match( '/(\d{4})(\d{2})(\d{2})/', $timestamp, $m ) === 0 )
+                {
+                    continue;
+                }
+
+                if ( mktime( 0, 0, 0, $m[2], $m[3], $m[1] ) <= $time )
+                {
+                    --$keepBuilds;
+                }
+                
+            }
+        }
         
         // Return reduced array.
         return array_slice( $timestamps, $keepBuilds );
@@ -197,6 +220,13 @@ class phpucProjectCleanTask extends phpucAbstractTask implements phpucConsoleExt
             'The number of builds to keep.',
             true,
             20,
+            true
+        );
+        $def->addOption(
+            $command->getCommandId(),
+            'd',
+            'keep-days',
+            'Removes all builds older than specified days.',
             true
         );
     }
