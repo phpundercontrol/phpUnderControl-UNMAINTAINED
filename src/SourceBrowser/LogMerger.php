@@ -1,8 +1,10 @@
 <?php
 /**
  * This file is part of phpUnderControl.
+ * 
+ * PHP Version 5.2.0
  *
- * Copyright (c) 2007-2008, Manuel Pichler <mapi@phpundercontrol.org>.
+ * Copyright (c) 2007-2008, Manuel Pichler <mapi@manuel-pichler.de>.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -34,75 +36,83 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  * 
- * @package   phpUnderControl
- * @author    Manuel Pichler <mapi@phpundercontrol.org>
+ * @category  QualityAssurance
+ * @package   SourceBrowser
+ * @author    Manuel Pichler <mapi@manuel-pichler.de>
  * @copyright 2007-2008 Manuel Pichler. All rights reserved.
  * @license   http://www.opensource.org/licenses/bsd-license.php  BSD License
  * @version   SVN: $Id$
  * @link      http://www.phpundercontrol.org/
  */
 
-if ( defined( 'PHPUnit_MAIN_METHOD' ) === false )
-{
-    define( 'PHPUnit_MAIN_METHOD', 'phpucAllTests::main' );
-}
-
-require_once 'PHPUnit/Framework/TestSuite.php';
-require_once 'PHPUnit/TextUI/TestRunner.php';
-
-require_once dirname( __FILE__ ) . '/Commands/CommandsAllTests.php';
-require_once dirname( __FILE__ ) . '/Console/ConsoleAllTests.php';
-require_once dirname( __FILE__ ) . '/Data/DataAllTests.php';
-require_once dirname( __FILE__ ) . '/Graph/GraphAllTests.php';
-require_once dirname( __FILE__ ) . '/SourceBrowser/SourceBrowserAllTests.php';
-require_once dirname( __FILE__ ) . '/Tasks/TasksAllTests.php';
-require_once dirname( __FILE__ ) . '/Util/UtilAllTests.php';
-require_once dirname( __FILE__ ) . '/VersionControl/VersionControlAllTests.php';
-
 /**
- * Main test suite for phpUnderControl.
+ * This class provides a simple log file merger.
  *
- * @package   phpUnderControl
- * @author    Manuel Pichler <mapi@phpundercontrol.org>
+ * @category  QualityAssurance
+ * @package   SourceBrowser
+ * @author    Manuel Pichler <mapi@manuel-pichler.de>
  * @copyright 2007-2008 Manuel Pichler. All rights reserved.
  * @license   http://www.opensource.org/licenses/bsd-license.php  BSD License
  * @version   Release: @package_version@
  * @link      http://www.phpundercontrol.org/
  */
-class phpucAllTests
+class phpucLogMerger
 {
     /**
-     * Test suite main method.
+     * The log directory.
      *
-     * @return void
+     * @type string
+     * @var string $logDir
      */
-    public static function main()
+    private $logDir = null;
+    
+    /**
+     * Constructs a new log file merger instance.
+     *
+     * @param string $logDir The log directory.
+     * 
+     * @throws phpucErrorException 
+     *         If the given log directory doesn't exist.
+     */
+    public function __construct( $logDir )
     {
-        PHPUnit_TextUI_TestRunner::run( self::suite() );
+        $this->logDir = $logDir;
+        
+        if ( is_dir( $logDir ) === false )
+        {
+            throw new phpucErrorException( "Invalid log directory '{$logDir}'." );
+        }
     }
     
     /**
-     * Creates the phpunit test suite for this package.
+     * Collects all xml log files in the given <b>$logDir</b> and merges them
+     * in a single log file.
      *
-     * @return PHPUnit_Framework_TestSuite
+     * @param string $outputFile The output file.
+     * 
+     * @return DOMDocument
      */
-    public static function suite()
+    public function mergeFiles( $outputFile )
     {
-        $suite = new PHPUnit_Framework_TestSuite( 'phpUnderControl - AllTests' );
-        $suite->addTest( phpucConsoleAllTests::suite() );
-        $suite->addTest( phpucDataAllTests::suite() );
-        $suite->addTest( phpucGraphAllTests::suite() );
-        $suite->addTest( phpucSourceBrowserAllTests::suite() );
-        $suite->addTest( phpucTasksAllTests::suite() );
-        $suite->addTest( phpucUtilAllTests::suite() );
-        $suite->addTest( phpucVersionControlAllTests::suite() );
-        $suite->addTest( phpucCommandsAllTests::suite() );
-
-        return $suite;
+        $merged  = new DOMDocument( '1.0', 'UTF-8' );
+        $element = $merged->createElement( 'phpundercontrol' );
+        
+        $merged->preserveWhiteSpace = false;
+        $merged->formatOutput       = true;
+        
+        foreach ( glob( "{$this->logDir}/*.xml" ) as $file )
+        {
+            $log                     = new DOMDocument( '1.0', 'UTF-8' );
+            $log->preserveWhiteSpace = false;
+            $log->load( $file );
+            
+            $imported = $merged->importNode( $log->documentElement, true );
+            $element->appendChild( $imported );
+        }
+        
+        $merged->appendChild( $element );
+        $merged->save( $outputFile );
+        
+        return $merged;
     }
-}
-
-if ( PHPUnit_MAIN_METHOD === 'phpucAllTests::main' )
-{
-    phpucAllTests::main();
 }

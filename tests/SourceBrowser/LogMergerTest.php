@@ -1,8 +1,10 @@
 <?php
 /**
  * This file is part of phpUnderControl.
+ * 
+ * PHP Version 5.2.0
  *
- * Copyright (c) 2007-2008, Manuel Pichler <mapi@phpundercontrol.org>.
+ * Copyright (c) 2007-2008, Manuel Pichler <mapi@manuel-pichler.de>.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -34,75 +36,85 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  * 
- * @package   phpUnderControl
- * @author    Manuel Pichler <mapi@phpundercontrol.org>
+ * @category  QualityAssurance
+ * @package   SourceBrowser
+ * @author    Manuel Pichler <mapi@manuel-pichler.de>
  * @copyright 2007-2008 Manuel Pichler. All rights reserved.
  * @license   http://www.opensource.org/licenses/bsd-license.php  BSD License
  * @version   SVN: $Id$
  * @link      http://www.phpundercontrol.org/
  */
 
-if ( defined( 'PHPUnit_MAIN_METHOD' ) === false )
-{
-    define( 'PHPUnit_MAIN_METHOD', 'phpucAllTests::main' );
-}
-
-require_once 'PHPUnit/Framework/TestSuite.php';
-require_once 'PHPUnit/TextUI/TestRunner.php';
-
-require_once dirname( __FILE__ ) . '/Commands/CommandsAllTests.php';
-require_once dirname( __FILE__ ) . '/Console/ConsoleAllTests.php';
-require_once dirname( __FILE__ ) . '/Data/DataAllTests.php';
-require_once dirname( __FILE__ ) . '/Graph/GraphAllTests.php';
-require_once dirname( __FILE__ ) . '/SourceBrowser/SourceBrowserAllTests.php';
-require_once dirname( __FILE__ ) . '/Tasks/TasksAllTests.php';
-require_once dirname( __FILE__ ) . '/Util/UtilAllTests.php';
-require_once dirname( __FILE__ ) . '/VersionControl/VersionControlAllTests.php';
+require_once dirname( __FILE__ ) . '/../AbstractTest.php';
 
 /**
- * Main test suite for phpUnderControl.
+ * Test case for the log file merger.
  *
- * @package   phpUnderControl
- * @author    Manuel Pichler <mapi@phpundercontrol.org>
+ * @category  QualityAssurance
+ * @package   SourceBrowser
+ * @author    Manuel Pichler <mapi@manuel-pichler.de>
  * @copyright 2007-2008 Manuel Pichler. All rights reserved.
  * @license   http://www.opensource.org/licenses/bsd-license.php  BSD License
  * @version   Release: @package_version@
  * @link      http://www.phpundercontrol.org/
  */
-class phpucAllTests
+class phpucLogMergerTest extends phpucAbstractTest
 {
     /**
-     * Test suite main method.
+     * Tests that the ctor throws an exception for an invalid log directory.
      *
      * @return void
      */
-    public static function main()
+    public function testCtorThrowsExceptionForInvalidLogDir()
     {
-        PHPUnit_TextUI_TestRunner::run( self::suite() );
+        $logDir = PHPUC_TEST_DIR . '/logs';
+        
+        $this->assertFileNotExists( $logDir );
+        $this->setExpectedException(
+            'phpucErrorException',
+            "Invalid log directory '{$logDir}'."
+        );
+        
+        new phpucLogMerger( $logDir );
     }
     
     /**
-     * Creates the phpunit test suite for this package.
+     * Tests the {@link phpucLogMerger::mergeFiles()} method and output.
      *
-     * @return PHPUnit_Framework_TestSuite
+     * @return void
      */
-    public static function suite()
+    public function testMergeFiles()
     {
-        $suite = new PHPUnit_Framework_TestSuite( 'phpUnderControl - AllTests' );
-        $suite->addTest( phpucConsoleAllTests::suite() );
-        $suite->addTest( phpucDataAllTests::suite() );
-        $suite->addTest( phpucGraphAllTests::suite() );
-        $suite->addTest( phpucSourceBrowserAllTests::suite() );
-        $suite->addTest( phpucTasksAllTests::suite() );
-        $suite->addTest( phpucUtilAllTests::suite() );
-        $suite->addTest( phpucVersionControlAllTests::suite() );
-        $suite->addTest( phpucCommandsAllTests::suite() );
-
-        return $suite;
+        $input  = PHPUC_TEST_DATA . '/coverage/logs';
+        $output = PHPUC_TEST_DIR . '/log.xml';
+        
+        $this->assertFileNotExists( $output );
+        
+        $merger = new phpucLogMerger( $input );
+        $result = $merger->mergeFiles( $output );
+        
+        $this->assertType( 'DOMDocument', $result );
+        $this->assertFileExists( $output );
+        
+        $this->assertEquals( 'phpundercontrol', $result->documentElement->tagName );
+        
+        $expected = array(
+            'checkstyle'  =>  true,
+            'coverage'    =>  true,
+            'metrics'     =>  true,
+            'testsuites'  =>  true
+        );
+        
+        foreach ( $result->documentElement->childNodes as $childNode )
+        {
+            if ( $childNode->nodeType !== XML_ELEMENT_NODE )
+            {
+                continue;
+            }
+            
+            $this->assertArrayHasKey( $childNode->tagName, $expected );
+            unset( $expected[$childNode->tagName] );
+        }
+        $this->assertEquals( 0, count( $expected ) );
     }
-}
-
-if ( PHPUnit_MAIN_METHOD === 'phpucAllTests::main' )
-{
-    phpucAllTests::main();
 }

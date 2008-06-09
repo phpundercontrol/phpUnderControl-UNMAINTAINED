@@ -1,0 +1,981 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testFile fullPath="/home/manu/Desktop/Projects/workspace.xplib.de/phpUnderControl/trunk/tests/Console//ConsoleInputTest.php" shortenedPath="ConsoleInputTest.php" generated="1212932774" phpunit="@package_version@">
+  <line lineNumber="1">
+    <body><![CDATA[<?php]]></body>
+  </line>
+  <line lineNumber="2">
+    <body><![CDATA[/**]]></body>
+  </line>
+  <line lineNumber="3">
+    <body><![CDATA[ * This file is part of phpUnderControl.]]></body>
+  </line>
+  <line lineNumber="4">
+    <body><![CDATA[ * ]]></body>
+  </line>
+  <line lineNumber="5">
+    <body><![CDATA[ * PHP Version 5.2.0]]></body>
+  </line>
+  <line lineNumber="6">
+    <body><![CDATA[ *]]></body>
+  </line>
+  <line lineNumber="7">
+    <body><![CDATA[ * Copyright (c) 2007-2008, Manuel Pichler <mapi@manuel-pichler.de>.]]></body>
+  </line>
+  <line lineNumber="8">
+    <body><![CDATA[ * All rights reserved.]]></body>
+  </line>
+  <line lineNumber="9">
+    <body><![CDATA[ *]]></body>
+  </line>
+  <line lineNumber="10">
+    <body><![CDATA[ * Redistribution and use in source and binary forms, with or without]]></body>
+  </line>
+  <line lineNumber="11">
+    <body><![CDATA[ * modification, are permitted provided that the following conditions]]></body>
+  </line>
+  <line lineNumber="12">
+    <body><![CDATA[ * are met:]]></body>
+  </line>
+  <line lineNumber="13">
+    <body><![CDATA[ *]]></body>
+  </line>
+  <line lineNumber="14">
+    <body><![CDATA[ *   * Redistributions of source code must retain the above copyright]]></body>
+  </line>
+  <line lineNumber="15">
+    <body><![CDATA[ *     notice, this list of conditions and the following disclaimer.]]></body>
+  </line>
+  <line lineNumber="16">
+    <body><![CDATA[ *]]></body>
+  </line>
+  <line lineNumber="17">
+    <body><![CDATA[ *   * Redistributions in binary form must reproduce the above copyright]]></body>
+  </line>
+  <line lineNumber="18">
+    <body><![CDATA[ *     notice, this list of conditions and the following disclaimer in]]></body>
+  </line>
+  <line lineNumber="19">
+    <body><![CDATA[ *     the documentation and/or other materials provided with the]]></body>
+  </line>
+  <line lineNumber="20">
+    <body><![CDATA[ *     distribution.]]></body>
+  </line>
+  <line lineNumber="21">
+    <body><![CDATA[ *]]></body>
+  </line>
+  <line lineNumber="22">
+    <body><![CDATA[ *   * Neither the name of Manuel Pichler nor the names of his]]></body>
+  </line>
+  <line lineNumber="23">
+    <body><![CDATA[ *     contributors may be used to endorse or promote products derived]]></body>
+  </line>
+  <line lineNumber="24">
+    <body><![CDATA[ *     from this software without specific prior written permission.]]></body>
+  </line>
+  <line lineNumber="25">
+    <body><![CDATA[ *]]></body>
+  </line>
+  <line lineNumber="26">
+    <body><![CDATA[ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS]]></body>
+  </line>
+  <line lineNumber="27">
+    <body><![CDATA[ * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT]]></body>
+  </line>
+  <line lineNumber="28">
+    <body><![CDATA[ * LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS]]></body>
+  </line>
+  <line lineNumber="29">
+    <body><![CDATA[ * FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE]]></body>
+  </line>
+  <line lineNumber="30">
+    <body><![CDATA[ * COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,]]></body>
+  </line>
+  <line lineNumber="31">
+    <body><![CDATA[ * INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,]]></body>
+  </line>
+  <line lineNumber="32">
+    <body><![CDATA[ * BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;]]></body>
+  </line>
+  <line lineNumber="33">
+    <body><![CDATA[ * LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER]]></body>
+  </line>
+  <line lineNumber="34">
+    <body><![CDATA[ * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT]]></body>
+  </line>
+  <line lineNumber="35">
+    <body><![CDATA[ * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN]]></body>
+  </line>
+  <line lineNumber="36">
+    <body><![CDATA[ * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE]]></body>
+  </line>
+  <line lineNumber="37">
+    <body><![CDATA[ * POSSIBILITY OF SUCH DAMAGE.]]></body>
+  </line>
+  <line lineNumber="38">
+    <body><![CDATA[ * ]]></body>
+  </line>
+  <line lineNumber="39">
+    <body><![CDATA[ * @category  QualityAssurance]]></body>
+  </line>
+  <line lineNumber="40">
+    <body><![CDATA[ * @package   Console]]></body>
+  </line>
+  <line lineNumber="41">
+    <body><![CDATA[ * @author    Manuel Pichler <mapi@manuel-pichler.de>]]></body>
+  </line>
+  <line lineNumber="42">
+    <body><![CDATA[ * @copyright 2007-2008 Manuel Pichler. All rights reserved.]]></body>
+  </line>
+  <line lineNumber="43">
+    <body><![CDATA[ * @license   http://www.opensource.org/licenses/bsd-license.php  BSD License]]></body>
+  </line>
+  <line lineNumber="44">
+    <body><![CDATA[ * @version   SVN: $Id$]]></body>
+  </line>
+  <line lineNumber="45">
+    <body><![CDATA[ * @link      http://www.phpundercontrol.org/]]></body>
+  </line>
+  <line lineNumber="46">
+    <body><![CDATA[ */]]></body>
+  </line>
+  <line lineNumber="47">
+    <body></body>
+  </line>
+  <line lineNumber="48">
+    <body><![CDATA[require_once dirname( __FILE__ ) . '/../AbstractTest.php';]]></body>
+  </line>
+  <line lineNumber="49">
+    <body></body>
+  </line>
+  <line lineNumber="50">
+    <body><![CDATA[/**]]></body>
+  </line>
+  <line lineNumber="51">
+    <body><![CDATA[ * Test case for the console input class.]]></body>
+  </line>
+  <line lineNumber="52">
+    <body><![CDATA[ *]]></body>
+  </line>
+  <line lineNumber="53">
+    <body><![CDATA[ * @category  QualityAssurance]]></body>
+  </line>
+  <line lineNumber="54">
+    <body><![CDATA[ * @package   Console]]></body>
+  </line>
+  <line lineNumber="55">
+    <body><![CDATA[ * @author    Manuel Pichler <mapi@manuel-pichler.de>]]></body>
+  </line>
+  <line lineNumber="56">
+    <body><![CDATA[ * @copyright 2007-2008 Manuel Pichler. All rights reserved.]]></body>
+  </line>
+  <line lineNumber="57">
+    <body><![CDATA[ * @license   http://www.opensource.org/licenses/bsd-license.php  BSD License]]></body>
+  </line>
+  <line lineNumber="58">
+    <body><![CDATA[ * @version   Release: @package_version@]]></body>
+  </line>
+  <line lineNumber="59">
+    <body><![CDATA[ * @link      http://www.phpundercontrol.org/]]></body>
+  </line>
+  <line lineNumber="60">
+    <body><![CDATA[ */]]></body>
+  </line>
+  <line lineNumber="61">
+    <body><![CDATA[class phpucConsoleInputTest extends phpucAbstractTest]]></body>
+  </line>
+  <line lineNumber="62">
+    <body><![CDATA[{]]></body>
+  </line>
+  <line lineNumber="63">
+    <body><![CDATA[    /**]]></body>
+  </line>
+  <line lineNumber="64">
+    <body><![CDATA[     * Tests that {@link phpucConsoleInput::parse()} fails with an exception if]]></body>
+  </line>
+  <line lineNumber="65">
+    <body><![CDATA[     * a mandatory option without a default default is not defined on the cli.]]></body>
+  </line>
+  <line lineNumber="66">
+    <body><![CDATA[     *]]></body>
+  </line>
+  <line lineNumber="67">
+    <body><![CDATA[     * @return void]]></body>
+  </line>
+  <line lineNumber="68">
+    <body><![CDATA[     */]]></body>
+  </line>
+  <line lineNumber="69">
+    <body><![CDATA[    public function testConsoleInputWithoutMandatoryOptionAndNoDefaultValueFail()]]></body>
+  </line>
+  <line lineNumber="70">
+    <body><![CDATA[    {]]></body>
+  </line>
+  <line lineNumber="71">
+    <body><![CDATA[        $definition = new phpucConsoleInputDefinition();]]></body>
+  </line>
+  <line lineNumber="72">
+    <body><![CDATA[        $definition->addCommand( 'foo', 'The foo command.' );]]></body>
+  </line>
+  <line lineNumber="73">
+    <body><![CDATA[        $definition->addOption( ]]></body>
+  </line>
+  <line lineNumber="74">
+    <body><![CDATA[            'foo', ]]></body>
+  </line>
+  <line lineNumber="75">
+    <body><![CDATA[            'b', ]]></body>
+  </line>
+  <line lineNumber="76">
+    <body><![CDATA[            'bar', ]]></body>
+  </line>
+  <line lineNumber="77">
+    <body><![CDATA[            'The bar option',]]></body>
+  </line>
+  <line lineNumber="78">
+    <body><![CDATA[            true, ]]></body>
+  </line>
+  <line lineNumber="79">
+    <body><![CDATA[            null, ]]></body>
+  </line>
+  <line lineNumber="80">
+    <body><![CDATA[            true]]></body>
+  </line>
+  <line lineNumber="81">
+    <body><![CDATA[        );]]></body>
+  </line>
+  <line lineNumber="82">
+    <body><![CDATA[        ]]></body>
+  </line>
+  <line lineNumber="83">
+    <body><![CDATA[        $this->prepareArgv( array( 'foo' ) );]]></body>
+  </line>
+  <line lineNumber="84">
+    <body><![CDATA[        ]]></body>
+  </line>
+  <line lineNumber="85">
+    <body><![CDATA[        $this->setExpectedException(]]></body>
+  </line>
+  <line lineNumber="86">
+    <body><![CDATA[            'phpucConsoleException',]]></body>
+  </line>
+  <line lineNumber="87">
+    <body><![CDATA[            "The option '--bar' is marked as mandatory and not set."]]></body>
+  </line>
+  <line lineNumber="88">
+    <body><![CDATA[        );]]></body>
+  </line>
+  <line lineNumber="89">
+    <body><![CDATA[        ]]></body>
+  </line>
+  <line lineNumber="90">
+    <body><![CDATA[        $input = new phpucConsoleInput( $definition );]]></body>
+  </line>
+  <line lineNumber="91">
+    <body><![CDATA[        $input->parse();]]></body>
+  </line>
+  <line lineNumber="92">
+    <body><![CDATA[    }]]></body>
+  </line>
+  <line lineNumber="93">
+    <body></body>
+  </line>
+  <line lineNumber="94">
+    <body><![CDATA[    /**]]></body>
+  </line>
+  <line lineNumber="95">
+    <body><![CDATA[     * Tests that {@link phpucConsoleInput::parse()} fails with an exception if]]></body>
+  </line>
+  <line lineNumber="96">
+    <body><![CDATA[     * a mandatory option without a default default is not defined on the cli.]]></body>
+  </line>
+  <line lineNumber="97">
+    <body><![CDATA[     *]]></body>
+  </line>
+  <line lineNumber="98">
+    <body><![CDATA[     * @return void]]></body>
+  </line>
+  <line lineNumber="99">
+    <body><![CDATA[     */]]></body>
+  </line>
+  <line lineNumber="100">
+    <body><![CDATA[    public function testConsoleInputWithoutMandatoryOptionAndNoDefaultValueButFollowingOptionFail()]]></body>
+  </line>
+  <line lineNumber="101">
+    <body><![CDATA[    {]]></body>
+  </line>
+  <line lineNumber="102">
+    <body><![CDATA[        $definition = new phpucConsoleInputDefinition();]]></body>
+  </line>
+  <line lineNumber="103">
+    <body><![CDATA[        $definition->addCommand( 'foo', 'The foo command.' );]]></body>
+  </line>
+  <line lineNumber="104">
+    <body><![CDATA[        $definition->addOption( ]]></body>
+  </line>
+  <line lineNumber="105">
+    <body><![CDATA[            'foo', ]]></body>
+  </line>
+  <line lineNumber="106">
+    <body><![CDATA[            'b', ]]></body>
+  </line>
+  <line lineNumber="107">
+    <body><![CDATA[            'bar', ]]></body>
+  </line>
+  <line lineNumber="108">
+    <body><![CDATA[            'The bar option', ]]></body>
+  </line>
+  <line lineNumber="109">
+    <body><![CDATA[            true, ]]></body>
+  </line>
+  <line lineNumber="110">
+    <body><![CDATA[            null, ]]></body>
+  </line>
+  <line lineNumber="111">
+    <body><![CDATA[            true ]]></body>
+  </line>
+  <line lineNumber="112">
+    <body><![CDATA[        );]]></body>
+  </line>
+  <line lineNumber="113">
+    <body><![CDATA[        ]]></body>
+  </line>
+  <line lineNumber="114">
+    <body><![CDATA[        $this->prepareArgv( array( 'foo', '-b', '-a' ) );]]></body>
+  </line>
+  <line lineNumber="115">
+    <body><![CDATA[        ]]></body>
+  </line>
+  <line lineNumber="116">
+    <body><![CDATA[        $this->setExpectedException(]]></body>
+  </line>
+  <line lineNumber="117">
+    <body><![CDATA[            'phpucConsoleException',]]></body>
+  </line>
+  <line lineNumber="118">
+    <body><![CDATA[            "The option '-b' requires an additional value."]]></body>
+  </line>
+  <line lineNumber="119">
+    <body><![CDATA[        );]]></body>
+  </line>
+  <line lineNumber="120">
+    <body><![CDATA[        ]]></body>
+  </line>
+  <line lineNumber="121">
+    <body><![CDATA[        $input = new phpucConsoleInput( $definition );]]></body>
+  </line>
+  <line lineNumber="122">
+    <body><![CDATA[        $input->parse();]]></body>
+  </line>
+  <line lineNumber="123">
+    <body><![CDATA[    }]]></body>
+  </line>
+  <line lineNumber="124">
+    <body><![CDATA[    ]]></body>
+  </line>
+  <line lineNumber="125">
+    <body><![CDATA[    /**]]></body>
+  </line>
+  <line lineNumber="126">
+    <body><![CDATA[     * Tests that {@link phpucConsoleInput::parse()} fails with an exception if]]></body>
+  </line>
+  <line lineNumber="127">
+    <body><![CDATA[     * a whitelisted option is not in the whitelist.]]></body>
+  </line>
+  <line lineNumber="128">
+    <body><![CDATA[     *]]></body>
+  </line>
+  <line lineNumber="129">
+    <body><![CDATA[     * @return void]]></body>
+  </line>
+  <line lineNumber="130">
+    <body><![CDATA[     */]]></body>
+  </line>
+  <line lineNumber="131">
+    <body><![CDATA[    public function testConsoleInputWithInvalidWhitelistOptionValueFail()]]></body>
+  </line>
+  <line lineNumber="132">
+    <body><![CDATA[    {]]></body>
+  </line>
+  <line lineNumber="133">
+    <body><![CDATA[        $definition = new phpucConsoleInputDefinition();]]></body>
+  </line>
+  <line lineNumber="134">
+    <body><![CDATA[        $definition->addCommand( 'foo', 'The foo command.' );]]></body>
+  </line>
+  <line lineNumber="135">
+    <body><![CDATA[        $definition->addOption( ]]></body>
+  </line>
+  <line lineNumber="136">
+    <body><![CDATA[            'foo', 'b', 'bar', 'The bar option', array( 'a', 'b' ), null, true]]></body>
+  </line>
+  <line lineNumber="137">
+    <body><![CDATA[        );]]></body>
+  </line>
+  <line lineNumber="138">
+    <body><![CDATA[        ]]></body>
+  </line>
+  <line lineNumber="139">
+    <body><![CDATA[        $this->prepareArgv( array( 'foo', '--bar', 'c' ) );]]></body>
+  </line>
+  <line lineNumber="140">
+    <body><![CDATA[        ]]></body>
+  </line>
+  <line lineNumber="141">
+    <body><![CDATA[        $this->setExpectedException(]]></body>
+  </line>
+  <line lineNumber="142">
+    <body><![CDATA[            'phpucConsoleException',]]></body>
+  </line>
+  <line lineNumber="143">
+    <body><![CDATA[            'The value for option --bar must match one of these values "a", "b".']]></body>
+  </line>
+  <line lineNumber="144">
+    <body><![CDATA[        );]]></body>
+  </line>
+  <line lineNumber="145">
+    <body><![CDATA[        ]]></body>
+  </line>
+  <line lineNumber="146">
+    <body><![CDATA[        $input = new phpucConsoleInput( $definition );]]></body>
+  </line>
+  <line lineNumber="147">
+    <body><![CDATA[        $input->parse();]]></body>
+  </line>
+  <line lineNumber="148">
+    <body><![CDATA[    }]]></body>
+  </line>
+  <line lineNumber="149">
+    <body><![CDATA[    ]]></body>
+  </line>
+  <line lineNumber="150">
+    <body><![CDATA[    /**]]></body>
+  </line>
+  <line lineNumber="151">
+    <body><![CDATA[     * Tests that {@link phpucConsoleInput::parse()} fails with an exception if]]></body>
+  </line>
+  <line lineNumber="152">
+    <body><![CDATA[     * an option value doesn't match against the defined regexp.]]></body>
+  </line>
+  <line lineNumber="153">
+    <body><![CDATA[     *]]></body>
+  </line>
+  <line lineNumber="154">
+    <body><![CDATA[     * @return void]]></body>
+  </line>
+  <line lineNumber="155">
+    <body><![CDATA[     */]]></body>
+  </line>
+  <line lineNumber="156">
+    <body><![CDATA[    public function testConsoleInputWithInvalidFormatedOptionValueFail()]]></body>
+  </line>
+  <line lineNumber="157">
+    <body><![CDATA[    {]]></body>
+  </line>
+  <line lineNumber="158">
+    <body><![CDATA[        $definition = new phpucConsoleInputDefinition();]]></body>
+  </line>
+  <line lineNumber="159">
+    <body><![CDATA[        $definition->addCommand( 'foo', 'The foo command.' );]]></body>
+  </line>
+  <line lineNumber="160">
+    <body><![CDATA[        $definition->addOption( ]]></body>
+  </line>
+  <line lineNumber="161">
+    <body><![CDATA[            'foo', ]]></body>
+  </line>
+  <line lineNumber="162">
+    <body><![CDATA[            'b', ]]></body>
+  </line>
+  <line lineNumber="163">
+    <body><![CDATA[            'bar', ]]></body>
+  </line>
+  <line lineNumber="164">
+    <body><![CDATA[            'The bar option', ]]></body>
+  </line>
+  <line lineNumber="165">
+    <body><![CDATA[            '/^[0-9a-f]{4}\-[0-9a-f]{2}$/D', ]]></body>
+  </line>
+  <line lineNumber="166">
+    <body><![CDATA[            null, ]]></body>
+  </line>
+  <line lineNumber="167">
+    <body><![CDATA[            true]]></body>
+  </line>
+  <line lineNumber="168">
+    <body><![CDATA[        );]]></body>
+  </line>
+  <line lineNumber="169">
+    <body><![CDATA[        ]]></body>
+  </line>
+  <line lineNumber="170">
+    <body><![CDATA[        $this->prepareArgv( array( 'foo', '--bar', '071a-0' ) );]]></body>
+  </line>
+  <line lineNumber="171">
+    <body><![CDATA[        ]]></body>
+  </line>
+  <line lineNumber="172">
+    <body><![CDATA[        $this->setExpectedException(]]></body>
+  </line>
+  <line lineNumber="173">
+    <body><![CDATA[            'phpucConsoleException',]]></body>
+  </line>
+  <line lineNumber="174">
+    <body><![CDATA[            "The value for option '--bar' has an invalid format."]]></body>
+  </line>
+  <line lineNumber="175">
+    <body><![CDATA[        );]]></body>
+  </line>
+  <line lineNumber="176">
+    <body><![CDATA[        ]]></body>
+  </line>
+  <line lineNumber="177">
+    <body><![CDATA[        $input = new phpucConsoleInput( $definition );]]></body>
+  </line>
+  <line lineNumber="178">
+    <body><![CDATA[        $input->parse();]]></body>
+  </line>
+  <line lineNumber="179">
+    <body><![CDATA[    }]]></body>
+  </line>
+  <line lineNumber="180">
+    <body><![CDATA[    ]]></body>
+  </line>
+  <line lineNumber="181">
+    <body><![CDATA[    /**]]></body>
+  </line>
+  <line lineNumber="182">
+    <body><![CDATA[     * Tests that the magic __get() method fails with an exception for an unknown]]></body>
+  </line>
+  <line lineNumber="183">
+    <body><![CDATA[     * property.]]></body>
+  </line>
+  <line lineNumber="184">
+    <body><![CDATA[     *]]></body>
+  </line>
+  <line lineNumber="185">
+    <body><![CDATA[     * @return void]]></body>
+  </line>
+  <line lineNumber="186">
+    <body><![CDATA[     */]]></body>
+  </line>
+  <line lineNumber="187">
+    <body><![CDATA[    public function testGetterUnknownPropertyFail()]]></body>
+  </line>
+  <line lineNumber="188">
+    <body><![CDATA[    {]]></body>
+  </line>
+  <line lineNumber="189">
+    <body><![CDATA[        $this->setExpectedException(]]></body>
+  </line>
+  <line lineNumber="190">
+    <body><![CDATA[            'OutOfRangeException',]]></body>
+  </line>
+  <line lineNumber="191">
+    <body><![CDATA[            'Unknown or writonly property $phpuc.']]></body>
+  </line>
+  <line lineNumber="192">
+    <body><![CDATA[        );]]></body>
+  </line>
+  <line lineNumber="193">
+    <body><![CDATA[        ]]></body>
+  </line>
+  <line lineNumber="194">
+    <body><![CDATA[        $definition = new phpucConsoleInputDefinition();]]></body>
+  </line>
+  <line lineNumber="195">
+    <body><![CDATA[        ]]></body>
+  </line>
+  <line lineNumber="196">
+    <body><![CDATA[        $this->prepareArgv( array( '--version' ) );]]></body>
+  </line>
+  <line lineNumber="197">
+    <body><![CDATA[        ]]></body>
+  </line>
+  <line lineNumber="198">
+    <body><![CDATA[        $input = new phpucConsoleInput( $definition );]]></body>
+  </line>
+  <line lineNumber="199">
+    <body><![CDATA[        echo $input->phpuc;]]></body>
+  </line>
+  <line lineNumber="200">
+    <body><![CDATA[    }]]></body>
+  </line>
+  <line lineNumber="201">
+    <body><![CDATA[    ]]></body>
+  </line>
+  <line lineNumber="202">
+    <body><![CDATA[    /**]]></body>
+  </line>
+  <line lineNumber="203">
+    <body><![CDATA[     * Tests that the console arg ctor throws an exception if no $argv variable]]></body>
+  </line>
+  <line lineNumber="204">
+    <body><![CDATA[     * exists.]]></body>
+  </line>
+  <line lineNumber="205">
+    <body><![CDATA[     *]]></body>
+  </line>
+  <line lineNumber="206">
+    <body><![CDATA[     * @return void]]></body>
+  </line>
+  <line lineNumber="207">
+    <body><![CDATA[     */]]></body>
+  </line>
+  <line lineNumber="208">
+    <body><![CDATA[    public function testConsoleWithoutArgv()]]></body>
+  </line>
+  <line lineNumber="209">
+    <body><![CDATA[    {]]></body>
+  </line>
+  <line lineNumber="210">
+    <body><![CDATA[        $this->prepareArgv();]]></body>
+  </line>
+  <line lineNumber="211">
+    <body><![CDATA[        $this->setExpectedException( 'phpucConsoleException' );]]></body>
+  </line>
+  <line lineNumber="212">
+    <body><![CDATA[        ]]></body>
+  </line>
+  <line lineNumber="213">
+    <body><![CDATA[        new phpucConsoleInput();]]></body>
+  </line>
+  <line lineNumber="214">
+    <body><![CDATA[    }]]></body>
+  </line>
+  <line lineNumber="215">
+    <body><![CDATA[    ]]></body>
+  </line>
+  <line lineNumber="216">
+    <body><![CDATA[    /**]]></body>
+  </line>
+  <line lineNumber="217">
+    <body><![CDATA[     * Tests the install command without the cc-install-dir argument which must]]></body>
+  </line>
+  <line lineNumber="218">
+    <body><![CDATA[     * result in an {@link phpucConsoleException}.]]></body>
+  </line>
+  <line lineNumber="219">
+    <body><![CDATA[     *]]></body>
+  </line>
+  <line lineNumber="220">
+    <body><![CDATA[     * @return void]]></body>
+  </line>
+  <line lineNumber="221">
+    <body><![CDATA[     */]]></body>
+  </line>
+  <line lineNumber="222">
+    <body><![CDATA[    public function testConsoleInstallCommandButWithoutArguments()]]></body>
+  </line>
+  <line lineNumber="223">
+    <body><![CDATA[    {]]></body>
+  </line>
+  <line lineNumber="224">
+    <body><![CDATA[        $this->prepareArgv( array( 'install' ) );]]></body>
+  </line>
+  <line lineNumber="225">
+    <body><![CDATA[        $this->setExpectedException( 'phpucConsoleException' );]]></body>
+  </line>
+  <line lineNumber="226">
+    <body><![CDATA[        ]]></body>
+  </line>
+  <line lineNumber="227">
+    <body><![CDATA[        $input = new phpucConsoleInput();]]></body>
+  </line>
+  <line lineNumber="228">
+    <body><![CDATA[        $input->parse();]]></body>
+  </line>
+  <line lineNumber="229">
+    <body><![CDATA[    }]]></body>
+  </line>
+  <line lineNumber="230">
+    <body><![CDATA[    ]]></body>
+  </line>
+  <line lineNumber="231">
+    <body><![CDATA[    /**]]></body>
+  </line>
+  <line lineNumber="232">
+    <body><![CDATA[     * Tests that the input returns the help for -h and --help.]]></body>
+  </line>
+  <line lineNumber="233">
+    <body><![CDATA[     *]]></body>
+  </line>
+  <line lineNumber="234">
+    <body><![CDATA[     * @return void]]></body>
+  </line>
+  <line lineNumber="235">
+    <body><![CDATA[     */]]></body>
+  </line>
+  <line lineNumber="236">
+    <body><![CDATA[    public function testConsoleInputPrintHelp()]]></body>
+  </line>
+  <line lineNumber="237">
+    <body><![CDATA[    {]]></body>
+  </line>
+  <line lineNumber="238">
+    <body><![CDATA[        $out1 = $this->fetchConsoleInputOutput( '-h' );]]></body>
+  </line>
+  <line lineNumber="239">
+    <body><![CDATA[        $out2 = $this->fetchConsoleInputOutput( '--help' );]]></body>
+  </line>
+  <line lineNumber="240">
+    <body><![CDATA[        ]]></body>
+  </line>
+  <line lineNumber="241">
+    <body><![CDATA[        $this->assertEquals( $out1, $out2 );]]></body>
+  </line>
+  <line lineNumber="242">
+    <body><![CDATA[        $this->assertRegExp( ]]></body>
+  </line>
+  <line lineNumber="243">
+    <body><![CDATA[            '/Command line options and arguments for "\w+"/', $out1 ]]></body>
+  </line>
+  <line lineNumber="244">
+    <body><![CDATA[        );]]></body>
+  </line>
+  <line lineNumber="245">
+    <body><![CDATA[    }]]></body>
+  </line>
+  <line lineNumber="246">
+    <body><![CDATA[    ]]></body>
+  </line>
+  <line lineNumber="247">
+    <body><![CDATA[    /**]]></body>
+  </line>
+  <line lineNumber="248">
+    <body><![CDATA[     * Tests the returned version information.]]></body>
+  </line>
+  <line lineNumber="249">
+    <body><![CDATA[     * ]]></body>
+  </line>
+  <line lineNumber="250">
+    <body><![CDATA[     * @return void]]></body>
+  </line>
+  <line lineNumber="251">
+    <body><![CDATA[     */]]></body>
+  </line>
+  <line lineNumber="252">
+    <body><![CDATA[    public function testConsoleInputPrintVersion()]]></body>
+  </line>
+  <line lineNumber="253">
+    <body><![CDATA[    {]]></body>
+  </line>
+  <line lineNumber="254">
+    <body><![CDATA[        $out1 = $this->fetchConsoleInputOutput( '-v' );]]></body>
+  </line>
+  <line lineNumber="255">
+    <body><![CDATA[        $out2 = $this->fetchConsoleInputOutput( '--version' );]]></body>
+  </line>
+  <line lineNumber="256">
+    <body><![CDATA[        ]]></body>
+  </line>
+  <line lineNumber="257">
+    <body><![CDATA[        $this->assertEquals( $out1, $out2 );]]></body>
+  </line>
+  <line lineNumber="258">
+    <body><![CDATA[        $this->assertEquals( ]]></body>
+  </line>
+  <line lineNumber="259">
+    <body><![CDATA[            'phpUnderControl @package_version@ by Manuel Pichler.', $out1 ]]></body>
+  </line>
+  <line lineNumber="260">
+    <body><![CDATA[        );]]></body>
+  </line>
+  <line lineNumber="261">
+    <body><![CDATA[    }]]></body>
+  </line>
+  <line lineNumber="262">
+    <body><![CDATA[    ]]></body>
+  </line>
+  <line lineNumber="263">
+    <body><![CDATA[    /**]]></body>
+  </line>
+  <line lineNumber="264">
+    <body><![CDATA[     * Tests the returned usage information.]]></body>
+  </line>
+  <line lineNumber="265">
+    <body><![CDATA[     * ]]></body>
+  </line>
+  <line lineNumber="266">
+    <body><![CDATA[     * @return void]]></body>
+  </line>
+  <line lineNumber="267">
+    <body><![CDATA[     */]]></body>
+  </line>
+  <line lineNumber="268">
+    <body><![CDATA[    public function testConsoleInputPrintUsage()]]></body>
+  </line>
+  <line lineNumber="269">
+    <body><![CDATA[    {]]></body>
+  </line>
+  <line lineNumber="270">
+    <body><![CDATA[        $out1 = $this->fetchConsoleInputOutput( '-u' );]]></body>
+  </line>
+  <line lineNumber="271">
+    <body><![CDATA[        $out2 = $this->fetchConsoleInputOutput( '--usage' );]]></body>
+  </line>
+  <line lineNumber="272">
+    <body><![CDATA[        ]]></body>
+  </line>
+  <line lineNumber="273">
+    <body><![CDATA[        $this->assertEquals( $out1, $out2 );]]></body>
+  </line>
+  <line lineNumber="274">
+    <body><![CDATA[        $this->assertRegExp( ]]></body>
+  </line>
+  <line lineNumber="275">
+    <body><![CDATA[            '/^Usage: phpuc.php <command> <options> <arguments>/', $out1 ]]></body>
+  </line>
+  <line lineNumber="276">
+    <body><![CDATA[        );]]></body>
+  </line>
+  <line lineNumber="277">
+    <body><![CDATA[    }]]></body>
+  </line>
+  <line lineNumber="278">
+    <body><![CDATA[    ]]></body>
+  </line>
+  <line lineNumber="279">
+    <body><![CDATA[    /**]]></body>
+  </line>
+  <line lineNumber="280">
+    <body><![CDATA[     * Tests that the parse method throws an {@link phpucConsoleException} for]]></body>
+  </line>
+  <line lineNumber="281">
+    <body><![CDATA[     * invalid command identifiers.]]></body>
+  </line>
+  <line lineNumber="282">
+    <body><![CDATA[     *]]></body>
+  </line>
+  <line lineNumber="283">
+    <body><![CDATA[     * @return void]]></body>
+  </line>
+  <line lineNumber="284">
+    <body><![CDATA[     */]]></body>
+  </line>
+  <line lineNumber="285">
+    <body><![CDATA[    public function testConsoleWithInvalidCommandIdentifier()]]></body>
+  </line>
+  <line lineNumber="286">
+    <body><![CDATA[    {]]></body>
+  </line>
+  <line lineNumber="287">
+    <body><![CDATA[        $this->prepareArgv( array( 'phpUnderControl' ) );]]></body>
+  </line>
+  <line lineNumber="288">
+    <body><![CDATA[        ]]></body>
+  </line>
+  <line lineNumber="289">
+    <body><![CDATA[        $input = new phpucConsoleInput();]]></body>
+  </line>
+  <line lineNumber="290">
+    <body><![CDATA[        ]]></body>
+  </line>
+  <line lineNumber="291">
+    <body><![CDATA[        ob_start();]]></body>
+  </line>
+  <line lineNumber="292">
+    <body><![CDATA[        ]]></body>
+  </line>
+  <line lineNumber="293">
+    <body><![CDATA[        try]]></body>
+  </line>
+  <line lineNumber="294">
+    <body><![CDATA[        {]]></body>
+  </line>
+  <line lineNumber="295">
+    <body><![CDATA[            $input->parse();]]></body>
+  </line>
+  <line lineNumber="296">
+    <body><![CDATA[            $this->fail( 'phpucConsoleException expected.' );]]></body>
+  </line>
+  <line lineNumber="297">
+    <body><![CDATA[        }]]></body>
+  </line>
+  <line lineNumber="298">
+    <body><![CDATA[        catch ( phpucConsoleException $e ) ]]></body>
+  </line>
+  <line lineNumber="299">
+    <body><![CDATA[        {]]></body>
+  </line>
+  <line lineNumber="300">
+    <body><![CDATA[            ]]></body>
+  </line>
+  <line lineNumber="301">
+    <body><![CDATA[        }]]></body>
+  </line>
+  <line lineNumber="302">
+    <body><![CDATA[        ]]></body>
+  </line>
+  <line lineNumber="303">
+    <body><![CDATA[        ob_end_clean();]]></body>
+  </line>
+  <line lineNumber="304">
+    <body><![CDATA[    }]]></body>
+  </line>
+  <line lineNumber="305">
+    <body><![CDATA[    ]]></body>
+  </line>
+  <line lineNumber="306">
+    <body><![CDATA[    /**]]></body>
+  </line>
+  <line lineNumber="307">
+    <body><![CDATA[     * Returns the console output of {@link phpucConsoleInput} for the given]]></body>
+  </line>
+  <line lineNumber="308">
+    <body><![CDATA[     * <b>$option</b>]]></body>
+  </line>
+  <line lineNumber="309">
+    <body><![CDATA[     *]]></body>
+  </line>
+  <line lineNumber="310">
+    <body><![CDATA[     * @param string $option The option to use.]]></body>
+  </line>
+  <line lineNumber="311">
+    <body><![CDATA[     * ]]></body>
+  </line>
+  <line lineNumber="312">
+    <body><![CDATA[     * @return string]]></body>
+  </line>
+  <line lineNumber="313">
+    <body><![CDATA[     */]]></body>
+  </line>
+  <line lineNumber="314">
+    <body><![CDATA[    protected function fetchConsoleInputOutput( $option )]]></body>
+  </line>
+  <line lineNumber="315">
+    <body><![CDATA[    {]]></body>
+  </line>
+  <line lineNumber="316">
+    <body><![CDATA[        $this->prepareArgv( array( $option ) );]]></body>
+  </line>
+  <line lineNumber="317">
+    <body><![CDATA[        $input = new phpucConsoleInput();]]></body>
+  </line>
+  <line lineNumber="318">
+    <body><![CDATA[        ]]></body>
+  </line>
+  <line lineNumber="319">
+    <body><![CDATA[        ob_start();]]></body>
+  </line>
+  <line lineNumber="320">
+    <body><![CDATA[        $input->parse();]]></body>
+  </line>
+  <line lineNumber="321">
+    <body><![CDATA[        $content = ob_get_contents();]]></body>
+  </line>
+  <line lineNumber="322">
+    <body><![CDATA[        ob_end_clean();]]></body>
+  </line>
+  <line lineNumber="323">
+    <body><![CDATA[        ]]></body>
+  </line>
+  <line lineNumber="324">
+    <body><![CDATA[        return trim( $content );]]></body>
+  </line>
+  <line lineNumber="325">
+    <body><![CDATA[    }]]></body>
+  </line>
+  <line lineNumber="326">
+    <body><![CDATA[}]]></body>
+  </line>
+</testFile>

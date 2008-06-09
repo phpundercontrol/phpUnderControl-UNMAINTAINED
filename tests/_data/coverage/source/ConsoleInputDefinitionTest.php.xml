@@ -1,0 +1,951 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testFile fullPath="/home/manu/Desktop/Projects/workspace.xplib.de/phpUnderControl/trunk/tests/Console//ConsoleInputDefinitionTest.php" shortenedPath="ConsoleInputDefinitionTest.php" generated="1212932774" phpunit="@package_version@">
+  <line lineNumber="1">
+    <body><![CDATA[<?php]]></body>
+  </line>
+  <line lineNumber="2">
+    <body><![CDATA[/**]]></body>
+  </line>
+  <line lineNumber="3">
+    <body><![CDATA[ * This file is part of phpUnderControl.]]></body>
+  </line>
+  <line lineNumber="4">
+    <body><![CDATA[ * ]]></body>
+  </line>
+  <line lineNumber="5">
+    <body><![CDATA[ * PHP Version 5.2.0]]></body>
+  </line>
+  <line lineNumber="6">
+    <body><![CDATA[ *]]></body>
+  </line>
+  <line lineNumber="7">
+    <body><![CDATA[ * Copyright (c) 2007-2008, Manuel Pichler <mapi@manuel-pichler.de>.]]></body>
+  </line>
+  <line lineNumber="8">
+    <body><![CDATA[ * All rights reserved.]]></body>
+  </line>
+  <line lineNumber="9">
+    <body><![CDATA[ *]]></body>
+  </line>
+  <line lineNumber="10">
+    <body><![CDATA[ * Redistribution and use in source and binary forms, with or without]]></body>
+  </line>
+  <line lineNumber="11">
+    <body><![CDATA[ * modification, are permitted provided that the following conditions]]></body>
+  </line>
+  <line lineNumber="12">
+    <body><![CDATA[ * are met:]]></body>
+  </line>
+  <line lineNumber="13">
+    <body><![CDATA[ *]]></body>
+  </line>
+  <line lineNumber="14">
+    <body><![CDATA[ *   * Redistributions of source code must retain the above copyright]]></body>
+  </line>
+  <line lineNumber="15">
+    <body><![CDATA[ *     notice, this list of conditions and the following disclaimer.]]></body>
+  </line>
+  <line lineNumber="16">
+    <body><![CDATA[ *]]></body>
+  </line>
+  <line lineNumber="17">
+    <body><![CDATA[ *   * Redistributions in binary form must reproduce the above copyright]]></body>
+  </line>
+  <line lineNumber="18">
+    <body><![CDATA[ *     notice, this list of conditions and the following disclaimer in]]></body>
+  </line>
+  <line lineNumber="19">
+    <body><![CDATA[ *     the documentation and/or other materials provided with the]]></body>
+  </line>
+  <line lineNumber="20">
+    <body><![CDATA[ *     distribution.]]></body>
+  </line>
+  <line lineNumber="21">
+    <body><![CDATA[ *]]></body>
+  </line>
+  <line lineNumber="22">
+    <body><![CDATA[ *   * Neither the name of Manuel Pichler nor the names of his]]></body>
+  </line>
+  <line lineNumber="23">
+    <body><![CDATA[ *     contributors may be used to endorse or promote products derived]]></body>
+  </line>
+  <line lineNumber="24">
+    <body><![CDATA[ *     from this software without specific prior written permission.]]></body>
+  </line>
+  <line lineNumber="25">
+    <body><![CDATA[ *]]></body>
+  </line>
+  <line lineNumber="26">
+    <body><![CDATA[ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS]]></body>
+  </line>
+  <line lineNumber="27">
+    <body><![CDATA[ * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT]]></body>
+  </line>
+  <line lineNumber="28">
+    <body><![CDATA[ * LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS]]></body>
+  </line>
+  <line lineNumber="29">
+    <body><![CDATA[ * FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE]]></body>
+  </line>
+  <line lineNumber="30">
+    <body><![CDATA[ * COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,]]></body>
+  </line>
+  <line lineNumber="31">
+    <body><![CDATA[ * INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,]]></body>
+  </line>
+  <line lineNumber="32">
+    <body><![CDATA[ * BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;]]></body>
+  </line>
+  <line lineNumber="33">
+    <body><![CDATA[ * LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER]]></body>
+  </line>
+  <line lineNumber="34">
+    <body><![CDATA[ * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT]]></body>
+  </line>
+  <line lineNumber="35">
+    <body><![CDATA[ * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN]]></body>
+  </line>
+  <line lineNumber="36">
+    <body><![CDATA[ * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE]]></body>
+  </line>
+  <line lineNumber="37">
+    <body><![CDATA[ * POSSIBILITY OF SUCH DAMAGE.]]></body>
+  </line>
+  <line lineNumber="38">
+    <body><![CDATA[ * ]]></body>
+  </line>
+  <line lineNumber="39">
+    <body><![CDATA[ * @category  QualityAssurance]]></body>
+  </line>
+  <line lineNumber="40">
+    <body><![CDATA[ * @package   Console]]></body>
+  </line>
+  <line lineNumber="41">
+    <body><![CDATA[ * @author    Manuel Pichler <mapi@manuel-pichler.de>]]></body>
+  </line>
+  <line lineNumber="42">
+    <body><![CDATA[ * @copyright 2007-2008 Manuel Pichler. All rights reserved.]]></body>
+  </line>
+  <line lineNumber="43">
+    <body><![CDATA[ * @license   http://www.opensource.org/licenses/bsd-license.php  BSD License]]></body>
+  </line>
+  <line lineNumber="44">
+    <body><![CDATA[ * @version   SVN: $Id$]]></body>
+  </line>
+  <line lineNumber="45">
+    <body><![CDATA[ * @link      http://www.phpundercontrol.org/]]></body>
+  </line>
+  <line lineNumber="46">
+    <body><![CDATA[ */]]></body>
+  </line>
+  <line lineNumber="47">
+    <body></body>
+  </line>
+  <line lineNumber="48">
+    <body><![CDATA[require_once dirname( __FILE__ ) . '/../AbstractTest.php';]]></body>
+  </line>
+  <line lineNumber="49">
+    <body></body>
+  </line>
+  <line lineNumber="50">
+    <body><![CDATA[/**]]></body>
+  </line>
+  <line lineNumber="51">
+    <body><![CDATA[ * Test case for the console input definition class.]]></body>
+  </line>
+  <line lineNumber="52">
+    <body><![CDATA[ *]]></body>
+  </line>
+  <line lineNumber="53">
+    <body><![CDATA[ * @category  QualityAssurance]]></body>
+  </line>
+  <line lineNumber="54">
+    <body><![CDATA[ * @package   Console]]></body>
+  </line>
+  <line lineNumber="55">
+    <body><![CDATA[ * @author    Manuel Pichler <mapi@manuel-pichler.de>]]></body>
+  </line>
+  <line lineNumber="56">
+    <body><![CDATA[ * @copyright 2007-2008 Manuel Pichler. All rights reserved.]]></body>
+  </line>
+  <line lineNumber="57">
+    <body><![CDATA[ * @license   http://www.opensource.org/licenses/bsd-license.php  BSD License]]></body>
+  </line>
+  <line lineNumber="58">
+    <body><![CDATA[ * @version   Release: @package_version@]]></body>
+  </line>
+  <line lineNumber="59">
+    <body><![CDATA[ * @link      http://www.phpundercontrol.org/]]></body>
+  </line>
+  <line lineNumber="60">
+    <body><![CDATA[ */]]></body>
+  </line>
+  <line lineNumber="61">
+    <body><![CDATA[class phpucConsoleInputDefinitionTest extends phpucAbstractTest]]></body>
+  </line>
+  <line lineNumber="62">
+    <body><![CDATA[{]]></body>
+  </line>
+  <line lineNumber="63">
+    <body><![CDATA[    /**]]></body>
+  </line>
+  <line lineNumber="64">
+    <body><![CDATA[     * Tests the {@link phpucConsoleInputDefinition::addCommand()} method with]]></body>
+  </line>
+  <line lineNumber="65">
+    <body><![CDATA[     * a new command.]]></body>
+  </line>
+  <line lineNumber="66">
+    <body><![CDATA[     *]]></body>
+  </line>
+  <line lineNumber="67">
+    <body><![CDATA[     * @return void]]></body>
+  </line>
+  <line lineNumber="68">
+    <body><![CDATA[     */]]></body>
+  </line>
+  <line lineNumber="69">
+    <body><![CDATA[    public function testAddCommand()]]></body>
+  </line>
+  <line lineNumber="70">
+    <body><![CDATA[    {]]></body>
+  </line>
+  <line lineNumber="71">
+    <body><![CDATA[        $definition = new phpucConsoleInputDefinition();]]></body>
+  </line>
+  <line lineNumber="72">
+    <body><![CDATA[        $this->assertFalse( $definition->hasCommand( 'mapi' ) );]]></body>
+  </line>
+  <line lineNumber="73">
+    <body><![CDATA[        $definition->addCommand( 'mapi', 'Hello World' );]]></body>
+  </line>
+  <line lineNumber="74">
+    <body><![CDATA[        $this->assertTrue( $definition->hasCommand( 'mapi' ) );]]></body>
+  </line>
+  <line lineNumber="75">
+    <body><![CDATA[    }]]></body>
+  </line>
+  <line lineNumber="76">
+    <body><![CDATA[    ]]></body>
+  </line>
+  <line lineNumber="77">
+    <body><![CDATA[    /**]]></body>
+  </line>
+  <line lineNumber="78">
+    <body><![CDATA[     * Tests that {@link phpucConsoleInputDefinition::addCommand()} fails with]]></body>
+  </line>
+  <line lineNumber="79">
+    <body><![CDATA[     * an exception if the same command identifier is used a second time. ]]></body>
+  </line>
+  <line lineNumber="80">
+    <body><![CDATA[     *]]></body>
+  </line>
+  <line lineNumber="81">
+    <body><![CDATA[     * @return void]]></body>
+  </line>
+  <line lineNumber="82">
+    <body><![CDATA[     */]]></body>
+  </line>
+  <line lineNumber="83">
+    <body><![CDATA[    public function testAddCommandTwoTimesFail()]]></body>
+  </line>
+  <line lineNumber="84">
+    <body><![CDATA[    {]]></body>
+  </line>
+  <line lineNumber="85">
+    <body><![CDATA[        $this->setExpectedException(]]></body>
+  </line>
+  <line lineNumber="86">
+    <body><![CDATA[            'phpucErrorException',]]></body>
+  </line>
+  <line lineNumber="87">
+    <body><![CDATA[            "The command name 'mapi' is already in use."]]></body>
+  </line>
+  <line lineNumber="88">
+    <body><![CDATA[        );]]></body>
+  </line>
+  <line lineNumber="89">
+    <body><![CDATA[        ]]></body>
+  </line>
+  <line lineNumber="90">
+    <body><![CDATA[        $definition = new phpucConsoleInputDefinition();]]></body>
+  </line>
+  <line lineNumber="91">
+    <body><![CDATA[        $definition->addCommand( 'mapi', 'Hello World 1.' );]]></body>
+  </line>
+  <line lineNumber="92">
+    <body><![CDATA[        $definition->addCommand( 'mapi', 'Hello World 2.' );]]></body>
+  </line>
+  <line lineNumber="93">
+    <body><![CDATA[    }]]></body>
+  </line>
+  <line lineNumber="94">
+    <body><![CDATA[    ]]></body>
+  </line>
+  <line lineNumber="95">
+    <body><![CDATA[    /**]]></body>
+  </line>
+  <line lineNumber="96">
+    <body><![CDATA[     * Tests that {@link phpucConsoleInputDefinition::addCommand()} fails with]]></body>
+  </line>
+  <line lineNumber="97">
+    <body><![CDATA[     * an exception if an invalid mode value is passed in. ]]></body>
+  </line>
+  <line lineNumber="98">
+    <body><![CDATA[     *]]></body>
+  </line>
+  <line lineNumber="99">
+    <body><![CDATA[     * @return void]]></body>
+  </line>
+  <line lineNumber="100">
+    <body><![CDATA[     */]]></body>
+  </line>
+  <line lineNumber="101">
+    <body><![CDATA[    public function testAddCommandWithInvalidModeFail()]]></body>
+  </line>
+  <line lineNumber="102">
+    <body><![CDATA[    {]]></body>
+  </line>
+  <line lineNumber="103">
+    <body><![CDATA[        $definition = new phpucConsoleInputDefinition();]]></body>
+  </line>
+  <line lineNumber="104">
+    <body><![CDATA[        $definition->addCommand( ]]></body>
+  </line>
+  <line lineNumber="105">
+    <body><![CDATA[            'mapi0', 'Hello World.', phpucConsoleInputDefinition::MODE_HIDDEN ]]></body>
+  </line>
+  <line lineNumber="106">
+    <body><![CDATA[        );]]></body>
+  </line>
+  <line lineNumber="107">
+    <body><![CDATA[        $definition->addCommand( ]]></body>
+  </line>
+  <line lineNumber="108">
+    <body><![CDATA[            'mapi1', 'Hello World.', phpucConsoleInputDefinition::MODE_NORMAL ]]></body>
+  </line>
+  <line lineNumber="109">
+    <body><![CDATA[        );]]></body>
+  </line>
+  <line lineNumber="110">
+    <body><![CDATA[        ]]></body>
+  </line>
+  <line lineNumber="111">
+    <body><![CDATA[        $this->setExpectedException(]]></body>
+  </line>
+  <line lineNumber="112">
+    <body><![CDATA[            'phpucErrorException',]]></body>
+  </line>
+  <line lineNumber="113">
+    <body><![CDATA[            'Invalid value for mode given.']]></body>
+  </line>
+  <line lineNumber="114">
+    <body><![CDATA[        );]]></body>
+  </line>
+  <line lineNumber="115">
+    <body><![CDATA[        ]]></body>
+  </line>
+  <line lineNumber="116">
+    <body><![CDATA[        $definition = new phpucConsoleInputDefinition();]]></body>
+  </line>
+  <line lineNumber="117">
+    <body><![CDATA[        $definition->addCommand( 'mapi2', 'Hello World.', -42 );]]></body>
+  </line>
+  <line lineNumber="118">
+    <body><![CDATA[    }]]></body>
+  </line>
+  <line lineNumber="119">
+    <body><![CDATA[    ]]></body>
+  </line>
+  <line lineNumber="120">
+    <body><![CDATA[    /**]]></body>
+  </line>
+  <line lineNumber="121">
+    <body><![CDATA[     * Tests that {@link phpucConsoleInputDefinition::addArgument()} fails with]]></body>
+  </line>
+  <line lineNumber="122">
+    <body><![CDATA[     * an exception if an unknown command identifier is passed in. ]]></body>
+  </line>
+  <line lineNumber="123">
+    <body><![CDATA[     *]]></body>
+  </line>
+  <line lineNumber="124">
+    <body><![CDATA[     * @return void]]></body>
+  </line>
+  <line lineNumber="125">
+    <body><![CDATA[     */]]></body>
+  </line>
+  <line lineNumber="126">
+    <body><![CDATA[    public function testAddArgumentWithUnknownCommandIdentifierFail()]]></body>
+  </line>
+  <line lineNumber="127">
+    <body><![CDATA[    {]]></body>
+  </line>
+  <line lineNumber="128">
+    <body><![CDATA[        $this->setExpectedException(]]></body>
+  </line>
+  <line lineNumber="129">
+    <body><![CDATA[            'phpucErrorException',]]></body>
+  </line>
+  <line lineNumber="130">
+    <body><![CDATA[            "The command 'manuel' for 'pichler' doesn't exist."]]></body>
+  </line>
+  <line lineNumber="131">
+    <body><![CDATA[        );]]></body>
+  </line>
+  <line lineNumber="132">
+    <body><![CDATA[        ]]></body>
+  </line>
+  <line lineNumber="133">
+    <body><![CDATA[        $definition = new phpucConsoleInputDefinition();]]></body>
+  </line>
+  <line lineNumber="134">
+    <body><![CDATA[        $definition->addArgument( 'manuel', 'pichler', 'Hello World.' );]]></body>
+  </line>
+  <line lineNumber="135">
+    <body><![CDATA[    }]]></body>
+  </line>
+  <line lineNumber="136">
+    <body><![CDATA[    ]]></body>
+  </line>
+  <line lineNumber="137">
+    <body><![CDATA[    /**]]></body>
+  </line>
+  <line lineNumber="138">
+    <body><![CDATA[     * Tests that {@link phpucConsoleInputDefinition::addArgument()} fails with]]></body>
+  </line>
+  <line lineNumber="139">
+    <body><![CDATA[     * an exception if an argument with an equal identifier already exists. ]]></body>
+  </line>
+  <line lineNumber="140">
+    <body><![CDATA[     *]]></body>
+  </line>
+  <line lineNumber="141">
+    <body><![CDATA[     * @return void]]></body>
+  </line>
+  <line lineNumber="142">
+    <body><![CDATA[     */]]></body>
+  </line>
+  <line lineNumber="143">
+    <body><![CDATA[    public function testAddArgumentTwoTimesFail()]]></body>
+  </line>
+  <line lineNumber="144">
+    <body><![CDATA[    {]]></body>
+  </line>
+  <line lineNumber="145">
+    <body><![CDATA[        $this->setExpectedException(]]></body>
+  </line>
+  <line lineNumber="146">
+    <body><![CDATA[            'phpucErrorException',]]></body>
+  </line>
+  <line lineNumber="147">
+    <body><![CDATA[            "An argument 'pichler' for command 'manuel' already exists."]]></body>
+  </line>
+  <line lineNumber="148">
+    <body><![CDATA[        );]]></body>
+  </line>
+  <line lineNumber="149">
+    <body><![CDATA[        ]]></body>
+  </line>
+  <line lineNumber="150">
+    <body><![CDATA[        $definition = new phpucConsoleInputDefinition();]]></body>
+  </line>
+  <line lineNumber="151">
+    <body><![CDATA[        $definition->addCommand( 'manuel', 'Hello World.' );]]></body>
+  </line>
+  <line lineNumber="152">
+    <body><![CDATA[        $definition->addArgument( 'manuel', 'pichler', 'Hello World 1.' );]]></body>
+  </line>
+  <line lineNumber="153">
+    <body><![CDATA[        $definition->addArgument( 'manuel', 'pichler', 'Hello World 2.' );]]></body>
+  </line>
+  <line lineNumber="154">
+    <body><![CDATA[    }]]></body>
+  </line>
+  <line lineNumber="155">
+    <body><![CDATA[    ]]></body>
+  </line>
+  <line lineNumber="156">
+    <body><![CDATA[    /**]]></body>
+  </line>
+  <line lineNumber="157">
+    <body><![CDATA[     * Tests that {@link phpucConsoleInputDefinition::addArgument()} fails with]]></body>
+  </line>
+  <line lineNumber="158">
+    <body><![CDATA[     * an exception if the mandatory parameter is not of type <b>boolean</b>. ]]></body>
+  </line>
+  <line lineNumber="159">
+    <body><![CDATA[     *]]></body>
+  </line>
+  <line lineNumber="160">
+    <body><![CDATA[     * @return void]]></body>
+  </line>
+  <line lineNumber="161">
+    <body><![CDATA[     */]]></body>
+  </line>
+  <line lineNumber="162">
+    <body><![CDATA[    public function testAddArgumentWithInvalidMandatoryValueFail()]]></body>
+  </line>
+  <line lineNumber="163">
+    <body><![CDATA[    {]]></body>
+  </line>
+  <line lineNumber="164">
+    <body><![CDATA[        $this->setExpectedException(]]></body>
+  </line>
+  <line lineNumber="165">
+    <body><![CDATA[            'phpucErrorException',]]></body>
+  </line>
+  <line lineNumber="166">
+    <body><![CDATA[            'The mandatory parameter must be of type boolean.']]></body>
+  </line>
+  <line lineNumber="167">
+    <body><![CDATA[        );]]></body>
+  </line>
+  <line lineNumber="168">
+    <body><![CDATA[        ]]></body>
+  </line>
+  <line lineNumber="169">
+    <body><![CDATA[        $definition = new phpucConsoleInputDefinition();]]></body>
+  </line>
+  <line lineNumber="170">
+    <body><![CDATA[        $definition->addCommand( 'manuel', 'Hello World.' );]]></body>
+  </line>
+  <line lineNumber="171">
+    <body><![CDATA[        $definition->addArgument( 'manuel', 'pichler', 'Hello World.', null );]]></body>
+  </line>
+  <line lineNumber="172">
+    <body><![CDATA[    }]]></body>
+  </line>
+  <line lineNumber="173">
+    <body><![CDATA[    ]]></body>
+  </line>
+  <line lineNumber="174">
+    <body><![CDATA[    /**]]></body>
+  </line>
+  <line lineNumber="175">
+    <body><![CDATA[     * Tests that {@link phpucConsoleInputDefinition::addArgument()} stores]]></body>
+  </line>
+  <line lineNumber="176">
+    <body><![CDATA[     * a valid argument. ]]></body>
+  </line>
+  <line lineNumber="177">
+    <body><![CDATA[     *]]></body>
+  </line>
+  <line lineNumber="178">
+    <body><![CDATA[     * @return void]]></body>
+  </line>
+  <line lineNumber="179">
+    <body><![CDATA[     */]]></body>
+  </line>
+  <line lineNumber="180">
+    <body><![CDATA[    public function testAddArgument()]]></body>
+  </line>
+  <line lineNumber="181">
+    <body><![CDATA[    {]]></body>
+  </line>
+  <line lineNumber="182">
+    <body><![CDATA[        $definition = new phpucConsoleInputDefinition();]]></body>
+  </line>
+  <line lineNumber="183">
+    <body><![CDATA[        $definition->addCommand( 'manuel', 'Hello World.' );]]></body>
+  </line>
+  <line lineNumber="184">
+    <body><![CDATA[        ]]></body>
+  </line>
+  <line lineNumber="185">
+    <body><![CDATA[        $this->assertFalse( $definition->hasArgument( 'manuel', 'foo' ) );]]></body>
+  </line>
+  <line lineNumber="186">
+    <body><![CDATA[        $definition->addArgument( 'manuel', 'foo', 'Hello World.' );]]></body>
+  </line>
+  <line lineNumber="187">
+    <body><![CDATA[        $this->assertTrue( $definition->hasArgument( 'manuel', 'foo' ) );]]></body>
+  </line>
+  <line lineNumber="188">
+    <body><![CDATA[    }]]></body>
+  </line>
+  <line lineNumber="189">
+    <body><![CDATA[    ]]></body>
+  </line>
+  <line lineNumber="190">
+    <body><![CDATA[    /**]]></body>
+  </line>
+  <line lineNumber="191">
+    <body><![CDATA[     * Tests that {@link phpucConsoleInputDefinition::addOption()} fails with an]]></body>
+  </line>
+  <line lineNumber="192">
+    <body><![CDATA[     * exception if an unknown command identifier is passed in. ]]></body>
+  </line>
+  <line lineNumber="193">
+    <body><![CDATA[     *]]></body>
+  </line>
+  <line lineNumber="194">
+    <body><![CDATA[     * @return void]]></body>
+  </line>
+  <line lineNumber="195">
+    <body><![CDATA[     */]]></body>
+  </line>
+  <line lineNumber="196">
+    <body><![CDATA[    public function testAddOptionWithUnknownCommandIdentifierFail()]]></body>
+  </line>
+  <line lineNumber="197">
+    <body><![CDATA[    {]]></body>
+  </line>
+  <line lineNumber="198">
+    <body><![CDATA[        $this->setExpectedException(]]></body>
+  </line>
+  <line lineNumber="199">
+    <body><![CDATA[            'phpucErrorException',]]></body>
+  </line>
+  <line lineNumber="200">
+    <body><![CDATA[            "The command 'manuel' for option 'pichler' doesn't exist."]]></body>
+  </line>
+  <line lineNumber="201">
+    <body><![CDATA[        );]]></body>
+  </line>
+  <line lineNumber="202">
+    <body><![CDATA[        ]]></body>
+  </line>
+  <line lineNumber="203">
+    <body><![CDATA[        $definition = new phpucConsoleInputDefinition();]]></body>
+  </line>
+  <line lineNumber="204">
+    <body><![CDATA[        $definition->addOption( 'manuel', 'p', 'pichler', 'Hello World.' );]]></body>
+  </line>
+  <line lineNumber="205">
+    <body><![CDATA[    }]]></body>
+  </line>
+  <line lineNumber="206">
+    <body><![CDATA[    ]]></body>
+  </line>
+  <line lineNumber="207">
+    <body><![CDATA[    /**]]></body>
+  </line>
+  <line lineNumber="208">
+    <body><![CDATA[     * Tests that {@link phpucConsoleInputDefinition::addOption()} fails with an]]></body>
+  </line>
+  <line lineNumber="209">
+    <body><![CDATA[     * exception if an option with an equal identifier already exists. ]]></body>
+  </line>
+  <line lineNumber="210">
+    <body><![CDATA[     *]]></body>
+  </line>
+  <line lineNumber="211">
+    <body><![CDATA[     * @return void]]></body>
+  </line>
+  <line lineNumber="212">
+    <body><![CDATA[     */]]></body>
+  </line>
+  <line lineNumber="213">
+    <body><![CDATA[    public function testAddOptionTwoTimesSameShortIdentifierFail()]]></body>
+  </line>
+  <line lineNumber="214">
+    <body><![CDATA[    {]]></body>
+  </line>
+  <line lineNumber="215">
+    <body><![CDATA[        $this->setExpectedException(]]></body>
+  </line>
+  <line lineNumber="216">
+    <body><![CDATA[            'phpucErrorException',]]></body>
+  </line>
+  <line lineNumber="217">
+    <body><![CDATA[            "An option 'p' already exists for command 'manuel'."]]></body>
+  </line>
+  <line lineNumber="218">
+    <body><![CDATA[        );]]></body>
+  </line>
+  <line lineNumber="219">
+    <body><![CDATA[        ]]></body>
+  </line>
+  <line lineNumber="220">
+    <body><![CDATA[        $definition = new phpucConsoleInputDefinition();]]></body>
+  </line>
+  <line lineNumber="221">
+    <body><![CDATA[        $definition->addCommand( 'manuel', 'Hello World.' );]]></body>
+  </line>
+  <line lineNumber="222">
+    <body><![CDATA[        $definition->addOption( 'manuel', 'p', 'pichler1', 'Hello World 1.' );]]></body>
+  </line>
+  <line lineNumber="223">
+    <body><![CDATA[        $definition->addOption( 'manuel', 'p', 'pichler2', 'Hello World 2.' );]]></body>
+  </line>
+  <line lineNumber="224">
+    <body><![CDATA[    }]]></body>
+  </line>
+  <line lineNumber="225">
+    <body><![CDATA[    ]]></body>
+  </line>
+  <line lineNumber="226">
+    <body><![CDATA[    /**]]></body>
+  </line>
+  <line lineNumber="227">
+    <body><![CDATA[     * Tests that {@link phpucConsoleInputDefinition::addOption()} fails with an]]></body>
+  </line>
+  <line lineNumber="228">
+    <body><![CDATA[     * exception if an option with an equal identifier already exists. ]]></body>
+  </line>
+  <line lineNumber="229">
+    <body><![CDATA[     *]]></body>
+  </line>
+  <line lineNumber="230">
+    <body><![CDATA[     * @return void]]></body>
+  </line>
+  <line lineNumber="231">
+    <body><![CDATA[     */]]></body>
+  </line>
+  <line lineNumber="232">
+    <body><![CDATA[    public function testAddOptionTwoTimesSameLongIdentifierFail()]]></body>
+  </line>
+  <line lineNumber="233">
+    <body><![CDATA[    {]]></body>
+  </line>
+  <line lineNumber="234">
+    <body><![CDATA[        $this->setExpectedException(]]></body>
+  </line>
+  <line lineNumber="235">
+    <body><![CDATA[            'phpucErrorException',]]></body>
+  </line>
+  <line lineNumber="236">
+    <body><![CDATA[            "An option 'pichler' already exists for command 'manuel'."]]></body>
+  </line>
+  <line lineNumber="237">
+    <body><![CDATA[        );]]></body>
+  </line>
+  <line lineNumber="238">
+    <body><![CDATA[        ]]></body>
+  </line>
+  <line lineNumber="239">
+    <body><![CDATA[        $definition = new phpucConsoleInputDefinition();]]></body>
+  </line>
+  <line lineNumber="240">
+    <body><![CDATA[        $definition->addCommand( 'manuel', 'Hello World.' );]]></body>
+  </line>
+  <line lineNumber="241">
+    <body><![CDATA[        $definition->addOption( 'manuel', 'p1', 'pichler', 'Hello World 1.' );]]></body>
+  </line>
+  <line lineNumber="242">
+    <body><![CDATA[        $definition->addOption( 'manuel', 'p2', 'pichler', 'Hello World 2.' );]]></body>
+  </line>
+  <line lineNumber="243">
+    <body><![CDATA[    }]]></body>
+  </line>
+  <line lineNumber="244">
+    <body><![CDATA[    ]]></body>
+  </line>
+  <line lineNumber="245">
+    <body><![CDATA[    /**]]></body>
+  </line>
+  <line lineNumber="246">
+    <body><![CDATA[     * Tests that {@link phpucConsoleInputDefinition::addOption()} fails with]]></body>
+  </line>
+  <line lineNumber="247">
+    <body><![CDATA[     * an exception if the mandatory parameter is not of type <b>boolean</b>. ]]></body>
+  </line>
+  <line lineNumber="248">
+    <body><![CDATA[     *]]></body>
+  </line>
+  <line lineNumber="249">
+    <body><![CDATA[     * @return void]]></body>
+  </line>
+  <line lineNumber="250">
+    <body><![CDATA[     */]]></body>
+  </line>
+  <line lineNumber="251">
+    <body><![CDATA[    public function testAddOptionWithInvalidMandatoryValueFail()]]></body>
+  </line>
+  <line lineNumber="252">
+    <body><![CDATA[    {]]></body>
+  </line>
+  <line lineNumber="253">
+    <body><![CDATA[        $this->setExpectedException(]]></body>
+  </line>
+  <line lineNumber="254">
+    <body><![CDATA[            'phpucErrorException',]]></body>
+  </line>
+  <line lineNumber="255">
+    <body><![CDATA[            'The mandatory parameter must be of type boolean.']]></body>
+  </line>
+  <line lineNumber="256">
+    <body><![CDATA[        );]]></body>
+  </line>
+  <line lineNumber="257">
+    <body><![CDATA[        ]]></body>
+  </line>
+  <line lineNumber="258">
+    <body><![CDATA[        $definition = new phpucConsoleInputDefinition();]]></body>
+  </line>
+  <line lineNumber="259">
+    <body><![CDATA[        $definition->addCommand( 'manuel', 'Hello World.' );]]></body>
+  </line>
+  <line lineNumber="260">
+    <body><![CDATA[        $definition->addOption( ]]></body>
+  </line>
+  <line lineNumber="261">
+    <body><![CDATA[            'manuel', 'p', 'pichler', 'Hello World.', null, null, null ]]></body>
+  </line>
+  <line lineNumber="262">
+    <body><![CDATA[        );]]></body>
+  </line>
+  <line lineNumber="263">
+    <body><![CDATA[    }]]></body>
+  </line>
+  <line lineNumber="264">
+    <body><![CDATA[    ]]></body>
+  </line>
+  <line lineNumber="265">
+    <body><![CDATA[    /**]]></body>
+  </line>
+  <line lineNumber="266">
+    <body><![CDATA[     * Tests that {@link phpucConsoleInputDefinition::addOption()} fails with an]]></body>
+  </line>
+  <line lineNumber="267">
+    <body><![CDATA[     * exception if an invalid mode value is passed in. ]]></body>
+  </line>
+  <line lineNumber="268">
+    <body><![CDATA[     *]]></body>
+  </line>
+  <line lineNumber="269">
+    <body><![CDATA[     * @return void]]></body>
+  </line>
+  <line lineNumber="270">
+    <body><![CDATA[     */]]></body>
+  </line>
+  <line lineNumber="271">
+    <body><![CDATA[    public function testAddOptionWithInvalidModeFail()]]></body>
+  </line>
+  <line lineNumber="272">
+    <body><![CDATA[    {]]></body>
+  </line>
+  <line lineNumber="273">
+    <body><![CDATA[        $definition = new phpucConsoleInputDefinition();]]></body>
+  </line>
+  <line lineNumber="274">
+    <body><![CDATA[        $definition->addCommand( 'manuel', 'Hello World.' );]]></body>
+  </line>
+  <line lineNumber="275">
+    <body><![CDATA[        $definition->addOption(]]></body>
+  </line>
+  <line lineNumber="276">
+    <body><![CDATA[            'manuel', 'p1', 'pichler1', 'Hello World.', null, null, false, ]]></body>
+  </line>
+  <line lineNumber="277">
+    <body><![CDATA[            phpucConsoleInputDefinition::MODE_HIDDEN]]></body>
+  </line>
+  <line lineNumber="278">
+    <body><![CDATA[        );]]></body>
+  </line>
+  <line lineNumber="279">
+    <body><![CDATA[        $definition->addOption(]]></body>
+  </line>
+  <line lineNumber="280">
+    <body><![CDATA[            'manuel', 'p2', 'pichler2', 'Hello World.', null, null, false, ]]></body>
+  </line>
+  <line lineNumber="281">
+    <body><![CDATA[            phpucConsoleInputDefinition::MODE_NORMAL]]></body>
+  </line>
+  <line lineNumber="282">
+    <body><![CDATA[        );]]></body>
+  </line>
+  <line lineNumber="283">
+    <body><![CDATA[        ]]></body>
+  </line>
+  <line lineNumber="284">
+    <body><![CDATA[        $this->setExpectedException(]]></body>
+  </line>
+  <line lineNumber="285">
+    <body><![CDATA[            'phpucErrorException',]]></body>
+  </line>
+  <line lineNumber="286">
+    <body><![CDATA[            'Invalid value for mode given.']]></body>
+  </line>
+  <line lineNumber="287">
+    <body><![CDATA[        );]]></body>
+  </line>
+  <line lineNumber="288">
+    <body><![CDATA[        ]]></body>
+  </line>
+  <line lineNumber="289">
+    <body><![CDATA[        $definition->addOption(]]></body>
+  </line>
+  <line lineNumber="290">
+    <body><![CDATA[            'manuel', 'p3', 'pichler3', 'Hello World.', null, null, false, ]]></body>
+  </line>
+  <line lineNumber="291">
+    <body><![CDATA[            -42]]></body>
+  </line>
+  <line lineNumber="292">
+    <body><![CDATA[        );]]></body>
+  </line>
+  <line lineNumber="293">
+    <body><![CDATA[    }]]></body>
+  </line>
+  <line lineNumber="294">
+    <body><![CDATA[    ]]></body>
+  </line>
+  <line lineNumber="295">
+    <body><![CDATA[    /**]]></body>
+  </line>
+  <line lineNumber="296">
+    <body><![CDATA[     * Tests that {@link phpucConsoleInputDefinition::addOption()} adds an option]]></body>
+  </line>
+  <line lineNumber="297">
+    <body><![CDATA[     * to the internal data structure.]]></body>
+  </line>
+  <line lineNumber="298">
+    <body><![CDATA[     *]]></body>
+  </line>
+  <line lineNumber="299">
+    <body><![CDATA[     * @return void]]></body>
+  </line>
+  <line lineNumber="300">
+    <body><![CDATA[     */]]></body>
+  </line>
+  <line lineNumber="301">
+    <body><![CDATA[    public function testAddOption()]]></body>
+  </line>
+  <line lineNumber="302">
+    <body><![CDATA[    {]]></body>
+  </line>
+  <line lineNumber="303">
+    <body><![CDATA[        $definition = new phpucConsoleInputDefinition();]]></body>
+  </line>
+  <line lineNumber="304">
+    <body><![CDATA[        $definition->addCommand( 'manuel', 'Hello World.' );]]></body>
+  </line>
+  <line lineNumber="305">
+    <body><![CDATA[        ]]></body>
+  </line>
+  <line lineNumber="306">
+    <body><![CDATA[        $this->assertFalse( $definition->hasOption( 'manuel', 'p1' ) );]]></body>
+  </line>
+  <line lineNumber="307">
+    <body><![CDATA[        $this->assertFalse( $definition->hasOption( 'manuel', 'pichler1' ) );]]></body>
+  </line>
+  <line lineNumber="308">
+    <body><![CDATA[        $definition->addOption(]]></body>
+  </line>
+  <line lineNumber="309">
+    <body><![CDATA[            'manuel', 'p1', 'pichler1', 'Hello World.', null, null, false, ]]></body>
+  </line>
+  <line lineNumber="310">
+    <body><![CDATA[            phpucConsoleInputDefinition::MODE_HIDDEN]]></body>
+  </line>
+  <line lineNumber="311">
+    <body><![CDATA[        );]]></body>
+  </line>
+  <line lineNumber="312">
+    <body><![CDATA[        $this->assertTrue( $definition->hasOption( 'manuel', 'p1' ) );]]></body>
+  </line>
+  <line lineNumber="313">
+    <body><![CDATA[        $this->assertTrue( $definition->hasOption( 'manuel', 'pichler1' ) );]]></body>
+  </line>
+  <line lineNumber="314">
+    <body><![CDATA[        ]]></body>
+  </line>
+  <line lineNumber="315">
+    <body><![CDATA[    }]]></body>
+  </line>
+  <line lineNumber="316">
+    <body><![CDATA[}]]></body>
+  </line>
+</testFile>

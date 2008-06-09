@@ -1,0 +1,710 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coveredFile fullPath="/home/manu/Desktop/Projects/workspace.xplib.de/phpUnderControl/trunk//src/Console/ConsoleArgs.php" shortenedPath="src/Console/ConsoleArgs.php" generated="1212932774" phpunit="@package_version@">
+  <line lineNumber="1" executed="-3">
+    <body><![CDATA[<?php]]></body>
+  </line>
+  <line lineNumber="2" executed="-3">
+    <body><![CDATA[/**]]></body>
+  </line>
+  <line lineNumber="3" executed="-3">
+    <body><![CDATA[ * This file is part of phpUnderControl.]]></body>
+  </line>
+  <line lineNumber="4" executed="-3">
+    <body><![CDATA[ * ]]></body>
+  </line>
+  <line lineNumber="5" executed="-3">
+    <body><![CDATA[ * PHP Version 5.2.0]]></body>
+  </line>
+  <line lineNumber="6" executed="-3">
+    <body><![CDATA[ *]]></body>
+  </line>
+  <line lineNumber="7" executed="-3">
+    <body><![CDATA[ * Copyright (c) 2007-2008, Manuel Pichler <mapi@phpundercontrol.org>.]]></body>
+  </line>
+  <line lineNumber="8" executed="-3">
+    <body><![CDATA[ * All rights reserved.]]></body>
+  </line>
+  <line lineNumber="9" executed="-3">
+    <body><![CDATA[ *]]></body>
+  </line>
+  <line lineNumber="10" executed="-3">
+    <body><![CDATA[ * Redistribution and use in source and binary forms, with or without]]></body>
+  </line>
+  <line lineNumber="11" executed="-3">
+    <body><![CDATA[ * modification, are permitted provided that the following conditions]]></body>
+  </line>
+  <line lineNumber="12" executed="-3">
+    <body><![CDATA[ * are met:]]></body>
+  </line>
+  <line lineNumber="13" executed="-3">
+    <body><![CDATA[ *]]></body>
+  </line>
+  <line lineNumber="14" executed="-3">
+    <body><![CDATA[ *   * Redistributions of source code must retain the above copyright]]></body>
+  </line>
+  <line lineNumber="15" executed="-3">
+    <body><![CDATA[ *     notice, this list of conditions and the following disclaimer.]]></body>
+  </line>
+  <line lineNumber="16" executed="-3">
+    <body><![CDATA[ *]]></body>
+  </line>
+  <line lineNumber="17" executed="-3">
+    <body><![CDATA[ *   * Redistributions in binary form must reproduce the above copyright]]></body>
+  </line>
+  <line lineNumber="18" executed="-3">
+    <body><![CDATA[ *     notice, this list of conditions and the following disclaimer in]]></body>
+  </line>
+  <line lineNumber="19" executed="-3">
+    <body><![CDATA[ *     the documentation and/or other materials provided with the]]></body>
+  </line>
+  <line lineNumber="20" executed="-3">
+    <body><![CDATA[ *     distribution.]]></body>
+  </line>
+  <line lineNumber="21" executed="-3">
+    <body><![CDATA[ *]]></body>
+  </line>
+  <line lineNumber="22" executed="-3">
+    <body><![CDATA[ *   * Neither the name of Manuel Pichler nor the names of his]]></body>
+  </line>
+  <line lineNumber="23" executed="-3">
+    <body><![CDATA[ *     contributors may be used to endorse or promote products derived]]></body>
+  </line>
+  <line lineNumber="24" executed="-3">
+    <body><![CDATA[ *     from this software without specific prior written permission.]]></body>
+  </line>
+  <line lineNumber="25" executed="-3">
+    <body><![CDATA[ *]]></body>
+  </line>
+  <line lineNumber="26" executed="-3">
+    <body><![CDATA[ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS]]></body>
+  </line>
+  <line lineNumber="27" executed="-3">
+    <body><![CDATA[ * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT]]></body>
+  </line>
+  <line lineNumber="28" executed="-3">
+    <body><![CDATA[ * LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS]]></body>
+  </line>
+  <line lineNumber="29" executed="-3">
+    <body><![CDATA[ * FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE]]></body>
+  </line>
+  <line lineNumber="30" executed="-3">
+    <body><![CDATA[ * COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,]]></body>
+  </line>
+  <line lineNumber="31" executed="-3">
+    <body><![CDATA[ * INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,]]></body>
+  </line>
+  <line lineNumber="32" executed="-3">
+    <body><![CDATA[ * BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;]]></body>
+  </line>
+  <line lineNumber="33" executed="-3">
+    <body><![CDATA[ * LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER]]></body>
+  </line>
+  <line lineNumber="34" executed="-3">
+    <body><![CDATA[ * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT]]></body>
+  </line>
+  <line lineNumber="35" executed="-3">
+    <body><![CDATA[ * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN]]></body>
+  </line>
+  <line lineNumber="36" executed="-3">
+    <body><![CDATA[ * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE]]></body>
+  </line>
+  <line lineNumber="37" executed="-3">
+    <body><![CDATA[ * POSSIBILITY OF SUCH DAMAGE.]]></body>
+  </line>
+  <line lineNumber="38" executed="-3">
+    <body><![CDATA[ *]]></body>
+  </line>
+  <line lineNumber="39" executed="-3">
+    <body><![CDATA[ * @category  QualityAssurance ]]></body>
+  </line>
+  <line lineNumber="40" executed="-3">
+    <body><![CDATA[ * @package   Console]]></body>
+  </line>
+  <line lineNumber="41" executed="-3">
+    <body><![CDATA[ * @author    Manuel Pichler <mapi@phpundercontrol.org>]]></body>
+  </line>
+  <line lineNumber="42" executed="-3">
+    <body><![CDATA[ * @copyright 2007-2008 Manuel Pichler. All rights reserved.]]></body>
+  </line>
+  <line lineNumber="43" executed="-3">
+    <body><![CDATA[ * @license   http://www.opensource.org/licenses/bsd-license.php  BSD License]]></body>
+  </line>
+  <line lineNumber="44" executed="-3">
+    <body><![CDATA[ * @version   SVN: $Id$]]></body>
+  </line>
+  <line lineNumber="45" executed="-3">
+    <body><![CDATA[ * @link      http://www.phpundercontrol.org/]]></body>
+  </line>
+  <line lineNumber="46" executed="-3">
+    <body><![CDATA[ */]]></body>
+  </line>
+  <line lineNumber="47" executed="-3">
+    <body></body>
+  </line>
+  <line lineNumber="48" executed="-3">
+    <body><![CDATA[/**]]></body>
+  </line>
+  <line lineNumber="49" executed="-3">
+    <body><![CDATA[ * Utility class that handles the command line arguments for this tool.]]></body>
+  </line>
+  <line lineNumber="50" executed="-3">
+    <body><![CDATA[ *]]></body>
+  </line>
+  <line lineNumber="51" executed="-3">
+    <body><![CDATA[ * @category  QualityAssurance]]></body>
+  </line>
+  <line lineNumber="52" executed="-3">
+    <body><![CDATA[ * @package   Console]]></body>
+  </line>
+  <line lineNumber="53" executed="-3">
+    <body><![CDATA[ * @author    Manuel Pichler <mapi@phpundercontrol.org>]]></body>
+  </line>
+  <line lineNumber="54" executed="-3">
+    <body><![CDATA[ * @copyright 2007-2008 Manuel Pichler. All rights reserved.]]></body>
+  </line>
+  <line lineNumber="55" executed="-3">
+    <body><![CDATA[ * @license   http://www.opensource.org/licenses/bsd-license.php  BSD License]]></body>
+  </line>
+  <line lineNumber="56" executed="-3">
+    <body><![CDATA[ * @version   Release: @package_version@]]></body>
+  </line>
+  <line lineNumber="57" executed="-3">
+    <body><![CDATA[ * @link      http://www.phpundercontrol.org/]]></body>
+  </line>
+  <line lineNumber="58" executed="-3">
+    <body><![CDATA[ * ]]></body>
+  </line>
+  <line lineNumber="59" executed="-3">
+    <body><![CDATA[ * @property-read string $command   The specified command.]]></body>
+  </line>
+  <line lineNumber="60" executed="-3">
+    <body><![CDATA[ * @property-read array  $options   List of command line options.]]></body>
+  </line>
+  <line lineNumber="61" executed="-3">
+    <body><![CDATA[ * @property-read array  $arguments List of command line arguments.]]></body>
+  </line>
+  <line lineNumber="62" executed="-3">
+    <body><![CDATA[ */]]></body>
+  </line>
+  <line lineNumber="63" executed="-3">
+    <body><![CDATA[class phpucConsoleArgs]]></body>
+  </line>
+  <line lineNumber="64" executed="2">
+    <body><![CDATA[{]]></body>
+    <tests>
+      <test name="testConsoleInstallCommandWithoutOptions" status="0" class="phpucConsoleArgsTest" fullPath="/home/manu/Desktop/Projects/workspace.xplib.de/phpUnderControl/trunk/tests/Console/ConsoleArgsTest.php" shortenedPath="ConsoleArgsTest.php" line="69"/>
+      <test name="testConsoleInstallCommandWithoutOptions" status="0" class="phpucConsoleArgsTest" fullPath="/home/manu/Desktop/Projects/workspace.xplib.de/phpUnderControl/trunk/tests/Console/ConsoleArgsTest.php" shortenedPath="ConsoleArgsTest.php" line="69"/>
+    </tests>
+  </line>
+  <line lineNumber="65" executed="-3">
+    <body><![CDATA[    /**]]></body>
+  </line>
+  <line lineNumber="66" executed="-3">
+    <body><![CDATA[     * List of properties read from the command line interface.]]></body>
+  </line>
+  <line lineNumber="67" executed="-3">
+    <body><![CDATA[     *]]></body>
+  </line>
+  <line lineNumber="68" executed="-3">
+    <body><![CDATA[     * @type array<mixed>]]></body>
+  </line>
+  <line lineNumber="69" executed="-3">
+    <body><![CDATA[     * @var array(string=>mixed) $properties]]></body>
+  </line>
+  <line lineNumber="70" executed="-3">
+    <body><![CDATA[     */]]></body>
+  </line>
+  <line lineNumber="71" executed="-3">
+    <body><![CDATA[    private $properties = array(]]></body>
+  </line>
+  <line lineNumber="72" executed="-3">
+    <body><![CDATA[        'command'    =>  null,]]></body>
+  </line>
+  <line lineNumber="73" executed="-3">
+    <body><![CDATA[        'options'    =>  array(),]]></body>
+  </line>
+  <line lineNumber="74" executed="-3">
+    <body><![CDATA[        'arguments'  =>  array()]]></body>
+  </line>
+  <line lineNumber="75" executed="-3">
+    <body><![CDATA[    );]]></body>
+  </line>
+  <line lineNumber="76" executed="-3">
+    <body><![CDATA[    ]]></body>
+  </line>
+  <line lineNumber="77" executed="-3">
+    <body><![CDATA[    /**]]></body>
+  </line>
+  <line lineNumber="78" executed="-3">
+    <body><![CDATA[     * Constructs a cli arguments object]]></body>
+  </line>
+  <line lineNumber="79" executed="-3">
+    <body><![CDATA[     *]]></body>
+  </line>
+  <line lineNumber="80" executed="-3">
+    <body><![CDATA[     * @param string                $command   The given command.]]></body>
+  </line>
+  <line lineNumber="81" executed="-3">
+    <body><![CDATA[     * @param array(string=>mixed)  $options   The given command line options.]]></body>
+  </line>
+  <line lineNumber="82" executed="-3">
+    <body><![CDATA[     * @param array(string=>string) $arguments The given command line arguments.]]></body>
+  </line>
+  <line lineNumber="83" executed="-3">
+    <body><![CDATA[     */]]></body>
+  </line>
+  <line lineNumber="84" executed="-3">
+    <body><![CDATA[    public function __construct( $command, array $options, array $arguments )]]></body>
+  </line>
+  <line lineNumber="85" executed="-3">
+    <body><![CDATA[    {]]></body>
+  </line>
+  <line lineNumber="86" executed="-1">
+    <body><![CDATA[        $this->properties = array(]]></body>
+  </line>
+  <line lineNumber="87" executed="8">
+    <body><![CDATA[            'command'    =>  $command,]]></body>
+    <tests>
+      <test name="testConsoleInstallCommandWithoutOptions" status="0" class="phpucConsoleArgsTest" fullPath="/home/manu/Desktop/Projects/workspace.xplib.de/phpUnderControl/trunk/tests/Console/ConsoleArgsTest.php" shortenedPath="ConsoleArgsTest.php" line="69"/>
+      <test name="testConsoleArgsWithUnknownOptionFail" status="0" class="phpucConsoleArgsTest" fullPath="/home/manu/Desktop/Projects/workspace.xplib.de/phpUnderControl/trunk/tests/Console/ConsoleArgsTest.php" shortenedPath="ConsoleArgsTest.php" line="109"/>
+      <test name="testConsoleArgsSetOption" status="0" class="phpucConsoleArgsTest" fullPath="/home/manu/Desktop/Projects/workspace.xplib.de/phpUnderControl/trunk/tests/Console/ConsoleArgsTest.php" shortenedPath="ConsoleArgsTest.php" line="124"/>
+      <test name="testConsoleArgsMagicGetterWithUnknownPropertyFail" status="0" class="phpucConsoleArgsTest" fullPath="/home/manu/Desktop/Projects/workspace.xplib.de/phpUnderControl/trunk/tests/Console/ConsoleArgsTest.php" shortenedPath="ConsoleArgsTest.php" line="139"/>
+      <test name="testConsoleInstallCommandWithoutOptions" status="0" class="phpucConsoleArgsTest" fullPath="/home/manu/Desktop/Projects/workspace.xplib.de/phpUnderControl/trunk/tests/Console/ConsoleArgsTest.php" shortenedPath="ConsoleArgsTest.php" line="69"/>
+      <test name="testConsoleArgsWithUnknownOptionFail" status="0" class="phpucConsoleArgsTest" fullPath="/home/manu/Desktop/Projects/workspace.xplib.de/phpUnderControl/trunk/tests/Console/ConsoleArgsTest.php" shortenedPath="ConsoleArgsTest.php" line="109"/>
+      <test name="testConsoleArgsSetOption" status="0" class="phpucConsoleArgsTest" fullPath="/home/manu/Desktop/Projects/workspace.xplib.de/phpUnderControl/trunk/tests/Console/ConsoleArgsTest.php" shortenedPath="ConsoleArgsTest.php" line="124"/>
+      <test name="testConsoleArgsMagicGetterWithUnknownPropertyFail" status="0" class="phpucConsoleArgsTest" fullPath="/home/manu/Desktop/Projects/workspace.xplib.de/phpUnderControl/trunk/tests/Console/ConsoleArgsTest.php" shortenedPath="ConsoleArgsTest.php" line="139"/>
+    </tests>
+  </line>
+  <line lineNumber="88" executed="8">
+    <body><![CDATA[            'options'    =>  $options,]]></body>
+    <tests>
+      <test name="testConsoleInstallCommandWithoutOptions" status="0" class="phpucConsoleArgsTest" fullPath="/home/manu/Desktop/Projects/workspace.xplib.de/phpUnderControl/trunk/tests/Console/ConsoleArgsTest.php" shortenedPath="ConsoleArgsTest.php" line="69"/>
+      <test name="testConsoleArgsWithUnknownOptionFail" status="0" class="phpucConsoleArgsTest" fullPath="/home/manu/Desktop/Projects/workspace.xplib.de/phpUnderControl/trunk/tests/Console/ConsoleArgsTest.php" shortenedPath="ConsoleArgsTest.php" line="109"/>
+      <test name="testConsoleArgsSetOption" status="0" class="phpucConsoleArgsTest" fullPath="/home/manu/Desktop/Projects/workspace.xplib.de/phpUnderControl/trunk/tests/Console/ConsoleArgsTest.php" shortenedPath="ConsoleArgsTest.php" line="124"/>
+      <test name="testConsoleArgsMagicGetterWithUnknownPropertyFail" status="0" class="phpucConsoleArgsTest" fullPath="/home/manu/Desktop/Projects/workspace.xplib.de/phpUnderControl/trunk/tests/Console/ConsoleArgsTest.php" shortenedPath="ConsoleArgsTest.php" line="139"/>
+      <test name="testConsoleInstallCommandWithoutOptions" status="0" class="phpucConsoleArgsTest" fullPath="/home/manu/Desktop/Projects/workspace.xplib.de/phpUnderControl/trunk/tests/Console/ConsoleArgsTest.php" shortenedPath="ConsoleArgsTest.php" line="69"/>
+      <test name="testConsoleArgsWithUnknownOptionFail" status="0" class="phpucConsoleArgsTest" fullPath="/home/manu/Desktop/Projects/workspace.xplib.de/phpUnderControl/trunk/tests/Console/ConsoleArgsTest.php" shortenedPath="ConsoleArgsTest.php" line="109"/>
+      <test name="testConsoleArgsSetOption" status="0" class="phpucConsoleArgsTest" fullPath="/home/manu/Desktop/Projects/workspace.xplib.de/phpUnderControl/trunk/tests/Console/ConsoleArgsTest.php" shortenedPath="ConsoleArgsTest.php" line="124"/>
+      <test name="testConsoleArgsMagicGetterWithUnknownPropertyFail" status="0" class="phpucConsoleArgsTest" fullPath="/home/manu/Desktop/Projects/workspace.xplib.de/phpUnderControl/trunk/tests/Console/ConsoleArgsTest.php" shortenedPath="ConsoleArgsTest.php" line="139"/>
+    </tests>
+  </line>
+  <line lineNumber="89" executed="-3">
+    <body><![CDATA[            'arguments'  =>  $arguments]]></body>
+  </line>
+  <line lineNumber="90" executed="8">
+    <body><![CDATA[        );]]></body>
+    <tests>
+      <test name="testConsoleInstallCommandWithoutOptions" status="0" class="phpucConsoleArgsTest" fullPath="/home/manu/Desktop/Projects/workspace.xplib.de/phpUnderControl/trunk/tests/Console/ConsoleArgsTest.php" shortenedPath="ConsoleArgsTest.php" line="69"/>
+      <test name="testConsoleArgsWithUnknownOptionFail" status="0" class="phpucConsoleArgsTest" fullPath="/home/manu/Desktop/Projects/workspace.xplib.de/phpUnderControl/trunk/tests/Console/ConsoleArgsTest.php" shortenedPath="ConsoleArgsTest.php" line="109"/>
+      <test name="testConsoleArgsSetOption" status="0" class="phpucConsoleArgsTest" fullPath="/home/manu/Desktop/Projects/workspace.xplib.de/phpUnderControl/trunk/tests/Console/ConsoleArgsTest.php" shortenedPath="ConsoleArgsTest.php" line="124"/>
+      <test name="testConsoleArgsMagicGetterWithUnknownPropertyFail" status="0" class="phpucConsoleArgsTest" fullPath="/home/manu/Desktop/Projects/workspace.xplib.de/phpUnderControl/trunk/tests/Console/ConsoleArgsTest.php" shortenedPath="ConsoleArgsTest.php" line="139"/>
+      <test name="testConsoleInstallCommandWithoutOptions" status="0" class="phpucConsoleArgsTest" fullPath="/home/manu/Desktop/Projects/workspace.xplib.de/phpUnderControl/trunk/tests/Console/ConsoleArgsTest.php" shortenedPath="ConsoleArgsTest.php" line="69"/>
+      <test name="testConsoleArgsWithUnknownOptionFail" status="0" class="phpucConsoleArgsTest" fullPath="/home/manu/Desktop/Projects/workspace.xplib.de/phpUnderControl/trunk/tests/Console/ConsoleArgsTest.php" shortenedPath="ConsoleArgsTest.php" line="109"/>
+      <test name="testConsoleArgsSetOption" status="0" class="phpucConsoleArgsTest" fullPath="/home/manu/Desktop/Projects/workspace.xplib.de/phpUnderControl/trunk/tests/Console/ConsoleArgsTest.php" shortenedPath="ConsoleArgsTest.php" line="124"/>
+      <test name="testConsoleArgsMagicGetterWithUnknownPropertyFail" status="0" class="phpucConsoleArgsTest" fullPath="/home/manu/Desktop/Projects/workspace.xplib.de/phpUnderControl/trunk/tests/Console/ConsoleArgsTest.php" shortenedPath="ConsoleArgsTest.php" line="139"/>
+    </tests>
+  </line>
+  <line lineNumber="91" executed="8">
+    <body><![CDATA[    }]]></body>
+    <tests>
+      <test name="testConsoleInstallCommandWithoutOptions" status="0" class="phpucConsoleArgsTest" fullPath="/home/manu/Desktop/Projects/workspace.xplib.de/phpUnderControl/trunk/tests/Console/ConsoleArgsTest.php" shortenedPath="ConsoleArgsTest.php" line="69"/>
+      <test name="testConsoleArgsWithUnknownOptionFail" status="0" class="phpucConsoleArgsTest" fullPath="/home/manu/Desktop/Projects/workspace.xplib.de/phpUnderControl/trunk/tests/Console/ConsoleArgsTest.php" shortenedPath="ConsoleArgsTest.php" line="109"/>
+      <test name="testConsoleArgsSetOption" status="0" class="phpucConsoleArgsTest" fullPath="/home/manu/Desktop/Projects/workspace.xplib.de/phpUnderControl/trunk/tests/Console/ConsoleArgsTest.php" shortenedPath="ConsoleArgsTest.php" line="124"/>
+      <test name="testConsoleArgsMagicGetterWithUnknownPropertyFail" status="0" class="phpucConsoleArgsTest" fullPath="/home/manu/Desktop/Projects/workspace.xplib.de/phpUnderControl/trunk/tests/Console/ConsoleArgsTest.php" shortenedPath="ConsoleArgsTest.php" line="139"/>
+      <test name="testConsoleInstallCommandWithoutOptions" status="0" class="phpucConsoleArgsTest" fullPath="/home/manu/Desktop/Projects/workspace.xplib.de/phpUnderControl/trunk/tests/Console/ConsoleArgsTest.php" shortenedPath="ConsoleArgsTest.php" line="69"/>
+      <test name="testConsoleArgsWithUnknownOptionFail" status="0" class="phpucConsoleArgsTest" fullPath="/home/manu/Desktop/Projects/workspace.xplib.de/phpUnderControl/trunk/tests/Console/ConsoleArgsTest.php" shortenedPath="ConsoleArgsTest.php" line="109"/>
+      <test name="testConsoleArgsSetOption" status="0" class="phpucConsoleArgsTest" fullPath="/home/manu/Desktop/Projects/workspace.xplib.de/phpUnderControl/trunk/tests/Console/ConsoleArgsTest.php" shortenedPath="ConsoleArgsTest.php" line="124"/>
+      <test name="testConsoleArgsMagicGetterWithUnknownPropertyFail" status="0" class="phpucConsoleArgsTest" fullPath="/home/manu/Desktop/Projects/workspace.xplib.de/phpUnderControl/trunk/tests/Console/ConsoleArgsTest.php" shortenedPath="ConsoleArgsTest.php" line="139"/>
+    </tests>
+  </line>
+  <line lineNumber="92" executed="-3">
+    <body><![CDATA[    ]]></body>
+  </line>
+  <line lineNumber="93" executed="-3">
+    <body><![CDATA[    /**]]></body>
+  </line>
+  <line lineNumber="94" executed="-3">
+    <body><![CDATA[     * Checks if a value for <b>$name</b> exists.]]></body>
+  </line>
+  <line lineNumber="95" executed="-3">
+    <body><![CDATA[     *]]></body>
+  </line>
+  <line lineNumber="96" executed="-3">
+    <body><![CDATA[     * @param string $name The argument identifier.]]></body>
+  </line>
+  <line lineNumber="97" executed="-3">
+    <body><![CDATA[     * ]]></body>
+  </line>
+  <line lineNumber="98" executed="-3">
+    <body><![CDATA[     * @return boolean]]></body>
+  </line>
+  <line lineNumber="99" executed="-3">
+    <body><![CDATA[     */]]></body>
+  </line>
+  <line lineNumber="100" executed="-3">
+    <body><![CDATA[    public function hasArgument( $name )]]></body>
+  </line>
+  <line lineNumber="101" executed="-3">
+    <body><![CDATA[    {]]></body>
+  </line>
+  <line lineNumber="102" executed="2">
+    <body><![CDATA[        return isset( $this->properties['arguments'][$name] );]]></body>
+    <tests>
+      <test name="testConsoleInstallCommandWithoutOptions" status="0" class="phpucConsoleArgsTest" fullPath="/home/manu/Desktop/Projects/workspace.xplib.de/phpUnderControl/trunk/tests/Console/ConsoleArgsTest.php" shortenedPath="ConsoleArgsTest.php" line="69"/>
+      <test name="testConsoleInstallCommandWithoutOptions" status="0" class="phpucConsoleArgsTest" fullPath="/home/manu/Desktop/Projects/workspace.xplib.de/phpUnderControl/trunk/tests/Console/ConsoleArgsTest.php" shortenedPath="ConsoleArgsTest.php" line="69"/>
+    </tests>
+  </line>
+  <line lineNumber="103" executed="-2">
+    <body><![CDATA[    }]]></body>
+  </line>
+  <line lineNumber="104" executed="-3">
+    <body><![CDATA[    ]]></body>
+  </line>
+  <line lineNumber="105" executed="-3">
+    <body><![CDATA[    /**]]></body>
+  </line>
+  <line lineNumber="106" executed="-3">
+    <body><![CDATA[     * Returns the value of the argument identified by <b>$name</b>.]]></body>
+  </line>
+  <line lineNumber="107" executed="-3">
+    <body><![CDATA[     *]]></body>
+  </line>
+  <line lineNumber="108" executed="-3">
+    <body><![CDATA[     * @param string $name The argument identifier.]]></body>
+  </line>
+  <line lineNumber="109" executed="-3">
+    <body><![CDATA[     * ]]></body>
+  </line>
+  <line lineNumber="110" executed="-3">
+    <body><![CDATA[     * @return string ]]></body>
+  </line>
+  <line lineNumber="111" executed="-3">
+    <body><![CDATA[     * @throws OutOfRangeException If no entry exists for $name.]]></body>
+  </line>
+  <line lineNumber="112" executed="-3">
+    <body><![CDATA[     */]]></body>
+  </line>
+  <line lineNumber="113" executed="-3">
+    <body><![CDATA[    public function getArgument( $name )]]></body>
+  </line>
+  <line lineNumber="114" executed="-3">
+    <body><![CDATA[    {]]></body>
+  </line>
+  <line lineNumber="115" executed="2">
+    <body><![CDATA[        if ( $this->hasArgument( $name ) )]]></body>
+    <tests>
+      <test name="testConsoleInstallCommandWithoutOptions" status="0" class="phpucConsoleArgsTest" fullPath="/home/manu/Desktop/Projects/workspace.xplib.de/phpUnderControl/trunk/tests/Console/ConsoleArgsTest.php" shortenedPath="ConsoleArgsTest.php" line="69"/>
+      <test name="testConsoleInstallCommandWithoutOptions" status="0" class="phpucConsoleArgsTest" fullPath="/home/manu/Desktop/Projects/workspace.xplib.de/phpUnderControl/trunk/tests/Console/ConsoleArgsTest.php" shortenedPath="ConsoleArgsTest.php" line="69"/>
+    </tests>
+  </line>
+  <line lineNumber="116" executed="2">
+    <body><![CDATA[        {]]></body>
+    <tests>
+      <test name="testConsoleInstallCommandWithoutOptions" status="0" class="phpucConsoleArgsTest" fullPath="/home/manu/Desktop/Projects/workspace.xplib.de/phpUnderControl/trunk/tests/Console/ConsoleArgsTest.php" shortenedPath="ConsoleArgsTest.php" line="69"/>
+      <test name="testConsoleInstallCommandWithoutOptions" status="0" class="phpucConsoleArgsTest" fullPath="/home/manu/Desktop/Projects/workspace.xplib.de/phpUnderControl/trunk/tests/Console/ConsoleArgsTest.php" shortenedPath="ConsoleArgsTest.php" line="69"/>
+    </tests>
+  </line>
+  <line lineNumber="117" executed="2">
+    <body><![CDATA[            return $this->properties['arguments'][$name];]]></body>
+    <tests>
+      <test name="testConsoleInstallCommandWithoutOptions" status="0" class="phpucConsoleArgsTest" fullPath="/home/manu/Desktop/Projects/workspace.xplib.de/phpUnderControl/trunk/tests/Console/ConsoleArgsTest.php" shortenedPath="ConsoleArgsTest.php" line="69"/>
+      <test name="testConsoleInstallCommandWithoutOptions" status="0" class="phpucConsoleArgsTest" fullPath="/home/manu/Desktop/Projects/workspace.xplib.de/phpUnderControl/trunk/tests/Console/ConsoleArgsTest.php" shortenedPath="ConsoleArgsTest.php" line="69"/>
+    </tests>
+  </line>
+  <line lineNumber="118" executed="-2">
+    <body><![CDATA[        }]]></body>
+  </line>
+  <line lineNumber="119" executed="2">
+    <body><![CDATA[        throw new OutOfRangeException(]]></body>
+    <tests>
+      <test name="testConsoleInstallCommandWithoutOptions" status="0" class="phpucConsoleArgsTest" fullPath="/home/manu/Desktop/Projects/workspace.xplib.de/phpUnderControl/trunk/tests/Console/ConsoleArgsTest.php" shortenedPath="ConsoleArgsTest.php" line="69"/>
+      <test name="testConsoleInstallCommandWithoutOptions" status="0" class="phpucConsoleArgsTest" fullPath="/home/manu/Desktop/Projects/workspace.xplib.de/phpUnderControl/trunk/tests/Console/ConsoleArgsTest.php" shortenedPath="ConsoleArgsTest.php" line="69"/>
+    </tests>
+  </line>
+  <line lineNumber="120" executed="2">
+    <body><![CDATA[            sprintf( 'Unknown argument "%s"."', $name )]]></body>
+    <tests>
+      <test name="testConsoleInstallCommandWithoutOptions" status="0" class="phpucConsoleArgsTest" fullPath="/home/manu/Desktop/Projects/workspace.xplib.de/phpUnderControl/trunk/tests/Console/ConsoleArgsTest.php" shortenedPath="ConsoleArgsTest.php" line="69"/>
+      <test name="testConsoleInstallCommandWithoutOptions" status="0" class="phpucConsoleArgsTest" fullPath="/home/manu/Desktop/Projects/workspace.xplib.de/phpUnderControl/trunk/tests/Console/ConsoleArgsTest.php" shortenedPath="ConsoleArgsTest.php" line="69"/>
+    </tests>
+  </line>
+  <line lineNumber="121" executed="2">
+    <body><![CDATA[        );]]></body>
+    <tests>
+      <test name="testConsoleInstallCommandWithoutOptions" status="0" class="phpucConsoleArgsTest" fullPath="/home/manu/Desktop/Projects/workspace.xplib.de/phpUnderControl/trunk/tests/Console/ConsoleArgsTest.php" shortenedPath="ConsoleArgsTest.php" line="69"/>
+      <test name="testConsoleInstallCommandWithoutOptions" status="0" class="phpucConsoleArgsTest" fullPath="/home/manu/Desktop/Projects/workspace.xplib.de/phpUnderControl/trunk/tests/Console/ConsoleArgsTest.php" shortenedPath="ConsoleArgsTest.php" line="69"/>
+    </tests>
+  </line>
+  <line lineNumber="122" executed="-2">
+    <body><![CDATA[    }]]></body>
+  </line>
+  <line lineNumber="123" executed="-3">
+    <body><![CDATA[    ]]></body>
+  </line>
+  <line lineNumber="124" executed="-3">
+    <body><![CDATA[    /**]]></body>
+  </line>
+  <line lineNumber="125" executed="-3">
+    <body><![CDATA[     * Checks if a value for <b>$name</b> exists.]]></body>
+  </line>
+  <line lineNumber="126" executed="-3">
+    <body><![CDATA[     *]]></body>
+  </line>
+  <line lineNumber="127" executed="-3">
+    <body><![CDATA[     * @param string $name The option identifier.]]></body>
+  </line>
+  <line lineNumber="128" executed="-3">
+    <body><![CDATA[     * ]]></body>
+  </line>
+  <line lineNumber="129" executed="-3">
+    <body><![CDATA[     * @return boolean]]></body>
+  </line>
+  <line lineNumber="130" executed="-3">
+    <body><![CDATA[     */]]></body>
+  </line>
+  <line lineNumber="131" executed="-3">
+    <body><![CDATA[    public function hasOption( $name )]]></body>
+  </line>
+  <line lineNumber="132" executed="-3">
+    <body><![CDATA[    {]]></body>
+  </line>
+  <line lineNumber="133" executed="4">
+    <body><![CDATA[        return isset( $this->properties['options'][$name] );]]></body>
+    <tests>
+      <test name="testConsoleArgsWithUnknownOptionFail" status="0" class="phpucConsoleArgsTest" fullPath="/home/manu/Desktop/Projects/workspace.xplib.de/phpUnderControl/trunk/tests/Console/ConsoleArgsTest.php" shortenedPath="ConsoleArgsTest.php" line="109"/>
+      <test name="testConsoleArgsSetOption" status="0" class="phpucConsoleArgsTest" fullPath="/home/manu/Desktop/Projects/workspace.xplib.de/phpUnderControl/trunk/tests/Console/ConsoleArgsTest.php" shortenedPath="ConsoleArgsTest.php" line="124"/>
+      <test name="testConsoleArgsWithUnknownOptionFail" status="0" class="phpucConsoleArgsTest" fullPath="/home/manu/Desktop/Projects/workspace.xplib.de/phpUnderControl/trunk/tests/Console/ConsoleArgsTest.php" shortenedPath="ConsoleArgsTest.php" line="109"/>
+      <test name="testConsoleArgsSetOption" status="0" class="phpucConsoleArgsTest" fullPath="/home/manu/Desktop/Projects/workspace.xplib.de/phpUnderControl/trunk/tests/Console/ConsoleArgsTest.php" shortenedPath="ConsoleArgsTest.php" line="124"/>
+    </tests>
+  </line>
+  <line lineNumber="134" executed="-2">
+    <body><![CDATA[    }]]></body>
+  </line>
+  <line lineNumber="135" executed="-3">
+    <body><![CDATA[    ]]></body>
+  </line>
+  <line lineNumber="136" executed="-3">
+    <body><![CDATA[    /**]]></body>
+  </line>
+  <line lineNumber="137" executed="-3">
+    <body><![CDATA[     * Returns the value of the option identified by <b>$name</b>.]]></body>
+  </line>
+  <line lineNumber="138" executed="-3">
+    <body><![CDATA[     *]]></body>
+  </line>
+  <line lineNumber="139" executed="-3">
+    <body><![CDATA[     * @param string $name The option identifier.]]></body>
+  </line>
+  <line lineNumber="140" executed="-3">
+    <body><![CDATA[     * ]]></body>
+  </line>
+  <line lineNumber="141" executed="-3">
+    <body><![CDATA[     * @return string ]]></body>
+  </line>
+  <line lineNumber="142" executed="-3">
+    <body><![CDATA[     * @throws OutOfRangeException If no entry exists for $name.]]></body>
+  </line>
+  <line lineNumber="143" executed="-3">
+    <body><![CDATA[     */]]></body>
+  </line>
+  <line lineNumber="144" executed="-3">
+    <body><![CDATA[    public function getOption( $name )]]></body>
+  </line>
+  <line lineNumber="145" executed="-3">
+    <body><![CDATA[    {]]></body>
+  </line>
+  <line lineNumber="146" executed="4">
+    <body><![CDATA[        if ( $this->hasOption( $name ) )]]></body>
+    <tests>
+      <test name="testConsoleArgsWithUnknownOptionFail" status="0" class="phpucConsoleArgsTest" fullPath="/home/manu/Desktop/Projects/workspace.xplib.de/phpUnderControl/trunk/tests/Console/ConsoleArgsTest.php" shortenedPath="ConsoleArgsTest.php" line="109"/>
+      <test name="testConsoleArgsSetOption" status="0" class="phpucConsoleArgsTest" fullPath="/home/manu/Desktop/Projects/workspace.xplib.de/phpUnderControl/trunk/tests/Console/ConsoleArgsTest.php" shortenedPath="ConsoleArgsTest.php" line="124"/>
+      <test name="testConsoleArgsWithUnknownOptionFail" status="0" class="phpucConsoleArgsTest" fullPath="/home/manu/Desktop/Projects/workspace.xplib.de/phpUnderControl/trunk/tests/Console/ConsoleArgsTest.php" shortenedPath="ConsoleArgsTest.php" line="109"/>
+      <test name="testConsoleArgsSetOption" status="0" class="phpucConsoleArgsTest" fullPath="/home/manu/Desktop/Projects/workspace.xplib.de/phpUnderControl/trunk/tests/Console/ConsoleArgsTest.php" shortenedPath="ConsoleArgsTest.php" line="124"/>
+    </tests>
+  </line>
+  <line lineNumber="147" executed="4">
+    <body><![CDATA[        {]]></body>
+    <tests>
+      <test name="testConsoleArgsWithUnknownOptionFail" status="0" class="phpucConsoleArgsTest" fullPath="/home/manu/Desktop/Projects/workspace.xplib.de/phpUnderControl/trunk/tests/Console/ConsoleArgsTest.php" shortenedPath="ConsoleArgsTest.php" line="109"/>
+      <test name="testConsoleArgsSetOption" status="0" class="phpucConsoleArgsTest" fullPath="/home/manu/Desktop/Projects/workspace.xplib.de/phpUnderControl/trunk/tests/Console/ConsoleArgsTest.php" shortenedPath="ConsoleArgsTest.php" line="124"/>
+      <test name="testConsoleArgsWithUnknownOptionFail" status="0" class="phpucConsoleArgsTest" fullPath="/home/manu/Desktop/Projects/workspace.xplib.de/phpUnderControl/trunk/tests/Console/ConsoleArgsTest.php" shortenedPath="ConsoleArgsTest.php" line="109"/>
+      <test name="testConsoleArgsSetOption" status="0" class="phpucConsoleArgsTest" fullPath="/home/manu/Desktop/Projects/workspace.xplib.de/phpUnderControl/trunk/tests/Console/ConsoleArgsTest.php" shortenedPath="ConsoleArgsTest.php" line="124"/>
+    </tests>
+  </line>
+  <line lineNumber="148" executed="2">
+    <body><![CDATA[            return $this->properties['options'][$name];]]></body>
+    <tests>
+      <test name="testConsoleArgsSetOption" status="0" class="phpucConsoleArgsTest" fullPath="/home/manu/Desktop/Projects/workspace.xplib.de/phpUnderControl/trunk/tests/Console/ConsoleArgsTest.php" shortenedPath="ConsoleArgsTest.php" line="124"/>
+      <test name="testConsoleArgsSetOption" status="0" class="phpucConsoleArgsTest" fullPath="/home/manu/Desktop/Projects/workspace.xplib.de/phpUnderControl/trunk/tests/Console/ConsoleArgsTest.php" shortenedPath="ConsoleArgsTest.php" line="124"/>
+    </tests>
+  </line>
+  <line lineNumber="149" executed="-2">
+    <body><![CDATA[        }]]></body>
+  </line>
+  <line lineNumber="150" executed="2">
+    <body><![CDATA[        throw new OutOfRangeException(]]></body>
+    <tests>
+      <test name="testConsoleArgsWithUnknownOptionFail" status="0" class="phpucConsoleArgsTest" fullPath="/home/manu/Desktop/Projects/workspace.xplib.de/phpUnderControl/trunk/tests/Console/ConsoleArgsTest.php" shortenedPath="ConsoleArgsTest.php" line="109"/>
+      <test name="testConsoleArgsWithUnknownOptionFail" status="0" class="phpucConsoleArgsTest" fullPath="/home/manu/Desktop/Projects/workspace.xplib.de/phpUnderControl/trunk/tests/Console/ConsoleArgsTest.php" shortenedPath="ConsoleArgsTest.php" line="109"/>
+    </tests>
+  </line>
+  <line lineNumber="151" executed="2">
+    <body><![CDATA[            sprintf( 'Unknown option "%s".', $name )]]></body>
+    <tests>
+      <test name="testConsoleArgsWithUnknownOptionFail" status="0" class="phpucConsoleArgsTest" fullPath="/home/manu/Desktop/Projects/workspace.xplib.de/phpUnderControl/trunk/tests/Console/ConsoleArgsTest.php" shortenedPath="ConsoleArgsTest.php" line="109"/>
+      <test name="testConsoleArgsWithUnknownOptionFail" status="0" class="phpucConsoleArgsTest" fullPath="/home/manu/Desktop/Projects/workspace.xplib.de/phpUnderControl/trunk/tests/Console/ConsoleArgsTest.php" shortenedPath="ConsoleArgsTest.php" line="109"/>
+    </tests>
+  </line>
+  <line lineNumber="152" executed="2">
+    <body><![CDATA[        );]]></body>
+    <tests>
+      <test name="testConsoleArgsWithUnknownOptionFail" status="0" class="phpucConsoleArgsTest" fullPath="/home/manu/Desktop/Projects/workspace.xplib.de/phpUnderControl/trunk/tests/Console/ConsoleArgsTest.php" shortenedPath="ConsoleArgsTest.php" line="109"/>
+      <test name="testConsoleArgsWithUnknownOptionFail" status="0" class="phpucConsoleArgsTest" fullPath="/home/manu/Desktop/Projects/workspace.xplib.de/phpUnderControl/trunk/tests/Console/ConsoleArgsTest.php" shortenedPath="ConsoleArgsTest.php" line="109"/>
+    </tests>
+  </line>
+  <line lineNumber="153" executed="-2">
+    <body><![CDATA[    }]]></body>
+  </line>
+  <line lineNumber="154" executed="-3">
+    <body><![CDATA[    ]]></body>
+  </line>
+  <line lineNumber="155" executed="-3">
+    <body><![CDATA[    /**]]></body>
+  </line>
+  <line lineNumber="156" executed="-3">
+    <body><![CDATA[     * Sets and option value.]]></body>
+  </line>
+  <line lineNumber="157" executed="-3">
+    <body><![CDATA[     *]]></body>
+  </line>
+  <line lineNumber="158" executed="-3">
+    <body><![CDATA[     * @param string $name  The option identifier.]]></body>
+  </line>
+  <line lineNumber="159" executed="-3">
+    <body><![CDATA[     * @param string $value The option value.]]></body>
+  </line>
+  <line lineNumber="160" executed="-3">
+    <body><![CDATA[     * ]]></body>
+  </line>
+  <line lineNumber="161" executed="-3">
+    <body><![CDATA[     * @return void ]]></body>
+  </line>
+  <line lineNumber="162" executed="-3">
+    <body><![CDATA[     */]]></body>
+  </line>
+  <line lineNumber="163" executed="-3">
+    <body><![CDATA[    public function setOption( $name, $value )]]></body>
+  </line>
+  <line lineNumber="164" executed="-3">
+    <body><![CDATA[    {]]></body>
+  </line>
+  <line lineNumber="165" executed="2">
+    <body><![CDATA[        $this->properties['options'][$name] = $value;]]></body>
+    <tests>
+      <test name="testConsoleArgsSetOption" status="0" class="phpucConsoleArgsTest" fullPath="/home/manu/Desktop/Projects/workspace.xplib.de/phpUnderControl/trunk/tests/Console/ConsoleArgsTest.php" shortenedPath="ConsoleArgsTest.php" line="124"/>
+      <test name="testConsoleArgsSetOption" status="0" class="phpucConsoleArgsTest" fullPath="/home/manu/Desktop/Projects/workspace.xplib.de/phpUnderControl/trunk/tests/Console/ConsoleArgsTest.php" shortenedPath="ConsoleArgsTest.php" line="124"/>
+    </tests>
+  </line>
+  <line lineNumber="166" executed="2">
+    <body><![CDATA[    }]]></body>
+    <tests>
+      <test name="testConsoleArgsSetOption" status="0" class="phpucConsoleArgsTest" fullPath="/home/manu/Desktop/Projects/workspace.xplib.de/phpUnderControl/trunk/tests/Console/ConsoleArgsTest.php" shortenedPath="ConsoleArgsTest.php" line="124"/>
+      <test name="testConsoleArgsSetOption" status="0" class="phpucConsoleArgsTest" fullPath="/home/manu/Desktop/Projects/workspace.xplib.de/phpUnderControl/trunk/tests/Console/ConsoleArgsTest.php" shortenedPath="ConsoleArgsTest.php" line="124"/>
+    </tests>
+  </line>
+  <line lineNumber="167" executed="-3">
+    <body><![CDATA[    ]]></body>
+  </line>
+  <line lineNumber="168" executed="-3">
+    <body><![CDATA[    /**]]></body>
+  </line>
+  <line lineNumber="169" executed="-3">
+    <body><![CDATA[     * Magic property getter method.]]></body>
+  </line>
+  <line lineNumber="170" executed="-3">
+    <body><![CDATA[     *]]></body>
+  </line>
+  <line lineNumber="171" executed="-3">
+    <body><![CDATA[     * @param string $name The property name.]]></body>
+  </line>
+  <line lineNumber="172" executed="-3">
+    <body><![CDATA[     * ]]></body>
+  </line>
+  <line lineNumber="173" executed="-3">
+    <body><![CDATA[     * @return mixed]]></body>
+  </line>
+  <line lineNumber="174" executed="-3">
+    <body><![CDATA[     * @throws OutOfRangeException If the requested property doesn't exist or]]></body>
+  </line>
+  <line lineNumber="175" executed="-3">
+    <body><![CDATA[     *         is writonly.]]></body>
+  </line>
+  <line lineNumber="176" executed="-3">
+    <body><![CDATA[     */]]></body>
+  </line>
+  <line lineNumber="177" executed="-3">
+    <body><![CDATA[    public function __get( $name )]]></body>
+  </line>
+  <line lineNumber="178" executed="-3">
+    <body><![CDATA[    {]]></body>
+  </line>
+  <line lineNumber="179" executed="4">
+    <body><![CDATA[        if ( array_key_exists( $name, $this->properties ) === true )]]></body>
+    <tests>
+      <test name="testConsoleInstallCommandWithoutOptions" status="0" class="phpucConsoleArgsTest" fullPath="/home/manu/Desktop/Projects/workspace.xplib.de/phpUnderControl/trunk/tests/Console/ConsoleArgsTest.php" shortenedPath="ConsoleArgsTest.php" line="69"/>
+      <test name="testConsoleArgsMagicGetterWithUnknownPropertyFail" status="0" class="phpucConsoleArgsTest" fullPath="/home/manu/Desktop/Projects/workspace.xplib.de/phpUnderControl/trunk/tests/Console/ConsoleArgsTest.php" shortenedPath="ConsoleArgsTest.php" line="139"/>
+      <test name="testConsoleInstallCommandWithoutOptions" status="0" class="phpucConsoleArgsTest" fullPath="/home/manu/Desktop/Projects/workspace.xplib.de/phpUnderControl/trunk/tests/Console/ConsoleArgsTest.php" shortenedPath="ConsoleArgsTest.php" line="69"/>
+      <test name="testConsoleArgsMagicGetterWithUnknownPropertyFail" status="0" class="phpucConsoleArgsTest" fullPath="/home/manu/Desktop/Projects/workspace.xplib.de/phpUnderControl/trunk/tests/Console/ConsoleArgsTest.php" shortenedPath="ConsoleArgsTest.php" line="139"/>
+    </tests>
+  </line>
+  <line lineNumber="180" executed="4">
+    <body><![CDATA[        {]]></body>
+    <tests>
+      <test name="testConsoleInstallCommandWithoutOptions" status="0" class="phpucConsoleArgsTest" fullPath="/home/manu/Desktop/Projects/workspace.xplib.de/phpUnderControl/trunk/tests/Console/ConsoleArgsTest.php" shortenedPath="ConsoleArgsTest.php" line="69"/>
+      <test name="testConsoleArgsMagicGetterWithUnknownPropertyFail" status="0" class="phpucConsoleArgsTest" fullPath="/home/manu/Desktop/Projects/workspace.xplib.de/phpUnderControl/trunk/tests/Console/ConsoleArgsTest.php" shortenedPath="ConsoleArgsTest.php" line="139"/>
+      <test name="testConsoleInstallCommandWithoutOptions" status="0" class="phpucConsoleArgsTest" fullPath="/home/manu/Desktop/Projects/workspace.xplib.de/phpUnderControl/trunk/tests/Console/ConsoleArgsTest.php" shortenedPath="ConsoleArgsTest.php" line="69"/>
+      <test name="testConsoleArgsMagicGetterWithUnknownPropertyFail" status="0" class="phpucConsoleArgsTest" fullPath="/home/manu/Desktop/Projects/workspace.xplib.de/phpUnderControl/trunk/tests/Console/ConsoleArgsTest.php" shortenedPath="ConsoleArgsTest.php" line="139"/>
+    </tests>
+  </line>
+  <line lineNumber="181" executed="2">
+    <body><![CDATA[            return $this->properties[$name];]]></body>
+    <tests>
+      <test name="testConsoleInstallCommandWithoutOptions" status="0" class="phpucConsoleArgsTest" fullPath="/home/manu/Desktop/Projects/workspace.xplib.de/phpUnderControl/trunk/tests/Console/ConsoleArgsTest.php" shortenedPath="ConsoleArgsTest.php" line="69"/>
+      <test name="testConsoleInstallCommandWithoutOptions" status="0" class="phpucConsoleArgsTest" fullPath="/home/manu/Desktop/Projects/workspace.xplib.de/phpUnderControl/trunk/tests/Console/ConsoleArgsTest.php" shortenedPath="ConsoleArgsTest.php" line="69"/>
+    </tests>
+  </line>
+  <line lineNumber="182" executed="-2">
+    <body><![CDATA[        }]]></body>
+  </line>
+  <line lineNumber="183" executed="2">
+    <body><![CDATA[        throw new OutOfRangeException(]]></body>
+    <tests>
+      <test name="testConsoleArgsMagicGetterWithUnknownPropertyFail" status="0" class="phpucConsoleArgsTest" fullPath="/home/manu/Desktop/Projects/workspace.xplib.de/phpUnderControl/trunk/tests/Console/ConsoleArgsTest.php" shortenedPath="ConsoleArgsTest.php" line="139"/>
+      <test name="testConsoleArgsMagicGetterWithUnknownPropertyFail" status="0" class="phpucConsoleArgsTest" fullPath="/home/manu/Desktop/Projects/workspace.xplib.de/phpUnderControl/trunk/tests/Console/ConsoleArgsTest.php" shortenedPath="ConsoleArgsTest.php" line="139"/>
+    </tests>
+  </line>
+  <line lineNumber="184" executed="2">
+    <body><![CDATA[            sprintf( 'Unknown or writonly property $%s.', $name )]]></body>
+    <tests>
+      <test name="testConsoleArgsMagicGetterWithUnknownPropertyFail" status="0" class="phpucConsoleArgsTest" fullPath="/home/manu/Desktop/Projects/workspace.xplib.de/phpUnderControl/trunk/tests/Console/ConsoleArgsTest.php" shortenedPath="ConsoleArgsTest.php" line="139"/>
+      <test name="testConsoleArgsMagicGetterWithUnknownPropertyFail" status="0" class="phpucConsoleArgsTest" fullPath="/home/manu/Desktop/Projects/workspace.xplib.de/phpUnderControl/trunk/tests/Console/ConsoleArgsTest.php" shortenedPath="ConsoleArgsTest.php" line="139"/>
+    </tests>
+  </line>
+  <line lineNumber="185" executed="2">
+    <body><![CDATA[        );]]></body>
+    <tests>
+      <test name="testConsoleArgsMagicGetterWithUnknownPropertyFail" status="0" class="phpucConsoleArgsTest" fullPath="/home/manu/Desktop/Projects/workspace.xplib.de/phpUnderControl/trunk/tests/Console/ConsoleArgsTest.php" shortenedPath="ConsoleArgsTest.php" line="139"/>
+      <test name="testConsoleArgsMagicGetterWithUnknownPropertyFail" status="0" class="phpucConsoleArgsTest" fullPath="/home/manu/Desktop/Projects/workspace.xplib.de/phpUnderControl/trunk/tests/Console/ConsoleArgsTest.php" shortenedPath="ConsoleArgsTest.php" line="139"/>
+    </tests>
+  </line>
+  <line lineNumber="186" executed="-2">
+    <body><![CDATA[    }]]></body>
+  </line>
+  <line lineNumber="187" executed="2">
+    <body><![CDATA[}]]></body>
+    <tests>
+      <test name="testConsoleInstallCommandWithoutOptions" status="0" class="phpucConsoleArgsTest" fullPath="/home/manu/Desktop/Projects/workspace.xplib.de/phpUnderControl/trunk/tests/Console/ConsoleArgsTest.php" shortenedPath="ConsoleArgsTest.php" line="69"/>
+      <test name="testConsoleInstallCommandWithoutOptions" status="0" class="phpucConsoleArgsTest" fullPath="/home/manu/Desktop/Projects/workspace.xplib.de/phpUnderControl/trunk/tests/Console/ConsoleArgsTest.php" shortenedPath="ConsoleArgsTest.php" line="69"/>
+    </tests>
+  </line>
+</coveredFile>

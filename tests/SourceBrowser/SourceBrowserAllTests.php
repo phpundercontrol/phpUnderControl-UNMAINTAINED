@@ -1,8 +1,10 @@
 <?php
 /**
  * This file is part of phpUnderControl.
+ * 
+ * PHP Version 5.2.0
  *
- * Copyright (c) 2007-2008, Manuel Pichler <mapi@phpundercontrol.org>.
+ * Copyright (c) 2007-2008, Manuel Pichler <mapi@manuel-pichler.de>.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -34,8 +36,9 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  * 
- * @package   phpUnderControl
- * @author    Manuel Pichler <mapi@phpundercontrol.org>
+ * @category  QualityAssurance
+ * @package   SourceViewer
+ * @author    Manuel Pichler <mapi@manuel-pichler.de>
  * @copyright 2007-2008 Manuel Pichler. All rights reserved.
  * @license   http://www.opensource.org/licenses/bsd-license.php  BSD License
  * @version   SVN: $Id$
@@ -44,32 +47,27 @@
 
 if ( defined( 'PHPUnit_MAIN_METHOD' ) === false )
 {
-    define( 'PHPUnit_MAIN_METHOD', 'phpucAllTests::main' );
+    define( 'PHPUnit_MAIN_METHOD', 'phpucSourceBrowserAllTests::main' );
 }
 
 require_once 'PHPUnit/Framework/TestSuite.php';
 require_once 'PHPUnit/TextUI/TestRunner.php';
 
-require_once dirname( __FILE__ ) . '/Commands/CommandsAllTests.php';
-require_once dirname( __FILE__ ) . '/Console/ConsoleAllTests.php';
-require_once dirname( __FILE__ ) . '/Data/DataAllTests.php';
-require_once dirname( __FILE__ ) . '/Graph/GraphAllTests.php';
-require_once dirname( __FILE__ ) . '/SourceBrowser/SourceBrowserAllTests.php';
-require_once dirname( __FILE__ ) . '/Tasks/TasksAllTests.php';
-require_once dirname( __FILE__ ) . '/Util/UtilAllTests.php';
-require_once dirname( __FILE__ ) . '/VersionControl/VersionControlAllTests.php';
+require_once dirname( __FILE__ ) . '/LogMergerTest.php';
+require_once dirname( __FILE__ ) . '/SourceBrowserGeneratorTest.php';
 
 /**
- * Main test suite for phpUnderControl.
+ * Test suite for the source viewer package.
  *
- * @package   phpUnderControl
- * @author    Manuel Pichler <mapi@phpundercontrol.org>
+ * @category  QualityAssurance
+ * @package   SourceBrowser
+ * @author    Manuel Pichler <mapi@manuel-pichler.de>
  * @copyright 2007-2008 Manuel Pichler. All rights reserved.
  * @license   http://www.opensource.org/licenses/bsd-license.php  BSD License
  * @version   Release: @package_version@
  * @link      http://www.phpundercontrol.org/
  */
-class phpucAllTests
+class phpucSourceBrowserAllTests
 {
     /**
      * Test suite main method.
@@ -88,21 +86,18 @@ class phpucAllTests
      */
     public static function suite()
     {
-        $suite = new PHPUnit_Framework_TestSuite( 'phpUnderControl - AllTests' );
-        $suite->addTest( phpucConsoleAllTests::suite() );
-        $suite->addTest( phpucDataAllTests::suite() );
-        $suite->addTest( phpucGraphAllTests::suite() );
-        $suite->addTest( phpucSourceBrowserAllTests::suite() );
-        $suite->addTest( phpucTasksAllTests::suite() );
-        $suite->addTest( phpucUtilAllTests::suite() );
-        $suite->addTest( phpucVersionControlAllTests::suite() );
-        $suite->addTest( phpucCommandsAllTests::suite() );
+        $suite = new PHPUnit_Framework_TestSuite( 
+            'phpUnderControl - SourceBrowserAllTests' 
+        );
+        
+        $suite->addTestSuite( 'phpucLogMergerTest' );
+        $suite->addTestSuite( 'phpucSourceBrowserGeneratorTest' );
 
         return $suite;
     }
 }
 
-if ( PHPUnit_MAIN_METHOD === 'phpucAllTests::main' )
+if ( PHPUnit_MAIN_METHOD === 'phpucSourceBrowserAllTests::main' )
 {
-    phpucAllTests::main();
+    phpucSourceBrowserAllTests::main();
 }
