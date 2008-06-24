@@ -86,7 +86,14 @@ abstract class phpucAbstractCheckout implements phpucCheckoutI
                 break;
                 
             case 'cvs':
-                $checkout         = new phpucCvsCheckout();
+                $checkout = new phpucCvsCheckout();
+                
+                if ( $args->hasOption( 'module' ) === false )
+                {
+                    throw new phpucErrorException(
+                        'Missing mandatory CVS option --module.'
+                    );
+                }
                 $checkout->module = $args->getOption( 'module' );
                 break;
                 

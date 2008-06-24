@@ -127,7 +127,6 @@ class phpucCvsCheckout extends phpucAbstractCheckout
         }
         $url .= "@{$this->url}";
         
-        
         $cvs = "cvs -d {$url}";
 
         $this->runShellCommand( "{$cvs} login" );
