@@ -54,7 +54,6 @@ require_once dirname( __FILE__ ) . '/Commands/CommandsAllTests.php';
 require_once dirname( __FILE__ ) . '/Console/ConsoleAllTests.php';
 require_once dirname( __FILE__ ) . '/Data/DataAllTests.php';
 require_once dirname( __FILE__ ) . '/Graph/GraphAllTests.php';
-require_once dirname( __FILE__ ) . '/SourceBrowser/SourceBrowserAllTests.php';
 require_once dirname( __FILE__ ) . '/Tasks/TasksAllTests.php';
 require_once dirname( __FILE__ ) . '/Util/UtilAllTests.php';
 require_once dirname( __FILE__ ) . '/VersionControl/VersionControlAllTests.php';
@@ -92,7 +91,6 @@ class phpucAllTests
         $suite->addTest( phpucConsoleAllTests::suite() );
         $suite->addTest( phpucDataAllTests::suite() );
         $suite->addTest( phpucGraphAllTests::suite() );
-        $suite->addTest( phpucSourceBrowserAllTests::suite() );
         $suite->addTest( phpucTasksAllTests::suite() );
         $suite->addTest( phpucUtilAllTests::suite() );
         $suite->addTest( phpucVersionControlAllTests::suite() );
