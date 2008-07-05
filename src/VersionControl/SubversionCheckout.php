@@ -80,7 +80,7 @@ class phpucSubversionCheckout extends phpucAbstractCheckout
         $svn = phpucFileUtil::findExecutable( 'svn' );
         $url = escapeshellarg( $this->url );
         $cmd = "{$svn} co {$options} {$url} source";
-        echo $cmd, "\n";exit();
+        
         popen( "{$cmd} 2>&1", "r" );
         
         if ( !file_exists( 'source' ) )
