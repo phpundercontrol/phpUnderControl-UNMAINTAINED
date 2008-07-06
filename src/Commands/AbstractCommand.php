@@ -67,8 +67,11 @@ abstract class phpucAbstractCommand implements phpucCommandI
      */
     public static function createCommand( $commandId )
     {
+        // Create the command identifier
+        $identifier = str_replace(' ', '', ucwords(strtr($commandId, '-', ' ')));
+        
         // Generate class name
-        $className = sprintf( 'phpuc%sCommand', ucfirst( $commandId ) );
+        $className = sprintf( 'phpuc%sCommand', $identifier );
         
         if ( class_exists( $className, true ) === false )
         {

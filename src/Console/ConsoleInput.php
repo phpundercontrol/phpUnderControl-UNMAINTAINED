@@ -556,7 +556,7 @@ class phpucConsoleInput
             }
             
             $commands .= sprintf(
-                '  * % -10s  %s%s',
+                '  * % -13s  %s%s',
                 $command,
                 $config['help'],
                 PHP_EOL
