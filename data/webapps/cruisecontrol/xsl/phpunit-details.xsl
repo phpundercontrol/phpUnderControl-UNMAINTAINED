@@ -230,7 +230,7 @@
         <td colspan="4">
           <span id="{concat('error.',../@package,'.',../@name,'.',@name,'.',position())}" class="testresults-output-div" style="display: none;">
             <h3>Error:</h3>
-            <xsl:apply-templates select="error/text()" mode="newline-to-br"/>
+            <pre><xsl:apply-templates select="error/text()" mode="newline-to-br"/></pre>
           </span>
         </td>
       </tr>
@@ -241,7 +241,7 @@
         <td colspan="4">
           <span id="{concat('failure.',../@package,'.',../@name,'.',@name,'.',position())}" class="testresults-output" style="display: none;">
             <h3>Failure:</h3>
-            <xsl:apply-templates select="failure/text()" mode="newline-to-br"/>
+            <pre><xsl:apply-templates select="failure/text()" mode="newline-to-br"/></pre>
           </span>
         </td>
       </tr>
@@ -290,5 +290,4 @@
       <xsl:with-param name="sub.testcase" select="true()" />
     </xsl:apply-templates>
   </xsl:template>
-
 </xsl:stylesheet>
