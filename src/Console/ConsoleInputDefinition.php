@@ -243,7 +243,7 @@ class phpucConsoleInputDefinition implements ArrayAccess, IteratorAggregate
     public function addOption( $cmd, 
                                $short, 
                                $long, 
-                               $help, 
+                               $help,
                                $arg = null, 
                                $default = null, 
                                $mandatory = false, 

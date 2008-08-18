@@ -80,7 +80,7 @@ class phpucPHPUnitCoverageXmlGeneratorTest extends phpucAbstractTest
         copy( PHPUC_TEST_DATA . '/phpunit/expected/cov.xml', $expected );
         
         $generator = new phpucPHPUnitCoverageXmlGenerator( $pdo, $rev );
-        $generator->save( $result );
+        $generator->store( $result );
         
         $this->assertFileExists( $result );
         

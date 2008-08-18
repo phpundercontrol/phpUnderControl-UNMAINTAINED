@@ -101,7 +101,7 @@ class phpucBuildTargetTest extends phpucAbstractTest
         $target->failonerror = true;
         $target->logerror    = true;
         
-        $buildFile->save();
+        $buildFile->store();
         
         $sxml  = simplexml_load_file( $this->fileName );
         $build = $sxml->xpath( '/project/target[@name="build"]' );
@@ -141,7 +141,7 @@ class phpucBuildTargetTest extends phpucAbstractTest
         $buildFile->createBuildTarget( 'phpuc2' );
         $buildFile->createBuildTarget( 'phpuc3' );
         
-        $buildFile->save();
+        $buildFile->store();
         
         $sxml  = simplexml_load_file( $this->fileName );
         $build = $sxml->xpath( '/project/target[@name="build"]' );

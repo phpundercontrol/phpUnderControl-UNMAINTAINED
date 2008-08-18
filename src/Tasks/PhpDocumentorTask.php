@@ -97,7 +97,7 @@ class phpucPhpDocumentorTask extends phpucAbstractPearTask
             PHPUC_DATA_DIR
         );
         
-        $buildFile->save();
+        $buildFile->store();
         
         $out->writeListItem( 'Modifying config file:          config.xml' );
         
@@ -117,7 +117,7 @@ class phpucPhpDocumentorTask extends phpucAbstractPearTask
             $publisher->dest = 'logs/${project.name}';
         }
         
-        $configFile->save();
+        $configFile->store();
 
         $out->writeLine();
     }

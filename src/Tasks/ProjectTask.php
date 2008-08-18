@@ -125,7 +125,7 @@ class phpucProjectTask extends phpucAbstractTask implements phpucConsoleExtensio
             'Creating build file:        projects/{1}/build.xml', $projectName
         );
         $buildFile = new phpucBuildFile( $projectPath . '/build.xml', $projectName );
-        $buildFile->save();
+        $buildFile->store();
         
         $out->writeListItem( 'Creating backup of file:    config.xml.orig' );
         @unlink( $installDir . '/config.xml.orig' );
@@ -146,7 +146,7 @@ class phpucProjectTask extends phpucAbstractTask implements phpucConsoleExtensio
         $project->interval = $this->args->getOption( 'schedule-interval' );
         $project->anthome  = $anthome;
 
-        $config->save();
+        $config->store();
                 
         $out->writeLine();
     }

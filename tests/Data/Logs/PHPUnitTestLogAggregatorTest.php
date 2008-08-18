@@ -70,7 +70,7 @@ class phpucPHPUnitTestLogAggregatorTest extends phpucAbstractLogAggregatorTest
         $expected = sprintf( '%s/phpunit/expected/log.xml', PHPUC_TEST_DATA );
         $result   = sprintf( '%s/log.xml', PHPUC_TEST_DIR );
         
-        $aggregator->save( $result );
+        $aggregator->store( $result );
         
         $this->assertXmlFileEqualsXmlFile( $expected, $result );
     }
@@ -83,7 +83,7 @@ class phpucPHPUnitTestLogAggregatorTest extends phpucAbstractLogAggregatorTest
         $expected = sprintf( '%s/phpunit/expected-failed/log.xml', PHPUC_TEST_DATA );
         $result   = sprintf( '%s/log.xml', PHPUC_TEST_DIR );
         
-        $aggregator->save( $result );
+        $aggregator->store( $result );
         
         $this->assertXmlFileEqualsXmlFile( $expected, $result );
     }

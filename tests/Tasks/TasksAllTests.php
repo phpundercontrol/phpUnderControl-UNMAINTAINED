@@ -54,6 +54,7 @@ require_once dirname( __FILE__ ) . '/CheckoutTaskTest.php';
 require_once dirname( __FILE__ ) . '/CreateFileTaskTest.php';
 require_once dirname( __FILE__ ) . '/CruiseControlTaskTest.php';
 require_once dirname( __FILE__ ) . '/GraphTaskTest.php';
+require_once dirname( __FILE__ ) . '/MergePhpunitTaskTest.php';
 require_once dirname( __FILE__ ) . '/ModifyFileTaskTest.php';
 require_once dirname( __FILE__ ) . '/PhpCodeSnifferTaskTest.php';
 require_once dirname( __FILE__ ) . '/PhpDocumentorTaskTest.php';

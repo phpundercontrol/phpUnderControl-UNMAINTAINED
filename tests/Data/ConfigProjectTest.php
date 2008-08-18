@@ -103,7 +103,7 @@ class phpucConfigProjectTest extends phpucAbstractConfigTest
         // Create a dummy project
         new phpucConfigProject( $this->config, 'phpUnderControl0' );
         new phpucConfigProject( $this->config, 'phpUnderControl1' );
-        $this->config->save();
+        $this->config->store();
         
         $dom = new DOMDocument();
         $dom->load( $this->testFile );
@@ -115,7 +115,7 @@ class phpucConfigProjectTest extends phpucAbstractConfigTest
         
         // Remove project and save again
         $project->delete();
-        $config->save();
+        $config->store();
         
         $dom = new DOMDocument();
         $dom->load( $this->testFile );

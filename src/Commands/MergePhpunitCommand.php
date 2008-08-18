@@ -36,59 +36,67 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  * 
- * @category   QualityAssurance
- * @package    Data
- * @subpackage Logs
- * @author     Manuel Pichler <mapi@manuel-pichler.de>
- * @copyright  2007-2008 Manuel Pichler. All rights reserved.
- * @license    http://www.opensource.org/licenses/bsd-license.php  BSD License
- * @version    SVN: $Id$
- * @link       http://www.phpundercontrol.org/
+ * @category  QualityAssurance
+ * @package   Commands
+ * @author    Manuel Pichler <mapi@manuel-pichler.de>
+ * @copyright 2007-2008 Manuel Pichler. All rights reserved.
+ * @license   http://www.opensource.org/licenses/bsd-license.php  BSD License
+ * @version   SVN: $Id$
+ * @link      http://www.phpundercontrol.org/
  */
 
 /**
- * Abstract base class for log aggregators.
- * 
- * @category   QualityAssurance
- * @package    Data
- * @subpackage Logs
- * @author     Manuel Pichler <mapi@manuel-pichler.de>
- * @copyright  2007-2008 Manuel Pichler. All rights reserved.
- * @license    http://www.opensource.org/licenses/bsd-license.php  BSD License
- * @version    Release: @package_version@
- * @link       http://www.phpundercontrol.org/
+ *
+ *
+ * @category  QualityAssurance
+ * @package   Commands
+ * @author    Manuel Pichler <mapi@manuel-pichler.de>
+ * @copyright 2007-2008 Manuel Pichler. All rights reserved.
+ * @license   http://www.opensource.org/licenses/bsd-license.php  BSD License
+ * @version   Release: @package_version@
+ * @link      http://www.phpundercontrol.org/
  */
-abstract class phpucAbstractLogAggregator
+class phpucMergePhpunitCommand extends phpucAbstractCommand implements phpucConsoleCommandI
 {
     /**
-     * The primary log file.
+     * Returns the cli command identifier.
      *
-     * @type DOMDocument
-     * @var DOMDocument $log
+     * @return string
      */
-    protected $log = null;
-    
-    /**
-     * Stores the generated coverage log file.
-     *
-     * @param string $fileName The log file name.
-     * 
-     * @return void
-     */
-    public function store( $fileName )
+    public function getCommandId()
     {
-        if ( $this->log !== null )
-        {
-            $this->log->save( $fileName );
-        }
+        return 'merge-phpunit';
     }
     
     /**
-     * Aggregates the results of all log files in the given iterator.
+     * Callback method that registers a cli command.
      *
-     * @param Iterator $files List of coverage log files.
+     * @param phpucConsoleInputDefinition $def The input definition container.
      * 
      * @return void
      */
-    public abstract function aggregate( Iterator $files );
+    public function registerCommand( phpucConsoleInputDefinition $def )
+    {
+        $def->addCommand( 
+            $this->getCommandId(), 
+            'Merges a set of PHPUnit logs into a single new file.'
+        );
+        $def->addArgument( 
+            $this->getCommandId(),
+            'cc-install-dir',
+            'The installation directory of CruiseControl.'
+        );
+    }
+
+    /**
+     * Creates all command specific {@link phpucTaskI} objects.
+     * 
+     * @return array(phpucTaskI)
+     */
+    protected function doCreateTasks()
+    {
+        return array(
+            new phpucMergePhpunitTask()
+        );
+    }
 }

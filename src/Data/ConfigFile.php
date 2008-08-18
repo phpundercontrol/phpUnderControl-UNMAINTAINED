@@ -150,12 +150,12 @@ class phpucConfigFile extends DOMDocument
      * @return void
      * @throws ErrorException If a sub action fails.
      */
-    public function save()
+    public function store()
     {
         foreach ( $this->projects as $project )
         {
             $project->buildXml();
         }
-        parent::save( $this->fileName );
+        $this->save( $this->fileName );
     }
 }

@@ -111,7 +111,7 @@ class phpucBuildFileTest extends phpucAbstractTest
         $this->assertFileNotExists( $this->fileName );
         
         $buildFile = new phpucBuildFile( $this->fileName, $this->projectName );
-        $buildFile->save();
+        $buildFile->store();
         
         $this->assertFileExists( $this->fileName );
 

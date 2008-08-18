@@ -183,14 +183,14 @@ class phpucBuildFile extends DOMDocument
      *
      * @return void
      */
-    public function save()
+    public function store()
     {
         foreach ( $this->targets as $target )
         {
             $target->buildXml();
         }
         
-        parent::save( $this->fileName );
+        $this->save( $this->fileName );
     }
     
     /**

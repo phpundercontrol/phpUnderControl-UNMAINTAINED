@@ -134,7 +134,7 @@ abstract class phpucAbstractPearTaskTest extends phpucAbstractTaskTest
             $this->projectDir . '/build.xml', 
             $this->projectName
         );
-        $buildFile->save();
+        $buildFile->store();
     }
     
     /**

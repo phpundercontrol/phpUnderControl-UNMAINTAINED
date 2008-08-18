@@ -36,59 +36,29 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  * 
- * @category   QualityAssurance
- * @package    Data
- * @subpackage Logs
- * @author     Manuel Pichler <mapi@manuel-pichler.de>
- * @copyright  2007-2008 Manuel Pichler. All rights reserved.
- * @license    http://www.opensource.org/licenses/bsd-license.php  BSD License
- * @version    SVN: $Id$
- * @link       http://www.phpundercontrol.org/
+ * @category  QualityAssurance
+ * @package   Tasks
+ * @author    Manuel Pichler <mapi@manuel-pichler.de>
+ * @copyright 2007-2008 Manuel Pichler. All rights reserved.
+ * @license   http://www.opensource.org/licenses/bsd-license.php  BSD License
+ * @version   SVN: $Id$
+ * @link      http://www.phpundercontrol.org/
  */
 
+require_once dirname( __FILE__ ) . '/AbstractTaskTest.php';
+
 /**
- * Abstract base class for log aggregators.
- * 
- * @category   QualityAssurance
- * @package    Data
- * @subpackage Logs
- * @author     Manuel Pichler <mapi@manuel-pichler.de>
- * @copyright  2007-2008 Manuel Pichler. All rights reserved.
- * @license    http://www.opensource.org/licenses/bsd-license.php  BSD License
- * @version    Release: @package_version@
- * @link       http://www.phpundercontrol.org/
+ * Test case for the phpunit log merge task.
+ *
+ * @category  QualityAssurance
+ * @package   Tasks
+ * @author    Manuel Pichler <mapi@manuel-pichler.de>
+ * @copyright 2007-2008 Manuel Pichler. All rights reserved.
+ * @license   http://www.opensource.org/licenses/bsd-license.php  BSD License
+ * @version   Release: @package_version@
+ * @link      http://www.phpundercontrol.org/
  */
-abstract class phpucAbstractLogAggregator
+class phpucMergePhpunitTaskTest extends phpucAbstractTaskTest
 {
-    /**
-     * The primary log file.
-     *
-     * @type DOMDocument
-     * @var DOMDocument $log
-     */
-    protected $log = null;
-    
-    /**
-     * Stores the generated coverage log file.
-     *
-     * @param string $fileName The log file name.
-     * 
-     * @return void
-     */
-    public function store( $fileName )
-    {
-        if ( $this->log !== null )
-        {
-            $this->log->save( $fileName );
-        }
-    }
-    
-    /**
-     * Aggregates the results of all log files in the given iterator.
-     *
-     * @param Iterator $files List of coverage log files.
-     * 
-     * @return void
-     */
-    public abstract function aggregate( Iterator $files );
+
 }

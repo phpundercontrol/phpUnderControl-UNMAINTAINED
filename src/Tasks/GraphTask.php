@@ -100,7 +100,7 @@ class phpucGraphTask extends phpucAbstractTask implements phpucConsoleExtensionI
 
         $publisher->command = $command;
         
-        $configFile->save();
+        $configFile->store();
         
         $out->writeLine();
     }

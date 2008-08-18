@@ -101,7 +101,7 @@ class phpucPhpCodeSnifferTask extends phpucAbstractPearTask
             $this->args->getOption( 'source-dir' )
         );
         
-        $buildFile->save();
+        $buildFile->store();
         
         $out->writeLine();
     }

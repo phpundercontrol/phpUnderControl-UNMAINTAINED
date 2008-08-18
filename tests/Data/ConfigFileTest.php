@@ -66,7 +66,7 @@ class phpucConfigFileTest extends phpucAbstractConfigTest
         $this->createTestFile( '/config.xml', $this->testXml );
         
         $config = new phpucConfigFile( $this->testFile );
-        $config->save();
+        $config->store();
         
         $this->assertXmlStringEqualsXmlString(
             $this->testXml,
@@ -101,7 +101,7 @@ class phpucConfigFileTest extends phpucAbstractConfigTest
         
         $this->assertType( 'phpucConfigProject', $project );
         
-        $config->save();
+        $config->store();
         
         $this->assertXmlStringNotEqualsXmlString(
             $this->testXml,

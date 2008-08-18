@@ -2,7 +2,7 @@
 /**
  * This file is part of phpUnderControl.
  * 
- * PHP Version 5
+ * PHP Version 5.2.0
  *
  * Copyright (c) 2007-2008, Manuel Pichler <mapi@manuel-pichler.de>.
  * All rights reserved.
@@ -46,7 +46,7 @@
  */
 
 /**
- * Performs a project checkout.
+ * Merges a set of PHPUnit log files within a single log.
  *
  * @category  QualityAssurance
  * @package   Tasks
@@ -56,72 +56,99 @@
  * @version   Release: @package_version@
  * @link      http://www.phpundercontrol.org/
  */
-class phpucCheckoutTask extends phpucAbstractTask implements phpucConsoleExtensionI
+class phpucMergePhpunitTask extends phpucAbstractTask implements phpucConsoleExtensionI
 {
     /**
-     * Performs a project checkout against the specified repository.
+     * List of input log files.
      *
+     * @type array<string>
+     * @var array(string=>string) $inputFiles
+     */
+    private $inputFiles = array();
+
+    /**
+     * Validates the task constrains.
+     *
+     * @return void
+     * @throws phpucValidateException If the validation fails.
+     */
+    public function validate()
+    {
+        $input = $this->args->getOption( 'input' );
+        
+        if ( is_dir( $input ) === true )
+        {
+            $files = glob( "{$input}/*.xml" );
+        }
+        else
+        {
+            $files = array_map( 'trim', explode( ',', $input ) );
+        }
+
+        foreach ( $files as $file )
+        {
+            if ( file_exists( $file ) === false )
+            {
+                throw new phpucValidateException(
+                    sprintf(
+                        'The specified --input "%s" doesn\'t exist.',
+                        $file
+                    )
+                );
+            }
+        }
+        
+        if ( $this->args->hasOption( 'builds' ) === true )
+        {
+            $builds = $this->args->getOption( 'builds' );
+            $builds = array_map( 'trim', explode( ',', $builds ) );
+        }
+        else
+        {
+            $builds = array();
+            foreach ( $files as $file )
+            {
+                $builds[] = pathinfo( $file, PATHINFO_FILENAME );
+            }
+        }
+        
+        if ( count( $builds ) !== count( $files ) )
+        {
+            throw new phpucValidateException(
+                sprintf(
+                    'Number of build identifiers "%s" and files "%s" doesn\'t match.',
+                    count( $builds ),
+                    count( $files )
+                )
+            );
+        }
+        
+        $this->inputFiles = array_combine( $builds, $files );
+        
+        $output = dirname( $this->args->getOption( 'output' ) );
+        if ( is_dir( $output ) === false )
+        {
+            if ( mkdir( $output ) === false || is_dir( $output ) === false )
+            {
+                throw new phpucValidateException(
+                    sprintf( 'Cannot create output directory "%s".', $output )
+                );
+            }
+        }
+    }
+    
+    /**
+     * 
+     * 
      * @return void
      */
     public function execute()
     {
-        $out = phpucConsoleOutput::get();
-        $out->writeLine( 'Performing checkout task.' );
-        $out->startList();
+        $inputFiles = new ArrayIterator( $this->inputFiles );
+        $aggregator = new phpucPHPUnitTestLogAggregator();
         
-        // Get current working dir
-        $cwd = getcwd();
-        
-        $out->writeListItem( 'Checking out project.' );
-        
-        $projectPath = sprintf(
-            '%s/projects/%s',
-            $this->args->getArgument( 'cc-install-dir' ),
-            $this->args->getOption( 'project-name' )
-        );
-        
-        // Switch working dir to the CruiseControl project directory
-        chdir( $projectPath );
-        
-        $checkout = phpucAbstractCheckout::createCheckout( $this->args );
-        $checkout->checkout();
-        
-        chdir( $cwd );
-        
-        $out->writeListItem( 'Preparing config.xml file.' );
-        
-        $fileName = sprintf(
-            '%s/config.xml',
-            $this->args->getArgument( 'cc-install-dir' )
-        );
-        
-        $config  = new phpucConfigFile( $fileName );
-        $project = $config->getProject( $this->args->getOption( 'project-name' ) );
-        
-        $strapper                   = $project->createBootStrapper();
-        $strapper->localWorkingCopy = "{$projectPath}/source";
-        $strapper->strapperType     = $this->args->getOption( 'version-control' );
-        
-        $trigger                   = $project->createBuildTrigger();
-        $trigger->localWorkingCopy = "{$projectPath}/source";
-        $trigger->triggerType      = $this->args->getOption( 'version-control' );
-        
-        $config->store();
-        
-        $out->writeListItem( 'Preparing build.xml checkout target.' );
-        
-        $build  = new phpucBuildFile( "{$projectPath}/build.xml" );
-        $target = $build->createBuildTarget( 'checkout' );
-        
-        $target->executable  = phpucFileUtil::findExecutable(
-            $this->args->getOption( 'version-control' )
-        );
-        $target->argLine     = 'up';
-        $target->failonerror = true;
-        
-        $build->store();
-        
-        $out->writeLine();
+        $aggregator->aggregate( $inputFiles );
+        $aggregator->store( $this->args->getOption( 'output' ) );
     }
     
     /**
@@ -139,51 +166,39 @@ class phpucCheckoutTask extends phpucAbstractTask implements phpucConsoleExtensi
     {
         $def->addOption(
             $command->getCommandId(),
-            'v',
-            'version-control',
-            'The used version control system.',
-            array( 'svn', 'cvs' ),
-            null,
-            true
-        );
-        $def->addOption(
-            $command->getCommandId(),
-            'x',
-            'version-control-url',
-            'The version control system project url.',
+            'i',
+            'input',
+            'List of input log files(separated by comma) or a single log ' .
+            'directory with multiple log files.',
             true,
             null,
             true
         );
         $def->addOption(
             $command->getCommandId(),
-            'u',
-            'username',
-            'Optional username for the version control system.',
-            true
-        );
-        $def->addOption(
-            $command->getCommandId(),
-            'p',
-            'password',
-            'Optional password for the version control system.',
-            true
-        );
-        $def->addOption(
-            $command->getCommandId(),
-            'd',
-            'destination',
-            'A destination directory for the source code checkout. ' .
-            'Default is "source".',
+            'o',
+            'output',
+            'The output log file.',
             true,
-            'source',
+            null,
             true
         );
         $def->addOption(
             $command->getCommandId(),
-            'm',
-            'module',
-            'A CVS project module.',
+            'j',
+            'project-name',
+            'The name of the generated project.',
+            true,
+            null,
+            true
+        );
+        $def->addOption(
+            $command->getCommandId(),
+            'b',
+            'builds',
+            'Optional list of build identifiers(separated by comma). This ' .
+            'option can be used together with a comma separated list of log ' .
+            'files',
             true
         );
     }

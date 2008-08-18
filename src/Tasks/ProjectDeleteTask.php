@@ -133,7 +133,7 @@ class phpucProjectDeleteTask extends phpucAbstractTask
     {
         $config = new phpucConfigFile( "{$installDir}/config.xml" );
         $config->getProject( $projectName )->delete();
-        $config->save();
+        $config->store();
     }
     
     /**

@@ -111,7 +111,7 @@ class phpucPHPUnitCoverageXmlGenerator
      * 
      * @return integer|boolean Written bytes or <b>false</b>.
      */
-    public function save( $fileName )
+    public function store( $fileName )
     {
         $this->generate();
         
