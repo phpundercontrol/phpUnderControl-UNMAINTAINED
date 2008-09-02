@@ -65,6 +65,14 @@ class phpucMergePhpunitTask extends phpucAbstractTask implements phpucConsoleExt
      * @var array(string=>string) $inputFiles
      */
     private $inputFiles = array();
+    
+    /**
+     * The log output file.
+     *
+     * @type string
+     * @var string $outputFile
+     */
+    private $outputFile = null;
 
     /**
      * Validates the task constrains.
@@ -103,24 +111,42 @@ class phpucMergePhpunitTask extends phpucAbstractTask implements phpucConsoleExt
             $builds = $this->args->getOption( 'builds' );
             $builds = array_map( 'trim', explode( ',', $builds ) );
         }
+        else if ( count( $files ) === 1 )
+        {
+            $builds[] = pathinfo( reset( $files ), PATHINFO_FILENAME );
+        }
         else
         {
-            $builds = array();
+            $parts = array();
             foreach ( $files as $file )
             {
-                $builds[] = pathinfo( $file, PATHINFO_FILENAME );
+                $tokens = array();
+                $token  = strtok( $file, '\/' );
+                while ( $token !== false )
+                {
+                    $tokens[] = $token;
+                    $token    = strtok( '\/' );
+                }
+                $parts[] = $tokens;
             }
+            
+            $builds = array();
+            for ( $i = 1, $j = 0, $c = count( $parts ); $i < $c; ++$i, ++$j )
+            {
+                $builds[$j] = join( '-', array_diff( $parts[$j], $parts[$i] ) );
+                $builds[$i] = join( '-', array_diff( $parts[$i], $parts[$j] ) );
+            }
+            $builds = array_unique( $builds );
         }
         
         if ( count( $builds ) !== count( $files ) )
         {
-            throw new phpucValidateException(
-                sprintf(
-                    'Number of build identifiers "%s" and files "%s" doesn\'t match.',
-                    count( $builds ),
-                    count( $files )
-                )
+            $message = sprintf(
+                'Number of build identifiers "%s" and files "%s" doesn\'t match.',
+                count( $builds ),
+                count( $files )
             );
+            throw new phpucValidateException( $message );
         }
         
         $this->inputFiles = array_combine( $builds, $files );
@@ -135,10 +161,11 @@ class phpucMergePhpunitTask extends phpucAbstractTask implements phpucConsoleExt
                 );
             }
         }
+        $this->outputFile = $this->args->getOption( 'output' );
     }
     
     /**
-     * 
+     * This method executes the main merge process of this task.
      * 
      * @return void
      */
@@ -178,16 +205,8 @@ class phpucMergePhpunitTask extends phpucAbstractTask implements phpucConsoleExt
             $command->getCommandId(),
             'o',
             'output',
-            'The output log file.',
-            true,
-            null,
-            true
-        );
-        $def->addOption(
-            $command->getCommandId(),
-            'j',
-            'project-name',
-            'The name of the generated project.',
+            'Optional file name for the generated phpunit log. The default ' .
+            'file name is "phpunit.xml".',
             true,
             null,
             true

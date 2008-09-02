@@ -206,7 +206,7 @@ class phpucPhpUnitTask extends phpucAbstractPearTask
      */
     protected function doValidate()
     {
-        $cwd = getcwd();
+        $cwd = $this->getWorkingDirectory();
         
         $binary = basename( $this->executable );
         
@@ -219,7 +219,7 @@ class phpucPhpUnitTask extends phpucAbstractPearTask
                 $binary = "./{$binary}";
             }
         }
-            
+
         $regexp = '/PHPUnit\s+([0-9\.]+(RC[0-9])?)/';
         $retval = exec( escapeshellcmd( "{$binary} --version" ) );
         

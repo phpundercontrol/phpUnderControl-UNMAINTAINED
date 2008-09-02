@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+  <testsuite name="phpucMergeCodeTest" file="/home/manu/Projects/workspace.zend-studio/phpUnderControl/trunk/docs/log-merge/MergeCodeTest.php" fullPackage="PhpUnderControl.Documentation" category="QualityAssurance" package="PhpUnderControl" subpackage="Documentation" tests="6" failures="2" errors="0" time="0.016622">
+    <testcase name="testVersionSpecific" class="phpucMergeCodeTest" file="/home/manu/Projects/workspace.zend-studio/phpUnderControl/trunk/docs/log-merge/MergeCodeTest.php" line="72" time="0.002382"/>
+    <testcase name="testNotVersionSpecific" class="phpucMergeCodeTest" file="/home/manu/Projects/workspace.zend-studio/phpUnderControl/trunk/docs/log-merge/MergeCodeTest.php" line="78" time="0.004208">
+      <failure type="PHPUnit_Framework_ExpectationFailedException"><![CDATA[testNotVersionSpecific(phpucMergeCodeTest)
+Failed asserting that two strings are equal.
+expected string <ilc>
+difference      <xxx>
+got string      <cli>
+
+/home/manu/Projects/workspace.zend-studio/phpUnderControl/trunk/docs/log-merge/MergeCodeTest.php:91
+]]></failure>
+    </testcase>
+    <testsuite name="phpucMergeCodeTest::testCalculate" tests="4" failures="1" errors="0" time="0.010032">
+      <testcase name="testCalculate" class="phpucMergeCodeTest" file="/home/manu/Projects/workspace.zend-studio/phpUnderControl/trunk/docs/log-merge/MergeCodeTest.php" line="103" time="0.001987"/>
+      <testcase name="testCalculate" class="phpucMergeCodeTest" file="/home/manu/Projects/workspace.zend-studio/phpUnderControl/trunk/docs/log-merge/MergeCodeTest.php" line="103" time="0.001953"/>
+      <testcase name="testCalculate" class="phpucMergeCodeTest" file="/home/manu/Projects/workspace.zend-studio/phpUnderControl/trunk/docs/log-merge/MergeCodeTest.php" line="103" time="0.004110">
+        <failure type="PHPUnit_Framework_ExpectationFailedException"><![CDATA[testCalculate(phpucMergeCodeTest) with data set #2 (2, 2)
+Failed asserting that <integer:4> matches expected value <integer:3>.
+
+/home/manu/Projects/workspace.zend-studio/phpUnderControl/trunk/docs/log-merge/MergeCodeTest.php:107
+]]></failure>
+      </testcase>
+      <testcase name="testCalculate" class="phpucMergeCodeTest" file="/home/manu/Projects/workspace.zend-studio/phpUnderControl/trunk/docs/log-merge/MergeCodeTest.php" line="103" time="0.001982"/>
+    </testsuite>
+  </testsuite>
+</testsuites>

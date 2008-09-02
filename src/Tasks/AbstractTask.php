@@ -163,4 +163,19 @@ abstract class phpucAbstractTask implements phpucTaskI
             sprintf( 'Unknown or readonly property $%s.', $name )
         );
     }
+    
+    /**
+     * Returns the working directory where phpUnderControl runs. This method
+     * was introduced for php 5.3alpha1 and some getcwd() issues.
+     *
+     * @return string
+     */
+    protected function getWorkingDirectory()
+    {
+        if ( ( $cwd = getcwd() ) === false )
+        {
+            $cwd = getenv( 'PWD' );
+        }
+        return $cwd;
+    }
 }

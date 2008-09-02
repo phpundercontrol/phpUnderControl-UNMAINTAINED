@@ -171,8 +171,8 @@ class phpucPhpCodeSnifferTask extends phpucAbstractPearTask
      */
     protected function doValidate()
     {
-        $cwd = getcwd();
-        
+        $cwd = $this->getWorkingDirectory();
+
         $binary = basename( $this->executable );
         
         if ( ( $execdir = dirname( $this->executable ) ) !== '.' )
@@ -184,10 +184,10 @@ class phpucPhpCodeSnifferTask extends phpucAbstractPearTask
                 $binary = "./{$binary}";
             }
         }
-            
+
         $regexp = '/version\s+([0-9\.]+(RC[0-9])?)/';
         $retval = exec( escapeshellcmd( "{$binary} --version" ) );
-        
+      
         chdir( $cwd );
 
         if ( preg_match( $regexp, $retval, $match ) === 0 )

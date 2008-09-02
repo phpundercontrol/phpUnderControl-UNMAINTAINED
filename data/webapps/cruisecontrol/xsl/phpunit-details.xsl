@@ -42,6 +42,11 @@
     Root template
   -->
   <xsl:template match="/">
+    <style type="text/css">
+      .oddrow {
+          background-color: #ccc;
+      }
+    </style>
     <script type="text/javascript" language="JavaScript">
     // <!--
     // Function show/hide given div
@@ -141,8 +146,12 @@
     Construct testcase section
   -->
   <xsl:template match="testcase">
+    <xsl:param name="sub.test" select="false" />
+    <xsl:param name="line.indent" select="0" />
     <xsl:param name="odd.or.even" select="0" />
-    <xsl:param name="sub.testcase" select="false()" />
+    
+    <xsl:variable name="node.id" select="concat('node-', generate-id(.))" />
+    
     <tr>
       <xsl:attribute name="class">
         <xsl:choose>
@@ -167,10 +176,12 @@
         </xsl:choose>
       </xsl:attribute>
       <td colspan="3">
+        <xsl:attribute name="style">
+          <xsl:text>text-indent:</xsl:text>
+          <xsl:value-of select="$line.indent" />
+          <xsl:text>px;</xsl:text>
+        </xsl:attribute>
         <xsl:attribute name="class">
-          <xsl:if test="$sub.testcase">
-            <xsl:text>sub </xsl:text>
-          </xsl:if>
           <xsl:choose>
             <xsl:when test="error">
               <xsl:choose>
@@ -193,22 +204,23 @@
             </xsl:otherwise>
           </xsl:choose>
         </xsl:attribute>
-        <xsl:if test="$sub.testcase">
+        <xsl:if test="$sub.test">
           <xsl:text>#</xsl:text>
           <xsl:value-of select="position()" />
           <xsl:text> - </xsl:text>
         </xsl:if>
         <xsl:value-of select="@name"/>
+        <xsl:call-template name="build.identifier" />
       </td>
       <td>
         <xsl:choose>
           <xsl:when test="error">
             <a href="javascript:void(0)"
-               onClick="toggleDivVisibility(document.getElementById('{concat('error.',../@package,'.',../@name,'.',@name,'.',position())}'))">Error &#187;</a>
+               onClick="toggleDivVisibility(document.getElementById('{$node.id}'))">Error &#187;</a>
           </xsl:when>
           <xsl:when test="failure">
             <a href="javascript:void(0)"
-               onClick="toggleDivVisibility(document.getElementById('{concat('failure.',../@package,'.',../@name,'.',@name,'.',position())}'))">Failure &#187;</a>
+               onClick="toggleDivVisibility(document.getElementById('{$node.id}'))">Failure &#187;</a>
           </xsl:when>
           <xsl:otherwise>Success</xsl:otherwise>
         </xsl:choose>
@@ -224,28 +236,38 @@
         </xsl:otherwise>
       </xsl:choose>
     </tr>
-    <xsl:if test="error">
+    <xsl:if test="./error or ./failure">
       <tr>
         <td></td>
         <td colspan="4">
-          <span id="{concat('error.',../@package,'.',../@name,'.',@name,'.',position())}" class="testresults-output-div" style="display: none;">
-            <h3>Error:</h3>
-            <pre><xsl:apply-templates select="error/text()" mode="newline-to-br"/></pre>
+          <span id="{$node.id}" class="testresults-output-div" style="display:none;">
+            <xsl:choose>
+              <xsl:when test="./error">
+                <h3>Error:</h3>
+                <pre><xsl:apply-templates select="error/text()" mode="newline-to-br"/></pre>
+              </xsl:when>
+              <xsl:otherwise>
+                <h3>Failure:</h3>
+                <pre><xsl:apply-templates select="failure/text()" mode="newline-to-br"/></pre>              
+              </xsl:otherwise>
+            </xsl:choose>
           </span>
         </td>
       </tr>
     </xsl:if>
+<!-- 
     <xsl:if test="failure">
       <tr>
         <td></td>
         <td colspan="4">
-          <span id="{concat('failure.',../@package,'.',../@name,'.',@name,'.',position())}" class="testresults-output" style="display: none;">
-            <h3>Failure:</h3>
-            <pre><xsl:apply-templates select="failure/text()" mode="newline-to-br"/></pre>
+          <span id="{$node.id}" class="testresults-output" style="display: none;">
+                <h3>Failure:</h3>
+                <pre><xsl:apply-templates select="failure/text()" mode="newline-to-br"/></pre>
           </span>
         </td>
       </tr>
     </xsl:if>
+-->
   </xsl:template>
   
   <!--
@@ -253,7 +275,9 @@
     for @dataProvider tests.
   -->
   <xsl:template match="testsuite" mode="data.provider">
+    <xsl:param name="line.indent" select="0" />
     <xsl:param name="odd.or.even" select="0" />
+    
     <tr>
       <xsl:if test="position() mod 2 != $odd.or.even">
         <xsl:attribute name="class">
@@ -261,6 +285,11 @@
         </xsl:attribute>
       </xsl:if>
       <td colspan="3">
+        <xsl:attribute name="style">
+          <xsl:text>text-indent:</xsl:text>
+          <xsl:value-of select="$line.indent" />
+          <xsl:text>px;</xsl:text>
+        </xsl:attribute>
         <xsl:attribute name="class">
           <xsl:choose>
             <xsl:when test="testcase/error">
@@ -275,6 +304,7 @@
           </xsl:choose>
         </xsl:attribute>
         <xsl:value-of select="substring-after(@name, '::')" />
+        <xsl:call-template name="build.identifier" />
       </td>
       <td>
         <xsl:if test="not(testcase/failure|testcase/error)">
@@ -286,8 +316,27 @@
       </td>
     </tr>
     <xsl:apply-templates select="testcase">
+      <xsl:with-param name="sub.test" select="true()" />
+      <xsl:with-param name="line.indent" select="$line.indent + 10" />
       <xsl:with-param name="odd.or.even" select="($odd.or.even + 1) mod 2" />
-      <xsl:with-param name="sub.testcase" select="true()" />
+    </xsl:apply-templates>
+    <xsl:apply-templates select="testsuite" mode="data.provider">
+      <xsl:with-param name="line.indent" select="$line.indent + 10" />
+      <xsl:with-param name="odd.or.even" select="($odd.or.even + 1) mod 2" />
     </xsl:apply-templates>
   </xsl:template>
+  
+  <xsl:template name="build.identifier">
+    <xsl:if test="@build">
+      <em>
+        <small>
+          <xsl:text> - (build: </xsl:text>
+          <strong><xsl:value-of select="@build" /></strong>
+          <xsl:text>)</xsl:text>
+        </small>
+      </em>
+    </xsl:if>
+
+  </xsl:template>
+    
 </xsl:stylesheet>

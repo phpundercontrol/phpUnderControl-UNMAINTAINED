@@ -97,6 +97,7 @@ class phpucTasksAllTests
         $suite->addTestSuite( 'phpucCreateFileTaskTest' );
         $suite->addTestSuite( 'phpucCruiseControlTaskTest' );
         $suite->addTestSuite( 'phpucGraphTaskTest' );
+        $suite->addTestSuite( 'phpucMergePhpunitTaskTest' );
         $suite->addTestSuite( 'phpucModifyFileTaskTest' );
         $suite->addTestSuite( 'phpucPhpCodeSnifferTaskTest' );
         $suite->addTestSuite( 'phpucPHPUnitTaskTest' );

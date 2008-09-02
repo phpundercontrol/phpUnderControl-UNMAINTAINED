@@ -46,7 +46,8 @@
  */
 
 /**
- *
+ * This class implements the cli command <b>merge-phpunit</b> that merges multiple
+ * phpunit <b>--log-xml</b> files into one new file.
  *
  * @category  QualityAssurance
  * @package   Commands
@@ -80,11 +81,6 @@ class phpucMergePhpunitCommand extends phpucAbstractCommand implements phpucCons
         $def->addCommand( 
             $this->getCommandId(), 
             'Merges a set of PHPUnit logs into a single new file.'
-        );
-        $def->addArgument( 
-            $this->getCommandId(),
-            'cc-install-dir',
-            'The installation directory of CruiseControl.'
         );
     }
 

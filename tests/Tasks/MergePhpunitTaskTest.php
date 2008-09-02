@@ -60,5 +60,241 @@ require_once dirname( __FILE__ ) . '/AbstractTaskTest.php';
  */
 class phpucMergePhpunitTaskTest extends phpucAbstractTaskTest
 {
+    public function testInputOptionIsMandatoryFail()
+    {
+        $this->setExpectedException(
+            'phpucConsoleException',
+            "The option '--input' is marked as mandatory and not set."
+        );
+        
+        $args = $this->prepareConsoleArgs(
+            array(
+                'merge-phpunit', 
+                '--output', 'out.xml',
+            )
+        );        
+    }
+    
+    public function testInputOptionRequiresValueFail()
+    {
+        $this->setExpectedException(
+            'phpucConsoleException',
+            "The option '--input' requires an additional value."
+        );
+        
+        $args = $this->prepareConsoleArgs(
+            array(
+                'merge-phpunit', 
+                '--input', 
+                '--output', 'out.xml',
+            )
+        );    
+    }
+    public function testOutputOptionIsMandatoryFail()
+    {
+        $this->setExpectedException(
+            'phpucConsoleException',
+            "The option '--output' is marked as mandatory and not set."
+        );
+        
+        $args = $this->prepareConsoleArgs(
+            array(
+                'merge-phpunit', 
+                '--input', 'in.xml',
+            )
+        );        
+    }
+    
+    public function testOutputOptionRequiresValueFail()
+    {
+        $this->setExpectedException(
+            'phpucConsoleException',
+            "The option '--output' requires an additional value."
+        );
+        
+        $args = $this->prepareConsoleArgs(
+            array(
+                'merge-phpunit', 
+                '--input', 'in.xml', 
+                '--output'
+            )
+        );        
+    }
+    
+    public function testBuildOptionRequiresValueFail()
+    {
+        $this->setExpectedException(
+            'phpucConsoleException',
+            "The option '--builds' requires an additional value."
+        );
+        
+        $args = $this->prepareConsoleArgs(
+            array(
+                'merge-phpunit', 
+                '--input', 'in.xml', 
+                '--output', 'out.xml',
+                '--builds'
+            )
+        );        
+    }
 
+    public function testInputOptionWithInvalidLogFileFail()
+    {
+        $args = $this->prepareConsoleArgs(
+            array(
+                'merge-phpunit', 
+                '--input', 'log.xml',
+                '--output', 'out.xml',
+            )
+        );
+        
+        $task = new phpucMergePhpunitTask();
+        $task->setConsoleArgs($args);
+
+        $this->setExpectedException(
+            'phpucValidateException',
+            'The specified --input "log.xml" doesn\'t exist.'
+        );
+        
+        $task->validate();
+    }
+
+    public function testInputAndBuildsOptionNumberMustMatchFail()
+    {
+        $args = $this->prepareConsoleArgs(
+            array(
+                'merge-phpunit', 
+                '--input', PHPUC_TEST_DATA . '/phpunit/php525/log.xml',
+                '--builds', 'a,b', 
+                '--output', 'out.xml',
+            )
+        );
+        
+        $task = new phpucMergePhpunitTask();
+        $task->setConsoleArgs($args);
+
+        $this->setExpectedException(
+            'phpucValidateException',
+            'Number of build identifiers "2" and files "1" doesn\'t match.'
+        );
+        
+        $task->validate();
+    }
+    
+    public function testCreateOutputDirectoryFail()
+    {
+        $directory = PHPUC_TEST_DIR . '/output';
+        touch( $directory );
+        
+        $this->assertFileExists( $directory );
+        
+        $args = $this->prepareConsoleArgs(
+            array(
+                'merge-phpunit', 
+                '--input', PHPUC_TEST_DATA . '/phpunit/php525/log.xml',
+                '--output', PHPUC_TEST_DIR . '/output/out.xml',
+            )
+        );
+        
+        $task = new phpucMergePhpunitTask();
+        $task->setConsoleArgs($args);
+        
+        $this->setExpectedException(
+            'phpucValidateException', 
+            sprintf( 'Cannot create output directory "%s".', $directory )
+        );
+        
+        $task->validate();
+    }
+    
+    public function testMergeLogFilesFromDifferentDirectoriesWithoutCustomBuildIds()
+    {
+        $input  = sprintf(
+            '%s/phpunit/php520/log.xml,' .
+            '%s/phpunit/php525/log.xml,' .
+            '%s/phpunit/php526RC2/log.xml',
+            PHPUC_TEST_DATA,
+            PHPUC_TEST_DATA,
+            PHPUC_TEST_DATA
+        );
+        
+        $expected = sprintf( 
+            '%s/phpunit/expected/log-files-without-build-ids.xml', 
+            PHPUC_TEST_DATA 
+        );
+        
+        $this->doTestMergeLogFiles( $input, $expected );
+    }
+    
+    public function testMergeLogFilesFromDifferentDirectoriesWithBuildIds()
+    {
+        $input  = sprintf(
+            '%s/phpunit/php520/log.xml,' .
+            '%s/phpunit/php525/log.xml,' .
+            '%s/phpunit/php526RC2/log.xml',
+            PHPUC_TEST_DATA,
+            PHPUC_TEST_DATA,
+            PHPUC_TEST_DATA
+        );
+        
+        $expected = sprintf( 
+            '%s/phpunit/expected/log-files-with-build-ids.xml', 
+            PHPUC_TEST_DATA 
+        );
+        
+        $builds = 'php-5.2.0,php-5.2.5,php-5.2.6';
+        
+        $this->doTestMergeLogFiles( $input, $expected, $builds );
+    }
+    
+    public function testMergeLogFilesFromSingleDirectoryWithoutCustomBuildIds()
+    {
+        $input    = sprintf( '%s/phpunit/log-dir', PHPUC_TEST_DATA );
+        $expected = sprintf( 
+            '%s/phpunit/expected/log-dir-without-build-ids.xml', 
+            PHPUC_TEST_DATA 
+        );
+        
+        $this->doTestMergeLogFiles( $input, $expected );
+    }
+    
+    public function testMergeLogFilesFromSingleDirectoryWithCustomBuildIds()
+    {
+        $input    = sprintf( '%s/phpunit/log-dir', PHPUC_TEST_DATA );
+        $builds   = 'php-5.2.0,php-5.2.5,php-5.2.6';
+        $expected = sprintf( 
+            '%s/phpunit/expected/log-dir-with-build-ids.xml', 
+            PHPUC_TEST_DATA 
+        );
+        
+        $this->doTestMergeLogFiles( $input, $expected, $builds );
+    }
+    
+    protected function doTestMergeLogFiles( $input, $expected, $buildIds = null )
+    {
+        $output = sprintf( '%s/out.xml', PHPUC_TEST_DIR );
+        
+        $argv = array(
+            'merge-phpunit', 
+            '--input', $input, 
+            '--output', $output
+        );
+        if ( $buildIds !== null )
+        {
+            $argv[] = '--builds';
+            $argv[] = $buildIds;
+        }
+        
+        $args = $this->prepareConsoleArgs( $argv );
+        
+        $this->assertFileNotExists( $output );
+        
+        $task = new phpucMergePhpunitTask();
+        $task->setConsoleArgs( $args );
+        $task->validate();
+        $task->execute();
+        
+        $this->assertFileExists( $output );
+        $this->assertXmlFileEqualsXmlFile( $expected, $output );
+    }
 }
