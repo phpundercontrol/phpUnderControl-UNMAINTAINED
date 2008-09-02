@@ -37,6 +37,8 @@
  ********************************************************************************-->
   <xsl:output method="html" encoding="UTF-8" indent="yes"/>
   <xsl:decimal-format decimal-separator="." grouping-separator="," />
+  
+  <xsl:variable name="indent.width" select="15" />
 
   <!-- 
     Root template
@@ -99,10 +101,7 @@
   <xsl:template match="testsuite">
     <tr>
       <xsl:attribute name="class">
-        <xsl:choose>
-          <xsl:when test="testcase/error">error</xsl:when>
-          <xsl:when test="testcase/failure">failure</xsl:when>
-        </xsl:choose>
+        <xsl:call-template name="build.result" />
       </xsl:attribute>
       <th colspan="4">
         <xsl:choose>
@@ -177,8 +176,10 @@
       </xsl:attribute>
       <td colspan="3">
         <xsl:attribute name="style">
-          <xsl:text>text-indent:</xsl:text>
-          <xsl:value-of select="$line.indent" />
+          <xsl:text>background-position:</xsl:text>
+          <xsl:value-of select="$line.indent * $indent.width" />
+          <xsl:text>px 0;text-indent:</xsl:text>
+          <xsl:value-of select="$line.indent * $indent.width" />
           <xsl:text>px;</xsl:text>
         </xsl:attribute>
         <xsl:attribute name="class">
@@ -286,22 +287,14 @@
       </xsl:if>
       <td colspan="3">
         <xsl:attribute name="style">
-          <xsl:text>text-indent:</xsl:text>
-          <xsl:value-of select="$line.indent" />
+          <xsl:text>background-position:</xsl:text>
+          <xsl:value-of select="$line.indent * $indent.width" />
+          <xsl:text>px 0;text-indent:</xsl:text>
+          <xsl:value-of select="$line.indent * $indent.width" />
           <xsl:text>px;</xsl:text>
         </xsl:attribute>
         <xsl:attribute name="class">
-          <xsl:choose>
-            <xsl:when test="testcase/error">
-              <xsl:text>error</xsl:text>
-            </xsl:when>
-            <xsl:when test="testcase/failure">
-              <xsl:text>failure</xsl:text>
-            </xsl:when>
-            <xsl:otherwise>
-              <xsl:text>success</xsl:text>
-            </xsl:otherwise>
-          </xsl:choose>
+          <xsl:call-template name="build.result" />
         </xsl:attribute>
         <xsl:value-of select="substring-after(@name, '::')" />
         <xsl:call-template name="build.identifier" />
@@ -317,13 +310,27 @@
     </tr>
     <xsl:apply-templates select="testcase">
       <xsl:with-param name="sub.test" select="true()" />
-      <xsl:with-param name="line.indent" select="$line.indent + 10" />
+      <xsl:with-param name="line.indent" select="$line.indent + 1" />
       <xsl:with-param name="odd.or.even" select="($odd.or.even + 1) mod 2" />
     </xsl:apply-templates>
     <xsl:apply-templates select="testsuite" mode="data.provider">
-      <xsl:with-param name="line.indent" select="$line.indent + 10" />
+      <xsl:with-param name="line.indent" select="$line.indent + 1" />
       <xsl:with-param name="odd.or.even" select="($odd.or.even + 1) mod 2" />
     </xsl:apply-templates>
+  </xsl:template>
+  
+  <xsl:template name="build.result">
+    <xsl:choose>
+      <xsl:when test=".//testcase/error">
+        <xsl:text>error</xsl:text>
+      </xsl:when>
+      <xsl:when test=".//testcase/failure">
+        <xsl:text>failure</xsl:text>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:text>success</xsl:text>
+      </xsl:otherwise>
+    </xsl:choose>
   </xsl:template>
   
   <xsl:template name="build.identifier">
@@ -336,7 +343,6 @@
         </small>
       </em>
     </xsl:if>
-
   </xsl:template>
     
 </xsl:stylesheet>
