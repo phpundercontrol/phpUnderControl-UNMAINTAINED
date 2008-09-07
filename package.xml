@@ -1,11 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<package version="2.0" xmlns="http://pear.php.net/dtd/package-2.0"
-    xmlns:tasks="http://pear.php.net/dtd/tasks-1.0"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://pear.php.net/dtd/tasks-1.0
-                        http://pear.php.net/dtd/tasks-1.0.xsd
-                        http://pear.php.net/dtd/package-2.0
-                        http://pear.php.net/dtd/package-2.0.xsd">
+<package xmlns="http://pear.php.net/dtd/package-2.0" xmlns:tasks="http://pear.php.net/dtd/tasks-1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.0" xsi:schemaLocation="http://pear.php.net/dtd/tasks-1.0                         http://pear.php.net/dtd/tasks-1.0.xsd                         http://pear.php.net/dtd/package-2.0                         http://pear.php.net/dtd/package-2.0.xsd">
   <name>phpUnderControl</name>
   <channel>pear.phpunit.de</channel>
   <summary>CruiseControl addon for PHP</summary>
@@ -20,7 +14,7 @@
     <email>mapi@phpundercontrol.org</email>
     <active>yes</active>
   </lead>
-  <date>2008-04-21</date>
+  <date>2008-09-07</date>
   <version>
     <release>0.4.3</release>
     <api>0.2.0</api>
@@ -36,696 +30,1424 @@
   <contents>
     <dir name="/">
       <dir name="src">
-        <dir name="Commands">
-          <file name="AbstractCommand.php" role="php">
-            <tasks:replace from="@package_version@" to="version" type="package-info" />
+        <dir name="VersionControl">
+          <file role="php" name="CheckoutI.php">
+            <tasks:replace from="@package_version@" to="version" type="package-info"/>
+            <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+            <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+            <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
           </file>
-          <file name="CleanCommand.php" role="php">
-            <tasks:replace from="@package_version@" to="version" type="package-info" />
+          <file role="php" name="CvsCheckout.php">
+            <tasks:replace from="@package_version@" to="version" type="package-info"/>
+            <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+            <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+            <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
           </file>
-          <file name="CommandI.php" role="php">
-            <tasks:replace from="@package_version@" to="version" type="package-info" />
+          <file role="php" name="AbstractCheckout.php">
+            <tasks:replace from="@package_version@" to="version" type="package-info"/>
+            <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+            <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+            <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
           </file>
-          <file name="DeleteCommand.php" role="php">
-            <tasks:replace from="@package_version@" to="version" type="package-info" />
-          </file>
-          <file name="ExampleCommand.php" role="php">
-            <tasks:replace from="@package_version@" to="version" type="package-info" />
-          </file>
-          <file name="GraphCommand.php" role="php">
-            <tasks:replace from="@package_version@" to="version" type="package-info" />
-          </file>
-          <file name="InstallCommand.php" role="php">
-            <tasks:replace from="@package_version@" to="version" type="package-info" />
-          </file>
-          <file name="ProjectCommand.php" role="php">
-            <tasks:replace from="@package_version@" to="version" type="package-info" />
-          </file>
-        </dir>
-        <dir name="Console">
-          <file name="ConsoleArgs.php" role="php">
-            <tasks:replace from="@package_version@" to="version" type="package-info" />
-          </file>
-          <file name="ConsoleCommandI.php" role="php">
-            <tasks:replace from="@package_version@" to="version" type="package-info" />
-          </file>
-          <file name="ConsoleExtensionI.php" role="php">
-            <tasks:replace from="@package_version@" to="version" type="package-info" />
-          </file>
-          <file name="ConsoleInput.php" role="php">
-            <tasks:replace from="@package_version@" to="version" type="package-info" />
-          </file>
-          <file name="ConsoleInputDefinition.php" role="php">
-            <tasks:replace from="@package_version@" to="version" type="package-info" />
-          </file>
-          <file name="ConsoleOutput.php" role="php">
-            <tasks:replace from="@package_version@" to="version" type="package-info" />
+          <file role="php" name="SubversionCheckout.php">
+            <tasks:replace from="@package_version@" to="version" type="package-info"/>
+            <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+            <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+            <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
           </file>
         </dir>
         <dir name="Data">
-          <file name="BuildFile.php" role="php">
-            <tasks:replace from="@package_version@" to="version" type="package-info" />
+          <file role="php" name="LogFileIterator.php">
+            <tasks:replace from="@package_version@" to="version" type="package-info"/>
+            <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+            <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+            <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
           </file>
-          <file name="BuildTarget.php" role="php">
-            <tasks:replace from="@package_version@" to="version" type="package-info" />
+          <file role="php" name="BuildTarget.php">
+            <tasks:replace from="@package_version@" to="version" type="package-info"/>
+            <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+            <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+            <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
           </file>
-          <file name="ConfigArtifactsPublisher.php" role="php">
-            <tasks:replace from="@package_version@" to="version" type="package-info" />
+          <file role="php" name="ConfigBuildTrigger.php">
+            <tasks:replace from="@package_version@" to="version" type="package-info"/>
+            <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+            <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+            <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
           </file>
-          <file name="ConfigBootStrapper.php" role="php">
-            <tasks:replace from="@package_version@" to="version" type="package-info" />
+          <file role="php" name="BuildFile.php">
+            <tasks:replace from="@package_version@" to="version" type="package-info"/>
+            <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+            <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+            <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
           </file>
-          <file name="ConfigBuildTrigger.php" role="php">
-            <tasks:replace from="@package_version@" to="version" type="package-info" />
+          <file role="php" name="ConfigArtifactsPublisher.php">
+            <tasks:replace from="@package_version@" to="version" type="package-info"/>
+            <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+            <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+            <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
           </file>
-          <file name="ConfigExecutePublisher.php" role="php">
-            <tasks:replace from="@package_version@" to="version" type="package-info" />
+          <dir name="Logs">
+            <file role="php" name="AbstractLogAggregator.php">
+              <tasks:replace from="@package_version@" to="version" type="package-info"/>
+              <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+              <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+              <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+            </file>
+            <file role="php" name="PHPUnitTestLogAggregator.php">
+              <tasks:replace from="@package_version@" to="version" type="package-info"/>
+              <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+              <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+              <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+            </file>
+            <file role="php" name="PHPUnitCoverageXmlGenerator.php">
+              <tasks:replace from="@package_version@" to="version" type="package-info"/>
+              <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+              <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+              <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+            </file>
+            <file role="php" name="PHPUnitLogDatabaseAggregator.php">
+              <tasks:replace from="@package_version@" to="version" type="package-info"/>
+              <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+              <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+              <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+            </file>
+            <file role="php" name="PHPUnitMetricsAggregator.php">
+              <tasks:replace from="@package_version@" to="version" type="package-info"/>
+              <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+              <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+              <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+            </file>
+          </dir>
+          <file role="php" name="ConfigProject.php">
+            <tasks:replace from="@package_version@" to="version" type="package-info"/>
+            <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+            <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+            <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
           </file>
-          <file name="ConfigFile.php" role="php">
-            <tasks:replace from="@package_version@" to="version" type="package-info" />
+          <file role="php" name="ConfigFile.php">
+            <tasks:replace from="@package_version@" to="version" type="package-info"/>
+            <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+            <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+            <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
           </file>
-          <file name="ConfigProject.php" role="php">
-            <tasks:replace from="@package_version@" to="version" type="package-info" />
+          <file role="php" name="ConfigExecutePublisher.php">
+            <tasks:replace from="@package_version@" to="version" type="package-info"/>
+            <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+            <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+            <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
           </file>
-          <file name="ConfigPublisherI.php" role="php">
-            <tasks:replace from="@package_version@" to="version" type="package-info" />
+          <file role="php" name="ConfigBootStrapper.php">
+            <tasks:replace from="@package_version@" to="version" type="package-info"/>
+            <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+            <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+            <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
           </file>
-          <file name="LogFile.php" role="php">
-            <tasks:replace from="@package_version@" to="version" type="package-info" />
+          <file role="php" name="LogFile.php">
+            <tasks:replace from="@package_version@" to="version" type="package-info"/>
+            <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+            <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+            <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
           </file>
-          <file name="LogFileIterator.php" role="php">
-            <tasks:replace from="@package_version@" to="version" type="package-info" />
-          </file>
-        </dir>
-        <dir name="Exceptions">
-          <file name="ConsoleException.php" role="php">
-            <tasks:replace from="@package_version@" to="version" type="package-info" />
-          </file>
-          <file name="ErrorException.php" role="php">
-            <tasks:replace from="@package_version@" to="version" type="package-info" />
-          </file>
-          <file name="ExecuteException.php" role="php">
-            <tasks:replace from="@package_version@" to="version" type="package-info" />
-          </file>
-          <file name="ValidateException.php" role="php">
-            <tasks:replace from="@package_version@" to="version" type="package-info" />
+          <file role="php" name="ConfigPublisherI.php">
+            <tasks:replace from="@package_version@" to="version" type="package-info"/>
+            <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+            <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+            <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
           </file>
         </dir>
         <dir name="Graph">
           <dir name="Input">
-            <file name="AbstractInput.php" role="php">
-              <tasks:replace from="@package_version@" to="version" type="package-info" />
+            <file role="php" name="CodeViolationInput.php">
+              <tasks:replace from="@package_version@" to="version" type="package-info"/>
+              <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+              <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+              <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
             </file>
-            <file name="BuildBreakdownInput.php" role="php">
-              <tasks:replace from="@package_version@" to="version" type="package-info" />
+            <file role="php" name="InputRule.php">
+              <tasks:replace from="@package_version@" to="version" type="package-info"/>
+              <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+              <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+              <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
             </file>
-            <file name="BuildBreakdownTimelineInput.php" role="php">
-              <tasks:replace from="@package_version@" to="version" type="package-info" />
+            <file role="php" name="TestCodeRatioInput.php">
+              <tasks:replace from="@package_version@" to="version" type="package-info"/>
+              <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+              <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+              <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
             </file>
-            <file name="CodeViolationInput.php" role="php">
-              <tasks:replace from="@package_version@" to="version" type="package-info" />
+            <file role="php" name="InputIterator.php">
+              <tasks:replace from="@package_version@" to="version" type="package-info"/>
+              <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+              <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+              <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
             </file>
-            <file name="InputI.php" role="php">
-              <tasks:replace from="@package_version@" to="version" type="package-info" />
+            <file role="php" name="BuildBreakdownTimelineInput.php">
+              <tasks:replace from="@package_version@" to="version" type="package-info"/>
+              <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+              <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+              <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
             </file>
-            <file name="InputIterator.php" role="php">
-              <tasks:replace from="@package_version@" to="version" type="package-info" />
+            <file role="php" name="InputI.php">
+              <tasks:replace from="@package_version@" to="version" type="package-info"/>
+              <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+              <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+              <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
             </file>
-            <file name="InputLoader.php" role="php">
-              <tasks:replace from="@package_version@" to="version" type="package-info" />
+            <file role="php" name="AbstractInput.php">
+              <tasks:replace from="@package_version@" to="version" type="package-info"/>
+              <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+              <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+              <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
             </file>
-            <file name="InputRule.php" role="php">
-              <tasks:replace from="@package_version@" to="version" type="package-info" />
+            <file role="php" name="InputLoader.php">
+              <tasks:replace from="@package_version@" to="version" type="package-info"/>
+              <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+              <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+              <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
             </file>
-            <file name="TestCodeRatioInput.php" role="php">
-              <tasks:replace from="@package_version@" to="version" type="package-info" />
+            <file role="php" name="UnitCoverageInput.php">
+              <tasks:replace from="@package_version@" to="version" type="package-info"/>
+              <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+              <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+              <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
             </file>
-            <file name="UnitCoverageInput.php" role="php">
-              <tasks:replace from="@package_version@" to="version" type="package-info" />
+            <file role="php" name="UnitTestInput.php">
+              <tasks:replace from="@package_version@" to="version" type="package-info"/>
+              <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+              <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+              <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
             </file>
-            <file name="UnitTestExecutionTimeInput.php" role="php">
-              <tasks:replace from="@package_version@" to="version" type="package-info" />
+            <file role="php" name="UnitTestExecutionTimeInput.php">
+              <tasks:replace from="@package_version@" to="version" type="package-info"/>
+              <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+              <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+              <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
             </file>
-            <file name="UnitTestInput.php" role="php">
-              <tasks:replace from="@package_version@" to="version" type="package-info" />
+            <file role="php" name="BuildBreakdownInput.php">
+              <tasks:replace from="@package_version@" to="version" type="package-info"/>
+              <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+              <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+              <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
             </file>
           </dir>
-          <file name="ChartFactory.php" role="php">
-            <tasks:replace from="@package_version@" to="version" type="package-info" />
+          <file role="php" name="PieChart.php">
+            <tasks:replace from="@package_version@" to="version" type="package-info"/>
+            <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+            <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+            <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
           </file>
-          <file name="ChartI.php" role="php">
-            <tasks:replace from="@package_version@" to="version" type="package-info" />
+          <file role="php" name="LineChart.php">
+            <tasks:replace from="@package_version@" to="version" type="package-info"/>
+            <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+            <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+            <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
           </file>
-          <file name="DotChart.php" role="php">
-            <tasks:replace from="@package_version@" to="version" type="package-info" />
+          <file role="php" name="ChartI.php">
+            <tasks:replace from="@package_version@" to="version" type="package-info"/>
+            <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+            <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+            <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
           </file>
-          <file name="DotChartOptions.php" role="php">
-            <tasks:replace from="@package_version@" to="version" type="package-info" />
+          <file role="php" name="DotChartOptions.php">
+            <tasks:replace from="@package_version@" to="version" type="package-info"/>
+            <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+            <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+            <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
           </file>
-          <file name="GraphPalette.php" role="php">
-            <tasks:replace from="@package_version@" to="version" type="package-info" />
+          <file role="php" name="ChartFactory.php">
+            <tasks:replace from="@package_version@" to="version" type="package-info"/>
+            <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+            <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+            <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
           </file>
-          <file name="LineChart.php" role="php">
-            <tasks:replace from="@package_version@" to="version" type="package-info" />
+          <file role="php" name="GraphPalette.php">
+            <tasks:replace from="@package_version@" to="version" type="package-info"/>
+            <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+            <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+            <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
           </file>
-          <file name="PieChart.php" role="php">
-            <tasks:replace from="@package_version@" to="version" type="package-info" />
+          <file role="php" name="TimeChart.php">
+            <tasks:replace from="@package_version@" to="version" type="package-info"/>
+            <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+            <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+            <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
           </file>
-          <file name="TimeChart.php" role="php">
-            <tasks:replace from="@package_version@" to="version" type="package-info" />
-          </file>
-        </dir>
-        <dir name="Tasks">
-          <file name="AbstractPearTask.php" role="php">
-            <tasks:replace from="@package_version@" to="version" type="package-info" />
-          </file>
-          <file name="AbstractTask.php" role="php">
-            <tasks:replace from="@package_version@" to="version" type="package-info" />
-          </file>
-          <file name="CheckoutTask.php" role="php">
-            <tasks:replace from="@package_version@" to="version" type="package-info" />
-          </file>
-          <file name="CreateFileTask.php" role="php">
-            <tasks:replace from="@package_version@" to="version" type="package-info" />
-          </file>
-          <file name="CruiseControlTask.php" role="php">
-            <tasks:replace from="@package_version@" to="version" type="package-info" />
-          </file>
-          <file name="ExampleTask.php" role="php">
-            <tasks:replace from="@package_version@" to="version" type="package-info" />
-          </file>
-          <file name="GenerateGraphTask.php" role="php">
-            <tasks:replace from="@package_version@" to="version" type="package-info" />
-          </file>
-          <file name="GraphTask.php" role="php">
-            <tasks:replace from="@package_version@" to="version" type="package-info" />
-          </file>
-          <file name="ModifyFileTask.php" role="php">
-            <tasks:replace from="@package_version@" to="version" type="package-info" />
-          </file>
-          <file name="PhpCodeSnifferTask.php" role="php">
-            <tasks:replace from="@package_version@" to="version" type="package-info" />
-          </file>
-          <file name="PhpDocumentorTask.php" role="php">
-            <tasks:replace from="@package_version@" to="version" type="package-info" />
-          </file>
-          <file name="PhpUnitTask.php" role="php">
-            <tasks:replace from="@package_version@" to="version" type="package-info" />
-          </file>
-          <file name="ProjectCleanTask.php" role="php">
-            <tasks:replace from="@package_version@" to="version" type="package-info" />
-          </file>
-          <file name="ProjectDeleteTask.php" role="php">
-            <tasks:replace from="@package_version@" to="version" type="package-info" />
-          </file>
-          <file name="ProjectTask.php" role="php">
-            <tasks:replace from="@package_version@" to="version" type="package-info" />
-          </file>
-          <file name="TaskI.php" role="php">
-            <tasks:replace from="@package_version@" to="version" type="package-info" />
+          <file role="php" name="DotChart.php">
+            <tasks:replace from="@package_version@" to="version" type="package-info"/>
+            <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+            <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+            <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
           </file>
         </dir>
         <dir name="Util">
-          <file name="Autoloader.php" role="php">
-            <tasks:replace from="@package_version@" to="version" type="package-info" />
+          <file role="php" name="FileCopyUtil.php">
+            <tasks:replace from="@package_version@" to="version" type="package-info"/>
+            <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+            <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+            <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
           </file>
-          <file name="FileCopyUtil.php" role="php">
-            <tasks:replace from="@package_version@" to="version" type="package-info" />
+          <file role="php" name="FileUtil.php">
+            <tasks:replace from="@package_version@" to="version" type="package-info"/>
+            <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+            <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+            <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
           </file>
-          <file name="FileUtil.php" role="php">
-            <tasks:replace from="@package_version@" to="version" type="package-info" />
+          <file role="php" name="PhpFileFilterIterator.php">
+            <tasks:replace from="@package_version@" to="version" type="package-info"/>
+            <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+            <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+            <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
           </file>
-          <file name="PhpFileFilterIterator.php" role="php">
-            <tasks:replace from="@package_version@" to="version" type="package-info" />
-          </file>
-        </dir>
-        <dir name="VersionControl">
-          <file name="AbstractCheckout.php" role="php">
-            <tasks:replace from="@package_version@" to="version" type="package-info" />
-          </file>
-          <file name="CheckoutI.php" role="php">
-            <tasks:replace from="@package_version@" to="version" type="package-info" />
-          </file>
-          <file name="CvsCheckout.php" role="php">
-            <tasks:replace from="@package_version@" to="version" type="package-info" />
-          </file>
-          <file name="SubversionCheckout.php" role="php">
-            <tasks:replace from="@package_version@" to="version" type="package-info" />
+          <file role="php" name="Autoloader.php">
+            <tasks:replace from="@package_version@" to="version" type="package-info"/>
+            <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+            <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+            <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
           </file>
         </dir>
-        <file name="PhpUnderControl.php" role="php">
-          <tasks:replace from="@package_version@" to="version" type="package-info" />
-          <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config" />
-          <tasks:replace from="@php_dir@" to="php_dir" type="pear-config" />
-          <tasks:replace from="@data_dir@" to="data_dir" type="pear-config" />
+        <dir name="Tasks">
+          <file role="php" name="ProjectTask.php">
+            <tasks:replace from="@package_version@" to="version" type="package-info"/>
+            <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+            <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+            <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+          </file>
+          <file role="php" name="CruiseControlTask.php">
+            <tasks:replace from="@package_version@" to="version" type="package-info"/>
+            <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+            <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+            <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+          </file>
+          <file role="php" name="GenerateGraphTask.php">
+            <tasks:replace from="@package_version@" to="version" type="package-info"/>
+            <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+            <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+            <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+          </file>
+          <file role="php" name="ProjectDeleteTask.php">
+            <tasks:replace from="@package_version@" to="version" type="package-info"/>
+            <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+            <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+            <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+          </file>
+          <file role="php" name="TaskI.php">
+            <tasks:replace from="@package_version@" to="version" type="package-info"/>
+            <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+            <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+            <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+          </file>
+          <file role="php" name="AbstractPearTask.php">
+            <tasks:replace from="@package_version@" to="version" type="package-info"/>
+            <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+            <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+            <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+          </file>
+          <file role="php" name="ExampleTask.php">
+            <tasks:replace from="@package_version@" to="version" type="package-info"/>
+            <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+            <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+            <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+          </file>
+          <file role="php" name="CreateFileTask.php">
+            <tasks:replace from="@package_version@" to="version" type="package-info"/>
+            <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+            <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+            <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+          </file>
+          <file role="php" name="ProjectCleanTask.php">
+            <tasks:replace from="@package_version@" to="version" type="package-info"/>
+            <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+            <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+            <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+          </file>
+          <file role="php" name="GraphTask.php">
+            <tasks:replace from="@package_version@" to="version" type="package-info"/>
+            <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+            <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+            <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+          </file>
+          <file role="php" name="MergePhpunitTask.php">
+            <tasks:replace from="@package_version@" to="version" type="package-info"/>
+            <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+            <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+            <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+          </file>
+          <file role="php" name="AbstractTask.php">
+            <tasks:replace from="@package_version@" to="version" type="package-info"/>
+            <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+            <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+            <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+          </file>
+          <file role="php" name="PhpUnitTask.php">
+            <tasks:replace from="@package_version@" to="version" type="package-info"/>
+            <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+            <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+            <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+          </file>
+          <file role="php" name="CheckoutTask.php">
+            <tasks:replace from="@package_version@" to="version" type="package-info"/>
+            <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+            <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+            <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+          </file>
+          <file role="php" name="PhpCodeSnifferTask.php">
+            <tasks:replace from="@package_version@" to="version" type="package-info"/>
+            <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+            <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+            <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+          </file>
+          <file role="php" name="ModifyFileTask.php">
+            <tasks:replace from="@package_version@" to="version" type="package-info"/>
+            <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+            <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+            <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+          </file>
+          <file role="php" name="PhpDocumentorTask.php">
+            <tasks:replace from="@package_version@" to="version" type="package-info"/>
+            <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+            <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+            <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+          </file>
+        </dir>
+        <dir name="Exceptions">
+          <file role="php" name="ErrorException.php">
+            <tasks:replace from="@package_version@" to="version" type="package-info"/>
+            <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+            <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+            <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+          </file>
+          <file role="php" name="ConsoleException.php">
+            <tasks:replace from="@package_version@" to="version" type="package-info"/>
+            <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+            <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+            <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+          </file>
+          <file role="php" name="ExecuteException.php">
+            <tasks:replace from="@package_version@" to="version" type="package-info"/>
+            <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+            <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+            <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+          </file>
+          <file role="php" name="ValidateException.php">
+            <tasks:replace from="@package_version@" to="version" type="package-info"/>
+            <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+            <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+            <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+          </file>
+        </dir>
+        <dir name="Console">
+          <file role="php" name="ConsoleInputDefinition.php">
+            <tasks:replace from="@package_version@" to="version" type="package-info"/>
+            <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+            <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+            <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+          </file>
+          <file role="php" name="ConsoleExtensionI.php">
+            <tasks:replace from="@package_version@" to="version" type="package-info"/>
+            <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+            <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+            <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+          </file>
+          <file role="php" name="ConsoleOutput.php">
+            <tasks:replace from="@package_version@" to="version" type="package-info"/>
+            <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+            <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+            <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+          </file>
+          <file role="php" name="ConsoleArgs.php">
+            <tasks:replace from="@package_version@" to="version" type="package-info"/>
+            <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+            <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+            <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+          </file>
+          <file role="php" name="ConsoleCommandI.php">
+            <tasks:replace from="@package_version@" to="version" type="package-info"/>
+            <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+            <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+            <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+          </file>
+          <file role="php" name="ConsoleInput.php">
+            <tasks:replace from="@package_version@" to="version" type="package-info"/>
+            <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+            <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+            <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+          </file>
+        </dir>
+        <dir name="Commands">
+          <file role="php" name="InstallCommand.php">
+            <tasks:replace from="@package_version@" to="version" type="package-info"/>
+            <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+            <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+            <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+          </file>
+          <file role="php" name="ExampleCommand.php">
+            <tasks:replace from="@package_version@" to="version" type="package-info"/>
+            <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+            <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+            <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+          </file>
+          <file role="php" name="CleanCommand.php">
+            <tasks:replace from="@package_version@" to="version" type="package-info"/>
+            <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+            <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+            <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+          </file>
+          <file role="php" name="CommandI.php">
+            <tasks:replace from="@package_version@" to="version" type="package-info"/>
+            <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+            <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+            <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+          </file>
+          <file role="php" name="MergePhpunitCommand.php">
+            <tasks:replace from="@package_version@" to="version" type="package-info"/>
+            <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+            <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+            <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+          </file>
+          <file role="php" name="DeleteCommand.php">
+            <tasks:replace from="@package_version@" to="version" type="package-info"/>
+            <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+            <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+            <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+          </file>
+          <file role="php" name="GraphCommand.php">
+            <tasks:replace from="@package_version@" to="version" type="package-info"/>
+            <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+            <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+            <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+          </file>
+          <file role="php" name="AbstractCommand.php">
+            <tasks:replace from="@package_version@" to="version" type="package-info"/>
+            <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+            <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+            <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+          </file>
+          <file role="php" name="ProjectCommand.php">
+            <tasks:replace from="@package_version@" to="version" type="package-info"/>
+            <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+            <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+            <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+          </file>
+        </dir>
+        <file role="php" name="PhpUnderControl.php">
+          <tasks:replace from="@package_version@" to="version" type="package-info"/>
+          <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+          <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+          <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
         </file>
       </dir>
       <dir name="bin">
         <file name="phpuc.php" role="script">
-          <tasks:replace from="@package_version@" to="version" type="package-info" />
-          <tasks:replace from="/usr/bin/env php" to="php_bin" type="pear-config" />
-          <tasks:replace from="@php_dir@" to="php_dir" type="pear-config" />
+          <tasks:replace from="@package_version@" to="version" type="package-info"/>
+          <tasks:replace from="/usr/bin/env php" to="php_bin" type="pear-config"/>
+          <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
         </file>
         <file name="phpuc.bat" role="script">
-          <tasks:replace from="@package_version@" to="version" type="package-info" />
-          <tasks:replace from="@php_bin@" to="php_bin" type="pear-config" />
-          <tasks:replace from="@php_dir@" to="php_dir" type="pear-config" />
-          <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config" />
+          <tasks:replace from="@package_version@" to="version" type="package-info"/>
+          <tasks:replace from="@php_bin@" to="php_bin" type="pear-config"/>
+          <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+          <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
         </file>
       </dir>
       <dir name="tests">
-        <dir name="Commands">
-          <file name="CleanCommandTest.php" role="test">
-            <tasks:replace from="@package_version@" to="version" type="package-info" />
+        <dir name="VersionControl">
+          <file role="test" name="CvsCheckoutTest.php">
+            <tasks:replace from="@package_version@" to="version" type="package-info"/>
+            <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+            <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+            <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
           </file>
-          <file name="CommandsAllTests.php" role="test">
-            <tasks:replace from="@package_version@" to="version" type="package-info" />
+          <file role="test" name="AbstractCheckoutTest.php">
+            <tasks:replace from="@package_version@" to="version" type="package-info"/>
+            <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+            <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+            <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
           </file>
-          <file name="CommandTest.php" role="test">
-            <tasks:replace from="@package_version@" to="version" type="package-info" />
+          <file role="test" name="SubversionCheckoutTest.php">
+            <tasks:replace from="@package_version@" to="version" type="package-info"/>
+            <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+            <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+            <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
           </file>
-          <file name="DeleteCommandTest.php" role="test">
-            <tasks:replace from="@package_version@" to="version" type="package-info" />
-          </file>
-        </dir>
-        <dir name="Console">
-          <file name="ConsoleAllTests.php" role="test">
-            <tasks:replace from="@package_version@" to="version" type="package-info" />
-          </file>
-          <file name="ConsoleArgsTest.php" role="test">
-            <tasks:replace from="@package_version@" to="version" type="package-info" />
-          </file>
-          <file name="ConsoleInputDefinitionTest.php" role="test">
-            <tasks:replace from="@package_version@" to="version" type="package-info" />
-          </file>
-          <file name="ConsoleInputTest.php" role="test">
-            <tasks:replace from="@package_version@" to="version" type="package-info" />
-          </file>
-          <file name="ConsoleOutputTest.php" role="test">
-            <tasks:replace from="@package_version@" to="version" type="package-info" />
+          <file role="test" name="VersionControlAllTests.php">
+            <tasks:replace from="@package_version@" to="version" type="package-info"/>
+            <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+            <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+            <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
           </file>
         </dir>
+        <dir name="_data">
+          <dir name="phpunit">
+            <file role="test" name="log-db-seed.xml">
+              <tasks:replace from="@package_version@" to="version" type="package-info"/>
+              <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+              <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+              <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+            </file>
+            <dir name="expected">
+              <file role="test" name="cov.xml">
+                <tasks:replace from="@package_version@" to="version" type="package-info"/>
+                <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+                <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+                <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+              </file>
+              <file role="test" name="log-dir-without-build-ids.xml">
+                <tasks:replace from="@package_version@" to="version" type="package-info"/>
+                <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+                <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+                <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+              </file>
+              <file role="test" name="log-files-with-build-ids.xml">
+                <tasks:replace from="@package_version@" to="version" type="package-info"/>
+                <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+                <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+                <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+              </file>
+              <file role="test" name="log-files-without-build-ids.xml">
+                <tasks:replace from="@package_version@" to="version" type="package-info"/>
+                <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+                <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+                <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+              </file>
+              <file role="test" name="log.xml">
+                <tasks:replace from="@package_version@" to="version" type="package-info"/>
+                <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+                <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+                <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+              </file>
+              <file role="test" name="log-dir-with-build-ids.xml">
+                <tasks:replace from="@package_version@" to="version" type="package-info"/>
+                <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+                <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+                <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+              </file>
+            </dir>
+            <dir name="php520">
+              <file role="test" name="cov.xml">
+                <tasks:replace from="@package_version@" to="version" type="package-info"/>
+                <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+                <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+                <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+              </file>
+              <file role="test" name="pmd.xml">
+                <tasks:replace from="@package_version@" to="version" type="package-info"/>
+                <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+                <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+                <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+              </file>
+              <file role="test" name="log.db">
+                <tasks:replace from="@package_version@" to="version" type="package-info"/>
+                <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+                <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+                <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+              </file>
+              <file role="test" name="log.xml">
+                <tasks:replace from="@package_version@" to="version" type="package-info"/>
+                <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+                <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+                <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+              </file>
+              <file role="test" name="metrics.xml">
+                <tasks:replace from="@package_version@" to="version" type="package-info"/>
+                <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+                <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+                <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+              </file>
+              <file role="test" name="pmd-cpd.xml">
+                <tasks:replace from="@package_version@" to="version" type="package-info"/>
+                <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+                <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+                <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+              </file>
+            </dir>
+            <dir name="php519">
+              <file role="test" name="cov.xml">
+                <tasks:replace from="@package_version@" to="version" type="package-info"/>
+                <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+                <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+                <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+              </file>
+              <file role="test" name="pmd.xml">
+                <tasks:replace from="@package_version@" to="version" type="package-info"/>
+                <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+                <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+                <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+              </file>
+              <file role="test" name="metrics.xml">
+                <tasks:replace from="@package_version@" to="version" type="package-info"/>
+                <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+                <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+                <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+              </file>
+              <file role="test" name="pmd-cpd.xml">
+                <tasks:replace from="@package_version@" to="version" type="package-info"/>
+                <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+                <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+                <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+              </file>
+            </dir>
+            <file role="test" name="log.db">
+              <tasks:replace from="@package_version@" to="version" type="package-info"/>
+              <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+              <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+              <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+            </file>
+            <dir name="php525">
+              <file role="test" name="cov.xml">
+                <tasks:replace from="@package_version@" to="version" type="package-info"/>
+                <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+                <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+                <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+              </file>
+              <file role="test" name="pmd.xml">
+                <tasks:replace from="@package_version@" to="version" type="package-info"/>
+                <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+                <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+                <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+              </file>
+              <file role="test" name="log.db">
+                <tasks:replace from="@package_version@" to="version" type="package-info"/>
+                <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+                <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+                <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+              </file>
+              <file role="test" name="log.xml">
+                <tasks:replace from="@package_version@" to="version" type="package-info"/>
+                <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+                <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+                <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+              </file>
+              <file role="test" name="metrics.xml">
+                <tasks:replace from="@package_version@" to="version" type="package-info"/>
+                <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+                <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+                <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+              </file>
+              <file role="test" name="pmd-cpd.xml">
+                <tasks:replace from="@package_version@" to="version" type="package-info"/>
+                <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+                <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+                <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+              </file>
+            </dir>
+            <file role="test" name="log-db-after-aggregation.xml">
+              <tasks:replace from="@package_version@" to="version" type="package-info"/>
+              <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+              <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+              <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+            </file>
+            <dir name="expected-failed">
+              <file role="test" name="log.xml">
+                <tasks:replace from="@package_version@" to="version" type="package-info"/>
+                <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+                <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+                <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+              </file>
+            </dir>
+            <dir name="php526RC2">
+              <file role="test" name="cov.xml">
+                <tasks:replace from="@package_version@" to="version" type="package-info"/>
+                <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+                <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+                <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+              </file>
+              <file role="test" name="pmd.xml">
+                <tasks:replace from="@package_version@" to="version" type="package-info"/>
+                <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+                <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+                <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+              </file>
+              <file role="test" name="log.db">
+                <tasks:replace from="@package_version@" to="version" type="package-info"/>
+                <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+                <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+                <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+              </file>
+              <file role="test" name="log.xml">
+                <tasks:replace from="@package_version@" to="version" type="package-info"/>
+                <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+                <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+                <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+              </file>
+              <file role="test" name="metrics.xml">
+                <tasks:replace from="@package_version@" to="version" type="package-info"/>
+                <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+                <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+                <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+              </file>
+              <file role="test" name="pmd-cpd.xml">
+                <tasks:replace from="@package_version@" to="version" type="package-info"/>
+                <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+                <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+                <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+              </file>
+            </dir>
+            <dir name="log-dir">
+              <file role="test" name="php-5.2.6.xml">
+                <tasks:replace from="@package_version@" to="version" type="package-info"/>
+                <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+                <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+                <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+              </file>
+              <file role="test" name="php-5.2.5.xml">
+                <tasks:replace from="@package_version@" to="version" type="package-info"/>
+                <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+                <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+                <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+              </file>
+              <file role="test" name="php-5.2.0.xml">
+                <tasks:replace from="@package_version@" to="version" type="package-info"/>
+                <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+                <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+                <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+              </file>
+            </dir>
+          </dir>
+        </dir>
+        <dir name="logs">
+          <file role="test" name="log20071211220903Lbuild.3.xml">
+            <tasks:replace from="@package_version@" to="version" type="package-info"/>
+            <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+            <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+            <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+          </file>
+          <file role="test" name="log20080106030401Lbuild.24.xml">
+            <tasks:replace from="@package_version@" to="version" type="package-info"/>
+            <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+            <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+            <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+          </file>
+          <file role="test" name="log20080118220842Lbuild.57.xml">
+            <tasks:replace from="@package_version@" to="version" type="package-info"/>
+            <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+            <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+            <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+          </file>
+          <file role="test" name="log20080113145726.xml">
+            <tasks:replace from="@package_version@" to="version" type="package-info"/>
+            <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+            <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+            <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+          </file>
+          <file role="test" name="log20080114115320.xml">
+            <tasks:replace from="@package_version@" to="version" type="package-info"/>
+            <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+            <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+            <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+          </file>
+          <file role="test" name="log20080109182028Lbuild.30.xml">
+            <tasks:replace from="@package_version@" to="version" type="package-info"/>
+            <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+            <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+            <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+          </file>
+          <file role="test" name="log20071217180035Lbuild.18.xml">
+            <tasks:replace from="@package_version@" to="version" type="package-info"/>
+            <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+            <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+            <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+          </file>
+          <file role="test" name="log20071211211853.xml">
+            <tasks:replace from="@package_version@" to="version" type="package-info"/>
+            <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+            <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+            <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+          </file>
+        </dir>
+        <file role="test" name="ConsoleOutputBuffer.php">
+          <tasks:replace from="@package_version@" to="version" type="package-info"/>
+          <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+          <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+          <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+        </file>
+        <file role="test" name="AllTests.php">
+          <tasks:replace from="@package_version@" to="version" type="package-info"/>
+          <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+          <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+          <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+        </file>
         <dir name="Data">
-          <file name="AbstractConfigTest.php" role="test">
-            <tasks:replace from="@package_version@" to="version" type="package-info" />
+          <file role="test" name="BuildTargetTest.php">
+            <tasks:replace from="@package_version@" to="version" type="package-info"/>
+            <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+            <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+            <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
           </file>
-          <file name="BuildFileTest.php" role="test">
-            <tasks:replace from="@package_version@" to="version" type="package-info" />
+          <file role="test" name="BuildFileTest.php">
+            <tasks:replace from="@package_version@" to="version" type="package-info"/>
+            <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+            <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+            <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
           </file>
-          <file name="BuildTargetTest.php" role="test">
-            <tasks:replace from="@package_version@" to="version" type="package-info" />
+          <file role="test" name="ConfigFileTest.php">
+            <tasks:replace from="@package_version@" to="version" type="package-info"/>
+            <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+            <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+            <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
           </file>
-          <file name="ConfigFileTest.php" role="test">
-            <tasks:replace from="@package_version@" to="version" type="package-info" />
+          <file role="test" name="DataAllTests.php">
+            <tasks:replace from="@package_version@" to="version" type="package-info"/>
+            <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+            <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+            <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
           </file>
-          <file name="ConfigProjectTest.php" role="test">
-            <tasks:replace from="@package_version@" to="version" type="package-info" />
+          <dir name="Logs">
+            <file role="test" name="PHPUnitLogDatabaseAggregatorTest.php">
+              <tasks:replace from="@package_version@" to="version" type="package-info"/>
+              <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+              <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+              <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+            </file>
+            <file role="test" name="PHPUnitCoverageXmlGeneratorTest.php">
+              <tasks:replace from="@package_version@" to="version" type="package-info"/>
+              <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+              <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+              <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+            </file>
+            <file role="test" name="AbstractLogAggregatorTest.php">
+              <tasks:replace from="@package_version@" to="version" type="package-info"/>
+              <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+              <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+              <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+            </file>
+            <file role="test" name="PHPUnitTestLogAggregatorTest.php">
+              <tasks:replace from="@package_version@" to="version" type="package-info"/>
+              <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+              <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+              <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+            </file>
+            <file role="test" name="DataLogsAllTests.php">
+              <tasks:replace from="@package_version@" to="version" type="package-info"/>
+              <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+              <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+              <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+            </file>
+          </dir>
+          <file role="test" name="LogFileTest.php">
+            <tasks:replace from="@package_version@" to="version" type="package-info"/>
+            <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+            <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+            <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
           </file>
-          <file name="DataAllTests.php" role="test">
-            <tasks:replace from="@package_version@" to="version" type="package-info" />
+          <file role="test" name="ConfigProjectTest.php">
+            <tasks:replace from="@package_version@" to="version" type="package-info"/>
+            <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+            <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+            <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
           </file>
-          <file name="LogFileTest.php" role="test">
-            <tasks:replace from="@package_version@" to="version" type="package-info" />
+          <file role="test" name="AbstractConfigTest.php">
+            <tasks:replace from="@package_version@" to="version" type="package-info"/>
+            <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+            <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+            <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
           </file>
         </dir>
         <dir name="Graph">
           <dir name="Input">
-            <file name="AbstractGraphInputTest.php" role="test">
-              <tasks:replace from="@package_version@" to="version" type="package-info" />
+            <file role="test" name="InputLoaderTest.php">
+              <tasks:replace from="@package_version@" to="version" type="package-info"/>
+              <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+              <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+              <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
             </file>
-            <file name="BuildBreakdownInputTest.php" role="test">
-              <tasks:replace from="@package_version@" to="version" type="package-info" />
+            <file role="test" name="CodeViolationInputTest.php">
+              <tasks:replace from="@package_version@" to="version" type="package-info"/>
+              <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+              <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+              <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
             </file>
-            <file name="BuildBreakdownTimelineInputTest.php" role="test">
-              <tasks:replace from="@package_version@" to="version" type="package-info" />
+            <file role="test" name="UnitTestExecutionTimeTest.php">
+              <tasks:replace from="@package_version@" to="version" type="package-info"/>
+              <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+              <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+              <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
             </file>
-            <file name="CodeViolationInputTest.php" role="test">
-              <tasks:replace from="@package_version@" to="version" type="package-info" />
+            <file role="test" name="TestCodeRatioInputTest.php">
+              <tasks:replace from="@package_version@" to="version" type="package-info"/>
+              <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+              <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+              <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
             </file>
-            <file name="GraphInputAllTests.php" role="test">
-              <tasks:replace from="@package_version@" to="version" type="package-info" />
+            <file role="test" name="UnitCoverageInputTest.php">
+              <tasks:replace from="@package_version@" to="version" type="package-info"/>
+              <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+              <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+              <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
             </file>
-            <file name="InputLoaderTest.php" role="test">
-              <tasks:replace from="@package_version@" to="version" type="package-info" />
+            <file role="test" name="AbstractGraphInputTest.php">
+              <tasks:replace from="@package_version@" to="version" type="package-info"/>
+              <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+              <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+              <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
             </file>
-            <file name="TestCodeRatioInputTest.php" role="test">
-              <tasks:replace from="@package_version@" to="version" type="package-info" />
+            <file role="test" name="BuildBreakdownInputTest.php">
+              <tasks:replace from="@package_version@" to="version" type="package-info"/>
+              <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+              <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+              <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
             </file>
-            <file name="UnitCoverageInputTest.php" role="test">
-              <tasks:replace from="@package_version@" to="version" type="package-info" />
+            <file role="test" name="BuildBreakdownTimelineInputTest.php">
+              <tasks:replace from="@package_version@" to="version" type="package-info"/>
+              <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+              <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+              <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
             </file>
-            <file name="UnitTestExecutionTimeTest.php" role="test">
-              <tasks:replace from="@package_version@" to="version" type="package-info" />
+            <file role="test" name="GraphInputAllTests.php">
+              <tasks:replace from="@package_version@" to="version" type="package-info"/>
+              <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+              <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+              <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
             </file>
-            <file name="UnitTestInputTest.php" role="test">
-              <tasks:replace from="@package_version@" to="version" type="package-info" />
+            <file role="test" name="UnitTestInputTest.php">
+              <tasks:replace from="@package_version@" to="version" type="package-info"/>
+              <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+              <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+              <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
             </file>
           </dir>
-          <file name="ChartFactoryTest.php" role="test">
-            <tasks:replace from="@package_version@" to="version" type="package-info" />
+          <file role="test" name="GraphAllTests.php">
+            <tasks:replace from="@package_version@" to="version" type="package-info"/>
+            <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+            <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+            <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
           </file>
-          <file name="DotChartTest.php" role="test">
-            <tasks:replace from="@package_version@" to="version" type="package-info" />
+          <file role="test" name="DotChartTest.php">
+            <tasks:replace from="@package_version@" to="version" type="package-info"/>
+            <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+            <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+            <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
           </file>
-          <file name="GraphAllTests.php" role="test">
-            <tasks:replace from="@package_version@" to="version" type="package-info" />
+          <file role="test" name="ChartFactoryTest.php">
+            <tasks:replace from="@package_version@" to="version" type="package-info"/>
+            <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+            <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+            <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
           </file>
-          <file name="LineChartTest.php" role="test">
-            <tasks:replace from="@package_version@" to="version" type="package-info" />
+          <file role="test" name="LineChartTest.php">
+            <tasks:replace from="@package_version@" to="version" type="package-info"/>
+            <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+            <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+            <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
           </file>
-          <file name="PieChartTest.php" role="test">
-            <tasks:replace from="@package_version@" to="version" type="package-info" />
+          <file role="test" name="PieChartTest.php">
+            <tasks:replace from="@package_version@" to="version" type="package-info"/>
+            <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+            <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+            <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
           </file>
-          <file name="TimeChartTest.php" role="test">
-            <tasks:replace from="@package_version@" to="version" type="package-info" />
-          </file>
-        </dir>
-        <dir name="logs">
-          <file name="log20071211211853.xml" role="test" />
-          <file name="log20071211220903Lbuild.3.xml" role="test" />
-          <file name="log20071217180035Lbuild.18.xml" role="test" />
-          <file name="log20080106030401Lbuild.24.xml" role="test" />
-          <file name="log20080109182028Lbuild.30.xml" role="test" />
-          <file name="log20080113145726.xml" role="test" />
-          <file name="log20080114115320.xml" role="test" />
-          <file name="log20080118220842Lbuild.57.xml" role="test" />
-        </dir>
-        <dir name="Tasks">
-          <file name="AbstractPearTaskTest.php" role="test">
-            <tasks:replace from="@package_version@" to="version" type="package-info" />
-          </file>
-          <file name="AbstractTaskTest.php" role="test">
-            <tasks:replace from="@package_version@" to="version" type="package-info" />
-          </file>
-          <file name="CheckoutTaskTest.php" role="test">
-            <tasks:replace from="@package_version@" to="version" type="package-info" />
-          </file>
-          <file name="CreateFileTaskTest.php" role="test">
-            <tasks:replace from="@package_version@" to="version" type="package-info" />
-          </file>
-          <file name="CruiseControlTaskTest.php" role="test">
-            <tasks:replace from="@package_version@" to="version" type="package-info" />
-          </file>
-          <file name="GraphTaskTest.php" role="test">
-            <tasks:replace from="@package_version@" to="version" type="package-info" />
-          </file>
-          <file name="ModifyFileTaskTest.php" role="test">
-            <tasks:replace from="@package_version@" to="version" type="package-info" />
-          </file>
-          <file name="PhpCodeSnifferTaskTest.php" role="test">
-            <tasks:replace from="@package_version@" to="version" type="package-info" />
-          </file>
-          <file name="PhpDocumentorTaskTest.php" role="test">
-            <tasks:replace from="@package_version@" to="version" type="package-info" />
-          </file>
-          <file name="PHPUnitTaskTest.php" role="test">
-            <tasks:replace from="@package_version@" to="version" type="package-info" />
-          </file>
-          <file name="ProjectCleanTaskTest.php" role="test">
-            <tasks:replace from="@package_version@" to="version" type="package-info" />
-          </file>
-          <file name="ProjectDeleteTaskTest.php" role="test">
-            <tasks:replace from="@package_version@" to="version" type="package-info" />
-          </file>
-          <file name="ProjectTaskTest.php" role="test">
-            <tasks:replace from="@package_version@" to="version" type="package-info" />
-          </file>
-          <file name="TasksAllTests.php" role="test">
-            <tasks:replace from="@package_version@" to="version" type="package-info" />
+          <file role="test" name="TimeChartTest.php">
+            <tasks:replace from="@package_version@" to="version" type="package-info"/>
+            <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+            <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+            <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
           </file>
         </dir>
         <dir name="Util">
-          <file name="FileUtilTest.php" role="test">
-            <tasks:replace from="@package_version@" to="version" type="package-info" />
+          <file role="test" name="UtilAllTests.php">
+            <tasks:replace from="@package_version@" to="version" type="package-info"/>
+            <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+            <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+            <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
           </file>
-          <file name="UtilAllTests.php" role="test">
-            <tasks:replace from="@package_version@" to="version" type="package-info" />
-          </file>
-        </dir>
-        <dir name="VersionControl">
-          <file name="AbstractCheckoutTest.php" role="test">
-            <tasks:replace from="@package_version@" to="version" type="package-info" />
-          </file>
-          <file name="CvsCheckoutTest.php" role="test">
-            <tasks:replace from="@package_version@" to="version" type="package-info" />
-          </file>
-          <file name="SubversionCheckoutTest.php" role="test">
-            <tasks:replace from="@package_version@" to="version" type="package-info" />
-          </file>
-          <file name="VersionControlAllTests.php" role="test">
-            <tasks:replace from="@package_version@" to="version" type="package-info" />
+          <file role="test" name="FileUtilTest.php">
+            <tasks:replace from="@package_version@" to="version" type="package-info"/>
+            <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+            <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+            <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
           </file>
         </dir>
-        <file name="AbstractTest.php" role="test">
-          <tasks:replace from="@package_version@" to="version" type="package-info" />
-          <tasks:replace from="@php_dir@" to="php_dir" type="pear-config" />
-        </file> 
-        <file name="AllTests.php" role="test">
-          <tasks:replace from="@package_version@" to="version" type="package-info" />
+        <dir name="run"/>
+        <file role="test" name="AbstractTest.php">
+          <tasks:replace from="@package_version@" to="version" type="package-info"/>
+          <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+          <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+          <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
         </file>
-        <file name="ConsoleOutputBuffer.php" role="test">
-          <tasks:replace from="@package_version@" to="version" type="package-info" />
-        </file>
+        <dir name="Tasks">
+          <file role="test" name="ModifyFileTaskTest.php">
+            <tasks:replace from="@package_version@" to="version" type="package-info"/>
+            <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+            <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+            <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+          </file>
+          <file role="test" name="GraphTaskTest.php">
+            <tasks:replace from="@package_version@" to="version" type="package-info"/>
+            <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+            <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+            <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+          </file>
+          <file role="test" name="TasksAllTests.php">
+            <tasks:replace from="@package_version@" to="version" type="package-info"/>
+            <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+            <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+            <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+          </file>
+          <file role="test" name="PHPUnitTaskTest.php">
+            <tasks:replace from="@package_version@" to="version" type="package-info"/>
+            <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+            <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+            <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+          </file>
+          <file role="test" name="AbstractPearTaskTest.php">
+            <tasks:replace from="@package_version@" to="version" type="package-info"/>
+            <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+            <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+            <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+          </file>
+          <file role="test" name="PhpCodeSnifferTaskTest.php">
+            <tasks:replace from="@package_version@" to="version" type="package-info"/>
+            <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+            <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+            <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+          </file>
+          <file role="test" name="ProjectTaskTest.php">
+            <tasks:replace from="@package_version@" to="version" type="package-info"/>
+            <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+            <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+            <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+          </file>
+          <file role="test" name="CheckoutTaskTest.php">
+            <tasks:replace from="@package_version@" to="version" type="package-info"/>
+            <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+            <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+            <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+          </file>
+          <file role="test" name="PhpDocumentorTaskTest.php">
+            <tasks:replace from="@package_version@" to="version" type="package-info"/>
+            <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+            <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+            <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+          </file>
+          <file role="test" name="MergePhpunitTaskTest.php">
+            <tasks:replace from="@package_version@" to="version" type="package-info"/>
+            <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+            <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+            <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+          </file>
+          <file role="test" name="ProjectCleanTaskTest.php">
+            <tasks:replace from="@package_version@" to="version" type="package-info"/>
+            <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+            <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+            <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+          </file>
+          <file role="test" name="CruiseControlTaskTest.php">
+            <tasks:replace from="@package_version@" to="version" type="package-info"/>
+            <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+            <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+            <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+          </file>
+          <file role="test" name="AbstractTaskTest.php">
+            <tasks:replace from="@package_version@" to="version" type="package-info"/>
+            <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+            <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+            <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+          </file>
+          <file role="test" name="ProjectDeleteTaskTest.php">
+            <tasks:replace from="@package_version@" to="version" type="package-info"/>
+            <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+            <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+            <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+          </file>
+          <file role="test" name="CreateFileTaskTest.php">
+            <tasks:replace from="@package_version@" to="version" type="package-info"/>
+            <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+            <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+            <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+          </file>
+        </dir>
+        <dir name="Console">
+          <file role="test" name="ConsoleInputDefinitionTest.php">
+            <tasks:replace from="@package_version@" to="version" type="package-info"/>
+            <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+            <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+            <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+          </file>
+          <file role="test" name="ConsoleOutputTest.php">
+            <tasks:replace from="@package_version@" to="version" type="package-info"/>
+            <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+            <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+            <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+          </file>
+          <file role="test" name="ConsoleArgsTest.php">
+            <tasks:replace from="@package_version@" to="version" type="package-info"/>
+            <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+            <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+            <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+          </file>
+          <file role="test" name="ConsoleInputTest.php">
+            <tasks:replace from="@package_version@" to="version" type="package-info"/>
+            <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+            <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+            <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+          </file>
+          <file role="test" name="ConsoleAllTests.php">
+            <tasks:replace from="@package_version@" to="version" type="package-info"/>
+            <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+            <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+            <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+          </file>
+        </dir>
+        <dir name="Commands">
+          <file role="test" name="CommandTest.php">
+            <tasks:replace from="@package_version@" to="version" type="package-info"/>
+            <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+            <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+            <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+          </file>
+          <file role="test" name="DeleteCommandTest.php">
+            <tasks:replace from="@package_version@" to="version" type="package-info"/>
+            <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+            <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+            <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+          </file>
+          <file role="test" name="CommandsAllTests.php">
+            <tasks:replace from="@package_version@" to="version" type="package-info"/>
+            <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+            <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+            <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+          </file>
+          <file role="test" name="CleanCommandTest.php">
+            <tasks:replace from="@package_version@" to="version" type="package-info"/>
+            <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+            <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+            <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+          </file>
+        </dir>
       </dir>
- 
       <dir name="data/phpdoc/Converters/HTML/Phpuc">
         <dir name="templates/phpuc">
           <dir name="templates">
             <dir name="media">
-              <file name="empty.png" role="data" />
-              <file name="list-item.gif" role="data" />
-              <file name="logo.png" role="data" />
+              <file name="empty.png" role="data"/>
+              <file name="list-item.gif" role="data"/>
+              <file name="logo.png" role="data"/>
               <file name="style.css" role="data">
-                <tasks:replace from="@package_version@" to="version" type="package-info" />
+                <tasks:replace from="@package_version@" to="version" type="package-info"/>
               </file>
             </dir>
             <file name="basicindex.tpl" role="data">
-              <tasks:replace from="@package_version@" to="version" type="package-info" />
+              <tasks:replace from="@package_version@" to="version" type="package-info"/>
             </file>
             <file name="blank.tpl" role="data">
-              <tasks:replace from="@package_version@" to="version" type="package-info" />
+              <tasks:replace from="@package_version@" to="version" type="package-info"/>
             </file>
             <file name="class.tpl" role="data">
-              <tasks:replace from="@package_version@" to="version" type="package-info" />
+              <tasks:replace from="@package_version@" to="version" type="package-info"/>
             </file>
             <file name="classleft.tpl" role="data">
-              <tasks:replace from="@package_version@" to="version" type="package-info" />
+              <tasks:replace from="@package_version@" to="version" type="package-info"/>
             </file>
             <file name="classtags.tpl" role="data">
-              <tasks:replace from="@package_version@" to="version" type="package-info" />
+              <tasks:replace from="@package_version@" to="version" type="package-info"/>
             </file>
             <file name="classtrees.tpl" role="data">
-              <tasks:replace from="@package_version@" to="version" type="package-info" />
+              <tasks:replace from="@package_version@" to="version" type="package-info"/>
             </file>
             <file name="const.tpl" role="data">
-              <tasks:replace from="@package_version@" to="version" type="package-info" />
+              <tasks:replace from="@package_version@" to="version" type="package-info"/>
             </file>
             <file name="define.tpl" role="data">
-              <tasks:replace from="@package_version@" to="version" type="package-info" />
+              <tasks:replace from="@package_version@" to="version" type="package-info"/>
             </file>
             <file name="docblock.tpl" role="data">
-              <tasks:replace from="@package_version@" to="version" type="package-info" />
+              <tasks:replace from="@package_version@" to="version" type="package-info"/>
             </file>
             <file name="elementindex.tpl" role="data">
-              <tasks:replace from="@package_version@" to="version" type="package-info" />
+              <tasks:replace from="@package_version@" to="version" type="package-info"/>
             </file>
             <file name="errors.tpl" role="data">
-              <tasks:replace from="@package_version@" to="version" type="package-info" />
+              <tasks:replace from="@package_version@" to="version" type="package-info"/>
             </file>
             <file name="examplesource.tpl" role="data">
-              <tasks:replace from="@package_version@" to="version" type="package-info" />
+              <tasks:replace from="@package_version@" to="version" type="package-info"/>
             </file>
             <file name="fileleft.tpl" role="data">
-              <tasks:replace from="@package_version@" to="version" type="package-info" />
+              <tasks:replace from="@package_version@" to="version" type="package-info"/>
             </file>
             <file name="filesource.tpl" role="data">
-              <tasks:replace from="@package_version@" to="version" type="package-info" />
+              <tasks:replace from="@package_version@" to="version" type="package-info"/>
             </file>
             <file name="filetags.tpl" role="data">
-              <tasks:replace from="@package_version@" to="version" type="package-info" />
+              <tasks:replace from="@package_version@" to="version" type="package-info"/>
             </file>
             <file name="footer.tpl" role="data">
-              <tasks:replace from="@package_version@" to="version" type="package-info" />
+              <tasks:replace from="@package_version@" to="version" type="package-info"/>
             </file>
             <file name="function.tpl" role="data">
-              <tasks:replace from="@package_version@" to="version" type="package-info" />
+              <tasks:replace from="@package_version@" to="version" type="package-info"/>
             </file>
             <file name="global.tpl" role="data">
-              <tasks:replace from="@package_version@" to="version" type="package-info" />
+              <tasks:replace from="@package_version@" to="version" type="package-info"/>
             </file>
             <file name="header.tpl" role="data">
-              <tasks:replace from="@package_version@" to="version" type="package-info" />
+              <tasks:replace from="@package_version@" to="version" type="package-info"/>
             </file>
             <file name="include.tpl" role="data">
-              <tasks:replace from="@package_version@" to="version" type="package-info" />
+              <tasks:replace from="@package_version@" to="version" type="package-info"/>
             </file>
             <file name="index.tpl" role="data">
-              <tasks:replace from="@package_version@" to="version" type="package-info" />
+              <tasks:replace from="@package_version@" to="version" type="package-info"/>
             </file>
             <file name="method.tpl" role="data">
-              <tasks:replace from="@package_version@" to="version" type="package-info" />
+              <tasks:replace from="@package_version@" to="version" type="package-info"/>
             </file>
             <file name="packages.tpl" role="data">
-              <tasks:replace from="@package_version@" to="version" type="package-info" />
+              <tasks:replace from="@package_version@" to="version" type="package-info"/>
             </file>
             <file name="page.tpl" role="data">
-              <tasks:replace from="@package_version@" to="version" type="package-info" />
+              <tasks:replace from="@package_version@" to="version" type="package-info"/>
             </file>
             <file name="pkgelementindex.tpl" role="data">
-              <tasks:replace from="@package_version@" to="version" type="package-info" />
+              <tasks:replace from="@package_version@" to="version" type="package-info"/>
             </file>
             <file name="ric.tpl" role="data">
-              <tasks:replace from="@package_version@" to="version" type="package-info" />
+              <tasks:replace from="@package_version@" to="version" type="package-info"/>
             </file>
             <file name="tags.tpl" role="data">
-              <tasks:replace from="@package_version@" to="version" type="package-info" />
+              <tasks:replace from="@package_version@" to="version" type="package-info"/>
             </file>
             <file name="todolist.tpl" role="data">
-              <tasks:replace from="@package_version@" to="version" type="package-info" />
+              <tasks:replace from="@package_version@" to="version" type="package-info"/>
             </file>
             <file name="tutorial_toc.tpl" role="data">
-              <tasks:replace from="@package_version@" to="version" type="package-info" />
+              <tasks:replace from="@package_version@" to="version" type="package-info"/>
             </file>
             <file name="tutorial_tree.tpl" role="data">
-              <tasks:replace from="@package_version@" to="version" type="package-info" />
+              <tasks:replace from="@package_version@" to="version" type="package-info"/>
             </file>
             <file name="tutorial.tpl" role="data">
-              <tasks:replace from="@package_version@" to="version" type="package-info" />
+              <tasks:replace from="@package_version@" to="version" type="package-info"/>
             </file>
             <file name="var.tpl" role="data">
-              <tasks:replace from="@package_version@" to="version" type="package-info" />
+              <tasks:replace from="@package_version@" to="version" type="package-info"/>
             </file>
           </dir>
           <dir name="templates_c">
-            <file name="empty.txt" role="data" />
+            <file name="empty.txt" role="data"/>
           </dir>
           <file name="options.ini" role="data">
-            <tasks:replace from="@package_version@" to="version" type="package-info" />
-          </file>       
+            <tasks:replace from="@package_version@" to="version" type="package-info"/>
+          </file>
         </dir>
         <file name="HTMLPhpucConverter.inc" role="data">
-          <tasks:replace from="@package_version@" to="version" type="package-info" />
+          <tasks:replace from="@package_version@" to="version" type="package-info"/>
         </file>
       </dir>
-      
       <dir name="data/example/src">
         <file name="Math.php" role="data">
-          <tasks:replace from="@package_version@" to="version" type="package-info" />
+          <tasks:replace from="@package_version@" to="version" type="package-info"/>
         </file>
       </dir>
-        
       <dir name="data/example/tests">
         <file name="MathTest.php" role="data">
-          <tasks:replace from="@package_version@" to="version" type="package-info" />
+          <tasks:replace from="@package_version@" to="version" type="package-info"/>
         </file>
       </dir>
-
       <dir name="data/template">
         <file name="project.xml" role="data">
-          <tasks:replace from="@package_version@" to="version" type="package-info" />
+          <tasks:replace from="@package_version@" to="version" type="package-info"/>
         </file>
       </dir>
-
       <dir name="data/webapps/cruisecontrol">
         <dir name="css">
-          <file name="php-under-control.css" role="data" />
-          <file name="SyntaxHighlighter.css" role="data" />
+          <file name="php-under-control.css" role="data"/>
+          <file name="SyntaxHighlighter.css" role="data"/>
         </dir>
         <dir name="images/php-under-control">
-          <file name="dashboard-broken-left.png" role="data" />
-          <file name="dashboard-broken-right.png" role="data" />
-          <file name="dashboard-good-left.png" role="data" />
-          <file name="dashboard-good-right.png" role="data" />
-          <file name="error.png" role="data" />
-          <file name="failed.png" role="data" />
-          <file name="header-center.png" role="data" />
-          <file name="header-left-logo.png" role="data" />
-          <file name="info.png" role="data" />
-          <file name="notice.png" role="data" />
-          <file name="play-broken.png" role="data" />
-          <file name="play-good.png" role="data" />
-          <file name="skipped.png" role="data" />
-          <file name="success.png" role="data" />
-          <file name="tab-active.png" role="data" />
-          <file name="tab-inactive.png" role="data" />
-          <file name="throbber-broken.gif" role="data" />
-          <file name="throbber-good.gif" role="data" />
-          <file name="unknown.png" role="data" />
-          <file name="warning.png" role="data" />
+          <file name="dashboard-broken-left.png" role="data"/>
+          <file name="dashboard-broken-right.png" role="data"/>
+          <file name="dashboard-good-left.png" role="data"/>
+          <file name="dashboard-good-right.png" role="data"/>
+          <file name="error.png" role="data"/>
+          <file name="failed.png" role="data"/>
+          <file name="header-center.png" role="data"/>
+          <file name="header-left-logo.png" role="data"/>
+          <file name="info.png" role="data"/>
+          <file name="notice.png" role="data"/>
+          <file name="play-broken.png" role="data"/>
+          <file name="play-good.png" role="data"/>
+          <file name="skipped.png" role="data"/>
+          <file name="success.png" role="data"/>
+          <file name="tab-active.png" role="data"/>
+          <file name="tab-inactive.png" role="data"/>
+          <file name="throbber-broken.gif" role="data"/>
+          <file name="throbber-good.gif" role="data"/>
+          <file name="unknown.png" role="data"/>
+          <file name="warning.png" role="data"/>
         </dir>
         <dir name="js">
-          <file name="effects.js" role="data" />
-          <file name="php-under-control.js" role="data" />
-          <file name="prototype.js" role="data" />
-          <file name="scriptaculous.js" role="data" />
-          <file name="shBrushPhp.js" role="data" />
-          <file name="shCore.js" role="data" />
+          <file name="effects.js" role="data"/>
+          <file name="php-under-control.js" role="data"/>
+          <file name="prototype.js" role="data"/>
+          <file name="scriptaculous.js" role="data"/>
+          <file name="shBrushPhp.js" role="data"/>
+          <file name="shCore.js" role="data"/>
         </dir>
         <dir name="xsl">
-          <file name="buildresults.xsl" role="data" />
-          <file name="errors.xsl" role="data" />
-          <file name="header.xsl" role="data" />
-          <file name="modifications.xsl" role="data" />
-          <file name="phpcs.xsl" role="data" />
-          <file name="phpcs-details.xsl" role="data" />
-          <file name="phpcs-summary.xsl" role="data" />
-          <file name="phpdoc.xsl" role="data" />
-          <file name="phphelper.xsl" role="data" />
-          <file name="phpunit.xsl" role="data" />
-          <file name="phpunit-details.xsl" role="data" />
-          <file name="phpunit-pmd.xsl" role="data" />
-          <file name="phpunit-pmd-details.xsl" role="data" />
-          <file name="phpunit-pmd-summary.xsl" role="data" />
+          <file name="buildresults.xsl" role="data"/>
+          <file name="errors.xsl" role="data"/>
+          <file name="header.xsl" role="data"/>
+          <file name="modifications.xsl" role="data"/>
+          <file name="phpcs.xsl" role="data"/>
+          <file name="phpcs-details.xsl" role="data"/>
+          <file name="phpcs-summary.xsl" role="data"/>
+          <file name="phpdoc.xsl" role="data"/>
+          <file name="phphelper.xsl" role="data"/>
+          <file name="phpunit.xsl" role="data"/>
+          <file name="phpunit-details.xsl" role="data"/>
+          <file name="phpunit-pmd.xsl" role="data"/>
+          <file name="phpunit-pmd-details.xsl" role="data"/>
+          <file name="phpunit-pmd-summary.xsl" role="data"/>
         </dir>
         <file name="buildresults.jsp" role="data">
-          <tasks:replace from="- SVN" to="version" type="package-info" />
+          <tasks:replace from="- SVN" to="version" type="package-info"/>
         </file>
         <file name="dashboard.jsp" role="data">
-          <tasks:replace from="- SVN" to="version" type="package-info" />
+          <tasks:replace from="- SVN" to="version" type="package-info"/>
         </file>
-        <file name="favicon.ico" role="data" />
+        <file name="favicon.ico" role="data"/>
         <file name="footer.jsp" role="data">
-          <tasks:replace from="- SVN" to="version" type="package-info" />
+          <tasks:replace from="- SVN" to="version" type="package-info"/>
         </file>
         <file name="header.jsp" role="data">
-          <tasks:replace from="- SVN" to="version" type="package-info" />
+          <tasks:replace from="- SVN" to="version" type="package-info"/>
         </file>
         <file name="index.jsp" role="data">
-          <tasks:replace from="- SVN" to="version" type="package-info" />
+          <tasks:replace from="- SVN" to="version" type="package-info"/>
         </file>
         <file name="main.jsp" role="data">
-          <tasks:replace from="- SVN" to="version" type="package-info" />
+          <tasks:replace from="- SVN" to="version" type="package-info"/>
         </file>
         <file name="metrics.cewolf.jsp" role="data">
-          <tasks:replace from="- SVN" to="version" type="package-info" />
+          <tasks:replace from="- SVN" to="version" type="package-info"/>
         </file>
         <file name="metrics.jsp" role="data">
-          <tasks:replace from="- SVN" to="version" type="package-info" />
+          <tasks:replace from="- SVN" to="version" type="package-info"/>
         </file>
         <file name="phpcs.jsp" role="data">
-          <tasks:replace from="- SVN" to="version" type="package-info" />
+          <tasks:replace from="- SVN" to="version" type="package-info"/>
         </file>
         <file name="phpunit.jsp" role="data">
-          <tasks:replace from="- SVN" to="version" type="package-info" />
+          <tasks:replace from="- SVN" to="version" type="package-info"/>
         </file>
         <file name="phpunit-pmd.jsp" role="data">
-          <tasks:replace from="- SVN" to="version" type="package-info" />
+          <tasks:replace from="- SVN" to="version" type="package-info"/>
         </file>
         <file name="servertime.jsp" role="data">
-          <tasks:replace from="- SVN" to="version" type="package-info" />
+          <tasks:replace from="- SVN" to="version" type="package-info"/>
         </file>
       </dir>
-
       <dir name="docs">
         <file name="build.xml" role="doc">
-          <tasks:replace from="@package_version@" to="version" type="package-info" />
+          <tasks:replace from="@package_version@" to="version" type="package-info"/>
         </file>
         <file name="config.xml" role="doc">
-          <tasks:replace from="@package_version@" to="version" type="package-info" />
+          <tasks:replace from="@package_version@" to="version" type="package-info"/>
         </file>
       </dir>
-      <file name="CHANGELOG" role="doc" />
-      <file name="LICENSE" role="doc" />
+      <file name="CHANGELOG" role="doc"/>
+      <file name="LICENSE" role="doc"/>
     </dir>
   </contents>
   <dependencies>
@@ -739,7 +1461,7 @@
       <package>
         <name>Graph</name>
         <channel>components.ez.no</channel>
-        <min>1.2</min>      
+        <min>1.2</min>
       </package>
       <extension>
         <name>pcre</name>
@@ -773,7 +1495,6 @@
       </extension>
     </optional>
   </dependencies>
-
   <phprelease>
     <installconditions>
       <os>
@@ -781,186 +1502,178 @@
       </os>
     </installconditions>
     <filelist>
+      <install as="phpuc" name="bin/phpuc.php"/>
+      <install as="phpuc.bat" name="bin/phpuc.bat"/>
+      <install as="phpUnderControl/VersionControl/CheckoutI.php" name="src/VersionControl/CheckoutI.php"/>
+      <install as="phpUnderControl/VersionControl/CvsCheckout.php" name="src/VersionControl/CvsCheckout.php"/>
+      <install as="phpUnderControl/VersionControl/AbstractCheckout.php" name="src/VersionControl/AbstractCheckout.php"/>
+      <install as="phpUnderControl/VersionControl/SubversionCheckout.php" name="src/VersionControl/SubversionCheckout.php"/>
+      <install as="phpUnderControl/Data/LogFileIterator.php" name="src/Data/LogFileIterator.php"/>
+      <install as="phpUnderControl/Data/BuildTarget.php" name="src/Data/BuildTarget.php"/>
+      <install as="phpUnderControl/Data/ConfigBuildTrigger.php" name="src/Data/ConfigBuildTrigger.php"/>
+      <install as="phpUnderControl/Data/BuildFile.php" name="src/Data/BuildFile.php"/>
+      <install as="phpUnderControl/Data/ConfigArtifactsPublisher.php" name="src/Data/ConfigArtifactsPublisher.php"/>
+      <install as="phpUnderControl/Data/Logs/AbstractLogAggregator.php" name="src/Data/Logs/AbstractLogAggregator.php"/>
+      <install as="phpUnderControl/Data/Logs/PHPUnitTestLogAggregator.php" name="src/Data/Logs/PHPUnitTestLogAggregator.php"/>
+      <install as="phpUnderControl/Data/Logs/PHPUnitCoverageXmlGenerator.php" name="src/Data/Logs/PHPUnitCoverageXmlGenerator.php"/>
+      <install as="phpUnderControl/Data/Logs/PHPUnitLogDatabaseAggregator.php" name="src/Data/Logs/PHPUnitLogDatabaseAggregator.php"/>
+      <install as="phpUnderControl/Data/Logs/PHPUnitMetricsAggregator.php" name="src/Data/Logs/PHPUnitMetricsAggregator.php"/>
+      <install as="phpUnderControl/Data/ConfigProject.php" name="src/Data/ConfigProject.php"/>
+      <install as="phpUnderControl/Data/ConfigFile.php" name="src/Data/ConfigFile.php"/>
+      <install as="phpUnderControl/Data/ConfigExecutePublisher.php" name="src/Data/ConfigExecutePublisher.php"/>
+      <install as="phpUnderControl/Data/ConfigBootStrapper.php" name="src/Data/ConfigBootStrapper.php"/>
+      <install as="phpUnderControl/Data/LogFile.php" name="src/Data/LogFile.php"/>
+      <install as="phpUnderControl/Data/ConfigPublisherI.php" name="src/Data/ConfigPublisherI.php"/>
+      <install as="phpUnderControl/Graph/Input/CodeViolationInput.php" name="src/Graph/Input/CodeViolationInput.php"/>
+      <install as="phpUnderControl/Graph/Input/InputRule.php" name="src/Graph/Input/InputRule.php"/>
+      <install as="phpUnderControl/Graph/Input/TestCodeRatioInput.php" name="src/Graph/Input/TestCodeRatioInput.php"/>
+      <install as="phpUnderControl/Graph/Input/InputIterator.php" name="src/Graph/Input/InputIterator.php"/>
+      <install as="phpUnderControl/Graph/Input/BuildBreakdownTimelineInput.php" name="src/Graph/Input/BuildBreakdownTimelineInput.php"/>
+      <install as="phpUnderControl/Graph/Input/InputI.php" name="src/Graph/Input/InputI.php"/>
+      <install as="phpUnderControl/Graph/Input/AbstractInput.php" name="src/Graph/Input/AbstractInput.php"/>
+      <install as="phpUnderControl/Graph/Input/InputLoader.php" name="src/Graph/Input/InputLoader.php"/>
+      <install as="phpUnderControl/Graph/Input/UnitCoverageInput.php" name="src/Graph/Input/UnitCoverageInput.php"/>
+      <install as="phpUnderControl/Graph/Input/UnitTestInput.php" name="src/Graph/Input/UnitTestInput.php"/>
+      <install as="phpUnderControl/Graph/Input/UnitTestExecutionTimeInput.php" name="src/Graph/Input/UnitTestExecutionTimeInput.php"/>
+      <install as="phpUnderControl/Graph/Input/BuildBreakdownInput.php" name="src/Graph/Input/BuildBreakdownInput.php"/>
+      <install as="phpUnderControl/Graph/PieChart.php" name="src/Graph/PieChart.php"/>
+      <install as="phpUnderControl/Graph/LineChart.php" name="src/Graph/LineChart.php"/>
+      <install as="phpUnderControl/Graph/ChartI.php" name="src/Graph/ChartI.php"/>
+      <install as="phpUnderControl/Graph/DotChartOptions.php" name="src/Graph/DotChartOptions.php"/>
+      <install as="phpUnderControl/Graph/ChartFactory.php" name="src/Graph/ChartFactory.php"/>
+      <install as="phpUnderControl/Graph/GraphPalette.php" name="src/Graph/GraphPalette.php"/>
+      <install as="phpUnderControl/Graph/TimeChart.php" name="src/Graph/TimeChart.php"/>
+      <install as="phpUnderControl/Graph/DotChart.php" name="src/Graph/DotChart.php"/>
+      <install as="phpUnderControl/Util/FileCopyUtil.php" name="src/Util/FileCopyUtil.php"/>
+      <install as="phpUnderControl/Util/FileUtil.php" name="src/Util/FileUtil.php"/>
+      <install as="phpUnderControl/Util/PhpFileFilterIterator.php" name="src/Util/PhpFileFilterIterator.php"/>
+      <install as="phpUnderControl/Util/Autoloader.php" name="src/Util/Autoloader.php"/>
+      <install as="phpUnderControl/Tasks/ProjectTask.php" name="src/Tasks/ProjectTask.php"/>
+      <install as="phpUnderControl/Tasks/CruiseControlTask.php" name="src/Tasks/CruiseControlTask.php"/>
+      <install as="phpUnderControl/Tasks/GenerateGraphTask.php" name="src/Tasks/GenerateGraphTask.php"/>
+      <install as="phpUnderControl/Tasks/ProjectDeleteTask.php" name="src/Tasks/ProjectDeleteTask.php"/>
+      <install as="phpUnderControl/Tasks/TaskI.php" name="src/Tasks/TaskI.php"/>
+      <install as="phpUnderControl/Tasks/AbstractPearTask.php" name="src/Tasks/AbstractPearTask.php"/>
+      <install as="phpUnderControl/Tasks/ExampleTask.php" name="src/Tasks/ExampleTask.php"/>
+      <install as="phpUnderControl/Tasks/CreateFileTask.php" name="src/Tasks/CreateFileTask.php"/>
+      <install as="phpUnderControl/Tasks/ProjectCleanTask.php" name="src/Tasks/ProjectCleanTask.php"/>
+      <install as="phpUnderControl/Tasks/GraphTask.php" name="src/Tasks/GraphTask.php"/>
+      <install as="phpUnderControl/Tasks/MergePhpunitTask.php" name="src/Tasks/MergePhpunitTask.php"/>
+      <install as="phpUnderControl/Tasks/AbstractTask.php" name="src/Tasks/AbstractTask.php"/>
+      <install as="phpUnderControl/Tasks/PhpUnitTask.php" name="src/Tasks/PhpUnitTask.php"/>
+      <install as="phpUnderControl/Tasks/CheckoutTask.php" name="src/Tasks/CheckoutTask.php"/>
+      <install as="phpUnderControl/Tasks/PhpCodeSnifferTask.php" name="src/Tasks/PhpCodeSnifferTask.php"/>
+      <install as="phpUnderControl/Tasks/ModifyFileTask.php" name="src/Tasks/ModifyFileTask.php"/>
+      <install as="phpUnderControl/Tasks/PhpDocumentorTask.php" name="src/Tasks/PhpDocumentorTask.php"/>
+      <install as="phpUnderControl/Exceptions/ErrorException.php" name="src/Exceptions/ErrorException.php"/>
+      <install as="phpUnderControl/Exceptions/ConsoleException.php" name="src/Exceptions/ConsoleException.php"/>
+      <install as="phpUnderControl/Exceptions/ExecuteException.php" name="src/Exceptions/ExecuteException.php"/>
+      <install as="phpUnderControl/Exceptions/ValidateException.php" name="src/Exceptions/ValidateException.php"/>
+      <install as="phpUnderControl/Console/ConsoleInputDefinition.php" name="src/Console/ConsoleInputDefinition.php"/>
+      <install as="phpUnderControl/Console/ConsoleExtensionI.php" name="src/Console/ConsoleExtensionI.php"/>
+      <install as="phpUnderControl/Console/ConsoleOutput.php" name="src/Console/ConsoleOutput.php"/>
+      <install as="phpUnderControl/Console/ConsoleArgs.php" name="src/Console/ConsoleArgs.php"/>
+      <install as="phpUnderControl/Console/ConsoleCommandI.php" name="src/Console/ConsoleCommandI.php"/>
+      <install as="phpUnderControl/Console/ConsoleInput.php" name="src/Console/ConsoleInput.php"/>
+      <install as="phpUnderControl/Commands/InstallCommand.php" name="src/Commands/InstallCommand.php"/>
+      <install as="phpUnderControl/Commands/ExampleCommand.php" name="src/Commands/ExampleCommand.php"/>
+      <install as="phpUnderControl/Commands/CleanCommand.php" name="src/Commands/CleanCommand.php"/>
+      <install as="phpUnderControl/Commands/CommandI.php" name="src/Commands/CommandI.php"/>
+      <install as="phpUnderControl/Commands/MergePhpunitCommand.php" name="src/Commands/MergePhpunitCommand.php"/>
+      <install as="phpUnderControl/Commands/DeleteCommand.php" name="src/Commands/DeleteCommand.php"/>
+      <install as="phpUnderControl/Commands/GraphCommand.php" name="src/Commands/GraphCommand.php"/>
+      <install as="phpUnderControl/Commands/AbstractCommand.php" name="src/Commands/AbstractCommand.php"/>
+      <install as="phpUnderControl/Commands/ProjectCommand.php" name="src/Commands/ProjectCommand.php"/>
       <install as="phpUnderControl/PhpUnderControl.php" name="src/PhpUnderControl.php"/>
-      
-      <install as="phpUnderControl/Commands/AbstractCommand.php" name="src/Commands/AbstractCommand.php" />
-      <install as="phpUnderControl/Commands/CleanCommand.php" name="src/Commands/CleanCommand.php" />
-      <install as="phpUnderControl/Commands/CommandI.php" name="src/Commands/CommandI.php" />
-      <install as="phpUnderControl/Commands/DeleteCommand.php" name="src/Commands/DeleteCommand.php" />
-      <install as="phpUnderControl/Commands/ExampleCommand.php" name="src/Commands/ExampleCommand.php" />
-      <install as="phpUnderControl/Commands/GraphCommand.php" name="src/Commands/GraphCommand.php" />
-      <install as="phpUnderControl/Commands/InstallCommand.php" name="src/Commands/InstallCommand.php" />
-      <install as="phpUnderControl/Commands/ProjectCommand.php" name="src/Commands/ProjectCommand.php" />
-      
-      <install as="phpUnderControl/Console/ConsoleArgs.php" name="src/Console/ConsoleArgs.php" />
-      <install as="phpUnderControl/Console/ConsoleCommandI.php" name="src/Console/ConsoleCommandI.php" />
-      <install as="phpUnderControl/Console/ConsoleExtensionI.php" name="src/Console/ConsoleExtensionI.php" />
-      <install as="phpUnderControl/Console/ConsoleInput.php" name="src/Console/ConsoleInput.php" />
-      <install as="phpUnderControl/Console/ConsoleInputDefinition.php" name="src/Console/ConsoleInputDefinition.php" />
-      <install as="phpUnderControl/Console/ConsoleOutput.php" name="src/Console/ConsoleOutput.php" />
-      
-      <install as="phpUnderControl/Data/BuildFile.php" name="src/Data/BuildFile.php" />
-      <install as="phpUnderControl/Data/BuildTarget.php" name="src/Data/BuildTarget.php" />
-      <install as="phpUnderControl/Data/ConfigArtifactsPublisher.php" name="src/Data/ConfigArtifactsPublisher.php" />
-      <install as="phpUnderControl/Data/ConfigBootStrapper.php" name="src/Data/ConfigBootStrapper.php" />
-      <install as="phpUnderControl/Data/ConfigBuildTrigger.php" name="src/Data/ConfigBuildTrigger.php" />
-      <install as="phpUnderControl/Data/ConfigExecutePublisher.php" name="src/Data/ConfigExecutePublisher.php" />
-      <install as="phpUnderControl/Data/ConfigFile.php" name="src/Data/ConfigFile.php" />
-      <install as="phpUnderControl/Data/ConfigProject.php" name="src/Data/ConfigProject.php" />
-      <install as="phpUnderControl/Data/ConfigPublisherI.php" name="src/Data/ConfigPublisherI.php" />
-      <install as="phpUnderControl/Data/LogFile.php" name="src/Data/LogFile.php" />
-      <install as="phpUnderControl/Data/LogFileIterator.php" name="src/Data/LogFileIterator.php" />
-      
-      <install as="phpUnderControl/Exceptions/ConsoleException.php" name="src/Exceptions/ConsoleException.php" />
-      <install as="phpUnderControl/Exceptions/ErrorException.php" name="src/Exceptions/ErrorException.php" />
-      <install as="phpUnderControl/Exceptions/ExecuteException.php" name="src/Exceptions/ExecuteException.php" />
-      <install as="phpUnderControl/Exceptions/ValidateException.php" name="src/Exceptions/ValidateException.php" />
-      
-      <install as="phpUnderControl/Graph/Input/AbstractInput.php" name="src/Graph/Input/AbstractInput.php" />
-      <install as="phpUnderControl/Graph/Input/BuildBreakdownInput.php" name="src/Graph/Input/BuildBreakdownInput.php" />
-      <install as="phpUnderControl/Graph/Input/BuildBreakdownTimelineInput.php" name="src/Graph/Input/BuildBreakdownTimelineInput.php" />
-      <install as="phpUnderControl/Graph/Input/CodeViolationInput.php" name="src/Graph/Input/CodeViolationInput.php" />
-      <install as="phpUnderControl/Graph/Input/InputI.php" name="src/Graph/Input/InputI.php" />
-      <install as="phpUnderControl/Graph/Input/InputIterator.php" name="src/Graph/Input/InputIterator.php" />
-      <install as="phpUnderControl/Graph/Input/InputLoader.php" name="src/Graph/Input/InputLoader.php" />
-      <install as="phpUnderControl/Graph/Input/InputRule.php" name="src/Graph/Input/InputRule.php" />
-      <install as="phpUnderControl/Graph/Input/TestCodeRatioInput.php" name="src/Graph/Input/TestCodeRatioInput.php" />
-      <install as="phpUnderControl/Graph/Input/UnitCoverageInput.php" name="src/Graph/Input/UnitCoverageInput.php" />
-      <install as="phpUnderControl/Graph/Input/UnitTestExecutionTimeInput.php" name="src/Graph/Input/UnitTestExecutionTimeInput.php" />
-      <install as="phpUnderControl/Graph/Input/UnitTestInput.php" name="src/Graph/Input/UnitTestInput.php" />
-      
-      <install as="phpUnderControl/Graph/ChartFactory.php" name="src/Graph/ChartFactory.php" />
-      <install as="phpUnderControl/Graph/ChartI.php" name="src/Graph/ChartI.php" />
-      <install as="phpUnderControl/Graph/DotChart.php" name="src/Graph/DotChart.php" />
-      <install as="phpUnderControl/Graph/DotChartOptions.php" name="src/Graph/DotChartOptions.php" />
-      <install as="phpUnderControl/Graph/GraphPalette.php" name="src/Graph/GraphPalette.php" />
-      <install as="phpUnderControl/Graph/LineChart.php" name="src/Graph/LineChart.php" />
-      <install as="phpUnderControl/Graph/PieChart.php" name="src/Graph/PieChart.php" />
-      <install as="phpUnderControl/Graph/TimeChart.php" name="src/Graph/TimeChart.php" />
-      
-      <install as="phpUnderControl/Tasks/AbstractPearTask.php" name="src/Tasks/AbstractPearTask.php" />
-      <install as="phpUnderControl/Tasks/AbstractTask.php" name="src/Tasks/AbstractTask.php" />
-      <install as="phpUnderControl/Tasks/CheckoutTask.php" name="src/Tasks/CheckoutTask.php" />
-      <install as="phpUnderControl/Tasks/CreateFileTask.php" name="src/Tasks/CreateFileTask.php" />
-      <install as="phpUnderControl/Tasks/CruiseControlTask.php" name="src/Tasks/CruiseControlTask.php" />
-      <install as="phpUnderControl/Tasks/ExampleTask.php" name="src/Tasks/ExampleTask.php" />
-      <install as="phpUnderControl/Tasks/GenerateGraphTask.php" name="src/Tasks/GenerateGraphTask.php" />
-      <install as="phpUnderControl/Tasks/GraphTask.php" name="src/Tasks/GraphTask.php" />
-      <install as="phpUnderControl/Tasks/ModifyFileTask.php" name="src/Tasks/ModifyFileTask.php" />
-      <install as="phpUnderControl/Tasks/PhpCodeSnifferTask.php" name="src/Tasks/PhpCodeSnifferTask.php" />
-      <install as="phpUnderControl/Tasks/PhpDocumentorTask.php" name="src/Tasks/PhpDocumentorTask.php" />
-      <install as="phpUnderControl/Tasks/PhpUnitTask.php" name="src/Tasks/PhpUnitTask.php" />
-      <install as="phpUnderControl/Tasks/ProjectCleanTask.php" name="src/Tasks/ProjectCleanTask.php" />
-      <install as="phpUnderControl/Tasks/ProjectDeleteTask.php" name="src/Tasks/ProjectDeleteTask.php" />
-      <install as="phpUnderControl/Tasks/ProjectTask.php" name="src/Tasks/ProjectTask.php" />
-      <install as="phpUnderControl/Tasks/TaskI.php" name="src/Tasks/TaskI.php" />
-      
-      <install as="phpUnderControl/Util/Autoloader.php" name="src/Util/Autoloader.php" />
-      <install as="phpUnderControl/Util/FileCopyUtil.php" name="src/Util/FileCopyUtil.php" />
-      <install as="phpUnderControl/Util/FileUtil.php" name="src/Util/FileUtil.php" />
-      <install as="phpUnderControl/Util/PhpFileFilterIterator.php" name="src/Util/PhpFileFilterIterator.php" />
-      
-      <install as="phpUnderControl/VersionControl/AbstractCheckout.php" name="src/VersionControl/AbstractCheckout.php" />
-      <install as="phpUnderControl/VersionControl/CheckoutI.php" name="src/VersionControl/CheckoutI.php" />
-      <install as="phpUnderControl/VersionControl/CvsCheckout.php" name="src/VersionControl/CvsCheckout.php" />
-      <install as="phpUnderControl/VersionControl/SubversionCheckout.php" name="src/VersionControl/SubversionCheckout.php" />
-      
-      <install as="phpuc" name="bin/phpuc.php" />
-      <install as="phpuc.bat" name="bin/phpuc.bat" />
     </filelist>
   </phprelease>
-
   <phprelease>
     <filelist>
+      <install as="phpuc" name="bin/phpuc.php"/>
+      <ignore name="bin/phpuc.bat"/>
+      <install as="phpUnderControl/VersionControl/CheckoutI.php" name="src/VersionControl/CheckoutI.php"/>
+      <install as="phpUnderControl/VersionControl/CvsCheckout.php" name="src/VersionControl/CvsCheckout.php"/>
+      <install as="phpUnderControl/VersionControl/AbstractCheckout.php" name="src/VersionControl/AbstractCheckout.php"/>
+      <install as="phpUnderControl/VersionControl/SubversionCheckout.php" name="src/VersionControl/SubversionCheckout.php"/>
+      <install as="phpUnderControl/Data/LogFileIterator.php" name="src/Data/LogFileIterator.php"/>
+      <install as="phpUnderControl/Data/BuildTarget.php" name="src/Data/BuildTarget.php"/>
+      <install as="phpUnderControl/Data/ConfigBuildTrigger.php" name="src/Data/ConfigBuildTrigger.php"/>
+      <install as="phpUnderControl/Data/BuildFile.php" name="src/Data/BuildFile.php"/>
+      <install as="phpUnderControl/Data/ConfigArtifactsPublisher.php" name="src/Data/ConfigArtifactsPublisher.php"/>
+      <install as="phpUnderControl/Data/Logs/AbstractLogAggregator.php" name="src/Data/Logs/AbstractLogAggregator.php"/>
+      <install as="phpUnderControl/Data/Logs/PHPUnitTestLogAggregator.php" name="src/Data/Logs/PHPUnitTestLogAggregator.php"/>
+      <install as="phpUnderControl/Data/Logs/PHPUnitCoverageXmlGenerator.php" name="src/Data/Logs/PHPUnitCoverageXmlGenerator.php"/>
+      <install as="phpUnderControl/Data/Logs/PHPUnitLogDatabaseAggregator.php" name="src/Data/Logs/PHPUnitLogDatabaseAggregator.php"/>
+      <install as="phpUnderControl/Data/Logs/PHPUnitMetricsAggregator.php" name="src/Data/Logs/PHPUnitMetricsAggregator.php"/>
+      <install as="phpUnderControl/Data/ConfigProject.php" name="src/Data/ConfigProject.php"/>
+      <install as="phpUnderControl/Data/ConfigFile.php" name="src/Data/ConfigFile.php"/>
+      <install as="phpUnderControl/Data/ConfigExecutePublisher.php" name="src/Data/ConfigExecutePublisher.php"/>
+      <install as="phpUnderControl/Data/ConfigBootStrapper.php" name="src/Data/ConfigBootStrapper.php"/>
+      <install as="phpUnderControl/Data/LogFile.php" name="src/Data/LogFile.php"/>
+      <install as="phpUnderControl/Data/ConfigPublisherI.php" name="src/Data/ConfigPublisherI.php"/>
+      <install as="phpUnderControl/Graph/Input/CodeViolationInput.php" name="src/Graph/Input/CodeViolationInput.php"/>
+      <install as="phpUnderControl/Graph/Input/InputRule.php" name="src/Graph/Input/InputRule.php"/>
+      <install as="phpUnderControl/Graph/Input/TestCodeRatioInput.php" name="src/Graph/Input/TestCodeRatioInput.php"/>
+      <install as="phpUnderControl/Graph/Input/InputIterator.php" name="src/Graph/Input/InputIterator.php"/>
+      <install as="phpUnderControl/Graph/Input/BuildBreakdownTimelineInput.php" name="src/Graph/Input/BuildBreakdownTimelineInput.php"/>
+      <install as="phpUnderControl/Graph/Input/InputI.php" name="src/Graph/Input/InputI.php"/>
+      <install as="phpUnderControl/Graph/Input/AbstractInput.php" name="src/Graph/Input/AbstractInput.php"/>
+      <install as="phpUnderControl/Graph/Input/InputLoader.php" name="src/Graph/Input/InputLoader.php"/>
+      <install as="phpUnderControl/Graph/Input/UnitCoverageInput.php" name="src/Graph/Input/UnitCoverageInput.php"/>
+      <install as="phpUnderControl/Graph/Input/UnitTestInput.php" name="src/Graph/Input/UnitTestInput.php"/>
+      <install as="phpUnderControl/Graph/Input/UnitTestExecutionTimeInput.php" name="src/Graph/Input/UnitTestExecutionTimeInput.php"/>
+      <install as="phpUnderControl/Graph/Input/BuildBreakdownInput.php" name="src/Graph/Input/BuildBreakdownInput.php"/>
+      <install as="phpUnderControl/Graph/PieChart.php" name="src/Graph/PieChart.php"/>
+      <install as="phpUnderControl/Graph/LineChart.php" name="src/Graph/LineChart.php"/>
+      <install as="phpUnderControl/Graph/ChartI.php" name="src/Graph/ChartI.php"/>
+      <install as="phpUnderControl/Graph/DotChartOptions.php" name="src/Graph/DotChartOptions.php"/>
+      <install as="phpUnderControl/Graph/ChartFactory.php" name="src/Graph/ChartFactory.php"/>
+      <install as="phpUnderControl/Graph/GraphPalette.php" name="src/Graph/GraphPalette.php"/>
+      <install as="phpUnderControl/Graph/TimeChart.php" name="src/Graph/TimeChart.php"/>
+      <install as="phpUnderControl/Graph/DotChart.php" name="src/Graph/DotChart.php"/>
+      <install as="phpUnderControl/Util/FileCopyUtil.php" name="src/Util/FileCopyUtil.php"/>
+      <install as="phpUnderControl/Util/FileUtil.php" name="src/Util/FileUtil.php"/>
+      <install as="phpUnderControl/Util/PhpFileFilterIterator.php" name="src/Util/PhpFileFilterIterator.php"/>
+      <install as="phpUnderControl/Util/Autoloader.php" name="src/Util/Autoloader.php"/>
+      <install as="phpUnderControl/Tasks/ProjectTask.php" name="src/Tasks/ProjectTask.php"/>
+      <install as="phpUnderControl/Tasks/CruiseControlTask.php" name="src/Tasks/CruiseControlTask.php"/>
+      <install as="phpUnderControl/Tasks/GenerateGraphTask.php" name="src/Tasks/GenerateGraphTask.php"/>
+      <install as="phpUnderControl/Tasks/ProjectDeleteTask.php" name="src/Tasks/ProjectDeleteTask.php"/>
+      <install as="phpUnderControl/Tasks/TaskI.php" name="src/Tasks/TaskI.php"/>
+      <install as="phpUnderControl/Tasks/AbstractPearTask.php" name="src/Tasks/AbstractPearTask.php"/>
+      <install as="phpUnderControl/Tasks/ExampleTask.php" name="src/Tasks/ExampleTask.php"/>
+      <install as="phpUnderControl/Tasks/CreateFileTask.php" name="src/Tasks/CreateFileTask.php"/>
+      <install as="phpUnderControl/Tasks/ProjectCleanTask.php" name="src/Tasks/ProjectCleanTask.php"/>
+      <install as="phpUnderControl/Tasks/GraphTask.php" name="src/Tasks/GraphTask.php"/>
+      <install as="phpUnderControl/Tasks/MergePhpunitTask.php" name="src/Tasks/MergePhpunitTask.php"/>
+      <install as="phpUnderControl/Tasks/AbstractTask.php" name="src/Tasks/AbstractTask.php"/>
+      <install as="phpUnderControl/Tasks/PhpUnitTask.php" name="src/Tasks/PhpUnitTask.php"/>
+      <install as="phpUnderControl/Tasks/CheckoutTask.php" name="src/Tasks/CheckoutTask.php"/>
+      <install as="phpUnderControl/Tasks/PhpCodeSnifferTask.php" name="src/Tasks/PhpCodeSnifferTask.php"/>
+      <install as="phpUnderControl/Tasks/ModifyFileTask.php" name="src/Tasks/ModifyFileTask.php"/>
+      <install as="phpUnderControl/Tasks/PhpDocumentorTask.php" name="src/Tasks/PhpDocumentorTask.php"/>
+      <install as="phpUnderControl/Exceptions/ErrorException.php" name="src/Exceptions/ErrorException.php"/>
+      <install as="phpUnderControl/Exceptions/ConsoleException.php" name="src/Exceptions/ConsoleException.php"/>
+      <install as="phpUnderControl/Exceptions/ExecuteException.php" name="src/Exceptions/ExecuteException.php"/>
+      <install as="phpUnderControl/Exceptions/ValidateException.php" name="src/Exceptions/ValidateException.php"/>
+      <install as="phpUnderControl/Console/ConsoleInputDefinition.php" name="src/Console/ConsoleInputDefinition.php"/>
+      <install as="phpUnderControl/Console/ConsoleExtensionI.php" name="src/Console/ConsoleExtensionI.php"/>
+      <install as="phpUnderControl/Console/ConsoleOutput.php" name="src/Console/ConsoleOutput.php"/>
+      <install as="phpUnderControl/Console/ConsoleArgs.php" name="src/Console/ConsoleArgs.php"/>
+      <install as="phpUnderControl/Console/ConsoleCommandI.php" name="src/Console/ConsoleCommandI.php"/>
+      <install as="phpUnderControl/Console/ConsoleInput.php" name="src/Console/ConsoleInput.php"/>
+      <install as="phpUnderControl/Commands/InstallCommand.php" name="src/Commands/InstallCommand.php"/>
+      <install as="phpUnderControl/Commands/ExampleCommand.php" name="src/Commands/ExampleCommand.php"/>
+      <install as="phpUnderControl/Commands/CleanCommand.php" name="src/Commands/CleanCommand.php"/>
+      <install as="phpUnderControl/Commands/CommandI.php" name="src/Commands/CommandI.php"/>
+      <install as="phpUnderControl/Commands/MergePhpunitCommand.php" name="src/Commands/MergePhpunitCommand.php"/>
+      <install as="phpUnderControl/Commands/DeleteCommand.php" name="src/Commands/DeleteCommand.php"/>
+      <install as="phpUnderControl/Commands/GraphCommand.php" name="src/Commands/GraphCommand.php"/>
+      <install as="phpUnderControl/Commands/AbstractCommand.php" name="src/Commands/AbstractCommand.php"/>
+      <install as="phpUnderControl/Commands/ProjectCommand.php" name="src/Commands/ProjectCommand.php"/>
       <install as="phpUnderControl/PhpUnderControl.php" name="src/PhpUnderControl.php"/>
-      
-      <install as="phpUnderControl/Commands/AbstractCommand.php" name="src/Commands/AbstractCommand.php" />
-      <install as="phpUnderControl/Commands/CleanCommand.php" name="src/Commands/CleanCommand.php" />
-      <install as="phpUnderControl/Commands/CommandI.php" name="src/Commands/CommandI.php" />
-      <install as="phpUnderControl/Commands/DeleteCommand.php" name="src/Commands/DeleteCommand.php" />
-      <install as="phpUnderControl/Commands/ExampleCommand.php" name="src/Commands/ExampleCommand.php" />
-      <install as="phpUnderControl/Commands/GraphCommand.php" name="src/Commands/GraphCommand.php" />
-      <install as="phpUnderControl/Commands/InstallCommand.php" name="src/Commands/InstallCommand.php" />
-      <install as="phpUnderControl/Commands/ProjectCommand.php" name="src/Commands/ProjectCommand.php" />
-      
-      <install as="phpUnderControl/Console/ConsoleArgs.php" name="src/Console/ConsoleArgs.php" />
-      <install as="phpUnderControl/Console/ConsoleCommandI.php" name="src/Console/ConsoleCommandI.php" />
-      <install as="phpUnderControl/Console/ConsoleExtensionI.php" name="src/Console/ConsoleExtensionI.php" />
-      <install as="phpUnderControl/Console/ConsoleInput.php" name="src/Console/ConsoleInput.php" />
-      <install as="phpUnderControl/Console/ConsoleInputDefinition.php" name="src/Console/ConsoleInputDefinition.php" />
-      <install as="phpUnderControl/Console/ConsoleOutput.php" name="src/Console/ConsoleOutput.php" />
-      
-      <install as="phpUnderControl/Data/BuildFile.php" name="src/Data/BuildFile.php" />
-      <install as="phpUnderControl/Data/BuildTarget.php" name="src/Data/BuildTarget.php" />
-      <install as="phpUnderControl/Data/ConfigArtifactsPublisher.php" name="src/Data/ConfigArtifactsPublisher.php" />
-      <install as="phpUnderControl/Data/ConfigBootStrapper.php" name="src/Data/ConfigBootStrapper.php" />
-      <install as="phpUnderControl/Data/ConfigBuildTrigger.php" name="src/Data/ConfigBuildTrigger.php" />
-      <install as="phpUnderControl/Data/ConfigExecutePublisher.php" name="src/Data/ConfigExecutePublisher.php" />
-      <install as="phpUnderControl/Data/ConfigFile.php" name="src/Data/ConfigFile.php" />
-      <install as="phpUnderControl/Data/ConfigProject.php" name="src/Data/ConfigProject.php" />
-      <install as="phpUnderControl/Data/ConfigPublisherI.php" name="src/Data/ConfigPublisherI.php" />
-      <install as="phpUnderControl/Data/LogFile.php" name="src/Data/LogFile.php" />
-      <install as="phpUnderControl/Data/LogFileIterator.php" name="src/Data/LogFileIterator.php" />
-      
-      <install as="phpUnderControl/Exceptions/ConsoleException.php" name="src/Exceptions/ConsoleException.php" />
-      <install as="phpUnderControl/Exceptions/ErrorException.php" name="src/Exceptions/ErrorException.php" />
-      <install as="phpUnderControl/Exceptions/ExecuteException.php" name="src/Exceptions/ExecuteException.php" />
-      <install as="phpUnderControl/Exceptions/ValidateException.php" name="src/Exceptions/ValidateException.php" />
-      
-      <install as="phpUnderControl/Graph/Input/AbstractInput.php" name="src/Graph/Input/AbstractInput.php" />
-      <install as="phpUnderControl/Graph/Input/BuildBreakdownInput.php" name="src/Graph/Input/BuildBreakdownInput.php" />
-      <install as="phpUnderControl/Graph/Input/BuildBreakdownTimelineInput.php" name="src/Graph/Input/BuildBreakdownTimelineInput.php" />
-      <install as="phpUnderControl/Graph/Input/CodeViolationInput.php" name="src/Graph/Input/CodeViolationInput.php" />
-      <install as="phpUnderControl/Graph/Input/InputI.php" name="src/Graph/Input/InputI.php" />
-      <install as="phpUnderControl/Graph/Input/InputIterator.php" name="src/Graph/Input/InputIterator.php" />
-      <install as="phpUnderControl/Graph/Input/InputLoader.php" name="src/Graph/Input/InputLoader.php" />
-      <install as="phpUnderControl/Graph/Input/InputRule.php" name="src/Graph/Input/InputRule.php" />
-      <install as="phpUnderControl/Graph/Input/TestCodeRatioInput.php" name="src/Graph/Input/TestCodeRatioInput.php" />
-      <install as="phpUnderControl/Graph/Input/UnitCoverageInput.php" name="src/Graph/Input/UnitCoverageInput.php" />
-      <install as="phpUnderControl/Graph/Input/UnitTestExecutionTimeInput.php" name="src/Graph/Input/UnitTestExecutionTimeInput.php" />
-      <install as="phpUnderControl/Graph/Input/UnitTestInput.php" name="src/Graph/Input/UnitTestInput.php" />
-      
-      <install as="phpUnderControl/Graph/ChartFactory.php" name="src/Graph/ChartFactory.php" />
-      <install as="phpUnderControl/Graph/ChartI.php" name="src/Graph/ChartI.php" />
-      <install as="phpUnderControl/Graph/DotChart.php" name="src/Graph/DotChart.php" />
-      <install as="phpUnderControl/Graph/DotChartOptions.php" name="src/Graph/DotChartOptions.php" />
-      <install as="phpUnderControl/Graph/GraphPalette.php" name="src/Graph/GraphPalette.php" />
-      <install as="phpUnderControl/Graph/LineChart.php" name="src/Graph/LineChart.php" />
-      <install as="phpUnderControl/Graph/PieChart.php" name="src/Graph/PieChart.php" />
-      <install as="phpUnderControl/Graph/TimeChart.php" name="src/Graph/TimeChart.php" />
-      
-      <install as="phpUnderControl/Tasks/AbstractPearTask.php" name="src/Tasks/AbstractPearTask.php" />
-      <install as="phpUnderControl/Tasks/AbstractTask.php" name="src/Tasks/AbstractTask.php" />
-      <install as="phpUnderControl/Tasks/CheckoutTask.php" name="src/Tasks/CheckoutTask.php" />
-      <install as="phpUnderControl/Tasks/CreateFileTask.php" name="src/Tasks/CreateFileTask.php" />
-      <install as="phpUnderControl/Tasks/CruiseControlTask.php" name="src/Tasks/CruiseControlTask.php" />
-      <install as="phpUnderControl/Tasks/ExampleTask.php" name="src/Tasks/ExampleTask.php" />
-      <install as="phpUnderControl/Tasks/GenerateGraphTask.php" name="src/Tasks/GenerateGraphTask.php" />
-      <install as="phpUnderControl/Tasks/GraphTask.php" name="src/Tasks/GraphTask.php" />
-      <install as="phpUnderControl/Tasks/ModifyFileTask.php" name="src/Tasks/ModifyFileTask.php" />
-      <install as="phpUnderControl/Tasks/PhpCodeSnifferTask.php" name="src/Tasks/PhpCodeSnifferTask.php" />
-      <install as="phpUnderControl/Tasks/PhpDocumentorTask.php" name="src/Tasks/PhpDocumentorTask.php" />
-      <install as="phpUnderControl/Tasks/PhpUnitTask.php" name="src/Tasks/PhpUnitTask.php" />
-      <install as="phpUnderControl/Tasks/ProjectCleanTask.php" name="src/Tasks/ProjectCleanTask.php" />
-      <install as="phpUnderControl/Tasks/ProjectDeleteTask.php" name="src/Tasks/ProjectDeleteTask.php" />
-      <install as="phpUnderControl/Tasks/ProjectTask.php" name="src/Tasks/ProjectTask.php" />
-      <install as="phpUnderControl/Tasks/TaskI.php" name="src/Tasks/TaskI.php" />
-      
-      <install as="phpUnderControl/Util/Autoloader.php" name="src/Util/Autoloader.php" />
-      <install as="phpUnderControl/Util/FileCopyUtil.php" name="src/Util/FileCopyUtil.php" />
-      <install as="phpUnderControl/Util/FileUtil.php" name="src/Util/FileUtil.php" />
-      <install as="phpUnderControl/Util/PhpFileFilterIterator.php" name="src/Util/PhpFileFilterIterator.php" />
-      
-      <install as="phpUnderControl/VersionControl/AbstractCheckout.php" name="src/VersionControl/AbstractCheckout.php" />
-      <install as="phpUnderControl/VersionControl/CheckoutI.php" name="src/VersionControl/CheckoutI.php" />
-      <install as="phpUnderControl/VersionControl/CvsCheckout.php" name="src/VersionControl/CvsCheckout.php" />
-      <install as="phpUnderControl/VersionControl/SubversionCheckout.php" name="src/VersionControl/SubversionCheckout.php" />
-      
-      <install as="phpuc" name="bin/phpuc.php" />
-      <ignore name="bin/phpuc.bat" />
     </filelist>
   </phprelease>
-  
   <changelog>
     <release>
       <version>
@@ -987,7 +1700,6 @@
 - Test cases for some tasks added.
       </notes>
     </release>
-
     <release>
       <version>
         <release>0.2.2</release>
@@ -1005,7 +1717,6 @@
   file for the phpUnderControl project added.
       </notes>
     </release>
-
     <release>
       <lead>
         <name>Manuel Pichler</name>
@@ -1028,7 +1739,6 @@
 - Improved Windows Support.
       </notes>
     </release>
-
     <release>
       <lead>
         <name>Manuel Pichler</name>
@@ -1053,29 +1763,27 @@
 - Changed from static to dynamic autoloading. 
       </notes>
     </release>
-
     <release>
-    <lead>
-      <name>Manuel Pichler</name>
-      <user>mp</user>
-      <email>mapi@phpundercontrol.org</email>
-      <active>yes</active>
-    </lead>
-    <version>
-      <release>0.3.1</release>
-      <api>0.2.0</api>
-    </version>
-    <stability>
-      <release>beta</release>
-      <api>beta</api>
-    </stability>
-    <date>2008-01-19</date>
-    <license uri="http://www.opensource.org/licenses/bsd-license.php">BSD License</license>
+      <lead>
+        <name>Manuel Pichler</name>
+        <user>mp</user>
+        <email>mapi@phpundercontrol.org</email>
+        <active>yes</active>
+      </lead>
+      <version>
+        <release>0.3.1</release>
+        <api>0.2.0</api>
+      </version>
+      <stability>
+        <release>beta</release>
+        <api>beta</api>
+      </stability>
+      <date>2008-01-19</date>
+      <license uri="http://www.opensource.org/licenses/bsd-license.php">BSD License</license>
       <notes>
 - Bugfix for different artifact locations.
       </notes>
     </release>
-
     <release>
       <lead>
         <name>Manuel Pichler</name>
@@ -1098,7 +1806,6 @@
   a second optional output directory for the generated charts.
       </notes>
     </release>
-
     <release>
       <lead>
         <name>Manuel Pichler</name>
@@ -1121,7 +1828,6 @@
 - CruiseControl link added to copyright line.
       </notes>
     </release>
-
     <release>
       <lead>
         <name>Manuel Pichler</name>
@@ -1141,9 +1847,8 @@
       <license uri="http://www.opensource.org/licenses/bsd-license.php">BSD License</license>
       <notes>
 - In 0.3.3 the class phpucDotChartOptions was missing.
-      </notes>    
+      </notes>
     </release>
-    
     <release>
       <lead>
         <name>Manuel Pichler</name>
@@ -1172,7 +1877,6 @@
 - New error, success, fail, skipped icons by kore.
       </notes>
     </release>
-    
     <release>
       <lead>
         <name>Manuel Pichler</name>
@@ -1200,7 +1904,6 @@
 - New chart type for the unit test execution time added.
       </notes>
     </release>
-    
     <release>
       <lead>
         <name>Manuel Pichler</name>
@@ -1229,9 +1932,8 @@
   project with all the generated contents. 2) Project-clean to remove a defined
   number of old builds.
 - Minor UI improvements.
-      </notes>    
+      </notes>
     </release>
-    
     <release>
       <lead>
         <name>Manuel Pichler</name>
@@ -1258,7 +1960,6 @@
 - Improved PHPUnit view. 
       </notes>
     </release>
-    
     <release>
       <lead>
         <name>Manuel Pichler</name>
