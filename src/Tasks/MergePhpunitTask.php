@@ -154,7 +154,9 @@ class phpucMergePhpunitTask extends phpucAbstractTask implements phpucConsoleExt
         $output = dirname( $this->args->getOption( 'output' ) );
         if ( is_dir( $output ) === false )
         {
-            if ( mkdir( $output ) === false || is_dir( $output ) === false )
+            if ( is_file( $output ) 
+              || mkdir( $output ) === false 
+              || is_dir( $output ) === false )
             {
                 throw new phpucValidateException(
                     sprintf( 'Cannot create output directory "%s".', $output )
