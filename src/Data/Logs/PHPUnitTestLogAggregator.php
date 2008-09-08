@@ -85,6 +85,22 @@ class phpucPHPUnitTestLogAggregator extends phpucAbstractLogAggregator
     protected $mergeSuites = array();
     
     /**
+     * The number of detected test errors.
+     *
+     * @type integer
+     * @var integer $testErrorCount
+     */
+    private $testErrorCount = -1;
+    
+    /**
+     * The number of detected test failures.
+     *
+     * @type integer
+     * @var integer $testFailureCount
+     */
+    private $testFailureCount = -1;
+    
+    /**
      * Aggregates the results of all log files in the given iterator.
      *
      * @param Iterator $files List of coverage log files.
@@ -136,6 +152,46 @@ class phpucPHPUnitTestLogAggregator extends phpucAbstractLogAggregator
         {
             $this->appendBrokenBuilds( $brokenBuilds );
         }
+    }
+    
+    /**
+     * Returns <b>true</b> when the generated test suite contains test errors.
+     *
+     * @return boolean
+     */
+    public function hasErrors()
+    {
+        if ( $this->testErrorCount === -1 && $this->log !== null )
+        {
+            $xpath = new DOMXPath( $this->log );
+            
+            $this->testErrorCount = 0;
+            foreach ( $xpath->query( '//testsuite[@errors > 0]/@errors' ) as $node )
+            {
+                $this->testErrorCount += (integer) $node->nodeValue;
+            }
+        }
+        return ( $this->testErrorCount > 0 );
+    }
+    
+    /**
+     * Returns <b>true</b> when the generated test suite contains test failures.
+     *
+     * @return boolean
+     */
+    public function hasFailures()
+    {
+        if ( $this->testFailureCount === -1 && $this->log !== null )
+        {
+            $xpath = new DOMXPath( $this->log );
+            
+            $this->testFailureCount = 0;
+            foreach ( $xpath->query( '//testsuite[@failures > 0]/@failures' ) as $node )
+            {
+                $this->testFailureCount += (integer) $node->nodeValue;
+            }
+        }
+        return ( $this->testFailureCount > 0 );
     }
     
     /**

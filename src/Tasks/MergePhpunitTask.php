@@ -154,7 +154,7 @@ class phpucMergePhpunitTask extends phpucAbstractTask implements phpucConsoleExt
         $output = dirname( $this->args->getOption( 'output' ) );
         if ( is_dir( $output ) === false )
         {
-            if ( is_file( $output ) 
+            if ( is_file( $output ) === true
               || mkdir( $output ) === false 
               || is_dir( $output ) === false )
             {
@@ -170,6 +170,9 @@ class phpucMergePhpunitTask extends phpucAbstractTask implements phpucConsoleExt
      * This method executes the main merge process of this task.
      * 
      * @return void
+     * @throws phpucTaskException 
+     *         If the generated test suite contains an error or a failure. This
+     *         error result is used to signal a failed build.
      */
     public function execute()
     {
@@ -177,7 +180,14 @@ class phpucMergePhpunitTask extends phpucAbstractTask implements phpucConsoleExt
         $aggregator = new phpucPHPUnitTestLogAggregator();
         
         $aggregator->aggregate( $inputFiles );
-        $aggregator->store( $this->args->getOption( 'output' ) );
+        $aggregator->store( $this->outputFile );
+        
+        if ( $aggregator->hasErrors() || $aggregator->hasFailures() )
+        {
+            throw new phpucTaskException(
+                'There are errors or failures in the generated test suite.'
+            );
+        }
     }
     
     /**
