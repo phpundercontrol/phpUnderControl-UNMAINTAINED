@@ -89,8 +89,31 @@
         <xsl:if test="position() mod 2 = 1">
           <xsl:attribute name="class">oddrow</xsl:attribute>
         </xsl:if>
-        <td class="error" width="50">
-          error
+        <td width="50">
+          <xsl:attribute name="class">
+            <xsl:choose>
+              <xsl:when test="@type = 'PHPUnit_Framework_SkippedTestError'">
+                <xsl:text>skipped</xsl:text>
+              </xsl:when>
+              <xsl:when test="@type = 'PHPUnit_Framework_IncompleteTestError'">
+                <xsl:text>unknown</xsl:text>
+              </xsl:when>
+              <xsl:otherwise>
+                <xsl:text>error</xsl:text>
+              </xsl:otherwise>
+            </xsl:choose>
+          </xsl:attribute>
+          <xsl:choose>
+            <xsl:when test="@type = 'PHPUnit_Framework_SkippedTestError'">
+              <xsl:text>skipped</xsl:text>
+            </xsl:when>
+            <xsl:when test="@type = 'PHPUnit_Framework_IncompleteTestError'">
+              <xsl:text>incomplete</xsl:text>
+            </xsl:when>
+            <xsl:otherwise>
+              <xsl:text>error</xsl:text>
+            </xsl:otherwise>
+          </xsl:choose>
         </td>
         <td width="300">
           <xsl:value-of select="..//..//@name"/>::<xsl:value-of select="../@name"/>()

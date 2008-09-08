@@ -80,16 +80,7 @@
       </thead>
       <tbody>
         <!-- display test suites -->
-        <xsl:apply-templates select="//testsuites/testsuite">
-          <xsl:sort select="count(testcase/error)" 
-                    data-type="number" 
-                    order="descending"/>
-          <xsl:sort select="count(testcase/failure)" 
-                    data-type="number" 
-                    order="descending"/>
-          <xsl:sort select="@package"/>
-          <xsl:sort select="@name"/>
-        </xsl:apply-templates>
+        <xsl:apply-templates select="//testsuites/testsuite" />
       </tbody>
     </table>
   </xsl:template>
@@ -118,26 +109,24 @@
       </th>
     </tr>
     <xsl:variable name="data.provider.prefix" select="concat(@name, '::')" />
-    <!-- Display tests -->
-    <xsl:apply-templates select="testcase"/>
-    <!-- Display @dataProvider testsuites -->
-    <xsl:apply-templates select="./testsuite[starts-with(@name, $data.provider.prefix)]" mode="data.provider">
-      <xsl:with-param name="odd.or.even" select="count(testcase) mod 2" />
-    </xsl:apply-templates>
     
-    <tr><td colspan="5"><br /></td></tr>
-    
-    <!-- Include all sub test suites -->
-    <xsl:apply-templates select="./testsuite[starts-with(@name, $data.provider.prefix) = false()]">
-      <xsl:sort select="count(testcase/error)" 
-                data-type="number" 
-                order="descending"/>
-      <xsl:sort select="count(testcase/failure)" 
-                data-type="number" 
-                order="descending"/>
-      <xsl:sort select="@package"/>
-      <xsl:sort select="@name"/>
-    </xsl:apply-templates>
+    <xsl:for-each select="testcase|testsuite">
+      <xsl:choose>
+        <xsl:when test="name() = 'testcase'">
+          <xsl:apply-templates select="." />
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:choose>
+            <xsl:when test="starts-with(@name, $data.provider.prefix)">
+              <xsl:apply-templates select="." mode="data.provider" />
+            </xsl:when>
+            <xsl:otherwise>
+              <xsl:apply-templates select="." />
+            </xsl:otherwise>
+          </xsl:choose>
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:for-each>
   </xsl:template>
   
   <!--
@@ -147,7 +136,6 @@
   <xsl:template match="testcase">
     <xsl:param name="sub.test" select="false" />
     <xsl:param name="line.indent" select="0" />
-    <xsl:param name="odd.or.even" select="0" />
     
     <xsl:variable name="node.id" select="concat('node-', generate-id(.))" />
     
@@ -155,22 +143,16 @@
       <xsl:attribute name="class">
         <xsl:choose>
           <xsl:when test="error">
-            <xsl:text>error</xsl:text>
-            <xsl:if test="position() mod 2 != $odd.or.even">
-              <xsl:text> oddrow</xsl:text>
-            </xsl:if>
+            <xsl:text>error </xsl:text>
+            <xsl:call-template name="is.odd.or.even" />
           </xsl:when>
           <xsl:when test="failure">
-            <xsl:text>failure</xsl:text>
-            <xsl:if test="position() mod 2 != $odd.or.even">
-              <xsl:text> oddrow</xsl:text>
-            </xsl:if>
+            <xsl:text>failure </xsl:text>
+            <xsl:call-template name="is.odd.or.even" />
           </xsl:when>
           <xsl:otherwise>
-            <xsl:text>success</xsl:text>
-            <xsl:if test="position() mod 2 != $odd.or.even">
-              <xsl:text> oddrow</xsl:text>
-            </xsl:if>
+            <xsl:text>success </xsl:text>
+            <xsl:call-template name="is.odd.or.even" />
           </xsl:otherwise>
         </xsl:choose>
       </xsl:attribute>
@@ -205,6 +187,7 @@
             </xsl:otherwise>
           </xsl:choose>
         </xsl:attribute>
+        
         <xsl:if test="$sub.test">
           <xsl:text>#</xsl:text>
           <xsl:value-of select="position()" />
@@ -256,19 +239,6 @@
         </td>
       </tr>
     </xsl:if>
-<!-- 
-    <xsl:if test="failure">
-      <tr>
-        <td></td>
-        <td colspan="4">
-          <span id="{$node.id}" class="testresults-output" style="display: none;">
-                <h3>Failure:</h3>
-                <pre><xsl:apply-templates select="failure/text()" mode="newline-to-br"/></pre>
-          </span>
-        </td>
-      </tr>
-    </xsl:if>
--->
   </xsl:template>
   
   <!--
@@ -280,11 +250,9 @@
     <xsl:param name="odd.or.even" select="0" />
     
     <tr>
-      <xsl:if test="position() mod 2 != $odd.or.even">
-        <xsl:attribute name="class">
-          <xsl:text>oddrow</xsl:text>
-        </xsl:attribute>
-      </xsl:if>
+      <xsl:attribute name="class">
+        <xsl:call-template name="is.odd.or.even" />
+      </xsl:attribute>
       <td colspan="3">
         <xsl:attribute name="style">
           <xsl:text>background-position:</xsl:text>
@@ -296,6 +264,7 @@
         <xsl:attribute name="class">
           <xsl:call-template name="build.result" />
         </xsl:attribute>
+
         <xsl:value-of select="substring-after(@name, '::')" />
         <xsl:call-template name="build.identifier" />
       </td>
@@ -311,11 +280,9 @@
     <xsl:apply-templates select="testcase">
       <xsl:with-param name="sub.test" select="true()" />
       <xsl:with-param name="line.indent" select="$line.indent + 1" />
-      <xsl:with-param name="odd.or.even" select="($odd.or.even + 1) mod 2" />
     </xsl:apply-templates>
     <xsl:apply-templates select="testsuite" mode="data.provider">
       <xsl:with-param name="line.indent" select="$line.indent + 1" />
-      <xsl:with-param name="odd.or.even" select="($odd.or.even + 1) mod 2" />
     </xsl:apply-templates>
   </xsl:template>
   
@@ -343,6 +310,43 @@
         </small>
       </em>
     </xsl:if>
+  </xsl:template>
+  
+  <xsl:template name="is.odd.or.even">
+    <xsl:param name="c" select="1" />
+    <xsl:param name="n" select="." />
+    <xsl:choose>
+      <xsl:when test="name($n) = 'testcase' and $n/preceding-sibling::*">
+        <xsl:call-template name="is.odd.or.even">
+          <xsl:with-param name="c" select="$c + 1" />
+          <xsl:with-param name="n" select="$n/preceding-sibling::*[1]" />
+        </xsl:call-template>
+      </xsl:when>
+      <xsl:when test="name($n) = 'testsuite' and $n/preceding-sibling::*">
+        <!-- Get preceding node -->
+        <xsl:variable name="preceding" select="$n/preceding-sibling::*[1]" />
+        <!-- Count child nodes of preceding -->
+        <xsl:variable name="child.count" select="count($preceding//testcase) + 
+                                                 count($preceding//testsuite)" />
+
+        <xsl:call-template name="is.odd.or.even">
+          <xsl:with-param name="c" select="$c + 1 + $child.count" />
+          <xsl:with-param name="n" select="$preceding" />
+        </xsl:call-template>
+      </xsl:when>
+      <xsl:when test="(name($n) = 'testcase' or name($n) = 'testsuite') and contains($n/../@name, '::')">
+        <xsl:call-template name="is.odd.or.even">
+          <xsl:with-param name="c" select="$c + 1" />
+          <xsl:with-param name="n" select="$n/.." />
+        </xsl:call-template>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:if test="$c mod 2 = 1">
+          <xsl:text>oddrow </xsl:text>
+        </xsl:if>
+        <xsl:value-of select="generate-id(preceding-sibling::*[1])" />
+      </xsl:otherwise>
+    </xsl:choose>
   </xsl:template>
     
 </xsl:stylesheet>
