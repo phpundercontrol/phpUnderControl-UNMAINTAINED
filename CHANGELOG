@@ -1,3 +1,11 @@
+phpUnderControl 0.4.4
+---------------------
+
+- PHP 5.2.5 only bug fixed.
+- Odd/even issue for nested testsuites fixed.
+- Additional runtime exceptions for phpUnderControl cli tools added.
+- Now the merge cli tool throws an exception to signal errors to cruisecontrol.
+
 phpUnderControl 0.4.3
 ---------------------
 
