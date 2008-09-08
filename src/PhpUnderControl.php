@@ -146,22 +146,27 @@ class phpucPhpUnderControl
         }
         catch ( phpucConsoleException $e )
         {
-            echo $e->getMessage() . PHP_EOL;
+            echo $e->getMessage(), PHP_EOL;
             exit( 1 );
         }
         catch ( phpucExecuteException $e )
         {
-            echo $e->getMessage() . PHP_EOL;
+            echo $e->getMessage(), PHP_EOL;
             exit( 2 );
         }
         catch ( phpucValidateException $e )
         {
-            echo $e->getMessage() . PHP_EOL;
+            echo $e->getMessage(), PHP_EOL;
             exit( 3 );
+        }
+        catch ( phpucRuntimeException $e )
+        {
+            echo $e->getMessage(), PHP_EOL;
+            exit( 5 );
         }
         catch ( Exception $e )
         {
-            echo $e->getMessage() . PHP_EOL;
+            echo $e->getMessage(), PHP_EOL;
             exit( 4 );
         }
     }
