@@ -53,7 +53,7 @@
         <tr>
           <th colspan="2">PHPUnit PMD rule</th>
           <th>Files</th>
-          <th>Error / Warnings</th>
+          <th>Errors / Warnings</th>
         </tr>
       </thead>
       <tbody>

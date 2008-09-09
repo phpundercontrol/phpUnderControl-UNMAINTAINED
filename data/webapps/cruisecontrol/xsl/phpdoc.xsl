@@ -41,21 +41,34 @@
 
   <xsl:output method="html"/>
 
-  <xsl:variable name="tasklist" select="/cruisecontrol/build//target[@name='phpdoc']/task[@name='exec']"/>
-  <xsl:variable name="phpdoc.tasklist" select="$tasklist"/>
+  <xsl:variable name="phpdoc.tasklist" 
+                select="/cruisecontrol/build//target[@name='phpdoc']/task[@name='exec']"/>
 
   <xsl:template match="/" mode="phpdoc">
-    <xsl:variable name="phpdoc.error.messages" select="$phpdoc.tasklist/message[contains(text(), 'ERROR in') or contains(text(), 'ERROR:')]"/>
-    <xsl:variable name="phpdoc.warn.messages" select="$phpdoc.tasklist/message[contains(text(), 'WARNING in') or contains(text(), 'WARNING:')]"/>
-    <xsl:variable name="total.errorMessage.count" select="count($phpdoc.warn.messages)  + count($phpdoc.error.messages)"/>
+    <xsl:variable name="phpdoc.error.messages" 
+                  select="$phpdoc.tasklist/message[
+                            contains(text(), 'ERROR in') or 
+                            contains(text(), 'ERROR:')
+                          ]" />
+    <xsl:variable name="phpdoc.warn.messages" 
+                  select="$phpdoc.tasklist/message[
+                            contains(text(), 'WARNING in') or 
+                            contains(text(), 'WARNING:')
+                          ]" />
+    <xsl:variable name="total.errorMessage.count" 
+                  select="count($phpdoc.warn.messages) + 
+                          count($phpdoc.error.messages)" />
 
     <xsl:if test="$total.errorMessage.count > 0">
       <table class="result" align="center">
         <thead>
           <tr>
             <th>
-              phpdoc errors/warnings: (<xsl:value-of select="count($phpdoc.error.messages)"/>
-              / <xsl:value-of select="count($phpdoc.warn.messages)" />)
+              <xsl:text>phpdoc Errors / Warnings: (</xsl:text>
+              <xsl:value-of select="count($phpdoc.error.messages)"/>
+              <xsl:text> / </xsl:text>
+              <xsl:value-of select="count($phpdoc.warn.messages)" />
+              <xsl:text>)</xsl:text>
             </th>
           </tr>
         </thead>

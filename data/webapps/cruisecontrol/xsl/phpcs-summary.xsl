@@ -54,7 +54,7 @@
         <tr>
           <th colspan="2">PHP CodeSniffer violation</th>
           <th>Files</th>
-          <th>Error / Warnings</th>
+          <th>Errors / Warnings</th>
         </tr>
       </thead>
       <tbody>

@@ -90,6 +90,7 @@
     Construct TestSuite section
   -->
   <xsl:template match="testsuite">
+    <tr><td colspan="5"><br /></td></tr>
     <tr>
       <xsl:attribute name="class">
         <xsl:call-template name="build.result" />
@@ -108,6 +109,7 @@
         <xsl:value-of select="format-number(@time,'0.000')"/>
       </th>
     </tr>
+    
     <xsl:variable name="data.provider.prefix" select="concat(@name, '::')" />
     
     <xsl:for-each select="testcase|testsuite">
@@ -199,8 +201,19 @@
       <td>
         <xsl:choose>
           <xsl:when test="error">
+            <xsl:variable name="link.label">
+              <xsl:choose>
+                <xsl:when test="error/@type = 'PHPUnit_Framework_SkippedTestError' or
+                                error/@type = 'PHPUnit_Framework_IncompleteTestError'">
+                  <xsl:text>Message</xsl:text>
+                </xsl:when>
+                <xsl:otherwise>
+                  <xsl:text>Error</xsl:text>
+                </xsl:otherwise>
+              </xsl:choose>
+            </xsl:variable>
             <a href="javascript:void(0)"
-               onClick="toggleDivVisibility(document.getElementById('{$node.id}'))">Error &#187;</a>
+               onClick="toggleDivVisibility(document.getElementById('{$node.id}'))"><xsl:value-of select="$link.label" /> &#187;</a>
           </xsl:when>
           <xsl:when test="failure">
             <a href="javascript:void(0)"
@@ -344,7 +357,6 @@
         <xsl:if test="$c mod 2 = 1">
           <xsl:text>oddrow </xsl:text>
         </xsl:if>
-        <xsl:value-of select="generate-id(preceding-sibling::*[1])" />
       </xsl:otherwise>
     </xsl:choose>
   </xsl:template>
