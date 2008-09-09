@@ -292,7 +292,18 @@ class phpucMergePhpunitTaskTest extends phpucAbstractTaskTest
         $task = new phpucMergePhpunitTask();
         $task->setConsoleArgs( $args );
         $task->validate();
-        $task->execute();
+        
+        try
+        {
+            $task->execute();
+        }
+        catch (phpucTaskException $e) 
+        {
+            $this->assertEquals(
+                'There are errors or failures in the generated test suite.',
+                $e->getMessage()
+            );
+        }
         
         $this->assertFileExists( $output );
         $this->assertXmlFileEqualsXmlFile( $expected, $output );
