@@ -562,9 +562,9 @@ class HTMLPhpucConverter extends Converter
             {
                 if (!isset($start)) $start = $key;
                 $this->package_index[] = array(
-			'link'  =>  "classtrees_{$key}.html", 
-			'title' =>  $key
-		);
+            'link'  =>  "classtrees_{$key}.html", 
+            'title' =>  $key
+        );
             }
         }
         foreach($this->page_elements as $package => $o1)
@@ -655,7 +655,7 @@ class HTMLPhpucConverter extends Converter
         $template->assign("index",$elindex);
         $template->assign("letters",$mletters);
         $template->assign("title","Element Index");
-		$template->assign("package", false);
+        $template->assign("package", false);
         $template->assign("date",date("r",time()));
         phpDocumentor_out("\n");
         flush();
@@ -710,7 +710,7 @@ class HTMLPhpucConverter extends Converter
     {
 // NOTICE
 // WRITES THE DEFAULT PACKAGE INDEX PAGE
-	
+    
         $template = &$this->newSmarty();
         $this->package = $key;
         $this->subpackage = '';
@@ -1121,7 +1121,31 @@ class HTMLPhpucConverter extends Converter
      */
     function convertMethod(&$element)
     {
-        parent::convertMethod($element, array('method_dest' => $this->getId($element,false)));
+        $docblock   = $this->prepareDocBlock($element);
+        $exceptions = array();
+        foreach ($docblock['tags'] as $tag) {
+            if (!in_array($tag['keyword'], array('throws', 'exception'))) {
+                continue;
+            }
+            
+            $parts = preg_split('#\s+#', $tag['data']);
+            
+            $type = trim(array_shift($parts));
+            $data = trim(implode(' ', $parts));
+            
+            $exceptions[] = array(
+                'type'  =>  $type,
+                'data'  =>  $data
+            );
+        }
+        
+        parent::convertMethod(
+            $element, 
+            array(
+                'method_dest' => $this->getId($element,false),
+                'exceptions'  => $exceptions
+            )
+        );
     }
     
     /**
@@ -1470,16 +1494,16 @@ class HTMLPhpucConverter extends Converter
         $Result['path'] = $elt->getPath();
         
         if (isset($elt->docblock))
-					{
-						$Result['description'] = $elt->docblock->getSDesc($this);
-						
-						if ($elt->docblock->hasaccess)
-							$Result['access'] = $elt->docblock->tags['access'][0]->value;
-						else
-							$Result['access'] = 'public';
+                    {
+                        $Result['description'] = $elt->docblock->getSDesc($this);
+                        
+                        if ($elt->docblock->hasaccess)
+                            $Result['access'] = $elt->docblock->tags['access'][0]->value;
+                        else
+                            $Result['access'] = 'public';
 
-						$Result['abstract'] = isset ($elt->docblock->tags['abstract'][0]);
-					}
+                        $Result['abstract'] = isset ($elt->docblock->tags['abstract'][0]);
+                    }
         else
             $Result['description'] = '';
         
@@ -1533,7 +1557,7 @@ class HTMLPhpucConverter extends Converter
                                                                $elt->getPath(),
                                                                $elt->class.'::'.$elt->getName().'()'
                                                                          );
-													if ($elt->isConstructor) $Result['constructor'] = 1;
+                                                    if ($elt->isConstructor) $Result['constructor'] = 1;
                         $Result['listing'] = 'in file '.$elt->file.', method '.$Result['link']."$aa";
                 break;
                 case 'var':

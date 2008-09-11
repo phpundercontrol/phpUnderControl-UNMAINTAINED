@@ -19,7 +19,7 @@
     </div>
 
       {include file="docblock.tpl" sdesc=$methods[methods].sdesc desc=$methods[methods].desc}
-
+      
       {if $methods[methods].params}
         <h4>Parameters:</h4>
         <table class="detail">
@@ -38,6 +38,30 @@
                 <td>
                   {if $methods[methods].params[params].data}
                     {$methods[methods].params[params].data}
+                  {/if}
+                </td>
+              </tr>
+            {/section}
+          </tbody>
+        </table>
+      {/if}
+
+      {if $methods[methods].exceptions}
+        <h4>Exceptions:</h4>
+        <table class="detail">
+          <thead>
+            <tr>
+              <th>Type</th>
+              <th class="desc">Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            {section name=exception loop=$methods[methods].exceptions}
+              <tr>
+                <td><code>{$methods[methods].exceptions[exception].type}</code></td>
+                <td>
+                  {if $methods[methods].exceptions[exception].data}
+                    {$methods[methods].exceptions[exception].data}
                   {/if}
                 </td>
               </tr>
@@ -163,6 +187,31 @@
         </tbody>
       </table>
     {/if}
+
+    {if $methods[methods].exceptions}
+      <h4>Exceptions:</h4>
+      <table class="detail">
+        <thead>
+          <tr>
+            <th>Type</th>
+            <th class="desc">Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          {section name=exception loop=$methods[methods].exceptions}
+            <tr>
+              <td><code>{$methods[methods].exceptions[exception].type}</code></td>
+              <td>
+                {if $methods[methods].exceptions[exception].data}
+                  {$methods[methods].exceptions[exception].data}
+                {/if}
+              </td>
+            </tr>
+          {/section}
+        </tbody>
+      </table>
+    {/if}
+    
 
     {if $methods[methods].method_overrides}
       <h4>Redefinition of:</h4>
