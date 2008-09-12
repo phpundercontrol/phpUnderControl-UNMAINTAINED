@@ -1133,6 +1133,11 @@ class HTMLPhpucConverter extends Converter
             $type = trim(array_shift($parts));
             $data = trim(implode(' ', $parts));
             
+            if (is_object($link = $this->getLink($type))) {
+                if (($link = $this->getClassLink($link->name, $link->package)) !== false) {
+                    $type = $link;
+                }
+            }            
             $exceptions[] = array(
                 'type'  =>  $type,
                 'data'  =>  $data
@@ -1795,8 +1800,9 @@ class HTMLPhpucConverter extends Converter
      */
     function getClassLink($expr,$package, $file = false,$text = false, $with_a = true)
     {
-        $a = Converter::getClassLink($expr,$package,$file);
-        if (!$a) return false;
+        if (!($a = parent::getClassLink($expr, $package, $file))) {
+            return false;
+        }
         return $this->returnSee($a, $text, $with_a);
     }
 
