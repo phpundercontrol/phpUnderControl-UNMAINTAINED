@@ -73,6 +73,8 @@ class phpucMergePhpunitTask extends phpucAbstractTask implements phpucConsoleExt
      * @var string $outputFile
      */
     private $outputFile = null;
+    
+    private $validateErrors = array();
 
     /**
      * Validates the task constrains.
@@ -86,23 +88,38 @@ class phpucMergePhpunitTask extends phpucAbstractTask implements phpucConsoleExt
         
         if ( is_dir( $input ) === true )
         {
-            $files = glob( "{$input}/*.xml" );
+            $inputFiles = glob( "{$input}/*.xml" );
         }
         else
         {
-            $files = array_map( 'trim', explode( ',', $input ) );
+            $inputFiles = array_map( 'trim', explode( ',', $input ) );
         }
 
-        foreach ( $files as $file )
+        $files = $inputFiles;
+        foreach ( $files as $idx => $file )
         {
             if ( file_exists( $file ) === false )
             {
-                throw new phpucValidateException(
-                    sprintf(
-                        'The specified --input "%s" doesn\'t exist.',
-                        $file
-                    )
+                // Reset file index
+                $files[$idx] = null;
+                
+                // Store error message
+                $this->validateErrors[] = sprintf(
+                    'The specified --input "%s" doesn\'t exist.', $file
                 );
+            }
+        }
+        
+        // If no input exists, throw an exception 
+        if ( count( array_filter( $files ) ) === 0 )
+        {
+            $message = '';
+            foreach ( $inputFiles as $file )
+            {
+                $message .= sprintf(
+                    'The specified --input "%s" doesn\'t exist.', $file
+                );
+                throw new phpucValidateException( $message );
             }
         }
         
@@ -148,6 +165,17 @@ class phpucMergePhpunitTask extends phpucAbstractTask implements phpucConsoleExt
             );
             throw new phpucValidateException( $message );
         }
+        else if ( count( $this->validateErrors ) > 0 )
+        {
+            foreach ( $files as $idx => $file )
+            {
+                if ( $file === null )
+                {
+                    // Remove this build and file, the file doesn't exist
+                    unset( $builds[$idx], $files[$idx] );
+                }
+            }
+        }
         
         $this->inputFiles = array_combine( $builds, $files );
         
@@ -182,7 +210,11 @@ class phpucMergePhpunitTask extends phpucAbstractTask implements phpucConsoleExt
         $aggregator->aggregate( $inputFiles );
         $aggregator->store( $this->outputFile );
         
-        if ( $aggregator->hasErrors() || $aggregator->hasFailures() )
+        if ( count( $this->validateErrors ) > 0 )
+        {
+            throw new phpucTaskException( implode( ' ', $this->validateErrors ) );
+        }
+        else if ( $aggregator->hasErrors() || $aggregator->hasFailures() )
         {
             throw new phpucTaskException(
                 'There are errors or failures in the generated test suite.'

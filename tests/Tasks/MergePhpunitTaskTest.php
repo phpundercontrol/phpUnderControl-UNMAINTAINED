@@ -247,6 +247,43 @@ class phpucMergePhpunitTaskTest extends phpucAbstractTaskTest
         $this->doTestMergeLogFiles( $input, $expected, $builds );
     }
     
+    public function testMergeLogFilesFromDifferentDirectoriesWithBuildIdsAndOneMissingFileFail()
+    {
+        $input  = sprintf(
+            '%s/phpunit/php520/log.xml,' .
+            '%s/phpunit/php525/log.xml,' .
+            '%s/phpunit/php700/log.xml',
+            PHPUC_TEST_DATA,
+            PHPUC_TEST_DATA,
+            PHPUC_TEST_DATA
+        );
+
+        $builds = 'php-5.2.0,php-5.2.5,php-7.0.0';
+        
+        $args = $this->prepareConsoleArgs(
+            array(
+                'merge-phpunit', 
+                '--input', $input,
+                '--builds', $builds,
+                '--output', PHPUC_TEST_DIR . '/output/out.xml',
+            )
+        );
+        
+        $task = new phpucMergePhpunitTask();
+        $task->setConsoleArgs($args);
+        
+        $this->setExpectedException(
+            'phpucTaskException', 
+             sprintf(
+                'The specified --input "%s/phpunit/php700/log.xml" doesn\'t exist.', 
+                PHPUC_TEST_DATA
+             )
+        );
+        
+        $task->validate();
+        $task->execute();
+    }
+    
     public function testMergeLogFilesFromSingleDirectoryWithoutCustomBuildIds()
     {
         $input    = sprintf( '%s/phpunit/log-dir', PHPUC_TEST_DATA );
