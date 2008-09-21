@@ -14,9 +14,9 @@
     <email>mapi@phpundercontrol.org</email>
     <active>yes</active>
   </lead>
-  <date>2008-09-08</date>
+  <date>2008-09-21</date>
   <version>
-    <release>0.4.4</release>
+    <release>0.4.5</release>
     <api>0.2.0</api>
   </version>
   <stability>
@@ -25,10 +25,7 @@
   </stability>
   <license uri="http://www.opensource.org/licenses/bsd-license.php">BSD License</license>
   <notes>
-- PHP 5.2.5 only bug fixed.
-- Odd/even issue for nested testsuites fixed.
-- Additional runtime exceptions for phpUnderControl cli tools added.
-- Now the merge cli tool throws an exception to signal errors to cruisecontrol.   
+- Behaviour of merge-phpunit command changed. Now phpUnderControl doesn't fail complete for missing log files.    
   </notes>
   <contents>
     <dir name="/">
@@ -2020,6 +2017,31 @@
       <notes>
     - Broken element identifier for failure message DIVs fixed. (#477)  
       </notes>
+    </release>
+    
+    <release>
+      <lead>
+        <name>Manuel Pichler</name>
+        <user>mp</user>
+        <email>mapi@phpundercontrol.org</email>
+        <active>yes</active>
+      </lead>
+      <version>
+        <release>0.4.4</release>
+        <api>0.2.0</api>
+      </version>
+      <stability>
+        <release>beta</release>
+        <api>beta</api>
+      </stability>
+      <date>2008-09-08</date>
+      <license uri="http://www.opensource.org/licenses/bsd-license.php">BSD License</license>
+      <notes>
+- PHP 5.2.5 only bug fixed.
+- Odd/even issue for nested testsuites fixed.
+- Additional runtime exceptions for phpUnderControl cli tools added.
+- Now the merge cli tool throws an exception to signal errors to cruisecontrol.   
+      </notes>  
     </release>
   </changelog>
 </package>
