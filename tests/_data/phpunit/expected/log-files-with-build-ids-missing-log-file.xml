@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+  <testsuite name="phpucMergeCodeTest" file="/home/manu/Projects/workspace.zend-studio/phpUnderControl/trunk/docs/log-merge/MergeCodeTest.php" fullPackage="PhpUnderControl.Documentation" category="QualityAssurance" package="PhpUnderControl" subpackage="Documentation" tests="12" failures="0" errors="0" time="0.027684">
+    <testsuite name="phpucMergeCodeTest::testVersionSpecific" time="0.004148" tests="2" errors="0" failures="0">
+      <testcase name="testVersionSpecific" class="phpucMergeCodeTest" file="/home/manu/Projects/workspace.zend-studio/phpUnderControl/trunk/docs/log-merge/MergeCodeTest.php" line="72" time="0.001766" build="php-5.2.0" />
+      <testcase name="testVersionSpecific" class="phpucMergeCodeTest" file="/home/manu/Projects/workspace.zend-studio/phpUnderControl/trunk/docs/log-merge/MergeCodeTest.php" line="72" time="0.002382" build="php-5.2.6" />
+    </testsuite>
+    <testsuite name="phpucMergeCodeTest::testNotVersionSpecific" time="0.005962" tests="2" errors="0" failures="0">
+      <testcase name="testNotVersionSpecific" class="phpucMergeCodeTest" file="/home/manu/Projects/workspace.zend-studio/phpUnderControl/trunk/docs/log-merge/MergeCodeTest.php" line="78" time="0.001754" build="php-5.2.0" />
+      <testcase name="testNotVersionSpecific" class="phpucMergeCodeTest" file="/home/manu/Projects/workspace.zend-studio/phpUnderControl/trunk/docs/log-merge/MergeCodeTest.php" line="78" time="0.004208" build="php-5.2.6" />
+    </testsuite>
+    <testsuite name="phpucMergeCodeTest::testCalculate" tests="8" failures="0" errors="0" time="0.017574">
+      <testsuite name="phpucMergeCodeTest::testCalculate" tests="4" failures="0" errors="0" time="0.007542" build="php-5.2.0">
+        <testcase name="testCalculate" class="phpucMergeCodeTest" file="/home/manu/Projects/workspace.zend-studio/phpUnderControl/trunk/docs/log-merge/MergeCodeTest.php" line="103" time="0.001496" />
+        <testcase name="testCalculate" class="phpucMergeCodeTest" file="/home/manu/Projects/workspace.zend-studio/phpUnderControl/trunk/docs/log-merge/MergeCodeTest.php" line="103" time="0.001501" />
+        <testcase name="testCalculate" class="phpucMergeCodeTest" file="/home/manu/Projects/workspace.zend-studio/phpUnderControl/trunk/docs/log-merge/MergeCodeTest.php" line="103" time="0.003035" />
+        <testcase name="testCalculate" class="phpucMergeCodeTest" file="/home/manu/Projects/workspace.zend-studio/phpUnderControl/trunk/docs/log-merge/MergeCodeTest.php" line="103" time="0.001510" />
+      </testsuite>
+      <testsuite name="phpucMergeCodeTest::testCalculate" tests="4" failures="0" errors="0" time="0.010032" build="php-5.2.6">
+        <testcase name="testCalculate" class="phpucMergeCodeTest" file="/home/manu/Projects/workspace.zend-studio/phpUnderControl/trunk/docs/log-merge/MergeCodeTest.php" line="103" time="0.001987" />
+        <testcase name="testCalculate" class="phpucMergeCodeTest" file="/home/manu/Projects/workspace.zend-studio/phpUnderControl/trunk/docs/log-merge/MergeCodeTest.php" line="103" time="0.001953" />
+        <testcase name="testCalculate" class="phpucMergeCodeTest" file="/home/manu/Projects/workspace.zend-studio/phpUnderControl/trunk/docs/log-merge/MergeCodeTest.php" line="103" time="0.004110" />
+        <testcase name="testCalculate" class="phpucMergeCodeTest" file="/home/manu/Projects/workspace.zend-studio/phpUnderControl/trunk/docs/log-merge/MergeCodeTest.php" line="103" time="0.001982" />
+      </testsuite>
+    </testsuite>
+  </testsuite>
+</testsuites>

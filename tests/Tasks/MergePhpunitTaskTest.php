@@ -270,7 +270,7 @@ class phpucMergePhpunitTaskTest extends phpucAbstractTaskTest
         );
         
         $task = new phpucMergePhpunitTask();
-        $task->setConsoleArgs($args);
+        $task->setConsoleArgs( $args );
         
         $this->setExpectedException(
             'phpucTaskException', 
@@ -284,9 +284,60 @@ class phpucMergePhpunitTaskTest extends phpucAbstractTaskTest
         $task->execute();
     }
     
+    
+    public function testMergeLogFilesWithMissingLogFileCreatesFileThrowRuntimeException()
+    {
+        $input  = sprintf(
+            '%s/phpunit/log-dir-passed-tests/php-5.2.0.xml,' .
+            '%s/phpunit/log-dir-passed-tests/php-5.2.5.xml,' .
+            '%s/phpunit/log-dir-passed-tests/php-5.2.6.xml',
+            PHPUC_TEST_DATA,
+            PHPUC_TEST_DATA,
+            PHPUC_TEST_DATA
+        );
+        
+        $output = sprintf( '%s/output/out.xml', PHPUC_TEST_DIR );
+        $builds = 'php-5.2.0,php-5.2.5,php-5.2.6';
+        
+        $args = $this->prepareConsoleArgs(
+            array(
+                'merge-phpunit', 
+                '--input', $input,
+                '--builds', $builds,
+                '--output', $output,
+            )
+        );
+        
+        $task = new phpucMergePhpunitTask();
+        $task->setConsoleArgs( $args );
+        $task->validate();
+        
+        try
+        {
+            $task->execute();
+            $this->fail( 'phpucTaskException expected.' );
+        } 
+        catch ( phpucTaskException $e )
+        {
+            $message = sprintf(
+                'The specified --input "%s/phpunit/log-dir-passed-tests/php-5.2.5.xml" doesn\'t exist.', 
+                PHPUC_TEST_DATA
+            );
+            $this->assertEquals( $message, $e->getMessage() );
+        }
+        
+        $this->assertFileExists( $output );
+        
+        $file = sprintf(
+            '%s/phpunit/expected/log-files-with-build-ids-missing-log-file.xml', 
+            PHPUC_TEST_DATA
+        );
+        $this->assertXmlFileEqualsXmlFile( $file, $output );
+    }
+    
     public function testMergeLogFilesFromSingleDirectoryWithoutCustomBuildIds()
     {
-        $input    = sprintf( '%s/phpunit/log-dir', PHPUC_TEST_DATA );
+        $input    = sprintf( '%s/phpunit/log-dir-failed-tests', PHPUC_TEST_DATA );
         $expected = sprintf( 
             '%s/phpunit/expected/log-dir-without-build-ids.xml', 
             PHPUC_TEST_DATA 
@@ -297,7 +348,7 @@ class phpucMergePhpunitTaskTest extends phpucAbstractTaskTest
     
     public function testMergeLogFilesFromSingleDirectoryWithCustomBuildIds()
     {
-        $input    = sprintf( '%s/phpunit/log-dir', PHPUC_TEST_DATA );
+        $input    = sprintf( '%s/phpunit/log-dir-failed-tests', PHPUC_TEST_DATA );
         $builds   = 'php-5.2.0,php-5.2.5,php-5.2.6';
         $expected = sprintf( 
             '%s/phpunit/expected/log-dir-with-build-ids.xml', 

@@ -163,6 +163,7 @@ class phpucMergePhpunitTask extends phpucAbstractTask implements phpucConsoleExt
                 count( $builds ),
                 count( $files )
             );
+             
             throw new phpucValidateException( $message );
         }
         else if ( count( $this->validateErrors ) > 0 )
