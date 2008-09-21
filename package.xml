@@ -628,6 +628,12 @@
                 <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
                 <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
               </file>
+              <file role="test" name="log-files-with-build-ids-missing-log-file.xml">
+                <tasks:replace from="@package_version@" to="version" type="package-info"/>
+                <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+                <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+                <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+              </file>
               <file role="test" name="log-dir-with-build-ids.xml">
                 <tasks:replace from="@package_version@" to="version" type="package-info"/>
                 <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
@@ -795,7 +801,21 @@
                 <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
               </file>
             </dir>
-            <dir name="log-dir">
+            <dir name="log-dir-passed-tests">
+              <file role="test" name="php-5.2.6.xml">
+                <tasks:replace from="@package_version@" to="version" type="package-info"/>
+                <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+                <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+                <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+              </file>
+              <file role="test" name="php-5.2.0.xml">
+                <tasks:replace from="@package_version@" to="version" type="package-info"/>
+                <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+                <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+                <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+              </file>
+            </dir>
+            <dir name="log-dir-failed-tests">
               <file role="test" name="php-5.2.6.xml">
                 <tasks:replace from="@package_version@" to="version" type="package-info"/>
                 <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
@@ -2018,7 +2038,6 @@
     - Broken element identifier for failure message DIVs fixed. (#477)  
       </notes>
     </release>
-    
     <release>
       <lead>
         <name>Manuel Pichler</name>
@@ -2041,7 +2060,7 @@
 - Odd/even issue for nested testsuites fixed.
 - Additional runtime exceptions for phpUnderControl cli tools added.
 - Now the merge cli tool throws an exception to signal errors to cruisecontrol.   
-      </notes>  
+      </notes>
     </release>
   </changelog>
 </package>
