@@ -1,7 +1,7 @@
 <?php
 /**
  * This file is part of phpUnderControl.
- * 
+ *
  * PHP Version 5.2.0
  *
  * Copyright (c) 2007-2008, Manuel Pichler <mapi@phpundercontrol.org>.
@@ -35,7 +35,7 @@
  * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
- * 
+ *
  * @category  QualityAssurance
  * @package   Tasks
  * @author    Manuel Pichler <mapi@phpundercontrol.org>
@@ -55,7 +55,7 @@
  * @license   http://www.opensource.org/licenses/bsd-license.php  BSD License
  * @version   Release: @package_version@
  * @link      http://www.phpundercontrol.org/
- * 
+ *
  * @property-read boolean $metrics  Enable metrics and coverage support?
  */
 class phpucPhpUnitTask extends phpucAbstractPearTask
@@ -64,17 +64,17 @@ class phpucPhpUnitTask extends phpucAbstractPearTask
      * Minimum code sniffer version.
      */
     const PHP_UNIT_VERSION = '3.2.0';
-    
+
     /**
      * Constructs a new phpunit task.
      */
     public function __construct()
     {
         parent::__construct();
-        
+
         $this->properties['metrics']  = true;
     }
-    
+
     /**
      * Creates the coverage build directory.
      *
@@ -85,33 +85,32 @@ class phpucPhpUnitTask extends phpucAbstractPearTask
     {
         $out = phpucConsoleOutput::get();
         $out->writeLine( 'Performing PHPUnit task.' );
-        
+
         $installDir  = $this->args->getArgument( 'cc-install-dir' );
         $projectName = $this->args->getOption( 'project-name' );
         $projectPath = sprintf( '%s/projects/%s', $installDir, $projectName );
-        
+
         $out->startList();
-        
+
         $out->writeListItem(
             'Creating coverage dir: project/{1}/build/coverage', $projectName
         );
-        
+
         mkdir( $projectPath . '/build/coverage', 0755, true );
-        
+
         $out->writeListItem(
             'Modifying build file:  project/{1}/build.xml', $projectName
         );
         $logs  = ' --log-xml ${basedir}/build/logs/phpunit.xml';
         if ( $this->metrics === true )
         {
-            $logs .= ' --log-pmd ${basedir}/build/logs/phpunit.pmd.xml ';
-            $logs .= ' --log-metrics ${basedir}/build/logs/phpunit.metrics.xml';
+            $logs .= ' --log-pmd ${basedir}/build/logs/phpunit.pmd.xml';
             $logs .= ' --coverage-xml  ${basedir}/build/logs/phpunit.coverage.xml';
             $logs .= ' --coverage-html ${basedir}/build/coverage';
         }
-        
+
         $buildFile = new phpucBuildFile( $projectPath . '/build.xml' );
-        
+
         $buildTarget              = $buildFile->createBuildTarget( 'phpunit' );
         $buildTarget->executable  = $this->executable;
         $buildTarget->failonerror = true;
@@ -122,18 +121,18 @@ class phpucPhpUnitTask extends phpucAbstractPearTask
             $this->args->getOption( 'test-dir' ),
             $this->args->getOption( 'test-file' )
         );
-        
+
         $buildFile->store();
-        
+
         $out->writeListItem( 'Modifying config file: config.xml' );
-        
+
         $configFile    = new phpucConfigFile( $installDir . '/config.xml' );
         $configProject = $configFile->getProject( $projectName );
         $publisher     = $configProject->createArtifactsPublisher();
-        
+
         $publisher->dir          = 'projects/${project.name}/build/coverage';
         $publisher->subdirectory = 'coverage';
-        
+
         if ( $this->artifacts )
         {
             $publisher->dest = 'artifacts/${project.name}';
@@ -142,27 +141,27 @@ class phpucPhpUnitTask extends phpucAbstractPearTask
         {
             $publisher->dest = 'logs/${project.name}';
         }
-        
+
         $configFile->store();
-        
+
         $out->writeLine();
     }
-    
+
     /**
-     * Callback method that registers a command extension. 
+     * Callback method that registers a command extension.
      *
-     * @param phpucConsoleInputDefinition $def 
+     * @param phpucConsoleInputDefinition $def
      *        The input definition container.
      * @param phpucConsoleCommandI  $command
      *        The context cli command instance.
-     * 
+     *
      * @return void
      */
     public function registerCommandExtension( phpucConsoleInputDefinition $def,
-                                              phpucConsoleCommandI $command ) 
+                                              phpucConsoleCommandI $command )
     {
         parent::registerCommandExtension( $def, $command );
-        
+
         $def->addOption(
             $command->getCommandId(),
             'n',
@@ -198,7 +197,7 @@ class phpucPhpUnitTask extends phpucAbstractPearTask
             false
         );
     }
-    
+
     /**
      * Validates the existing code sniffer version.
      *
@@ -207,9 +206,9 @@ class phpucPhpUnitTask extends phpucAbstractPearTask
     protected function doValidate()
     {
         $cwd = $this->getWorkingDirectory();
-        
+
         $binary = basename( $this->executable );
-        
+
         if ( ( $execdir = dirname( $this->executable ) ) !== '.' )
         {
             chdir( $execdir );
@@ -222,7 +221,7 @@ class phpucPhpUnitTask extends phpucAbstractPearTask
 
         $regexp = '/PHPUnit\s+([0-9\.]+(RC[0-9])?)/';
         $retval = exec( escapeshellcmd( "{$binary} --version" ) );
-        
+
         chdir( $cwd );
 
         if ( preg_match( '/\s+([0-9\.]+(RC[0-9])?)/', $retval, $match ) === 0 )
@@ -237,7 +236,7 @@ class phpucPhpUnitTask extends phpucAbstractPearTask
         {
             $version = $match[1];
         }
-        
+
         // Check version and inform user
         if ( version_compare( $version, self::PHP_UNIT_VERSION ) < 0 )
         {
@@ -246,8 +245,8 @@ class phpucPhpUnitTask extends phpucAbstractPearTask
                 $version
             );
             phpucConsoleOutput::get()->writeLine(
-                'You may switch to PHPUnit {1} for cooler features.', 
-                self::PHP_UNIT_VERSION 
+                'You may switch to PHPUnit {1} for cooler features.',
+                self::PHP_UNIT_VERSION
             );
         }
 
@@ -263,11 +262,11 @@ class phpucPhpUnitTask extends phpucAbstractPearTask
             phpucConsoleOutput::get()->writeLine(
                 '  pear install pecl/xdebug'
             );
-            
+
             $this->properties['metrics'] = false;
         }
     }
-    
+
     /**
      * Must return the name of the used cli tool.
      *
