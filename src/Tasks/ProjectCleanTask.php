@@ -1,7 +1,7 @@
 <?php
 /**
  * This file is part of phpUnderControl.
- * 
+ *
  * PHP Version 5.2.0
  *
  * Copyright (c) 2007-2008, Manuel Pichler <mapi@manuel-pichler.de>.
@@ -35,7 +35,7 @@
  * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
- * 
+ *
  * @category  QualityAssurance
  * @package   Tasks
  * @author    Manuel Pichler <mapi@manuel-pichler.de>
@@ -68,26 +68,26 @@ class phpucProjectCleanTask extends phpucAbstractTask implements phpucConsoleExt
     {
         $timestamps = $this->collectTimestamps();
         $timestamps = $this->reduceTimestamps( $timestamps );
-        
+
         $installDir  = $this->args->getArgument( 'cc-install-dir' );
         $projectName = $this->args->getOption( 'project-name' );
-        
+
         $this->cleanProjectLogs( $timestamps );
-        $this->cleanProjectArtifacts( 
-            "{$installDir}/logs/{$projectName}", 
+        $this->cleanProjectArtifacts(
+            "{$installDir}/logs/{$projectName}",
             $timestamps
         );
-        $this->cleanProjectArtifacts( 
-            "{$installDir}/artifacts/{$projectName}", 
+        $this->cleanProjectArtifacts(
+            "{$installDir}/artifacts/{$projectName}",
             $timestamps
         );
     }
-    
+
     /**
      * Removes all project log files.
      *
      * @param array $timestamps List of all removable logs files.
-     * 
+     *
      * @return void
      */
     protected function cleanProjectLogs( array $timestamps )
@@ -97,16 +97,16 @@ class phpucProjectCleanTask extends phpucAbstractTask implements phpucConsoleExt
             unlink( $file );
         }
     }
-    
+
     /**
      * Removes all project artifact subdirectories that match one of the given
      * timestamps.
      *
      * @param string $basePath
      *        Base directory where the method starts to clean up.
-     * @param array $timestamps 
+     * @param array $timestamps
      *        List of all removable timestamps.
-     * 
+     *
      * @return void
      */
     protected function cleanProjectArtifacts( $basePath, array $timestamps )
@@ -120,7 +120,7 @@ class phpucProjectCleanTask extends phpucAbstractTask implements phpucConsoleExt
             }
         }
     }
-    
+
     /**
      * Collects all timestamps for the context project.
      *
@@ -130,35 +130,35 @@ class phpucProjectCleanTask extends phpucAbstractTask implements phpucConsoleExt
     {
         $installDir  = $this->args->getArgument( 'cc-install-dir' );
         $projectName = $this->args->getOption( 'project-name' );
-        
+
         $path = "{$installDir}/logs/{$projectName}";
         if ( !is_dir( $path ) )
         {
             return array();
         }
-        
+
         $timestamps = array();
         foreach ( glob( "{$path}/log*.xml" ) as $file )
         {
             $timestamps[$file] = substr( basename( $file ), 3, 14 );
         }
-        
+
         return $timestamps;
     }
-    
+
     /**
      * Reduces the number of timestamps in the array.
      *
      * @param array(string=>string) $timestamps All timestamps for this project.
-     * 
+     *
      * @return array(string=>string)
      */
     protected function reduceTimestamps( array $timestamps )
     {
         // Sort reverse, newest first
         arsort( $timestamps );
-        
-        if ( $this->args->hasOption('keep-days') === false )
+
+        if ( $this->args->hasOption( 'keep-days' ) === false )
         {
             $keepBuilds = (int) $this->args->getOption( 'keep-builds' );
             if ( $keepBuilds < 1 )
@@ -169,8 +169,8 @@ class phpucProjectCleanTask extends phpucAbstractTask implements phpucConsoleExt
         else
         {
             $time = (int) $this->args->getOption( 'keep-days' );
-            $time = mktime( 0, 0, 0 ) - ( $time * 86400 ); 
-            
+            $time = mktime( 0, 0, 0 ) - ( $time * 86400 );
+
             $keepBuilds = count( $timestamps );
             foreach ( $timestamps as $timestamp )
             {
@@ -179,30 +179,29 @@ class phpucProjectCleanTask extends phpucAbstractTask implements phpucConsoleExt
                     continue;
                 }
 
-                if ( mktime( 0, 0, 0, $m[2], $m[3], $m[1] ) <= $time )
+                if ( mktime( 0, 0, 0, $m[2], $m[3], $m[1] ) < $time )
                 {
                     --$keepBuilds;
                 }
-                
             }
         }
-        
+
         // Return reduced array.
         return array_slice( $timestamps, $keepBuilds );
     }
-    
+
     /**
-     * Callback method that registers a command extension. 
+     * Callback method that registers a command extension.
      *
-     * @param phpucConsoleInputDefinition $def 
+     * @param phpucConsoleInputDefinition $def
      *        The input definition container.
      * @param phpucConsoleCommandI  $command
      *        The context cli command instance.
-     * 
+     *
      * @return void
      */
     public function registerCommandExtension( phpucConsoleInputDefinition $def,
-                                              phpucConsoleCommandI $command ) 
+                                              phpucConsoleCommandI $command )
     {
         $def->addOption(
             $command->getCommandId(),

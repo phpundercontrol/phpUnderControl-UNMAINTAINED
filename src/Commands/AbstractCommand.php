@@ -1,7 +1,7 @@
 <?php
 /**
  * This file is part of phpUnderControl.
- * 
+ *
  * PHP Version 5.2.0
  *
  * Copyright (c) 2007-2008, Manuel Pichler <mapi@phpundercontrol.org>.
@@ -35,7 +35,7 @@
  * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
- * 
+ *
  * @category  QualityAssurance
  * @package   Commands
  * @author    Manuel Pichler <mapi@phpundercontrol.org>
@@ -62,27 +62,28 @@ abstract class phpucAbstractCommand implements phpucCommandI
      * Factory method for the different cli modes.
      *
      * @param string $commandId The command identifier.
-     * 
+     *
      * @return phpucAbstractCommand
      */
     public static function createCommand( $commandId )
     {
         // Create the command identifier
-        $identifier = str_replace(' ', '', ucwords(strtr($commandId, '-', ' ')));
-        
+        $identifier = ucwords( strtr( $commandId, '-', ' ' ) );
+        $identifier = str_replace( ' ', '', $identifier );
+
         // Generate class name
         $className = sprintf( 'phpuc%sCommand', $identifier );
-        
+
         if ( class_exists( $className, true ) === false )
         {
             throw new phpucErrorException(
                 sprintf( 'Unknown command "%s" used.', $commandId )
             );
         }
-        
+
         return new $className();
     }
-    
+
     /**
      * The console argument object.
      *
@@ -90,7 +91,7 @@ abstract class phpucAbstractCommand implements phpucCommandI
      * @var phpucConsoleArgs $args
      */
     protected $args = null;
-    
+
     /**
      * List of command specific tasks.
      *
@@ -98,26 +99,26 @@ abstract class phpucAbstractCommand implements phpucCommandI
      * @var array(phpucTaskI)
      */
     protected $tasks = null;
-    
+
     /**
      * Constructs a new command instance.
      */
     public final function __construct()
     {
     }
-    
+
     /**
      * Setter for the console arguments.
-     * 
+     *
      * @param phpucConsoleArgs $args The console arguments.
-     * 
+     *
      * @return void
      */
     public function setConsoleArgs( phpucConsoleArgs $args )
     {
         $this->args = $args;
     }
-    
+
     /**
      * Validates all command tasks.
      *
@@ -131,10 +132,10 @@ abstract class phpucAbstractCommand implements phpucCommandI
             $task->validate();
         }
     }
-    
+
     /**
      * Executes all command tasks.
-     * 
+     *
      * @return void
      */
     public function execute()
@@ -145,7 +146,7 @@ abstract class phpucAbstractCommand implements phpucCommandI
             $task->execute();
         }
     }
-    
+
     /**
      * Creates a set of command specific tasks.
      *
@@ -159,10 +160,10 @@ abstract class phpucAbstractCommand implements phpucCommandI
         }
         return $this->tasks;
     }
-    
+
     /**
      * Creates all command specific {@link phpucTaskI} objects.
-     * 
+     *
      * @return array(phpucTaskI)
      */
     protected abstract function doCreateTasks();

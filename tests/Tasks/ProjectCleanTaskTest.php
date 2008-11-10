@@ -1,7 +1,7 @@
 <?php
 /**
  * This file is part of phpUnderControl.
- * 
+ *
  * PHP Version 5.2.0
  *
  * Copyright (c) 2007-2008, Manuel Pichler <mapi@manuel-pichler.de>.
@@ -35,7 +35,7 @@
  * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
- * 
+ *
  * @category  QualityAssurance
  * @package   Tasks
  * @author    Manuel Pichler <mapi@manuel-pichler.de>
@@ -68,7 +68,7 @@ class phpucProjectCleanTaskTest extends phpucAbstractTaskTest
     protected function setUp()
     {
         parent::setUp();
-        
+
         $this->createTestDirectories(
             array(
                 "/cruisecontrol/logs/{$this->projectName}",
@@ -91,7 +91,7 @@ class phpucProjectCleanTaskTest extends phpucAbstractTaskTest
                 "/cruisecontrol/artifacts/{$this->projectName}/20080118220842",
             )
         );
-        
+
         $this->createTestFile(
             "/cruisecontrol/logs/{$this->projectName}/log20071211211853.xml",
             file_get_contents( PHPUC_TEST_LOGS . '/log20071211211853.xml' )
@@ -125,7 +125,7 @@ class phpucProjectCleanTaskTest extends phpucAbstractTaskTest
             file_get_contents( PHPUC_TEST_LOGS . '/log20080118220842Lbuild.57.xml' )
         );
     }
-    
+
     /**
      * Tests that {@phpucProjectCleanTask#execute()} keeps the specified number
      * of logs and artifacts.
@@ -144,90 +144,90 @@ class phpucProjectCleanTaskTest extends phpucAbstractTaskTest
                 PHPUC_TEST_DIR . '/cruisecontrol'
             )
         );
-        
+
         $task = new phpucProjectCleanTask();
         $task->setConsoleArgs( $args );
         $task->execute();
-        
+
         // Check artifacts directory
-        $this->assertFileNotExists( 
-            PHPUC_TEST_DIR . "/cruisecontrol/artifacts/{$this->projectName}/20071211211853" 
+        $this->assertFileNotExists(
+            PHPUC_TEST_DIR . "/cruisecontrol/artifacts/{$this->projectName}/20071211211853"
         );
-        $this->assertFileNotExists( 
-            PHPUC_TEST_DIR . "/cruisecontrol/artifacts/{$this->projectName}/20071211220903"  
+        $this->assertFileNotExists(
+            PHPUC_TEST_DIR . "/cruisecontrol/artifacts/{$this->projectName}/20071211220903"
         );
-        $this->assertFileNotExists( 
-            PHPUC_TEST_DIR . "/cruisecontrol/artifacts/{$this->projectName}/20071217180035"  
+        $this->assertFileNotExists(
+            PHPUC_TEST_DIR . "/cruisecontrol/artifacts/{$this->projectName}/20071217180035"
         );
-        $this->assertFileNotExists( 
-            PHPUC_TEST_DIR . "/cruisecontrol/artifacts/{$this->projectName}/20080106030401"  
+        $this->assertFileNotExists(
+            PHPUC_TEST_DIR . "/cruisecontrol/artifacts/{$this->projectName}/20080106030401"
         );
-        $this->assertFileExists( 
-            PHPUC_TEST_DIR . "/cruisecontrol/artifacts/{$this->projectName}/20080109182028"  
+        $this->assertFileExists(
+            PHPUC_TEST_DIR . "/cruisecontrol/artifacts/{$this->projectName}/20080109182028"
         );
-        $this->assertFileExists( 
-            PHPUC_TEST_DIR . "/cruisecontrol/artifacts/{$this->projectName}/20080113145726"  
+        $this->assertFileExists(
+            PHPUC_TEST_DIR . "/cruisecontrol/artifacts/{$this->projectName}/20080113145726"
         );
-        $this->assertFileExists( 
-            PHPUC_TEST_DIR . "/cruisecontrol/artifacts/{$this->projectName}/20080114115320"  
+        $this->assertFileExists(
+            PHPUC_TEST_DIR . "/cruisecontrol/artifacts/{$this->projectName}/20080114115320"
         );
-        $this->assertFileExists( 
-            PHPUC_TEST_DIR . "/cruisecontrol/artifacts/{$this->projectName}/20080118220842"  
+        $this->assertFileExists(
+            PHPUC_TEST_DIR . "/cruisecontrol/artifacts/{$this->projectName}/20080118220842"
         );
-        
+
         // Check logs directory
-        $this->assertFileNotExists( 
-            PHPUC_TEST_DIR . "/cruisecontrol/logs/{$this->projectName}/20071211211853" 
+        $this->assertFileNotExists(
+            PHPUC_TEST_DIR . "/cruisecontrol/logs/{$this->projectName}/20071211211853"
         );
-        $this->assertFileNotExists( 
-            PHPUC_TEST_DIR . "/cruisecontrol/logs/{$this->projectName}/20071211220903"  
+        $this->assertFileNotExists(
+            PHPUC_TEST_DIR . "/cruisecontrol/logs/{$this->projectName}/20071211220903"
         );
-        $this->assertFileNotExists( 
-            PHPUC_TEST_DIR . "/cruisecontrol/logs/{$this->projectName}/20071217180035"  
+        $this->assertFileNotExists(
+            PHPUC_TEST_DIR . "/cruisecontrol/logs/{$this->projectName}/20071217180035"
         );
-        $this->assertFileNotExists( 
-            PHPUC_TEST_DIR . "/cruisecontrol/logs/{$this->projectName}/20080106030401"  
+        $this->assertFileNotExists(
+            PHPUC_TEST_DIR . "/cruisecontrol/logs/{$this->projectName}/20080106030401"
         );
-        $this->assertFileExists( 
-            PHPUC_TEST_DIR . "/cruisecontrol/logs/{$this->projectName}/20080109182028"  
+        $this->assertFileExists(
+            PHPUC_TEST_DIR . "/cruisecontrol/logs/{$this->projectName}/20080109182028"
         );
-        $this->assertFileExists( 
-            PHPUC_TEST_DIR . "/cruisecontrol/logs/{$this->projectName}/20080113145726"  
+        $this->assertFileExists(
+            PHPUC_TEST_DIR . "/cruisecontrol/logs/{$this->projectName}/20080113145726"
         );
-        $this->assertFileExists( 
-            PHPUC_TEST_DIR . "/cruisecontrol/logs/{$this->projectName}/20080114115320"  
+        $this->assertFileExists(
+            PHPUC_TEST_DIR . "/cruisecontrol/logs/{$this->projectName}/20080114115320"
         );
-        $this->assertFileExists( 
-            PHPUC_TEST_DIR . "/cruisecontrol/logs/{$this->projectName}/20080118220842"  
+        $this->assertFileExists(
+            PHPUC_TEST_DIR . "/cruisecontrol/logs/{$this->projectName}/20080118220842"
         );
-        
+
         // Check log files
-        $this->assertFileNotExists( 
-            PHPUC_TEST_DIR . "/cruisecontrol/logs/{$this->projectName}/log20071211211853.xml" 
+        $this->assertFileNotExists(
+            PHPUC_TEST_DIR . "/cruisecontrol/logs/{$this->projectName}/log20071211211853.xml"
         );
-        $this->assertFileNotExists( 
-            PHPUC_TEST_DIR . "/cruisecontrol/logs/{$this->projectName}/log20071211220903Lbuild.3.xml" 
+        $this->assertFileNotExists(
+            PHPUC_TEST_DIR . "/cruisecontrol/logs/{$this->projectName}/log20071211220903Lbuild.3.xml"
         );
-        $this->assertFileNotExists( 
-            PHPUC_TEST_DIR . "/cruisecontrol/logs/{$this->projectName}/log20071217180035Lbuild.18.xml" 
+        $this->assertFileNotExists(
+            PHPUC_TEST_DIR . "/cruisecontrol/logs/{$this->projectName}/log20071217180035Lbuild.18.xml"
         );
-        $this->assertFileNotExists( 
-            PHPUC_TEST_DIR . "/cruisecontrol/logs/{$this->projectName}/log20080106030401Lbuild.24.xml" 
+        $this->assertFileNotExists(
+            PHPUC_TEST_DIR . "/cruisecontrol/logs/{$this->projectName}/log20080106030401Lbuild.24.xml"
         );
-        $this->assertFileExists( 
-            PHPUC_TEST_DIR . "/cruisecontrol/logs/{$this->projectName}/log20080109182028Lbuild.30.xml" 
+        $this->assertFileExists(
+            PHPUC_TEST_DIR . "/cruisecontrol/logs/{$this->projectName}/log20080109182028Lbuild.30.xml"
         );
-        $this->assertFileExists( 
-            PHPUC_TEST_DIR . "/cruisecontrol/logs/{$this->projectName}/log20080113145726.xml" 
+        $this->assertFileExists(
+            PHPUC_TEST_DIR . "/cruisecontrol/logs/{$this->projectName}/log20080113145726.xml"
         );
-        $this->assertFileExists( 
-            PHPUC_TEST_DIR . "/cruisecontrol/logs/{$this->projectName}/log20080114115320.xml" 
+        $this->assertFileExists(
+            PHPUC_TEST_DIR . "/cruisecontrol/logs/{$this->projectName}/log20080114115320.xml"
         );
-        $this->assertFileExists( 
-            PHPUC_TEST_DIR . "/cruisecontrol/logs/{$this->projectName}/log20080118220842Lbuild.57.xml" 
+        $this->assertFileExists(
+            PHPUC_TEST_DIR . "/cruisecontrol/logs/{$this->projectName}/log20080118220842Lbuild.57.xml"
         );
     }
-    
+
     /**
      * Tests the {@phpucProjectCleanTask#execute()} implementation with the
      * <b>--keep-days</b> option.
@@ -238,7 +238,7 @@ class phpucProjectCleanTaskTest extends phpucAbstractTaskTest
     {
         $oldestBuild = mktime( 0, 0, 0, 1, 13, 2008 );
         $currentTime = mktime( 0, 0, 0 );
-        
+
         $days = ceil( ( $currentTime - $oldestBuild ) / 86400 );
 
         $args = $this->prepareConsoleArgs(
@@ -251,87 +251,87 @@ class phpucProjectCleanTaskTest extends phpucAbstractTaskTest
                 PHPUC_TEST_DIR . '/cruisecontrol'
             )
         );
-        
+
         $task = new phpucProjectCleanTask();
         $task->setConsoleArgs( $args );
         $task->execute();
-        
+
         // Check artifacts directory
-        $this->assertFileNotExists( 
-            PHPUC_TEST_DIR . "/cruisecontrol/artifacts/{$this->projectName}/20071211211853" 
+        $this->assertFileNotExists(
+            PHPUC_TEST_DIR . "/cruisecontrol/artifacts/{$this->projectName}/20071211211853"
         );
-        $this->assertFileNotExists( 
-            PHPUC_TEST_DIR . "/cruisecontrol/artifacts/{$this->projectName}/20071211220903"  
+        $this->assertFileNotExists(
+            PHPUC_TEST_DIR . "/cruisecontrol/artifacts/{$this->projectName}/20071211220903"
         );
-        $this->assertFileNotExists( 
-            PHPUC_TEST_DIR . "/cruisecontrol/artifacts/{$this->projectName}/20071217180035"  
+        $this->assertFileNotExists(
+            PHPUC_TEST_DIR . "/cruisecontrol/artifacts/{$this->projectName}/20071217180035"
         );
-        $this->assertFileNotExists( 
-            PHPUC_TEST_DIR . "/cruisecontrol/artifacts/{$this->projectName}/20080106030401"  
+        $this->assertFileNotExists(
+            PHPUC_TEST_DIR . "/cruisecontrol/artifacts/{$this->projectName}/20080106030401"
         );
-        $this->assertFileNotExists( 
-            PHPUC_TEST_DIR . "/cruisecontrol/artifacts/{$this->projectName}/20080109182028"  
+        $this->assertFileNotExists(
+            PHPUC_TEST_DIR . "/cruisecontrol/artifacts/{$this->projectName}/20080109182028"
         );
-        $this->assertFileExists( 
-            PHPUC_TEST_DIR . "/cruisecontrol/artifacts/{$this->projectName}/20080113145726"  
+        $this->assertFileExists(
+            PHPUC_TEST_DIR . "/cruisecontrol/artifacts/{$this->projectName}/20080113145726"
         );
-        $this->assertFileExists( 
-            PHPUC_TEST_DIR . "/cruisecontrol/artifacts/{$this->projectName}/20080114115320"  
+        $this->assertFileExists(
+            PHPUC_TEST_DIR . "/cruisecontrol/artifacts/{$this->projectName}/20080114115320"
         );
-        $this->assertFileExists( 
-            PHPUC_TEST_DIR . "/cruisecontrol/artifacts/{$this->projectName}/20080118220842"  
+        $this->assertFileExists(
+            PHPUC_TEST_DIR . "/cruisecontrol/artifacts/{$this->projectName}/20080118220842"
         );
-        
+
         // Check logs directory
-        $this->assertFileNotExists( 
-            PHPUC_TEST_DIR . "/cruisecontrol/logs/{$this->projectName}/20071211211853" 
+        $this->assertFileNotExists(
+            PHPUC_TEST_DIR . "/cruisecontrol/logs/{$this->projectName}/20071211211853"
         );
-        $this->assertFileNotExists( 
-            PHPUC_TEST_DIR . "/cruisecontrol/logs/{$this->projectName}/20071211220903"  
+        $this->assertFileNotExists(
+            PHPUC_TEST_DIR . "/cruisecontrol/logs/{$this->projectName}/20071211220903"
         );
-        $this->assertFileNotExists( 
-            PHPUC_TEST_DIR . "/cruisecontrol/logs/{$this->projectName}/20071217180035"  
+        $this->assertFileNotExists(
+            PHPUC_TEST_DIR . "/cruisecontrol/logs/{$this->projectName}/20071217180035"
         );
-        $this->assertFileNotExists( 
-            PHPUC_TEST_DIR . "/cruisecontrol/logs/{$this->projectName}/20080106030401"  
+        $this->assertFileNotExists(
+            PHPUC_TEST_DIR . "/cruisecontrol/logs/{$this->projectName}/20080106030401"
         );
-        $this->assertFileNotExists( 
-            PHPUC_TEST_DIR . "/cruisecontrol/logs/{$this->projectName}/20080109182028"  
+        $this->assertFileNotExists(
+            PHPUC_TEST_DIR . "/cruisecontrol/logs/{$this->projectName}/20080109182028"
         );
-        $this->assertFileExists( 
-            PHPUC_TEST_DIR . "/cruisecontrol/logs/{$this->projectName}/20080113145726"  
+        $this->assertFileExists(
+            PHPUC_TEST_DIR . "/cruisecontrol/logs/{$this->projectName}/20080113145726"
         );
-        $this->assertFileExists( 
-            PHPUC_TEST_DIR . "/cruisecontrol/logs/{$this->projectName}/20080114115320"  
+        $this->assertFileExists(
+            PHPUC_TEST_DIR . "/cruisecontrol/logs/{$this->projectName}/20080114115320"
         );
-        $this->assertFileExists( 
-            PHPUC_TEST_DIR . "/cruisecontrol/logs/{$this->projectName}/20080118220842"  
+        $this->assertFileExists(
+            PHPUC_TEST_DIR . "/cruisecontrol/logs/{$this->projectName}/20080118220842"
         );
-        
+
         // Check log files
-        $this->assertFileNotExists( 
-            PHPUC_TEST_DIR . "/cruisecontrol/logs/{$this->projectName}/log20071211211853.xml" 
+        $this->assertFileNotExists(
+            PHPUC_TEST_DIR . "/cruisecontrol/logs/{$this->projectName}/log20071211211853.xml"
         );
-        $this->assertFileNotExists( 
-            PHPUC_TEST_DIR . "/cruisecontrol/logs/{$this->projectName}/log20071211220903Lbuild.3.xml" 
+        $this->assertFileNotExists(
+            PHPUC_TEST_DIR . "/cruisecontrol/logs/{$this->projectName}/log20071211220903Lbuild.3.xml"
         );
-        $this->assertFileNotExists( 
-            PHPUC_TEST_DIR . "/cruisecontrol/logs/{$this->projectName}/log20071217180035Lbuild.18.xml" 
+        $this->assertFileNotExists(
+            PHPUC_TEST_DIR . "/cruisecontrol/logs/{$this->projectName}/log20071217180035Lbuild.18.xml"
         );
-        $this->assertFileNotExists( 
-            PHPUC_TEST_DIR . "/cruisecontrol/logs/{$this->projectName}/log20080106030401Lbuild.24.xml" 
+        $this->assertFileNotExists(
+            PHPUC_TEST_DIR . "/cruisecontrol/logs/{$this->projectName}/log20080106030401Lbuild.24.xml"
         );
-        $this->assertFileNotExists( 
-            PHPUC_TEST_DIR . "/cruisecontrol/logs/{$this->projectName}/log20080109182028Lbuild.30.xml" 
+        $this->assertFileNotExists(
+            PHPUC_TEST_DIR . "/cruisecontrol/logs/{$this->projectName}/log20080109182028Lbuild.30.xml"
         );
-        $this->assertFileExists( 
-            PHPUC_TEST_DIR . "/cruisecontrol/logs/{$this->projectName}/log20080113145726.xml" 
+        $this->assertFileExists(
+            PHPUC_TEST_DIR . "/cruisecontrol/logs/{$this->projectName}/log20080113145726.xml"
         );
-        $this->assertFileExists( 
-            PHPUC_TEST_DIR . "/cruisecontrol/logs/{$this->projectName}/log20080114115320.xml" 
+        $this->assertFileExists(
+            PHPUC_TEST_DIR . "/cruisecontrol/logs/{$this->projectName}/log20080114115320.xml"
         );
-        $this->assertFileExists( 
-            PHPUC_TEST_DIR . "/cruisecontrol/logs/{$this->projectName}/log20080118220842Lbuild.57.xml" 
+        $this->assertFileExists(
+            PHPUC_TEST_DIR . "/cruisecontrol/logs/{$this->projectName}/log20080118220842Lbuild.57.xml"
         );
     }
 }
