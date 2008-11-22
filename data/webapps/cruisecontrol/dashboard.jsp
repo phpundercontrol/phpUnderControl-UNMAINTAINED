@@ -263,10 +263,10 @@ if (logDirPath == null) {
     </tr>
 <%
         } else {
-            Comparator<String> c = new Comparator<String>() {
-                public int compare(String o1, String o2) {
-                        File f1 = new File(o1);
-                        File f2 = new File(o2);
+            Comparator c = new Comparator() {
+                public int compare(Object o1, Object o2) {
+                        File f1 = new File((String) o1);
+                        File f2 = new File((String) o2);
                         return f1.compareTo(f2);
                 }
                 public boolean equals(Object obj) {
