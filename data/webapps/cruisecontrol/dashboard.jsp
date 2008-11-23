@@ -38,25 +38,12 @@
 <%@ taglib uri="/WEB-INF/cruisecontrol-jsp11.tld" prefix="cruisecontrol"%>
 <%@ page import="net.sourceforge.cruisecontrol.*" %>
 <%@ page import="org.phpundercontrol.dashboard.*" %>
-<%@ page import="java.io.IOException" %>
-<%@ page import="java.text.DateFormat" %>
-<%@ page import="java.io.File" %>
-<%@ page import="java.util.Arrays" %>
-<%@ page import="java.text.ParseException" %>
-<%@ page import="java.io.BufferedReader" %>
-<%@ page import="java.io.FileReader" %>
-<%@ page import="java.util.HashMap" %>
-<%@ page import="java.util.Date" %>
-<%@ page import="java.util.Comparator" %>
-<%@ page import="java.util.Map" %>
-<%@ page import="java.net.InetAddress" %>
 <%@ page import="java.net.URL" %>
 
 <cruisecontrol:jmxbase id="jmxBase" />
 
 <%
-
-URL jmxURLPrefix = new URL(jmxBase, "invoke?operation=build&objectname=CruiseControl+Project%3Aname%3D");
+URL jmxURL = new URL(jmxBase, "/invoke?operation=build&objectname=CruiseControl+Project%3Aname%3D");
 
 final String logDir     = application.getInitParameter("logDir");
 final String statusFile = application.getInitParameter("currentBuildStatusFile");
@@ -105,7 +92,7 @@ if (logDir == null) {
             <tbody>
               <tr>
                 <td class="play" rowspan="2">
-                  <a href="#" onclick="callServer('<%= jmxURLPrefix.toExternalForm() + project.getProject() %>');">
+                  <a href="#" onclick="callServer('<%= jmxURL.toExternalForm() + project.getProject() %>');">
                   </a>
                 </td>
                 <td class="left">
