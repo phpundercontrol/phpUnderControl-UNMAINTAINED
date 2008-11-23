@@ -1,7 +1,7 @@
 <?php
 /**
  * This file is part of phpUnderControl.
- * 
+ *
  * PHP Version 5
  *
  * Copyright (c) 2007-2008, Manuel Pichler <mapi@phpundercontrol.org>.
@@ -35,7 +35,7 @@
  * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
- * 
+ *
  * @category  QualityAssurance
  * @package   Commands
  * @author    Manuel Pichler <mapi@phpundercontrol.org>
@@ -66,6 +66,7 @@ class phpucInstallCommand extends phpucAbstractCommand implements phpucConsoleCo
      */
     private $installFiles = array(
         '/webapps/cruisecontrol/dashboard.jsp',
+        '/webapps/cruisecontrol/error.jsp',
         '/webapps/cruisecontrol/favicon.ico',
         '/webapps/cruisecontrol/footer.jsp',
         '/webapps/cruisecontrol/header.jsp',
@@ -111,8 +112,9 @@ class phpucInstallCommand extends phpucAbstractCommand implements phpucConsoleCo
         '/webapps/cruisecontrol/xsl/phpunit-pmd.xsl',
         '/webapps/cruisecontrol/xsl/phpunit-pmd-details.xsl',
         '/webapps/cruisecontrol/xsl/phpunit-pmd-summary.xsl',
+        '/webapps/cruisecontrol/WEB-INF/lib/php-under-control.jar',
     );
-    
+
     /**
      * List of modified files.
      *
@@ -129,7 +131,7 @@ class phpucInstallCommand extends phpucAbstractCommand implements phpucConsoleCo
         '/webapps/cruisecontrol/xsl/header.xsl',
         '/webapps/cruisecontrol/xsl/modifications.xsl',
     );
-    
+
     /**
      * Returns the cli command identifier.
      *
@@ -139,46 +141,46 @@ class phpucInstallCommand extends phpucAbstractCommand implements phpucConsoleCo
     {
         return 'install';
     }
-    
+
     /**
-     * Callback method that registers a cli command. 
+     * Callback method that registers a cli command.
      *
      * @param phpucConsoleInputDefinition $def The input definition container.
-     * 
+     *
      * @return void
      */
     public function registerCommand( phpucConsoleInputDefinition $def )
     {
-        $def->addCommand( 
-            $this->getCommandId(), 
+        $def->addCommand(
+            $this->getCommandId(),
             'Installs the CruiseControl patches.'
         );
-        $def->addArgument( 
+        $def->addArgument(
             $this->getCommandId(),
             'cc-install-dir',
             'The installation directory of CruiseControl.'
         );
     }
-    
+
     /**
      * Creates all command specific {@link phpucTaskI} objects.
-     * 
+     *
      * @return array(phpucTaskI)
      */
     protected function doCreateTasks()
     {
         $tasks = array();
-        
+
         $modifyFileTask = new phpucModifyFileTask();
         $modifyFileTask->setFiles( $this->modifiedFiles );
-        
+
         $createFileTask = new phpucCreateFileTask();
         $createFileTask->setFiles( $this->installFiles );
-        
+
         $tasks[] = new phpucCruiseControlTask();
         $tasks[] = $modifyFileTask;
         $tasks[] = $createFileTask;
-        
+
         return $tasks;
     }
 }

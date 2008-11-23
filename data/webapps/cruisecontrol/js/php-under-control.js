@@ -1,5 +1,9 @@
 Event.observe( window, "load", function() {
-    var height = document.viewport.getHeight() - 173;
+    if (Prototype.Browser.Opera) {
+        var height = document.documentElement.clientHeight - 173; 
+    } else {
+        var height = document.viewport.getHeight() - 173;
+    }
     
     $$( 'iframe.tab-content.' ).each( function(el) {
         el.setStyle( {
@@ -8,20 +12,20 @@ Event.observe( window, "load", function() {
     } );
     
     if ( $( 'dashboard' ) ) {
-	    new Ajax.PeriodicalUpdater(
-	        'dashboard', 
-	        'dashboard.jsp', {
-	            method: 'get',
-	            frequency: 5
-	        }
-	    );
-	    new Ajax.PeriodicalUpdater(
-	        'servertime', 
-	        'servertime.jsp', {
-	            method: 'get',
-	            frequency: 60
-	        }
-	    );
+        new Ajax.PeriodicalUpdater(
+            'dashboard', 
+            'dashboard.jsp', {
+                method: 'get',
+                frequency: 5
+            }
+        );
+        new Ajax.PeriodicalUpdater(
+            'servertime', 
+            'servertime.jsp', {
+                method: 'get',
+                frequency: 60
+            }
+        );
     }
 } );
 
@@ -57,4 +61,4 @@ function over(elem) {
 }
 function out(elem) {
     elem.className = '';
-    }
+}

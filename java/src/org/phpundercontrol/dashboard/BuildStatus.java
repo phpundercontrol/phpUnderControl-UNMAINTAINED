@@ -1,8 +1,5 @@
-<?php
 /**
  * This file is part of phpUnderControl.
- *
- * PHP Version 5.2.0
  *
  * Copyright (c) 2007-2008, Manuel Pichler <mapi@phpundercontrol.org>.
  * All rights reserved.
@@ -35,34 +32,61 @@
  * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
- *
- * @category  QualityAssurance
- * @package   Data
- * @author    Manuel Pichler <mapi@phpundercontrol.org>
- * @copyright 2007-2008 Manuel Pichler. All rights reserved.
- * @license   http://www.opensource.org/licenses/bsd-license.php  BSD License
- * @version   SVN: $Id$
- * @link      http://www.phpundercontrol.org/
+ * 
+ * @category QualityAssurance
+ * @author Manuel Pichler <mapi@phpundercontrol.org>
+ * @category 2007-2008 Manuel Pichler. All rights reserved. 
+ * @version SVN: $Id$
  */
 
+package org.phpundercontrol.dashboard;
+
+import net.sourceforge.cruisecontrol.ProjectState;
+
 /**
- * Base interface for a CruiseControl configuration publisher.
- *
- * @category  QualityAssurance
- * @package   Data
- * @author    Manuel Pichler <mapi@phpundercontrol.org>
- * @copyright 2007-2008 Manuel Pichler. All rights reserved.
- * @license   http://www.opensource.org/licenses/bsd-license.php  BSD License
- * @version   Release: @package_version@
- * @link      http://www.phpundercontrol.org/
+ * Data object for a single project status.
+ * 
+ * @category QualityAssurance
+ * @author Manuel Pichler <mapi@phpundercontrol.org>
+ * @category 2007-2008 Manuel Pichler. All rights reserved. 
+ * @version SVN: $Id$
  */
-interface phpucConfigPublisherI
-{
-    /**
-     * Builds/Rebuilds the publisher-tag.
-     *
-     * @return void
-     * @throws ErrorException If an error occured..
-     */
-    function buildXml();
+public class BuildStatus {
+
+	/**
+	 * The project build state.
+	 */
+	private final ProjectState state;
+
+	/**
+	 * String representation of the project build state.
+	 */
+	private final String importance;
+
+	/**
+	 * Constructs a new build status instance.
+	 *  
+	 * @param state The project build state.
+	 * @param importance String representation of the build state.
+	 */
+	public BuildStatus(ProjectState state, String importance) {
+		this.state = state;
+		this.importance = importance;
+	}
+
+	/**
+	 * Returns the importance string.
+	 * 
+	 * @return The importance string.
+	 */
+	public String getImportance() {
+		return importance;
+	}
+
+	/**
+	 * Returns the string representation of the object.
+	 */
+	public String toString() {
+		return state != null ? state.getName() : "?";
+	}
 }

@@ -53,10 +53,10 @@
     String log = new File(application.getInitParameter("logDir")).getAbsolutePath();
     String ts  = artifacts_url.substring(artifacts_url.lastIndexOf('/') + 1);
 
-    File artifacts = new File(log + "/" + project + "/" + ts);
+    File artifacts = new File(log + "/../artifacts/" + project + "/" + ts);
 
     if (!artifacts.exists()) {
-        artifacts = new File(log + "/../artifacts/" + project + "/" + ts);
+        artifacts = new File(log + "/" + project + "/" + ts);
     }
 
     apidoc   = new File(artifacts.getAbsolutePath() + "/api").exists();
@@ -70,7 +70,7 @@
     <title><%= ccname%> phpUnderControl - SVN - Build Results</title>
     <base href="<%=request.getScheme()%>://<%=request.getServerName()%>:<%=request.getServerPort()%><%=request.getContextPath()%>/" />
     <link type="text/css" rel="stylesheet" href="css/SyntaxHighlighter.css"/>
-    <link type="text/css" rel="stylesheet" href="css/php-under-control.css?v=2"/>
+    <link type="text/css" rel="stylesheet" href="css/php-under-control.css?v=3"/>
     <link rel="icon" href="favicon.ico" type="image/x-icon" />
     <link type="application/rss+xml" rel="alternate" href="<%= request.getContextPath() %>/rss/<%= project %>" title="RSS"/>
   </head>
@@ -140,6 +140,6 @@
     </div>
     <%@ include file="footer.jsp" %>
     <script type="text/javascript" src="js/prototype.js?v=1"></script>
-    <script type="text/javascript" src="js/php-under-control.js?v=1"></script>
+    <script type="text/javascript" src="js/php-under-control.js?v=3"></script>
   </body>
 </html>

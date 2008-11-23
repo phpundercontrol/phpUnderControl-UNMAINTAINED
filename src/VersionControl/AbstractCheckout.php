@@ -1,7 +1,7 @@
 <?php
 /**
  * This file is part of phpUnderControl.
- * 
+ *
  * PHP Version 5.2.0
  *
  * Copyright (c) 2007-2008, Manuel Pichler <mapi@phpundercontrol.org>.
@@ -35,7 +35,7 @@
  * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
- * 
+ *
  * @category  QualityAssurance
  * @package   VersionControl
  * @author    Manuel Pichler <mapi@phpundercontrol.org>
@@ -46,7 +46,7 @@
  */
 
 /**
- * Abstract checkout implementation. 
+ * Abstract checkout implementation.
  *
  * @category  QualityAssurance
  * @package   VersionControl
@@ -55,13 +55,13 @@
  * @license   http://www.opensource.org/licenses/bsd-license.php  BSD License
  * @version   Release: @package_version@
  * @link      http://www.phpundercontrol.org/
- * 
+ *
  * @property string $url
  *           The subversion repository url.
  * @property string $username
  *           Username for the subversion repository.
  * @property string $password
- *           Password for the subversion repository. 
+ *           Password for the subversion repository.
  */
 abstract class phpucAbstractCheckout implements phpucCheckoutI
 {
@@ -71,9 +71,9 @@ abstract class phpucAbstractCheckout implements phpucCheckoutI
      *
      * @param phpucConsoleArgs $args
      *        The given console arguments.
-     * 
+     *
      * @return phpucCheckoutI
-     * @throws phpucErrorException 
+     * @throws phpucErrorException
      *         If the defined version control system is not valid, but this
      *         should never happen.
      */
@@ -82,12 +82,12 @@ abstract class phpucAbstractCheckout implements phpucCheckoutI
         switch ( $args->getOption( 'version-control' ) )
         {
             case 'svn':
-                $checkout = new phpucSubversionCheckout(); 
+                $checkout = new phpucSubversionCheckout();
                 break;
-                
+
             case 'cvs':
                 $checkout = new phpucCvsCheckout();
-                
+
                 if ( $args->hasOption( 'module' ) === false )
                 {
                     throw new phpucErrorException(
@@ -96,16 +96,15 @@ abstract class phpucAbstractCheckout implements phpucCheckoutI
                 }
                 $checkout->module = $args->getOption( 'module' );
                 break;
-                
-                
+
             default:
                 throw new phpucErrorException(
                     "Unknown checkout type '{$args->getOption( 'version-control' )}'"
                 );
         }
-        
+
         $checkout->url = $args->getOption( 'version-control-url' );
-        
+
         if ( $args->hasOption( 'username' ) )
         {
             $checkout->username = $args->getOption( 'username' );
@@ -114,10 +113,10 @@ abstract class phpucAbstractCheckout implements phpucCheckoutI
         {
             $checkout->username = $args->getOption( 'password' );
         }
-        
+
         return $checkout;
     }
-    
+
     /**
      * Virtual properties for the setting implementation.
      *
@@ -129,12 +128,12 @@ abstract class phpucAbstractCheckout implements phpucCheckoutI
         'password'  =>  null,
         'username'  =>  null,
     );
-    
+
     /**
      * Magic property getter method.
      *
      * @param string $name The property name.
-     * 
+     *
      * @return mixed
      * @throws OutOfRangeException If the property doesn't exist or is writonly.
      */
@@ -144,17 +143,17 @@ abstract class phpucAbstractCheckout implements phpucCheckoutI
         {
             return $this->properties[$name];
         }
-        throw new OutOfRangeException( 
+        throw new OutOfRangeException(
             sprintf( 'Unknown or writonly property $%s.', $name )
         );
     }
-    
+
     /**
      * Magic property setter method.
      *
      * @param string $name  The property name.
      * @param mixed  $value The property value.
-     * 
+     *
      * @return void
      * @throws OutOfRangeException If the property doesn't exist or is readonly.
      */
@@ -167,12 +166,12 @@ abstract class phpucAbstractCheckout implements phpucCheckoutI
             case 'username':
                 $this->properties[$name] = $value;
                 break;
-                
+
             default:
                 throw new OutOfRangeException(
                     sprintf( 'Unknown or readonly property $%s.', $name )
                 );
-                break;                
+                break;
         }
     }
 }

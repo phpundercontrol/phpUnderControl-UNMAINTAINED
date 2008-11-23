@@ -1,8 +1,5 @@
-<?php
 /**
  * This file is part of phpUnderControl.
- *
- * PHP Version 5.2.0
  *
  * Copyright (c) 2007-2008, Manuel Pichler <mapi@phpundercontrol.org>.
  * All rights reserved.
@@ -35,34 +32,30 @@
  * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
- *
- * @category  QualityAssurance
- * @package   Data
- * @author    Manuel Pichler <mapi@phpundercontrol.org>
- * @copyright 2007-2008 Manuel Pichler. All rights reserved.
- * @license   http://www.opensource.org/licenses/bsd-license.php  BSD License
- * @version   SVN: $Id$
- * @link      http://www.phpundercontrol.org/
+ * 
+ * @category QualityAssurance
+ * @author Manuel Pichler <mapi@phpundercontrol.org>
+ * @category 2007-2008 Manuel Pichler. All rights reserved. 
+ * @version SVN: $Id$
  */
 
+package org.phpundercontrol.dashboard;
+
+import java.io.File;
+import java.io.FilenameFilter;
+
 /**
- * Base interface for a CruiseControl configuration publisher.
- *
- * @category  QualityAssurance
- * @package   Data
- * @author    Manuel Pichler <mapi@phpundercontrol.org>
- * @copyright 2007-2008 Manuel Pichler. All rights reserved.
- * @license   http://www.opensource.org/licenses/bsd-license.php  BSD License
- * @version   Release: @package_version@
- * @link      http://www.phpundercontrol.org/
+ * Simple {@link java.io.FilenameFilter} implementation for directories.
+ * 
+ * @category QualityAssurance
+ * @author Manuel Pichler <mapi@phpundercontrol.org>
+ * @category 2007-2008 Manuel Pichler. All rights reserved. 
+ * @version SVN: $Id$
  */
-interface phpucConfigPublisherI
-{
-    /**
-     * Builds/Rebuilds the publisher-tag.
-     *
-     * @return void
-     * @throws ErrorException If an error occured..
-     */
-    function buildXml();
+public class DirectoryFilter implements FilenameFilter {
+
+	@Override
+	public boolean accept(File dir, String name) {
+		return (new File(dir, name).isDirectory());
+	}
 }

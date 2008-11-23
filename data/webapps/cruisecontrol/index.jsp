@@ -37,39 +37,31 @@
 <%@ page errorPage="/error.jsp" contentType="text/html; charset=UTF-8"%>
 <%@ taglib uri="/WEB-INF/cruisecontrol-jsp11.tld" prefix="cruisecontrol"%>
 <%@ page import="net.sourceforge.cruisecontrol.*" %>
-<%@ page import="java.text.DateFormat" %>
-<%@ page import="java.util.Date" %>
-
 <%
   String name = System.getProperty("ccname", "");
-  String hostname = InetAddress.getLocalHost().getHostName();
-  boolean jmxEnabled = true;
+  String host = request.getServerName();
 
   String baseURL = request.getScheme() 
-                 + "://" + request.getServerName() 
+                 + "://" + host 
                  + ":" + request.getServerPort()
-                 + request.getContextPath() + "/";                 
-  String thisURL = request.getRequestURI();
-
-  String sort = request.getParameter("sort");
+                 + request.getContextPath() + "/";
 %>
 <html>
   <head>
-    <title><%= name%> phpUnderControl - SVN at <%= hostname %></title>
+    <title><%= name%> phpUnderControl - SVN at <%= host %></title>
     <base href="<%=baseURL%>" />
     <link type="application/rss+xml" rel="alternate" href="rss" title="RSS" />
-    <link type="text/css" rel="stylesheet" href="css/php-under-control.css?v=2" />
+    <link type="text/css" rel="stylesheet" href="css/php-under-control.css?v=3" />
     <link rel="icon" href="favicon.ico" type="image/x-icon" />
   </head>
   <body onload="checkIframe('<%=baseURL + "css/php-under-control.css"%>')">
     <div id="serverData" style="display:none;"></div>
     <div id="container">
-      <cruisecontrol:link id="baseUrl" />
       <h1>
-        <a href="<%=baseUrl%>">phpUnderControl</a>
+        <a href="<%=baseURL%>">phpUnderControl</a>
       </h1>
       <h1 class="white" align="center">
-        <%= name%> phpUnderControl at <%= hostname %> [
+        <%= name%> phpUnderControl at <%= host %> [
         <em id="servertime"><%@ include file="servertime.jsp" %></em>
         ]
       </h1>
@@ -101,6 +93,6 @@
     </div>
     <%@ include file="footer.jsp" %>
     <script type="text/javascript" src="js/prototype.js"></script>
-    <script type="text/javascript" src="js/php-under-control.js"></script>
+    <script type="text/javascript" src="js/php-under-control.js?v=3"></script>
   </body>
 </html>

@@ -139,20 +139,20 @@
       Copies the generated api documentation into project artifacts directory.  
       -->
       <artifactspublisher dir="projects/${project.name}/build/api" 
-                          dest="logs/${project.name}" 
+                          dest="artifacts/${project.name}" 
                           subdirectory="api"/>
       <!--
       Copies the generated code coverage report into project artifacts directory.  
       -->
       <artifactspublisher dir="projects/${project.name}/build/coverage" 
-                          dest="logs/${project.name}" 
+                          dest="artifacts/${project.name}" 
                           subdirectory="coverage"/>
                           
       <!--
       Generates the different metric charts with the phpUnderControl ezcGraph
       extension. 
       -->
-      <execute command="phpuc graph logs/${project.name}"/>
+      <execute command="phpuc graph logs/${project.name} artifacts/${project.name}"/>
       
       <!--
       Sends simple text emails after a project build. For nicer html emails, 
@@ -169,7 +169,7 @@
              skipusers="true" 
              spamwhilebroken="true">
         <always address="successful@php-under-control.org"/>
-        <always address="mapi@phpundercontrol.org"/>
+        <always address="cruise@phpundercontrol.org"/>
         <failure address="failed@php-under-control.org"/>
       </email>
     </publishers>
