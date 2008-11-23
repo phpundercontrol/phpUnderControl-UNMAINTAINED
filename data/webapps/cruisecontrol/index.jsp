@@ -51,7 +51,7 @@
     <title><%= name%> phpUnderControl - SVN at <%= host %></title>
     <base href="<%=baseURL%>" />
     <link type="application/rss+xml" rel="alternate" href="rss" title="RSS" />
-    <link type="text/css" rel="stylesheet" href="css/php-under-control.css?v=2" />
+    <link type="text/css" rel="stylesheet" href="css/php-under-control.css?v=3" />
     <link rel="icon" href="favicon.ico" type="image/x-icon" />
   </head>
   <body onload="checkIframe('<%=baseURL + "css/php-under-control.css"%>')">
@@ -93,6 +93,6 @@
     </div>
     <%@ include file="footer.jsp" %>
     <script type="text/javascript" src="js/prototype.js"></script>
-    <script type="text/javascript" src="js/php-under-control.js"></script>
+    <script type="text/javascript" src="js/php-under-control.js?v=3"></script>
   </body>
 </html>
