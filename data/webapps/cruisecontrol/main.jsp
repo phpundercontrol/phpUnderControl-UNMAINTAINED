@@ -53,10 +53,10 @@
     String log = new File(application.getInitParameter("logDir")).getAbsolutePath();
     String ts  = artifacts_url.substring(artifacts_url.lastIndexOf('/') + 1);
 
-    File artifacts = new File(log + "/" + project + "/" + ts);
+    File artifacts = new File(log + "/../artifacts/" + project + "/" + ts);
 
     if (!artifacts.exists()) {
-        artifacts = new File(log + "/../artifacts/" + project + "/" + ts);
+        artifacts = new File(log + "/" + project + "/" + ts);
     }
 
     apidoc   = new File(artifacts.getAbsolutePath() + "/api").exists();
