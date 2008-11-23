@@ -66,6 +66,7 @@ class phpucInstallCommand extends phpucAbstractCommand implements phpucConsoleCo
      */
     private $installFiles = array(
         '/webapps/cruisecontrol/dashboard.jsp',
+        '/webapps/cruisecontrol/error.jsp',
         '/webapps/cruisecontrol/favicon.ico',
         '/webapps/cruisecontrol/footer.jsp',
         '/webapps/cruisecontrol/header.jsp',
