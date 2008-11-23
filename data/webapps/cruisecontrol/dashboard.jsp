@@ -37,6 +37,7 @@
 <%@ page errorPage="/error.jsp" contentType="text/html; charset=UTF-8"%>
 <%@ taglib uri="/WEB-INF/cruisecontrol-jsp11.tld" prefix="cruisecontrol"%>
 <%@ page import="net.sourceforge.cruisecontrol.*" %>
+<%@ page import="org.phpundercontrol.dashboard.*" %>
 <%@ page import="java.io.IOException" %>
 <%@ page import="java.text.DateFormat" %>
 <%@ page import="java.io.File" %>
@@ -57,177 +58,14 @@
 
 URL jmxURLPrefix = new URL(jmxBase, "invoke?operation=build&objectname=CruiseControl+Project%3Aname%3D");
 
-final DateFormat dateTimeFormat = DateFormat.getDateTimeInstance(DateFormat.SHORT, DateFormat.SHORT, request.getLocale());
-final DateFormat dateOnlyFormat = DateFormat.getDateInstance(DateFormat.SHORT, request.getLocale());
-final DateFormat timeOnlyFormat = DateFormat.getTimeInstance(DateFormat.SHORT, request.getLocale());
-  
-final Date now = new Date();
-final String statusFileName = application.getInitParameter("currentBuildStatusFile");
-
-class SortableStatus implements Comparable {
-    private ProjectState state;
-    private String importance;
-    private int sortOrder;
-
-    public SortableStatus(ProjectState state, String importance, int sortOrder) {
-      this.state = state;
-      this.importance = importance;
-      this.sortOrder = sortOrder;
-    }
-
-    public String toString() {
-      return state != null ? state.getName() : "?";
-    }
-
-    public int getSortOrder() {
-      return sortOrder;
-    }
-
-    public int compareTo(Object other) {
-      SortableStatus that = (SortableStatus) other;
-      return this.sortOrder - that.sortOrder;
-    }
-
-    public String getImportance() {
-      return importance;
-    }
-  }
-
-  class StatusCollection {
-    private Map statuses = new HashMap();
-    private SortableStatus unknown = new SortableStatus(null, "dull", -1);
-
-    public void add(ProjectState state, String importance) {
-      statuses.put(state.getDescription(), new SortableStatus(state, importance, statuses.size()));
-    }
-
-    public SortableStatus get(String statusDescription) {
-      Object status = statuses.get(statusDescription);
-      if (status != null) {
-        return (SortableStatus) status;
-      }
-      return unknown;
-    }
-  }
-
-  final StatusCollection statuses = new StatusCollection();
-  statuses.add(ProjectState.PUBLISHING, "important");
-  statuses.add(ProjectState.MODIFICATIONSET, "important");
-  statuses.add(ProjectState.BUILDING, "important");
-  statuses.add(ProjectState.MERGING_LOGS, "important");
-  statuses.add(ProjectState.BOOTSTRAPPING, "normal");
-  statuses.add(ProjectState.QUEUED, "normal");
-  statuses.add(ProjectState.WAITING, "dull");
-  statuses.add(ProjectState.IDLE, "dull");
-  statuses.add(ProjectState.PAUSED, "dull");
-  statuses.add(ProjectState.STOPPED, "dull");
-
-class Info implements Comparable {
-    public static final int ONE_DAY = 1000 * 60 * 60 * 24;
-
-    private BuildInfo latest;
-    private BuildInfo lastSuccessful;
-    private SortableStatus status;
-    private Date statusSince;
-    private String project;
-    private String statusDescription;
-
-    public Info(File logsDir, String project) throws ParseException, IOException {
-      this.project = project;
-
-      File projectLogDir = new File(logsDir, project);
-      LogFile latestLogFile = LogFile.getLatestLogFile(projectLogDir);
-      LogFile latestSuccessfulLogFile = LogFile.getLatestSuccessfulLogFile(projectLogDir);
-
-
-      if (latestLogFile != null) {
-        latest = new BuildInfo(latestLogFile);
-      }
-      if (latestSuccessfulLogFile != null) {
-        lastSuccessful = new BuildInfo(latestSuccessfulLogFile);
-      }
-
-      File statusFile = new File(projectLogDir, statusFileName);
-      BufferedReader reader = null;
-      try {
-        reader = new BufferedReader(new FileReader(statusFile));
-        statusDescription = reader.readLine().replaceAll(" since", "");
-
-        status = statuses.get(statusDescription);
-        statusSince = new Date(statusFile.lastModified());
-      }
-      catch (Exception e) {
-        status = statuses.unknown;
-        statusSince = now;
-      }
-      finally {
-        if (reader != null) {
-          reader.close();
-        }
-      }
-    }
-
-    public String getLastBuildTime() {
-      return getTime(latest);
-    }
-
-    public String getLastSuccessfulBuildTime() {
-      return getTime(lastSuccessful);
-    }
-
-    private String getTime(BuildInfo build) {
-      return build != null ? format(build.getBuildDate()) : "";
-    }
-
-    public String format(Date date) {
-      if (date == null) {
-        return "";
-      }
-
-      if ((now.getTime() < date.getTime())) {
-        return dateTimeFormat.format(date);
-      }
-
-      if ((now.getTime() - date.getTime()) < ONE_DAY) {
-        return timeOnlyFormat.format(date);
-      }
-
-      return dateOnlyFormat.format(date);
-    }
-
-    public String getStatusSince() {
-      return statusSince != null ? format(statusSince) : "?";
-    }
-
-    public boolean failed() {
-      return latest == null || ! latest.isSuccessful();
-    }
-
-    public SortableStatus getStatus() {
-      return status;
-    }
-
-    public int compareTo(Object other) {
-      Info that = (Info) other;
-
-      int order = this.status.compareTo(that.status);
-      if (order != 0) {
-        return order;
-      }
-
-      return (int) (this.statusSince.getTime() - that.statusSince.getTime());
-    }
-
-    public String getLabel() {
-      return lastSuccessful != null ? lastSuccessful.getLabel() : " ";
-    }
-  }
+final String logDir     = application.getInitParameter("logDir");
+final String statusFile = application.getInitParameter("currentBuildStatusFile");
 %>
 <table style="width:100%;margin: 10px;">
   <tbody>
 <%
-String logDirPath = application.getInitParameter("logDir");
-if (logDirPath == null) {
+
+if (logDir == null) {
 %>
     <tr>
       <td>
@@ -237,47 +75,27 @@ if (logDirPath == null) {
     </tr>
 <% 
 } else {
-    java.io.File logDir = new java.io.File(logDirPath);
-    if (logDir.isDirectory() == false) {
+    ProjectInfos projects = new ProjectInfos(logDir, statusFile, request.getLocale());
+    if (projects.isValid() == false) {
 %>
     <tr>
       <td>
         Context parameter logDir needs to be set to a directory.
-        Currently set to &quot;<%=logDirPath%>&quot;
+        Currently set to &quot;<%=logDir%>&quot;
       </td>
     </tr>
 <%
     } else {
-        String[] projectDirs = logDir.list(new java.io.FilenameFilter() {
-            public boolean accept(File dir, String name) {
-                return (new File(dir, name).isDirectory());
-            }
-        });
-
-        if (projectDirs.length == 0) {
+        if (projects.isEmpty()) {
 %>
     <tr>
       <td>
-        no project directories found under &quot;<%=logDirPath%>&quot;
+        no project directories found under &quot;<%=logDir%>&quot;
       </td>
     </tr>
 <%
         } else {
-            Comparator c = new Comparator() {
-                public int compare(Object o1, Object o2) {
-                        File f1 = new File((String) o1);
-                        File f2 = new File((String) o2);
-                        return f1.compareTo(f2);
-                }
-                public boolean equals(Object obj) {
-                        return false;
-                }
-            };
-            Arrays.sort(projectDirs, c);
-            
-            Info project = null;
-            for (int i = 0; i < projectDirs.length; i++) {
-                project = new Info(logDir, projectDirs[i]);
+            for (ProjectInfo project: projects) {
 %>
     <tr onmouseover="over(this);" onmouseout="out(this);">
       <td class="status-<%= project.getStatus().getImportance() %>">
@@ -287,11 +105,11 @@ if (logDirPath == null) {
             <tbody>
               <tr>
                 <td class="play" rowspan="2">
-                  <a href="#" onclick="callServer('<%= jmxURLPrefix.toExternalForm() + project.project%>');">
+                  <a href="#" onclick="callServer('<%= jmxURLPrefix.toExternalForm() + project.getProject() %>');">
                   </a>
                 </td>
                 <td class="left">
-                  <a href="buildresults/<%=project.project%>"><%= project.project %></a>
+                  <a href="buildresults/<%=project.getProject() %>"><%= project.getProject() %></a>
                 </td>
                 <td class="right"><%= project.getLabel()%></td>
               </tr>
