@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="phpUnderControl" basedir="." default="build">
+  
+  <property name="cc.jar" value="/opt/cruisecontrol/lib/cruisecontrol.jar" />
+  <property name="cc.web" value="/opt/cruisecontrol/webapps/cruisecontrol/WEB-INF/classes" />
+  
+  <target name="build" depends="jar" />
+  
+  <target name="compile">
+    <javac source="1.6"
+           srcdir="${basedir}/src" 
+           destdir="${basedir}/bin"
+           classpath="${cc.jar}:${cc.web}" />
+    
+  </target>
+  
+  <target name="jar" depends="compile">
+    <jar destfile="${basedir}/build/php-under-control.jar">
+      <fileset dir="${basedir}/bin" />
+      <fileset file="CRUISECONTROL-LICENSE" />
+      <fileset file="PHPUNDERCONTROL-LICENSE" />
+      <fileset file="README" />
+    </jar>
+  </target>
+  
+  <target name="publish" depends="jar">
+    <copy file="${basedir}/build/php-under-control.jar" 
+          todir="${basedir}/../data/webapps/cruisecontrol/WEB-INF/lib/" />
+  </target>
+  
+</project>
