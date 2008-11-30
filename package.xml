@@ -18,9 +18,9 @@
     <email>mapi@phpundercontrol.org</email>
     <active>yes</active>
   </lead>
-  <date>2008-11-23</date>
+  <date>2008-11-30</date>
   <version>
-    <release>0.4.6</release>
+    <release>0.4.7</release>
     <api>0.2.0</api>
   </version>
   <stability>
@@ -29,10 +29,7 @@
   </stability>
   <license uri="http://www.opensource.org/licenses/bsd-license.php">BSD License</license>
   <notes>
-- phpUnderControl dashboard is broken with CruiseControl 2.8 #621
-- Use artifacts directory for artifacts #609
-- opera: code coverage not visible #611
--phpUnderControl needs a custom error page #622
+- Bug fix, CC is compatible with Java 1.5, but the phpUnderControl sources were compiled against Java 1.6. 
   </notes>
   <contents>
     <dir name="/">
@@ -1730,6 +1727,26 @@
     </filelist>
   </phprelease>
   <changelog>
+  
+    <release>
+      <version>
+        <release>0.4.6</release>
+        <api>0.2.0</api>
+      </version>
+      <stability>
+        <release>beta</release>
+        <api>beta</api>
+      </stability>
+      <date>2008-11-23</date>
+      <license uri="http://www.opensource.org/licenses/bsd-license.php">BSD License</license>
+      <notes>
+    - phpUnderControl dashboard is broken with CruiseControl 2.8 #621
+    - Use artifacts directory for artifacts #609
+    - opera: code coverage not visible #611
+    -phpUnderControl needs a custom error page #622
+      </notes>
+    </release>
+  
     <release>
       <version>
         <release>0.4.5</release>
