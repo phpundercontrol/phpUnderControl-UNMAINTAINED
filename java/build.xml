@@ -6,21 +6,37 @@
   
   <target name="build" depends="jar" />
   
-  <target name="compile">
-    <javac source="1.6"
+  <target name="compile" depends="clean-compile">
+    <javac source="1.5"
+           target="1.5"
            srcdir="${basedir}/src" 
            destdir="${basedir}/bin"
            classpath="${cc.jar}:${cc.web}" />
-    
   </target>
   
-  <target name="jar" depends="compile">
+  <target name="clean-compile">
+    <delete includeemptydirs="true">
+      <fileset dir="${basedir}/bin">
+        <include name="**/*.*"/>
+      </fileset>
+    </delete>
+  </target>
+  
+  <target name="jar" depends="compile,clean-jar">
     <jar destfile="${basedir}/build/php-under-control.jar">
       <fileset dir="${basedir}/bin" />
       <fileset file="CRUISECONTROL-LICENSE" />
       <fileset file="PHPUNDERCONTROL-LICENSE" />
       <fileset file="README" />
     </jar>
+  </target>
+  
+  <target name="clean-jar">
+    <delete>
+      <fileset dir="${basedir}/build/">
+        <include name="php-under-control.jar"/>
+      </fileset>
+    </delete>
   </target>
   
   <target name="publish" depends="jar">
