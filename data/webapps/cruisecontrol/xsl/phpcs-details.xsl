@@ -86,7 +86,7 @@
               <xsl:value-of select="position()" /> 
             </xsl:attribute>
           </a> 
-          <xsl:value-of select="$javaclass"/>
+          <h select="$javaclass"/>
           (<xsl:value-of select="count(error[@severity='error'])"/>
           / <xsl:value-of select="count(error)"/>)
         </th>

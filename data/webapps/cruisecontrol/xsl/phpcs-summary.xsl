@@ -79,7 +79,7 @@
                   </xsl:otherwise>
                 </xsl:choose>
               </xsl:attribute>
-              <a class="stealth" href="buildresults/{$project.name}?tab=phpcs#a{position()}">
+              <a class="stealth" href="/buildresults/{$project.name}?tab=phpcs#a{position()}">
                 <xsl:value-of select="@name"/>
               </a>
             </td>

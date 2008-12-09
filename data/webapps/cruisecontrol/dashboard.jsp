@@ -96,7 +96,7 @@ if (logDir == null) {
                   </a>
                 </td>
                 <td class="left">
-                  <a href="buildresults/<%=project.getProject() %>"><%= project.getProject() %></a>
+                  <a href="<%=request.getContextPath() %>/buildresults/<%=project.getProject() %>"><%= project.getProject() %></a>
                 </td>
                 <td class="right"><%= project.getLabel()%></td>
               </tr>

@@ -40,25 +40,19 @@
 <%
   String name = System.getProperty("ccname", "");
   String host = request.getServerName();
-
-  String baseURL = request.getScheme() 
-                 + "://" + host 
-                 + ":" + request.getServerPort()
-                 + request.getContextPath() + "/";
 %>
 <html>
   <head>
     <title><%= name%> phpUnderControl - SVN at <%= host %></title>
-    <base href="<%=baseURL%>" />
-    <link type="application/rss+xml" rel="alternate" href="rss" title="RSS" />
-    <link type="text/css" rel="stylesheet" href="css/php-under-control.css?v=3" />
-    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+    <link type="application/rss+xml" rel="alternate" href="<%=request.getContextPath() %>/rss" title="RSS" />
+    <link type="text/css" rel="stylesheet" href="<%=request.getContextPath() %>/css/php-under-control.css?v=3" />
+    <link rel="icon" href="<%=request.getContextPath() %>/favicon.ico" type="image/x-icon" />
   </head>
-  <body onload="checkIframe('<%=baseURL + "css/php-under-control.css"%>')">
+  <body onload="checkIframe('<%=request.getContextPath() %>/css/php-under-control.css')">
     <div id="serverData" style="display:none;"></div>
     <div id="container">
       <h1>
-        <a href="<%=baseURL%>">phpUnderControl</a>
+        <a href="<%=request.getContextPath() %>/">phpUnderControl</a>
       </h1>
       <h1 class="white" align="center">
         <%= name%> phpUnderControl at <%= host %> [
@@ -84,7 +78,7 @@
           <tfoot>
             <tr>
               <td align="right">
-                <a href="rss"><img border="0" src="images/rss.png"/></a>
+                <a href="rss"><img border="0" src="<%=request.getContextPath() %>/images/rss.png"/></a>
               </td>
             </tr>
           </tfoot>
@@ -92,7 +86,7 @@
       </form>
     </div>
     <%@ include file="footer.jsp" %>
-    <script type="text/javascript" src="js/prototype.js"></script>
-    <script type="text/javascript" src="js/php-under-control.js?v=3"></script>
+    <script type="text/javascript" src="<%=request.getContextPath() %>/js/prototype.js"></script>
+    <script type="text/javascript" src="<%=request.getContextPath() %>/js/php-under-control.js?v=3"></script>
   </body>
 </html>

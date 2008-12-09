@@ -37,16 +37,15 @@
 <%@page import="java.io.File, java.util.Arrays"%>
 <%@ taglib uri="/WEB-INF/cruisecontrol-jsp11.tld" prefix="cruisecontrol"%>
 
-    <cruisecontrol:link id="baseUrl" />
     <h1>
-      <a href="index">
+      <a href="<%=request.getContextPath() %>/index">
         phpUnderControl  
       </a>
     </h1>
 
-      <form action="index" id="cc-project">
+      <form action="<%=request.getContextPath() %>" id="cc-project">
         <fieldset>
-          <legend><a href="index">Project:</a></legend>
+          <legend><a href="<%=request.getContextPath() %>/index">Project:</a></legend>
           <select name="projecttarget" onchange="self.location.href = this.form.projecttarget.options[this.form.projecttarget.selectedIndex].value">
             <cruisecontrol:projectnav>
               <option <%=selected%> value="<%=projecturl%>"><%=linktext%></option>
@@ -56,14 +55,14 @@
       </form>
    
     
-    <form method="GET" action="<%=baseUrl%>" id="cc-build">
+    <form method="GET" action="<%=request.getContextPath() %>" id="cc-build">
       <fieldset>
-        <legend><a href="<%=baseUrl%>">Build:</a></legend>
+        <legend><a href="<%=request.getContextPath() %>/buildresults/<%=project %>">Build:</a></legend>
   
         <select name="log" onchange="form.submit()">
           <option>More builds</option>
           <cruisecontrol:nav startingBuildNumber="1">
-            <option value="<%=logfile%>"><%= linktext %></option>
+            <option value="<%=logfile%>"<% if (logfile.equals(request.getParameter("log"))) {%> selected="selected"<% } %>><%= linktext %></option>
           </cruisecontrol:nav>
         </select>
       </fieldset>

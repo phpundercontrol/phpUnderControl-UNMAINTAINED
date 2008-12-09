@@ -82,7 +82,7 @@ if (graphDir.exists()) {
     
     for (int i = 0; i < files.length; i++) {
 %>
-<iframe class="chart" src="<%=graphUrl + files[i] %>">
+<iframe class="chart" src="/<%=graphUrl + files[i] %>">
 </iframe>
 
 <% 
