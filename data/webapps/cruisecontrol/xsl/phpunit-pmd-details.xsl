@@ -48,9 +48,9 @@
 
   <xsl:template match="/">
     <xsl:apply-templates select="cruisecontrol/pmd"/>
-    
-    <script language="javascript" src="js/shCore.js"></script>
-    <script language="javascript" src="js/shBrushPhp.js"></script>
+
+    <script language="javascript" src="../js/shCore.js"></script>
+    <script language="javascript" src="../js/shBrushPhp.js"></script>
     <script language="javascript">
       window.onload = function() {
         dp.SyntaxHighlighter.HighlightAll('code');

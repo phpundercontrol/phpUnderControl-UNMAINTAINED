@@ -45,10 +45,10 @@
 <cruisecontrol:artifactsLink>
   <ul>
     <li>
-      <a href="/<%= artifacts_url %>">Build Artifacts</a>
+      <a href="<%=request.getContextPath() %>/<%= artifacts_url %>">Build Artifacts</a>
     </li>
     <li>
-      <a href="/<%= logs_url %>">XML Log File</a>
+      <a href="<%=request.getContextPath() %>/<%= logs_url %>">XML Log File</a>
     </li>
   </ul>
 </cruisecontrol:artifactsLink>
