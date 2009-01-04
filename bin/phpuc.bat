@@ -1,7 +1,7 @@
 @echo off
 REM This file is part of phpUnderControl.
 REM
-REM Copyright (c) 2007-2008, Manuel Pichler <mapi@phpundercontrol.org>.
+REM Copyright (c) 2007-2009, Manuel Pichler <mapi@phpundercontrol.org>.
 REM All rights reserved.
 REM
 REM Redistribution and use in source and binary forms, with or without

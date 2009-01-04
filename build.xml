@@ -1,51 +1,89 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="phpUnderControl" basedir="." default="build">
-  
-  <property name="output.dir" value="${basedir}/build" />
 
-  <target name="update">
-  	<exec executable="svn">
-      <arg line="up"/>
-  	</exec>
-  </target> 
-	
-  <target name="checkphp">
-    <apply executable="php" logerror="true" failonerror="true">
-      <arg value="-l" />
-      <fileset dir="tests">
-        <include name="**/*.php" />
-      </fileset>
-    </apply>
-  </target>
-  
-  <target name="test">
-    <mkdir dir="${output.dir}/logs"/>
-    <mkdir dir="${output.dir}/coverage"/>
-    <exec dir="tests" executable="phpunit">
-      <arg line="--log-pmd ${output.dir}/logs/pmd.xml
-                 --log-metrics ${output.dir}/logs/metrics.xml
-                 --coverage-xml ${output.dir}/logs/coverage.xml
-                 --coverage-html ${output.dir}/coverage
-                 phpucAllTests AllTests.php"/>
-    </exec>
-  </target>
-  
-  <target name="phpdoc">
-    <mkdir dir="${output.dir}/api"/>
-    <exec dir="src" executable="phpdoc">
-      <arg line="-ct type -ue on -t ${output.dir}/api -d ."/>
-    </exec>
-  </target>
+    <!--
+        Build base directory.
+    -->
+    <property name="output.dir" value="${basedir}/build" />
 
-  <target name="sniff">
-    <mkdir dir="${output.dir}/logs"/>
-    <exec dir="src" executable="phpcs" output="${output.dir}/logs/codesniffer.xml">
-      <arg line="--report=checkstyle --standard=MapiSource ." />
-    </exec>
-  </target>
-	
-  <target name="build" depends="checkphp">
+    <!--
+        Update base directory from source
+    -->
+    <target name="update">
+        <exec executable="svn" dir="${basedir}">
+            <arg line="up" />
+        </exec>
+    </target>
 
-  </target>
-	
+    <!--
+        Remove temporary build stuff
+    -->
+    <target name="clean">
+        <delete includeemptydirs="true">
+            <fileset dir="${output.dir}/" includes="**/*" />
+        </delete>
+    </target>
+
+    <target name="phplint">
+        <apply executable="php" logerror="true" failonerror="true">
+            <arg value="-l" />
+            <fileset dir="${basedir}">
+                <include name="tests/**/*.php" />
+                <include name="src/**/*.php" />
+            </fileset>
+        </apply>
+    </target>
+
+    <target name="phpunit">
+        <mkdir dir="${output.dir}/logs" />
+        <exec dir="tests" executable="phpunit">
+            <arg line="--log-pmd ${output.dir}/logs/pmd.xml
+                       --log-metrics ${output.dir}/logs/metrics.xml
+                       --coverage-xml ${output.dir}/logs/coverage.xml
+                       --coverage-html ${output.dir}/coverage
+                       phpucAllTests AllTests.php" />
+        </exec>
+    </target>
+
+    <target name="phpdoc">
+        <mkdir dir="${output.dir}/api" />
+        <exec dir="src" executable="phpdoc">
+            <arg line="-ct type -ue on -t ${output.dir}/api -d ." />
+        </exec>
+    </target>
+
+    <target name="phpcs">
+        <mkdir dir="${output.dir}/logs" />
+        <exec dir="src" executable="phpcs" output="${output.dir}/logs/codesniffer.xml">
+            <arg line="--report=checkstyle --standard=MapiSource ." />
+        </exec>
+    </target>
+    
+    <target name="copy">
+        <mkdir dir="${output.dir}/release" />
+        <mkdir dir="${output.dir}/release/docs" />
+       
+        <copy todir="${output.dir}/release">
+            <fileset dir="${basedir}/" includes="data/**" />
+            <fileset dir="${basedir}/" includes="lib/**" />
+            <fileset dir="${basedir}/" includes="src/**" />
+            <fileset dir="${basedir}/" includes="tests/**" />
+        </copy>
+        
+        <copy todir="${output.dir}/release/docs">
+            <fileset file="${basedir}/CHANGELOG" />
+            <fileset file="${basedir}/LICENSE" />
+            <fileset file="${basedir}/java/README" />
+            <fileset file="${basedir}/java/CRUISECONTROL-LICENSE" />
+        </copy>
+    </target>
+
+    <target name="build" depends="phplint">
+        <!-- Clean previous build results -->
+        <antcall target="clean" />
+        
+        <!-- Update project source -->
+        <antcall target="update" />
+    </target>
+
 </project>

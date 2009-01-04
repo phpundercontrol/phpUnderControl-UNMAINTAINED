@@ -3,8 +3,8 @@
  * This file is part of phpUnderControl.
  *
  * PHP Version 5.2.0
- * 
- * Copyright (c) 2007-2008, Manuel Pichler <mapi@phpundercontrol.org>.
+ *
+ * Copyright (c) 2007-2009, Manuel Pichler <mapi@phpundercontrol.org>.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -35,11 +35,11 @@
  * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
- * 
+ *
  * @category  QualityAssurance
  * @package   Commands
  * @author    Manuel Pichler <mapi@phpundercontrol.org>
- * @copyright 2007-2008 Manuel Pichler. All rights reserved.
+ * @copyright 2007-2009 Manuel Pichler. All rights reserved.
  * @license   http://www.opensource.org/licenses/bsd-license.php  BSD License
  * @version   SVN: $Id$
  * @link      http://www.phpundercontrol.org/
@@ -51,7 +51,7 @@
  * @category  QualityAssurance
  * @package   Commands
  * @author    Manuel Pichler <mapi@phpundercontrol.org>
- * @copyright 2007-2008 Manuel Pichler. All rights reserved.
+ * @copyright 2007-2009 Manuel Pichler. All rights reserved.
  * @license   http://www.opensource.org/licenses/bsd-license.php  BSD License
  * @version   Release: @package_version@
  * @link      http://www.phpundercontrol.org/
@@ -68,23 +68,23 @@ class phpucExampleCommand extends phpucAbstractCommand implements phpucConsoleCo
         'src/Math.php'        =>  null,
         'tests/MathTest.php'  =>  null,
     );
-    
+
     /**
      * Setter for the console arguments.
-     * 
+     *
      * @param phpucConsoleArgs $args The console arguments.
-     * 
+     *
      * @return void
      */
     public function setConsoleArgs( phpucConsoleArgs $args )
     {
         parent::setConsoleArgs( $args );
-        
+
         $args->setOption( 'test-case', 'PhpUnderControl_Example_MathTest' );
         $args->setOption( 'test-file', 'MathTest.php' );
         $args->setOption( 'test-dir', 'tests' );
     }
-    
+
     /**
      * Returns the cli command identifier.
      *
@@ -94,60 +94,60 @@ class phpucExampleCommand extends phpucAbstractCommand implements phpucConsoleCo
     {
         return 'example';
     }
-    
+
     /**
      * Callback method that registers a cli command.
      *
      * @param phpucConsoleInputDefinition $def The input definition container.
-     * 
+     *
      * @return void
      */
     public function registerCommand( phpucConsoleInputDefinition $def )
     {
-        $def->addCommand( 
-            $this->getCommandId(), 
+        $def->addCommand(
+            $this->getCommandId(),
             'Creates a small CruiseControl example.'
         );
-        $def->addArgument( 
+        $def->addArgument(
             $this->getCommandId(),
             'cc-install-dir',
             'The installation directory of CruiseControl.'
         );
     }
-    
+
     /**
      * Creates all command specific {@link phpucTaskI} objects.
-     * 
+     *
      * @return array(phpucTaskI)
      */
     protected function doCreateTasks()
     {
         $tasks = array();
-        
+
         $tasks[] = new phpucProjectTask();
         $tasks[] = new phpucExampleTask();
-        
-        if ( $this->args === null 
+
+        if ( $this->args === null
          || !$this->args->hasOption( 'without-php-documentor' ) )
         {
             $tasks[] = new phpucPhpDocumentorTask();
         }
-        if ( $this->args === null 
+        if ( $this->args === null
          || !$this->args->hasOption( 'without-code-sniffer' ) )
         {
             $tasks[] = new phpucPhpCodeSnifferTask();
         }
-        if ( $this->args === null 
+        if ( $this->args === null
          || !$this->args->hasOption( 'without-phpunit' ) )
         {
             $tasks[] = new phpucPhpUnitTask();
         }
-        if ( $this->args === null 
+        if ( $this->args === null
          || !$this->args->hasOption( 'without-ezc-graph' ) )
         {
             $tasks[] = new phpucGraphTask();
         }
-        
+
         return $tasks;
     }
 }
