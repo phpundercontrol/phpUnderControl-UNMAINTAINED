@@ -42,6 +42,10 @@
 
   <xsl:template match="/" mode="header">
     <xsl:variable name="modification.list" select="cruisecontrol/modifications/modification"/>
+    <xsl:variable name="project.name" select="cruisecontrol/info/property[@name='projectname']/@value" />
+    <xsl:variable name="project.timestamp" select="cruisecontrol/info/property[@name='cctimestamp']/@value" />
+    <xsl:variable name="project.buildname" select="substring(cruisecontrol/info/property[@name='logfile']/@value, 0, string-length(cruisecontrol/info/property[@name='logfile']/@value) - 3)" />
+    
 
     <xsl:if test="cruisecontrol/build/@error">
       <h2>BUILD FAILED</h2>
@@ -63,6 +67,16 @@
         <xsl:sort select="date" order="descending" data-type="text" />
       </xsl:apply-templates>
     </dl>
+
+    <ul style="clear:both;margin-top:30px;">
+      <li>
+        <a href="/cruisecontrol/artifacts/{$project.name}/{$project.timestamp}">Build Artifacts</a>
+      </li>
+      <li>
+        <a href="/cruisecontrol/logs/{$project.name}/{$project.buildname}">XML Log File</a>
+      </li>
+    </ul>
+  
   </xsl:template>
 
   <!-- Last Modification template -->
