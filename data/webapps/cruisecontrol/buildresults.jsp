@@ -38,5 +38,4 @@
 <%--
     The stylesheets used should match the XSL file list in HTMLEmailPublisher
 --%>
-<cruisecontrol:xsl xslFile="/xsl/header.xsl" />
 <cruisecontrol:xsl xslFile="/xsl/buildresults.xsl"/>
