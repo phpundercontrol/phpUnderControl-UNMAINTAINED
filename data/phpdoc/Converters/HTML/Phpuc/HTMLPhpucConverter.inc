@@ -1440,7 +1440,7 @@ class HTMLPhpucConverter extends Converter
                     $root = $this->classes->getClassByPackage(
                         $tree[$cur]['link']->name,
                         $tree[$cur]['link']->package);
-                    if ($implements = $root->getImplements()) {
+                    if (is_object( $root ) && method_exists($root, 'getImplements') && $implements = $root->getImplements()) {
                         $my_tree .= '<li>'.$this->returnSee($tree[$cur]['link']) .
                             ' (implements ';
                         foreach ($implements as $i => $interface) {
