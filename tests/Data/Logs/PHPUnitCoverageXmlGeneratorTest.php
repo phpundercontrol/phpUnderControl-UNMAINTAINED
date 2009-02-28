@@ -70,9 +70,10 @@ class phpucPHPUnitCoverageXmlGeneratorTest extends phpucAbstractTest
     public function testGenerateCoverageXml()
     {
         $rev = 3;
-        $pdo = new PDO(
-            sprintf( 'sqlite:%s/phpunit/php525/log.db', PHPUC_TEST_DATA ) 
-        );
+
+        $dsn = sprintf( 'sqlite:%s/phpunit/php525/log.db', PHPUC_TEST_DATA );
+        $pdo = new PDO( $dsn );
+        $pdo->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
         
         $result   = PHPUC_TEST_DIR . '/result.xml';
         $expected = PHPUC_TEST_DIR . '/expected.xml';

@@ -85,10 +85,12 @@ class phpucPHPUnitLogDatabaseAggregatorTest extends phpucAbstractTest
     {
         $emptydb = sprintf( '%s/phpunit/log.db', PHPUC_TEST_DATA );
         $testdb  = sprintf( '%s/log.db', PHPUC_TEST_DIR );
-        
+
         copy( $emptydb, $testdb );
-        
-        $this->pdo = new PDO( "sqlite://{$testdb}" );
+
+        $dsn = sprintf( 'sqlite:%s', $testdb );
+
+        $this->pdo = new PDO( $dsn );
         $this->pdo->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
     }
     
@@ -136,8 +138,11 @@ class phpucPHPUnitLogDatabaseAggregatorTest extends phpucAbstractTest
         foreach ( array( 'php520', 'php525', 'php526RC2' ) as $build )
         {
             $file = sprintf( '%s/phpunit/%s/log.db', PHPUC_TEST_DATA, $build );
+
+            $pdo = new PDO( sprintf( 'sqlite:%s', $file ) );
+            $pdo->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
             
-            $conns[] = new PDO( "sqlite:{$file}" );
+            $conns[] = $pdo;
         }
         
         $aggregator = new phpucPHPUnitLogDatabaseAggregator( $this->pdo, $revision );
