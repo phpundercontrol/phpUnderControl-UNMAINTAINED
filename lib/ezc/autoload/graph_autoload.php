@@ -2,9 +2,9 @@
 /**
  * Autoloader definition for the Graph component.
  *
- * @copyright Copyright (C) 2005-2007 eZ systems as. All rights reserved.
+ * @copyright Copyright (C) 2005-2008 eZ systems as. All rights reserved.
  * @license http://ez.no/licenses/new_bsd New BSD License
- * @version 1.2
+ * @version 1.4.1
  * @filesource
  * @package Graph
  */
@@ -13,7 +13,6 @@ return array(
     'ezcGraphException'                             => 'Graph/exceptions/exception.php',
     'ezcGraphDatasetAverageInvalidKeysException'    => 'Graph/exceptions/invalid_keys.php',
     'ezcGraphErrorParsingDateException'             => 'Graph/exceptions/date_parsing.php',
-    'ezcGraphFlashBitmapBoundingsException'         => 'Graph/exceptions/flash_bitmap_boundings.php',
     'ezcGraphFlashBitmapTypeException'              => 'Graph/exceptions/flash_bitmap_type.php',
     'ezcGraphFontRenderingException'                => 'Graph/exceptions/font_rendering.php',
     'ezcGraphGdDriverUnsupportedImageTypeException' => 'Graph/exceptions/unsupported_image_type.php',
@@ -22,6 +21,7 @@ return array(
     'ezcGraphInvalidDataException'                  => 'Graph/exceptions/invalid_data.php',
     'ezcGraphInvalidDisplayTypeException'           => 'Graph/exceptions/invalid_display_type.php',
     'ezcGraphInvalidImageFileException'             => 'Graph/exceptions/invalid_image_file.php',
+    'ezcGraphInvalidStepSizeException'              => 'Graph/exceptions/invalid_step_size.php',
     'ezcGraphMatrixInvalidDimensionsException'      => 'Graph/exceptions/invalid_dimensions.php',
     'ezcGraphMatrixOutOfBoundingsException'         => 'Graph/exceptions/out_of_boundings.php',
     'ezcGraphNoDataException'                       => 'Graph/exceptions/no_data.php',
@@ -70,6 +70,8 @@ return array(
     'ezcGraphAxisStep'                              => 'Graph/structs/step.php',
     'ezcGraphBarChart'                              => 'Graph/charts/bar.php',
     'ezcGraphBoundings'                             => 'Graph/math/boundings.php',
+    'ezcGraphCairoDriver'                           => 'Graph/driver/cairo.php',
+    'ezcGraphCairoDriverOptions'                    => 'Graph/options/cairo_driver.php',
     'ezcGraphChartElementBackground'                => 'Graph/element/background.php',
     'ezcGraphChartElementDateAxis'                  => 'Graph/axis/date.php',
     'ezcGraphChartElementLabeledAxis'               => 'Graph/axis/labeled.php',
@@ -114,6 +116,7 @@ return array(
     'ezcGraphRotation'                              => 'Graph/math/rotation.php',
     'ezcGraphSvgDriver'                             => 'Graph/driver/svg.php',
     'ezcGraphSvgDriverOptions'                      => 'Graph/options/svg_driver.php',
+    'ezcGraphSvgFont'                               => 'Graph/driver/svg_font.php',
     'ezcGraphTools'                                 => 'Graph/tools.php',
     'ezcGraphTranslation'                           => 'Graph/math/translation.php',
     'ezcGraphVector'                                => 'Graph/math/vector.php',

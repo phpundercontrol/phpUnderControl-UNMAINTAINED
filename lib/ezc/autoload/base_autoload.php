@@ -4,7 +4,7 @@
  *
  * @copyright Copyright (C) 2005-2008 eZ systems as. All rights reserved.
  * @license http://ez.no/licenses/new_bsd New BSD License
- * @version 1.4.1
+ * @version 1.6.1
  * @filesource
  * @package Base
  */
@@ -18,6 +18,7 @@ return array(
     'ezcBaseFileIoException'                      => 'Base/exceptions/file_io.php',
     'ezcBaseFileNotFoundException'                => 'Base/exceptions/file_not_found.php',
     'ezcBaseFilePermissionException'              => 'Base/exceptions/file_permission.php',
+    'ezcBaseFunctionalityNotSupportedException'   => 'Base/exceptions/functionality_not_supported.php',
     'ezcBaseInitCallbackConfiguredException'      => 'Base/exceptions/init_callback_configured.php',
     'ezcBaseInitInvalidCallbackClassException'    => 'Base/exceptions/invalid_callback_class.php',
     'ezcBaseInvalidParentClassException'          => 'Base/exceptions/invalid_parent_class.php',
@@ -34,7 +35,9 @@ return array(
     'ezcBaseConfigurationInitializer'             => 'Base/interfaces/configuration_initializer.php',
     'ezcBaseFeatures'                             => 'Base/features.php',
     'ezcBaseFile'                                 => 'Base/file.php',
+    'ezcBaseFileFindContext'                      => 'Base/structs/file_find_context.php',
     'ezcBaseInit'                                 => 'Base/init.php',
+    'ezcBasePersistable'                          => 'Base/interfaces/persistable.php',
     'ezcBaseRepositoryDirectory'                  => 'Base/structs/repository_directory.php',
 );
 ?>
