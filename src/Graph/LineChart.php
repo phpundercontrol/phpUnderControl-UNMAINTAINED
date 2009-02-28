@@ -1,7 +1,7 @@
 <?php
 /**
  * This file is part of phpUnderControl.
- * 
+ *
  * PHP Version 5.2.0
  *
  * Copyright (c) 2007-2009, Manuel Pichler <mapi@phpundercontrol.org>.
@@ -35,7 +35,7 @@
  * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
- * 
+ *
  * @category  QualityAssurance
  * @package   Graph
  * @author    Manuel Pichler <mapi@phpundercontrol.org>
@@ -55,7 +55,7 @@
  * @license   http://www.opensource.org/licenses/bsd-license.php  BSD License
  * @version   Release: @package_version@
  * @link      http://www.phpundercontrol.org/
- * 
+ *
  * @property phpucAbstractInput $input The input data source.
  */
 class phpucLineChart extends ezcGraphLineChart implements phpucChartI
@@ -67,22 +67,22 @@ class phpucLineChart extends ezcGraphLineChart implements phpucChartI
      * @var boolean $showSymbol
      */
     protected $showSymbol = false;
-    
+
     /**
      * Constructs a new line chart object.
      */
     public function __construct()
     {
         parent::__construct();
-        
+
         $this->init();
     }
-    
+
     /**
      * Sets the input instance for the next rendering process.
      *
      * @param phpucAbstractInput $input The input object.
-     * 
+     *
      * @return void
      */
     public function setInput( phpucAbstractInput $input )
@@ -90,9 +90,9 @@ class phpucLineChart extends ezcGraphLineChart implements phpucChartI
         $this->title        = $input->title;
         $this->yAxis->label = $input->yAxisLabel;
         $this->xAxis->label = $input->xAxisLabel;
-        
+
         $this->data = new ezcGraphChartDataContainer( $this );
-        
+
         $data = $input->data;
         foreach ( $data as $label => $data )
         {
@@ -103,14 +103,14 @@ class phpucLineChart extends ezcGraphLineChart implements phpucChartI
             {
                 continue;
             }
-            
+
             foreach ( $this->data[$label] as $key => $v )
             {
                 $this->data[$label]->symbol[$key] = ezcGraph::NO_SYMBOL;
             }
         }
     }
-    
+
     /**
      * Initializes the chart properties.
      *
@@ -119,18 +119,18 @@ class phpucLineChart extends ezcGraphLineChart implements phpucChartI
     protected function init()
     {
         $this->palette = new phpucGraphPalette();
-        
+
         $this->renderer->options->legendSymbolGleam = .3;
-        
+
         $this->options->symbolSize    = 1;
         $this->options->lineThickness = 1;
         $this->options->fillLines     = 220;
-        
+
         $this->initAxis();
         $this->initTitle();
         $this->initLegend();
     }
-    
+
     /**
      * Init's the title properties.
      *
@@ -144,7 +144,7 @@ class phpucLineChart extends ezcGraphLineChart implements phpucChartI
         $this->title->border      = '#555753';
         $this->title->borderWidth = 1;
     }
-    
+
     /**
      * Init's some common legend properties.
      *
@@ -158,7 +158,7 @@ class phpucLineChart extends ezcGraphLineChart implements phpucChartI
         $this->legend->border      = '#555753';
         $this->legend->borderWidth = 1;
     }
-    
+
     /**
      * Init's the default chart axis.
      *
@@ -167,10 +167,12 @@ class phpucLineChart extends ezcGraphLineChart implements phpucChartI
     protected function initAxis()
     {
         $this->yAxis->axisLabelRenderer = new ezcGraphAxisCenteredLabelRenderer();
-        $this->yAxis->font->maxFontSize = 10;
+        $this->yAxis->font->minFontSize = 10;
+        $this->yAxis->font->maxFontSize = 12;
 
         $this->xAxis                    = new ezcGraphChartElementNumericAxis();
         $this->xAxis->axisLabelRenderer = new ezcGraphAxisCenteredLabelRenderer();
-        $this->xAxis->font->maxFontSize = 10;
+        $this->yAxis->font->minFontSize = 10;
+        $this->xAxis->font->maxFontSize = 12;
     }
 }

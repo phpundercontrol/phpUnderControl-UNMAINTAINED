@@ -1,7 +1,7 @@
 <?php
 /**
  * This file is part of phpUnderControl.
- * 
+ *
  * PHP Version 5.2.0
  *
  * Copyright (c) 2007-2009, Manuel Pichler <mapi@phpundercontrol.org>.
@@ -35,7 +35,7 @@
  * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
- * 
+ *
  * @category  QualityAssurance
  * @package   Graph
  * @author    Manuel Pichler <mapi@phpundercontrol.org>
@@ -55,7 +55,7 @@
  * @license   http://www.opensource.org/licenses/bsd-license.php  BSD License
  * @version   Release: @package_version@
  * @link      http://www.phpundercontrol.org/
- * 
+ *
  * @property phpucAbstractInput $input The input data source.
  */
 interface phpucChartI
@@ -64,28 +64,33 @@ interface phpucChartI
      * Identifies an input implementation for pie charts.
      */
     const TYPE_PIE = 0;
-    
+
     /**
      * Identifies an input implementation for line charts.
      */
     const TYPE_LINE = 1;
-    
+
     /**
      * Identifies an input implementation for line charts without lines but
      * highlights.
      */
     const TYPE_DOT = 2;
-    
+
     /**
      * Identifies an input implementation for time charts.
      */
     const TYPE_TIME = 3;
-    
+
+    /**
+     * Identifies an input implementation for bar charts.
+     */
+    const TYPE_BAR = 4;
+
     /**
      * Sets the input instance for the next rendering process.
      *
      * @param phpucAbstractInput $input The input object.
-     * 
+     *
      * @return void
      */
     function setInput( phpucAbstractInput $input );

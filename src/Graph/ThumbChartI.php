@@ -46,7 +46,6 @@
  */
 
 /**
- * Object factory for the different chart types.
  *
  * @category  QualityAssurance
  * @package   Graph
@@ -56,42 +55,6 @@
  * @version   Release: @package_version@
  * @link      http://www.phpundercontrol.org/
  */
-class phpucChartFactory
-{
-    /**
-     * Creates a chart instance depending on the given <b>$input</b> settings.
-     *
-     * @param phpucAbstractInput $input The input data source.
-     *
-     * @return ezcGraphChart
-     */
-    public function createChart( phpucAbstractInput $input )
-    {
-        switch ( $input->type )
-        {
-            case phpucChartI::TYPE_DOT:
-                $chart = new phpucDotChart();
-                break;
-
-            case phpucChartI::TYPE_LINE:
-                $chart = new phpucLineChart();
-                break;
-
-            case phpucChartI::TYPE_PIE:
-                $chart = new phpucPieChart();
-                break;
-
-            case phpucChartI::TYPE_TIME:
-                $chart = new phpucTimeChart();
-                break;
-
-            case phpucChartI::TYPE_BAR:
-                $chart = new phpucBarChart();
-                break;
-        }
-
-        $chart->setInput( $input );
-
-        return $chart;
-    }
+interface phpucThumbChartI extends phpucChartI {
 }
+?>

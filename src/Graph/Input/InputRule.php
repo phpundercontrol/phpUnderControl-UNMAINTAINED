@@ -1,7 +1,7 @@
 <?php
 /**
  * This file is part of phpUnderControl.
- * 
+ *
  * PHP Version 5.2.0
  *
  * Copyright (c) 2007-2009, Manuel Pichler <mapi@phpundercontrol.org>.
@@ -35,7 +35,7 @@
  * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
- * 
+ *
  * @category   QualityAssurance
  * @package    Graph
  * @subpackage Input
@@ -67,7 +67,7 @@ class phpucInputRule
      * @var string $label
      */
     public $label = null;
-    
+
     /**
      * The xpath query for data selection.
      *
@@ -75,7 +75,7 @@ class phpucInputRule
      * @var string $xpath
      */
     public $xpath = null;
-    
+
     /**
      * The value calculation mode.
      *
@@ -83,7 +83,7 @@ class phpucInputRule
      * @var integer $mode
      */
     public $mode = null;
-    
+
     /**
      * List of valid modes.
      *
@@ -94,22 +94,23 @@ class phpucInputRule
         phpucInputI::MODE_COUNT,
         phpucInputI::MODE_SUM,
         phpucInputI::MODE_VALUE,
+        phpucInputI::MODE_LIST,
     );
-    
+
     /**
      * Constructs a new input rule
      *
      * @param string  $label The human readable legend name.
      * @param string  $xpath The data select xpath query.
      * @param integer $mode  The value calculation mode.
-     * 
+     *
      * @throws InvalidArgumentException For an invalid calculation mode.
      */
     public function __construct( $label, $xpath, $mode )
     {
         $this->label = $label;
         $this->xpath = $xpath;
-        
+
         if ( !in_array( $mode, $this->modes ) )
         {
             throw new InvalidArgumentException( 'Invalid rule mode given.' );

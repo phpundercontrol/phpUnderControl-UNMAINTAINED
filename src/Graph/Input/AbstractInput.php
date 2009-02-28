@@ -1,7 +1,7 @@
 <?php
 /**
  * This file is part of phpUnderControl.
- * 
+ *
  * PHP Version 5.2.0
  *
  * Copyright (c) 2007-2009, Manuel Pichler <mapi@phpundercontrol.org>.
@@ -35,7 +35,7 @@
  * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
- * 
+ *
  * @category   QualityAssurance
  * @package    Graph
  * @subpackage Input
@@ -48,29 +48,29 @@
 
 /**
  * Abstract base class for graph input data.
- * 
+ *
  * This class provides the main xpath and data extraction logic for conrete
  * implementations. This means an extending class must only define the xpath
  * rules and the required chart type.
- * 
+ *
  * <code>
  * class MyChartInput extends phpucAbstractInput
  * {
  *     public function __construct()
- *     {        
+ *     {
  *         parent::__construct(
  *             'Coding Violations',
  *             '06-coding-violations',
  *             phpucChartI::TYPE_LINE
  *         );
- * 
+ *
  *         $this->addRule(
  *             new phpucInputRule(
- *                 'PHP CodeSniffer', 
+ *                 'PHP CodeSniffer',
  *                 '/cruisecontrol/checkstyle/file/error',
  *                 self::MODE_COUNT
  *             )
- *         ); 
+ *         );
  *     }
  * }
  * </code>
@@ -83,7 +83,7 @@
  * @license    http://www.opensource.org/licenses/bsd-license.php  BSD License
  * @version    Release: @package_version@
  * @link       http://www.phpundercontrol.org/
- * 
+ *
  * @property-read string               $title      The human readable data title.
  * @property-read integer              $type       The output chart type.
  * @property-read array(string=>mixed) $data       The extracted log file data.
@@ -99,7 +99,7 @@ abstract class phpucAbstractInput implements phpucInputI
      * @var string $title
      */
     protected $title = null;
-    
+
     /**
      * An optional label for the y-axis.
      *
@@ -107,7 +107,7 @@ abstract class phpucAbstractInput implements phpucInputI
      * @var string $yAxisLabel
      */
     protected $yAxisLabel = '';
-    
+
     /**
      * An optional label for the x-axis.
      *
@@ -115,7 +115,7 @@ abstract class phpucAbstractInput implements phpucInputI
      * @var string $xAxisLabel
      */
     protected $xAxisLabel = '';
-    
+
     /**
      * The output image file name.
      *
@@ -123,15 +123,15 @@ abstract class phpucAbstractInput implements phpucInputI
      * @var string $fileName
      */
     private $fileName = null;
-    
+
     /**
      * The output chart type.
-     * 
+     *
      * @type integer
      * @var integer $type
      */
     private $type = null;
-    
+
     /**
      * The extracted log file data.
      *
@@ -139,7 +139,7 @@ abstract class phpucAbstractInput implements phpucInputI
      * @var array(string=>array) $data
      */
     private $data = array();
-    
+
     /**
      * List of input rules.
      *
@@ -147,41 +147,42 @@ abstract class phpucAbstractInput implements phpucInputI
      * @var array(phpucInputRule) $rules
      */
     private $rules = array();
-    
+
     /**
      * Constructs a new input type implementation.
      *
      * @param string  $title    The human readable input type title.
      * @param string  $fileName The output image file name.
      * @param integer $type     The output chart type.
-     * 
+     *
      * @throws InvalidArgumentException If the given type is unknown.
      */
     public function __construct( $title, $fileName, $type )
     {
         $this->title    = $title;
         $this->fileName = $fileName;
-        
-        if ( !in_array( $type, array( 
-            phpucChartI::TYPE_PIE, 
-            phpucChartI::TYPE_LINE, 
+
+        if ( !in_array( $type, array(
+            phpucChartI::TYPE_PIE,
+            phpucChartI::TYPE_LINE,
             phpucChartI::TYPE_DOT,
-            phpucChartI::TYPE_TIME ) ) )
+            phpucChartI::TYPE_TIME,
+            phpucChartI::TYPE_BAR ) ) )
         {
             throw new InvalidArgumentException( 'Invalid input type given.' );
         }
         $this->type = $type;
     }
-    
+
     /**
      * Magic property getter method.
      *
      * @param string $name The property name.
-     * 
+     *
      * @return mixed
      * @throws OutOfRangeException If the requested property doesn't exist or
      *         is writonly.
-     * @ignore 
+     * @ignore
      */
     public function __get( $name )
     {
@@ -194,10 +195,10 @@ abstract class phpucAbstractInput implements phpucInputI
             case 'yAxisLabel':
             case 'xAxisLabel':
                 return $this->$name;
-                
+
             case 'data':
                 return $this->postProcessLog( $this->data );
-                
+
             default:
                 throw new OutOfRangeException(
                     sprintf( 'Unknown or writonly property $%s.', $name )
@@ -205,19 +206,19 @@ abstract class phpucAbstractInput implements phpucInputI
                 break;
         }
     }
-    
+
     /**
      * Magic property setter method.
      *
      * @param string $name  The property name.
      * @param mixed  $value The property value.
-     * 
+     *
      * @return void
      * @throws OutOfRangeException If the requested property doesn't exist or
      *         is readonly.
-     * @throws InvalidArgumentException If the given value has an unexpected 
+     * @throws InvalidArgumentException If the given value has an unexpected
      *         format or an invalid data type.
-     * @ignore 
+     * @ignore
      */
     public function __set( $name, $value )
     {
@@ -225,49 +226,52 @@ abstract class phpucAbstractInput implements phpucInputI
             sprintf( 'Unknown or readonly property $%s.', $name )
         );
     }
-    
+
     /**
      * Evaluates all defined xpath rules against the given DOMXPath instance.
      *
      * @param DOMXPath $xpath The context dom xpath object.
-     * 
+     *
      * @return void
      */
     public function processLog( DOMXPath $xpath )
     {
         foreach ( $this->rules as $rule )
         {
-            if ( !isset( $this->data[$rule->label] ) )
+            $label = $rule->label;
+            if ( !isset( $this->data[$label] ) )
             {
-                $this->data[$rule->label] = array();
+                $this->data[$label] = array();
             }
-            
+
             $nodeList = $xpath->query( $rule->xpath );
-            
+
             switch ( $rule->mode )
             {
                 case self::MODE_COUNT:
-                    $data = $this->processLogCount( $nodeList );
+                    $this->data[$label][] = $this->processLogCount( $nodeList );
                     break;
-                    
+
                 case self::MODE_SUM:
-                    $data = $this->processLogSum( $nodeList );
+                    $this->data[$label][] = $this->processLogSum( $nodeList );
                     break;
-                    
+
                 case self::MODE_VALUE:
-                    $data = $this->processLogValue( $nodeList );
+                    $this->data[$label][] = $this->processLogValue( $nodeList );
+                    break;
+
+                case self::MODE_LIST:
+                    $this->data[$label] = $this->processLogList( $nodeList );
                     break;
             }
-            
-            $this->data[$rule->label][] = $data;
         }
     }
-    
+
     /**
      * Calculates the sum of all node values.
      *
      * @param DOMNodeList $nodeList Fetched node list.
-     * 
+     *
      * @return integer
      */
     protected function processLogSum( DOMNodeList $nodeList )
@@ -279,24 +283,24 @@ abstract class phpucAbstractInput implements phpucInputI
         }
         return $sum;
     }
-    
+
     /**
      * Counts all nodes in the node list
      *
      * @param DOMNodeList $nodeList Fetched node list.
-     * 
+     *
      * @return integer
      */
     protected function processLogCount( DOMNodeList $nodeList )
     {
         return $nodeList->length;
     }
-    
+
     /**
      * Creates a concated string with all node values.
      *
      * @param DOMNodeList $nodeList Fetched node list.
-     * 
+     *
      * @return string
      */
     protected function processLogValue( DOMNodeList $nodeList )
@@ -308,28 +312,45 @@ abstract class phpucAbstractInput implements phpucInputI
         }
         return $value;
     }
-    
+
+    /**
+     * Creates a list of metric values
+     *
+     * @param DOMNodeList $nodeList Fetched node list.
+     *
+     * @return array
+     */
+    protected function processLogList( DOMNodeList $nodeList )
+    {
+        $logList = array();
+        foreach ( $nodeList as $node )
+        {
+            $logList[] = $node->nodeValue;
+        }
+        return $logList;
+    }
+
     /**
      * Post processes the fetched data.
-     * 
+     *
      * Concrete implementations can overwrite this this method to post process
      * the fetched data before it is given to the graph object. This can be very
-     * usefull in all cases where logs don't have the required format. 
+     * usefull in all cases where logs don't have the required format.
      *
      * @param array(string=>array) $logs Fetched log data.
-     * 
+     *
      * @return array(string=>mixed)
      */
     protected function postProcessLog( array $logs )
     {
         return $logs;
     }
-    
+
     /**
-     * Adds a xpath rule to this input object. 
+     * Adds a xpath rule to this input object.
      *
      * @param phpucInputRule $rule The rule instance
-     * 
+     *
      * @return void
      */
     protected function addRule( phpucInputRule $rule )

@@ -1,7 +1,7 @@
 <?php
 /**
  * This file is part of phpUnderControl.
- * 
+ *
  * PHP Version 5.2.0
  *
  * Copyright (c) 2007-2009, Manuel Pichler <mapi@manuel-pichler.de>.
@@ -35,7 +35,7 @@
  * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
- * 
+ *
  * @category  QualityAssurance
  * @package   Graph
  * @author    Manuel Pichler <mapi@manuel-pichler.de>
@@ -70,6 +70,7 @@ class phpucTimeChart extends phpucLineChart
         $this->yAxis                    = new ezcGraphChartElementDateAxis();
         $this->yAxis->axisLabelRenderer = new ezcGraphAxisCenteredLabelRenderer();
         $this->yAxis->dateFormat        = 'i:s';
-        $this->yAxis->font->maxFontSize = 10;
+        $this->yAxis->font->minFontSize = 10;
+        $this->yAxis->font->maxFontSize = 12;
     }
 }

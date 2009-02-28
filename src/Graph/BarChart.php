@@ -45,8 +45,9 @@
  * @link      http://www.phpundercontrol.org/
  */
 
+interface phpucThumbChartI extends phpucChartI {}
+
 /**
- * Object factory for the different chart types.
  *
  * @category  QualityAssurance
  * @package   Graph
@@ -55,43 +56,88 @@
  * @license   http://www.opensource.org/licenses/bsd-license.php  BSD License
  * @version   Release: @package_version@
  * @link      http://www.phpundercontrol.org/
+ *
+ * @property phpucAbstractInput $input The input data source.
  */
-class phpucChartFactory
+class phpucBarChart extends ezcGraphBarChart implements phpucThumbChartI
 {
     /**
-     * Creates a chart instance depending on the given <b>$input</b> settings.
-     *
-     * @param phpucAbstractInput $input The input data source.
-     *
-     * @return ezcGraphChart
+     * Constructs a new line chart object.
      */
-    public function createChart( phpucAbstractInput $input )
+    public function __construct()
     {
-        switch ( $input->type )
+        parent::__construct();
+
+        $this->init();
+    }
+
+    /**
+     * Sets the input instance for the next rendering process.
+     *
+     * @param phpucAbstractInput $input The input object.
+     *
+     * @return void
+     */
+    public function setInput( phpucAbstractInput $input )
+    {
+        $this->yAxis->label = $input->yAxisLabel;
+        $this->xAxis->label = $input->xAxisLabel;
+
+        $this->data = new ezcGraphChartDataContainer( $this );
+
+        $inputData = $input->data;
+        foreach ( $inputData as $label => $data )
         {
-            case phpucChartI::TYPE_DOT:
-                $chart = new phpucDotChart();
-                break;
-
-            case phpucChartI::TYPE_LINE:
-                $chart = new phpucLineChart();
-                break;
-
-            case phpucChartI::TYPE_PIE:
-                $chart = new phpucPieChart();
-                break;
-
-            case phpucChartI::TYPE_TIME:
-                $chart = new phpucTimeChart();
-                break;
-
-            case phpucChartI::TYPE_BAR:
-                $chart = new phpucBarChart();
-                break;
+            $this->data[$label] = new ezcGraphArrayDataSet( $data );
         }
 
-        $chart->setInput( $input );
+        $this->xAxis->labelCount = count( reset( $inputData ) );
+    }
 
-        return $chart;
+    /**
+     * Initializes the chart properties.
+     *
+     * @return void
+     */
+    protected function init()
+    {
+        $this->palette  = new phpucGraphPalette();
+        $this->renderer = new ezcGraphRenderer3d();
+
+        $this->renderer->options->legendSymbolGleam = .5;
+        $this->renderer->options->barChartGleam     = .5;
+
+        $this->renderer->options->fillAxis   = .95;
+        $this->renderer->options->barMargin  = .2;
+        $this->renderer->options->barPadding = .1;
+
+        $this->initAxis();
+        $this->initLegend();
+    }
+
+    /**
+     * Init's some common legend properties.
+     *
+     * @return void
+     */
+    protected function initLegend()
+    {
+        $this->legend = false;
+    }
+
+    /**
+     * Init's the default chart axis.
+     *
+     * @return void
+     */
+    protected function initAxis()
+    {
+        $this->yAxis                    = new ezcGraphChartElementNumericAxis();
+        $this->yAxis->font->minFontSize = 7;
+        $this->yAxis->font->maxFontSize = 8;
+
+        $this->xAxis                    = new ezcGraphChartElementLabeledAxis();
+        $this->xAxis->font->minFontSize = 7;
+        $this->xAxis->font->maxFontSize = 8;
     }
 }

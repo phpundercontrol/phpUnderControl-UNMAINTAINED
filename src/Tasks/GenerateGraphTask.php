@@ -1,7 +1,7 @@
 <?php
 /**
  * This file is part of phpUnderControl.
- * 
+ *
  * PHP Version 5.2.0
  *
  * Copyright (c) 2007-2009, Manuel Pichler <mapi@phpundercontrol.org>.
@@ -35,7 +35,7 @@
  * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
- * 
+ *
  * @category  QualityAssurance
  * @package   Tasks
  * @author    Manuel Pichler <mapi@phpundercontrol.org>
@@ -65,10 +65,10 @@ class phpucGenerateGraphTask extends phpucAbstractTask implements phpucConsoleEx
      * @var string $logDir
      */
     protected $logDir = null;
-    
+
     /**
      * The graph output directory.
-     * 
+     *
      * Normally this defaults to log directory but in some cases different
      * directories are used for artifacts.
      *
@@ -76,22 +76,22 @@ class phpucGenerateGraphTask extends phpucAbstractTask implements phpucConsoleEx
      * @var string $outputDir
      */
     protected $outputDir = null;
-    
+
     /**
-     * Internal used debug property. 
-     * 
+     * Internal used debug property.
+     *
      * If this is set to <b>true</b> all graphs are regenerate on every call.
      *
      * @type boolean
      * @var boolean $debug
      */
     private $debug = false;
-    
+
     /**
      * Validates that the project log directory exists.
      *
      * @return void
-     * 
+     *
      * @throws phpucValidateException If the validation fails.
      */
     public function validate()
@@ -108,7 +108,7 @@ class phpucGenerateGraphTask extends phpucAbstractTask implements phpucConsoleEx
         if ( $this->args->hasArgument( 'project-output-dir' ) )
         {
             $outputDir = $this->args->getArgument( 'project-output-dir' );
-            
+
             if ( ( $this->outputDir = realpath( $outputDir ) ) === '' )
             {
                 throw new phpucValidateException(
@@ -121,7 +121,7 @@ class phpucGenerateGraphTask extends phpucAbstractTask implements phpucConsoleEx
             $this->outputDir = $this->logDir;
         }
     }
-    
+
     /**
      * Generates a set of charts for each project build(if required).
      *
@@ -131,49 +131,65 @@ class phpucGenerateGraphTask extends phpucAbstractTask implements phpucConsoleEx
     {
         // Force update?
         $force = ( $this->debug || $this->args->hasOption( 'force-update' ) );
-        
+
         $inputLoader  = new phpucInputLoader();
         $chartFactory = new phpucChartFactory();
-        
+
         $logFiles = new phpucLogFileIterator( $this->logDir );
-        
+
         foreach ( $logFiles as $logFile )
         {
             $xpath = new DOMXPath( $logFile );
-    
+
             $outputDir = "{$this->outputDir}/{$logFile->timestamp}/graph";
 
             foreach ( $inputLoader as $input )
             {
                 $input->processLog( $xpath );
-                
+                if ( count( array_filter( $input->data ) ) === 0 )
+                {
+                    continue;
+                }
+
                 if ( !is_dir( $outputDir ) )
                 {
                     mkdir( $outputDir, 0755, true );
                 }
-                
+
                 $fileName = "{$outputDir}/{$input->fileName}.svg";
+
+                if ( !is_dir( dirname( $fileName ) ) ) {
+                    mkdir( dirname( $fileName ) );
+                }
+
                 if ( !file_exists( $fileName ) || $force )
                 {
                     $chart = $chartFactory->createChart( $input );
-                    $chart->render( 390, 250, $fileName );
+                    if ( $chart instanceof phpucThumbChartI )
+                    {
+                        $chart->render( 195, 125, $fileName );
+                    }
+                    else
+                    {
+                        $chart->render( 390, 250, $fileName );
+                    }
                 }
             }
         }
     }
-    
+
     /**
-     * Callback method that registers a command extension. 
+     * Callback method that registers a command extension.
      *
-     * @param phpucConsoleInputDefinition $def 
+     * @param phpucConsoleInputDefinition $def
      *        The input definition container.
      * @param phpucConsoleCommandI  $command
      *        The context cli command instance.
-     * 
+     *
      * @return void
      */
     public function registerCommandExtension( phpucConsoleInputDefinition $def,
-                                              phpucConsoleCommandI $command ) 
+                                              phpucConsoleCommandI $command )
     {
         $def->addOption(
             $command->getCommandId(),

@@ -1,7 +1,7 @@
 <?php
 /**
  * This file is part of phpUnderControl.
- * 
+ *
  * PHP Version 5.2.0
  *
  * Copyright (c) 2007-2009, Manuel Pichler <mapi@phpundercontrol.org>.
@@ -35,7 +35,7 @@
  * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
- * 
+ *
  * @category  QualityAssurance
  * @package   Graph
  * @author    Manuel Pichler <mapi@phpundercontrol.org>
@@ -62,17 +62,17 @@ class phpucDotChart extends phpucLineChart
      * Constructs a new dot chart instance.
      *
      * @param array $options Default option array
-     * 
+     *
      * @author Kore Nordmann <kore@php.net>
      */
     public function __construct( array $options = array() )
     {
         parent::__construct( $options );
-        
+
         $this->options                = new phpucDotChartOptions( $options );
         $this->options->lineThickness = 0;
     }
-    
+
     /**
      * Initializes this chart implementation.
      *
@@ -81,12 +81,12 @@ class phpucDotChart extends phpucLineChart
     protected function init()
     {
         parent::init();
-        
+
         $this->showSymbol = true;
-        
+
         $this->options->fillLines = false;
     }
-    
+
     /**
      * Initializes the special axis for the graph type.
      *
@@ -97,11 +97,13 @@ class phpucDotChart extends phpucLineChart
         $this->yAxis                    = new ezcGraphChartElementDateAxis();
         $this->yAxis->axisLabelRenderer = new ezcGraphAxisCenteredLabelRenderer();
         $this->yAxis->dateFormat        = 'H:i';
-        $this->yAxis->font->maxFontSize = 10;
+        $this->yAxis->font->minFontSize = 10;
+        $this->yAxis->font->maxFontSize = 12;
 
         $this->xAxis                    = new ezcGraphChartElementDateAxis();
         $this->xAxis->axisLabelRenderer = new ezcGraphAxisCenteredLabelRenderer();
         $this->xAxis->dateFormat        = 'Y/m/d';
-        $this->xAxis->font->maxFontSize = 10;
+        $this->xAxis->font->minFontSize = 10;
+        $this->xAxis->font->maxFontSize = 12;
     }
 }

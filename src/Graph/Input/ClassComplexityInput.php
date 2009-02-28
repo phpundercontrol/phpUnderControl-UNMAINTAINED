@@ -47,7 +47,7 @@
  */
 
 /**
- * Base interface for all graph inputs.
+ *
  *
  * @category   QualityAssurance
  * @package    Graph
@@ -58,62 +58,79 @@
  * @version    Release: @package_version@
  * @link       http://www.phpundercontrol.org/
  */
-interface phpucInputI
+class phpucClassComplexityInput extends phpucAbstractInput
 {
     /**
-     * This identifies the sum mode where all found records are summed up.
+     * Constructs a new class complexity input object.
      */
-    const MODE_SUM = 0;
+    public function __construct()
+    {
+        parent::__construct(
+            'Class Complexity',
+            'thumbs/class-complexity',
+            phpucChartI::TYPE_BAR
+        );
+
+        $this->yAxisLabel = 'Classes';
+        $this->xAxisLabel = 'Complexity ';
+
+        $this->addRule(
+            new phpucInputRule(
+                'Temp',
+                '/cruisecontrol/metrics/package/class/@wmc',
+                self::MODE_LIST
+            )
+        );
+    }
 
     /**
-     * This identifier the count mode which counts the number of matching records.
+     * Post processes the fetched data.
+     *
+     * Concrete implementations can overwrite this this method to post process
+     * the fetched data before it is given to the graph object. This can be very
+     * usefull in all cases where logs don't have the required format.
+     *
+     * @param array(string=>array) $logs Fetched log data.
+     *
+     * @return array(string=>mixed)
      */
-    const MODE_COUNT = 1;
+    protected function postProcessLog( array $logs )
+    {
+        $result = array();
+        foreach ( $logs['Temp'] as $complexity )
+        {
+            $complexity = ceil( $complexity / 5 ) * 5;
+            if ( !isset( $result[$complexity] ) )
+            {
+                $result[$complexity] = 0;
+            }
+            ++$result[$complexity];
+        }
 
-    /**
-     * This identifier the value mode which takes the raw node value.
-     */
-    const MODE_VALUE = 2;
+        $size = 5;
+        while ( count( $result ) > 8 )
+        {
+            $size += 5;
+            $temp = array();
+            foreach ( $result as $complexity => $count )
+            {
+                $complexity = ceil( $complexity / $size ) * $size;
+                if ( !isset( $temp[$complexity] ) )
+                {
+                    $temp[$complexity] = 0;
+                }
+                $temp[$complexity] += $count;
+            }
+            $result = $temp;
 
-    /**
-     * This constant identifies the list mode which takes the raw node values as
-     * a list of entries.
-     */
-    const MODE_LIST = 3;
+        }
 
-    /**
-     * Magic property getter method.
-     *
-     * @param string $name The property name.
-     *
-     * @return mixed
-     * @throws OutOfRangeException If the requested property doesn't exist or
-     *         is writonly.
-     * @ignore
-     */
-    function __get( $name );
+        if ( count($result) < 2 )
+        {
+            $result[0] = 0;
+        }
+        ksort( $result );
 
-    /**
-     * Magic property setter method.
-     *
-     * @param string $name  The property name.
-     * @param mixed  $value The property value.
-     *
-     * @return void
-     * @throws OutOfRangeException If the requested property doesn't exist or
-     *         is readonly.
-     * @throws InvalidArgumentException If the given value has an unexpected
-     *         format or an invalid data type.
-     * @ignore
-     */
-    function __set( $name, $value );
-
-    /**
-     * Extracts the input data from the given DOMXPath instance.
-     *
-     * @param DOMXPath $xpath The context dom xpath object.
-     *
-     * @return void
-     */
-    function processLog( DOMXPath $xpath );
+        return array('Temp' => $result);
+    }
 }
