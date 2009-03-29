@@ -61,7 +61,7 @@
 class phpucPhpUnitTask extends phpucAbstractPearTask
 {
     /**
-     * Minimum code sniffer version.
+     * Minimum PHPUnit version.
      */
     const PHP_UNIT_VERSION = '3.2.0';
 
