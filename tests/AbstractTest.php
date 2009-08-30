@@ -49,6 +49,7 @@ define( 'PHPUC_TEST', true );
 define( 'PHPUC_TEST_DIR', dirname( __FILE__ ) . '/run' );
 define( 'PHPUC_TEST_DATA', dirname( __FILE__ ) . '/_data' );
 define( 'PHPUC_TEST_LOGS', dirname( __FILE__ ) . '/logs' );
+define( 'PHPUC_TEST_EXPECTED', dirname( __FILE__ ) . '/_expected' );
 define( 'PHPUC_TEST_LOG_FILE', PHPUC_TEST_LOGS . '/log20080118220842Lbuild.57.xml');
 
 if ( strpos( '@php_dir@', '@php_dir' ) === false )
@@ -104,6 +105,62 @@ abstract class phpucAbstractTest extends PHPUnit_Framework_TestCase
         $this->clearTestContents();
         
         parent::tearDown();
+    }
+
+    /**
+     * Skips the current test when the specified binary does not exist.
+     *
+     * @param string $binary The local binary name.
+     *
+     * @return void
+     */
+    protected function markTestSkippedWhenBinaryNotExists( $binary )
+    {
+        if ( $this->getBinary( $binary ) === '' )
+        {
+            $this->markTestSkipped( sprintf( 'No binary %s found', $binary ) );
+        }
+    }
+
+    /**
+     * Returns the absolute path for the given binary.
+     *
+     * @param string $binary The local binary name.
+     *
+     * @return string
+     */
+    protected function getBinary( $binary )
+    {
+        return trim( shell_exec( 'which ' . escapeshellarg( $binary ) ) );
+    }
+
+    /**
+     * Returns the name of the currently executed test method.
+     *
+     * @return string
+     */
+    protected function getTestFunctionName()
+    {
+        foreach ( debug_backtrace() as $traceFrame )
+        {
+            if ( $this->isTestFunction( $traceFrame ) )
+            {
+                return $traceFrame['function'];
+            }
+        }
+        throw new ErrorException( 'Cannot detect test function.' );
+    }
+
+    /**
+     * Returns <b>true</b> when the given trace frame represents a test function.
+     *
+     * @param array $traceFrame A single stacktrace frame.
+     *
+     * @return boolean
+     */
+    private function isTestFunction( array $traceFrame )
+    {
+        return ( strpos( $traceFrame['function'], 'test' ) === 0 );
     }
     
     /**

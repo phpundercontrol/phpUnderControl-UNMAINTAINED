@@ -1,32 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <package xmlns="http://pear.php.net/dtd/package-2.0" xmlns:tasks="http://pear.php.net/dtd/tasks-1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.0" xsi:schemaLocation="http://pear.php.net/dtd/tasks-1.0                         http://pear.php.net/dtd/tasks-1.0.xsd                         http://pear.php.net/dtd/package-2.0                         http://pear.php.net/dtd/package-2.0.xsd">
-  <name>phpUnderControl</name>
-  <channel>pear.phpunit.de</channel>
-  <summary>CruiseControl addon for PHP</summary>
-  <description>phpUnderControl aims to make the first steps with CruiseControl 
-  and PHP as easy as possible. It integrates three of the best PHP development 
-  tools into CruiseControl, combined with an easy setup routine and a small 
-  example project.
-  </description>
-  <lead>
-    <name>Manuel Pichler</name>
-    <user>mp</user>
-    <email>mapi@phpundercontrol.org</email>
-    <active>yes</active>
-  </lead>
-  <date>2008-11-30</date>
-  <version>
-    <release>0.4.7</release>
-    <api>0.2.0</api>
-  </version>
-  <stability>
-    <release>beta</release>
-    <api>beta</api>
-  </stability>
-  <license uri="http://www.opensource.org/licenses/bsd-license.php">BSD License</license>
-  <notes>
+    <name>phpUnderControl</name>
+    <channel>pear.phpunit.de</channel>
+    <summary>CruiseControl addon for PHP</summary>
+    <description>phpUnderControl aims to make the first steps with CruiseControl 
+and PHP as easy as possible. It integrates three of the best PHP development 
+tools into CruiseControl, combined with an easy setup routine and a small 
+example project.
+    </description>
+    <lead>
+        <name>Manuel Pichler</name>
+        <user>mp</user>
+        <email>mapi@phpundercontrol.org</email>
+        <active>yes</active>
+    </lead>
+    <date>2009-02-28</date>
+    <version>
+        <release>0.4.8</release>
+        <api>0.2.0</api>
+    </version>
+    <stability>
+        <release>beta</release>
+        <api>beta</api>
+    </stability>
+    <license uri="http://www.opensource.org/licenses/bsd-license.php">BSD License</license>
+    <notes>
 - Bug fix, CC is compatible with Java 1.5, but the phpUnderControl sources were compiled against Java 1.6. 
-  </notes>
+    </notes>
   <contents>
     <dir name="/">
       <dir name="src">
@@ -1752,6 +1752,29 @@
     </filelist>
   </phprelease>
   <changelog>
+  
+    <release>
+        <lead>
+            <name>Manuel Pichler</name>
+            <user>mp</user>
+            <email>mapi@phpundercontrol.org</email>
+            <active>yes</active>
+        </lead>
+        <version>
+            <release>0.4.7</release>
+            <api>0.2.0</api>
+        </version>
+        <stability>
+            <release>beta</release>
+            <api>beta</api>
+        </stability>
+        <date>2008-11-30</date>
+        <license uri="http://www.opensource.org/licenses/bsd-license.php">BSD License</license>
+        <notes>
+- Bug fix, CC is compatible with Java 1.5, but the phpUnderControl sources were compiled against Java 1.6. 
+        </notes>
+    </release>
+
     <release>
       <version>
         <release>0.4.6</release>
