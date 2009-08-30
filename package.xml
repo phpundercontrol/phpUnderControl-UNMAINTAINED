@@ -1,30 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <package xmlns="http://pear.php.net/dtd/package-2.0" xmlns:tasks="http://pear.php.net/dtd/tasks-1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.0" xsi:schemaLocation="http://pear.php.net/dtd/tasks-1.0                         http://pear.php.net/dtd/tasks-1.0.xsd                         http://pear.php.net/dtd/package-2.0                         http://pear.php.net/dtd/package-2.0.xsd">
-    <name>phpUnderControl</name>
-    <channel>pear.phpunit.de</channel>
-    <summary>CruiseControl addon for PHP</summary>
-    <description>phpUnderControl aims to make the first steps with CruiseControl 
+  <name>phpUnderControl</name>
+  <channel>pear.phpunit.de</channel>
+  <summary>CruiseControl addon for PHP</summary>
+  <description>phpUnderControl aims to make the first steps with CruiseControl 
 and PHP as easy as possible. It integrates three of the best PHP development 
 tools into CruiseControl, combined with an easy setup routine and a small 
 example project.
     </description>
-    <lead>
-        <name>Manuel Pichler</name>
-        <user>mp</user>
-        <email>mapi@phpundercontrol.org</email>
-        <active>yes</active>
-    </lead>
-    <date>2009-02-28</date>
-    <version>
-        <release>0.4.8</release>
-        <api>0.2.0</api>
-    </version>
-    <stability>
-        <release>beta</release>
-        <api>beta</api>
-    </stability>
-    <license uri="http://www.opensource.org/licenses/bsd-license.php">BSD License</license>
-    <notes>
+  <lead>
+    <name>Manuel Pichler</name>
+    <user>mp</user>
+    <email>mapi@phpundercontrol.org</email>
+    <active>yes</active>
+  </lead>
+  <date>2009-02-28</date>
+  <version>
+    <release>0.4.8</release>
+    <api>0.2.0</api>
+  </version>
+  <stability>
+    <release>beta</release>
+    <api>beta</api>
+  </stability>
+  <license uri="http://www.opensource.org/licenses/bsd-license.php">BSD License</license>
+  <notes>
 - Bug fix, CC is compatible with Java 1.5, but the phpUnderControl sources were compiled against Java 1.6. 
     </notes>
   <contents>
@@ -95,18 +95,6 @@ example project.
               <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
             </file>
             <file role="php" name="PHPUnitTestLogAggregator.php">
-              <tasks:replace from="@package_version@" to="version" type="package-info"/>
-              <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
-              <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
-              <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
-            </file>
-            <file role="php" name="PHPUnitCoverageXmlGenerator.php">
-              <tasks:replace from="@package_version@" to="version" type="package-info"/>
-              <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
-              <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
-              <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
-            </file>
-            <file role="php" name="PHPUnitLogDatabaseAggregator.php">
               <tasks:replace from="@package_version@" to="version" type="package-info"/>
               <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
               <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
@@ -607,7 +595,37 @@ example project.
             <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
           </file>
         </dir>
+        <dir name="Stylesheet">
+          <file role="test" name="StylesheetAllTests.php">
+            <tasks:replace from="@package_version@" to="version" type="package-info"/>
+            <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+            <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+            <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+          </file>
+          <file role="test" name="StylesheetHeaderTest.php">
+            <tasks:replace from="@package_version@" to="version" type="package-info"/>
+            <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+            <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+            <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+          </file>
+        </dir>
         <dir name="_data">
+          <dir name="Stylesheet">
+            <dir name="logs">
+              <file role="test" name="testHeaderDoesNotContainCompleteLogFileContentXsltProcessor.xml">
+                <tasks:replace from="@package_version@" to="version" type="package-info"/>
+                <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+                <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+                <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+              </file>
+              <file role="test" name="testHeaderDoesNotContainCompleteLogFileContentXsltproc.xml">
+                <tasks:replace from="@package_version@" to="version" type="package-info"/>
+                <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+                <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+                <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+              </file>
+            </dir>
+          </dir>
           <dir name="phpunit">
             <file role="test" name="log-db-seed.xml">
               <tasks:replace from="@package_version@" to="version" type="package-info"/>
@@ -723,12 +741,6 @@ example project.
                 <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
               </file>
             </dir>
-            <file role="test" name="log.db">
-              <tasks:replace from="@package_version@" to="version" type="package-info"/>
-              <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
-              <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
-              <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
-            </file>
             <dir name="php525">
               <file role="test" name="cov.xml">
                 <tasks:replace from="@package_version@" to="version" type="package-info"/>
@@ -860,6 +872,18 @@ example project.
             <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
             <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
           </file>
+          <dir name="Graph">
+            <dir name="Input">
+              <dir name="logs">
+                <file role="test" name="testInputOnlyEvaluatesTheFirstBuildDatePropertyTicket838.xml">
+                  <tasks:replace from="@package_version@" to="version" type="package-info"/>
+                  <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+                  <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+                  <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+                </file>
+              </dir>
+            </dir>
+          </dir>
         </dir>
         <dir name="logs">
           <file role="test" name="log20071211220903Lbuild.3.xml">
@@ -949,18 +973,6 @@ example project.
             <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
           </file>
           <dir name="Logs">
-            <file role="test" name="PHPUnitLogDatabaseAggregatorTest.php">
-              <tasks:replace from="@package_version@" to="version" type="package-info"/>
-              <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
-              <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
-              <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
-            </file>
-            <file role="test" name="PHPUnitCoverageXmlGeneratorTest.php">
-              <tasks:replace from="@package_version@" to="version" type="package-info"/>
-              <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
-              <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
-              <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
-            </file>
             <file role="test" name="AbstractLogAggregatorTest.php">
               <tasks:replace from="@package_version@" to="version" type="package-info"/>
               <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
@@ -1243,6 +1255,22 @@ example project.
             <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
             <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
           </file>
+        </dir>
+        <dir name="_expected">
+          <dir name="stylesheet">
+            <file role="test" name="testHeaderDoesNotContainCompleteLogFileContentXsltProcessor.html">
+              <tasks:replace from="@package_version@" to="version" type="package-info"/>
+              <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+              <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+              <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+            </file>
+            <file role="test" name="testHeaderDoesNotContainCompleteLogFileContentXsltproc.html">
+              <tasks:replace from="@package_version@" to="version" type="package-info"/>
+              <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+              <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+              <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+            </file>
+          </dir>
         </dir>
         <dir name="Commands">
           <file role="test" name="CommandTest.php">
@@ -1582,8 +1610,6 @@ example project.
       <install as="phpUnderControl/Data/ConfigArtifactsPublisher.php" name="src/Data/ConfigArtifactsPublisher.php"/>
       <install as="phpUnderControl/Data/Logs/AbstractLogAggregator.php" name="src/Data/Logs/AbstractLogAggregator.php"/>
       <install as="phpUnderControl/Data/Logs/PHPUnitTestLogAggregator.php" name="src/Data/Logs/PHPUnitTestLogAggregator.php"/>
-      <install as="phpUnderControl/Data/Logs/PHPUnitCoverageXmlGenerator.php" name="src/Data/Logs/PHPUnitCoverageXmlGenerator.php"/>
-      <install as="phpUnderControl/Data/Logs/PHPUnitLogDatabaseAggregator.php" name="src/Data/Logs/PHPUnitLogDatabaseAggregator.php"/>
       <install as="phpUnderControl/Data/Logs/PHPUnitMetricsAggregator.php" name="src/Data/Logs/PHPUnitMetricsAggregator.php"/>
       <install as="phpUnderControl/Data/ConfigProject.php" name="src/Data/ConfigProject.php"/>
       <install as="phpUnderControl/Data/ConfigFile.php" name="src/Data/ConfigFile.php"/>
@@ -1674,8 +1700,6 @@ example project.
       <install as="phpUnderControl/Data/ConfigArtifactsPublisher.php" name="src/Data/ConfigArtifactsPublisher.php"/>
       <install as="phpUnderControl/Data/Logs/AbstractLogAggregator.php" name="src/Data/Logs/AbstractLogAggregator.php"/>
       <install as="phpUnderControl/Data/Logs/PHPUnitTestLogAggregator.php" name="src/Data/Logs/PHPUnitTestLogAggregator.php"/>
-      <install as="phpUnderControl/Data/Logs/PHPUnitCoverageXmlGenerator.php" name="src/Data/Logs/PHPUnitCoverageXmlGenerator.php"/>
-      <install as="phpUnderControl/Data/Logs/PHPUnitLogDatabaseAggregator.php" name="src/Data/Logs/PHPUnitLogDatabaseAggregator.php"/>
       <install as="phpUnderControl/Data/Logs/PHPUnitMetricsAggregator.php" name="src/Data/Logs/PHPUnitMetricsAggregator.php"/>
       <install as="phpUnderControl/Data/ConfigProject.php" name="src/Data/ConfigProject.php"/>
       <install as="phpUnderControl/Data/ConfigFile.php" name="src/Data/ConfigFile.php"/>
@@ -1752,29 +1776,27 @@ example project.
     </filelist>
   </phprelease>
   <changelog>
-  
     <release>
-        <lead>
-            <name>Manuel Pichler</name>
-            <user>mp</user>
-            <email>mapi@phpundercontrol.org</email>
-            <active>yes</active>
-        </lead>
-        <version>
-            <release>0.4.7</release>
-            <api>0.2.0</api>
-        </version>
-        <stability>
-            <release>beta</release>
-            <api>beta</api>
-        </stability>
-        <date>2008-11-30</date>
-        <license uri="http://www.opensource.org/licenses/bsd-license.php">BSD License</license>
-        <notes>
+      <lead>
+        <name>Manuel Pichler</name>
+        <user>mp</user>
+        <email>mapi@phpundercontrol.org</email>
+        <active>yes</active>
+      </lead>
+      <version>
+        <release>0.4.7</release>
+        <api>0.2.0</api>
+      </version>
+      <stability>
+        <release>beta</release>
+        <api>beta</api>
+      </stability>
+      <date>2008-11-30</date>
+      <license uri="http://www.opensource.org/licenses/bsd-license.php">BSD License</license>
+      <notes>
 - Bug fix, CC is compatible with Java 1.5, but the phpUnderControl sources were compiled against Java 1.6. 
         </notes>
     </release>
-
     <release>
       <version>
         <release>0.4.6</release>
