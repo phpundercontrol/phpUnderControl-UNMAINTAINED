@@ -56,6 +56,7 @@ require_once 'PHPUnit/TextUI/TestRunner.php';
 require_once dirname( __FILE__ ) . '/CleanCommandTest.php';
 require_once dirname( __FILE__ ) . '/CommandTest.php';
 require_once dirname( __FILE__ ) . '/DeleteCommandTest.php';
+require_once dirname( __FILE__ ) . '/InstallCommandTest.php';
 
 /**
  * Main test suite for phpUnderControl Commands package.
@@ -93,6 +94,7 @@ class phpucCommandsAllTests
         $suite->addTestSuite( 'phpucCommandTest' );
         $suite->addTestSuite( 'phpucCleanCommandTest' );
         $suite->addTestSuite( 'phpucDeleteCommandTest' );
+        $suite->addTestSuite( 'phpucInstallCommandTest' );
         
         return $suite;
     }
