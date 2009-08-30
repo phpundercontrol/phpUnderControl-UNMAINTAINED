@@ -81,7 +81,7 @@ class phpucStylesheetHeaderTest extends phpucAbstractTest
     public function testHeaderDoesNotContainCompleteLogFileContentXsltProcessor()
     { 
         $xsl = $this->createXslStylesheet( 'header.xsl' );
-        $xml = $this->createCruiseControlLog( 'header_log.xml' );
+        $xml = $this->createCruiseControlLog();
 
         $proc = new XSLTProcessor();
         $proc->importStylesheet( $xsl );
@@ -108,8 +108,8 @@ class phpucStylesheetHeaderTest extends phpucAbstractTest
             sprintf(
                 '%s %s %s',
                 $this->getBinary( self::XSLTPROC_BINARY ),
-                $this->createAbsoluteXslStylesheetPath( 'header.xsl' ),
-                $this->createAbsoluteCruiseControlLogPath( 'header_log.xml' )
+                $this->getXslStylesheetPath( 'header.xsl' ),
+                $this->getCruiseControlLogPath()
             )
         );
 
@@ -130,20 +130,20 @@ class phpucStylesheetHeaderTest extends phpucAbstractTest
     private function createXslStylesheet( $localPath )
     {
         $xsl = new DOMDocument( '1.0', 'UTF-8' );
-        $xsl->load( $this->createAbsoluteXslStylesheetPath( $localPath ) );
+        $xsl->load( $this->getXslStylesheetPath( $localPath ) );
 
         return $xsl;
     }
 
     /**
-     * Creates the absolute path of a xsl stylesheet file.
+     * Returns the absolute path of a xsl stylesheet file.
      *
      * @param string $localPath The local stylesheet path starting from
      *        phpUnderControl's data/webapps/cruisecontrol/xsl directory.
      *
      * @return string
      */
-    private function createAbsoluteXslStylesheetPath( $localPath )
+    private function getXslStylesheetPath( $localPath )
     {
         $absolutePath = PHPUC_DATA_DIR . self::WEBAPP_XSL_DIR . $localPath;
         if ( file_exists( $absolutePath ) )
@@ -151,40 +151,6 @@ class phpucStylesheetHeaderTest extends phpucAbstractTest
             return $absolutePath;
         }
         throw new ErrorException( 'Cannot locate xsl stylesheet ' . $localPath );
-    }
-
-    /**
-     * Creates a log file instance for the given local file path.
-     *
-     * @param string $localPath Local path to a test log file based in the
-     *        phpUnderControl _data/logs/ directory.
-     *
-     * @return DOMDocument
-     */
-    private function createCruiseControlLog( $localPath )
-    {
-        $xml = new DOMDocument( '1.0', 'UTF-8' );
-        $xml->load( $this->createAbsoluteCruiseControlLogPath( $localPath ) );
-
-        return $xml;
-    }
-
-    /**
-     * Creates the absolute path for a test log file.
-     *
-     * @param string $localPath Local path to a test log file based in the
-     *        phpUnderControl _data/logs/ directory.
-     *
-     * @return string
-     */
-    private function createAbsoluteCruiseControlLogPath( $localPath )
-    {
-        $absolutePath = PHPUC_TEST_DATA . '/logs/stylesheet/' . $localPath;
-        if ( file_exists( $absolutePath ) )
-        {
-            return $absolutePath;
-        }
-        throw new ErrorException( 'Cannot locate CruiseControl log ' . $localPath );
     }
 
     /**

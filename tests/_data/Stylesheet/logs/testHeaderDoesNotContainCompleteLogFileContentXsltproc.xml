@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cruisecontrol>
+  <modifications>
+    <modification type="git">
+      <file action="modified">
+        <revision>1239390218</revision>
+        <filename>cdi.php</filename>
+      </file>
+      <file action="modified">
+        <revision>1239390218</revision>
+        <filename>c/mvi.php</filename>
+      </file>
+      <file action="modified">
+        <revision>1239390218</revision>
+        <filename>l/se.txt</filename>
+      </file>
+      <date>2009-04-10T19:03:38</date>
+      <user>Daryn Warriner</user>
+      <comment><![CDATA[Foobar]]></comment>
+      <revision>1239390218</revision>
+      <email>foo@example.com</email>
+    </modification>
+  </modifications>
+  <info>
+    <property name="projectname" value="test" />
+    <property name="builddate" value="2009-04-10T19:12:54" />
+    <property name="cctimestamp" value="20090410201254" />
+    <property name="label" value="build.34" />
+    <property name="logfile" value="log20090410201254Lbuild.34.xml" />
+  </info>
+  <build time="1 minute 26 seconds">
+  </build>
+
+</cruisecontrol>
+

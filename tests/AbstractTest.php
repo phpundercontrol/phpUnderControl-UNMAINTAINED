@@ -162,6 +162,64 @@ abstract class phpucAbstractTest extends PHPUnit_Framework_TestCase
     {
         return ( strpos( $traceFrame['function'], 'test' ) === 0 );
     }
+
+    /**
+     * Creates a log file instance for the currently executed test method.
+     *
+     * @return DOMDocument
+     */
+    protected function createCruiseControlLog()
+    {
+        $xml = new DOMDocument( '1.0', 'UTF-8' );
+        $xml->load( $this->getCruiseControlLogPath() );
+
+        return $xml;
+    }
+
+    /**
+     * Returns the absolute path for the actually executed test method.
+     *
+     * @return string
+     */
+    protected function getCruiseControlLogPath()
+    {
+        $path = $this->createCruiseControlLogPath();
+        if ( file_exists( $path ) )
+        {
+            return $path;
+        }
+        throw new ErrorException(
+            sprintf(
+                'Cannot locate CruiseControl log for test case %s.',
+                $this->getTestFunctionName()
+            )
+        );
+    }
+
+    /**
+     * Creates the absolute path for the actually executed test method.
+     *
+     * @return string
+     */
+    private function createCruiseControlLogPath()
+    {
+        return sprintf(
+            '%s/%s/logs/%s.xml',
+            PHPUC_TEST_DATA,
+            $this->getTestDirectory(),
+            $this->getTestFunctionName()
+        );
+    }
+
+    private function getTestDirectory()
+    {
+        $reflection = new ReflectionObject( $this );
+
+        return substr(
+            dirname( $reflection->getFileName() ),
+            strpos( $reflection->getFileName(), 'tests' ) + 6
+        );
+    }
     
     /**
      * Prepares the global <b>$argv</b> array.
