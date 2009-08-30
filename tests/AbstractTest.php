@@ -190,7 +190,8 @@ abstract class phpucAbstractTest extends PHPUnit_Framework_TestCase
         }
         throw new ErrorException(
             sprintf(
-                'Cannot locate CruiseControl log for test case %s.',
+                'Cannot locate CruiseControl log for test case %s::%s().',
+                get_class( $this ),
                 $this->getTestFunctionName()
             )
         );

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cruisecontrol>
+  <info>
+    <property name="builddate" value="2009-04-10T19:12:54" />
+  </info>
+  <info>
+    <property name="builddate" value="2009-07-31T16:00:01" />
+  </info>
+  <build time="1 minute 26 seconds" />
+</cruisecontrol>
+

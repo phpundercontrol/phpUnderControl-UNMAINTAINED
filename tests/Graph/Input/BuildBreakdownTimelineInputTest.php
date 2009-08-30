@@ -63,6 +63,32 @@ require_once dirname( __FILE__ ) . '/AbstractGraphInputTest.php';
 class phpucBuildBreakdownTimelineInputTest extends phpucAbstractGraphInputTest
 {
     /**
+     * Test case for ticket 838, where a CruiseControl log file with several
+     * builddate properties results in invalid dates.
+     *
+     * http://www.phpunit.de/ticket/838
+     *
+     * @return void
+     * @group graph
+     */
+    public function testInputOnlyEvaluatesTheFirstBuildDatePropertyTicket838()
+    {
+        $xpath = new DOMXPath( $this->createCruiseControlLog() );
+
+        $input = new phpucBuildBreakdownTimelineInput();
+        $input->processLog( $xpath );
+
+        $this->assertSame(
+            array( 
+                'Good Builds' => array(
+                    1239383574 => '19:12'
+                )
+            ),
+            $input->data
+        );
+    }
+
+    /**
      * Create the context input object.
      *
      * @return phpucInputI
