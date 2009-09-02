@@ -37,33 +37,15 @@
  ********************************************************************************-->
   <xsl:output method="html" encoding="UTF-8" indent="yes"/>
   <xsl:decimal-format decimal-separator="." grouping-separator="," />
-  
+
   <xsl:variable name="indent.width" select="15" />
 
-  <!-- 
+  <!--
     Root template
   -->
   <xsl:template match="/">
-    <style type="text/css">
-      .oddrow {
-          background-color: #ccc;
-      }
-    </style>
-    <script type="text/javascript" language="JavaScript">
-    // <!--
-    // Function show/hide given div
-    // -->
-    function toggleDivVisibility(_div) {
-        if (_div.style.display=="none") {
-            _div.style.display="block";
-        } else {
-            _div.style.display="none";
-        }
-    }
-    </script>
-           
     <!-- Main table -->
-    <table class="result">
+    <table id="phpunitDetails" class="result">
       <colgroup>
         <col width="10%"/>
         <col width="45%"/>
@@ -84,7 +66,7 @@
       </tbody>
     </table>
   </xsl:template>
-  
+
   <!--
     Test Suite Template
     Construct TestSuite section
@@ -109,9 +91,9 @@
         <xsl:value-of select="format-number(@time,'0.000')"/>
       </th>
     </tr>
-    
+
     <xsl:variable name="data.provider.prefix" select="concat(@name, '::')" />
-    
+
     <xsl:for-each select="testcase|testsuite">
       <xsl:choose>
         <xsl:when test="name() = 'testcase'">
@@ -130,7 +112,7 @@
       </xsl:choose>
     </xsl:for-each>
   </xsl:template>
-  
+
   <!--
     Testcase template
     Construct testcase section
@@ -138,9 +120,9 @@
   <xsl:template match="testcase">
     <xsl:param name="sub.test" select="false" />
     <xsl:param name="line.indent" select="0" />
-    
+
     <xsl:variable name="node.id" select="concat('node-', generate-id(.))" />
-    
+
     <tr>
       <xsl:attribute name="class">
         <xsl:choose>
@@ -189,7 +171,7 @@
             </xsl:otherwise>
           </xsl:choose>
         </xsl:attribute>
-        
+
         <xsl:if test="$sub.test">
           <xsl:text>#</xsl:text>
           <xsl:value-of select="position()" />
@@ -212,12 +194,10 @@
                 </xsl:otherwise>
               </xsl:choose>
             </xsl:variable>
-            <a href="javascript:void(0)"
-               onClick="toggleDivVisibility(document.getElementById('{$node.id}'))"><xsl:value-of select="$link.label" /> &#187;</a>
+            <a href="#" onclick="$('{$node.id}').toggle()"><xsl:value-of select="$link.label" /> &#187;</a>
           </xsl:when>
           <xsl:when test="failure">
-            <a href="javascript:void(0)"
-               onClick="toggleDivVisibility(document.getElementById('{$node.id}'))">Failure &#187;</a>
+            <a href="#" onclick="$('{$node.id}').toggle()">Failure &#187;</a>
           </xsl:when>
           <xsl:otherwise>Success</xsl:otherwise>
         </xsl:choose>
@@ -245,7 +225,7 @@
               </xsl:when>
               <xsl:otherwise>
                 <h3>Failure:</h3>
-                <pre><xsl:apply-templates select="failure/text()" mode="newline-to-br"/></pre>              
+                <pre><xsl:apply-templates select="failure/text()" mode="newline-to-br"/></pre>
               </xsl:otherwise>
             </xsl:choose>
           </span>
@@ -253,7 +233,7 @@
       </tr>
     </xsl:if>
   </xsl:template>
-  
+
   <!--
     TestSuite/TestCase template
     for @dataProvider tests.
@@ -261,7 +241,7 @@
   <xsl:template match="testsuite" mode="data.provider">
     <xsl:param name="line.indent" select="0" />
     <xsl:param name="odd.or.even" select="0" />
-    
+
     <tr>
       <xsl:attribute name="class">
         <xsl:call-template name="is.odd.or.even" />
@@ -282,9 +262,14 @@
         <xsl:call-template name="build.identifier" />
       </td>
       <td>
-        <xsl:if test="not(testcase/failure|testcase/error)">
-          <xsl:text>Success</xsl:text>
-        </xsl:if>
+          <xsl:choose>
+              <xsl:when test="not(testcase/failure|testcase/error)">
+                  <xsl:text>Success</xsl:text>
+              </xsl:when>
+              <xsl:otherwise>
+                  <xsl:text>Failure / Error</xsl:text>
+              </xsl:otherwise>
+          </xsl:choose>
       </td>
       <td>
         <xsl:value-of select="format-number(@time,'0.000')"/>
@@ -298,7 +283,7 @@
       <xsl:with-param name="line.indent" select="$line.indent + 1" />
     </xsl:apply-templates>
   </xsl:template>
-  
+
   <xsl:template name="build.result">
     <xsl:choose>
       <xsl:when test=".//testcase/error">
@@ -312,7 +297,7 @@
       </xsl:otherwise>
     </xsl:choose>
   </xsl:template>
-  
+
   <xsl:template name="build.identifier">
     <xsl:if test="@build">
       <em>
@@ -324,7 +309,7 @@
       </em>
     </xsl:if>
   </xsl:template>
-  
+
   <xsl:template name="is.odd.or.even">
     <xsl:param name="c" select="1" />
     <xsl:param name="n" select="." />
@@ -339,7 +324,7 @@
         <!-- Get preceding node -->
         <xsl:variable name="preceding" select="$n/preceding-sibling::*[1]" />
         <!-- Count child nodes of preceding -->
-        <xsl:variable name="child.count" select="count($preceding//testcase) + 
+        <xsl:variable name="child.count" select="count($preceding//testcase) +
                                                  count($preceding//testsuite)" />
 
         <xsl:call-template name="is.odd.or.even">
@@ -360,5 +345,5 @@
       </xsl:otherwise>
     </xsl:choose>
   </xsl:template>
-    
+
 </xsl:stylesheet>
