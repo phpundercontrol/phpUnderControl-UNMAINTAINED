@@ -52,7 +52,7 @@ else
 {
     $rmcmd      = 'rm -rf';
     $copycmd    = 'cp -rf';
-    $installDir = '/opt/cruisecontrol';
+    $installDir = '/opt/cruisecontrol/current';
 }
 if ( count( $GLOBALS['argv'] ) > 1 )
 {
