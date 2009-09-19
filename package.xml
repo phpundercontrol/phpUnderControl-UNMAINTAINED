@@ -1580,7 +1580,7 @@ example project.
       <package>
         <name>PHPUnit</name>
         <channel>pear.phpunit.de</channel>
-        <min>3.2.0</min>
+        <min>3.4.0</min>
       </package>
       <package>
         <name>PHP_CodeSniffer</name>

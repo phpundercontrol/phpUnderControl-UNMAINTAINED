@@ -56,15 +56,10 @@
  * @version   Release: @package_version@
  * @link      http://www.phpundercontrol.org/
  *
- * @property-read boolean $metrics  Enable metrics and coverage support?
+ * @property-read boolean $coverage  Enable coverage support?
  */
 class phpucPhpUnitTask extends phpucAbstractPearTask
 {
-    /**
-     * Minimum PHPUnit version.
-     */
-    const PHP_UNIT_VERSION = '3.2.0';
-
     /**
      * Constructs a new phpunit task.
      */
@@ -72,7 +67,7 @@ class phpucPhpUnitTask extends phpucAbstractPearTask
     {
         parent::__construct();
 
-        $this->properties['metrics']  = true;
+        $this->properties['coverage'] = true;
     }
 
     /**
@@ -101,11 +96,12 @@ class phpucPhpUnitTask extends phpucAbstractPearTask
         $out->writeListItem(
             'Modifying build file:  project/{1}/build.xml', $projectName
         );
-        $logs  = ' --log-xml ${basedir}/build/logs/phpunit.xml';
-        if ( $this->metrics === true )
+
+        $logs = ' --log-junit ${basedir}/build/logs/phpunit.xml';
+
+        if ( $this->properties['coverage'] === true )
         {
-            $logs .= ' --log-pmd ${basedir}/build/logs/phpunit.pmd.xml';
-            $logs .= ' --coverage-xml  ${basedir}/build/logs/phpunit.coverage.xml';
+            $logs .= ' --coverage-clover ${basedir}/build/logs/phpunit.coverage.xml';
             $logs .= ' --coverage-html ${basedir}/build/coverage';
         }
 
@@ -199,14 +195,13 @@ class phpucPhpUnitTask extends phpucAbstractPearTask
     }
 
     /**
-     * Validates the existing code sniffer version.
+     * Validates the existing PHPUnit version.
      *
      * @return void
      */
     protected function doValidate()
     {
-        $cwd = $this->getWorkingDirectory();
-
+        $cwd    = $this->getWorkingDirectory();
         $binary = basename( $this->executable );
 
         if ( ( $execdir = dirname( $this->executable ) ) !== '.' )
@@ -219,38 +214,7 @@ class phpucPhpUnitTask extends phpucAbstractPearTask
             }
         }
 
-        $regexp = '/PHPUnit\s+([0-9\.]+(RC[0-9])?)/';
-        $retval = exec( escapeshellcmd( "{$binary} --version" ) );
-
-        chdir( $cwd );
-
-        if ( preg_match( '/\s+([0-9\.]+(RC[0-9])?)/', $retval, $match ) === 0 )
-        {
-            phpucConsoleOutput::get()->writeLine(
-                'WARNING: Cannot identify PHPUnit version.'
-            );
-            // Assume valid version
-            $version = self::PHP_UNIT_VERSION;
-        }
-        else
-        {
-            $version = $match[1];
-        }
-
-        // Check version and inform user
-        if ( version_compare( $version, self::PHP_UNIT_VERSION ) < 0 )
-        {
-            phpucConsoleOutput::get()->writeLine(
-                'NOTICE: The identified version {1} doesn\'t support metrics.',
-                $version
-            );
-            phpucConsoleOutput::get()->writeLine(
-                'You may switch to PHPUnit {1} for cooler features.',
-                self::PHP_UNIT_VERSION
-            );
-        }
-
-        // Check xdebug installation
+        // Check Xdebug installation
         if ( extension_loaded( 'xdebug' ) === false )
         {
             phpucConsoleOutput::get()->writeLine(
@@ -260,10 +224,10 @@ class phpucPhpUnitTask extends phpucAbstractPearTask
                 'you must install xdebug with the following command:'
             );
             phpucConsoleOutput::get()->writeLine(
-                '  pear install pecl/xdebug'
+                '  pecl install pecl/xdebug'
             );
 
-            $this->properties['metrics'] = false;
+            $this->properties['coverage'] = false;
         }
     }
 
