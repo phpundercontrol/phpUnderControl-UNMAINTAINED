@@ -37,7 +37,7 @@
 <%@page import="java.io.File, java.util.Arrays"%>
 <%@ taglib uri="/WEB-INF/cruisecontrol-jsp11.tld" prefix="cruisecontrol"%>
 
-    <h1>
+    <h1 id="phpUnderControlHeader">
       <a href="<%=request.getContextPath() %>/index">
         phpUnderControl  
       </a>

@@ -67,7 +67,7 @@ class phpucProjectCommand extends phpucAbstractCommand implements phpucConsoleCo
     {
         $tasks = array(
             new phpucProjectTask(),
-            new phpucCheckoutTask(),        
+            new phpucCheckoutTask(),   
         );
         
         if ( $this->args === null 
@@ -79,6 +79,11 @@ class phpucProjectCommand extends phpucAbstractCommand implements phpucConsoleCo
          || !$this->args->hasOption( 'without-code-sniffer' ) )
         {
             $tasks[] = new phpucPhpCodeSnifferTask();
+        }
+        if ( $this->args === null
+         || !$this->args->hasOption( 'without-code-browser' ) )
+        {
+            $tasks[] = new phpucCodeBrowserTask();
         }
         if ( $this->args === null 
          || !$this->args->hasOption( 'without-phpunit' ) )

@@ -105,6 +105,13 @@
               </cruisecontrol:artifactsLink>
             </cruisecontrol:tab>
             <% } %>
+
+            <cruisecontrol:tab name="codeBrowser" label="Code Browser">
+              <cruisecontrol:artifactsLink>
+                <iframe src="<%=request.getContextPath() %>/<%= artifacts_url %>/php-code-browser/index.html" class="tab-content">
+                </iframe>
+              </cruisecontrol:artifactsLink>
+            </cruisecontrol:tab>
             
             <%-- phpUnderControl 5 --%>
               

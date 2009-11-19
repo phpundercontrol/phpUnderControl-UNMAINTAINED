@@ -35,62 +35,61 @@
  * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  ********************************************************************************-->
-  <xsl:output method="html" encoding="UTF-8" indent="yes"/>
-  <xsl:decimal-format decimal-separator="." grouping-separator="," />
+    <xsl:output method="html" encoding="UTF-8" indent="yes"/>
+    <xsl:decimal-format decimal-separator="." grouping-separator="," />
 
-  <xsl:variable name="indent.width" select="15" />
+    <xsl:variable name="indent.width" select="15" />
 
-  <!--
-    Root template
-  -->
-  <xsl:template match="/">
-    <!-- Main table -->
-    <table id="phpunitDetails" class="result">
-      <colgroup>
-        <col width="10%"/>
-        <col width="45%"/>
-        <col width="25%"/>
-        <col width="10%"/>
-        <col width="10%"/>
-      </colgroup>
-      <thead>
-        <tr>
-          <th colspan="3">Name</th>
-          <th>Status</th>
-          <th nowrap="nowrap">Time(s)</th>
-        </tr>
-      </thead>
-      <tbody>
-        <!-- display test suites -->
-        <xsl:apply-templates select="//testsuites/testsuite" />
-      </tbody>
-    </table>
-  </xsl:template>
+    <!--
+        Root template
+    -->
+    <xsl:template match="/">
+        <!-- Main table -->
+        <table id="phpUnitDetails" class="result">
+            <colgroup>
+                <col width="10%"/>
+                <col width="45%"/>
+                <col width="25%"/>
+                <col width="10%"/>
+                <col width="10%"/>
+            </colgroup>
+            <thead>
+                <tr>
+                    <th colspan="3">Name</th>
+                    <th>Status</th>
+                    <th nowrap="nowrap">Time(s)</th>
+                </tr>
+            </thead>
+            <!-- display test suites -->
+            <xsl:apply-templates select="//testsuites/testsuite" />
+        </table>
+    </xsl:template>
 
-  <!--
-    Test Suite Template
-    Construct TestSuite section
-  -->
-  <xsl:template match="testsuite">
-    <tr><td colspan="5"><br /></td></tr>
-    <tr>
-      <xsl:attribute name="class">
-        <xsl:call-template name="build.result" />
-      </xsl:attribute>
-      <th colspan="4">
-        <xsl:choose>
-          <xsl:when test="@fullPackage">
-            <xsl:value-of select="concat(@fullPackage, '::', @name)"/>
-          </xsl:when>
-          <xsl:otherwise>
-            <xsl:value-of select="@name"/>
-          </xsl:otherwise>
-        </xsl:choose>
-      </th>
-      <th>
-        <xsl:value-of select="format-number(@time,'0.000')"/>
-      </th>
-    </tr>
+    <!--
+        Test Suite Template
+        Construct TestSuite section
+    -->
+    <xsl:template match="testsuite">
+        <tbody>
+            <tr>
+                <xsl:attribute name="class">
+                    <xsl:call-template name="build.result" />
+                    <xsl:text> phpUnitTestSuite</xsl:text>
+                </xsl:attribute>
+                <th class="phpUnitTestSuiteName" colspan="4">
+                    <xsl:choose>
+                        <xsl:when test="@fullPackage">
+                            <xsl:value-of select="concat(@fullPackage, '::', @name)"/>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <xsl:value-of select="@name"/>
+                        </xsl:otherwise>
+                    </xsl:choose>
+                </th>
+                <th class="phpUnitTestSuiteTime">
+                    <xsl:value-of select="format-number(@time,'0.000')"/>
+                </th>
+            </tr>
 
     <xsl:variable name="data.provider.prefix" select="concat(@name, '::')" />
 
@@ -111,6 +110,7 @@
         </xsl:otherwise>
       </xsl:choose>
     </xsl:for-each>
+    </tbody>
   </xsl:template>
 
   <!--
@@ -152,10 +152,10 @@
           <xsl:choose>
             <xsl:when test="error">
               <xsl:choose>
-                <xsl:when test="error/@type = 'PHPUnit_Framework_SkippedTestError'">
+                <xsl:when test="error/@type = 'phpUnit_Framework_SkippedTestError'">
                   <xsl:text>skipped</xsl:text>
                 </xsl:when>
-                <xsl:when test="error/@type = 'PHPUnit_Framework_IncompleteTestError'">
+                <xsl:when test="error/@type = 'phpUnit_Framework_IncompleteTestError'">
                   <xsl:text>unknown</xsl:text>
                 </xsl:when>
                 <xsl:otherwise>
@@ -185,8 +185,8 @@
           <xsl:when test="error">
             <xsl:variable name="link.label">
               <xsl:choose>
-                <xsl:when test="error/@type = 'PHPUnit_Framework_SkippedTestError' or
-                                error/@type = 'PHPUnit_Framework_IncompleteTestError'">
+                <xsl:when test="error/@type = 'phpUnit_Framework_SkippedTestError' or
+                                error/@type = 'phpUnit_Framework_IncompleteTestError'">
                   <xsl:text>Message</xsl:text>
                 </xsl:when>
                 <xsl:otherwise>
@@ -194,10 +194,10 @@
                 </xsl:otherwise>
               </xsl:choose>
             </xsl:variable>
-            <a href="#" onclick="$('{$node.id}').toggle()"><xsl:value-of select="$link.label" /> &#187;</a>
+            <a href="#" onclick="$('{$node.id}').toggle(); return false;"><xsl:value-of select="$link.label" /> &#187;</a>
           </xsl:when>
           <xsl:when test="failure">
-            <a href="#" onclick="$('{$node.id}').toggle()">Failure &#187;</a>
+            <a href="#" onclick="$('{$node.id}').toggle(); return false;">Failure &#187;</a>
           </xsl:when>
           <xsl:otherwise>Success</xsl:otherwise>
         </xsl:choose>

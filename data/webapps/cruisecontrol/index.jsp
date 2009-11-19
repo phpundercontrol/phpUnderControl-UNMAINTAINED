@@ -48,7 +48,7 @@
     <link type="text/css" rel="stylesheet" href="<%=request.getContextPath() %>/css/php-under-control.css?v=3" />
     <link rel="icon" href="<%=request.getContextPath() %>/favicon.ico" type="image/x-icon" />
   </head>
-  <body onload="checkIframe('<%=request.getContextPath() %>/css/php-under-control.css')">
+  <body>
     <div id="serverData" style="display:none;"></div>
     <div id="container">
       <h1>
