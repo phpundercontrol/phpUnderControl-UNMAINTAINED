@@ -71,28 +71,28 @@ class phpucProjectCommand extends phpucAbstractCommand implements phpucConsoleCo
         );
         
         if ( $this->args === null 
-         || !$this->args->hasOption( 'without-php-documentor' ) )
-        {
+            || !$this->args->hasOption( 'without-php-documentor' )
+        ) {
             $tasks[] = new phpucPhpDocumentorTask();
         }
         if ( $this->args === null 
-         || !$this->args->hasOption( 'without-code-sniffer' ) )
-        {
+            || !$this->args->hasOption( 'without-code-sniffer' )
+        ) {
             $tasks[] = new phpucPhpCodeSnifferTask();
         }
+        if ( $this->args === null 
+            || !$this->args->hasOption( 'without-phpunit' )
+        ) {
+            $tasks[] = new phpucPhpUnitTask();
+        }
         if ( $this->args === null
-         || !$this->args->hasOption( 'without-code-browser' ) )
-        {
+            || !$this->args->hasOption( 'without-code-browser' )
+        ) {
             $tasks[] = new phpucCodeBrowserTask();
         }
         if ( $this->args === null 
-         || !$this->args->hasOption( 'without-phpunit' ) )
-        {
-            $tasks[] = new phpucPhpUnitTask();
-        }
-        if ( $this->args === null 
-         || !$this->args->hasOption( 'without-ezc-graph' ) )
-        {
+            || !$this->args->hasOption( 'without-ezc-graph' )
+        ) {
             $tasks[] = new phpucGraphTask();
         }
         

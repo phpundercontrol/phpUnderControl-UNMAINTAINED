@@ -1,7 +1,7 @@
 <?php
 /**
  * This file is part of phpUnderControl.
- * 
+ *
  * PHP Version 5.2.0
  *
  * Copyright (c) 2007-2009, Manuel Pichler <mapi@phpundercontrol.org>.
@@ -35,7 +35,7 @@
  * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
- * 
+ *
  * @category  QualityAssurance
  * @package   Tasks
  * @author    Manuel Pichler <mapi@phpundercontrol.org>
@@ -68,45 +68,79 @@ class phpucCodeBrowserTask extends phpucAbstractPearTask implements phpucConsole
         $out = phpucConsoleOutput::get();
         $out->writeLine( 'Performing PHP_CodeBrowser task.' );
 
-        $installDir  = $this->args->getArgument( 'cc-install-dir' );
-        $projectName = $this->args->getOption( 'project-name' );
-        $projectPath = sprintf(
-            '%s/projects/%s',
-            $this->args->getArgument( 'cc-install-dir' ),
-            $projectName
-        );
-
         $out->startList();
         $out->writeListItem(
-            'Creating browser dir: project/{1}/build/php-code-browser', $projectName
+            'Creating browser dir: project/{1}/build/php-code-browser',
+            $this->args->getOption( 'project-name' )
         );
+        $this->createCodeBrowserBuildDirectory();
 
-        mkdir( $projectPath . '/build/php-code-browser', 0755, true );
+        $out->writeListItem( 'Modifying config file: config.xml' );
+        $this->createCodeBrowserExecutePublisher();
+        $this->createCodeBrowserArtifactsPublisher();
 
-        $out->writeListItem(
-            'Modifying build file: project/{1}/build.xml', $projectName
+        $out->writeLine();
+    }
+
+    /**
+     * Creates the build directory for the source browser report.
+     *
+     * @return void
+     */
+    private function createCodeBrowserBuildDirectory()
+    {
+        if ( file_exists( $this->getCodeBrowserBuildDirectory() ) === false )
+        {
+            mkdir( $this->getCodeBrowserBuildDirectory(), 0755, true );
+        }
+    }
+
+    /**
+     * Returns the build directory used for the PHP_CodeBrowser report.
+     *
+     * @return string
+     */
+    private function getCodeBrowserBuildDirectory()
+    {
+        return sprintf(
+            '%s/projects/%s/build/php-code-browser',
+            $this->args->getArgument( 'cc-install-dir' ),
+            $this->args->getOption( 'project-name' )
         );
+    }
 
-        $buildFile = new phpucBuildFile( $projectPath . '/build.xml', $projectName );
+    /**
+     * Creates an execute publisher for the PHP_CodeBrowser generator.
+     * 
+     * @return void
+     */
+    private function createCodeBrowserExecutePublisher()
+    {
+        $projectConfig = $this->getCruiseControlProjectConfiguration();
 
-        $buildTarget = $buildFile->createBuildTarget( 'php-code-browser' );
-
-        $buildTarget->executable = $this->executable;
-        $buildTarget->argLine    = sprintf(
-            '--log ${basedir}/build/logs ' .
-            '--source %s ' .
-            '--output ${basedir}/build/php-code-browser',
+        $publisher          = $projectConfig->createExecutePublisher();
+        $publisher->command = sprintf(
+            '%s ' .
+            '--log projects/${project.name}/build/logs ' .
+            '--source projects/${project.name}/source/%s ' .
+            '--output projects/${project.name}/build/php-code-browser',
+            $this->executable,
             $this->args->getOption( 'source-dir' )
         );
 
-        $buildFile->store();
+        $projectConfig->configFile->store();
+    }
 
-        $out->writeListItem( 'Modifying config file: config.xml' );
+    /**
+     * Creates an artifacts publisher for the generate PHP_CodeBrowser report.
+     *
+     * @return void
+     */
+    private function createCodeBrowserArtifactsPublisher()
+    {
+        $projectConfig = $this->getCruiseControlProjectConfiguration();
 
-        $configFile    = new phpucConfigFile( $installDir . '/config.xml' );
-        $configProject = $configFile->getProject( $projectName );
-        $publisher     = $configProject->createArtifactsPublisher();
-
+        $publisher               = $projectConfig->createArtifactsPublisher();
         $publisher->dir          = 'projects/${project.name}/build/php-code-browser';
         $publisher->subdirectory = 'php-code-browser';
 
@@ -119,9 +153,21 @@ class phpucCodeBrowserTask extends phpucAbstractPearTask implements phpucConsole
             $publisher->dest = 'logs/${project.name}';
         }
 
-        $configFile->store();
+        $projectConfig->configFile->store();
+    }
 
-        $out->writeLine();
+    /**
+     * Returns a configuration instance for the current project
+     *
+     * @return phpucConfigProject
+     */
+    private function getCruiseControlProjectConfiguration()
+    {
+        $configFile = new phpucConfigFile(
+            $this->args->getArgument( 'cc-install-dir' ) . '/config.xml'
+        );
+
+        return $configFile->getProject( $this->args->getOption( 'project-name' ) );
     }
 
     /**
@@ -146,7 +192,7 @@ class phpucCodeBrowserTask extends phpucAbstractPearTask implements phpucConsole
             'Disable PHP CodeBrowser support.',
             false
         );
-        
+
         if ( !$def->hasOption( $command->getCommandId(), 'source-dir' ) )
         {
             $def->addOption(
