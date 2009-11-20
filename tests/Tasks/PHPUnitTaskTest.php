@@ -162,7 +162,7 @@ class phpucPHPUnitTaskTest extends phpucAbstractPearTaskTest
 
         $phpunit->validate();
 		
-		$buffer = trim( phpucConsoleOutput::get()->getBuffer() );
+        $buffer = trim( phpucConsoleOutput::get()->getBuffer() );
 
         $this->assertEquals( 
             0, strpos( $buffer, 'WARNING: Cannot identify PHPUnit version.' ) 
