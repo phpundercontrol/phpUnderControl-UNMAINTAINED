@@ -138,11 +138,6 @@ class phpucExampleCommand extends phpucAbstractCommand implements phpucConsoleCo
             $tasks[] = new phpucPhpCodeSnifferTask();
         }
         if ( $this->args === null
-            || !$this->args->hasOption( 'without-code-browser' )
-        ) {
-            $tasks[] = new phpucCodeBrowserTask();
-        }
-        if ( $this->args === null
             || !$this->args->hasOption( 'without-phpunit' )
         ) {
             $tasks[] = new phpucPhpUnitTask();
