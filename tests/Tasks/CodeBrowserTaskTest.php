@@ -65,7 +65,7 @@ class phpucCodeBrowserTaskTest extends phpucAbstractPearTaskTest
     public function testTaskRegistersWithoutCliOption()
     {
         $definition = $this->getMock( 'phpucConsoleInputDefinition', array(), array(), '', false );
-        $definition->expects( $this->at( 2 ) )
+        $definition->expects( $this->at( 0 ) )
             ->method( 'addOption' )
             ->with(
                 $this->equalTo( 'foobar' ),

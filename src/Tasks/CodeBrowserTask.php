@@ -56,7 +56,7 @@
  * @version   Release: @package_version@
  * @link      http://www.phpundercontrol.org/
  */
-class phpucCodeBrowserTask extends phpucAbstractPearTask implements phpucConsoleExtensionI
+class phpucCodeBrowserTask extends phpucAbstractTask implements phpucConsoleExtensionI
 {
     /**
      * Performs the primary task and adds an execute publisher to the config.xml.
@@ -124,7 +124,7 @@ class phpucCodeBrowserTask extends phpucAbstractPearTask implements phpucConsole
             '--log projects/${project.name}/build/logs ' .
             '--source %s ' .
             '--output projects/${project.name}/build/php-code-browser',
-            $this->executable,
+            $this->getCodeBrowserExecutable(),
             $this->getProjectSourceDirectory()
         );
 
@@ -186,9 +186,27 @@ class phpucCodeBrowserTask extends phpucAbstractPearTask implements phpucConsole
     }
 
     /**
+     * Returns the pathname of the PHP_CodeBrowser executable.
+     *
+     * @return string
+     */
+    private function getCodeBrowserExecutable()
+    {
+        if ( phpucFileUtil::getOS() === phpucFileUtil::OS_UNIX )
+        {
+            $binary = 'phpcb.php';
+        }
+        else
+        {
+            $binary = 'phpcb.bat';
+        }
+        return PHPUC_INSTALL_DIR . '/ThirdParty/CodeBrowser/bin/' . $binary;
+    }
+
+    /**
      * Callback method that registers a command extension.
      *
-     * @param phpucConsoleInputDefinition $def
+     * @param phpucConsoleInputDefinition $definition
      *        The input definition container.
      * @param phpucConsoleCommandI  $command
      *        The context cli command instance.
@@ -196,12 +214,10 @@ class phpucCodeBrowserTask extends phpucAbstractPearTask implements phpucConsole
      * @return void
      */
     public function registerCommandExtension(
-        phpucConsoleInputDefinition $def,
+        phpucConsoleInputDefinition $definition,
         phpucConsoleCommandI $command
     ) {
-        parent::registerCommandExtension( $def, $command );
-
-        $def->addOption(
+        $definition->addOption(
             $command->getCommandId(),
             'b',
             'without-code-browser',
@@ -209,9 +225,9 @@ class phpucCodeBrowserTask extends phpucAbstractPearTask implements phpucConsole
             false
         );
 
-        if ( !$def->hasOption( $command->getCommandId(), 'source-dir' ) )
+        if ( !$definition->hasOption( $command->getCommandId(), 'source-dir' ) )
         {
-            $def->addOption(
+            $definition->addOption(
                 $command->getCommandId(),
                 's',
                 'source-dir',
@@ -221,15 +237,5 @@ class phpucCodeBrowserTask extends phpucAbstractPearTask implements phpucConsole
                 true
             );
         }
-    }
-
-    /**
-     * Must return the name of the used cli tool.
-     *
-     * @return string
-     */
-    protected function getCliToolName()
-    {
-        return 'phpcb';
     }
 }
