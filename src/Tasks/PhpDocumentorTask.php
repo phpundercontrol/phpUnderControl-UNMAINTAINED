@@ -132,9 +132,10 @@ class phpucPhpDocumentorTask extends phpucAbstractPearTask
      * 
      * @return void
      */
-    public function registerCommandExtension( phpucConsoleInputDefinition $def,
-                                              phpucConsoleCommandI $command ) 
-    {
+    public function registerCommandExtension(
+        phpucConsoleInputDefinition $def,
+        phpucConsoleCommandI $command
+    ) {
         parent::registerCommandExtension( $def, $command );
         
         $def->addOption(

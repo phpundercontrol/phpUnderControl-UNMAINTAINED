@@ -134,9 +134,10 @@ class phpucCheckoutTask extends phpucAbstractTask implements phpucConsoleExtensi
      * 
      * @return void
      */
-    public function registerCommandExtension( phpucConsoleInputDefinition $def,
-                                              phpucConsoleCommandI $command ) 
-    {
+    public function registerCommandExtension(
+        phpucConsoleInputDefinition $def,
+        phpucConsoleCommandI $command
+    ) {
         $def->addOption(
             $command->getCommandId(),
             'v',

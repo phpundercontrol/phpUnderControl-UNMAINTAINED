@@ -115,9 +115,10 @@ class phpucGraphTask extends phpucAbstractTask implements phpucConsoleExtensionI
      * 
      * @return void
      */
-    public function registerCommandExtension( phpucConsoleInputDefinition $def,
-                                              phpucConsoleCommandI $command ) 
-    {
+    public function registerCommandExtension(
+        phpucConsoleInputDefinition $def,
+        phpucConsoleCommandI $command
+    ) {
         $def->addOption(
             $command->getCommandId(),
             'z',

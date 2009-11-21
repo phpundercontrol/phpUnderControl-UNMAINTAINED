@@ -184,9 +184,9 @@ class phpucMergePhpunitTask extends phpucAbstractTask implements phpucConsoleExt
         if ( is_dir( $output ) === false )
         {
             if ( is_file( $output ) === true
-              || mkdir( $output ) === false 
-              || is_dir( $output ) === false )
-            {
+                || mkdir( $output ) === false
+                || is_dir( $output ) === false
+            ) {
                 throw new phpucValidateException(
                     sprintf( 'Cannot create output directory "%s".', $output )
                 );
@@ -233,9 +233,10 @@ class phpucMergePhpunitTask extends phpucAbstractTask implements phpucConsoleExt
      * 
      * @return void
      */
-    public function registerCommandExtension( phpucConsoleInputDefinition $def,
-                                              phpucConsoleCommandI $command ) 
-    {
+    public function registerCommandExtension(
+        phpucConsoleInputDefinition $def,
+        phpucConsoleCommandI $command
+    ) {
         $def->addOption(
             $command->getCommandId(),
             'i',

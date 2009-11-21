@@ -200,9 +200,10 @@ class phpucProjectCleanTask extends phpucAbstractTask implements phpucConsoleExt
      *
      * @return void
      */
-    public function registerCommandExtension( phpucConsoleInputDefinition $def,
-                                              phpucConsoleCommandI $command )
-    {
+    public function registerCommandExtension(
+        phpucConsoleInputDefinition $def,
+        phpucConsoleCommandI $command
+    ) {
         $def->addOption(
             $command->getCommandId(),
             'j',

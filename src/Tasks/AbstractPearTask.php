@@ -168,9 +168,10 @@ abstract class phpucAbstractPearTask
      * 
      * @return void
      */
-    public function registerCommandExtension( phpucConsoleInputDefinition $def,
-                                              phpucConsoleCommandI $command ) 
-    {
+    public function registerCommandExtension(
+        phpucConsoleInputDefinition $def,
+        phpucConsoleCommandI $command
+    ) {
         if ( !$def->hasOption( $command->getCommandId(), 'pear-executables-dir' ) )
         {
             $def->addOption(
