@@ -391,6 +391,12 @@ example project.
             <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
             <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
           </file>
+          <file role="php" name="CodeBrowserTask.php">
+            <tasks:replace from="@package_version@" to="version" type="package-info"/>
+            <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+            <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+            <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+          </file>
           <file role="php" name="CheckoutTask.php">
             <tasks:replace from="@package_version@" to="version" type="package-info"/>
             <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
@@ -453,6 +459,488 @@ example project.
             <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
             <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
           </file>
+        </dir>
+        <dir name="ThirdParty">
+          <dir name="CodeBrowser">
+            <dir name="src">
+              <file role="php" name="ErrorHandler.php">
+                <tasks:replace from="@package_version@" to="version" type="package-info"/>
+                <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+                <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+                <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+              </file>
+              <file role="php" name="HTMLGenerator.php">
+                <tasks:replace from="@package_version@" to="version" type="package-info"/>
+                <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+                <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+                <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+              </file>
+              <file role="php" name="XMLGenerator.php">
+                <tasks:replace from="@package_version@" to="version" type="package-info"/>
+                <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+                <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+                <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+              </file>
+              <dir name="Util">
+                <file role="php" name="Autoloader.php">
+                  <tasks:replace from="@package_version@" to="version" type="package-info"/>
+                  <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+                  <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+                  <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+                </file>
+              </dir>
+              <file role="php" name="XMLHandler.php">
+                <tasks:replace from="@package_version@" to="version" type="package-info"/>
+                <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+                <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+                <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+              </file>
+              <file role="php" name="JSGenerator.php">
+                <tasks:replace from="@package_version@" to="version" type="package-info"/>
+                <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+                <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+                <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+              </file>
+              <file role="php" name="FDHandler.php">
+                <tasks:replace from="@package_version@" to="version" type="package-info"/>
+                <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+                <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+                <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+              </file>
+              <dir name="Plugins">
+                <file role="php" name="ErrorCheckstyle.php">
+                  <tasks:replace from="@package_version@" to="version" type="package-info"/>
+                  <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+                  <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+                  <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+                </file>
+                <file role="php" name="ErrorCPD.php">
+                  <tasks:replace from="@package_version@" to="version" type="package-info"/>
+                  <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+                  <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+                  <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+                </file>
+                <file role="php" name="ErrorPadawan.php">
+                  <tasks:replace from="@package_version@" to="version" type="package-info"/>
+                  <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+                  <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+                  <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+                </file>
+                <file role="php" name="ErrorPMD.php">
+                  <tasks:replace from="@package_version@" to="version" type="package-info"/>
+                  <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+                  <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+                  <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+                </file>
+              </dir>
+              <file role="php" name="CLIController.php">
+                <tasks:replace from="@package_version@" to="version" type="package-info"/>
+                <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+                <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+                <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+              </file>
+              <file role="php" name="PluginError.php">
+                <tasks:replace from="@package_version@" to="version" type="package-info"/>
+                <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+                <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+                <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+              </file>
+            </dir>
+            <file role="php" name="LICENSE">
+              <tasks:replace from="@package_version@" to="version" type="package-info"/>
+              <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+              <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+              <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+            </file>
+            <file role="php" name="README">
+              <tasks:replace from="@package_version@" to="version" type="package-info"/>
+              <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+              <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+              <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+            </file>
+            <file role="php" name="package.xml">
+              <tasks:replace from="@package_version@" to="version" type="package-info"/>
+              <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+              <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+              <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+            </file>
+            <file role="php" name="CHANGELOG">
+              <tasks:replace from="@package_version@" to="version" type="package-info"/>
+              <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+              <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+              <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+            </file>
+            <dir name="bin">
+              <file role="php" name="phpcb.bat">
+                <tasks:replace from="@package_version@" to="version" type="package-info"/>
+                <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+                <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+                <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+              </file>
+              <file role="php" name="phpcb.php">
+                <tasks:replace from="@package_version@" to="version" type="package-info"/>
+                <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+                <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+                <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+              </file>
+            </dir>
+            <dir name="tests">
+              <dir name="src">
+                <file role="php" name="PluginErrorTest.php">
+                  <tasks:replace from="@package_version@" to="version" type="package-info"/>
+                  <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+                  <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+                  <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+                </file>
+                <file role="php" name="XMLGeneratorTest.php">
+                  <tasks:replace from="@package_version@" to="version" type="package-info"/>
+                  <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+                  <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+                  <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+                </file>
+                <file role="php" name="XMLHandlerTest.php">
+                  <tasks:replace from="@package_version@" to="version" type="package-info"/>
+                  <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+                  <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+                  <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+                </file>
+                <file role="php" name="HTMLGeneratorTest.php">
+                  <tasks:replace from="@package_version@" to="version" type="package-info"/>
+                  <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+                  <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+                  <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+                </file>
+                <file role="php" name="ErrorHandlerTest.php">
+                  <tasks:replace from="@package_version@" to="version" type="package-info"/>
+                  <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+                  <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+                  <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+                </file>
+                <file role="php" name="JSGeneratorTest.php">
+                  <tasks:replace from="@package_version@" to="version" type="package-info"/>
+                  <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+                  <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+                  <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+                </file>
+                <file role="php" name="FDHandlerTest.php">
+                  <tasks:replace from="@package_version@" to="version" type="package-info"/>
+                  <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+                  <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+                  <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+                </file>
+                <dir name="Plugins">
+                  <file role="php" name="ErrorCPDTest.php">
+                    <tasks:replace from="@package_version@" to="version" type="package-info"/>
+                    <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+                    <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+                    <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+                  </file>
+                  <file role="php" name="ErrorCheckstyleTest.php">
+                    <tasks:replace from="@package_version@" to="version" type="package-info"/>
+                    <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+                    <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+                    <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+                  </file>
+                  <file role="php" name="ErrorPMDTest.php">
+                    <tasks:replace from="@package_version@" to="version" type="package-info"/>
+                    <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+                    <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+                    <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+                  </file>
+                  <file role="php" name="ErrorPadawanTest.php">
+                    <tasks:replace from="@package_version@" to="version" type="package-info"/>
+                    <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+                    <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+                    <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+                  </file>
+                </dir>
+              </dir>
+              <dir name="MockObjects">
+                <file role="php" name="MockPluginError.php">
+                  <tasks:replace from="@package_version@" to="version" type="package-info"/>
+                  <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+                  <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+                  <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+                </file>
+              </dir>
+              <file role="php" name="AbstractTests.php">
+                <tasks:replace from="@package_version@" to="version" type="package-info"/>
+                <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+                <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+                <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+              </file>
+              <file role="php" name="AllTests.php">
+                <tasks:replace from="@package_version@" to="version" type="package-info"/>
+                <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+                <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+                <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+              </file>
+              <dir name="testData">
+                <dir name="src">
+                  <file role="php" name="JSTestGenerator.php">
+                    <tasks:replace from="@package_version@" to="version" type="package-info"/>
+                    <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+                    <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+                    <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+                  </file>
+                </dir>
+                <file role="php" name="ccCodeBrowser.xml">
+                  <tasks:replace from="@package_version@" to="version" type="package-info"/>
+                  <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+                  <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+                  <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+                </file>
+                <file role="php" name="serializedErrors.txt">
+                  <tasks:replace from="@package_version@" to="version" type="package-info"/>
+                  <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+                  <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+                  <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+                </file>
+                <file role="php" name="checkstyle.xml">
+                  <tasks:replace from="@package_version@" to="version" type="package-info"/>
+                  <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+                  <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+                  <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+                </file>
+                <file role="php" name="phpunit.coverage.xml">
+                  <tasks:replace from="@package_version@" to="version" type="package-info"/>
+                  <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+                  <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+                  <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+                </file>
+                <file role="php" name="basic.xml">
+                  <tasks:replace from="@package_version@" to="version" type="package-info"/>
+                  <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+                  <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+                  <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+                </file>
+                <file role="php" name="xmllint_codebrowser_merge.xml">
+                  <tasks:replace from="@package_version@" to="version" type="package-info"/>
+                  <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+                  <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+                  <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+                </file>
+              </dir>
+            </dir>
+            <dir name="templates">
+              <dir name="js">
+                <file role="php" name="side-bar.js">
+                  <tasks:replace from="@package_version@" to="version" type="package-info"/>
+                  <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+                  <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+                  <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+                </file>
+                <file role="php" name="prototip.js">
+                  <tasks:replace from="@package_version@" to="version" type="package-info"/>
+                  <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+                  <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+                  <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+                </file>
+                <file role="php" name="prototype.js">
+                  <tasks:replace from="@package_version@" to="version" type="package-info"/>
+                  <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+                  <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+                  <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+                </file>
+                <file role="php" name="effects.js">
+                  <tasks:replace from="@package_version@" to="version" type="package-info"/>
+                  <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+                  <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+                  <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+                </file>
+                <file role="php" name="dtree.js">
+                  <tasks:replace from="@package_version@" to="version" type="package-info"/>
+                  <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+                  <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+                  <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+                </file>
+              </dir>
+              <file role="php" name="flatView.tpl">
+                <tasks:replace from="@package_version@" to="version" type="package-info"/>
+                <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+                <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+                <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+              </file>
+              <file role="php" name="index.tpl">
+                <tasks:replace from="@package_version@" to="version" type="package-info"/>
+                <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+                <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+                <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+              </file>
+              <file role="php" name="tree.tpl">
+                <tasks:replace from="@package_version@" to="version" type="package-info"/>
+                <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+                <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+                <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+              </file>
+              <dir name="css">
+                <file role="php" name="cruisecontrol.css">
+                  <tasks:replace from="@package_version@" to="version" type="package-info"/>
+                  <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+                  <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+                  <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+                </file>
+              </dir>
+              <file role="php" name="page.tpl">
+                <tasks:replace from="@package_version@" to="version" type="package-info"/>
+                <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+                <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+                <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+              </file>
+              <file role="php" name="reviewView.tpl">
+                <tasks:replace from="@package_version@" to="version" type="package-info"/>
+                <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+                <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+                <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+              </file>
+              <dir name="img">
+                <file role="php" name="joinbottom.gif">
+                  <tasks:replace from="@package_version@" to="version" type="package-info"/>
+                  <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+                  <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+                  <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+                </file>
+                <file role="php" name="nolines_plus.gif">
+                  <tasks:replace from="@package_version@" to="version" type="package-info"/>
+                  <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+                  <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+                  <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+                </file>
+                <file role="php" name="slider.gif">
+                  <tasks:replace from="@package_version@" to="version" type="package-info"/>
+                  <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+                  <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+                  <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+                </file>
+                <file role="php" name="globe.gif">
+                  <tasks:replace from="@package_version@" to="version" type="package-info"/>
+                  <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+                  <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+                  <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+                </file>
+                <file role="php" name="minusbottom.gif">
+                  <tasks:replace from="@package_version@" to="version" type="package-info"/>
+                  <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+                  <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+                  <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+                </file>
+                <file role="php" name="question.gif">
+                  <tasks:replace from="@package_version@" to="version" type="package-info"/>
+                  <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+                  <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+                  <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+                </file>
+                <file role="php" name="imgfolder.gif">
+                  <tasks:replace from="@package_version@" to="version" type="package-info"/>
+                  <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+                  <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+                  <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+                </file>
+                <file role="php" name="tab-active.png">
+                  <tasks:replace from="@package_version@" to="version" type="package-info"/>
+                  <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+                  <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+                  <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+                </file>
+                <file role="php" name="cd.gif">
+                  <tasks:replace from="@package_version@" to="version" type="package-info"/>
+                  <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+                  <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+                  <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+                </file>
+                <file role="php" name="trash.gif">
+                  <tasks:replace from="@package_version@" to="version" type="package-info"/>
+                  <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+                  <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+                  <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+                </file>
+                <file role="php" name="page.gif">
+                  <tasks:replace from="@package_version@" to="version" type="package-info"/>
+                  <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+                  <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+                  <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+                </file>
+                <file role="php" name="minus.gif">
+                  <tasks:replace from="@package_version@" to="version" type="package-info"/>
+                  <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+                  <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+                  <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+                </file>
+                <file role="php" name="background.gif">
+                  <tasks:replace from="@package_version@" to="version" type="package-info"/>
+                  <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+                  <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+                  <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+                </file>
+                <file role="php" name="line.gif">
+                  <tasks:replace from="@package_version@" to="version" type="package-info"/>
+                  <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+                  <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+                  <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+                </file>
+                <file role="php" name="base.gif">
+                  <tasks:replace from="@package_version@" to="version" type="package-info"/>
+                  <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+                  <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+                  <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+                </file>
+                <file role="php" name="folder.gif">
+                  <tasks:replace from="@package_version@" to="version" type="package-info"/>
+                  <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+                  <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+                  <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+                </file>
+                <file role="php" name="folderopen.gif">
+                  <tasks:replace from="@package_version@" to="version" type="package-info"/>
+                  <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+                  <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+                  <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+                </file>
+                <file role="php" name="empty.gif">
+                  <tasks:replace from="@package_version@" to="version" type="package-info"/>
+                  <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+                  <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+                  <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+                </file>
+                <file role="php" name="plusbottom.gif">
+                  <tasks:replace from="@package_version@" to="version" type="package-info"/>
+                  <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+                  <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+                  <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+                </file>
+                <file role="php" name="page.png">
+                  <tasks:replace from="@package_version@" to="version" type="package-info"/>
+                  <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+                  <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+                  <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+                </file>
+                <file role="php" name="musicfolder.gif">
+                  <tasks:replace from="@package_version@" to="version" type="package-info"/>
+                  <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+                  <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+                  <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+                </file>
+                <file role="php" name="plus.gif">
+                  <tasks:replace from="@package_version@" to="version" type="package-info"/>
+                  <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+                  <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+                  <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+                </file>
+                <file role="php" name="nolines_minus.gif">
+                  <tasks:replace from="@package_version@" to="version" type="package-info"/>
+                  <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+                  <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+                  <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+                </file>
+                <file role="php" name="join.gif">
+                  <tasks:replace from="@package_version@" to="version" type="package-info"/>
+                  <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+                  <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+                  <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+                </file>
+              </dir>
+            </dir>
+          </dir>
         </dir>
         <dir name="Console">
           <file role="php" name="ConsoleInputDefinition.php">
@@ -1157,6 +1645,12 @@ example project.
             <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
             <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
           </file>
+          <file role="test" name="CodeBrowserTaskTest.php">
+            <tasks:replace from="@package_version@" to="version" type="package-info"/>
+            <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+            <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+            <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+          </file>
           <file role="test" name="AbstractPearTaskTest.php">
             <tasks:replace from="@package_version@" to="version" type="package-info"/>
             <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
@@ -1665,6 +2159,7 @@ example project.
       <install as="phpUnderControl/Tasks/MergePhpunitTask.php" name="src/Tasks/MergePhpunitTask.php"/>
       <install as="phpUnderControl/Tasks/AbstractTask.php" name="src/Tasks/AbstractTask.php"/>
       <install as="phpUnderControl/Tasks/PhpUnitTask.php" name="src/Tasks/PhpUnitTask.php"/>
+      <install as="phpUnderControl/Tasks/CodeBrowserTask.php" name="src/Tasks/CodeBrowserTask.php"/>
       <install as="phpUnderControl/Tasks/CheckoutTask.php" name="src/Tasks/CheckoutTask.php"/>
       <install as="phpUnderControl/Tasks/PhpCodeSnifferTask.php" name="src/Tasks/PhpCodeSnifferTask.php"/>
       <install as="phpUnderControl/Tasks/ModifyFileTask.php" name="src/Tasks/ModifyFileTask.php"/>
@@ -1675,6 +2170,81 @@ example project.
       <install as="phpUnderControl/Exceptions/TaskException.php" name="src/Exceptions/TaskException.php"/>
       <install as="phpUnderControl/Exceptions/ValidateException.php" name="src/Exceptions/ValidateException.php"/>
       <install as="phpUnderControl/Exceptions/RuntimeException.php" name="src/Exceptions/RuntimeException.php"/>
+      <install as="phpUnderControl/ThirdParty/CodeBrowser/src/ErrorHandler.php" name="src/ThirdParty/CodeBrowser/src/ErrorHandler.php"/>
+      <install as="phpUnderControl/ThirdParty/CodeBrowser/src/HTMLGenerator.php" name="src/ThirdParty/CodeBrowser/src/HTMLGenerator.php"/>
+      <install as="phpUnderControl/ThirdParty/CodeBrowser/src/XMLGenerator.php" name="src/ThirdParty/CodeBrowser/src/XMLGenerator.php"/>
+      <install as="phpUnderControl/ThirdParty/CodeBrowser/src/Util/Autoloader.php" name="src/ThirdParty/CodeBrowser/src/Util/Autoloader.php"/>
+      <install as="phpUnderControl/ThirdParty/CodeBrowser/src/XMLHandler.php" name="src/ThirdParty/CodeBrowser/src/XMLHandler.php"/>
+      <install as="phpUnderControl/ThirdParty/CodeBrowser/src/JSGenerator.php" name="src/ThirdParty/CodeBrowser/src/JSGenerator.php"/>
+      <install as="phpUnderControl/ThirdParty/CodeBrowser/src/FDHandler.php" name="src/ThirdParty/CodeBrowser/src/FDHandler.php"/>
+      <install as="phpUnderControl/ThirdParty/CodeBrowser/src/Plugins/ErrorCheckstyle.php" name="src/ThirdParty/CodeBrowser/src/Plugins/ErrorCheckstyle.php"/>
+      <install as="phpUnderControl/ThirdParty/CodeBrowser/src/Plugins/ErrorCPD.php" name="src/ThirdParty/CodeBrowser/src/Plugins/ErrorCPD.php"/>
+      <install as="phpUnderControl/ThirdParty/CodeBrowser/src/Plugins/ErrorPadawan.php" name="src/ThirdParty/CodeBrowser/src/Plugins/ErrorPadawan.php"/>
+      <install as="phpUnderControl/ThirdParty/CodeBrowser/src/Plugins/ErrorPMD.php" name="src/ThirdParty/CodeBrowser/src/Plugins/ErrorPMD.php"/>
+      <install as="phpUnderControl/ThirdParty/CodeBrowser/src/CLIController.php" name="src/ThirdParty/CodeBrowser/src/CLIController.php"/>
+      <install as="phpUnderControl/ThirdParty/CodeBrowser/src/PluginError.php" name="src/ThirdParty/CodeBrowser/src/PluginError.php"/>
+      <install as="phpUnderControl/ThirdParty/CodeBrowser/LICENSE" name="src/ThirdParty/CodeBrowser/LICENSE"/>
+      <install as="phpUnderControl/ThirdParty/CodeBrowser/README" name="src/ThirdParty/CodeBrowser/README"/>
+      <install as="phpUnderControl/ThirdParty/CodeBrowser/package.xml" name="src/ThirdParty/CodeBrowser/package.xml"/>
+      <install as="phpUnderControl/ThirdParty/CodeBrowser/CHANGELOG" name="src/ThirdParty/CodeBrowser/CHANGELOG"/>
+      <install as="phpUnderControl/ThirdParty/CodeBrowser/bin/phpcb.bat" name="src/ThirdParty/CodeBrowser/bin/phpcb.bat"/>
+      <install as="phpUnderControl/ThirdParty/CodeBrowser/bin/phpcb.php" name="src/ThirdParty/CodeBrowser/bin/phpcb.php"/>
+      <install as="phpUnderControl/ThirdParty/CodeBrowser/tests/src/PluginErrorTest.php" name="src/ThirdParty/CodeBrowser/tests/src/PluginErrorTest.php"/>
+      <install as="phpUnderControl/ThirdParty/CodeBrowser/tests/src/XMLGeneratorTest.php" name="src/ThirdParty/CodeBrowser/tests/src/XMLGeneratorTest.php"/>
+      <install as="phpUnderControl/ThirdParty/CodeBrowser/tests/src/XMLHandlerTest.php" name="src/ThirdParty/CodeBrowser/tests/src/XMLHandlerTest.php"/>
+      <install as="phpUnderControl/ThirdParty/CodeBrowser/tests/src/HTMLGeneratorTest.php" name="src/ThirdParty/CodeBrowser/tests/src/HTMLGeneratorTest.php"/>
+      <install as="phpUnderControl/ThirdParty/CodeBrowser/tests/src/ErrorHandlerTest.php" name="src/ThirdParty/CodeBrowser/tests/src/ErrorHandlerTest.php"/>
+      <install as="phpUnderControl/ThirdParty/CodeBrowser/tests/src/JSGeneratorTest.php" name="src/ThirdParty/CodeBrowser/tests/src/JSGeneratorTest.php"/>
+      <install as="phpUnderControl/ThirdParty/CodeBrowser/tests/src/FDHandlerTest.php" name="src/ThirdParty/CodeBrowser/tests/src/FDHandlerTest.php"/>
+      <install as="phpUnderControl/ThirdParty/CodeBrowser/tests/src/Plugins/ErrorCPDTest.php" name="src/ThirdParty/CodeBrowser/tests/src/Plugins/ErrorCPDTest.php"/>
+      <install as="phpUnderControl/ThirdParty/CodeBrowser/tests/src/Plugins/ErrorCheckstyleTest.php" name="src/ThirdParty/CodeBrowser/tests/src/Plugins/ErrorCheckstyleTest.php"/>
+      <install as="phpUnderControl/ThirdParty/CodeBrowser/tests/src/Plugins/ErrorPMDTest.php" name="src/ThirdParty/CodeBrowser/tests/src/Plugins/ErrorPMDTest.php"/>
+      <install as="phpUnderControl/ThirdParty/CodeBrowser/tests/src/Plugins/ErrorPadawanTest.php" name="src/ThirdParty/CodeBrowser/tests/src/Plugins/ErrorPadawanTest.php"/>
+      <install as="phpUnderControl/ThirdParty/CodeBrowser/tests/MockObjects/MockPluginError.php" name="src/ThirdParty/CodeBrowser/tests/MockObjects/MockPluginError.php"/>
+      <install as="phpUnderControl/ThirdParty/CodeBrowser/tests/AbstractTests.php" name="src/ThirdParty/CodeBrowser/tests/AbstractTests.php"/>
+      <install as="phpUnderControl/ThirdParty/CodeBrowser/tests/AllTests.php" name="src/ThirdParty/CodeBrowser/tests/AllTests.php"/>
+      <install as="phpUnderControl/ThirdParty/CodeBrowser/tests/testData/src/JSTestGenerator.php" name="src/ThirdParty/CodeBrowser/tests/testData/src/JSTestGenerator.php"/>
+      <install as="phpUnderControl/ThirdParty/CodeBrowser/tests/testData/ccCodeBrowser.xml" name="src/ThirdParty/CodeBrowser/tests/testData/ccCodeBrowser.xml"/>
+      <install as="phpUnderControl/ThirdParty/CodeBrowser/tests/testData/serializedErrors.txt" name="src/ThirdParty/CodeBrowser/tests/testData/serializedErrors.txt"/>
+      <install as="phpUnderControl/ThirdParty/CodeBrowser/tests/testData/checkstyle.xml" name="src/ThirdParty/CodeBrowser/tests/testData/checkstyle.xml"/>
+      <install as="phpUnderControl/ThirdParty/CodeBrowser/tests/testData/phpunit.coverage.xml" name="src/ThirdParty/CodeBrowser/tests/testData/phpunit.coverage.xml"/>
+      <install as="phpUnderControl/ThirdParty/CodeBrowser/tests/testData/basic.xml" name="src/ThirdParty/CodeBrowser/tests/testData/basic.xml"/>
+      <install as="phpUnderControl/ThirdParty/CodeBrowser/tests/testData/xmllint_codebrowser_merge.xml" name="src/ThirdParty/CodeBrowser/tests/testData/xmllint_codebrowser_merge.xml"/>
+      <install as="phpUnderControl/ThirdParty/CodeBrowser/templates/js/side-bar.js" name="src/ThirdParty/CodeBrowser/templates/js/side-bar.js"/>
+      <install as="phpUnderControl/ThirdParty/CodeBrowser/templates/js/prototip.js" name="src/ThirdParty/CodeBrowser/templates/js/prototip.js"/>
+      <install as="phpUnderControl/ThirdParty/CodeBrowser/templates/js/prototype.js" name="src/ThirdParty/CodeBrowser/templates/js/prototype.js"/>
+      <install as="phpUnderControl/ThirdParty/CodeBrowser/templates/js/effects.js" name="src/ThirdParty/CodeBrowser/templates/js/effects.js"/>
+      <install as="phpUnderControl/ThirdParty/CodeBrowser/templates/js/dtree.js" name="src/ThirdParty/CodeBrowser/templates/js/dtree.js"/>
+      <install as="phpUnderControl/ThirdParty/CodeBrowser/templates/flatView.tpl" name="src/ThirdParty/CodeBrowser/templates/flatView.tpl"/>
+      <install as="phpUnderControl/ThirdParty/CodeBrowser/templates/index.tpl" name="src/ThirdParty/CodeBrowser/templates/index.tpl"/>
+      <install as="phpUnderControl/ThirdParty/CodeBrowser/templates/tree.tpl" name="src/ThirdParty/CodeBrowser/templates/tree.tpl"/>
+      <install as="phpUnderControl/ThirdParty/CodeBrowser/templates/css/cruisecontrol.css" name="src/ThirdParty/CodeBrowser/templates/css/cruisecontrol.css"/>
+      <install as="phpUnderControl/ThirdParty/CodeBrowser/templates/page.tpl" name="src/ThirdParty/CodeBrowser/templates/page.tpl"/>
+      <install as="phpUnderControl/ThirdParty/CodeBrowser/templates/reviewView.tpl" name="src/ThirdParty/CodeBrowser/templates/reviewView.tpl"/>
+      <install as="phpUnderControl/ThirdParty/CodeBrowser/templates/img/joinbottom.gif" name="src/ThirdParty/CodeBrowser/templates/img/joinbottom.gif"/>
+      <install as="phpUnderControl/ThirdParty/CodeBrowser/templates/img/nolines_plus.gif" name="src/ThirdParty/CodeBrowser/templates/img/nolines_plus.gif"/>
+      <install as="phpUnderControl/ThirdParty/CodeBrowser/templates/img/slider.gif" name="src/ThirdParty/CodeBrowser/templates/img/slider.gif"/>
+      <install as="phpUnderControl/ThirdParty/CodeBrowser/templates/img/globe.gif" name="src/ThirdParty/CodeBrowser/templates/img/globe.gif"/>
+      <install as="phpUnderControl/ThirdParty/CodeBrowser/templates/img/minusbottom.gif" name="src/ThirdParty/CodeBrowser/templates/img/minusbottom.gif"/>
+      <install as="phpUnderControl/ThirdParty/CodeBrowser/templates/img/question.gif" name="src/ThirdParty/CodeBrowser/templates/img/question.gif"/>
+      <install as="phpUnderControl/ThirdParty/CodeBrowser/templates/img/imgfolder.gif" name="src/ThirdParty/CodeBrowser/templates/img/imgfolder.gif"/>
+      <install as="phpUnderControl/ThirdParty/CodeBrowser/templates/img/tab-active.png" name="src/ThirdParty/CodeBrowser/templates/img/tab-active.png"/>
+      <install as="phpUnderControl/ThirdParty/CodeBrowser/templates/img/cd.gif" name="src/ThirdParty/CodeBrowser/templates/img/cd.gif"/>
+      <install as="phpUnderControl/ThirdParty/CodeBrowser/templates/img/trash.gif" name="src/ThirdParty/CodeBrowser/templates/img/trash.gif"/>
+      <install as="phpUnderControl/ThirdParty/CodeBrowser/templates/img/page.gif" name="src/ThirdParty/CodeBrowser/templates/img/page.gif"/>
+      <install as="phpUnderControl/ThirdParty/CodeBrowser/templates/img/minus.gif" name="src/ThirdParty/CodeBrowser/templates/img/minus.gif"/>
+      <install as="phpUnderControl/ThirdParty/CodeBrowser/templates/img/background.gif" name="src/ThirdParty/CodeBrowser/templates/img/background.gif"/>
+      <install as="phpUnderControl/ThirdParty/CodeBrowser/templates/img/line.gif" name="src/ThirdParty/CodeBrowser/templates/img/line.gif"/>
+      <install as="phpUnderControl/ThirdParty/CodeBrowser/templates/img/base.gif" name="src/ThirdParty/CodeBrowser/templates/img/base.gif"/>
+      <install as="phpUnderControl/ThirdParty/CodeBrowser/templates/img/folder.gif" name="src/ThirdParty/CodeBrowser/templates/img/folder.gif"/>
+      <install as="phpUnderControl/ThirdParty/CodeBrowser/templates/img/folderopen.gif" name="src/ThirdParty/CodeBrowser/templates/img/folderopen.gif"/>
+      <install as="phpUnderControl/ThirdParty/CodeBrowser/templates/img/empty.gif" name="src/ThirdParty/CodeBrowser/templates/img/empty.gif"/>
+      <install as="phpUnderControl/ThirdParty/CodeBrowser/templates/img/plusbottom.gif" name="src/ThirdParty/CodeBrowser/templates/img/plusbottom.gif"/>
+      <install as="phpUnderControl/ThirdParty/CodeBrowser/templates/img/page.png" name="src/ThirdParty/CodeBrowser/templates/img/page.png"/>
+      <install as="phpUnderControl/ThirdParty/CodeBrowser/templates/img/musicfolder.gif" name="src/ThirdParty/CodeBrowser/templates/img/musicfolder.gif"/>
+      <install as="phpUnderControl/ThirdParty/CodeBrowser/templates/img/plus.gif" name="src/ThirdParty/CodeBrowser/templates/img/plus.gif"/>
+      <install as="phpUnderControl/ThirdParty/CodeBrowser/templates/img/nolines_minus.gif" name="src/ThirdParty/CodeBrowser/templates/img/nolines_minus.gif"/>
+      <install as="phpUnderControl/ThirdParty/CodeBrowser/templates/img/join.gif" name="src/ThirdParty/CodeBrowser/templates/img/join.gif"/>
       <install as="phpUnderControl/Console/ConsoleInputDefinition.php" name="src/Console/ConsoleInputDefinition.php"/>
       <install as="phpUnderControl/Console/ConsoleExtensionI.php" name="src/Console/ConsoleExtensionI.php"/>
       <install as="phpUnderControl/Console/ConsoleOutput.php" name="src/Console/ConsoleOutput.php"/>
@@ -1755,6 +2325,7 @@ example project.
       <install as="phpUnderControl/Tasks/MergePhpunitTask.php" name="src/Tasks/MergePhpunitTask.php"/>
       <install as="phpUnderControl/Tasks/AbstractTask.php" name="src/Tasks/AbstractTask.php"/>
       <install as="phpUnderControl/Tasks/PhpUnitTask.php" name="src/Tasks/PhpUnitTask.php"/>
+      <install as="phpUnderControl/Tasks/CodeBrowserTask.php" name="src/Tasks/CodeBrowserTask.php"/>
       <install as="phpUnderControl/Tasks/CheckoutTask.php" name="src/Tasks/CheckoutTask.php"/>
       <install as="phpUnderControl/Tasks/PhpCodeSnifferTask.php" name="src/Tasks/PhpCodeSnifferTask.php"/>
       <install as="phpUnderControl/Tasks/ModifyFileTask.php" name="src/Tasks/ModifyFileTask.php"/>
@@ -1765,6 +2336,81 @@ example project.
       <install as="phpUnderControl/Exceptions/TaskException.php" name="src/Exceptions/TaskException.php"/>
       <install as="phpUnderControl/Exceptions/ValidateException.php" name="src/Exceptions/ValidateException.php"/>
       <install as="phpUnderControl/Exceptions/RuntimeException.php" name="src/Exceptions/RuntimeException.php"/>
+      <install as="phpUnderControl/ThirdParty/CodeBrowser/src/ErrorHandler.php" name="src/ThirdParty/CodeBrowser/src/ErrorHandler.php"/>
+      <install as="phpUnderControl/ThirdParty/CodeBrowser/src/HTMLGenerator.php" name="src/ThirdParty/CodeBrowser/src/HTMLGenerator.php"/>
+      <install as="phpUnderControl/ThirdParty/CodeBrowser/src/XMLGenerator.php" name="src/ThirdParty/CodeBrowser/src/XMLGenerator.php"/>
+      <install as="phpUnderControl/ThirdParty/CodeBrowser/src/Util/Autoloader.php" name="src/ThirdParty/CodeBrowser/src/Util/Autoloader.php"/>
+      <install as="phpUnderControl/ThirdParty/CodeBrowser/src/XMLHandler.php" name="src/ThirdParty/CodeBrowser/src/XMLHandler.php"/>
+      <install as="phpUnderControl/ThirdParty/CodeBrowser/src/JSGenerator.php" name="src/ThirdParty/CodeBrowser/src/JSGenerator.php"/>
+      <install as="phpUnderControl/ThirdParty/CodeBrowser/src/FDHandler.php" name="src/ThirdParty/CodeBrowser/src/FDHandler.php"/>
+      <install as="phpUnderControl/ThirdParty/CodeBrowser/src/Plugins/ErrorCheckstyle.php" name="src/ThirdParty/CodeBrowser/src/Plugins/ErrorCheckstyle.php"/>
+      <install as="phpUnderControl/ThirdParty/CodeBrowser/src/Plugins/ErrorCPD.php" name="src/ThirdParty/CodeBrowser/src/Plugins/ErrorCPD.php"/>
+      <install as="phpUnderControl/ThirdParty/CodeBrowser/src/Plugins/ErrorPadawan.php" name="src/ThirdParty/CodeBrowser/src/Plugins/ErrorPadawan.php"/>
+      <install as="phpUnderControl/ThirdParty/CodeBrowser/src/Plugins/ErrorPMD.php" name="src/ThirdParty/CodeBrowser/src/Plugins/ErrorPMD.php"/>
+      <install as="phpUnderControl/ThirdParty/CodeBrowser/src/CLIController.php" name="src/ThirdParty/CodeBrowser/src/CLIController.php"/>
+      <install as="phpUnderControl/ThirdParty/CodeBrowser/src/PluginError.php" name="src/ThirdParty/CodeBrowser/src/PluginError.php"/>
+      <install as="phpUnderControl/ThirdParty/CodeBrowser/LICENSE" name="src/ThirdParty/CodeBrowser/LICENSE"/>
+      <install as="phpUnderControl/ThirdParty/CodeBrowser/README" name="src/ThirdParty/CodeBrowser/README"/>
+      <install as="phpUnderControl/ThirdParty/CodeBrowser/package.xml" name="src/ThirdParty/CodeBrowser/package.xml"/>
+      <install as="phpUnderControl/ThirdParty/CodeBrowser/CHANGELOG" name="src/ThirdParty/CodeBrowser/CHANGELOG"/>
+      <install as="phpUnderControl/ThirdParty/CodeBrowser/bin/phpcb.bat" name="src/ThirdParty/CodeBrowser/bin/phpcb.bat"/>
+      <install as="phpUnderControl/ThirdParty/CodeBrowser/bin/phpcb.php" name="src/ThirdParty/CodeBrowser/bin/phpcb.php"/>
+      <install as="phpUnderControl/ThirdParty/CodeBrowser/tests/src/PluginErrorTest.php" name="src/ThirdParty/CodeBrowser/tests/src/PluginErrorTest.php"/>
+      <install as="phpUnderControl/ThirdParty/CodeBrowser/tests/src/XMLGeneratorTest.php" name="src/ThirdParty/CodeBrowser/tests/src/XMLGeneratorTest.php"/>
+      <install as="phpUnderControl/ThirdParty/CodeBrowser/tests/src/XMLHandlerTest.php" name="src/ThirdParty/CodeBrowser/tests/src/XMLHandlerTest.php"/>
+      <install as="phpUnderControl/ThirdParty/CodeBrowser/tests/src/HTMLGeneratorTest.php" name="src/ThirdParty/CodeBrowser/tests/src/HTMLGeneratorTest.php"/>
+      <install as="phpUnderControl/ThirdParty/CodeBrowser/tests/src/ErrorHandlerTest.php" name="src/ThirdParty/CodeBrowser/tests/src/ErrorHandlerTest.php"/>
+      <install as="phpUnderControl/ThirdParty/CodeBrowser/tests/src/JSGeneratorTest.php" name="src/ThirdParty/CodeBrowser/tests/src/JSGeneratorTest.php"/>
+      <install as="phpUnderControl/ThirdParty/CodeBrowser/tests/src/FDHandlerTest.php" name="src/ThirdParty/CodeBrowser/tests/src/FDHandlerTest.php"/>
+      <install as="phpUnderControl/ThirdParty/CodeBrowser/tests/src/Plugins/ErrorCPDTest.php" name="src/ThirdParty/CodeBrowser/tests/src/Plugins/ErrorCPDTest.php"/>
+      <install as="phpUnderControl/ThirdParty/CodeBrowser/tests/src/Plugins/ErrorCheckstyleTest.php" name="src/ThirdParty/CodeBrowser/tests/src/Plugins/ErrorCheckstyleTest.php"/>
+      <install as="phpUnderControl/ThirdParty/CodeBrowser/tests/src/Plugins/ErrorPMDTest.php" name="src/ThirdParty/CodeBrowser/tests/src/Plugins/ErrorPMDTest.php"/>
+      <install as="phpUnderControl/ThirdParty/CodeBrowser/tests/src/Plugins/ErrorPadawanTest.php" name="src/ThirdParty/CodeBrowser/tests/src/Plugins/ErrorPadawanTest.php"/>
+      <install as="phpUnderControl/ThirdParty/CodeBrowser/tests/MockObjects/MockPluginError.php" name="src/ThirdParty/CodeBrowser/tests/MockObjects/MockPluginError.php"/>
+      <install as="phpUnderControl/ThirdParty/CodeBrowser/tests/AbstractTests.php" name="src/ThirdParty/CodeBrowser/tests/AbstractTests.php"/>
+      <install as="phpUnderControl/ThirdParty/CodeBrowser/tests/AllTests.php" name="src/ThirdParty/CodeBrowser/tests/AllTests.php"/>
+      <install as="phpUnderControl/ThirdParty/CodeBrowser/tests/testData/src/JSTestGenerator.php" name="src/ThirdParty/CodeBrowser/tests/testData/src/JSTestGenerator.php"/>
+      <install as="phpUnderControl/ThirdParty/CodeBrowser/tests/testData/ccCodeBrowser.xml" name="src/ThirdParty/CodeBrowser/tests/testData/ccCodeBrowser.xml"/>
+      <install as="phpUnderControl/ThirdParty/CodeBrowser/tests/testData/serializedErrors.txt" name="src/ThirdParty/CodeBrowser/tests/testData/serializedErrors.txt"/>
+      <install as="phpUnderControl/ThirdParty/CodeBrowser/tests/testData/checkstyle.xml" name="src/ThirdParty/CodeBrowser/tests/testData/checkstyle.xml"/>
+      <install as="phpUnderControl/ThirdParty/CodeBrowser/tests/testData/phpunit.coverage.xml" name="src/ThirdParty/CodeBrowser/tests/testData/phpunit.coverage.xml"/>
+      <install as="phpUnderControl/ThirdParty/CodeBrowser/tests/testData/basic.xml" name="src/ThirdParty/CodeBrowser/tests/testData/basic.xml"/>
+      <install as="phpUnderControl/ThirdParty/CodeBrowser/tests/testData/xmllint_codebrowser_merge.xml" name="src/ThirdParty/CodeBrowser/tests/testData/xmllint_codebrowser_merge.xml"/>
+      <install as="phpUnderControl/ThirdParty/CodeBrowser/templates/js/side-bar.js" name="src/ThirdParty/CodeBrowser/templates/js/side-bar.js"/>
+      <install as="phpUnderControl/ThirdParty/CodeBrowser/templates/js/prototip.js" name="src/ThirdParty/CodeBrowser/templates/js/prototip.js"/>
+      <install as="phpUnderControl/ThirdParty/CodeBrowser/templates/js/prototype.js" name="src/ThirdParty/CodeBrowser/templates/js/prototype.js"/>
+      <install as="phpUnderControl/ThirdParty/CodeBrowser/templates/js/effects.js" name="src/ThirdParty/CodeBrowser/templates/js/effects.js"/>
+      <install as="phpUnderControl/ThirdParty/CodeBrowser/templates/js/dtree.js" name="src/ThirdParty/CodeBrowser/templates/js/dtree.js"/>
+      <install as="phpUnderControl/ThirdParty/CodeBrowser/templates/flatView.tpl" name="src/ThirdParty/CodeBrowser/templates/flatView.tpl"/>
+      <install as="phpUnderControl/ThirdParty/CodeBrowser/templates/index.tpl" name="src/ThirdParty/CodeBrowser/templates/index.tpl"/>
+      <install as="phpUnderControl/ThirdParty/CodeBrowser/templates/tree.tpl" name="src/ThirdParty/CodeBrowser/templates/tree.tpl"/>
+      <install as="phpUnderControl/ThirdParty/CodeBrowser/templates/css/cruisecontrol.css" name="src/ThirdParty/CodeBrowser/templates/css/cruisecontrol.css"/>
+      <install as="phpUnderControl/ThirdParty/CodeBrowser/templates/page.tpl" name="src/ThirdParty/CodeBrowser/templates/page.tpl"/>
+      <install as="phpUnderControl/ThirdParty/CodeBrowser/templates/reviewView.tpl" name="src/ThirdParty/CodeBrowser/templates/reviewView.tpl"/>
+      <install as="phpUnderControl/ThirdParty/CodeBrowser/templates/img/joinbottom.gif" name="src/ThirdParty/CodeBrowser/templates/img/joinbottom.gif"/>
+      <install as="phpUnderControl/ThirdParty/CodeBrowser/templates/img/nolines_plus.gif" name="src/ThirdParty/CodeBrowser/templates/img/nolines_plus.gif"/>
+      <install as="phpUnderControl/ThirdParty/CodeBrowser/templates/img/slider.gif" name="src/ThirdParty/CodeBrowser/templates/img/slider.gif"/>
+      <install as="phpUnderControl/ThirdParty/CodeBrowser/templates/img/globe.gif" name="src/ThirdParty/CodeBrowser/templates/img/globe.gif"/>
+      <install as="phpUnderControl/ThirdParty/CodeBrowser/templates/img/minusbottom.gif" name="src/ThirdParty/CodeBrowser/templates/img/minusbottom.gif"/>
+      <install as="phpUnderControl/ThirdParty/CodeBrowser/templates/img/question.gif" name="src/ThirdParty/CodeBrowser/templates/img/question.gif"/>
+      <install as="phpUnderControl/ThirdParty/CodeBrowser/templates/img/imgfolder.gif" name="src/ThirdParty/CodeBrowser/templates/img/imgfolder.gif"/>
+      <install as="phpUnderControl/ThirdParty/CodeBrowser/templates/img/tab-active.png" name="src/ThirdParty/CodeBrowser/templates/img/tab-active.png"/>
+      <install as="phpUnderControl/ThirdParty/CodeBrowser/templates/img/cd.gif" name="src/ThirdParty/CodeBrowser/templates/img/cd.gif"/>
+      <install as="phpUnderControl/ThirdParty/CodeBrowser/templates/img/trash.gif" name="src/ThirdParty/CodeBrowser/templates/img/trash.gif"/>
+      <install as="phpUnderControl/ThirdParty/CodeBrowser/templates/img/page.gif" name="src/ThirdParty/CodeBrowser/templates/img/page.gif"/>
+      <install as="phpUnderControl/ThirdParty/CodeBrowser/templates/img/minus.gif" name="src/ThirdParty/CodeBrowser/templates/img/minus.gif"/>
+      <install as="phpUnderControl/ThirdParty/CodeBrowser/templates/img/background.gif" name="src/ThirdParty/CodeBrowser/templates/img/background.gif"/>
+      <install as="phpUnderControl/ThirdParty/CodeBrowser/templates/img/line.gif" name="src/ThirdParty/CodeBrowser/templates/img/line.gif"/>
+      <install as="phpUnderControl/ThirdParty/CodeBrowser/templates/img/base.gif" name="src/ThirdParty/CodeBrowser/templates/img/base.gif"/>
+      <install as="phpUnderControl/ThirdParty/CodeBrowser/templates/img/folder.gif" name="src/ThirdParty/CodeBrowser/templates/img/folder.gif"/>
+      <install as="phpUnderControl/ThirdParty/CodeBrowser/templates/img/folderopen.gif" name="src/ThirdParty/CodeBrowser/templates/img/folderopen.gif"/>
+      <install as="phpUnderControl/ThirdParty/CodeBrowser/templates/img/empty.gif" name="src/ThirdParty/CodeBrowser/templates/img/empty.gif"/>
+      <install as="phpUnderControl/ThirdParty/CodeBrowser/templates/img/plusbottom.gif" name="src/ThirdParty/CodeBrowser/templates/img/plusbottom.gif"/>
+      <install as="phpUnderControl/ThirdParty/CodeBrowser/templates/img/page.png" name="src/ThirdParty/CodeBrowser/templates/img/page.png"/>
+      <install as="phpUnderControl/ThirdParty/CodeBrowser/templates/img/musicfolder.gif" name="src/ThirdParty/CodeBrowser/templates/img/musicfolder.gif"/>
+      <install as="phpUnderControl/ThirdParty/CodeBrowser/templates/img/plus.gif" name="src/ThirdParty/CodeBrowser/templates/img/plus.gif"/>
+      <install as="phpUnderControl/ThirdParty/CodeBrowser/templates/img/nolines_minus.gif" name="src/ThirdParty/CodeBrowser/templates/img/nolines_minus.gif"/>
+      <install as="phpUnderControl/ThirdParty/CodeBrowser/templates/img/join.gif" name="src/ThirdParty/CodeBrowser/templates/img/join.gif"/>
       <install as="phpUnderControl/Console/ConsoleInputDefinition.php" name="src/Console/ConsoleInputDefinition.php"/>
       <install as="phpUnderControl/Console/ConsoleExtensionI.php" name="src/Console/ConsoleExtensionI.php"/>
       <install as="phpUnderControl/Console/ConsoleOutput.php" name="src/Console/ConsoleOutput.php"/>
