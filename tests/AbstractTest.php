@@ -277,8 +277,11 @@ abstract class phpucAbstractTest extends PHPUnit_Framework_TestCase
         {
             // Create full testing path
             $fullPath = PHPUC_TEST_DIR . '/' . $directory;
-            
-            mkdir( $fullPath, 0755, true );
+
+            if ( file_exists( $fullPath ) === false )
+            {
+                mkdir( $fullPath, 0755, true );
+            }
             
             $fullPaths[] = $fullPath;
         }

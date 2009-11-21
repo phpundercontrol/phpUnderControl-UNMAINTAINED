@@ -51,6 +51,7 @@ require_once 'PHPUnit/Framework/TestSuite.php';
 require_once 'PHPUnit/TextUI/TestRunner.php';
 
 require_once dirname( __FILE__ ) . '/CheckoutTaskTest.php';
+require_once dirname( __FILE__ ) . '/CodeBrowserTaskTest.php';
 require_once dirname( __FILE__ ) . '/CreateFileTaskTest.php';
 require_once dirname( __FILE__ ) . '/CruiseControlTaskTest.php';
 require_once dirname( __FILE__ ) . '/GraphTaskTest.php';
@@ -94,6 +95,7 @@ class phpucTasksAllTests
     {
         $suite = new PHPUnit_Framework_TestSuite( 'phpUnderControl - TasksAllTest' );
         $suite->addTestSuite( 'phpucCheckoutTaskTest' );
+        $suite->addTestSuite( 'phpucCodeBrowserTaskTest' );
         $suite->addTestSuite( 'phpucCreateFileTaskTest' );
         $suite->addTestSuite( 'phpucCruiseControlTaskTest' );
         $suite->addTestSuite( 'phpucGraphTaskTest' );

@@ -130,46 +130,6 @@ class phpucPHPUnitTaskTest extends phpucAbstractPearTaskTest
     }
     
     /**
-     * Tests that the validate method fails for an unsupported phpunit version.
-     *
-     * @return void
-     */
-    public function testPHPUnitVersionValidateWithInvalidVersion()
-    {
-        $this->createExecutable( 'phpunit', $this->invalidBin );
-        $phpunit = new phpucPhpUnitTask();
-        $phpunit->setConsoleArgs( $this->args );
-        
-        phpucConsoleOutput::get()->reset();
-
-        $phpunit->validate();
-
-        $this->assertRegExp( '/^NOTICE:/', phpucConsoleOutput::get()->getBuffer() );
-    }
-    
-    /**
-     * Tests that the validate method with a bad formated version result.
-     *
-     * @return void
-     */
-    public function testPHPUnitVersionValidateWithBadVersionValue()
-    {
-        $this->createExecutable( 'phpunit', $this->badBin );
-        $phpunit = new phpucPhpUnitTask();
-        $phpunit->setConsoleArgs( $this->args );
-        
-        phpucConsoleOutput::get()->reset();
-
-        $phpunit->validate();
-		
-        $buffer = trim( phpucConsoleOutput::get()->getBuffer() );
-
-        $this->assertEquals( 
-            0, strpos( $buffer, 'WARNING: Cannot identify PHPUnit version.' ) 
-        );
-    }
-    
-    /**
      * Tests that the execute method adds a correct build file target.
      *
      * @return void

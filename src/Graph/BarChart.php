@@ -45,8 +45,6 @@
  * @link      http://www.phpundercontrol.org/
  */
 
-interface phpucThumbChartI extends phpucChartI {}
-
 /**
  *
  * @category  QualityAssurance

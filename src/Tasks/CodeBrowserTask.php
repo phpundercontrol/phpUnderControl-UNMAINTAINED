@@ -122,10 +122,10 @@ class phpucCodeBrowserTask extends phpucAbstractPearTask implements phpucConsole
         $publisher->command = sprintf(
             '%s ' .
             '--log projects/${project.name}/build/logs ' .
-            '--source projects/${project.name}/source/%s ' .
+            '--source %s ' .
             '--output projects/${project.name}/build/php-code-browser',
             $this->executable,
-            $this->args->getOption( 'source-dir' )
+            $this->getProjectSourceDirectory()
         );
 
         $projectConfig->configFile->store();
@@ -171,6 +171,21 @@ class phpucCodeBrowserTask extends phpucAbstractPearTask implements phpucConsole
     }
 
     /**
+     * Returns the source code directory for the current project.
+     *
+     * @return string
+     */
+    private function getProjectSourceDirectory()
+    {
+        $sourceDirectory = $this->args->getOption( 'source-dir' );
+        if ( realpath( $sourceDirectory ) === $sourceDirectory )
+        {
+            return $sourceDirectory;
+        }
+        return 'projects/${project.name}/source/' . $sourceDirectory;
+    }
+
+    /**
      * Callback method that registers a command extension.
      *
      * @param phpucConsoleInputDefinition $def
@@ -180,9 +195,10 @@ class phpucCodeBrowserTask extends phpucAbstractPearTask implements phpucConsole
      *
      * @return void
      */
-    public function registerCommandExtension( phpucConsoleInputDefinition $def,
-                                              phpucConsoleCommandI $command )
-    {
+    public function registerCommandExtension(
+        phpucConsoleInputDefinition $def,
+        phpucConsoleCommandI $command
+    ) {
         parent::registerCommandExtension( $def, $command );
 
         $def->addOption(
