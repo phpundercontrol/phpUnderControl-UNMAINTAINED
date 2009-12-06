@@ -1,3 +1,9 @@
+phpUnderControl 0.5.0
+---------------------
+
+- Merger for PHPUnit log files
+- PHP_CodeBrowser integrated.
+
 phpUnderControl 0.4.4
 ---------------------
 
