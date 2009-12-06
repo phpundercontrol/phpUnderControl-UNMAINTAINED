@@ -27,62 +27,6 @@ Event.observe( window, "load", function() {
             }
         );
     }
-
-    var scrollToFailure = true;
-
-    $$( '#phpUnitDetails tbody tr td:first-child' ).each( function( td ) { td.parentNode.hide() } );
-    $$( '#phpUnitDetails tbody tr > td.failure' ).each(
-        function( td )
-        {
-            td.parentNode.parentNode.select( 'tr' ).each(
-                function ( tr )
-                {
-                    tr.show();
-                    if ( scrollToFailure === true )
-                    {
-                        scrollToFailure = false;
-                        tr.scrollTo();
-                    }
-                }
-            );
-        }
-    );
-    $$( '#phpUnitDetails tbody tr.phpUnitTestSuite th.phpUnitTestSuiteName' ).each(
-        function( th ) {
-            var iconName = 'expanded';
-            if ( th.parentNode.parentNode.select( 'tr td.failure' ).length === 0 )
-            {
-                iconName = 'collapsed';
-            }
-
-            var imagePath = getLinkRootLocation() + '/images/php-under-control/' + iconName + '.png';
-            th.update( '<img style="display:inline" src="' + imagePath + '" alt=""/>' + th.innerHTML );
-            th.setStyle( {cursor: 'pointer'} );
-
-            var testSuiteIcon = th.firstDescendant();
-            var testSuite     = th.parentNode.parentNode;
-
-            Event.observe( th, 'click', function() {
-                testSuite.select( 'td:first-child' ).each(
-                    function( td )
-                    {
-                        var parentRow = td.parentNode;
-                        if ( parentRow.visible() )
-                        {
-                            testSuiteIcon.setAttribute( 'src', getLinkRootLocation() + '/images/php-under-control/collapsed.png' );
-                            parentRow.hide();
-                        }
-                        else
-                        {
-                            testSuiteIcon.setAttribute( 'src', getLinkRootLocation() + '/images/php-under-control/expanded.png' );
-                            parentRow.show();
-                        }
-                    }
-                );
-            } );
-        }
-    );
-    //$$(headingSelector).each(collapseTestSuite);
 } );
 
 function callServer( url ) {
