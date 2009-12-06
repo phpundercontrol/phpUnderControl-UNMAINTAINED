@@ -43,6 +43,7 @@
     String project = request.getPathInfo().substring(1);
 
     boolean apidoc   = false;
+    boolean browser  = false;
     boolean coverage = false;
 %>
 <cruisecontrol:artifactsLink>
@@ -57,6 +58,7 @@
     }
 
     apidoc   = new File(artifacts.getAbsolutePath() + "/api").exists();
+    browser  = new File(artifacts.getAbsolutePath() + "/php-code-browser").exists();
     coverage = new File(artifacts.getAbsolutePath() + "/coverage").exists();
 %>
 </cruisecontrol:artifactsLink>
@@ -106,14 +108,18 @@
             </cruisecontrol:tab>
             <% } %>
 
+            <%-- phpUnderControl 5 --%>
+
+            <% if (browser) { %>
             <cruisecontrol:tab name="codeBrowser" label="Code Browser">
               <cruisecontrol:artifactsLink>
                 <iframe src="<%=request.getContextPath() %>/<%= artifacts_url %>/php-code-browser/index.html" class="tab-content">
                 </iframe>
               </cruisecontrol:artifactsLink>
             </cruisecontrol:tab>
+            <% } %>
             
-            <%-- phpUnderControl 5 --%>
+            <%-- phpUnderControl 6 --%>
               
             <% if (apidoc) { %>
             <cruisecontrol:tab name="documentation" label="Documentation">
@@ -124,19 +130,19 @@
             </cruisecontrol:tab>
             <% } %>
             
-            <%-- phpUnderControl 6 --%>
+            <%-- phpUnderControl 7 --%>
 
             <cruisecontrol:tab name="phpcs" label="CodeSniffer">
               <%@ include file="phpcs.jsp" %>
             </cruisecontrol:tab>
             
-            <%-- phpUnderControl 7 --%>
+            <%-- phpUnderControl 8 --%>
               
             <cruisecontrol:tab name="pmd" label="PHPUnit PMD">
               <%@ include file="phpunit-pmd.jsp" %>
             </cruisecontrol:tab>
             
-            <%-- phpUnderControl 8 --%>
+            <%-- phpUnderControl 9 --%>
           </td>
         </tr>
       </cruisecontrol:tabsheet>

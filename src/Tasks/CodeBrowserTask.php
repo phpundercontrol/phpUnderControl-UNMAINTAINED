@@ -56,7 +56,7 @@
  * @version   Release: @package_version@
  * @link      http://www.phpundercontrol.org/
  */
-class phpucCodeBrowserTask extends phpucAbstractTask implements phpucConsoleExtensionI
+class phpucCodeBrowserTask extends phpucAbstractPearTask implements phpucConsoleExtensionI
 {
     /**
      * Performs the primary task and adds an execute publisher to the config.xml.
@@ -192,15 +192,7 @@ class phpucCodeBrowserTask extends phpucAbstractTask implements phpucConsoleExte
      */
     private function getCodeBrowserExecutable()
     {
-        if ( phpucFileUtil::getOS() === phpucFileUtil::OS_UNIX )
-        {
-            $binary = 'phpcb.php';
-        }
-        else
-        {
-            $binary = 'phpcb.bat';
-        }
-        return PHPUC_INSTALL_DIR . '/ThirdParty/CodeBrowser/bin/' . $binary;
+        return $this->executable;
     }
 
     /**
@@ -217,6 +209,8 @@ class phpucCodeBrowserTask extends phpucAbstractTask implements phpucConsoleExte
         phpucConsoleInputDefinition $definition,
         phpucConsoleCommandI $command
     ) {
+        parent::registerCommandExtension( $definition, $command );
+
         $definition->addOption(
             $command->getCommandId(),
             'b',
@@ -237,5 +231,15 @@ class phpucCodeBrowserTask extends phpucAbstractTask implements phpucConsoleExte
                 true
             );
         }
+    }
+
+    /**
+     * Must return the name of the used cli tool.
+     *
+     * @return string
+     */
+    protected function getCliToolName()
+    {
+        return 'phpcb';
     }
 }
