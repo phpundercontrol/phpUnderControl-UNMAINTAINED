@@ -66,7 +66,7 @@
 abstract class phpucAbstractCheckout implements phpucCheckoutI
 {
     /**
-     * Factory methid that create a checkout implementation for the console
+     * Factory method that create a checkout implementation for the console
      * arguments.
      *
      * @param phpucConsoleArgs $args
@@ -81,6 +81,10 @@ abstract class phpucAbstractCheckout implements phpucCheckoutI
     {
         switch ( $args->getOption( 'version-control' ) )
         {
+            case 'git':
+                $checkout = new phpucGitCheckout();
+                break;
+
             case 'svn':
                 $checkout = new phpucSubversionCheckout();
                 break;
@@ -174,4 +178,11 @@ abstract class phpucAbstractCheckout implements phpucCheckoutI
                 break;
         }
     }
+
+    /**
+     * Implement to return version control specific update command
+     *
+     * @return string
+     */
+    abstract public function getUpdateCommand();
 }

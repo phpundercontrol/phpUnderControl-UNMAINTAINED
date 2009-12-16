@@ -181,4 +181,14 @@ class phpucCvsCheckout extends phpucAbstractCheckout
             throw new phpucErrorException( $stderr );
         }
     }
+
+    /**
+     * CVS uses update command to update existing repository from a server
+     * 
+     * @return string
+     */
+    public function getUpdateCommand()
+    {
+        return "up";
+    }
 }
