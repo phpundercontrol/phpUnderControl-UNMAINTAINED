@@ -38,5 +38,39 @@
 <%--
     The stylesheets used should match the XSL file list in HTMLEmailPublisher
 --%>
+<%
+File   graphFile = null; 
+String graphUrl = null;
+%>
+
+<cruisecontrol:artifactsLink>
+<% 
+graphUrl = artifacts_url + "/graph/08-dependencies.svg";
+graphFile = new File(graphUrl);
+%>
+</cruisecontrol:artifactsLink>
+
 <cruisecontrol:xsl xslFile="/xsl/header.xsl"/>
+
+<% 
+if (graphFile.exists()) {
+%>
+<table>
+  <thead>
+    <tr>
+     <th>Package dependencies</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <iframe class="chart" src="<%=request.getContextPath() %>/<%=graphUrl %>"></iframe>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<% 
+}
+%>
+
 <cruisecontrol:xsl xslFile="/xsl/buildresults.xsl"/>
