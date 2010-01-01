@@ -4,7 +4,7 @@
  * 
  * PHP Version 5.2.0
  *
- * Copyright (c) 2007-2009, Manuel Pichler <mapi@phpundercontrol.org>.
+ * Copyright (c) 2007-2010, Manuel Pichler <mapi@phpundercontrol.org>.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -39,7 +39,7 @@
  * @category  QualityAssurance
  * @package   Console
  * @author    Manuel Pichler <mapi@phpundercontrol.org>
- * @copyright 2007-2009 Manuel Pichler. All rights reserved.
+ * @copyright 2007-2010 Manuel Pichler. All rights reserved.
  * @license   http://www.opensource.org/licenses/bsd-license.php  BSD License
  * @version   SVN: $Id$
  * @link      http://www.phpundercontrol.org/
@@ -64,7 +64,7 @@ require_once dirname( __FILE__ ) . '/ConsoleOutputTest.php';
  * @category  QualityAssurance
  * @package   Console
  * @author    Manuel Pichler <mapi@phpundercontrol.org>
- * @copyright 2007-2009 Manuel Pichler. All rights reserved.
+ * @copyright 2007-2010 Manuel Pichler. All rights reserved.
  * @license   http://www.opensource.org/licenses/bsd-license.php  BSD License
  * @version   Release: @package_version@
  * @link      http://www.phpundercontrol.org/

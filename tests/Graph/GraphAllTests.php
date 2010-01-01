@@ -4,7 +4,7 @@
  * 
  * PHP Version 5.2.0
  *
- * Copyright (c) 2007-2009, Manuel Pichler <mapi@manuel-pichler.de>.
+ * Copyright (c) 2007-2010, Manuel Pichler <mapi@manuel-pichler.de>.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -39,7 +39,7 @@
  * @category  QualityAssurance
  * @package   Graph
  * @author    Manuel Pichler <mapi@manuel-pichler.de>
- * @copyright 2007-2009 Manuel Pichler. All rights reserved.
+ * @copyright 2007-2010 Manuel Pichler. All rights reserved.
  * @license   http://www.opensource.org/licenses/bsd-license.php  BSD License
  * @version   SVN: $Id$
  * @link      http://www.phpundercontrol.org/
@@ -66,7 +66,7 @@ require_once dirname( __FILE__ ) . '/TimeChartTest.php';
  * @category  QualityAssurance
  * @package   Graph
  * @author    Manuel Pichler <mapi@manuel-pichler.de>
- * @copyright 2007-2009 Manuel Pichler. All rights reserved.
+ * @copyright 2007-2010 Manuel Pichler. All rights reserved.
  * @license   http://www.opensource.org/licenses/bsd-license.php  BSD License
  * @version   Release: @package_version@
  * @link      http://www.phpundercontrol.org/

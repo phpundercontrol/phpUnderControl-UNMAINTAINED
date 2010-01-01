@@ -1,7 +1,7 @@
 <%--********************************************************************************
  * This file is part of phpUnderControl.
  *
- * Copyright (c) 2007-2009, Manuel Pichler <mapi@phpundercontrol.org>.
+ * Copyright (c) 2007-2010, Manuel Pichler <mapi@phpundercontrol.org>.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -36,7 +36,7 @@
 <%@ page language="java" pageEncoding="UTF-8"%>
 <div id="footer">
   <a href="http://www.phpundercontrol.org">phpUnderControl - SVN</a>
-  is Copyright (c) 2007-2009
+  is Copyright (c) 2007-2010
   by <a href="http://www.manuel-pichler.de/">Manuel Pichler</a> hosted
   on <a href="http://www.phpunit.de/">phpunit.de</a>.<hr />
   phpUnderControl is an extension for <a href="http://cruisecontrol.sourceforge.net/">CruiseControl</a>.
