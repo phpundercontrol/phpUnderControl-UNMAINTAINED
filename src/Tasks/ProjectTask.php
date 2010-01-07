@@ -134,9 +134,14 @@ class phpucProjectTask extends phpucAbstractTask implements phpucConsoleExtensio
         $out->writeListItem( 'Searching ant directory' );
         if ( count( $ant = glob( sprintf( '%s/apache-ant*', $installDir ) ) ) === 0 )
         {
-            throw new phpucExecuteException( 'ERROR: Cannot locate ant directory.' );
+            if ( !( is_file( '/usr/bin/ant' ) ) ) 
+            {
+                throw new phpucExecuteException( 'ERROR: Cannot locate ant directory.' );
+            }
+            $anthome = '/usr/bin/ant';
+        } else {
+            $anthome = basename( array_pop( $ant ) );
         }
-        $anthome = basename( array_pop( $ant ) );
         
         $out->writeListItem( 'Modifying project file:     config.xml' );
         
