@@ -58,6 +58,7 @@
  * 
  * @property      integer         $interval    The schedule interval.
  * @property      string          $anthome     The ant build tool location.
+ * @property      string          $antscript   The custom ant launcher script.
  * @property-read phpucConfigFile $configFile  The parent config file object.
  * @property-read string          $projectName The project name,
  * @property-read DOMElement      $element     The <project> xml element.
@@ -89,6 +90,7 @@ class phpucConfigProject
     protected $properties = array(
         'element'      =>  null,
         'anthome'      =>  null,
+        'antscript'    =>  null,
         'interval'     =>  null,
         'configFile'   =>  null,
         'projectName'  =>  null,
@@ -198,6 +200,10 @@ class phpucConfigProject
             case 'anthome':
                 $this->properties[$name] = $value;
                 break;
+                
+            case 'antscript':
+                $this->properties[$name] = $value;
+                break;                
                 
             case 'interval':
                 if ( !is_numeric( $value ) || $value < 0 )
@@ -320,6 +326,11 @@ class phpucConfigProject
         
         $this->scheduleElement->setAttribute( 'interval', $this->interval );
         $this->toolElement->setAttribute( 'anthome', $this->anthome );
+        
+        if (! ( $this->antscript === null ) ) {
+            $this->toolElement->removeAttribute('anthome');
+            $this->toolElement->setAttribute('antscript', $this->antscript);
+        }
         
         foreach ( $this->publishers as $publisher )
         {

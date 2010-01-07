@@ -80,6 +80,14 @@ class phpucProjectTask extends phpucAbstractTask implements phpucConsoleExtensio
         {
             throw new phpucValidateException( 'Project directory already exists.' );
         }
+        
+        if ( $this->args->hasOption( 'ant-script', 'project' ) )
+        {
+            if ( !( $path = realpath( $this->args->getOption( 'ant-script' ) ) ) )
+            {
+                throw new phpucValidateException('Not a valid ant-script location.');
+            }
+        }
     }
     
     /**
@@ -138,7 +146,7 @@ class phpucProjectTask extends phpucAbstractTask implements phpucConsoleExtensio
             {
                 throw new phpucExecuteException( 'ERROR: Cannot locate ant directory.' );
             }
-            $anthome = '/usr/bin';
+            $anthome = null;
         } else {
             $anthome = basename( array_pop( $ant ) );
         }
@@ -151,6 +159,11 @@ class phpucProjectTask extends phpucAbstractTask implements phpucConsoleExtensio
         $project->interval = $this->args->getOption( 'schedule-interval' );
         $project->anthome  = $anthome;
 
+        if ( $this->args->hasOption( 'ant-script' ) ) 
+        {
+            $project->antscript = $this->args->getOption( 'ant-script' );
+        }
+        
         $config->store();
                 
         $out->writeLine();
@@ -170,6 +183,15 @@ class phpucProjectTask extends phpucAbstractTask implements phpucConsoleExtensio
         phpucConsoleInputDefinition $def,
         phpucConsoleCommandI $command
     ) {
+        
+         $def->addOption(
+            $command->getCommandId(),
+            'A',
+            'ant-script',
+            'The full path to a custom ant launcher script.',
+            true
+        );
+        
         $def->addOption(
             $command->getCommandId(),
             'j',
