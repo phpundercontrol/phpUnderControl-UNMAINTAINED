@@ -138,7 +138,7 @@ class phpucProjectTask extends phpucAbstractTask implements phpucConsoleExtensio
             {
                 throw new phpucExecuteException( 'ERROR: Cannot locate ant directory.' );
             }
-            $anthome = '/usr/bin/ant';
+            $anthome = '/usr/bin';
         } else {
             $anthome = basename( array_pop( $ant ) );
         }
