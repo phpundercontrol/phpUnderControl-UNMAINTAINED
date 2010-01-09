@@ -60,6 +60,8 @@ require_once dirname( __FILE__ ) . '/AbstractTaskTest.php';
  */
 class phpucCheckoutTaskTest extends phpucAbstractTaskTest
 {
+    private $cwd;
+
     /**
      * Creates a dummy CruiseControl structure.
      *
@@ -67,11 +69,25 @@ class phpucCheckoutTaskTest extends phpucAbstractTaskTest
      */
     protected function setUp()
     {
+        $this->cwd = getcwd();
+
         parent::setUp();
         
         $this->createCCSkeleton();
     }
-    
+
+    /**
+     * Start every test from an existing directory
+     *
+     * @return void
+     */
+    protected function tearDown()
+    {
+        chdir($this->cwd);
+
+        parent::tearDown();
+    }
+
     /**
      * Tests a subversion checkout.
      *
@@ -92,9 +108,9 @@ class phpucCheckoutTaskTest extends phpucAbstractTaskTest
             )
         );
         
-        $this->doTestCheckout( 'svn' );
+        $this->doTestCheckout( 'svn' , 'PHP' );
     }
-    
+
     /**
      * Tests a CVS checkout.
      *
@@ -119,9 +135,32 @@ class phpucCheckoutTaskTest extends phpucAbstractTaskTest
             )
         );
         
-        $this->doTestCheckout( 'cvs' );
+        $this->doTestCheckout( 'cvs' , 'PHP' );
     }
-    
+
+    /**
+     * Tests a git checkout.
+     *
+     * @return void
+     */
+    public function testGitCheckout()
+    {
+        $this->prepareArgv(
+            array(
+                'project',
+                '-j',
+                $this->projectName,
+                '-v',
+                'git',
+                '-x',
+                'git://github.com/sebastianbergmann/phpunit.git',
+                PHPUC_TEST_DIR
+            )
+        );
+        
+        $this->doTestCheckout( 'git' , 'PHPUnit' );
+    }
+
     /**
      * Executes the {@link phpucCheckoutTask} and tests the generated contents.
      *
@@ -129,20 +168,20 @@ class phpucCheckoutTaskTest extends phpucAbstractTaskTest
      * 
      * @return void
      */
-    protected function doTestCheckout( $type )
+    protected function doTestCheckout( $type , $file)
     {
         $directory = PHPUC_TEST_DIR . "/projects/{$this->projectName}/source";
         
         $input = new phpucConsoleInput();
         $input->parse();
         
-        $this->assertFileNotExists( "{$directory}/PHP" );
+        $this->assertFileNotExists( "{$directory}/{$file}" );
         
         $checkout = new phpucCheckoutTask();
         $checkout->setConsoleArgs( $input->args );
         $checkout->execute();
         
-        $this->assertFileExists( "{$directory}/PHP" );
+        $this->assertFileExists( "{$directory}/{$file}" );
         
         $config = new DOMDocument();
         $config->load( PHPUC_TEST_DIR . '/config.xml' );
