@@ -217,4 +217,43 @@ class phpucConfigProjectTest extends phpucAbstractConfigTest
         
         $this->config = new phpucConfigFile( $this->testFile );
     }
+    
+    /**
+     * Test that the antscript attribute is set for custom ant launcer.
+     */
+    public function testSetAntscriptAttribute()
+    {
+        $project = new phpucConfigProject( $this->config, 'phpUnderControl' );
+        $project->anthome = '/foo';
+        $project->antscript = '/foo/bar/bazscript.sh';
+        
+        $project->buildXml();
+        $element = $project->element;
+        $schedule = $element->getElementsByTagName( 'schedule' );
+        $builders = $schedule->item( 0 )->getElementsByTagName( 'ant' );
+        $ant = $builders->item( 0 );
+        
+        $this->assertTrue($ant->hasAttribute('antscript'));
+        $this->assertEquals('/foo/bar/bazscript.sh', $ant->getAttribute('antscript'));
+        $this->assertFalse($ant->hasAttribute('anthome'));
+    }
+    
+    public function testNonBundledAntAddsLoggerAttributes()
+    {
+        $project = new phpucConfigProject( $this->config, 'phpUnderControl' );
+        $project->anthome = '/usr';
+
+        $project->buildXml();
+        $element = $project->element;
+        $schedule = $element->getElementsByTagName( 'schedule' );
+        $builders = $schedule->item( 0 )->getElementsByTagName( 'ant' );
+        $ant = $builders->item( 0 );
+        
+        $this->assertTrue($ant->hasAttribute('logger'));
+        $this->assertEquals('org.apache.tools.ant.XmlLogger', $ant->getAttribute('logger'));
+        
+        $this->assertTrue($ant->hasAttribute('logfile'));        
+        $log = PHPUC_TEST_DIR. '/log.xml';
+        $this->assertEquals($log, $ant->getAttribute('logfile'));
+    }
 }
