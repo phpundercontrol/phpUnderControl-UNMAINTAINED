@@ -332,6 +332,16 @@ class phpucConfigProject
             $this->toolElement->setAttribute('antscript', $this->antscript);
         }
         
+        if ( $this->anthome == '/usr' ) {                                     
+            $this->toolElement->setAttribute(                                 
+                'logger', 'org.apache.tools.ant.XmlLogger'                    
+            );                                                                
+            $this->toolElement->setAttribute(                                 
+                'logfile', realpath(                                          
+                    dirname( $this->configFile->documentURI ) ) . '/log.xml'  
+            );                                                                
+         }        
+        
         foreach ( $this->publishers as $publisher )
         {
             $publisher->buildXml();
