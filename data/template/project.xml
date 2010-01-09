@@ -16,7 +16,5 @@
     <merge dir="projects/${project.name}/build/logs/"/>
   </log>
 
-  <publishers>
-    <currentbuildstatuspublisher file="logs/${project.name}/buildstatus.txt"/>
-  </publishers>
+  <publishers />
 </project>
