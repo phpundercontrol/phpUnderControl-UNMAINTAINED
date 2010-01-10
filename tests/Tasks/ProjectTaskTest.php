@@ -169,21 +169,47 @@ class phpucProjectTaskTest extends phpucAbstractTest
         $this->assertEquals( 'phpUnderControl', (string) $sxml['name'] );
     }
     
+    public function testGetAntDirReturnsAntLocation()
+    {
+        mkdir( PHPUC_TEST_DIR . '/bin/ant', 0777, true );
+        $task = new phpucProjectTask();
+        $this->assertEquals(PHPUC_TEST_DIR . '/apache-ant-1.7.0', $task->getAntHome(PHPUC_TEST_DIR));
+        
+        rmdir( PHPUC_TEST_DIR . '/apache-ant-1.7.0' );
+        $this->assertEquals(PHPUC_TEST_DIR, $task->getAntHome(PHPUC_TEST_DIR));
+    }
+    
+    public function testGetAntDirReturnsExternalAntHome()
+    {
+        $handle = popen( 'which ant 2>&1', 'r' );
+        $ant = fread($handle, 1024);
+        pclose( $handle );
+        rmdir( PHPUC_TEST_DIR . '/apache-ant-1.7.0' );
+        
+        $task = new phpucProjectTask();
+        $anthome = $task->getAntHome(PHPUC_TEST_DIR);
+        
+        $this->assertThat(strstr(trim($ant), $anthome), $this->fileExists());
+    }
+    
     /**
      * Tests that the {@link phpucProjectTask::execute()} method fails with an
      * exception if no ant directory exists.
      *
      * @return void
+     * @expectedException phpucExecuteException
      */
     public function testExecuteProjectTaskWithoutAntDirectoryFail()
     {
         rmdir( PHPUC_TEST_DIR . '/apache-ant-1.7.0' );
         
-        $task = new phpucProjectTask();
-        $task->setConsoleArgs( $this->args );
-        
-        $this->setExpectedException( 'phpucExecuteException' );
-
+        $task = $this->getMock('phpucProjectTask', array('getAntHome'));
+        $task->expects($this->once())
+             ->method('getAntHome')
+             ->will($this->returnValue(false));
+                
+        $task->setConsoleArgs( $this->args );        
         $task->execute();
     }
+    
 }
