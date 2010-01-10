@@ -238,7 +238,7 @@ class phpucConfigProjectTest extends phpucAbstractConfigTest
         $this->assertFalse($ant->hasAttribute('anthome'));
     }
     
-    public function testNonBundledAntAddsLoggerAttributes()
+    public function testNonBundledAntReplacesAntWorkerWithExecTask()
     {
         $project = new phpucConfigProject( $this->config, 'phpUnderControl' );
         $project->anthome = '/usr';
@@ -246,14 +246,21 @@ class phpucConfigProjectTest extends phpucAbstractConfigTest
         $project->buildXml();
         $element = $project->element;
         $schedule = $element->getElementsByTagName( 'schedule' );
-        $builders = $schedule->item( 0 )->getElementsByTagName( 'ant' );
-        $ant = $builders->item( 0 );
+        $builders = $schedule->item( 0 )->getElementsByTagName( 'exec' );
+        $exec = $builders->item( 0 );
         
-        $this->assertTrue($ant->hasAttribute('logger'));
-        $this->assertEquals('org.apache.tools.ant.XmlLogger', $ant->getAttribute('logger'));
+        $this->assertTrue($exec->hasAttribute('workingdir'));
+        $this->assertEquals(PHPUC_TEST_DIR, $exec->getAttribute('workingdir'));
         
-        $this->assertTrue($ant->hasAttribute('logfile'));        
-        $log = PHPUC_TEST_DIR. '/log.xml';
-        $this->assertEquals($log, $ant->getAttribute('logfile'));
+        $this->assertTrue($exec->hasAttribute('command'));
+        $this->assertEquals('/usr/bin/ant', $exec->getAttribute('command'));
+        
+        $this->assertTrue($exec->hasAttribute('args'));
+        $dir = PHPUC_TEST_DIR . '/';
+        $argStr = "-logger org.apache.tools.ant.XmlLogger " .
+                  "-logfile {$dir}log.xml " .
+                  "-buildfile projects/phpUnderControl/build.xml";
+        $this->assertEquals($argStr, $exec->getAttribute('args'));
+        
     }
 }
