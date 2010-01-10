@@ -75,7 +75,7 @@ class phpucGitCheckout extends phpucAbstractCheckout
         $url = escapeshellarg( $this->url );
         $cmd = "{$git} clone {$url} source";
 
-        popen( "{$cmd} 2>&1", "r" );
+        popen( "{$cmd} 2>&1", "w" );
 
         if ( !file_exists( 'source' ) )
         {
