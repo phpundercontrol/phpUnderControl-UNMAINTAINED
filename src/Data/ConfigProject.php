@@ -335,9 +335,9 @@ class phpucConfigProject
         {
             $this->toolElement->removeAttribute('anthome');
             $this->toolElement->setAttribute('antscript', $this->antscript);
-        }
+        } 
         
-        if ( $this->anthome == '/usr' ) 
+        elseif ( !strstr( dirname( $this->configFile->documentURI ), $this->anthome ) ) 
         {
             $schedules = $this->element->getElementsByTagName( 'schedule' );
             $tools     = $schedules->item( 0 )->getElementsByTagName( 'ant' );
