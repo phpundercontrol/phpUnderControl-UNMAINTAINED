@@ -217,4 +217,50 @@ class phpucConfigProjectTest extends phpucAbstractConfigTest
         
         $this->config = new phpucConfigFile( $this->testFile );
     }
+    
+    /**
+     * Test that the antscript attribute is set for custom ant launcer.
+     */
+    public function testSetAntscriptAttribute()
+    {
+        $project = new phpucConfigProject( $this->config, 'phpUnderControl' );
+        $project->anthome = '/foo';
+        $project->antscript = '/foo/bar/bazscript.sh';
+        
+        $project->buildXml();
+        $element = $project->element;
+        $schedule = $element->getElementsByTagName( 'schedule' );
+        $builders = $schedule->item( 0 )->getElementsByTagName( 'ant' );
+        $ant = $builders->item( 0 );
+        
+        $this->assertTrue($ant->hasAttribute('antscript'));
+        $this->assertEquals('/foo/bar/bazscript.sh', $ant->getAttribute('antscript'));
+        $this->assertFalse($ant->hasAttribute('anthome'));
+    }
+    
+    public function testNonBundledAntReplacesAntWorkerWithExecTask()
+    {
+        $project = new phpucConfigProject( $this->config, 'phpUnderControl' );
+        $project->anthome = '/usr';
+
+        $project->buildXml();
+        $element = $project->element;
+        $schedule = $element->getElementsByTagName( 'schedule' );
+        $builders = $schedule->item( 0 )->getElementsByTagName( 'exec' );
+        $exec = $builders->item( 0 );
+        
+        $this->assertTrue($exec->hasAttribute('workingdir'));
+        $this->assertEquals(PHPUC_TEST_DIR, $exec->getAttribute('workingdir'));
+        
+        $this->assertTrue($exec->hasAttribute('command'));
+        $this->assertEquals('/usr/bin/ant', $exec->getAttribute('command'));
+        
+        $this->assertTrue($exec->hasAttribute('args'));
+        $dir = PHPUC_TEST_DIR . '/';
+        $argStr = "-logger org.apache.tools.ant.XmlLogger " .
+                  "-logfile {$dir}log.xml " .
+                  "-buildfile projects/phpUnderControl/build.xml";
+        $this->assertEquals($argStr, $exec->getAttribute('args'));
+        
+    }
 }

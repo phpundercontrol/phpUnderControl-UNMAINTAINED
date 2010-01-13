@@ -80,6 +80,14 @@ class phpucProjectTask extends phpucAbstractTask implements phpucConsoleExtensio
         {
             throw new phpucValidateException( 'Project directory already exists.' );
         }
+        
+        if ( $this->args->hasOption( 'ant-script', 'project' ) )
+        {
+            if ( !( $path = realpath( $this->args->getOption( 'ant-script' ) ) ) )
+            {
+                throw new phpucValidateException('Not a valid ant-script location.');
+            }
+        }
     }
     
     /**
@@ -132,11 +140,10 @@ class phpucProjectTask extends phpucAbstractTask implements phpucConsoleExtensio
         copy( $installDir . '/config.xml', $installDir . '/config.xml.orig' );
         
         $out->writeListItem( 'Searching ant directory' );
-        if ( count( $ant = glob( sprintf( '%s/apache-ant*', $installDir ) ) ) === 0 )
+        if ( !( $anthome = $this->getAntHome( $installDir ) ) )
         {
             throw new phpucExecuteException( 'ERROR: Cannot locate ant directory.' );
         }
-        $anthome = basename( array_pop( $ant ) );
         
         $out->writeListItem( 'Modifying project file:     config.xml' );
         
@@ -146,9 +153,41 @@ class phpucProjectTask extends phpucAbstractTask implements phpucConsoleExtensio
         $project->interval = $this->args->getOption( 'schedule-interval' );
         $project->anthome  = $anthome;
 
+        if ( $this->args->hasOption( 'ant-script' ) ) 
+        {
+            $project->antscript = $this->args->getOption( 'ant-script' );
+        }
+        
         $config->store();
                 
         $out->writeLine();
+    }
+    
+    public function getAntHome($installDir)
+    {
+        if ( count( $ant = glob( sprintf( '%s/apache-ant*', $installDir ) ) ) === 0 )
+        {
+            if ( file_exists( $installDir . '/bin/ant' ) ) 
+            {
+                return $installDir;
+            }
+            
+            $os = phpucFileUtil::getOS();
+            if ( $os !== phpucFileUtil::OS_WINDOWS ) 
+            {
+                $handle = popen( 'which ant 2>&1', 'r' );
+                $ant = fread($handle, 1024);
+                pclose( $handle );                
+            }            
+            if ( strstr( trim($ant), 'bin/ant' ) )            
+            {                
+                return substr($ant, 0, ( strlen($ant) - 7 ) );
+            }
+            
+            return false;
+        } else {
+            return array_pop( $ant );
+        }        
     }
     
     /**
@@ -165,6 +204,15 @@ class phpucProjectTask extends phpucAbstractTask implements phpucConsoleExtensio
         phpucConsoleInputDefinition $def,
         phpucConsoleCommandI $command
     ) {
+        
+         $def->addOption(
+            $command->getCommandId(),
+            'A',
+            'ant-script',
+            'The full path to a custom ant launcher script.',
+            true
+        );
+        
         $def->addOption(
             $command->getCommandId(),
             'j',

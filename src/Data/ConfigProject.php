@@ -58,6 +58,7 @@
  * 
  * @property      integer         $interval    The schedule interval.
  * @property      string          $anthome     The ant build tool location.
+ * @property      string          $antscript   The custom ant launcher script.
  * @property-read phpucConfigFile $configFile  The parent config file object.
  * @property-read string          $projectName The project name,
  * @property-read DOMElement      $element     The <project> xml element.
@@ -89,6 +90,7 @@ class phpucConfigProject
     protected $properties = array(
         'element'      =>  null,
         'anthome'      =>  null,
+        'antscript'    =>  null,
         'interval'     =>  null,
         'configFile'   =>  null,
         'projectName'  =>  null,
@@ -198,6 +200,10 @@ class phpucConfigProject
             case 'anthome':
                 $this->properties[$name] = $value;
                 break;
+                
+            case 'antscript':
+                $this->properties[$name] = $value;
+                break;                
                 
             case 'interval':
                 if ( !is_numeric( $value ) || $value < 0 )
@@ -319,7 +325,31 @@ class phpucConfigProject
         }
         
         $this->scheduleElement->setAttribute( 'interval', $this->interval );
-        $this->toolElement->setAttribute( 'anthome', $this->anthome );
+        
+        if ( !( $this->anthome == null ) ) 
+        {
+            $this->toolElement->setAttribute( 'anthome', $this->anthome );    
+        }
+                
+        if (! ( $this->antscript === null ) ) 
+        {
+            $this->toolElement->removeAttribute('anthome');
+            $this->toolElement->setAttribute('antscript', $this->antscript);
+        } 
+        
+        elseif ( !strstr( dirname( $this->configFile->documentURI ), $this->anthome ) ) 
+        {
+            $schedules = $this->element->getElementsByTagName( 'schedule' );
+            $tools     = $schedules->item( 0 )->getElementsByTagName( 'ant' );
+
+            $i = $tools->length - 1;
+            while ( $i > -1 ) 
+            {
+                $antTool = $tools->item($i);
+                $this->_replaceAntTool($antTool);
+                $i--;
+            }                                                                           
+         }        
         
         foreach ( $this->publishers as $publisher )
         {
@@ -335,6 +365,34 @@ class phpucConfigProject
         }
         
         $this->state = self::STATE_CLEAN;
+    }
+    
+    /**
+     * If an external ant is to be used, CC will not pass class and env 
+     * variables so we should use an exec task so that the logger is setup
+     * correctly. This method replaces the periodic internal ant worker with an 
+     * exec task that starts an external ant worker
+     * 
+     * @param DOMElement $antTool
+     * @return void
+     */
+    protected function _replaceAntTool(DOMElement $antTool)
+    {
+        $execTool = $this->configFile->createElement('exec');
+                
+        $workingDir = dirname( $this->configFile->documentURI ); 
+        $execTool->setAttribute( 
+            'workingdir', dirname( $this->configFile->documentURI ) 
+        );
+                
+        $execTool->setAttribute( 'command', '/usr/bin/ant' );
+                
+        $argStr = "-logger org.apache.tools.ant.XmlLogger " .
+                  "-logfile {$workingDir}/log.xml " .
+                  "-buildfile projects/{$this->projectName}/build.xml";
+        $execTool->setAttribute( 'args', $argStr );
+                
+        $antTool->parentNode->replaceChild($execTool, $antTool);        
     }
     
     /**
@@ -397,15 +455,18 @@ class phpucConfigProject
     {
         // Load the schedule element
         $schedules = $this->element->getElementsByTagName( 'schedule' );
-        $tools     = $schedules->item( 0 )->getElementsByTagName( 'ant' );
         
-        $this->scheduleElement = $schedules->item( 0 );
-        $this->toolElement     = $tools->item( 0 );
+        $this->scheduleElement = $schedules->item( 0 );                        
+        $interval = $this->scheduleElement->getAttribute( 'interval' );        
+        $this->properties['interval'] = $interval;
         
-        $anthome  = $this->toolElement->getAttribute( 'anthome' );
-        $interval = $this->scheduleElement->getAttribute( 'interval' );
-
-        $this->properties['anthome']  = $anthome;
-        $this->properties['interval'] = $interval;        
+        $tools = $schedules->item( 0 )->getElementsByTagName( 'ant' );
+        
+        if ($tools->length > 0) 
+        {
+            $this->toolElement     = $tools->item( 0 );
+            $anthome  = $this->toolElement->getAttribute( 'anthome' );
+            $this->properties['anthome']  = $anthome;    
+        }        
     }
 }
