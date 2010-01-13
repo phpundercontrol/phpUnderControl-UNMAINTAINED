@@ -73,6 +73,8 @@ class phpucProjectTaskTest extends phpucAbstractTest
     protected function setUp()
     {
         parent::setUp();
+
+        chdir( dirname( __FILE__ ) );
         
         $this->prepareArgv( array(
             'example',
@@ -181,11 +183,9 @@ class phpucProjectTaskTest extends phpucAbstractTest
     
     public function testGetAntDirReturnsExternalAntHome()
     {
-        $handle = popen( 'which ant 2>&1', 'r' );
-        $ant = fread($handle, 1024);
-        pclose( $handle );
+        $ant = shell_exec( 'which ant' );
         rmdir( PHPUC_TEST_DIR . '/apache-ant-1.7.0' );
-        
+
         $task = new phpucProjectTask();
         $anthome = $task->getAntHome(PHPUC_TEST_DIR);
         

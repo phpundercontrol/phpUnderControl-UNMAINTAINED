@@ -163,7 +163,14 @@ class phpucProjectTask extends phpucAbstractTask implements phpucConsoleExtensio
         $out->writeLine();
     }
     
-    public function getAntHome($installDir)
+    /**
+     * Tries to find the ant home directory.
+     *
+     * @param string $installDir The CruiseControl installation directory.
+     *
+     * @return string
+     */
+    public function getAntHome( $installDir )
     {
         if ( count( $ant = glob( sprintf( '%s/apache-ant*', $installDir ) ) ) === 0 )
         {
@@ -175,9 +182,7 @@ class phpucProjectTask extends phpucAbstractTask implements phpucConsoleExtensio
             $os = phpucFileUtil::getOS();
             if ( $os !== phpucFileUtil::OS_WINDOWS ) 
             {
-                $handle = popen( 'which ant 2>&1', 'r' );
-                $ant = fread($handle, 1024);
-                pclose( $handle );                
+                $ant = shell_exec( 'which ant' );
             }            
             if ( strstr( trim($ant), 'bin/ant' ) )            
             {                
