@@ -103,7 +103,17 @@ class phpucCvsCheckoutTest extends phpucAbstractCheckoutTest
      * @return void
      */
     public function testPServerCheckout()
-    {        
+    {
+        $socket = @fsockopen( 'xplib.de', 2401, $errno, $errstr, 1);
+        if ( is_resource( $socket ) )
+        {
+            fclose( $socket );
+        }
+        else
+        {
+            $this->markTestSkipped( 'Cannot connect to pserver.' );
+        }
+
         $destination = PHPUC_TEST_DIR . '/source';
         $checkFile1  = $destination . '/pdepend.php';
         $checkFile2  = $destination . '/PHP/Depend.php';
