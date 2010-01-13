@@ -143,7 +143,7 @@ class phpucCheckoutTask extends phpucAbstractTask implements phpucConsoleExtensi
             'v',
             'version-control',
             'The used version control system.',
-            array( 'svn', 'cvs' ),
+            array( 'svn', 'cvs', 'git' ),
             null,
             true
         );
