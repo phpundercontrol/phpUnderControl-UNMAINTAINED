@@ -1,7 +1,7 @@
 <?php
 /**
  * This file is part of phpUnderControl.
- * 
+ *
  * PHP Version 5.2.0
  *
  * Copyright (c) 2007-2010, Manuel Pichler <mapi@manuel-pichler.de>.
@@ -35,7 +35,7 @@
  * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
- * 
+ *
  * @category  QualityAssurance
  * @package   Data
  * @author    Manuel Pichler <mapi@manuel-pichler.de>
@@ -55,14 +55,14 @@
  * @license   http://www.opensource.org/licenses/bsd-license.php  BSD License
  * @version   Release: @package_version@
  * @link      http://www.phpundercontrol.org/
- * 
+ *
  * @property string $localWorkingCopy
- *           Path to the local copy of the Subversion repository or the CVS 
+ *           Path to the local copy of the Subversion, CVS or git repository
  *           module which contains the project sources.
  * @property string $triggerType
- *           The used build trigger type. At the moment only CVS and Subversion
- *           are supported types.
- * @property-read phpucConfigProject $project 
+ *           The used build trigger type. At the moment only CVS, Subversion
+ *           and git are supported types.
+ * @property-read phpucConfigProject $project
  *                The parent project instance.
  */
 class phpucConfigBuildTrigger
@@ -78,7 +78,7 @@ class phpucConfigBuildTrigger
         'triggerType'       =>  null,
         'project'           =>  null,
     );
-    
+
     /**
      * The ctor takes the parent project object as argument.
      *
@@ -88,16 +88,16 @@ class phpucConfigBuildTrigger
     {
         $this->properties['project'] = $project;
     }
-    
+
     /**
      * Magic property getter method.
      *
      * @param string $name The property name.
-     * 
+     *
      * @return mixed
      * @throws OutOfRangeException If the requested property doesn't exist or
      *         is writonly.
-     * @ignore 
+     * @ignore
      */
     public function __get( $name )
     {
@@ -109,19 +109,19 @@ class phpucConfigBuildTrigger
             sprintf( 'Unknown or writonly property $%s.', $name )
         );
     }
-    
+
     /**
      * Magic property setter method.
      *
      * @param string $name  The property name.
      * @param mixed  $value The property value.
-     * 
+     *
      * @return void
      * @throws OutOfRangeException If the requested property doesn't exist or
      *         is readonly.
-     * @throws InvalidArgumentException If the given value has an unexpected 
+     * @throws InvalidArgumentException If the given value has an unexpected
      *         format or an invalid data type.
-     * @ignore 
+     * @ignore
      */
     public function __set( $name, $value )
     {
@@ -130,9 +130,9 @@ class phpucConfigBuildTrigger
             case 'localWorkingCopy':
                 $this->properties[$name] = $value;
                 break;
-                
+
             case 'triggerType':
-                if ( !in_array( $value, array( 'cvs', 'svn' ) ) )
+                if ( !in_array( $value, array( 'cvs', 'svn' , 'git' ) ) )
                 {
                     throw new InvalidArgumentException(
                         'Invalid value for the $triggerType property.'
@@ -148,7 +148,7 @@ class phpucConfigBuildTrigger
                 break;
         }
     }
-    
+
     /**
      * Generates the up
      *
@@ -161,7 +161,7 @@ class phpucConfigBuildTrigger
                         ->ownerDocument
                         ->createElement( $this->triggerType );
         $element->setAttribute( 'localWorkingCopy', $this->localWorkingCopy );
-                        
+
         $bootstrappers = $this->project
                               ->element
                               ->getElementsByTagName( 'modificationset' );

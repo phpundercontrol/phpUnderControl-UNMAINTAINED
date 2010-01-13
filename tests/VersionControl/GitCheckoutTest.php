@@ -1,10 +1,10 @@
 <?php
 /**
  * This file is part of phpUnderControl.
- * 
+ *
  * PHP Version 5.2.0
  *
- * Copyright (c) 2007-2010, Manuel Pichler <mapi@phpundercontrol.org>.
+ * Copyright (c) 2007-2010, Manuel Pichler <mapi@manuel-pichler.de>.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -35,67 +35,112 @@
  * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
- * 
+ *
  * @category  QualityAssurance
  * @package   VersionControl
- * @author    Manuel Pichler <mapi@phpundercontrol.org>
+ * @author    Sebastian Marek <proofek@gmail.com>
  * @copyright 2007-2010 Manuel Pichler. All rights reserved.
  * @license   http://www.opensource.org/licenses/bsd-license.php  BSD License
  * @version   SVN: $Id$
  * @link      http://www.phpundercontrol.org/
  */
 
+require_once dirname( __FILE__ ) . '/AbstractCheckoutTest.php';
+
 /**
- * Subversion checkout implementation. 
+ * Test case for the git checkout.
  *
  * @category  QualityAssurance
  * @package   VersionControl
- * @author    Manuel Pichler <mapi@phpundercontrol.org>
+ * @author    Sebastian Marek <proofek@gmail.com>
  * @copyright 2007-2010 Manuel Pichler. All rights reserved.
  * @license   http://www.opensource.org/licenses/bsd-license.php  BSD License
- * @version   Release: 0.4.0
+ * @version   Release: @package_version@
  * @link      http://www.phpundercontrol.org/
  */
-class phpucSubversionCheckout extends phpucAbstractCheckout
+class phpucGitCheckoutTest extends phpucAbstractCheckoutTest
 {
     /**
-     * Performs a subversion checkout.
+     * The current working directory.
+     *
+     * @type string
+     * @var string $cwd
+     */
+    protected $cwd = null;
+
+    /**
+     * Resets the path and os settings in {@link phpucFileUtil}.
      *
      * @return void
-     * @throws phpucErrorException
-     *         If the subversion checkout fails.
      */
-    public function checkout()
+    protected function setUp()
     {
-        $options = ' --no-auth-cache --non-interactive';
-        if ( $this->username !== null )
-        {
-            $options .= ' --username ' . escapeshellarg( $this->username );
-        }
-        if ( $this->password !== null )
-        {
-            $options .= ' --password ' . escapeshellarg( $this->password );
-        }
-        
-        $svn = phpucFileUtil::findExecutable( 'svn' );
-        $url = escapeshellarg( $this->url );
-        $cmd = "{$svn} co {$options} {$url} source";
-        
-        popen( "{$cmd} 2>&1", "r" );
-        
-        if ( !file_exists( 'source' ) )
-        {
-            throw new phpucErrorException( 'The project checkout has failed.' );
-        }
+        parent::setUp();
+
+        phpucFileUtil::setOS();
+        phpucFileUtil::setPaths();
+
+        $this->cwd = getcwd();
+
+        chdir( PHPUC_TEST_DIR );
     }
 
     /**
-     * Subversion uses update command to update existing repository from a server
-     * 
-     * @return string
+     * Changes back to the current working dir.
+     *
+     * @return void
      */
-    public function getUpdateCommand()
+    protected function tearDown()
     {
-        return "up";
+        chdir( $this->cwd );
+
+        parent::tearDown();
+    }
+
+    /**
+     * Tests a git checkout
+     *
+     * @return void
+     */
+    public function testGitCheckoutNoLogin()
+    {
+        $destination = PHPUC_TEST_DIR . '/source';
+        $checkFile1  = $destination . '/phpunit.php';
+        $checkFile2  = $destination . '/PHPUnit/Framework/TestCase.php';
+
+        $this->assertFileNotExists( $checkFile1 );
+        $this->assertFileNotExists( $checkFile2 );
+
+        $checkout      = new phpucGitCheckout();
+        $checkout->url = 'git://github.com/sebastianbergmann/phpunit.git';
+
+        $checkout->checkout();
+
+        $this->assertFileExists( $checkFile1 );
+        $this->assertFileExists( $checkFile2 );
+    }
+
+    /**
+     * Tests a git checkout with an invalid uri.
+     *
+     * @return void
+     */
+    public function testSvnCheckoutInvalidUrlFail()
+    {
+        $this->setExpectedException( 'phpucErrorException' );
+
+        $checkout      = new phpucGitCheckout();
+        $checkout->url = 'git://github.com/sebastianbergmann/phpunited.git';
+        $checkout->checkout();
+    }
+
+    /**
+     * Test factory method.
+     *
+     * @return phpucCheckoutI
+     */
+    protected function createCheckout()
+    {
+        return new phpucGitCheckout();
     }
 }

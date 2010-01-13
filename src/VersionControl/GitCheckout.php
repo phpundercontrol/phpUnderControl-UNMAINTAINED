@@ -2,6 +2,8 @@
 /**
  * This file is part of phpUnderControl.
  *
+ * PHP Version 5.2.0
+ *
  * Copyright (c) 2007-2010, Manuel Pichler <mapi@phpundercontrol.org>.
  * All rights reserved.
  *
@@ -33,66 +35,63 @@
  * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
- * 
- * @package   Util
- * @author    Manuel Pichler <mapi@phpundercontrol.org>
+ *
+ * @category  QualityAssurance
+ * @package   VersionControl
+ * @author    Sebastian Marek <proofek@gmail.com>
  * @copyright 2007-2010 Manuel Pichler. All rights reserved.
  * @license   http://www.opensource.org/licenses/bsd-license.php  BSD License
  * @version   SVN: $Id$
  * @link      http://www.phpundercontrol.org/
  */
 
-if ( defined( 'PHPUnit_MAIN_METHOD' ) === false )
-{
-    define( 'PHPUnit_MAIN_METHOD', 'phpucVersionControlAllTests::main' );
-}
-
-require_once 'PHPUnit/Framework/TestSuite.php';
-require_once 'PHPUnit/TextUI/TestRunner.php';
-
-require_once dirname( __FILE__ ) . '/CvsCheckoutTest.php';
-require_once dirname( __FILE__ ) . '/SubversionCheckoutTest.php';
-require_once dirname( __FILE__ ) . '/GitCheckoutTest.php';
-
 /**
- * Main test suite for phpUnderControl VersionControl package.
+ * Git checkout implementation.
  *
+ * @category  QualityAssurance
  * @package   VersionControl
- * @author    Manuel Pichler <mapi@phpundercontrol.org>
+ * @author    Sebastian Marek <proofek@gmail.com>
  * @copyright 2007-2010 Manuel Pichler. All rights reserved.
  * @license   http://www.opensource.org/licenses/bsd-license.php  BSD License
- * @version   Release: @package_version@
+ * @version   Release: 0.4.0
  * @link      http://www.phpundercontrol.org/
  */
-class phpucVersionControlAllTests
+class phpucGitCheckout extends phpucAbstractCheckout
 {
+    private $remote = 'origin';
+
+    private $branch = 'master';
+
     /**
-     * Test suite main method.
+     * Performs a git checkout.
      *
      * @return void
+     * @throws phpucErrorException
+     *         If the git checkout fails.
      */
-    public static function main()
+    public function checkout()
     {
-        PHPUnit_TextUI_TestRunner::run( self::suite() );
-    }
-    
-    /**
-     * Creates the phpunit test suite for this package.
-     *
-     * @return PHPUnit_Framework_TestSuite
-     */
-    public static function suite()
-    {
-        $suite = new PHPUnit_Framework_TestSuite( 'phpUnderControl - VersionControlAllTests' );
-        $suite->addTestSuite( 'phpucCvsCheckoutTest' );
-        $suite->addTestSuite( 'phpucSubversionCheckoutTest' );
-        $suite->addTestSuite( 'phpucGitCheckoutTest' );
-        
-        return $suite;
-    }
-}
+        $git = phpucFileUtil::findExecutable( 'git' );
+        $url = escapeshellarg( $this->url );
+        $cmd = "{$git} clone {$url} source";
 
-if ( PHPUnit_MAIN_METHOD === 'phpucVersionControlAllTests::main' )
-{
-    phpucVersionControlAllTests::main();
+        popen( "{$cmd} 2>&1", "r" );
+
+        if ( !file_exists( 'source' ) )
+        {
+            throw new phpucErrorException( 'The project checkout has failed.' );
+        }
+    }
+
+    /**
+     * git uses pull command to update existing repository from a remote server
+     *
+     * At the moment it will always pull from origin remote and master branch
+     * 
+     * @return string
+     */
+    public function getUpdateCommand()
+    {
+        return "pull {$this->remote} {$this->branch}";
+    }
 }
