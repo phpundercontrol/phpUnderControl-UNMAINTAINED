@@ -242,35 +242,6 @@ class phpucSubversionCheckoutTest extends phpucAbstractCheckoutTest
     }
 
     /**
-     * Tests a svn+ssh://example.com checkout.
-     *
-     * @return void
-     */
-    public function testSvnSshPrivateKeyCheckout()
-    {
-        if ( !in_array( exec( 'hostname' ), array( 'arwen', 'gandalf' ) ) )
-        {
-            $this->markTestSkipped( 'Invalid host for key checkout test.' );
-            return;
-        }
-
-        $destination = PHPUC_TEST_DIR . '/source';
-        $checkFile1  = $destination . '/pdepend.php';
-        $checkFile2  = $destination . '/PHP/Depend.php';
-
-        $this->assertFileNotExists( $checkFile1 );
-        $this->assertFileNotExists( $checkFile2 );
-
-        $checkout      = new phpucSubversionCheckout();
-        $checkout->url = 'svn+ssh://mapi@xplib.de/srv/pdepend/trunk';
-
-        $checkout->checkout();
-
-        $this->assertFileExists( $checkFile1 );
-        $this->assertFileExists( $checkFile2 );
-    }
-
-    /**
      * Test factory method.
      *
      * @return phpucCheckoutI
