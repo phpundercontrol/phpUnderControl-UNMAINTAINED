@@ -115,7 +115,7 @@ abstract class phpucAbstractCheckout implements phpucCheckoutI
         }
         if ( $args->hasOption( 'password' ) )
         {
-            $checkout->username = $args->getOption( 'password' );
+            $checkout->password = $args->getOption( 'password' );
         }
 
         return $checkout;
