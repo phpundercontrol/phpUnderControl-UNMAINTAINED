@@ -128,6 +128,11 @@ class phpucExampleCommand extends phpucAbstractCommand implements phpucConsoleCo
         $tasks[] = new phpucExampleTask();
 
         if ( $this->args === null
+            || !$this->args->hasOption( 'without-lint' )
+        ) {
+            $tasks[] = new phpucLintTask();
+        }
+        if ( $this->args === null
             || !$this->args->hasOption( 'without-php-documentor' )
         ) {
             $tasks[] = new phpucPhpDocumentorTask();

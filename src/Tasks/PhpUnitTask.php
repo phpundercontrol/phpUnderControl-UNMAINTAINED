@@ -107,16 +107,20 @@ class phpucPhpUnitTask extends phpucAbstractPearTask
 
         $buildFile = new phpucBuildFile( $projectPath . '/build.xml' );
 
-        $buildTarget              = $buildFile->createBuildTarget( 'phpunit' );
-        $buildTarget->executable  = $this->executable;
-        $buildTarget->failonerror = true;
-        $buildTarget->argLine     = sprintf(
+        $buildTarget = $buildFile->createBuildTarget( 'phpunit' );
+        $buildTarget->dependOn('lint');
+
+        $execTask = phpucAbstractAntTask::create( $buildFile, 'exec' );
+        $execTask->executable  = $this->executable;
+        $execTask->failonerror = true;
+        $execTask->argLine     = sprintf(
             '%s %s %s/%s',
             $logs,
             $this->args->getOption( 'test-case' ),
             $this->args->getOption( 'test-dir' ),
             $this->args->getOption( 'test-file' )
         );
+        $buildTarget->addTask($execTask);
 
         $buildFile->store();
 

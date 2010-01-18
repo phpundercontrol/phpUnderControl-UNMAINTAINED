@@ -3,7 +3,7 @@
  * This file is part of phpUnderControl.
  *
  * PHP Version 5.2.0
- * 
+ *
  * Copyright (c) 2007-2010, Manuel Pichler <mapi@phpundercontrol.org>.
  * All rights reserved.
  *
@@ -35,7 +35,7 @@
  * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
- * 
+ *
  * @category  QualityAssurance
  * @package   Data
  * @author    Manuel Pichler <mapi@phpundercontrol.org>
@@ -56,19 +56,28 @@
  * @license   http://www.opensource.org/licenses/bsd-license.php  BSD License
  * @version   Release: @package_version@
  * @link      http://www.phpundercontrol.org/
- * 
+ *
  * @property      string         $executable  The command line executable.
  * @property      string         $dir         Optional working directory.
  * @property      string         $argLine     Optional command line arguments.
- * @property      string         $output      Optional output file. 
+ * @property      string         $output      Optional output file.
  * @property      string         $error       Optional error log file.
  * @property      boolean        $failonerror Should the target fail on an error.
  * @property      boolean        $logerror    Should the target log all errors.
+ * @property      array          $depends     List of dependencies
  * @property-read string         $targetName  The unique identifier for this target.
  * @property-read phpucBuildFile $buildFile   The context build file object.
  */
 class phpucBuildTarget
 {
+    /**
+     * List of {@link phpucAbstractAntTask}
+     *
+     * @type array<phpucAbstractAntTask>
+     * @var array(phpucAbstractAntTask) $tasks
+     */
+    private $tasks = array();
+
     /**
      * Magic properties for the build target.
      *
@@ -85,11 +94,12 @@ class phpucBuildTarget
         'output'       =>  null,
         'error'        =>  null,
         'dir'          =>  '${basedir}/source',
+        'depends'      =>  array()
     );
-    
+
     /**
-     * The constructor takes the parent build file and the target name as 
-     * arguments. 
+     * The constructor takes the parent build file and the target name as
+     * arguments.
      *
      * @param phpucBuildFile $buildFile  The parent build file object.
      * @param strinv         $targetName The build target name.
@@ -99,7 +109,46 @@ class phpucBuildTarget
         $this->properties['targetName'] = $targetName;
         $this->properties['buildFile']  = $buildFile;
     }
-    
+
+    /**
+     * Adds an ant task to the build target
+     *
+     * @param phpucAbstractAntTask $task Ant task
+     *
+     * @return void
+     */
+    public function addTask(phpucAbstractAntTask $task)
+    {
+        $this->tasks[] = $task;
+    }
+
+    /**
+     * Returns list of {@link phpucAbstractAntTask}
+     *
+     * @return array
+     */
+    public function getTasks()
+    {
+        return $this->tasks;
+    }
+
+    /**
+     * Adds other build target dependency
+     *
+     * @param string $targetName Build target name
+     *
+     * @return void
+     */
+    public function dependOn($targetName)
+    {
+        $xpath = new DOMXPath( $this->buildFile );
+        if ( $xpath->query( "/project/target[@name=\"$targetName\"]" )->length > 0 ) {
+
+            $this->depends = $targetName;
+        }
+        unset($xpath);
+    }
+
     /**
      * Builds/Rebuilds the target xml content.
      *
@@ -109,70 +158,48 @@ class phpucBuildTarget
     {
         $target = $this->buildFile->createElement( 'target' );
         $target->setAttribute( 'name', $this->targetName );
-        
-        $exec = $target->appendChild( $this->buildFile->createElement( 'exec' ) );
-        $exec->setAttribute( 'executable', $this->executable );
-        $exec->setAttribute( 'dir', $this->dir );
-        
-        if ( $this->failonerror === true )
-        {
-            $exec->setAttribute( 'failonerror', 'on' );
+
+        foreach ( $this->tasks as $task) {
+
+            $task->buildXml($target);
         }
-        if ( $this->logerror === true )
-        {
-            $exec->setAttribute( 'logerror', 'on' );
-        }
-        if ( $this->output !== null )
-        {
-            $exec->setAttribute( 'output', $this->output );
-        }
-        if ( $this->error !== null )
-        {
-            $exec->setAttribute( 'error', $this->error );
-        }
-        
-        if ( $this->argLine !== null )
-        {
-            $arg = $this->buildFile->createElement( 'arg' );
-            $arg->setAttribute( 'line', $this->argLine );
-            
-            $exec->appendChild( $arg );
-        }
-        
+
         $this->buildFile->documentElement->appendChild( $target );
-        
+
         $xpath = new DOMXPath( $this->buildFile );
         $build = $xpath->query( '/project/target[@name="build"]' )->item( 0 );
-        
+
         if ( trim( $depends = $build->getAttribute( 'depends' ) ) !== '' )
         {
             $depends .= ',';
         }
         $build->setAttribute( 'depends', $depends . $this->targetName );
+
+        unset($xpath);
     }
-    
+
     /**
      * Magic property isset method.
      *
      * @param string $name The property name.
-     * 
+     *
      * @return boolean
-     * @ignore 
+     * @ignore
      */
     public function __isset( $name )
     {
         return array_key_exists( $name, $this->properties );
     }
-    
+
     /**
      * Magic property getter method.
      *
      * @param string $name The property name.
-     * 
+     *
      * @return mixed
      * @throws OutOfRangeException If the requested property doesn't exist or
-     *         is writonly.
-     * @ignore 
+     *         is writeonly.
+     * @ignore
      */
     public function __get( $name )
     {
@@ -181,22 +208,22 @@ class phpucBuildTarget
             return $this->properties[$name];
         }
         throw new OutOfRangeException(
-            sprintf( 'Unknown or writonly property $%s.', $name )
+            sprintf( 'Unknown or writeonly property $%s.', $name )
         );
     }
-    
+
     /**
      * Magic property setter method.
      *
      * @param string $name  The property name.
      * @param mixed  $value The property value.
-     * 
+     *
      * @return void
      * @throws OutOfRangeException If the requested property doesn't exist or
      *         is readonly.
-     * @throws InvalidArgumentException If the given value has an unexpected 
+     * @throws InvalidArgumentException If the given value has an unexpected
      *         format or an invalid data type.
-     * @ignore 
+     * @ignore
      */
     public function __set( $name, $value )
     {
@@ -209,7 +236,9 @@ class phpucBuildTarget
             case 'dir':
                 $this->properties[$name] = $value;
                 break;
-                
+            case 'depends':
+                $this->properties[$name][] = $value;
+                break;
             case 'failonerror':
             case 'logerror':
                 if ( !is_bool( $value ) )
@@ -220,7 +249,7 @@ class phpucBuildTarget
                 }
                 $this->properties[$name] = $value;
                 break;
-                
+
             default:
                 throw new OutOfRangeException(
                     sprintf( 'Unknown or readonly property $%s.', $name )

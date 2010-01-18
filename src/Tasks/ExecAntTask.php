@@ -37,8 +37,8 @@
  * POSSIBILITY OF SUCH DAMAGE.
  *
  * @category  QualityAssurance
- * @package   Commands
- * @author    Manuel Pichler <mapi@phpundercontrol.org>
+ * @package   Data
+ * @author    Sebastian Marek <proofek@gmail.com>
  * @copyright 2007-2010 Manuel Pichler. All rights reserved.
  * @license   http://www.opensource.org/licenses/bsd-license.php  BSD License
  * @version   SVN: $Id$
@@ -46,91 +46,66 @@
  */
 
 /**
- * Implementation mode of the example mode.
+ * This class represents exec ant task in a build.xml file.
+ *
+ * See {@link http://ant.apache.org/manual/CoreTasks/exec.html}
+ * for ant task details
  *
  * @category  QualityAssurance
- * @package   Commands
- * @author    Manuel Pichler <mapi@phpundercontrol.org>
+ * @package   Tasks
+ * @author    Sebastian Marek <proofek@gmail.com>
  * @copyright 2007-2010 Manuel Pichler. All rights reserved.
  * @license   http://www.opensource.org/licenses/bsd-license.php  BSD License
  * @version   Release: @package_version@
  * @link      http://www.phpundercontrol.org/
  */
-class phpucProjectCommand extends phpucAbstractCommand implements phpucConsoleCommandI
+class phpucExecAntTask extends phpucAbstractAntTask
 {
     /**
-     * Creates all command specific {@link phpucTaskI} objects.
+     * Ant task name
      *
-     * @return array(phpucTaskI)
+     * @type string
+     * @var string $taskName
      */
-    protected function doCreateTasks()
-    {
-        $tasks = array(
-            new phpucProjectTask(),
-            new phpucCheckoutTask(),
-        );
-
-        if ( $this->args === null
-            || !$this->args->hasOption( 'without-lint' )
-        ) {
-            $tasks[] = new phpucLintTask();
-        }
-        if ( $this->args === null
-            || !$this->args->hasOption( 'without-php-documentor' )
-        ) {
-            $tasks[] = new phpucPhpDocumentorTask();
-        }
-        if ( $this->args === null
-            || !$this->args->hasOption( 'without-code-sniffer' )
-        ) {
-            $tasks[] = new phpucPhpCodeSnifferTask();
-        }
-        if ( $this->args === null
-            || !$this->args->hasOption( 'without-phpunit' )
-        ) {
-            $tasks[] = new phpucPhpUnitTask();
-        }
-        if ( $this->args === null
-            || !$this->args->hasOption( 'without-code-browser' )
-        ) {
-            $tasks[] = new phpucCodeBrowserTask();
-        }
-        if ( $this->args === null
-            || !$this->args->hasOption( 'without-ezc-graph' )
-        ) {
-            $tasks[] = new phpucGraphTask();
-        }
-
-        return $tasks;
-    }
+    public $taskName = 'exec';
 
     /**
-     * Returns the cli command identifier.
+     * Builds/Rebuilds the target and attached tasks xml content.
      *
-     * @return string
-     */
-    public function getCommandId()
-    {
-        return 'project';
-    }
-
-    /**
-     * Callback method that registers a cli command.
-     *
-     * @param phpucConsoleInputDefinition $def The input definition container.
+     * @param DOMElement $target Xml element
      *
      * @return void
      */
-    public function registerCommand( phpucConsoleInputDefinition $def )
+    public function buildXml(DOMElement $target)
     {
-        $def->addCommand(
-            $this->getCommandId(),
-            'Creates a new CruiseControl project.'
-        );
-        $def->addArgument(
-            $this->getCommandId(),
-            'cc-install-dir',
-            'The installation directory of CruiseControl.'
-        );
+        $exec = $target->appendChild( $this->buildFile->createElement( $this->taskName ) );
+        $exec->setAttribute( 'executable', $this->executable );
+        $exec->setAttribute( 'dir', $this->dir );
+
+        if ( $this->failonerror === true )
+        {
+            $exec->setAttribute( 'failonerror', 'on' );
+        }
+        if ( $this->logerror === true )
+        {
+            $exec->setAttribute( 'logerror', 'on' );
+        }
+        if ( $this->output !== null )
+        {
+            $exec->setAttribute( 'output', $this->output );
+        }
+        if ( $this->error !== null )
+        {
+            $exec->setAttribute( 'error', $this->error );
+        }
+        if ( $this->argLine !== null )
+        {
+            $arg = $this->buildFile->createElement( 'arg' );
+            $arg->setAttribute( 'line', $this->argLine );
+
+            $exec->appendChild( $arg );
+        }
+
+        $this->buildFile->documentElement->appendChild( $target );
     }
 }

@@ -33,7 +33,7 @@
  * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
- * 
+ *
  * @package   Tasks
  * @author    Manuel Pichler <mapi@phpundercontrol.org>
  * @copyright 2007-2010 Manuel Pichler. All rights reserved.
@@ -50,11 +50,16 @@ if ( defined( 'PHPUnit_MAIN_METHOD' ) === false )
 require_once 'PHPUnit/Framework/TestSuite.php';
 require_once 'PHPUnit/TextUI/TestRunner.php';
 
+require_once dirname( __FILE__ ) . '/AbstractAntTaskTest.php';
+require_once dirname( __FILE__ ) . '/ApplyAntTaskTest.php';
 require_once dirname( __FILE__ ) . '/CheckoutTaskTest.php';
 require_once dirname( __FILE__ ) . '/CodeBrowserTaskTest.php';
 require_once dirname( __FILE__ ) . '/CreateFileTaskTest.php';
 require_once dirname( __FILE__ ) . '/CruiseControlTaskTest.php';
+require_once dirname( __FILE__ ) . '/ExecAntTaskTest.php';
+require_once dirname( __FILE__ ) . '/FilesetAntTaskTest.php';
 require_once dirname( __FILE__ ) . '/GraphTaskTest.php';
+require_once dirname( __FILE__ ) . '/LintTaskTest.php';
 require_once dirname( __FILE__ ) . '/MergePhpunitTaskTest.php';
 require_once dirname( __FILE__ ) . '/ModifyFileTaskTest.php';
 require_once dirname( __FILE__ ) . '/PhpCodeSnifferTaskTest.php';
@@ -85,7 +90,7 @@ class phpucTasksAllTests
     {
         PHPUnit_TextUI_TestRunner::run( self::suite() );
     }
-    
+
     /**
      * Creates the phpunit test suite for this package.
      *
@@ -94,11 +99,16 @@ class phpucTasksAllTests
     public static function suite()
     {
         $suite = new PHPUnit_Framework_TestSuite( 'phpUnderControl - TasksAllTest' );
+        $suite->addTestSuite( 'phpucAbstractAntTaskTest' );
+        $suite->addTestSuite( 'phpucApplyAntTaskTest' );
         $suite->addTestSuite( 'phpucCheckoutTaskTest' );
         $suite->addTestSuite( 'phpucCodeBrowserTaskTest' );
         $suite->addTestSuite( 'phpucCreateFileTaskTest' );
         $suite->addTestSuite( 'phpucCruiseControlTaskTest' );
+        $suite->addTestSuite( 'phpucExecAntTaskTest' );
+        $suite->addTestSuite( 'phpucFilesetAntTaskTest' );
         $suite->addTestSuite( 'phpucGraphTaskTest' );
+        $suite->addTestSuite( 'phpucLintTaskTest' );
         $suite->addTestSuite( 'phpucMergePhpunitTaskTest' );
         $suite->addTestSuite( 'phpucModifyFileTaskTest' );
         $suite->addTestSuite( 'phpucPhpCodeSnifferTaskTest' );

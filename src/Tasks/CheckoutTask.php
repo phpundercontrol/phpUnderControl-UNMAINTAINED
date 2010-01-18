@@ -1,7 +1,7 @@
 <?php
 /**
  * This file is part of phpUnderControl.
- * 
+ *
  * PHP Version 5
  *
  * Copyright (c) 2007-2010, Manuel Pichler <mapi@manuel-pichler.de>.
@@ -35,7 +35,7 @@
  * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
- * 
+ *
  * @category  QualityAssurance
  * @package   Tasks
  * @author    Manuel Pichler <mapi@manuel-pichler.de>
@@ -68,70 +68,72 @@ class phpucCheckoutTask extends phpucAbstractTask implements phpucConsoleExtensi
         $out = phpucConsoleOutput::get();
         $out->writeLine( 'Performing checkout task.' );
         $out->startList();
-        
+
         // Get current working dir
         $cwd = getcwd();
-        
+
         $out->writeListItem( 'Checking out project.' );
-        
+
         $projectPath = sprintf(
             '%s/projects/%s',
             $this->args->getArgument( 'cc-install-dir' ),
             $this->args->getOption( 'project-name' )
         );
-        
+
         // Switch working dir to the CruiseControl project directory
         chdir( $projectPath );
-        
+
         $checkout = phpucAbstractCheckout::createCheckout( $this->args );
         $checkout->checkout();
-        
+
         chdir( $cwd );
-        
+
         $out->writeListItem( 'Preparing config.xml file.' );
-        
+
         $fileName = sprintf(
             '%s/config.xml',
             $this->args->getArgument( 'cc-install-dir' )
         );
-        
+
         $config  = new phpucConfigFile( $fileName );
         $project = $config->getProject( $this->args->getOption( 'project-name' ) );
-        
+
         $strapper                   = $project->createBootStrapper();
         $strapper->localWorkingCopy = "{$projectPath}/source";
         $strapper->strapperType     = $this->args->getOption( 'version-control' );
-        
+
         $trigger                   = $project->createBuildTrigger();
         $trigger->localWorkingCopy = "{$projectPath}/source";
         $trigger->triggerType      = $this->args->getOption( 'version-control' );
-        
+
         $config->store();
-        
+
         $out->writeListItem( 'Preparing build.xml checkout target.' );
-        
-        $build  = new phpucBuildFile( "{$projectPath}/build.xml" );
-        $target = $build->createBuildTarget( 'checkout' );
-        
-        $target->executable  = phpucFileUtil::findExecutable(
+
+        $buildFile  = new phpucBuildFile( "{$projectPath}/build.xml" );
+        $buildTarget = $buildFile->createBuildTarget( 'checkout' );
+
+        $execTask = phpucAbstractAntTask::create( $buildFile, 'exec' );
+        $execTask->executable = phpucFileUtil::findExecutable(
             $this->args->getOption( 'version-control' )
         );
-        $target->argLine     = 'up';
-        $target->failonerror = true;
-        
-        $build->store();
-        
+        $execTask->argLine     = 'up';
+        $execTask->failonerror = true;
+        $buildTarget->addTask($execTask);
+
+        $buildFile->store();
+
         $out->writeLine();
     }
-    
+
     /**
-     * Callback method that registers a command extension. 
+     * Callback method that registers a command extension.
      *
-     * @param phpucConsoleInputDefinition $def 
+     * @param phpucConsoleInputDefinition $def
      *        The input definition container.
      * @param phpucConsoleCommandI  $command
      *        The context cli command instance.
-     * 
+     *
      * @return void
      */
     public function registerCommandExtension(

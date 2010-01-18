@@ -1,7 +1,7 @@
 <?php
 /**
  * This file is part of phpUnderControl.
- * 
+ *
  * PHP Version 5.2.0
  *
  * Copyright (c) 2007-2010, Manuel Pichler <mapi@phpundercontrol.org>.
@@ -35,7 +35,7 @@
  * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
- * 
+ *
  * @category  QualityAssurance
  * @package   Tasks
  * @author    Manuel Pichler <mapi@phpundercontrol.org>
@@ -62,7 +62,7 @@ class phpucPhpCodeSnifferTask extends phpucAbstractPearTask
      * Minimum code sniffer version.
      */
     const CODE_SNIFFER_VERSION = '1.0.0';
-    
+
     /**
      * Does nothing.
      *
@@ -72,48 +72,51 @@ class phpucPhpCodeSnifferTask extends phpucAbstractPearTask
     {
         $out = phpucConsoleOutput::get();
         $out->writeLine( 'Performing PHP_CodeSniffer task.' );
-        
+
         $projectName = $this->args->getOption( 'project-name' );
         $projectPath = sprintf(
-            '%s/projects/%s', 
-            $this->args->getArgument( 'cc-install-dir' ), 
+            '%s/projects/%s',
+            $this->args->getArgument( 'cc-install-dir' ),
             $projectName
         );
-        
+
         $out->startList();
-        $out->writeListItem( 
+        $out->writeListItem(
             'Modifying build file: project/{1}/build.xml', $projectName
         );
-        
+
         // Create error log file
         $errorLog = phpucFileUtil::getSysTempDir() . '/checkstyle.error.log';
-        
+
         $buildFile = new phpucBuildFile( $projectPath . '/build.xml', $projectName );
-        
+
         $buildTarget = $buildFile->createBuildTarget( 'php-codesniffer' );
-        
-        $buildTarget->executable = $this->executable;
-        $buildTarget->error      = $errorLog;
-        $buildTarget->output     = '${basedir}/build/logs/checkstyle.xml';
-        $buildTarget->argLine    = sprintf(
+        $buildTarget->dependOn('lint');
+
+        $execTask = phpucAbstractAntTask::create( $buildFile, 'exec' );
+        $execTask->executable = $this->executable;
+        $execTask->error      = $errorLog;
+        $execTask->output     = '${basedir}/build/logs/checkstyle.xml';
+        $execTask->argLine    = sprintf(
             '--report=checkstyle --standard=%s %s',
             $this->args->getOption( 'coding-guideline' ),
             $this->args->getOption( 'source-dir' )
         );
-        
+        $buildTarget->addTask($execTask);
+
         $buildFile->store();
-        
+
         $out->writeLine();
     }
-    
+
     /**
-     * Callback method that registers a command extension. 
+     * Callback method that registers a command extension.
      *
-     * @param phpucConsoleInputDefinition $def 
+     * @param phpucConsoleInputDefinition $def
      *        The input definition container.
      * @param phpucConsoleCommandI  $command
      *        The context cli command instance.
-     * 
+     *
      * @return void
      */
     public function registerCommandExtension(
@@ -121,7 +124,7 @@ class phpucPhpCodeSnifferTask extends phpucAbstractPearTask
         phpucConsoleCommandI $command
     ) {
         parent::registerCommandExtension( $def, $command );
-        
+
         $def->addOption(
             $command->getCommandId(),
             'f',
@@ -129,7 +132,7 @@ class phpucPhpCodeSnifferTask extends phpucAbstractPearTask
             'Disable PHP CodeSniffer support.',
             false
         );
-        
+
         $def->addOption(
             $command->getCommandId(),
             'g',
@@ -164,7 +167,7 @@ class phpucPhpCodeSnifferTask extends phpucAbstractPearTask
             );
         }
     }
-    
+
     /**
      * Validates the existing code sniffer version.
      *
@@ -175,7 +178,7 @@ class phpucPhpCodeSnifferTask extends phpucAbstractPearTask
         $cwd = $this->getWorkingDirectory();
 
         $binary = basename( $this->executable );
-        
+
         if ( ( $execdir = dirname( $this->executable ) ) !== '.' )
         {
             chdir( $execdir );
@@ -188,7 +191,7 @@ class phpucPhpCodeSnifferTask extends phpucAbstractPearTask
 
         $regexp = '/version\s+([0-9\.]+(RC[0-9])?)/';
         $retval = exec( escapeshellcmd( "{$binary} --version" ) );
-      
+
         chdir( $cwd );
 
         if ( preg_match( $regexp, $retval, $match ) === 0 )
@@ -203,11 +206,11 @@ class phpucPhpCodeSnifferTask extends phpucAbstractPearTask
         {
             $version = $match[1];
         }
-        
+
         if ( version_compare( $version, self::CODE_SNIFFER_VERSION ) < 0 )
         {
             throw new phpucValidateException(
-                sprintf( 
+                sprintf(
                     'PHP_CodeSniffer version %s or higher required.' .
                     ' Given version is "%s".',
                     self::CODE_SNIFFER_VERSION,
@@ -216,7 +219,7 @@ class phpucPhpCodeSnifferTask extends phpucAbstractPearTask
             );
         }
     }
-    
+
     /**
      * Must return the name of the used cli tool.
      *

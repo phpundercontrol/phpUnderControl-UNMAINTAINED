@@ -37,8 +37,8 @@
  * POSSIBILITY OF SUCH DAMAGE.
  *
  * @category  QualityAssurance
- * @package   Commands
- * @author    Manuel Pichler <mapi@phpundercontrol.org>
+ * @package   Data
+ * @author    Sebastian Marek <proofek@gmail.com>
  * @copyright 2007-2010 Manuel Pichler. All rights reserved.
  * @license   http://www.opensource.org/licenses/bsd-license.php  BSD License
  * @version   SVN: $Id$
@@ -46,91 +46,75 @@
  */
 
 /**
- * Implementation mode of the example mode.
+ * This class represents apply ant task in a build.xml file.
+ *
+ * See {@link http://ant.apache.org/manual/CoreTasks/apply.html}
+ * for ant task details
  *
  * @category  QualityAssurance
- * @package   Commands
- * @author    Manuel Pichler <mapi@phpundercontrol.org>
+ * @package   Tasks
+ * @author    Sebastian Marek <proofek@gmail.com>
  * @copyright 2007-2010 Manuel Pichler. All rights reserved.
  * @license   http://www.opensource.org/licenses/bsd-license.php  BSD License
  * @version   Release: @package_version@
  * @link      http://www.phpundercontrol.org/
  */
-class phpucProjectCommand extends phpucAbstractCommand implements phpucConsoleCommandI
+class phpucApplyAntTask extends phpucAbstractAntTask
 {
     /**
-     * Creates all command specific {@link phpucTaskI} objects.
+     * Ant task name
      *
-     * @return array(phpucTaskI)
+     * @type string
+     * @var string $taskName
      */
-    protected function doCreateTasks()
+    public $taskName = 'apply';
+
+    /**
+     * The constructor takes the parent build file as an argument.
+     * It sets executable file as 'php' by default
+     *
+     * @param phpucBuildFile $buildFile  The parent build file object.
+     */
+    public function __construct(phpucBuildFile $buildFile)
     {
-        $tasks = array(
-            new phpucProjectTask(),
-            new phpucCheckoutTask(),
-        );
+        parent::__construct($buildFile);
 
-        if ( $this->args === null
-            || !$this->args->hasOption( 'without-lint' )
-        ) {
-            $tasks[] = new phpucLintTask();
-        }
-        if ( $this->args === null
-            || !$this->args->hasOption( 'without-php-documentor' )
-        ) {
-            $tasks[] = new phpucPhpDocumentorTask();
-        }
-        if ( $this->args === null
-            || !$this->args->hasOption( 'without-code-sniffer' )
-        ) {
-            $tasks[] = new phpucPhpCodeSnifferTask();
-        }
-        if ( $this->args === null
-            || !$this->args->hasOption( 'without-phpunit' )
-        ) {
-            $tasks[] = new phpucPhpUnitTask();
-        }
-        if ( $this->args === null
-            || !$this->args->hasOption( 'without-code-browser' )
-        ) {
-            $tasks[] = new phpucCodeBrowserTask();
-        }
-        if ( $this->args === null
-            || !$this->args->hasOption( 'without-ezc-graph' )
-        ) {
-            $tasks[] = new phpucGraphTask();
-        }
-
-        return $tasks;
+        $this->executable = 'php';
     }
 
     /**
-     * Returns the cli command identifier.
+     * Builds/Rebuilds the target and attached tasks xml content.
      *
-     * @return string
-     */
-    public function getCommandId()
-    {
-        return 'project';
-    }
-
-    /**
-     * Callback method that registers a cli command.
-     *
-     * @param phpucConsoleInputDefinition $def The input definition container.
+     * @param DOMElement $target Xml element
      *
      * @return void
      */
-    public function registerCommand( phpucConsoleInputDefinition $def )
+    public function buildXml(DOMElement $target)
     {
-        $def->addCommand(
-            $this->getCommandId(),
-            'Creates a new CruiseControl project.'
-        );
-        $def->addArgument(
-            $this->getCommandId(),
-            'cc-install-dir',
-            'The installation directory of CruiseControl.'
-        );
+        $apply = $target->appendChild( $this->buildFile->createElement( $this->taskName ) );
+        $apply->setAttribute( 'executable', $this->executable );
+        $apply->setAttribute( 'dir', $this->dir );
+
+        if ( $this->failonerror === true )
+        {
+            $apply->setAttribute( 'failonerror', 'on' );
+        }
+        if ( $this->logerror === true )
+        {
+            $apply->setAttribute( 'logerror', 'on' );
+        }
+
+        if ( $this->argLine !== null )
+        {
+            $arg = $this->buildFile->createElement( 'arg' );
+            $arg->setAttribute( 'line', $this->argLine );
+
+            $apply->appendChild( $arg );
+        }
+
+        foreach ( $this->tasks as $task) {
+
+            $task->buildXml($apply);
+        }
     }
 }
