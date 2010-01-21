@@ -111,7 +111,7 @@ class phpucCodeBrowserTask extends phpucAbstractPearTask implements phpucConsole
 
     /**
      * Creates an execute publisher for the PHP_CodeBrowser generator.
-     * 
+     *
      * @return void
      */
     private function createCodeBrowserExecutePublisher()
@@ -215,8 +215,7 @@ class phpucCodeBrowserTask extends phpucAbstractPearTask implements phpucConsole
             $command->getCommandId(),
             'b',
             'without-code-browser',
-            'Disable PHP CodeBrowser support.',
-            false
+            'Disable PHP CodeBrowser support.'
         );
 
         if ( !$definition->hasOption( $command->getCommandId(), 'source-dir' ) )

@@ -1,7 +1,7 @@
 <?php
 /**
  * This file is part of phpUnderControl.
- * 
+ *
  * PHP Version 5.2.0
  *
  * Copyright (c) 2007-2010, Manuel Pichler <mapi@manuel-pichler.de>.
@@ -35,7 +35,7 @@
  * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
- * 
+ *
  * @category  QualityAssurance
  * @package   Tasks
  * @author    Manuel Pichler <mapi@manuel-pichler.de>
@@ -67,24 +67,24 @@ class phpucPhpDocumentorTaskTest extends phpucAbstractPearTaskTest
      * @var string $validBin
      */
     protected $validBin = "#!/usr/bin/env php\n<?php echo 'version 1.2.0';?>";
-    
+
     /**
      * Sets the required binary contents.
-     * 
+     *
      * @return void
      */
     protected function setUp()
     {
         parent::setUp();
-        
+
         if ( phpucFileUtil::getOS() === phpucFileUtil::OS_WINDOWS )
         {
             $this->validBin = "@echo off\n\recho version 1.2.0";
         }
     }
-    
+
     /**
-     * Tests that the phpdoc task adds an artifact publisher into the 
+     * Tests that the phpdoc task adds an artifact publisher into the
      * project configuration.
      *
      * @return void
@@ -92,8 +92,8 @@ class phpucPhpDocumentorTaskTest extends phpucAbstractPearTaskTest
     public function testPHPDocumentorExecuteConfigFileWithoutArtifactsDirectory()
     {
         $node = $this->prepareTestAndReturnsPublisherNode();
-        
-        $this->assertEquals( 
+
+        $this->assertEquals(
             'projects/${project.name}/build/api', $node->getAttribute( 'dir' )
         );
         $this->assertEquals(
@@ -101,9 +101,9 @@ class phpucPhpDocumentorTaskTest extends phpucAbstractPearTaskTest
         );
         $this->assertEquals( 'api', $node->getAttribute( 'subdirectory' ) );
     }
-    
+
     /**
-     * Tests that the phpdoc task adds an artifact publisher into the 
+     * Tests that the phpdoc task adds an artifact publisher into the
      * project configuration and uses the artifacts directory for the generated
      * api documentation.
      *
@@ -113,8 +113,8 @@ class phpucPhpDocumentorTaskTest extends phpucAbstractPearTaskTest
     {
         $dirs = array( "artifacts/{$this->projectName}" );
         $node = $this->prepareTestAndReturnsPublisherNode( $dirs );
-        
-        $this->assertEquals( 
+
+        $this->assertEquals(
             'projects/${project.name}/build/api', $node->getAttribute( 'dir' )
         );
         $this->assertEquals(
@@ -122,48 +122,74 @@ class phpucPhpDocumentorTaskTest extends phpucAbstractPearTaskTest
         );
         $this->assertEquals( 'api', $node->getAttribute( 'subdirectory' ) );
     }
-    
+
     /**
      * Executes the phpunit task and return the created artifactspublisher node.
      *
      * @param array(string) $dirs Optional list of test directories.
-     * 
+     *
      * @return DOMElement The artifactspublisher element
      */
     protected function prepareTestAndReturnsPublisherNode( array $dirs = array() )
     {
         // Create dummy cc config
         $this->createCCConfig();
-        
+
         // Append project log directory
         $dirs[] = "logs/{$this->projectName}";
-        
+
         // Create test directories
         $this->createTestDirectories( $dirs );
-        
+
         // Create dummy phpdoc executable
         $this->createExecutable( 'phpdoc', $this->validBin );
-        
+
         $phpdoc = new phpucPhpDocumentorTask();
         $phpdoc->setConsoleArgs( $this->args );
         $phpdoc->validate();
         $phpdoc->execute();
-        
+
         $dom = new DOMDocument();
         $dom->load( PHPUC_TEST_DIR . '/config.xml' );
-        
+
         $xpath  = new DOMXPath( $dom );
         $result = $xpath->query(
-            sprintf( 
+            sprintf(
                 '/cruisecontrol/project[
                    @name="%s"
                  ]/publishers/artifactspublisher[@subdirectory="api"]',
                 $this->projectName
             )
         );
-        
+
         $this->assertEquals( 1, $result->length );
-        
+
         return $result->item( 0 );
+    }
+
+    /**
+     * This test checks whether --without-php-documentor option has been set properly
+     *
+     * @covers phpucPhpDocumentorTask::registerCommandExtension
+     *
+     * @return void
+     */
+    public function testPhpDocumentorTaskIsIgnored()
+    {
+        $this->prepareArgv(
+            array( 'example', PHPUC_TEST_DIR, '--without-php-documentor' )
+        );
+
+        $input = new phpucConsoleInput();
+        $input->parse();
+
+        $command = phpucAbstractCommand::createCommand(
+                    $input->args->command
+        );
+        $command->setConsoleArgs( $input->args );
+
+        $cmdTasks = $command->createTasks();
+
+        $this->assertPhpucTaskNotOnTheList( $cmdTasks, 'phpucPhpDocumentorTask' );
     }
 }

@@ -1,7 +1,7 @@
 <?php
 /**
  * This file is part of phpUnderControl.
- * 
+ *
  * PHP Version 5.2.0
  *
  * Copyright (c) 2007-2010, Manuel Pichler <mapi@manuel-pichler.de>.
@@ -35,7 +35,7 @@
  * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
- * 
+ *
  * @category  QualityAssurance
  * @package   Tasks
  * @author    Manuel Pichler <mapi@manuel-pichler.de>
@@ -67,7 +67,7 @@ abstract class phpucAbstractTaskTest extends phpucAbstractTest
      * @var string $projectName
      */
     protected $projectName = 'test-project';
-    
+
     /**
      * Creates some directories that fake the CruiseControl directory structure.
      *
@@ -83,13 +83,13 @@ abstract class phpucAbstractTaskTest extends phpucAbstractTest
                 "logs/{$this->projectName}",
             )
         );
-        
+
         // Create CruiseControl config
         $this->createCCConfig();
         // Create empty and build file
         $this->createCCBuild();
     }
-    
+
     /**
      * Create an empty ant build xml file.
      *
@@ -105,10 +105,10 @@ abstract class phpucAbstractTaskTest extends phpucAbstractTest
                    <target name="build" />
                  </project>',
                  $this->projectName
-            )    
+            )
         );
     }
-    
+
     /**
      * Creates a default cruisecontrol config with the test project.
      *
@@ -116,8 +116,8 @@ abstract class phpucAbstractTaskTest extends phpucAbstractTest
      */
     protected function createCCConfig()
     {
-        $file = PHPUC_TEST_DIR . '/config.xml'; 
-        
+        $file = PHPUC_TEST_DIR . '/config.xml';
+
         file_put_contents(
             $file,
             sprintf(
@@ -133,17 +133,61 @@ abstract class phpucAbstractTaskTest extends phpucAbstractTest
                    </project>
                  </cruisecontrol>',
                  $this->projectName
-            )    
+            )
         );
-        
+
         $dom = new DOMDocument();
         $dom->load( $file );
-        
+
         $xpath = new DOMXPath( $dom );
         $nodes = $xpath->query( "/cruisecontrol/project[@name='{$this->projectName}']" );
 
         $this->assertEquals( 1, $nodes->length );
-        
+
         return $file;
+    }
+
+    /**
+     * Asserts that given task is on the task list
+     *
+     * @see phpucAbstractCommand::createTasks()
+     *
+     * @return void
+     */
+    protected function assertPhpucTaskOnTheList(array $taskList, $taskName)
+    {
+        $taskTypes = array();
+
+        foreach ( $taskList as $task ) {
+
+            $taskTypes[] = get_class( $task );
+        }
+
+        $this->assertContains(
+            $taskName,
+            $taskTypes
+        );
+    }
+
+    /**
+     * Asserts that given task is not on the task list
+     *
+     * @see phpucAbstractCommand::createTasks()
+     *
+     * @return void
+     */
+    protected function assertPhpucTaskNotOnTheList(array $taskList, $taskName)
+    {
+        $taskTypes = array();
+
+        foreach ( $taskList as $task ) {
+
+            $taskTypes[] = get_class( $task );
+        }
+
+        $this->assertNotContains(
+            $taskName,
+            $taskTypes
+        );
     }
 }

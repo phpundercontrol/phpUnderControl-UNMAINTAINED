@@ -1,7 +1,7 @@
 <?php
 /**
  * This file is part of phpUnderControl.
- * 
+ *
  * PHP Version 5.2.0
  *
  * Copyright (c) 2007-2010, Manuel Pichler <mapi@phpundercontrol.org>.
@@ -68,25 +68,25 @@ class phpucPhpDocumentorTask extends phpucAbstractPearTask
     {
         $out = phpucConsoleOutput::get();
         $out->writeLine( 'Performing PhpDocumentor task.' );
-        
+
         $installDir  = $this->args->getArgument( 'cc-install-dir' );
         $projectName = $this->args->getOption( 'project-name' );
         $projectPath = sprintf( '%s/projects/%s', $installDir, $projectName );
-        
+
         $out->startList();
-        
-        $out->writeListItem( 
+
+        $out->writeListItem(
             'Creating apidoc dir:  project/{1}/build/api', $projectName
         );
 
         mkdir( $projectPath . '/build/api', 0755, true );
-        
+
         $out->writeListItem(
             'Modifying build file: project/{1}/build.xml', $projectName
         );
-        
+
         $buildFile = new phpucBuildFile( $projectPath . '/build.xml' );
-        
+
         $buildTarget             = $buildFile->createBuildTarget( 'php-documentor' );
         $buildTarget->executable = $this->executable;
         $buildTarget->logerror   = true;
@@ -96,18 +96,18 @@ class phpucPhpDocumentorTask extends phpucAbstractPearTask
             $this->args->getOption( 'source-dir' ),
             PHPUC_DATA_DIR
         );
-        
+
         $buildFile->store();
-        
+
         $out->writeListItem( 'Modifying config file:          config.xml' );
-        
+
         $configFile    = new phpucConfigFile( $installDir . '/config.xml' );
         $configProject = $configFile->getProject( $projectName );
         $publisher     = $configProject->createArtifactsPublisher();
-        
+
         $publisher->dir          = 'projects/${project.name}/build/api';
         $publisher->subdirectory = 'api';
-        
+
         if ( $this->artifacts )
         {
             $publisher->dest = 'artifacts/${project.name}';
@@ -116,20 +116,20 @@ class phpucPhpDocumentorTask extends phpucAbstractPearTask
         {
             $publisher->dest = 'logs/${project.name}';
         }
-        
+
         $configFile->store();
 
         $out->writeLine();
     }
-    
+
     /**
-     * Callback method that registers a command extension. 
+     * Callback method that registers a command extension.
      *
-     * @param phpucConsoleInputDefinition $def 
+     * @param phpucConsoleInputDefinition $def
      *        The input definition container.
      * @param phpucConsoleCommandI  $command
      *        The context cli command instance.
-     * 
+     *
      * @return void
      */
     public function registerCommandExtension(
@@ -137,15 +137,14 @@ class phpucPhpDocumentorTask extends phpucAbstractPearTask
         phpucConsoleCommandI $command
     ) {
         parent::registerCommandExtension( $def, $command );
-        
+
         $def->addOption(
             $command->getCommandId(),
             'c',
             'without-php-documentor',
-            'Disable phpDocumentor support.',
-            false
+            'Disable phpDocumentor support.'
         );
-        
+
         if ( !$def->hasOption( $command->getCommandId(), 'source-dir' ) )
         {
             $def->addOption(
@@ -171,7 +170,7 @@ class phpucPhpDocumentorTask extends phpucAbstractPearTask
             );
         }
     }
-    
+
     /**
      * Must return the name of the used cli tool.
      *

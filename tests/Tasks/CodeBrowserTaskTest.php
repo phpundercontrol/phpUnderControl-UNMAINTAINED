@@ -62,34 +62,6 @@ class phpucCodeBrowserTaskTest extends phpucAbstractPearTaskTest
      * @group tasks
      * @group unittest
      */
-    public function testTaskRegistersWithoutCliOption()
-    {
-        $definition = $this->getMock( 'phpucConsoleInputDefinition', array(), array(), '', false );
-        $definition->expects( $this->at( 0 ) )
-            ->method( 'addOption' )
-            ->with(
-                $this->equalTo( 'foobar' ),
-                $this->equalTo( 'b' ),
-                $this->equalTo( 'without-code-browser' ),
-                $this->equalTo( 'Disable PHP CodeBrowser support.' ),
-                $this->equalTo( false )
-            );
-
-        $command = $this->getMock( 'phpucConsoleCommandI' );
-        $command->expects( $this->atLeastOnce() )
-            ->method( 'getCommandId' )
-            ->will( $this->returnValue( 'foobar' ) );
-
-        $task = new phpucCodeBrowserTask();
-        $task->registerCommandExtension( $definition, $command );
-    }
-
-    /**
-     * @return void
-     * @covers phpucCodeBrowserTask
-     * @group tasks
-     * @group unittest
-     */
     public function testExecuteWithAbsoluteSourceDirectory()
     {
         $command = $this->executeCommandAndReturnExecutePublisher(
@@ -97,7 +69,7 @@ class phpucCodeBrowserTaskTest extends phpucAbstractPearTaskTest
                 'example',
                 '--project-name',
                 $this->projectName,
-                '--source-dir', 
+                '--source-dir',
                 $this->projectDir,
                 PHPUC_TEST_DIR
             )
@@ -215,14 +187,14 @@ class phpucCodeBrowserTaskTest extends phpucAbstractPearTaskTest
 
         return $result->item( 0 )->nodeValue;
     }
-    
+
     /**
      * Executes the PHP_CodeBrowser command and returns an xpath instance for
      * the CruiseControl config file.
      *
      * @param array $argv Cli argument vector
-     * 
-     * @return DOMXPath 
+     *
+     * @return DOMXPath
      */
     private function executeCommand( array $argv )
     {
@@ -238,5 +210,29 @@ class phpucCodeBrowserTaskTest extends phpucAbstractPearTaskTest
         return new DOMXPath( $dom );
     }
 
+    /**
+     * This test checks whether --without-code-browser option has been set properly
+     *
+     * @covers phpucCodeBrowserTask::registerCommandExtension
+     *
+     * @return void
+     */
+    public function testCodeBrowserTaskIsIgnored()
+    {
+        $this->prepareArgv(
+            array( 'example', PHPUC_TEST_DIR, '--without-code-browser' )
+        );
 
+        $input = new phpucConsoleInput();
+        $input->parse();
+
+        $command = phpucAbstractCommand::createCommand(
+                    $input->args->command
+        );
+        $command->setConsoleArgs( $input->args );
+
+        $cmdTasks = $command->createTasks();
+
+        $this->assertPhpucTaskNotOnTheList( $cmdTasks, 'phpucCodeBrowserTask' );
+    }
 }

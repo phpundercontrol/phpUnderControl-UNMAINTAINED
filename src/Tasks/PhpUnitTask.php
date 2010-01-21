@@ -163,8 +163,7 @@ class phpucPhpUnitTask extends phpucAbstractPearTask
             $command->getCommandId(),
             'n',
             'without-phpunit',
-            'Disable PHPUnit support.',
-            false
+            'Disable PHPUnit support.'
         );
         $def->addOption(
             $command->getCommandId(),
