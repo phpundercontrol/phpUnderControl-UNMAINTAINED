@@ -53,12 +53,12 @@
   <xsl:variable name="cruisecontrol.list" select="."/>
 
   <xsl:template match="/">
+    <p><xsl:apply-templates select="$cruisecontrol.list" mode="unittests"/></p>
     <p><xsl:apply-templates select="$cruisecontrol.list" mode="errors"/></p>
     <p><xsl:apply-templates select="$cruisecontrol.list" mode="maven"/></p>
     <p><xsl:apply-templates select="$cruisecontrol.list" mode="pmd"/></p>
     <p><xsl:apply-templates select="$cruisecontrol.list" mode="checkstyle" /></p>
     <p><xsl:apply-templates select="$cruisecontrol.list" mode="phpdoc" /></p>
-    <p><xsl:apply-templates select="$cruisecontrol.list" mode="unittests"/></p>
     <p><xsl:apply-templates select="$cruisecontrol.list" mode="modifications"/></p>
     <p><xsl:apply-templates select="$cruisecontrol.list" mode="cvstagdiff"/></p>
     <p><xsl:apply-templates select="$cruisecontrol.list" mode="distributables"/></p>
