@@ -189,6 +189,34 @@ abstract class phpucAbstractTask implements phpucTaskI
     }
 
     /**
+     * Returns the log directory of the context project.
+     *
+     * @return string
+     */
+    protected function getProjectLogDirectory()
+    {
+        return sprintf(
+            '%s/logs/%s',
+            $this->getCruiseControlDirectory(),
+            $this->getProjectName()
+        );
+    }
+
+    /**
+     * Returns the artifacts directory of the context project.
+     *
+     * @return string
+     */
+    protected function getProjectArtifactDirectory()
+    {
+        return sprintf(
+            '%s/artifacts/%s',
+            $this->getCruiseControlDirectory(),
+            $this->getProjectName()
+        );
+    }
+
+    /**
      * Returns the configuration of the current context project.
      *
      * @return phpucConfigProject

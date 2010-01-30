@@ -59,6 +59,24 @@
 class phpucProjectCleanTask extends phpucAbstractTask implements phpucConsoleExtensionI
 {
     /**
+     * Validates that a project <cc-install-dir>/projects/<project-name> exists.
+     *
+     * @return void
+     * @throws phpucValidateException
+     *         If the directory doesn't exist or the config.xml file does not
+     *         contain a section for this project.
+     */
+    public function validate()
+    {
+        if ( is_dir( $this->getProjectPath() ) === false )
+        {
+            throw new phpucValidateException(
+                "Missing project directory '{$this->getProjectPath()}'."
+            );
+        }
+    }
+    
+    /**
      * Removes the project configuration from the CruiseControl config.xml file
      * and deletes all project contents.
      *
@@ -67,20 +85,10 @@ class phpucProjectCleanTask extends phpucAbstractTask implements phpucConsoleExt
     public function execute()
     {
         $timestamps = $this->collectTimestamps();
-        $timestamps = $this->reduceTimestamps( $timestamps );
 
-        $installDir  = $this->args->getArgument( 'cc-install-dir' );
-        $projectName = $this->args->getOption( 'project-name' );
-
-        $this->cleanProjectLogs( $timestamps );
-        $this->cleanProjectArtifacts(
-            "{$installDir}/logs/{$projectName}",
-            $timestamps
-        );
-        $this->cleanProjectArtifacts(
-            "{$installDir}/artifacts/{$projectName}",
-            $timestamps
-        );
+        $this->cleanLogFiles( $timestamps );
+        $this->cleanArtifacts( $this->getProjectLogDirectory(), $timestamps );
+        $this->cleanArtifacts( $this->getProjectArtifactDirectory(), $timestamps );
     }
 
     /**
@@ -90,7 +98,7 @@ class phpucProjectCleanTask extends phpucAbstractTask implements phpucConsoleExt
      *
      * @return void
      */
-    protected function cleanProjectLogs( array $timestamps )
+    protected function cleanLogFiles( array $timestamps )
     {
         foreach ( array_keys( $timestamps ) as $file )
         {
@@ -109,7 +117,7 @@ class phpucProjectCleanTask extends phpucAbstractTask implements phpucConsoleExt
      *
      * @return void
      */
-    protected function cleanProjectArtifacts( $basePath, array $timestamps )
+    protected function cleanArtifacts( $basePath, array $timestamps )
     {
         foreach ( $timestamps as $timestamp )
         {
@@ -128,10 +136,7 @@ class phpucProjectCleanTask extends phpucAbstractTask implements phpucConsoleExt
      */
     protected function collectTimestamps()
     {
-        $installDir  = $this->args->getArgument( 'cc-install-dir' );
-        $projectName = $this->args->getOption( 'project-name' );
-
-        $path = "{$installDir}/logs/{$projectName}";
+        $path = $this->getProjectLogDirectory();
         if ( !is_dir( $path ) )
         {
             return array();
@@ -143,7 +148,7 @@ class phpucProjectCleanTask extends phpucAbstractTask implements phpucConsoleExt
             $timestamps[$file] = substr( basename( $file ), 3, 14 );
         }
 
-        return $timestamps;
+        return $this->reduceTimestamps( $timestamps );
     }
 
     /**

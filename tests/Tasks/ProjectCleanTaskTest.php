@@ -334,4 +334,27 @@ class phpucProjectCleanTaskTest extends phpucAbstractTaskTest
             PHPUC_TEST_DIR . "/cruisecontrol/logs/{$this->projectName}/log20080118220842Lbuild.57.xml"
         );
     }
+
+    /**
+     * Tests that the validate method throws an exception when the specified
+     * project does not exist.
+     *
+     * @return void
+     * @expectedException phpucValidateException
+     */
+    public function testExecuteProjectCleanTaskThrowsValidationException()
+    {
+        $args = $this->prepareConsoleArgs(
+            array(
+                'clean',
+                '-j',
+                __FUNCTION__,
+                PHPUC_TEST_DIR . '/cruisecontrol'
+            )
+        );
+
+        $task = new phpucProjectCleanTask();
+        $task->setConsoleArgs( $args );
+        $task->validate();
+    }
 }
