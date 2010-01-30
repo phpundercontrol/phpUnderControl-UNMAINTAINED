@@ -119,7 +119,7 @@ class phpucCheckoutTask extends phpucAbstractTask implements phpucConsoleExtensi
         );
         $execTask->argLine     = $checkout->getUpdateCommand();
         $execTask->failonerror = true;
-        $buildTarget->addTask($execTask);
+        $buildTarget->addTask( $execTask );
 
         $buildFile->store();
 

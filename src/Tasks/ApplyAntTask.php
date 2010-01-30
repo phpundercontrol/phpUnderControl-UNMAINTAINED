@@ -75,9 +75,9 @@ class phpucApplyAntTask extends phpucAbstractAntTask
      *
      * @param phpucBuildFile $buildFile  The parent build file object.
      */
-    public function __construct(phpucBuildFile $buildFile)
+    public function __construct( phpucBuildFile $buildFile )
     {
-        parent::__construct($buildFile);
+        parent::__construct( $buildFile );
 
         $this->executable = 'php';
     }
@@ -89,9 +89,9 @@ class phpucApplyAntTask extends phpucAbstractAntTask
      *
      * @return void
      */
-    public function buildXml(DOMElement $target)
+    public function buildXml( DOMElement $target )
     {
-        $apply = $target->appendChild( $this->buildFile->createElement( $this->taskName ) );
+        $apply = $target->appendChild( $this->createElement( $this->taskName ) );
         $apply->setAttribute( 'executable', $this->executable );
         $apply->setAttribute( 'dir', $this->dir );
 
@@ -106,15 +106,13 @@ class phpucApplyAntTask extends phpucAbstractAntTask
 
         if ( $this->argLine !== null )
         {
-            $arg = $this->buildFile->createElement( 'arg' );
+            $arg = $apply->appendChild( $this->createElement( 'arg' ) );
             $arg->setAttribute( 'line', $this->argLine );
-
-            $apply->appendChild( $arg );
         }
 
         foreach ( $this->tasks as $task) {
 
-            $task->buildXml($apply);
+            $task->buildXml( $apply );
         }
     }
 }

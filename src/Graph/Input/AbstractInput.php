@@ -167,7 +167,8 @@ abstract class phpucAbstractInput implements phpucInputI
             phpucChartI::TYPE_LINE,
             phpucChartI::TYPE_DOT,
             phpucChartI::TYPE_TIME,
-            phpucChartI::TYPE_BAR ) ) )
+            phpucChartI::TYPE_BAR
+        ) ) )
         {
             throw new InvalidArgumentException( 'Invalid input type given.' );
         }

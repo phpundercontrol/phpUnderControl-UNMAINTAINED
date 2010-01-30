@@ -90,9 +90,9 @@ class phpucLintTask extends phpucAbstractTask implements phpucConsoleExtensionI
         $applyTask->argLine = '-l';
         $applyTask->failonerror = true;
         $applyTask->logerror = true;
-        $applyTask->addTask($filesetTask);
+        $applyTask->addTask( $filesetTask );
 
-        $buildTarget->addTask($applyTask);
+        $buildTarget->addTask( $applyTask );
 
         $buildFile->store();
 

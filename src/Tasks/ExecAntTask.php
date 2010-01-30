@@ -78,7 +78,7 @@ class phpucExecAntTask extends phpucAbstractAntTask
      */
     public function buildXml(DOMElement $target)
     {
-        $exec = $target->appendChild( $this->buildFile->createElement( $this->taskName ) );
+        $exec = $target->appendChild( $this->createElement( $this->taskName ) );
         $exec->setAttribute( 'executable', $this->executable );
         $exec->setAttribute( 'dir', $this->dir );
 

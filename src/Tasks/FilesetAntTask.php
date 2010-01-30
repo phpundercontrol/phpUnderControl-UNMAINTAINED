@@ -79,12 +79,12 @@ class phpucFilesetAntTask extends phpucAbstractAntTask
      */
     public function buildXml(DOMElement $target)
     {
-        $apply = $target->appendChild( $this->buildFile->createElement( $this->taskName ) );
+        $apply = $target->appendChild( $this->createElement( $this->taskName ) );
         $apply->setAttribute( 'dir', $this->dir );
 
         if ( $this->include !== null )
         {
-            $include = $apply->appendChild( $this->buildFile->createElement( 'include' ) );
+            $include = $apply->appendChild( $this->createElement( 'include' ) );
             $include->setAttribute( 'name', $this->include );
         }
     }

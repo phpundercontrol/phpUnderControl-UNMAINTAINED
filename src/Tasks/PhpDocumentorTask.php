@@ -88,7 +88,7 @@ class phpucPhpDocumentorTask extends phpucAbstractPearTask
         $buildFile = new phpucBuildFile( $projectPath . '/build.xml' );
 
         $buildTarget = $buildFile->createBuildTarget( 'php-documentor' );
-        $buildTarget->dependOn('lint');
+        $buildTarget->dependOn( 'lint' );
 
         $execTask = phpucAbstractAntTask::create( $buildFile, 'exec' );
         $execTask->executable = $this->executable;
@@ -99,7 +99,7 @@ class phpucPhpDocumentorTask extends phpucAbstractPearTask
             $this->args->getOption( 'source-dir' ),
             PHPUC_DATA_DIR
         );
-        $buildTarget->addTask($execTask);
+        $buildTarget->addTask( $execTask );
 
         $buildFile->store();
 

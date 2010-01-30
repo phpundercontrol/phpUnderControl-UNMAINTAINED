@@ -91,7 +91,7 @@ class phpucPhpCodeSnifferTask extends phpucAbstractPearTask
         $buildFile = new phpucBuildFile( $projectPath . '/build.xml', $projectName );
 
         $buildTarget = $buildFile->createBuildTarget( 'php-codesniffer' );
-        $buildTarget->dependOn('lint');
+        $buildTarget->dependOn( 'lint' );
 
         $execTask = phpucAbstractAntTask::create( $buildFile, 'exec' );
         $execTask->executable = $this->executable;
@@ -102,7 +102,7 @@ class phpucPhpCodeSnifferTask extends phpucAbstractPearTask
             $this->args->getOption( 'coding-guideline' ),
             $this->args->getOption( 'source-dir' )
         );
-        $buildTarget->addTask($execTask);
+        $buildTarget->addTask( $execTask );
 
         $buildFile->store();
 

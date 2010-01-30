@@ -46,6 +46,7 @@
  */
 
 /**
+ * Marker interface for charts that also provide a thumbnail.
  *
  * @category  QualityAssurance
  * @package   Graph
@@ -55,6 +56,6 @@
  * @version   Release: @package_version@
  * @link      http://www.phpundercontrol.org/
  */
-interface phpucThumbChartI extends phpucChartI {
+interface phpucThumbChartI extends phpucChartI
+{
 }
-?>

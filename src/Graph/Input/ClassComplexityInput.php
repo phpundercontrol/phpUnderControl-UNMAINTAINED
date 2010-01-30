@@ -47,7 +47,7 @@
  */
 
 /**
- *
+ * Input data source for class complexity charts.
  *
  * @category   QualityAssurance
  * @package    Graph
@@ -125,7 +125,7 @@ class phpucClassComplexityInput extends phpucAbstractInput
 
         }
 
-        if ( count($result) < 2 )
+        if ( count( $result ) < 2 )
         {
             $result[0] = 0;
         }

@@ -153,7 +153,7 @@ class phpucProjectTask extends phpucAbstractTask implements phpucConsoleExtensio
         $project->interval = $this->args->getOption( 'schedule-interval' );
         $project->anthome  = $anthome;
 
-        if ( $this->args->hasOption( 'ant-script' ) ) 
+        if ( $this->args->hasOption( 'ant-script' ) )
         {
             $project->antscript = $this->args->getOption( 'ant-script' );
         }
@@ -174,19 +174,19 @@ class phpucProjectTask extends phpucAbstractTask implements phpucConsoleExtensio
     {
         if ( count( $ant = glob( sprintf( '%s/apache-ant*', $installDir ) ) ) === 0 )
         {
-            if ( file_exists( $installDir . '/bin/ant' ) ) 
+            if ( file_exists( $installDir . '/bin/ant' ) )
             {
                 return $installDir;
             }
             
             $os = phpucFileUtil::getOS();
-            if ( $os !== phpucFileUtil::OS_WINDOWS ) 
+            if ( $os !== phpucFileUtil::OS_WINDOWS )
             {
                 $ant = shell_exec( 'which ant' );
-            }            
-            if ( strstr( trim($ant), 'bin/ant' ) )            
+            }
+            if ( strstr( trim( $ant ), 'bin/ant' ) )
             {                
-                return substr($ant, 0, ( strlen($ant) - 7 ) );
+                return substr( $ant, 0, ( strlen( $ant ) - 7 ) );
             }
             
             return false;

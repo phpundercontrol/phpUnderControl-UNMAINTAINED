@@ -121,11 +121,15 @@ abstract class phpucAbstractAntTask
      */
     public static function create( phpucBuildFile $buildFile, $taskName )
     {
-        $className = 'phpuc' . ucfirst($taskName) . 'AntTask';
+        $className = 'phpuc' . ucfirst( $taskName ) . 'AntTask';
 
-        if ( !class_exists($className)) {
+        if ( !class_exists( $className ) ) {
             throw new phpucTaskException(
-                "Cannot create '$taskName' ant task. Source class '$className' not available."
+                sprintf(
+                    "Cannot create '%s' ant task. Source class '%s' not available.",
+                    $taskName,
+                    $className
+                )
             );
         }
 
@@ -236,5 +240,17 @@ abstract class phpucAbstractAntTask
     public function addTask(phpucAbstractAntTask $task)
     {
         $this->tasks[] = $task;
+    }
+
+    /**
+     * Creates a dom element in the context of the current build file.
+     *
+     * @param string $tagName Name of the element to create.
+     *
+     * @return DOMElement
+     */
+    protected function createElement( $tagName )
+    {
+        return $this->buildFile->createElement( $tagName );
     }
 }
