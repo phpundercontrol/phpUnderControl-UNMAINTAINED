@@ -231,6 +231,21 @@ final class phpucFileUtil
         }
         throw new ErrorException( 'Cannot get system temp directory.' );
     }
+
+    /**
+     * Creates a new directory if it doesn't already exist.
+     *
+     * @param string $path The directory to create.
+     *
+     * @return void
+     */
+    public static function createDirectoryIfNotExists( $path )
+    {
+        if ( file_exists( $path ) === false )
+        {
+            mkdir( $path, 0775, true );
+        }
+    }
     
     /**
      * Removes the given directory recursive.
@@ -249,11 +264,11 @@ final class phpucFileUtil
     /**
      * Removes the given directory recursive.
      *
-     * @param deleteDirectoryRecursive $it The context directory iterator.
+     * @param DirectoryIterator $it The context directory iterator.
      * 
      * @return void
      */
-    private static function deleteDirectoryRecursive( RecursiveDirectoryIterator $it )
+    private static function deleteDirectoryRecursive( DirectoryIterator $it )
     {
         foreach ( $it as $file )
         {

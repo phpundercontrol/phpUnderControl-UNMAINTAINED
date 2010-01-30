@@ -163,6 +163,64 @@ abstract class phpucAbstractTask implements phpucTaskI
             sprintf( 'Unknown or readonly property $%s.', $name )
         );
     }
+
+    /**
+     * Returns the configured project name.
+     *
+     * @return string
+     */
+    protected function getProjectName()
+    {
+        return $this->args->getOption( 'project-name' );
+    }
+    
+    /**
+     * Returns the root directory of the context project.
+     *
+     * @return string
+     */
+    protected function getProjectPath()
+    {
+        return sprintf(
+            '%s/projects/%s', 
+            $this->getCruiseControlDirectory(),
+            $this->getProjectName()
+        );
+    }
+
+    /**
+     * Returns the configuration of the current context project.
+     *
+     * @return phpucConfigProject
+     */
+    protected function getProjectConfiguration()
+    {
+        return $this->getCruiseControlConfiguration()->getProject(
+            $this->getProjectName()
+        );
+    }
+
+    /**
+     * Returns the configured cruisecontrol installation directory.
+     *
+     * @return string
+     */
+    protected function getCruiseControlDirectory()
+    {
+        return $this->args->getArgument( 'cc-install-dir' );
+    }
+
+    /**
+     * Returns a cruise control configuration file instance.
+     *
+     * @return phpucConfigFile
+     */
+    protected function getCruiseControlConfiguration()
+    {
+        return new phpucConfigFile(
+            $this->getCruiseControlDirectory() . '/config.xml'
+        );
+    }
     
     /**
      * Returns the working directory where phpUnderControl runs. This method

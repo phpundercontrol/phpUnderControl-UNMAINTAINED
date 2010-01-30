@@ -80,55 +80,56 @@ class phpucPhpUnitTask extends phpucAbstractPearTask
     {
         $out = phpucConsoleOutput::get();
         $out->writeLine( 'Performing PHPUnit task.' );
-
-        $installDir  = $this->args->getArgument( 'cc-install-dir' );
-        $projectName = $this->args->getOption( 'project-name' );
-        $projectPath = sprintf( '%s/projects/%s', $installDir, $projectName );
-
         $out->startList();
+        
+        $this->createLogDirectories();
+        $this->createAntTarget();
+        $this->createCruiseControlPublisher();
 
-        $out->writeListItem(
-            'Creating coverage dir: project/{1}/build/coverage', $projectName
+        $out->writeLine();
+    }
+
+    /**
+     * Creates the required log directories.
+     *
+     * @return void
+     */
+    protected function createLogDirectories()
+    {
+        phpucConsoleOutput::get()->writeListItem(
+            'Creating log dir: project/{1}/build/coverage',
+            $this->getProjectName()
+        );
+        phpucFileUtil::createDirectoryIfNotExists( 
+            $this->getProjectPath() . '/build/logs'
         );
 
-        mkdir( $projectPath . '/build/coverage', 0755, true );
-
-        $out->writeListItem(
-            'Modifying build file:  project/{1}/build.xml', $projectName
-        );
-
-        $logs = ' --log-junit ${basedir}/build/logs/phpunit.xml';
-
-        if ( $this->properties['coverage'] === true )
+        if ( $this->coverage )
         {
-            $logs .= ' --coverage-clover ${basedir}/build/logs/phpunit.coverage.xml';
-            $logs .= ' --coverage-html ${basedir}/build/coverage';
+            phpucConsoleOutput::get()->writeListItem(
+                'Creating coverage dir: project/{1}/build/coverage',
+                $this->getProjectName()
+            );
+            phpucFileUtil::createDirectoryIfNotExists(
+                $this->getProjectPath() . '/build/coverage'
+            );
         }
+    }
 
-        $buildFile = new phpucBuildFile( $projectPath . '/build.xml' );
-
-        $buildTarget = $buildFile->createBuildTarget( 'phpunit' );
-        $buildTarget->dependOn('lint');
-
-        $execTask = phpucAbstractAntTask::create( $buildFile, 'exec' );
-        $execTask->executable  = $this->executable;
-        $execTask->failonerror = true;
-        $execTask->argLine     = sprintf(
-            '%s %s %s/%s',
-            $logs,
-            $this->args->getOption( 'test-case' ),
-            $this->args->getOption( 'test-dir' ),
-            $this->args->getOption( 'test-file' )
+    /**
+     * Creates the required cruisecontrol publishers for phpunit.
+     *
+     * @return void
+     */
+    protected function createCruiseControlPublisher()
+    {
+        phpucConsoleOutput::get()->writeListItem(
+            'Modifying config file: config.xml'
         );
-        $buildTarget->addTask($execTask);
 
-        $buildFile->store();
-
-        $out->writeListItem( 'Modifying config file: config.xml' );
-
-        $configFile    = new phpucConfigFile( $installDir . '/config.xml' );
-        $configProject = $configFile->getProject( $projectName );
-        $publisher     = $configProject->createArtifactsPublisher();
+        $config    = $this->getCruiseControlConfiguration();
+        $project   = $config->getProject( $this->getProjectName() );
+        $publisher = $project->createArtifactsPublisher();
 
         $publisher->dir          = 'projects/${project.name}/build/coverage';
         $publisher->subdirectory = 'coverage';
@@ -142,9 +143,73 @@ class phpucPhpUnitTask extends phpucAbstractPearTask
             $publisher->dest = 'logs/${project.name}';
         }
 
-        $configFile->store();
+        $config->store();
+    }
 
-        $out->writeLine();
+    /**
+     * Creates the ant target element for phpunit.
+     *
+     * @return void
+     */
+    protected function createAntTarget()
+    {
+        phpucConsoleOutput::get()->writeListItem(
+            'Modifying build file:  project/{1}/build.xml',
+            $this->getProjectName()
+        );
+
+        $buildFile = new phpucBuildFile( $this->getProjectPath() . '/build.xml' );
+
+        $buildTarget = $buildFile->createBuildTarget( 'phpunit' );
+        $buildTarget->dependOn( 'lint' );
+
+        $execTask = phpucAbstractAntTask::create( $buildFile, 'exec' );
+        $execTask->executable  = $this->executable;
+        $execTask->failonerror = true;
+        $execTask->argLine     = $this->getPhpunitCliArguments();
+        
+        $buildTarget->addTask( $execTask );
+
+        $buildFile->store();
+    }
+
+    /**
+     * Creates the phpunit command line arguments.
+     *
+     * @return string
+     */
+    protected function getPhpunitCliArguments()
+    {
+        $arguments = $this->getPhpunitLogOptions();
+        if ( $this->args->hasOption( 'test-case' ) )
+        {
+            $arguments .= ' ' . $this->args->getOption( 'test-case' );
+        }
+        
+        $arguments .= ' ' . $this->args->getOption( 'test-dir' );
+        if ( $this->args->hasOption( 'test-file' ) )
+        {
+            $arguments .= '/' . $this->args->getOption( 'test-file' );
+        }
+        
+        return $arguments;
+    }
+
+    /**
+     * Returns the log options for phpunit.
+     *
+     * @return string
+     */
+    protected function getPhpunitLogOptions()
+    {
+        $logs = ' --log-junit ${basedir}/build/logs/phpunit.xml';
+
+        if ( $this->properties['coverage'] === true )
+        {
+            $logs .= ' --coverage-clover ${basedir}/build/logs/phpunit.coverage.xml';
+            $logs .= ' --coverage-html ${basedir}/build/coverage';
+        }
+        return $logs;
     }
 
     /**
