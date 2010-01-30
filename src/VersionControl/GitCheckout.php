@@ -81,6 +81,16 @@ class phpucGitCheckout extends phpucAbstractCheckout
         {
             throw new phpucErrorException( 'The project checkout has failed.' );
         }
+
+        $cwd = getcwd();
+
+        // Switch into checkout directory
+        chdir( 'source' );
+
+        // Add tracked remote branch
+        shell_exec( "{$git} remote add {$this->remote} {$url}" );
+
+        chdir( $cwd );
     }
 
     /**
