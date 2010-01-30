@@ -115,7 +115,9 @@
           </xsl:choose>
         </td>
         <td width="300">
-          <xsl:value-of select="..//..//@name"/>::<xsl:value-of select="../@name"/>()
+            <a class="stealth" href="?tab=testResults">
+                <xsl:value-of select="..//..//@name"/>::<xsl:value-of select="../@name"/>()
+            </a>
         </td>
         <td class="unittests-data" colspan="2">
           <xsl:value-of select="..//..//@name"/>
@@ -123,22 +125,24 @@
       </tr>
     </xsl:template>
 
-  <!-- UnitTest Failures -->
-  <xsl:template match="failure" mode="unittests">
-    <tr>
-      <xsl:if test="position() mod 2 = 1">
-        <xsl:attribute name="class">oddrow</xsl:attribute>
-      </xsl:if>
-      <td class="failure" width="50">
-        failure
-      </td>
-      <td width="300">
-        <xsl:value-of select="..//..//@name"/>::<xsl:value-of select="../@name"/>()
-      </td>
-      <td class="unittests-data" colspan="2">
+    <!-- UnitTest Failures -->
+    <xsl:template match="failure" mode="unittests">
+        <tr>
+            <xsl:if test="position() mod 2 = 1">
+                <xsl:attribute name="class">oddrow</xsl:attribute>
+            </xsl:if>
+            <td class="failure" width="50">
+                failure
+            </td>
+            <td width="300">
+                <a class="stealth" href="?tab=testResults">
+                    <xsl:value-of select="..//..//@name"/>::<xsl:value-of select="../@name"/>()
+                </a>
+            </td>
+            <td class="unittests-data" colspan="2">
         
-      </td>
-    </tr>
-  </xsl:template>
+            </td>
+        </tr>
+    </xsl:template>
 
 </xsl:stylesheet>
