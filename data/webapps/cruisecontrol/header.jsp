@@ -37,36 +37,35 @@
 <%@page import="java.io.File, java.util.Arrays"%>
 <%@ taglib uri="/WEB-INF/cruisecontrol-jsp11.tld" prefix="cruisecontrol"%>
 
-    <h1 id="phpUnderControlHeader">
-      <a href="<%=request.getContextPath() %>/index">
-        phpUnderControl  
-      </a>
-    </h1>
+<h1 id="phpUnderControlHeader">
+    <a href="<%=request.getContextPath() %>/index">
+        phpUnderControl
+    </a>
+</h1>
 
-      <form action="<%=request.getContextPath() %>" id="cc-project">
-        <fieldset>
-          <legend><a href="<%=request.getContextPath() %>/index">Project:</a></legend>
-          <select name="projecttarget" onchange="self.location.href = this.form.projecttarget.options[this.form.projecttarget.selectedIndex].value">
+<form action="<%=request.getContextPath() %>" id="cc-project">
+    <fieldset>
+        <legend><a href="<%=request.getContextPath() %>/index">Project:</a></legend>
+        <select name="projecttarget" onchange="self.location.href = this.form.projecttarget.options[this.form.projecttarget.selectedIndex].value">
             <cruisecontrol:projectnav>
-              <option <%=selected%> value="<%=projecturl%>"><%=linktext%></option>
+                <option <%=selected%> value="<%=projecturl%>"><%=linktext%></option>
             </cruisecontrol:projectnav>
-          </select>
-        </fieldset>
-      </form>
+        </select>
+    </fieldset>
+</form>
    
     
-    <form method="GET" action="<%=request.getContextPath() %>/buildresults/<%=project %>" id="cc-build">
-      <fieldset>
+<form method="GET" action="<%=request.getContextPath() %>/buildresults/<%=project %>" id="cc-build">
+    <fieldset>
         <legend><a href="<%=request.getContextPath() %>/buildresults/<%=project %>">Build:</a></legend>
-  
         <select name="log" onchange="form.submit()">
-          <option>More builds</option>
-          <cruisecontrol:nav startingBuildNumber="1">
-            <option value="<%=logfile%>"<% if (logfile.equals(request.getParameter("log"))) {%> selected="selected"<% } %>><%= linktext %></option>
-          </cruisecontrol:nav>
+            <option>More builds</option>
+            <cruisecontrol:nav startingBuildNumber="1">
+                <option value="<%=logfile%>"<% if (logfile.equals(request.getParameter("log"))) {%> selected="selected"<% } %>><%= linktext %></option>
+            </cruisecontrol:nav>
         </select>
-      </fieldset>
-    </form>
+    </fieldset>
+</form>
     
     <h2 id="cc-build-status">
       <cruisecontrol:currentbuildstatus/>
