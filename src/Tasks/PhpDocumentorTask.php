@@ -146,8 +146,7 @@ class phpucPhpDocumentorTask extends phpucAbstractPearTask
             $command->getCommandId(),
             'c',
             'without-php-documentor',
-            'Disable phpDocumentor support.',
-            false
+            'Disable phpDocumentor support.'
         );
 
         if ( !$def->hasOption( $command->getCommandId(), 'source-dir' ) )

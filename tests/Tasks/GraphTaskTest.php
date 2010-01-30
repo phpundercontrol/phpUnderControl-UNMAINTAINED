@@ -1,7 +1,7 @@
 <?php
 /**
  * This file is part of phpUnderControl.
- * 
+ *
  * PHP Version 5.2.0
  *
  * Copyright (c) 2007-2010, Manuel Pichler <mapi@manuel-pichler.de>.
@@ -35,7 +35,7 @@
  * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
- * 
+ *
  * @category  QualityAssurance
  * @package   Tasks
  * @author    Manuel Pichler <mapi@manuel-pichler.de>
@@ -62,20 +62,20 @@ class phpucGraphTaskTest extends phpucAbstractTaskTest
 {
     /**
      * Tests that the graph task generates the contents into the logs/prj/
-     * directory if no artifacts folder exists. 
+     * directory if no artifacts folder exists.
      *
      * @return void
      */
     public function testInstallGraphExampleWithoutArtifactsDirectory()
     {
         $command = $this->prepareTestAndQueryCommandAttribute();
-        
+
         $this->assertEquals( 'logs/${project.name}', substr( $command, -20 ) );
     }
-    
+
     /**
-     * Tests that the graph task generates an execute-tag with the output 
-     * directory artifacts/${project.name}, if an artifacts directory exists. 
+     * Tests that the graph task generates an execute-tag with the output
+     * directory artifacts/${project.name}, if an artifacts directory exists.
      *
      * @return void
      */
@@ -83,32 +83,32 @@ class phpucGraphTaskTest extends phpucAbstractTaskTest
     {
         $dirs    = array( "artifacts/{$this->projectName}" );
         $command = $this->prepareTestAndQueryCommandAttribute( $dirs );
-        
+
         $this->assertEquals(
             'logs/${project.name} artifacts/${project.name}',
             substr( $command, -46 )
         );
     }
-    
+
     /**
-     * Creates the required test structure and returns the value of the 
+     * Creates the required test structure and returns the value of the
      * @command attribute.
      *
      * @param array $dirs Optional list of directories.
-     * 
-     * @return string 
+     *
+     * @return string
      */
     protected function prepareTestAndQueryCommandAttribute( array $dirs = array() )
     {
         // Create a dummy cruise control config
         $this->createCCConfig();
-        
-        // Append default log directory 
+
+        // Append default log directory
         $dirs[] = "logs/{$this->projectName}";
-        
+
         // Create a dummy cc structure
         $this->createTestDirectories( $dirs );
-        
+
         $this->prepareArgv(
             array(
                 'example',
@@ -117,22 +117,48 @@ class phpucGraphTaskTest extends phpucAbstractTaskTest
                 PHPUC_TEST_DIR
             )
         );
-        
+
         $input = new phpucConsoleInput();
         $input->parse();
-        
+
         $task = new phpucGraphTask();
         $task->setConsoleArgs( $input->args );
         $task->execute();
-        
+
         $dom = new DOMDocument();
         $dom->load( PHPUC_TEST_DIR . '/config.xml' );
-        
+
         $xpath  = new DOMXPath( $dom );
         $result = $xpath->query( '//project/publishers/execute/@command' );
-        
+
         $this->assertEquals( 1, $result->length );
-        
+
         return $result->item( 0 )->nodeValue;
+    }
+
+    /**
+     * This test checks whether --without-ezc-graph option has been set properly
+     *
+     * @covers phpucGraphTask::registerCommandExtension
+     *
+     * @return void
+     */
+    public function testGraphTaskIsIgnored()
+    {
+        $this->prepareArgv(
+            array( 'example', PHPUC_TEST_DIR, '--without-ezc-graph' )
+        );
+
+        $input = new phpucConsoleInput();
+        $input->parse();
+
+        $command = phpucAbstractCommand::createCommand(
+                    $input->args->command
+        );
+        $command->setConsoleArgs( $input->args );
+
+        $cmdTasks = $command->createTasks();
+
+        $this->assertPhpucTaskNotOnTheList( $cmdTasks, 'phpucGraphTask' );
     }
 }

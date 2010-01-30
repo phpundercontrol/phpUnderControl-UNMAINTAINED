@@ -129,8 +129,7 @@ class phpucPhpCodeSnifferTask extends phpucAbstractPearTask
             $command->getCommandId(),
             'f',
             'without-code-sniffer',
-            'Disable PHP CodeSniffer support.',
-            false
+            'Disable PHP CodeSniffer support.'
         );
 
         $def->addOption(

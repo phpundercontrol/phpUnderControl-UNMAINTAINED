@@ -33,7 +33,7 @@
  * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
- * 
+ *
  * @package   Tasks
  * @author    Manuel Pichler <mapi@phpundercontrol.org>
  * @copyright 2007-2010 Manuel Pichler. All rights reserved.
@@ -46,7 +46,7 @@ require_once dirname( __FILE__ ) . '/AbstractPearTaskTest.php';
 
 /**
  * Test case for the php code sniffer task.
- * 
+ *
  * @package   Tasks
  * @author    Manuel Pichler <mapi@phpundercontrol.org>
  * @copyright 2007-2010 Manuel Pichler. All rights reserved.
@@ -63,7 +63,7 @@ class phpucPHPUnitTaskTest extends phpucAbstractPearTaskTest
      * @var string $validBin
      */
     protected $validBin = "#!/usr/bin/env php\n<?php echo 'version 3.2.0';?>";
-    
+
     /**
      * Content for a fake phpunit bin that doesn't work.
      *
@@ -71,7 +71,7 @@ class phpucPHPUnitTaskTest extends phpucAbstractPearTaskTest
      * @var string $invalidBin
      */
     protected $invalidBin = "#!/usr/bin/env php\n<?php echo 'version 3.1.9';?>";
-    
+
     /**
      * Content for a fake phpunit bin that returns an invalid version.
      *
@@ -79,7 +79,7 @@ class phpucPHPUnitTaskTest extends phpucAbstractPearTaskTest
      * @var string $badBin
      */
     protected $badBin = "#!/usr/bin/env php\n<?php echo ' version-3.2.0';?>";
-    
+
     /**
      * Optional list of command line options.
      *
@@ -94,20 +94,20 @@ class phpucPHPUnitTaskTest extends phpucAbstractPearTaskTest
         '--test-file',
         'MathTest.php'
     );
-    
+
     /**
      * Sets the required binary contents.
-     * 
+     *
      * @return void
      */
     protected function setUp()
     {
         parent::setUp();
-        
+
         $this->clearTestContents(  PHPUC_TEST_DIR . '/projects' );
         $this->clearTestContents(  PHPUC_TEST_DIR . '/build' );
         $this->clearTestContents(  PHPUC_TEST_DIR . '/logs' );
-        
+
         if ( phpucFileUtil::getOS() === phpucFileUtil::OS_WINDOWS )
         {
             $this->badBin     = "@echo off\n\recho version-3.2.0";
@@ -115,9 +115,9 @@ class phpucPHPUnitTaskTest extends phpucAbstractPearTaskTest
             $this->invalidBin = "@echo off\n\recho version 3.1.9";
         }
     }
-    
+
     /**
-     * Tests validate with the required phpunit version. 
+     * Tests validate with the required phpunit version.
      *
      * @return void
      */
@@ -128,7 +128,7 @@ class phpucPHPUnitTaskTest extends phpucAbstractPearTaskTest
         $phpunit->setConsoleArgs( $this->args );
         $phpunit->validate();
     }
-    
+
     /**
      * Tests that the execute method adds a correct build file target.
      *
@@ -137,40 +137,40 @@ class phpucPHPUnitTaskTest extends phpucAbstractPearTaskTest
     public function testPHPUnitExecuteBuildFileModifications()
     {
         $this->createCCConfig();
-        
-        $file = sprintf( 
-            '%s/projects/%s/build.xml', 
-            PHPUC_TEST_DIR, 
-            $this->projectName 
+
+        $file = sprintf(
+            '%s/projects/%s/build.xml',
+            PHPUC_TEST_DIR,
+            $this->projectName
         );
-        
+
         $this->assertFileNotExists( $file );
-        
+
         $this->createExecutable( 'phpunit', $this->validBin );
-        
+
         $phpunit = new phpucPhpUnitTask();
         $phpunit->setConsoleArgs( $this->args );
         $phpunit->validate();
         $phpunit->execute();
-        
+
         $this->assertFileExists( $file );
-        
+
         $dom = new DOMDocument();
         $dom->load( $file );
-        
+
         $xpath = new DOMXPath( $dom );
         $result = $xpath->query( '//target[@name="phpunit"]/exec/@executable' );
-        
+
         $this->assertEquals( 1, $result->length );
 
         // Check that the executable path begins with the test bin directory.
-        $this->assertEquals( 
+        $this->assertEquals(
             0, strpos( $result->item( 0 )->nodeValue, PHPUC_TEST_DIR . '/bin/phpunit' )
         );
     }
-    
+
     /**
-     * Tests that the phpunit task adds an artifact publisher into the 
+     * Tests that the phpunit task adds an artifact publisher into the
      * project configuration.
      *
      * @return void
@@ -178,9 +178,9 @@ class phpucPHPUnitTaskTest extends phpucAbstractPearTaskTest
     public function testPHPUnitExecuteConfigFileWithoutArtifactsDirectory()
     {
         $node = $this->prepareTestAndReturnsPublisherNode();
-        
-        $this->assertEquals( 
-            'projects/${project.name}/build/coverage', 
+
+        $this->assertEquals(
+            'projects/${project.name}/build/coverage',
             $node->getAttribute( 'dir' )
         );
         $this->assertEquals(
@@ -190,9 +190,9 @@ class phpucPHPUnitTaskTest extends phpucAbstractPearTaskTest
             'coverage', $node->getAttribute( 'subdirectory' )
         );
     }
-    
+
     /**
-     * Tests that the phpunit task adds an artifact publisher into the 
+     * Tests that the phpunit task adds an artifact publisher into the
      * project configuration and uses the artifacts directory for the generated
      * coverage report.
      *
@@ -202,9 +202,9 @@ class phpucPHPUnitTaskTest extends phpucAbstractPearTaskTest
     {
         $dirs = array( "artifacts/{$this->projectName}" );
         $node = $this->prepareTestAndReturnsPublisherNode( $dirs );
-        
-        $this->assertEquals( 
-            'projects/${project.name}/build/coverage', 
+
+        $this->assertEquals(
+            'projects/${project.name}/build/coverage',
             $node->getAttribute( 'dir' )
         );
         $this->assertEquals(
@@ -214,9 +214,9 @@ class phpucPHPUnitTaskTest extends phpucAbstractPearTaskTest
             'coverage', $node->getAttribute( 'subdirectory' )
         );
     }
-    
+
     /**
-     * Tests that the validate method throws an exception for a not found 
+     * Tests that the validate method throws an exception for a not found
      * executable.
      *
      * @return void
@@ -225,13 +225,13 @@ class phpucPHPUnitTaskTest extends phpucAbstractPearTaskTest
     {
         $phpunit = new phpucPhpUnitTask();
         $phpunit->setConsoleArgs( $this->args );
-        
+
         $this->setExpectedException( 'phpucValidateException' );
         $phpunit->validate();
     }
-    
+
     /**
-     * This test runs with phpunit, so there should be a global the phpunit 
+     * This test runs with phpunit, so there should be a global the phpunit
      * executable.
      *
      * @return void
@@ -239,58 +239,84 @@ class phpucPHPUnitTaskTest extends phpucAbstractPearTaskTest
     public function testValidateFindPHPUnitExecutableInPath()
     {
         $this->prepareArgv( array( 'example', PHPUC_TEST_DIR ) );
-        
+
         $input = new phpucConsoleInput();
         $input->parse();
-        
+
         $phpunit = new phpucPhpUnitTask();
         $phpunit->setConsoleArgs( $input->args );
         $phpunit->validate();
-        
+
         $this->assertNotNull( $phpunit->executable );
     }
-    
+
     /**
      * Executes the phpunit task and return the created artifactspublisher node.
      *
      * @param array(string) $dirs Optional list of test directories.
-     * 
+     *
      * @return DOMElement The artifactspublisher element
      */
     protected function prepareTestAndReturnsPublisherNode( array $dirs = array() )
     {
         // Create dummy cc config
         $this->createCCConfig();
-        
+
         // Create dummy phpunit executable
         $this->createExecutable( 'phpunit', $this->validBin );
-        
+
         // Append project log directory
         $dirs[] = "logs/{$this->projectName}";
-        
+
         // Create test directories
         $this->createTestDirectories( $dirs );
-        
+
         $phpunit = new phpucPhpUnitTask();
         $phpunit->setConsoleArgs( $this->args );
         $phpunit->validate();
         $phpunit->execute();
-        
+
         $dom = new DOMDocument();
         $dom->load( PHPUC_TEST_DIR . '/config.xml' );
-        
+
         $xpath  = new DOMXPath( $dom );
         $result = $xpath->query(
-            sprintf( 
+            sprintf(
                 '/cruisecontrol/project[
                    @name="%s"
                  ]/publishers/artifactspublisher[@subdirectory="coverage"]',
                 $this->projectName
             )
         );
-        
+
         $this->assertEquals( 1, $result->length );
-        
+
         return $result->item( 0 );
+    }
+
+    /**
+     * This test checks whether --without-phpunit option has been set properly
+     *
+     * @covers phpucPhpUnitTask::registerCommandExtension
+     *
+     * @return void
+     */
+    public function testPHPUnitTaskIsIgnored()
+    {
+        $this->prepareArgv(
+            array( 'example', PHPUC_TEST_DIR, '--without-phpunit' )
+        );
+
+        $input = new phpucConsoleInput();
+        $input->parse();
+
+        $command = phpucAbstractCommand::createCommand(
+                    $input->args->command
+        );
+        $command->setConsoleArgs( $input->args );
+
+        $cmdTasks = $command->createTasks();
+
+        $this->assertPhpucTaskNotOnTheList( $cmdTasks, 'phpucPhpUnitTask' );
     }
 }
