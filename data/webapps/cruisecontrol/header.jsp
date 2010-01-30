@@ -55,7 +55,7 @@
       </form>
    
     
-    <form method="GET" action="<%=request.getContextPath() %>" id="cc-build">
+    <form method="GET" action="<%=request.getContextPath() %>/buildresults/<%=project %>" id="cc-build">
       <fieldset>
         <legend><a href="<%=request.getContextPath() %>/buildresults/<%=project %>">Build:</a></legend>
   
