@@ -163,12 +163,12 @@ class phpucCheckoutTaskTest extends phpucAbstractTaskTest
                 '-v',
                 'git',
                 '-x',
-                'git://github.com/sebastianbergmann/phpunit.git',
+                'git://github.com/manuelpichler/phpUnderControl.git',
                 PHPUC_TEST_DIR
             )
         );
         
-        $this->doTestCheckout( 'git' , 'PHPUnit' );
+        $this->doTestCheckout( 'git' , 'src' );
     }
 
     /**

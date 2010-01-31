@@ -104,20 +104,16 @@ class phpucGitCheckoutTest extends phpucAbstractCheckoutTest
      */
     public function testGitCheckoutNoLogin()
     {
-        $destination = PHPUC_TEST_DIR . '/source';
-        $checkFile1  = $destination . '/phpunit.php';
-        $checkFile2  = $destination . '/PHPUnit/Framework/TestCase.php';
+        $checkFile = PHPUC_TEST_DIR . '/source/src/PhpUnderControl.php';
 
-        $this->assertFileNotExists( $checkFile1 );
-        $this->assertFileNotExists( $checkFile2 );
+        $this->assertFileNotExists( $checkFile );
 
         $checkout      = new phpucGitCheckout();
-        $checkout->url = 'git://github.com/sebastianbergmann/phpunit.git';
+        $checkout->url = 'git://github.com/manuelpichler/phpUnderControl.git';
 
         $checkout->checkout();
 
-        $this->assertFileExists( $checkFile1 );
-        $this->assertFileExists( $checkFile2 );
+        $this->assertFileExists( $checkFile );
     }
 
     /**
