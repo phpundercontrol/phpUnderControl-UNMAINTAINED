@@ -1,7 +1,7 @@
 <?php
 /**
  * This file is part of phpUnderControl.
- * 
+ *
  * PHP Version 5.2.0
  *
  * Copyright (c) 2007-2010, Manuel Pichler <mapi@manuel-pichler.de>.
@@ -35,7 +35,7 @@
  * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
- * 
+ *
  * @category  QualityAssurance
  * @package   Graph
  * @author    Manuel Pichler <mapi@manuel-pichler.de>
@@ -67,19 +67,21 @@ class phpucTimeChartTest extends phpucAbstractTest
      */
     public function testRender()
     {
+        $this->markTestSkippedWhenEzcGraphChartNotExists();
+
         $dom = new DOMDocument();
         $dom->load( PHPUC_TEST_LOG_FILE );
-        
+
         $input = new phpucUnitTestExecutionTimeInput();
         $input->processLog( new DOMXPath( $dom ) );
-        
+
         $chart = new phpucTimeChart();
         $chart->setInput( $input );
-        
+
         $file = PHPUC_TEST_DIR . '/test.png';
-        
+
         $chart->render( 230, 420, $file );
-        
+
         $this->assertFileExists( $file );
     }
 }

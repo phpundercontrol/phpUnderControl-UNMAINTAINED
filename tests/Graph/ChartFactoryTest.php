@@ -1,7 +1,7 @@
 <?php
 /**
  * This file is part of phpUnderControl.
- * 
+ *
  * PHP Version 5.2.0
  *
  * Copyright (c) 2007-2010, Manuel Pichler <mapi@manuel-pichler.de>.
@@ -35,7 +35,7 @@
  * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
- * 
+ *
  * @category  QualityAssurance
  * @package   Graph
  * @author    Manuel Pichler <mapi@manuel-pichler.de>
@@ -67,12 +67,14 @@ class phpucChartFactoryTest extends phpucAbstractTest
      */
     public function testCreateDotChartFromBuildBreakdownTimeline()
     {
+        $this->markTestSkippedWhenEzcGraphChartNotExists();
+
         $input = new phpucBuildBreakdownTimelineInput();
         $input->processLog( new DOMXPath( new DOMDocument() ) );
-        
+
         $factory = new phpucChartFactory();
         $chart   = $factory->createChart( $input );
-        
+
         $this->assertType( 'phpucDotChart', $chart );
     }
 
@@ -83,12 +85,14 @@ class phpucChartFactoryTest extends phpucAbstractTest
      */
     public function testCreatePieChartFromBuildBreakdown()
     {
+        $this->markTestSkippedWhenEzcGraphChartNotExists();
+
         $input = new phpucBuildBreakdownInput();
         $input->processLog( new DOMXPath( new DOMDocument() ) );
-        
+
         $factory = new phpucChartFactory();
         $chart   = $factory->createChart( $input );
-        
+
         $this->assertType( 'phpucPieChart', $chart );
     }
 
@@ -99,12 +103,14 @@ class phpucChartFactoryTest extends phpucAbstractTest
      */
     public function testCreateLineChartFromUnitCoverage()
     {
+        $this->markTestSkippedWhenEzcGraphChartNotExists();
+
         $input = new phpucUnitCoverageInput();
         $input->processLog( new DOMXPath( new DOMDocument() ) );
-        
+
         $factory = new phpucChartFactory();
         $chart   = $factory->createChart( $input );
-        
+
         $this->assertType( 'phpucLineChart', $chart );
     }
 }

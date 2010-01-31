@@ -1,7 +1,7 @@
 <?php
 /**
  * This file is part of phpUnderControl.
- * 
+ *
  * PHP Version 5
  *
  * Copyright (c) 2007-2010, Manuel Pichler <mapi@phpundercontrol.org>.
@@ -35,7 +35,7 @@
  * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
- * 
+ *
  * @category  QualityAssurance
  * @package   PhpUnderControl
  * @author    Manuel Pichler <mapi@phpundercontrol.org>
@@ -84,14 +84,14 @@ abstract class phpucAbstractTest extends PHPUnit_Framework_TestCase
      * @var boolean $windows
      */
     public static $windows = false;
-    
+
     /**
      * Clears the file stat cache.
      */
     protected function setUp()
     {
         parent::setUp();
-        
+
         clearstatcache();
     }
 
@@ -103,7 +103,7 @@ abstract class phpucAbstractTest extends PHPUnit_Framework_TestCase
     protected function tearDown()
     {
         $this->clearTestContents();
-        
+
         parent::tearDown();
     }
 
@@ -119,6 +119,19 @@ abstract class phpucAbstractTest extends PHPUnit_Framework_TestCase
         if ( $this->getBinary( $binary ) === '' )
         {
             $this->markTestSkipped( sprintf( 'No binary %s found', $binary ) );
+        }
+    }
+
+    /**
+     * Skips the current test when Graph ezComponent not available.
+     *
+     * @return void
+     */
+    protected function markTestSkippedWhenEzcGraphChartNotExists()
+    {
+        if (!class_exists('ezcGraphChart')) {
+
+            $this->markTestSkipped('ezcGraph not installed - skipping the test.');
         }
     }
 
@@ -221,12 +234,12 @@ abstract class phpucAbstractTest extends PHPUnit_Framework_TestCase
             strpos( $reflection->getFileName(), 'tests' ) + 6
         );
     }
-    
+
     /**
      * Prepares the global <b>$argv</b> array.
      *
      * @param array $argv A new argument array.
-     * 
+     *
      * @return void
      */
     protected function prepareArgv( array $argv = null )
@@ -243,36 +256,36 @@ abstract class phpucAbstractTest extends PHPUnit_Framework_TestCase
             $GLOBALS['argv'] = $argv;
         }
     }
-    
+
     /**
      * Prepares the cli <b>$argv</b> array and create a {@link phpucConsoleArgs}
      * instance.
      *
      * @param array $argv A new argument array.
-     * 
+     *
      * @return phpucConsoleArgs
      */
     protected function prepareConsoleArgs( array $argv = null )
     {
         $this->prepareArgv( $argv );
-        
+
         $input = new phpucConsoleInput();
         $input->parse();
-        
+
         return $input->args;
     }
-    
+
     /**
      * Creates a directory structure under the test directory.
      *
      * @param array(string) $directories Test directories.
-     * 
+     *
      * @return array(string)
      */
     protected function createTestDirectories( array $directories )
     {
         $fullPaths = array();
-        
+
         foreach ( $directories as $directory )
         {
             // Create full testing path
@@ -282,36 +295,36 @@ abstract class phpucAbstractTest extends PHPUnit_Framework_TestCase
             {
                 mkdir( $fullPath, 0755, true );
             }
-            
+
             $fullPaths[] = $fullPath;
         }
         return $fullPaths;
     }
-    
+
     /**
      * Creates a single test file.
      *
      * @param string $filePath The test filepath.
      * @param string $content  Optional file contents.
-     * 
+     *
      * @return string
      */
     protected function createTestFile( $filePath, $content = '...' )
     {
         $fullPath = PHPUC_TEST_DIR . '/' . $filePath;
-        
+
         file_put_contents( $fullPath, $content );
-        
+
         chmod( $fullPath, 0755 );
-        
+
         return $fullPath;
     }
-    
+
     /**
      * Removes temporary test content recursively.
      *
      * @param string $directory The context directory.
-     * 
+     *
      * @return void
      */
     protected function clearTestContents( $directory = null )
@@ -324,7 +337,7 @@ abstract class phpucAbstractTest extends PHPUnit_Framework_TestCase
         {
             return;
         }
-        
+
         $it = new DirectoryIterator( $directory );
         foreach ( $it as $entry )
         {
@@ -339,14 +352,14 @@ abstract class phpucAbstractTest extends PHPUnit_Framework_TestCase
                     $this->clearTestContents( $entry->getPathname() );
                     rmdir( $entry->getPathname() );
                 }
-            } 
+            }
             else if ( $entry->isFile() )
             {
                 unlink( $entry->getPathname() );
             }
         }
     }
-    
+
     /**
      * Initializes the test environment.
      *
@@ -357,31 +370,31 @@ abstract class phpucAbstractTest extends PHPUnit_Framework_TestCase
         // Load phpUnderControl base class
         include_once PHPUC_SOURCE . '/PhpUnderControl.php';
         include_once PHPUC_SOURCE . '/Util/Autoloader.php';
-        
+
         // Register autoload
         $autoloader = new phpucAutoloader();
-        
+
         spl_autoload_register( array( $autoloader, 'autoload' ) );
-        
+
         // Load ezcBase class
         if ( file_exists( PHPUC_EZC_BASE ) )
         {
             include_once PHPUC_EZC_BASE;
-        
+
             spl_autoload_register( array( 'ezcBase', 'autoload' ) );
         }
-        
+
         include_once dirname( __FILE__ ) . '/ConsoleOutputBuffer.php';
-        
+
         phpucConsoleOutput::set( new phpucConsoleOutputBuffer() );
-        
+
         PHPUnit_Util_Filter::addDirectoryToWhitelist( PHPUC_SOURCE );
-        
+
         if ( !is_dir( PHPUC_TEST_DIR ) )
         {
             mkdir( PHPUC_TEST_DIR );
         }
-        
+
         self::$windows = phpucFileUtil::getOS() === phpucFileUtil::OS_WINDOWS;
     }
 }
