@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <package xmlns="http://pear.php.net/dtd/package-2.0" xmlns:tasks="http://pear.php.net/dtd/tasks-1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.0" xsi:schemaLocation="http://pear.php.net/dtd/tasks-1.0                         http://pear.php.net/dtd/tasks-1.0.xsd                         http://pear.php.net/dtd/package-2.0                         http://pear.php.net/dtd/package-2.0.xsd">
   <name>phpUnderControl</name>
-  <channel>pear.phpunit.de</channel>
+  <channel>pear.phpundercontrol.org</channel>
   <summary>CruiseControl addon for PHP</summary>
   <description>phpUnderControl aims to make the first steps with CruiseControl 
 and PHP as easy as possible. It integrates three of the best PHP development 
