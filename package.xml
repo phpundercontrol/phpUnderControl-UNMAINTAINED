@@ -14,23 +14,47 @@ example project.
     <email>mapi@phpundercontrol.org</email>
     <active>yes</active>
   </lead>
-  <date>2009-12-06</date>
+  <date>2010-01-31</date>
   <version>
-    <release>0.5.0</release>
-    <api>0.2.0</api>
+    <release>0.5.1</release>
+    <api>1.0.0</api>
   </version>
   <stability>
     <release>beta</release>
-    <api>beta</api>
+    <api>stable</api>
   </stability>
   <license uri="http://www.opensource.org/licenses/bsd-license.php">BSD License</license>
   <notes>
-- Mayflower contribution PHP_CodeBrowser integrated into phpUnderControl.
-    </notes>
+- Now phpUnderControl should work with CruiseControl 2.8.3. Thanks to
+  Mike van Riel who provided some hints on this issue in a blog comment.
+- Fixed #983: Graph unitests throw fatal error when ezComponents not
+  available. Thanks to Sebastian Marek for this contribution.
+- Fixed #966: phpcs-details.xsl not showing file name.
+- Closed #863: Destination option is now deprecated.
+- Fixed #862: Command line switches without parameter don't work. Thanks
+  to Sebastian Marek for this contribution.
+- Fixed #861: Password is used as username in check outs. This patch was
+  supplied by Thorsten Daners via e-mail.
+- Fixed #734: Now the build dropdown redirects to the correct build uri.
+- Implemented #703: PHPUnit test results are now the first entry on the
+  project.
+- Fixed #700: Throw an exception when the specified project does not exist.
+  overview page.
+- Implemented #675: Use "php -l" for lint checking and not PHPUnit. Thanks
+  to Sebastian Marek for this contribution.
+- Implemented #625: Integrate PHP_Depend results. Thanks to Sebastian Marek
+  for this contribution.
+  </notes>
   <contents>
     <dir name="/">
       <dir name="src">
         <dir name="VersionControl">
+          <file role="php" name="GitCheckout.php">
+            <tasks:replace from="@package_version@" to="version" type="package-info"/>
+            <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+            <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+            <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+          </file>
           <file role="php" name="CheckoutI.php">
             <tasks:replace from="@package_version@" to="version" type="package-info"/>
             <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
@@ -171,12 +195,6 @@ example project.
               <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
             </file>
             <file role="php" name="BuildBreakdownTimelineInput.php">
-              <tasks:replace from="@package_version@" to="version" type="package-info"/>
-              <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
-              <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
-              <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
-            </file>
-            <file role="php" name="ClassComplexityInput.php">
               <tasks:replace from="@package_version@" to="version" type="package-info"/>
               <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
               <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
@@ -331,6 +349,12 @@ example project.
             <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
             <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
           </file>
+          <file role="php" name="FilesetAntTask.php">
+            <tasks:replace from="@package_version@" to="version" type="package-info"/>
+            <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+            <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+            <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+          </file>
           <file role="php" name="ProjectDeleteTask.php">
             <tasks:replace from="@package_version@" to="version" type="package-info"/>
             <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
@@ -344,6 +368,18 @@ example project.
             <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
           </file>
           <file role="php" name="AbstractPearTask.php">
+            <tasks:replace from="@package_version@" to="version" type="package-info"/>
+            <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+            <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+            <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+          </file>
+          <file role="php" name="ApplyAntTask.php">
+            <tasks:replace from="@package_version@" to="version" type="package-info"/>
+            <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+            <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+            <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+          </file>
+          <file role="php" name="AbstractAntTask.php">
             <tasks:replace from="@package_version@" to="version" type="package-info"/>
             <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
             <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
@@ -385,6 +421,12 @@ example project.
             <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
             <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
           </file>
+          <file role="php" name="ExecAntTask.php">
+            <tasks:replace from="@package_version@" to="version" type="package-info"/>
+            <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+            <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+            <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+          </file>
           <file role="php" name="PhpUnitTask.php">
             <tasks:replace from="@package_version@" to="version" type="package-info"/>
             <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
@@ -404,6 +446,12 @@ example project.
             <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
           </file>
           <file role="php" name="PhpCodeSnifferTask.php">
+            <tasks:replace from="@package_version@" to="version" type="package-info"/>
+            <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+            <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+            <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+          </file>
+          <file role="php" name="LintTask.php">
             <tasks:replace from="@package_version@" to="version" type="package-info"/>
             <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
             <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
@@ -459,29 +507,6 @@ example project.
             <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
             <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
           </file>
-        </dir>
-        <dir name="ThirdParty">
-          <dir name="CodeBrowser">
-            <dir name="src">
-              <dir name="Util"/>
-              <dir name="Plugins"/>
-            </dir>
-            <dir name="bin"/>
-            <dir name="tests">
-              <dir name="src">
-                <dir name="Plugins"/>
-              </dir>
-              <dir name="MockObjects"/>
-              <dir name="testData">
-                <dir name="src"/>
-              </dir>
-            </dir>
-            <dir name="templates">
-              <dir name="js"/>
-              <dir name="css"/>
-              <dir name="img"/>
-            </dir>
-          </dir>
         </dir>
         <dir name="Console">
           <file role="php" name="ConsoleInputDefinition.php">
@@ -618,6 +643,12 @@ example project.
             <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
           </file>
           <file role="test" name="VersionControlAllTests.php">
+            <tasks:replace from="@package_version@" to="version" type="package-info"/>
+            <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+            <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+            <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+          </file>
+          <file role="test" name="GitCheckoutTest.php">
             <tasks:replace from="@package_version@" to="version" type="package-info"/>
             <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
             <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
@@ -1162,6 +1193,12 @@ example project.
           <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
         </file>
         <dir name="Tasks">
+          <file role="test" name="ApplyAntTaskTest.php">
+            <tasks:replace from="@package_version@" to="version" type="package-info"/>
+            <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+            <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+            <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+          </file>
           <file role="test" name="ModifyFileTaskTest.php">
             <tasks:replace from="@package_version@" to="version" type="package-info"/>
             <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
@@ -1175,6 +1212,12 @@ example project.
             <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
           </file>
           <file role="test" name="TasksAllTests.php">
+            <tasks:replace from="@package_version@" to="version" type="package-info"/>
+            <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+            <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+            <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+          </file>
+          <file role="test" name="LintTaskTest.php">
             <tasks:replace from="@package_version@" to="version" type="package-info"/>
             <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
             <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
@@ -1241,6 +1284,24 @@ example project.
             <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
           </file>
           <file role="test" name="AbstractTaskTest.php">
+            <tasks:replace from="@package_version@" to="version" type="package-info"/>
+            <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+            <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+            <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+          </file>
+          <file role="test" name="AbstractAntTaskTest.php">
+            <tasks:replace from="@package_version@" to="version" type="package-info"/>
+            <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+            <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+            <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+          </file>
+          <file role="test" name="FilesetAntTaskTest.php">
+            <tasks:replace from="@package_version@" to="version" type="package-info"/>
+            <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+            <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+            <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+          </file>
+          <file role="test" name="ExecAntTaskTest.php">
             <tasks:replace from="@package_version@" to="version" type="package-info"/>
             <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
             <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
@@ -1647,6 +1708,7 @@ example project.
     <filelist>
       <install as="phpuc" name="bin/phpuc.php"/>
       <install as="phpuc.bat" name="bin/phpuc.bat"/>
+      <install as="phpUnderControl/VersionControl/GitCheckout.php" name="src/VersionControl/GitCheckout.php"/>
       <install as="phpUnderControl/VersionControl/CheckoutI.php" name="src/VersionControl/CheckoutI.php"/>
       <install as="phpUnderControl/VersionControl/CvsCheckout.php" name="src/VersionControl/CvsCheckout.php"/>
       <install as="phpUnderControl/VersionControl/AbstractCheckout.php" name="src/VersionControl/AbstractCheckout.php"/>
@@ -1670,7 +1732,6 @@ example project.
       <install as="phpUnderControl/Graph/Input/TestCodeRatioInput.php" name="src/Graph/Input/TestCodeRatioInput.php"/>
       <install as="phpUnderControl/Graph/Input/InputIterator.php" name="src/Graph/Input/InputIterator.php"/>
       <install as="phpUnderControl/Graph/Input/BuildBreakdownTimelineInput.php" name="src/Graph/Input/BuildBreakdownTimelineInput.php"/>
-      <install as="phpUnderControl/Graph/Input/ClassComplexityInput.php" name="src/Graph/Input/ClassComplexityInput.php"/>
       <install as="phpUnderControl/Graph/Input/InputI.php" name="src/Graph/Input/InputI.php"/>
       <install as="phpUnderControl/Graph/Input/AbstractInput.php" name="src/Graph/Input/AbstractInput.php"/>
       <install as="phpUnderControl/Graph/Input/InputLoader.php" name="src/Graph/Input/InputLoader.php"/>
@@ -1695,19 +1756,24 @@ example project.
       <install as="phpUnderControl/Tasks/ProjectTask.php" name="src/Tasks/ProjectTask.php"/>
       <install as="phpUnderControl/Tasks/CruiseControlTask.php" name="src/Tasks/CruiseControlTask.php"/>
       <install as="phpUnderControl/Tasks/GenerateGraphTask.php" name="src/Tasks/GenerateGraphTask.php"/>
+      <install as="phpUnderControl/Tasks/FilesetAntTask.php" name="src/Tasks/FilesetAntTask.php"/>
       <install as="phpUnderControl/Tasks/ProjectDeleteTask.php" name="src/Tasks/ProjectDeleteTask.php"/>
       <install as="phpUnderControl/Tasks/TaskI.php" name="src/Tasks/TaskI.php"/>
       <install as="phpUnderControl/Tasks/AbstractPearTask.php" name="src/Tasks/AbstractPearTask.php"/>
+      <install as="phpUnderControl/Tasks/ApplyAntTask.php" name="src/Tasks/ApplyAntTask.php"/>
+      <install as="phpUnderControl/Tasks/AbstractAntTask.php" name="src/Tasks/AbstractAntTask.php"/>
       <install as="phpUnderControl/Tasks/ExampleTask.php" name="src/Tasks/ExampleTask.php"/>
       <install as="phpUnderControl/Tasks/CreateFileTask.php" name="src/Tasks/CreateFileTask.php"/>
       <install as="phpUnderControl/Tasks/ProjectCleanTask.php" name="src/Tasks/ProjectCleanTask.php"/>
       <install as="phpUnderControl/Tasks/GraphTask.php" name="src/Tasks/GraphTask.php"/>
       <install as="phpUnderControl/Tasks/MergePhpunitTask.php" name="src/Tasks/MergePhpunitTask.php"/>
       <install as="phpUnderControl/Tasks/AbstractTask.php" name="src/Tasks/AbstractTask.php"/>
+      <install as="phpUnderControl/Tasks/ExecAntTask.php" name="src/Tasks/ExecAntTask.php"/>
       <install as="phpUnderControl/Tasks/PhpUnitTask.php" name="src/Tasks/PhpUnitTask.php"/>
       <install as="phpUnderControl/Tasks/CodeBrowserTask.php" name="src/Tasks/CodeBrowserTask.php"/>
       <install as="phpUnderControl/Tasks/CheckoutTask.php" name="src/Tasks/CheckoutTask.php"/>
       <install as="phpUnderControl/Tasks/PhpCodeSnifferTask.php" name="src/Tasks/PhpCodeSnifferTask.php"/>
+      <install as="phpUnderControl/Tasks/LintTask.php" name="src/Tasks/LintTask.php"/>
       <install as="phpUnderControl/Tasks/ModifyFileTask.php" name="src/Tasks/ModifyFileTask.php"/>
       <install as="phpUnderControl/Tasks/PhpDocumentorTask.php" name="src/Tasks/PhpDocumentorTask.php"/>
       <install as="phpUnderControl/Exceptions/ErrorException.php" name="src/Exceptions/ErrorException.php"/>
@@ -1738,6 +1804,7 @@ example project.
     <filelist>
       <install as="phpuc" name="bin/phpuc.php"/>
       <ignore name="bin/phpuc.bat"/>
+      <install as="phpUnderControl/VersionControl/GitCheckout.php" name="src/VersionControl/GitCheckout.php"/>
       <install as="phpUnderControl/VersionControl/CheckoutI.php" name="src/VersionControl/CheckoutI.php"/>
       <install as="phpUnderControl/VersionControl/CvsCheckout.php" name="src/VersionControl/CvsCheckout.php"/>
       <install as="phpUnderControl/VersionControl/AbstractCheckout.php" name="src/VersionControl/AbstractCheckout.php"/>
@@ -1761,7 +1828,6 @@ example project.
       <install as="phpUnderControl/Graph/Input/TestCodeRatioInput.php" name="src/Graph/Input/TestCodeRatioInput.php"/>
       <install as="phpUnderControl/Graph/Input/InputIterator.php" name="src/Graph/Input/InputIterator.php"/>
       <install as="phpUnderControl/Graph/Input/BuildBreakdownTimelineInput.php" name="src/Graph/Input/BuildBreakdownTimelineInput.php"/>
-      <install as="phpUnderControl/Graph/Input/ClassComplexityInput.php" name="src/Graph/Input/ClassComplexityInput.php"/>
       <install as="phpUnderControl/Graph/Input/InputI.php" name="src/Graph/Input/InputI.php"/>
       <install as="phpUnderControl/Graph/Input/AbstractInput.php" name="src/Graph/Input/AbstractInput.php"/>
       <install as="phpUnderControl/Graph/Input/InputLoader.php" name="src/Graph/Input/InputLoader.php"/>
@@ -1786,19 +1852,24 @@ example project.
       <install as="phpUnderControl/Tasks/ProjectTask.php" name="src/Tasks/ProjectTask.php"/>
       <install as="phpUnderControl/Tasks/CruiseControlTask.php" name="src/Tasks/CruiseControlTask.php"/>
       <install as="phpUnderControl/Tasks/GenerateGraphTask.php" name="src/Tasks/GenerateGraphTask.php"/>
+      <install as="phpUnderControl/Tasks/FilesetAntTask.php" name="src/Tasks/FilesetAntTask.php"/>
       <install as="phpUnderControl/Tasks/ProjectDeleteTask.php" name="src/Tasks/ProjectDeleteTask.php"/>
       <install as="phpUnderControl/Tasks/TaskI.php" name="src/Tasks/TaskI.php"/>
       <install as="phpUnderControl/Tasks/AbstractPearTask.php" name="src/Tasks/AbstractPearTask.php"/>
+      <install as="phpUnderControl/Tasks/ApplyAntTask.php" name="src/Tasks/ApplyAntTask.php"/>
+      <install as="phpUnderControl/Tasks/AbstractAntTask.php" name="src/Tasks/AbstractAntTask.php"/>
       <install as="phpUnderControl/Tasks/ExampleTask.php" name="src/Tasks/ExampleTask.php"/>
       <install as="phpUnderControl/Tasks/CreateFileTask.php" name="src/Tasks/CreateFileTask.php"/>
       <install as="phpUnderControl/Tasks/ProjectCleanTask.php" name="src/Tasks/ProjectCleanTask.php"/>
       <install as="phpUnderControl/Tasks/GraphTask.php" name="src/Tasks/GraphTask.php"/>
       <install as="phpUnderControl/Tasks/MergePhpunitTask.php" name="src/Tasks/MergePhpunitTask.php"/>
       <install as="phpUnderControl/Tasks/AbstractTask.php" name="src/Tasks/AbstractTask.php"/>
+      <install as="phpUnderControl/Tasks/ExecAntTask.php" name="src/Tasks/ExecAntTask.php"/>
       <install as="phpUnderControl/Tasks/PhpUnitTask.php" name="src/Tasks/PhpUnitTask.php"/>
       <install as="phpUnderControl/Tasks/CodeBrowserTask.php" name="src/Tasks/CodeBrowserTask.php"/>
       <install as="phpUnderControl/Tasks/CheckoutTask.php" name="src/Tasks/CheckoutTask.php"/>
       <install as="phpUnderControl/Tasks/PhpCodeSnifferTask.php" name="src/Tasks/PhpCodeSnifferTask.php"/>
+      <install as="phpUnderControl/Tasks/LintTask.php" name="src/Tasks/LintTask.php"/>
       <install as="phpUnderControl/Tasks/ModifyFileTask.php" name="src/Tasks/ModifyFileTask.php"/>
       <install as="phpUnderControl/Tasks/PhpDocumentorTask.php" name="src/Tasks/PhpDocumentorTask.php"/>
       <install as="phpUnderControl/Exceptions/ErrorException.php" name="src/Exceptions/ErrorException.php"/>
@@ -1826,6 +1897,29 @@ example project.
     </filelist>
   </phprelease>
   <changelog>
+    <release>
+      <lead>
+        <name>Manuel Pichler</name>
+        <user>mp</user>
+        <email>mapi@phpundercontrol.org</email>
+        <active>yes</active>
+      </lead>
+      <date>2009-12-06</date>
+      <version>
+        <release>0.5.0</release>
+        <api>0.2.0</api>
+      </version>
+      <stability>
+        <release>beta</release>
+        <api>beta</api>
+      </stability>
+      <license uri="http://www.opensource.org/licenses/bsd-license.php">BSD License</license>
+      <notes>
+- Mayflower contribution PHP_CodeBrowser integrated into phpUnderControl.
+      </notes>
+    </release>
+
+
     <release>
       <lead>
         <name>Manuel Pichler</name>

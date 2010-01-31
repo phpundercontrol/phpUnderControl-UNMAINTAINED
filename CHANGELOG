@@ -1,3 +1,26 @@
+phpUnderControl 0.5.1
+---------------------
+
+- Now phpUnderControl should work with CruiseControl 2.8.3. Thanks to 
+  Mike van Riel who provided some hints on this issue in a blog comment.
+- Fixed #983: Graph unitests throw fatal error when ezComponents not
+  available. Thanks to Sebastian Marek for this contribution.
+- Fixed #966: phpcs-details.xsl not showing file name.
+- Closed #863: Destination option is now deprecated.
+- Fixed #862: Command line switches without parameter don't work. Thanks
+  to Sebastian Marek for this contribution.
+- Fixed #861: Password is used as username in check outs. This patch was
+  supplied by Thorsten Daners via e-mail.
+- Fixed #734: Now the build dropdown redirects to the correct build uri.
+- Implemented #703: PHPUnit test results are now the first entry on the
+  project.
+- Fixed #700: Throw an exception when the specified project does not exist.
+  overview page.
+- Implemented #675: Use "php -l" for lint checking and not PHPUnit. Thanks
+  to Sebastian Marek for this contribution.
+- Implemented #625: Integrate PHP_Depend results. Thanks to Sebastian Marek
+  for this contribution.
+
 phpUnderControl 0.5.0
 ---------------------
 
