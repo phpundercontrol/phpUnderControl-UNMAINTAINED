@@ -46,6 +46,7 @@
  */
 
 /**
+ * phpUnderControl extension for bar charts.
  *
  * @category  QualityAssurance
  * @package   Graph

@@ -326,18 +326,17 @@ class phpucConfigProject
         
         $this->scheduleElement->setAttribute( 'interval', $this->interval );
         
-        if ( !( $this->anthome == null ) ) 
+        if ( !( $this->anthome == null ) )
         {
             $this->toolElement->setAttribute( 'anthome', $this->anthome );    
         }
                 
-        if (! ( $this->antscript === null ) ) 
+        if (! ( $this->antscript === null ) )
         {
-            $this->toolElement->removeAttribute('anthome');
-            $this->toolElement->setAttribute('antscript', $this->antscript);
+            $this->toolElement->removeAttribute( 'anthome' );
+            $this->toolElement->setAttribute( 'antscript', $this->antscript );
         } 
-        
-        elseif ( !strstr( dirname( $this->configFile->documentURI ), $this->anthome ) ) 
+        elseif ( !strstr( dirname( $this->configFile->documentURI ), $this->anthome ) )
         {
             $schedules = $this->element->getElementsByTagName( 'schedule' );
             $tools     = $schedules->item( 0 )->getElementsByTagName( 'ant' );
@@ -345,11 +344,11 @@ class phpucConfigProject
             $i = $tools->length - 1;
             while ( $i > -1 ) 
             {
-                $antTool = $tools->item($i);
-                $this->_replaceAntTool($antTool);
+                $antTool = $tools->item( $i );
+                $this->replaceAntTool( $antTool );
                 $i--;
-            }                                                                           
-         }        
+            }
+        }
         
         foreach ( $this->publishers as $publisher )
         {
@@ -376,9 +375,9 @@ class phpucConfigProject
      * @param DOMElement $antTool
      * @return void
      */
-    protected function _replaceAntTool(DOMElement $antTool)
+    protected function replaceAntTool( DOMElement $antTool )
     {
-        $execTool = $this->configFile->createElement('exec');
+        $execTool = $this->configFile->createElement( 'exec' );
                 
         $workingDir = dirname( $this->configFile->documentURI ); 
         $execTool->setAttribute( 
@@ -392,7 +391,7 @@ class phpucConfigProject
                   "-buildfile projects/{$this->projectName}/build.xml";
         $execTool->setAttribute( 'args', $argStr );
                 
-        $antTool->parentNode->replaceChild($execTool, $antTool);        
+        $antTool->parentNode->replaceChild( $execTool, $antTool );
     }
     
     /**
@@ -462,7 +461,7 @@ class phpucConfigProject
         
         $tools = $schedules->item( 0 )->getElementsByTagName( 'ant' );
         
-        if ($tools->length > 0) 
+        if ( $tools->length > 0 )
         {
             $this->toolElement     = $tools->item( 0 );
             $anthome  = $this->toolElement->getAttribute( 'anthome' );

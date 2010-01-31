@@ -157,14 +157,14 @@ class phpucConfigBuildTrigger
     public function buildXml()
     {
         $element = $this->project
-                        ->element
-                        ->ownerDocument
-                        ->createElement( $this->triggerType );
+            ->element
+            ->ownerDocument
+            ->createElement( $this->triggerType );
         $element->setAttribute( 'localWorkingCopy', $this->localWorkingCopy );
 
         $bootstrappers = $this->project
-                              ->element
-                              ->getElementsByTagName( 'modificationset' );
+            ->element
+            ->getElementsByTagName( 'modificationset' );
         $bootstrappers->item( 0 )->appendChild( $element );
     }
 }

@@ -159,14 +159,14 @@ class phpucConfigBootStrapper
         $elemName = "{$this->strapperType}bootstrapper";
 
         $element = $this->project
-                        ->element
-                        ->ownerDocument
-                        ->createElement( $elemName );
+            ->element
+            ->ownerDocument
+            ->createElement( $elemName );
         $element->setAttribute( 'localWorkingCopy', $this->localWorkingCopy );
 
         $bootstrappers = $this->project
-                              ->element
-                              ->getElementsByTagName( 'bootstrappers' );
+            ->element
+            ->getElementsByTagName( 'bootstrappers' );
         $bootstrappers->item( 0 )->appendChild( $element );
     }
 }

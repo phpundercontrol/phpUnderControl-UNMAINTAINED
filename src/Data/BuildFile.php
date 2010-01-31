@@ -99,8 +99,8 @@ class phpucBuildFile extends DOMDocument
         if ( file_exists( $fileName ) )
         {
             $this->load( $fileName );
-            $this->properties['projectName'] =
-                $this->documentElement->getAttribute( 'name' );
+            $this->properties['projectName'] 
+                = $this->documentElement->getAttribute( 'name' );
         }
         else
         {
@@ -190,10 +190,11 @@ class phpucBuildFile extends DOMDocument
         $xpath = new DOMXPath( $this );
         foreach ( $this->targets as $target )
         {
-            if ( count($target->depends) > 0 ) {
-
-                $elem = $xpath->query( "/project/target[@name=\"{$target->targetName}\"]" )->item( 0 );
-                $elem->setAttribute( 'depends', implode(',', $target->depends) );
+            if ( count( $target->depends ) > 0 )
+            {
+                $expr = "/project/target[@name='{$target->targetName}']";
+                $elem = $xpath->query( $expr )->item( 0 );
+                $elem->setAttribute( 'depends', implode( ',', $target->depends ) );
             }
         }
         unset($xpath);

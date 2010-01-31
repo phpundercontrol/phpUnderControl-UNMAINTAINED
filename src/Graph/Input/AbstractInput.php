@@ -162,13 +162,15 @@ abstract class phpucAbstractInput implements phpucInputI
         $this->title    = $title;
         $this->fileName = $fileName;
 
-        if ( !in_array( $type, array(
+        $expected = array(
             phpucChartI::TYPE_PIE,
             phpucChartI::TYPE_LINE,
             phpucChartI::TYPE_DOT,
             phpucChartI::TYPE_TIME,
             phpucChartI::TYPE_BAR
-        ) ) )
+        );
+
+        if ( !in_array( $type, $expected ) )
         {
             throw new InvalidArgumentException( 'Invalid input type given.' );
         }

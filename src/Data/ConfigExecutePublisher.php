@@ -83,8 +83,8 @@ class phpucConfigExecutePublisher implements phpucConfigPublisherI
     {
         $this->properties['project'] = $project;
         $this->properties['element'] = $project->element
-                                               ->ownerDocument
-                                               ->createElement( 'execute' );
+            ->ownerDocument
+            ->createElement( 'execute' );
                                                
         $publishers = $project->element->getElementsByTagName( 'publishers' );
         $publishers->item( 0 )->appendChild( $this->element );

@@ -139,14 +139,14 @@ class phpucBuildTarget
      *
      * @return void
      */
-    public function dependOn($targetName)
+    public function dependOn( $targetName )
     {
         $xpath = new DOMXPath( $this->buildFile );
-        if ( $xpath->query( "/project/target[@name=\"$targetName\"]" )->length > 0 ) {
-
+        if ( $xpath->query( "/project/target[@name=\"$targetName\"]" )->length > 0 )
+        {
             $this->depends = $targetName;
         }
-        unset($xpath);
+        unset( $xpath );
     }
 
     /**
@@ -159,9 +159,9 @@ class phpucBuildTarget
         $target = $this->buildFile->createElement( 'target' );
         $target->setAttribute( 'name', $this->targetName );
 
-        foreach ( $this->tasks as $task) {
-
-            $task->buildXml($target);
+        foreach ( $this->tasks as $task)
+        {
+            $task->buildXml( $target );
         }
 
         $this->buildFile->documentElement->appendChild( $target );
