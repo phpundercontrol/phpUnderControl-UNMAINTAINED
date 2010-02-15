@@ -1,3 +1,8 @@
+phpUnderControl 0.5.2
+---------------------
+
+- Fixed #771: Invalid character in CodeSniffer output.
+
 phpUnderControl 0.5.1
 ---------------------
 
