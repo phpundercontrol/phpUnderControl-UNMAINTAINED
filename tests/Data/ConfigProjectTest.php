@@ -33,7 +33,7 @@
  * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
- * 
+ *
  * @package   Data
  * @author    Manuel Pichler <mapi@phpundercontrol.org>
  * @copyright 2007-2010 Manuel Pichler. All rights reserved.
@@ -63,7 +63,7 @@ class phpucConfigProjectTest extends phpucAbstractConfigTest
      * @var phpucConfigFile $config
      */
     protected $config = null;
-    
+
     /**
      * Creates a new/clean {@link phpucConfigFile} instance.
      *
@@ -72,12 +72,12 @@ class phpucConfigProjectTest extends phpucAbstractConfigTest
     protected function setUp()
     {
         parent::setUp();
-        
+
         $this->createTestFile( '/config.xml', $this->testXml );
-        
+
         $this->config = new phpucConfigFile( $this->testFile );
     }
-    
+
     /**
      * Tests the {@link phpucConfigProject} ctor and tests the magic properties.
      *
@@ -86,12 +86,12 @@ class phpucConfigProjectTest extends phpucAbstractConfigTest
     public function testNewConfigProjectInstance()
     {
         $project = new phpucConfigProject( $this->config, 'phpUnderControl' );
-        
+
         $this->assertTrue( $project->isNew() );
         $this->assertSame( $this->config, $project->configFile );
         $this->assertEquals( 'phpUnderControl', $project->projectName );
     }
-    
+
     /**
      * Test that {@link phpucConfigProject#delete()} removes the context project
      * from the config.xml file.
@@ -104,24 +104,24 @@ class phpucConfigProjectTest extends phpucAbstractConfigTest
         new phpucConfigProject( $this->config, 'phpUnderControl0' );
         new phpucConfigProject( $this->config, 'phpUnderControl1' );
         $this->config->store();
-        
+
         $dom = new DOMDocument();
         $dom->load( $this->testFile );
         $this->assertEquals( 2, $dom->getElementsByTagName( 'project' )->length );
-        
+
         // Load project again
         $config  = new phpucConfigFile( $this->testFile );
         $project = $config->getProject( 'phpUnderControl0' );
-        
+
         // Remove project and save again
         $project->delete();
         $config->store();
-        
+
         $dom = new DOMDocument();
         $dom->load( $this->testFile );
         $this->assertEquals( 1, $dom->getElementsByTagName( 'project' )->length );
     }
-    
+
     /**
      * Tests that the magic __get() method fails with an exception for an unknown
      * property.
@@ -134,11 +134,11 @@ class phpucConfigProjectTest extends phpucAbstractConfigTest
             'OutOfRangeException',
             'Unknown or writonly property $phpuc.'
         );
-        
+
         $project = new phpucConfigProject( $this->config, 'phpUnderControl' );
         echo $project->phpuc;
     }
-    
+
     /**
      * Tests that the magic setter method for the $interval property fails with
      * an exception for a non integer.
@@ -151,11 +151,11 @@ class phpucConfigProjectTest extends phpucAbstractConfigTest
             'InvalidArgumentException',
             'Property $interval must be a positive integer.'
         );
-        
+
         $project = new phpucConfigProject( $this->config, 'phpUnderControl' );
         $project->interval = false;
     }
-    
+
     /**
      * Tests that the magic setter method for the $interval property fails with
      * an exception for a negative integer.
@@ -168,11 +168,11 @@ class phpucConfigProjectTest extends phpucAbstractConfigTest
             'InvalidArgumentException',
             'Property $interval must be a positive integer.'
         );
-        
+
         $project = new phpucConfigProject( $this->config, 'phpUnderControl' );
         $project->interval = -1;
     }
-    
+
     /**
      * Tests that the magic __set() method fails with an exception for an unknown
      * property.
@@ -185,20 +185,20 @@ class phpucConfigProjectTest extends phpucAbstractConfigTest
             'OutOfRangeException',
             'Unknown or readonly property $phpuc.'
         );
-        
+
         $project = new phpucConfigProject( $this->config, 'phpUnderControl' );
         $project->phpuc = true;
     }
-    
+
     /**
-     * Tests that the config project fails with an exception if there is more 
+     * Tests that the config project fails with an exception if there is more
      * than one project with the same name.
      *
      * @return void
      */
     public function testProjectCtorWithTwoEqualProjectsFail()
     {
-        $this->createTestFile( 
+        $this->createTestFile(
             '/config.xml',
             '<?xml version="1.0"?>
              <cruisecontrol>
@@ -206,18 +206,18 @@ class phpucConfigProjectTest extends phpucAbstractConfigTest
                <project name="phpUnderControl" />
              </cruisecontrol>'
         );
-        
+
         $this->setExpectedException(
             'phpucErrorException',
             "There is more than one project named 'phpUnderControl'."
         );
-        
+
         $config = new phpucConfigFile( $this->testFile );
         new phpucConfigProject( $config, 'phpUnderControl' );
-        
+
         $this->config = new phpucConfigFile( $this->testFile );
     }
-    
+
     /**
      * Test that the antscript attribute is set for custom ant launcer.
      */
@@ -226,18 +226,18 @@ class phpucConfigProjectTest extends phpucAbstractConfigTest
         $project = new phpucConfigProject( $this->config, 'phpUnderControl' );
         $project->anthome = '/foo';
         $project->antscript = '/foo/bar/bazscript.sh';
-        
+
         $project->buildXml();
         $element = $project->element;
         $schedule = $element->getElementsByTagName( 'schedule' );
         $builders = $schedule->item( 0 )->getElementsByTagName( 'ant' );
         $ant = $builders->item( 0 );
-        
+
         $this->assertTrue($ant->hasAttribute('antscript'));
         $this->assertEquals('/foo/bar/bazscript.sh', $ant->getAttribute('antscript'));
         $this->assertFalse($ant->hasAttribute('anthome'));
     }
-    
+
     public function testNonBundledAntReplacesAntWorkerWithExecTask()
     {
         $project = new phpucConfigProject( $this->config, 'phpUnderControl' );
@@ -248,19 +248,58 @@ class phpucConfigProjectTest extends phpucAbstractConfigTest
         $schedule = $element->getElementsByTagName( 'schedule' );
         $builders = $schedule->item( 0 )->getElementsByTagName( 'exec' );
         $exec = $builders->item( 0 );
-        
+
         $this->assertTrue($exec->hasAttribute('workingdir'));
         $this->assertEquals(PHPUC_TEST_DIR, $exec->getAttribute('workingdir'));
-        
+
         $this->assertTrue($exec->hasAttribute('command'));
         $this->assertEquals('/usr/bin/ant', $exec->getAttribute('command'));
-        
+
         $this->assertTrue($exec->hasAttribute('args'));
         $dir = PHPUC_TEST_DIR . '/';
         $argStr = "-logger org.apache.tools.ant.XmlLogger " .
                   "-logfile {$dir}log.xml " .
                   "-buildfile projects/phpUnderControl/build.xml";
         $this->assertEquals($argStr, $exec->getAttribute('args'));
-        
+    }
+
+    /**
+     * Everytime {@link phpucConfigFile} created make sure it fetches
+     * custom path to antscript and sets it up
+     *
+     * @covers phpucConfigProject::init
+     *
+     * @return void
+     */
+    public function testInitAlwaysPopulatesCustomAntScriptWhenSet()
+    {
+        $antScript = '/foo/bar/bazscript.sh';
+
+        $this->createTestFile(
+            '/config.xml',
+            "<?xml version=\"1.0\"?>
+             <cruisecontrol>
+               <project name=\"phpUnderControl\">
+                 <schedule interval=\"300\">
+                   <ant buildfile=\"projects/TestProject/build.xml\" antscript=\"$antScript\"/>
+                 </schedule>
+               </project>
+             </cruisecontrol>"
+        );
+
+        $config = new phpucConfigFile( $this->testFile );
+        $project = new phpucConfigProject( $config, 'phpUnderControl' );
+
+        $element = $project->element;
+        $schedule = $element->getElementsByTagName( 'schedule' );
+        $builders = $schedule->item( 0 )->getElementsByTagName( 'ant' );
+        $ant = $builders->item( 0 );
+
+        $this->assertTrue($ant->hasAttribute('antscript'));
+        $this->assertEquals($antScript, $ant->getAttribute('antscript'));
+
+        $project = new phpucConfigProject( $config, 'phpUnderControl' );
+
+        $this->assertEquals($antScript, $project->antscript);
     }
 }
