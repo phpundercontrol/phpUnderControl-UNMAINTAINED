@@ -171,7 +171,7 @@ class phpucGenerateGraphTask extends phpucAbstractTask implements phpucConsoleEx
                     }
                     else
                     {
-                        $chart->render( 390, 250, $fileName );
+                        $chart->render( $input->graphDims['width'], $input->graphDims['height'], $fileName );
                     }
                 }
             }

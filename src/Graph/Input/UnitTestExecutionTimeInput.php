@@ -67,7 +67,7 @@ class phpucUnitTestExecutionTimeInput extends phpucAbstractInput
     {
         parent::__construct(
             'Test Execution Time', 
-            '07-test-execution-time', 
+            '08-test-execution-time', 
             phpucChartI::TYPE_TIME
         );
         

@@ -68,8 +68,8 @@
     <table class="result" align="center">
       <colgroup>
         <col width="5%"></col>
-        <col width="5%"></col>
-        <col width="85%"></col>
+        <col width="10%" style="padding-right:5px;"></col>
+        <col width="80%"></col>
         <col width="5%"></col>
       </colgroup>
       <xsl:for-each select="file[violation]">
@@ -77,51 +77,6 @@
         <xsl:apply-templates select="."/>
       </xsl:for-each>
     </table>
-
-    <xsl:apply-templates select="//pmd-cpd/duplication" />
-  </xsl:template>
-
-  <xsl:template match="duplication">
-    <table class="result" align="center">
-      <colgroup>
-        <col width="5%"/>
-        <col width="5%"/>
-        <col width="85%"/>
-        <col width="5%"/>
-      </colgroup>
-      <thead>
-        <tr><td colspan="4"><br/></td></tr>
-        <tr>
-          <th colspan="4">Duplication
-          (Files: <xsl:value-of select="count(file)" />,
-           Lines: <xsl:value-of select="@lines" />,
-           Tokens: <xsl:value-of select="@tokens" />)</th>
-        </tr>
-      </thead>
-      <tbody>
-        <xsl:for-each select="file">
-          <tr>
-            <xsl:if test="position() mod 2 = 0">
-              <xsl:attribute name="class">oddrow</xsl:attribute>
-            </xsl:if>
-            <td></td>
-            <td align="right" class="warning"><xsl:value-of select="@line" /></td>
-            <td><xsl:value-of select="@path" /></td>
-            <td></td>
-          </tr>
-        </xsl:for-each>
-        <tr>
-          <td colspan="1"> </td>
-          <td colspan="3">
-            <textarea name="code" class="php">
-              <xsl:text>    </xsl:text>
-              <xsl:value-of select="codefragment/text()" />
-            </textarea>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-
   </xsl:template>
 
   <xsl:template match="file">
@@ -156,7 +111,8 @@
           <td class="{$style}" align="right">
             <xsl:call-template name="viewcvs">
               <xsl:with-param name="file" select="$filename"/>
-              <xsl:with-param name="line" select="@line"/>
+              <xsl:with-param name="beginline" select="@beginline"/>
+              <xsl:with-param name="endline" select="@endline"/>
             </xsl:call-template>
           </td>
           <td>
@@ -172,10 +128,14 @@
 
     <xsl:template name="viewcvs">
       <xsl:param name="file"/>
-      <xsl:param name="line"/>
+      <xsl:param name="beginline"/>
+      <xsl:param name="endline"/>
       <xsl:choose>
         <xsl:when test="not($viewcvs.url)">
-          <xsl:value-of select="$line"/>
+            <xsl:call-template name="lines">
+              <xsl:with-param name="beginline" select="$beginline"/>
+              <xsl:with-param name="endline" select="$endline"/>
+            </xsl:call-template>
         </xsl:when>
         <xsl:otherwise>
           <a>
@@ -183,12 +143,28 @@
               <xsl:value-of select="concat($viewcvs.url, $cvsmodule)"/>
               <xsl:value-of select="substring-after($file, $cvsmodule)"/>
               <xsl:text>?annotate=HEAD#</xsl:text>
-              <xsl:value-of select="$line"/>
+              <xsl:value-of select="$beginline"/>
             </xsl:attribute>
-            <xsl:value-of select="$line"/>
+            <xsl:call-template name="lines">
+              <xsl:with-param name="beginline" select="$beginline"/>
+              <xsl:with-param name="endline" select="$endline"/>
+            </xsl:call-template>
           </a>
         </xsl:otherwise>
       </xsl:choose>
     </xsl:template>
 
+    <xsl:template name="lines">
+      <xsl:param name="beginline"/>
+      <xsl:param name="endline"/>
+      <xsl:choose>
+        <xsl:when test="$beginline = $endline">
+          <xsl:value-of select="$beginline"/> 
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:value-of select="$beginline"/> - <xsl:value-of select="$endline"/>
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:template>
+    
 </xsl:stylesheet>

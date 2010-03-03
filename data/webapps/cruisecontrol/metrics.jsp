@@ -39,17 +39,7 @@
 <%@ page import="java.io.FilenameFilter" %>
 <%@ page import="java.util.Arrays" %>
 
-<h2>Project Metric Summary</h2>
 <cruisecontrol:buildInfo />
-<dl>
-  <dt>Number of Build Attempts</dt>  
-  <dd><%=build_info.size() %></dd>
-  <dt>Number of Broken Builds</dt>
-  <dd><%=build_info.getNumBrokenBuilds() %></dd>
-  <dt>Number of Successful Builds</dt>
-  <dd><%=build_info.getNumSuccessfulBuilds() %></dd>
-</dl>
-<hr />
 <% 
 File   graphDir = null;
 String graphUrl = null;

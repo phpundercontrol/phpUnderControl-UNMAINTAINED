@@ -89,6 +89,7 @@
  * @property-read array(string=>mixed) $data       The extracted log file data.
  * @property-read string               $yAxisLabel An optional label for the y-axis.
  * @property-read string               $xAxisLabel An optional label for the x-axis.
+ * @property-read array(string=>int)   $graphDims  The Graph-Dimensions
  */
 abstract class phpucAbstractInput implements phpucInputI
 {
@@ -115,6 +116,14 @@ abstract class phpucAbstractInput implements phpucInputI
      * @var string $xAxisLabel
      */
     protected $xAxisLabel = '';
+
+    /**
+     * Dimensions of Graph to export
+     *
+     * @type array<mixed>
+     * @var array(string=>int) $graphDims
+     */
+    protected $graphDims = array();
 
     /**
      * The output image file name.
@@ -147,7 +156,7 @@ abstract class phpucAbstractInput implements phpucInputI
      * @var array(phpucInputRule) $rules
      */
     private $rules = array();
-
+    
     /**
      * Constructs a new input type implementation.
      *
@@ -161,6 +170,8 @@ abstract class phpucAbstractInput implements phpucInputI
     {
         $this->title    = $title;
         $this->fileName = $fileName;
+        $this->graphDims= array('width'  => 390,
+                                'height' => 250,);
 
         $expected = array(
             phpucChartI::TYPE_PIE,
@@ -197,6 +208,7 @@ abstract class phpucAbstractInput implements phpucInputI
             case 'fileName':
             case 'yAxisLabel':
             case 'xAxisLabel':
+            case 'graphDims':
                 return $this->$name;
 
             case 'data':
@@ -264,7 +276,7 @@ abstract class phpucAbstractInput implements phpucInputI
                     break;
 
                 case self::MODE_LIST:
-                    $this->data[$label] = $this->processLogList( $nodeList );
+                    $this->data[$label][] = implode(';', $this->processLogList( $nodeList ));
                     break;
             }
         }

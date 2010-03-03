@@ -11,6 +11,17 @@ Event.observe( window, "load", function() {
         } );
     } );
 
+    $$( 'iframe.chart' ).each( function(el) {
+        var d = el.contentWindow.document.getElementById('ezcGraph');
+        if(d != null) {
+            el.setStyle( {
+                'height':  d.getAttribute('height') + 'px',
+                'width':  d.getAttribute('width') + 'px',
+            } );
+        }
+        delete d;
+    } );
+    
     if ( $( 'dashboard' ) ) {
         new Ajax.PeriodicalUpdater(
             'dashboard',
