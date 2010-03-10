@@ -38,7 +38,7 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
   <xsl:output method="html"/>
   
-  <xsl:key name="rules" match="//file/violation" use="@rule" />
+  <xsl:key name="rules" match="/cruisecontrol/pmd/file/violation" use="@rule" />
 
   <xsl:template match="pmd" mode="rule-summary">
     <p/>
@@ -80,9 +80,9 @@
             <td align="right"><xsl:value-of select="$errorCount"/></td>
           </tr>
         </xsl:for-each>
-        <xsl:if test="count(//pmd-cpd/duplication) &gt; 0">
-          <xsl:variable name="duplication.count" select="count(//pmd-cpd/duplication)" />
-          <xsl:variable name="duplication.file.count" select="count(//pmd-cpd/duplication/file)" />
+        <xsl:if test="count(/cruisecontrol/pmd-cpd/duplication) &gt; 0">
+          <xsl:variable name="duplication.count" select="count(/cruisecontrol/pmd-cpd/duplication)" />
+          <xsl:variable name="duplication.file.count" select="count(/cruisecontrol/pmd-cpd/duplication/file)" />
           <tr>
             <xsl:if test="count(file/violation[generate-id() = generate-id(key('rules', @rule)[1])]) mod 2 != 1">
               <xsl:attribute name="class">oddrow</xsl:attribute>
@@ -97,8 +97,8 @@
       <tfoot>
         <tr>
           <td colspan="2"></td>
-          <td align="right"><xsl:value-of select="count(file[violation]) + count(//pmd-cpd/duplication/file[@path != //pmd/file[violation]/@name])"/></td>
-          <td align="right"><xsl:value-of select="count(file/violation) + count(//pmd-cpd/duplication)"/></td>
+          <td align="right"><xsl:value-of select="count(file[violation]) + count(/cruisecontrol/pmd-cpd/duplication/file[@path != /cruisecontrol/pmd/file[violation]/@name])"/></td>
+          <td align="right"><xsl:value-of select="count(file/violation) + count(/cruisecontrol/pmd-cpd/duplication)"/></td>
         </tr>
       </tfoot>
     </table>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="diffs" default="run">
+     <path id="build.classpath">
+         <pathelement path="${env.CLASSPATH}"/>
+         <pathelement location="/opt/cruisecontrol/apache-ant-1.7.0/lib/xmltask.jar"/>
+    </path> 
+    <taskdef name="xmltask" classname="com.oopsconsultancy.xmltask.ant.XmlTask" classpathref="build.classpath" />
+
+    <target name="run">
+        <exec executable="mkdir">
+            <arg line="${logdir}/${cctimestamp}/diff"/>
+        </exec>
+        <xmltask source="${logdir}/${logfile}">
+            <call path="/cruisecontrol/modifications/modification">
+                <param name="file" path="file/filename/text()"/> 
+                <param name="rev" path="file/revision/text()"/> 
+                <actions>
+                    <exec executable="mkdir">
+                        <arg line="-p ${logdir}/${cctimestamp}/diff@{file}"/>
+                    </exec>
+                    <exec executable="svn" output="${logdir}/${cctimestamp}/diff@{file}.diff">
+                        <arg line="diff -c@{rev} ${svn}@{file}"/>
+                    </exec>
+                    <exec executable="pygmentize">
+                        <arg line="-f html -l diff -O full,style=trac -o ${logdir}/${cctimestamp}/diff@{file}.html 
+                            ${logdir}/${cctimestamp}/diff@{file}.diff"/>
+                    </exec>
+                    <exec executable="rmdir">
+                        <arg line="${logdir}/${cctimestamp}/diff@{file}"/>
+                    </exec>
+                </actions>
+            </call>
+        </xmltask>
+    </target>
+</project>

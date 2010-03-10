@@ -287,7 +287,10 @@
                     -->
                     <xsl:value-of select="'/'"/>
                 </xsl:if>
-                <xsl:value-of select="file/filename"/>
+
+                <a href="?tab=changeset#{file/filename}">
+                    <xsl:value-of select="file/filename"/>
+                </a>
             </td>
             <xsl:if test="position()=1 or (not(revision=following::revision) and following::revision>0) ">
                 <td class="modifications-data">
@@ -540,14 +543,14 @@
                 </xsl:analyze-string>
             </xsl:when>
             <xsl:when test="contains(upper-case($text), 'BUG')">
-                <xsl:analyze-string select="upper-case($text)" regex="BUG\s?(\d+)">
+                <xsl:analyze-string select="$text" regex="BUG\s?(\d+)" flags="i">
                     <xsl:matching-substring>
                         <a target="_blank" href="http://bugzilla.unister-gmbh.de/show_bug.cgi?id={regex-group(1)}">
                             Bug <xsl:value-of select="regex-group(1)" />
                         </a>
                     </xsl:matching-substring>
                     <xsl:non-matching-substring>
-                        <xsl:value-of select="$text" />
+                        <xsl:value-of select="." />
                     </xsl:non-matching-substring>
                 </xsl:analyze-string>
             </xsl:when>

@@ -38,12 +38,11 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
   <xsl:output method="html"/>
   
-  <xsl:variable name="project.name" select="/cruisecontrol/info/property[@name='projectname']/@value" />
+  <xsl:key name="sources" match="/cruisecontrol/checkstyle/file/error" use="@source" />
 
-  <xsl:template name="phpcs-summary">
-  
+  <xsl:template match="checkstyle" mode="phpcs-summary">
     <p/>
-    <table class="result">
+    <table class="result" align="center">
       <colgroup>
         <col width="1%"></col>
         <col width="85%"></col>
@@ -54,58 +53,35 @@
         <tr>
           <th colspan="2">PHP CodeSniffer violation</th>
           <th>Files</th>
-          <th>Errors / Warnings</th>
+          <th>Errors</th>
         </tr>
       </thead>
       <tbody>
-        <xsl:for-each select="/cruisecontrol/checkstyle/file[error]">
-          <xsl:sort select="@name" />
-          <xsl:variable name="errors" select="/cruisecontrol/checkstyle/file[@name=current()/@name]/error"/>
-          <xsl:variable name="errorCount" select="count($errors[@severity='error'])"/>
-          <xsl:variable name="warningCount" select="count($errors[@severity='warning'])"/>
-          <xsl:variable name="fileCount" select="count($errors/..)"/>
+        <xsl:for-each select="file/error[generate-id() = generate-id(key('sources', @source)[1])]">
+          <xsl:sort data-type="number" order="descending" select="count(key('sources', @source))"/>
+          <xsl:variable name="errorCount" select="count(key('sources', @source))"/>
+          <xsl:variable name="fileCount" select="count(../../file[error/@source=current()/@source])"/>
           <tr>
             <xsl:if test="position() mod 2 = 1">
               <xsl:attribute name="class">oddrow</xsl:attribute>
             </xsl:if>
-            <td colspan="2">
-              <xsl:attribute name="class">
-                <xsl:choose>
-                  <xsl:when test="$errorCount &gt; 0">
-                    <xsl:text>error</xsl:text>
-                  </xsl:when>
-                  <xsl:otherwise>
-                    <xsl:text>warning</xsl:text>
-                  </xsl:otherwise>
-                </xsl:choose>
-              </xsl:attribute>
-              <a class="stealth" href="?tab=phpcs#a{position()}">
-                <xsl:value-of select="@name"/>
-              </a>
+            <td></td>
+            <td>              
+                <xsl:value-of select="@source"/>
             </td>
             <td align="right"><xsl:value-of select="$fileCount"/></td>
-            <td align="right">
-              <xsl:value-of select="$errorCount"/>
-              /
-              <xsl:value-of select="$warningCount"/>
-            </td>
+            <td align="right"><xsl:value-of select="$errorCount"/></td>
           </tr>
         </xsl:for-each>
       </tbody>
       <tfoot>
         <tr>
           <td colspan="2"></td>
-          <td align="right" >
-            <xsl:value-of select="count(/cruisecontrol/checkstyle/file[error])"/>
-          </td>
-          <td align="right">
-            <xsl:value-of select="count(/cruisecontrol/checkstyle/file/error[@severity='error'])"/>
-            /
-            <xsl:value-of select="count(/cruisecontrol/checkstyle/file/error[@severity='warning'])"/>
-          </td>
+          <td align="right"><xsl:value-of select="count(file[error])"/></td>
+          <td align="right"><xsl:value-of select="count(file/error)"/></td>
         </tr>
       </tfoot>
     </table>
   </xsl:template>
-  
+
 </xsl:stylesheet>

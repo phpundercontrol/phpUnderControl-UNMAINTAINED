@@ -146,6 +146,11 @@
             <cruisecontrol:tab name="cpd" label="PHPUnit CPD">
               <%@ include file="phpunit-cpd.jsp" %>
             </cruisecontrol:tab>
+            
+            <%-- phpUnderControl 10 --%>
+            <cruisecontrol:tab name="changeset" label="Changeset">
+              <%@ include file="changeset.jsp" %>
+            </cruisecontrol:tab>
           </td>
         </tr>
       </cruisecontrol:tabsheet>

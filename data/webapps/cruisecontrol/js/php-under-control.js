@@ -22,6 +22,20 @@ Event.observe( window, "load", function() {
         delete d;
     } );
     
+    $$( 'iframe.diff' ).each( function(el) {
+        var d = el.contentWindow.document.body.scrollHeight;
+        if(d != null && d > 20) {
+            el.setStyle( {
+                'height':  (d + 50) + 'px',
+            } );
+        }
+        else {
+            el.hide();
+            el.previous('p').hide();
+        }
+        delete d;
+    } );
+    
     if ( $( 'dashboard' ) ) {
         new Ajax.PeriodicalUpdater(
             'dashboard',
