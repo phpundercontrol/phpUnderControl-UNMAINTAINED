@@ -41,6 +41,9 @@
     <xsl:output method="html"/>
     <xsl:variable name="modification.list" select="cruisecontrol/modifications/modification"/>
     <xsl:variable name="urlroot" select='"/cruisecontrol/buildresults/"'/>
+    <xsl:variable name="currentlog"
+            select="substring(cruisecontrol/info/property[@name='logfile']/@value, 0, string-length(cruisecontrol/info/property[@name='logfile']/@value) - 3)" />
+    
     <xsl:key name="revkeys" match="cruisecontrol/modifications/modification" use="revision" />
 
     <xsl:template match="/" mode="modifications">
@@ -288,7 +291,7 @@
                     <xsl:value-of select="'/'"/>
                 </xsl:if>
 
-                <a href="?tab=changeset#{file/filename}">
+                <a href="?log={$currentlog}&amp;tab=changeset#{file/filename}.r{revision}">
                     <xsl:value-of select="file/filename"/>
                 </a>
             </td>

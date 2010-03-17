@@ -39,7 +39,9 @@
     <xsl:output method="html"/>
   
     <xsl:variable name="project.name" select="/cruisecontrol/info/property[@name='projectname']/@value" />
-
+    <xsl:variable name="currentlog"
+            select="substring(cruisecontrol/info/property[@name='logfile']/@value, 0, string-length(cruisecontrol/info/property[@name='logfile']/@value) - 3)" />
+    
     <xsl:template match="checkstyle" mode="phpcs-list">
         <p/>
         <table class="result">
@@ -75,7 +77,7 @@
                       </xsl:otherwise>
                     </xsl:choose>
                   </xsl:attribute>
-                  <a class="stealth" href="?tab=phpcs#a{position()}">
+                  <a class="stealth" href="?log={$currentlog}&amp;tab=phpcs#a{position()}">
                     <xsl:value-of select="@name"/>
                   </a>
                 </td>
