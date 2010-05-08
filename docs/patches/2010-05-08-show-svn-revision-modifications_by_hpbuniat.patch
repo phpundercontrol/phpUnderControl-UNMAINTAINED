@@ -1,0 +1,136 @@
+diff --git a/data/webapps/cruisecontrol/xsl/modifications.xsl b/data/webapps/cruisecontrol/xsl/modifications.xsl
+index bce6bf5..37809a8 100644
+--- a/data/webapps/cruisecontrol/xsl/modifications.xsl
++++ b/data/webapps/cruisecontrol/xsl/modifications.xsl
+@@ -41,7 +41,7 @@
+     <xsl:output method="html"/>
+     <xsl:variable name="modification.list" select="cruisecontrol/modifications/modification"/>
+     <xsl:variable name="urlroot" select='"/cruisecontrol/buildresults/"'/>
+-
++    <xsl:key name="revkeys" match="cruisecontrol/modifications/modification" use="revision" />
+ 
+     <xsl:template match="/" mode="modifications">
+         <table class="result" align="center">
+@@ -50,13 +50,14 @@
+             <tr>
+                 <th class="modifications-sectionheader" colspan="6">
+                     &#160;Modifications since last successful build:&#160;
+-                    (<xsl:value-of select="count($modification.list)"/>)
++                    <xsl:value-of select="count($modification.list)"/> Files in <xsl:value-of select="count(distinct-values(cruisecontrol/modifications/modification/revision))"/> Commits
+                 </th>
+             </tr>
+           </thead>
+           <tbody>
+             <xsl:apply-templates select="$modification.list" mode="modifications">
+                 <xsl:sort select="date" order="descending" data-type="text" />
++                <xsl:sort select="following::revision" order="descending" data-type="text" />
+             </xsl:apply-templates>
+           </tbody>
+         </table>
+@@ -263,14 +264,22 @@
+             <xsl:if test="position() mod 2 = 1">
+                 <xsl:attribute name="class">oddrow</xsl:attribute>
+             </xsl:if>
++            
++            <xsl:if test="position()=1 or (not(revision=following::revision) and following::revision>0) ">
++                <td class="modifications-data">
++                    <xsl:attribute name="rowspan"><xsl:value-of select="count(key('revkeys', revision))"/></xsl:attribute>
++                    <xsl:value-of select="date"/> <br/> Revision: <xsl:value-of select="revision"/>
++                </td>
++                <td class="modifications-data">
++                    <xsl:attribute name="rowspan"><xsl:value-of select="count(key('revkeys', revision))"/></xsl:attribute>
++                    <xsl:value-of select="user"/>
++                </td>
++            </xsl:if>
+ 
+             <td class="modifications-data">
+                 <xsl:value-of select="file/@action"/>
+             </td>
+             <td class="modifications-data">
+-                <xsl:value-of select="user"/>
+-            </td>
+-            <td class="modifications-data">
+                 <xsl:if test="file/project">
+                     <xsl:value-of select="file/project"/>
+                     <!-- the following doesn't work with JDK 1.5.0, so it's disabled by default:
+@@ -280,19 +289,23 @@
+                 </xsl:if>
+                 <xsl:value-of select="file/filename"/>
+             </td>
+-            <td class="modifications-data">
+-                <xsl:value-of select="date"/>
+-            </td>
+-            <td class="modifications-data">
+-                <xsl:variable name="convertedComment">
+-                    <xsl:call-template name="newlineToHTML">
+-                        <xsl:with-param name="line">
+-                            <xsl:value-of select="comment"/>
+-                        </xsl:with-param>
+-                    </xsl:call-template>
+-                </xsl:variable>
+-                <xsl:copy-of select="$convertedComment"/>
+-            </td>
++            <xsl:if test="position()=1 or (not(revision=following::revision) and following::revision>0) ">
++                <td class="modifications-data">
++                    <xsl:attribute name="rowspan"><xsl:value-of select="count(key('revkeys', revision))"/></xsl:attribute>
++                    <xsl:variable name="convertedComment">
++                        <xsl:call-template name="hyperlink">
++                            <xsl:with-param name="comment">
++                                <xsl:call-template name="newlineToHTML">
++                                    <xsl:with-param name="line">
++                                        <xsl:value-of select="comment"/>
++                                    </xsl:with-param>
++                                </xsl:call-template>
++                            </xsl:with-param>
++                        </xsl:call-template>
++                    </xsl:variable>
++                    <xsl:copy-of select="$convertedComment"/>
++                </td>
++            </xsl:if>
+         </tr>
+     </xsl:template>
+ 
+@@ -369,11 +382,11 @@
+             </td>
+             <td class="modifications-data">
+                 <xsl:variable name="convertedComment">
+-                    <xsl:call-template name="newlineToHTML">
+-                        <xsl:with-param name="line">
+-                            <xsl:value-of select="comment"/>
+-                        </xsl:with-param>
+-                    </xsl:call-template>
++                            <xsl:call-template name="newlineToHTML">
++                                <xsl:with-param name="line">
++                                    <xsl:value-of select="comment"/>
++                                </xsl:with-param>
++                            </xsl:call-template>
+                 </xsl:variable>
+                 <xsl:copy-of select="$convertedComment"/>
+             </td>
+@@ -506,4 +519,26 @@
+             </xsl:otherwise>
+         </xsl:choose>
+     </xsl:template>
++    
++    <xsl:template name="hyperlink">
++        <xsl:param name="comment" />
++        <xsl:choose>
++            <xsl:when test="contains($comment, 'http://')">
++                <xsl:analyze-string select="$comment" regex="http://[^ ]+">
++                    <xsl:matching-substring>
++                        <a target="_blank" href="{.}">
++                            <xsl:value-of select="." />
++                        </a>
++                    </xsl:matching-substring>
++                    <xsl:non-matching-substring>
++                        <xsl:value-of select="." />
++                    </xsl:non-matching-substring>
++                </xsl:analyze-string>
++            </xsl:when>
++             <xsl:otherwise>
++                <xsl:value-of select="$comment"/>
++            </xsl:otherwise>
++        </xsl:choose>
++     </xsl:template>
++
+ </xsl:stylesheet>
