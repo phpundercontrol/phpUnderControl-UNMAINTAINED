@@ -4,6 +4,8 @@ phpUnderControl 0.5.2
 - Fixed #771: Invalid character in CodeSniffer output.
 - Fixed #732: Show revision of SVN/CVS on dashboard. Patch supplied by
   hpbuniat, through phpunit's issue tracker.
+- Fixed #1044: callServer should return false. Patch supplied by
+  Mekras in phpunit's issue tracker.
 
 phpUnderControl 0.5.1
 ---------------------
