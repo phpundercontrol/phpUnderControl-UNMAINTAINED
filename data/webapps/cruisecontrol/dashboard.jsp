@@ -92,7 +92,7 @@ if (logDir == null) {
             <tbody>
               <tr>
                 <td class="play" rowspan="2">
-                  <a href="#" onclick="callServer('<%= jmxURL.toExternalForm() + project.getProject() %>');">
+                  <a href="#" onclick="return callServer('<%= jmxURL.toExternalForm() + project.getProject() %>');">
                   </a>
                 </td>
                 <td class="left">

@@ -31,6 +31,7 @@ Event.observe( window, "load", function() {
 
 function callServer( url ) {
     document.getElementById('serverData').innerHTML = '<iframe src="' + url + '" width="0" height="0" frameborder="0"></iframe>';
+    return false;
 }
 
 function over(elem) {
