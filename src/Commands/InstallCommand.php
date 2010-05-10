@@ -65,6 +65,7 @@ class phpucInstallCommand extends phpucAbstractCommand implements phpucConsoleCo
      * @var array(string=>string) $installFiles
      */
     private $installFiles = array(
+        '/webapps/cruisecontrol/changeset.jsp',
         '/webapps/cruisecontrol/dashboard.jsp',
         '/webapps/cruisecontrol/error.jsp',
         '/webapps/cruisecontrol/favicon.ico',
@@ -74,6 +75,7 @@ class phpucInstallCommand extends phpucAbstractCommand implements phpucConsoleCo
         '/webapps/cruisecontrol/phpcs.jsp',
         '/webapps/cruisecontrol/phpunit.jsp',
         '/webapps/cruisecontrol/phpunit-pmd.jsp',
+        '/webapps/cruisecontrol/phpunit-cpd.jsp',
         '/webapps/cruisecontrol/servertime.jsp',
         '/webapps/cruisecontrol/css/php-under-control.css',
         '/webapps/cruisecontrol/css/SyntaxHighlighter.css',
@@ -106,13 +108,16 @@ class phpucInstallCommand extends phpucAbstractCommand implements phpucConsoleCo
         '/webapps/cruisecontrol/js/scriptaculous.js',
         '/webapps/cruisecontrol/xsl/phpcs.xsl',
         '/webapps/cruisecontrol/xsl/phpcs-details.xsl',
+        '/webapps/cruisecontrol/xsl/phpcs-list.xsl',
         '/webapps/cruisecontrol/xsl/phpcs-summary.xsl',
         '/webapps/cruisecontrol/xsl/phpdoc.xsl',
         '/webapps/cruisecontrol/xsl/phphelper.xsl',
         '/webapps/cruisecontrol/xsl/phpunit.xsl',
+        '/webapps/cruisecontrol/xsl/phpunit-cpd-details.xsl',
         '/webapps/cruisecontrol/xsl/phpunit-details.xsl',
         '/webapps/cruisecontrol/xsl/phpunit-pmd.xsl',
         '/webapps/cruisecontrol/xsl/phpunit-pmd-details.xsl',
+        '/webapps/cruisecontrol/xsl/phpunit-pmd-list.xsl',
         '/webapps/cruisecontrol/xsl/phpunit-pmd-summary.xsl',
         '/webapps/cruisecontrol/WEB-INF/lib/php-under-control.jar',
     );

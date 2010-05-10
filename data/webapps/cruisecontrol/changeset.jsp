@@ -70,10 +70,10 @@ if (!diffDir.exists()) {
 </cruisecontrol:artifactsLink>
 
 <cruisecontrol:xsl xslFile="/xsl/modifications.xsl"/>
-
+<%--
 <% 
 if (diffDir.exists()) {
-    Collection files = FileUtils.listFiles(diffDir, extensions, true);
+    Collection files = diffDir.listFiles();, extensions, true);
     for (Iterator iterator = files.iterator(); iterator.hasNext();) {
         File file = (File) iterator.next();
 %>
@@ -91,3 +91,5 @@ if (diffDir.exists()) {
     }
 }
 %>
+--%>
+
