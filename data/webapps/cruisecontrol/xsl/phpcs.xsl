@@ -36,22 +36,15 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  ********************************************************************************-->
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
-  <xsl:output method="html"/>
+    <xsl:output method="html"/>
   
-  <xsl:include href="phpcs-summary.xsl" />
+    <xsl:include href="phpcs-summary.xsl" />
 
-  <!-- Controls whether all PHP CodeSniffer errors and warnings should be listed.
+    <!-- Controls whether all PHP CodeSniffer errors and warnings should be listed.
        Set to 'false' for showing the warnings -->
-  <xsl:param name="checkstyle.hide.warnings" select="'true'"/>
+    <xsl:param name="checkstyle.hide.warnings" select="'true'"/>
 
-  <xsl:template match="/" mode="checkstyle">
-    <xsl:if test="count(/cruisecontrol/checkstyle/file[error]) &gt; 0">
-      <xsl:call-template name="phpcs-summary"/>
-    </xsl:if>
-  </xsl:template>
-
-  <xsl:template match="/">
-    <xsl:apply-templates select="." mode="checkstyle"/>
-  </xsl:template>
-
+    <xsl:template match="/" mode="checkstyle">
+        <xsl:apply-templates select="/cruisecontrol/checkstyle" mode="phpcs-summary"/>
+    </xsl:template>
 </xsl:stylesheet>

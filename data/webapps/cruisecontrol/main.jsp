@@ -66,7 +66,7 @@
                       "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html>
   <head>
-    <title><%= ccname%> phpUnderControl - SVN - Build Results</title>
+    <title><%= ccname%> phpUnderControl 0.5.1 - Build Results</title>
     <link type="text/css" rel="stylesheet" href="<%=request.getContextPath() %>/css/SyntaxHighlighter.css"/>
     <link type="text/css" rel="stylesheet" href="<%=request.getContextPath() %>/css/php-under-control.css?v=3"/>
     <link rel="icon" href="<%=request.getContextPath() %>/favicon.ico" type="image/x-icon" />
@@ -143,6 +143,14 @@
             </cruisecontrol:tab>
             
             <%-- phpUnderControl 9 --%>
+            <cruisecontrol:tab name="cpd" label="PHPUnit CPD">
+              <%@ include file="phpunit-cpd.jsp" %>
+            </cruisecontrol:tab>
+            
+            <%-- phpUnderControl 10 --%>
+            <cruisecontrol:tab name="changeset" label="Changeset">
+              <%@ include file="changeset.jsp" %>
+            </cruisecontrol:tab>
           </td>
         </tr>
       </cruisecontrol:tabsheet>

@@ -40,27 +40,31 @@
   
   <xsl:param name="viewcvs.url"/>
   <xsl:param name="cvsmodule" select="concat(/cruisecontrol/info/property[@name='projectname']/@value, '/source/src/')"/>
-  
-  <xsl:key name="source" match="error" use="@source"/>
-  <xsl:key name="phpcs.files" match="/cruisecontrol/checkstyle/file" use="@name" />
 
+  <xsl:variable name="total.error.count" select="count(/cruisecontrol/checkstyle/file/error)" />
+  
+  <xsl:key name="phpcs.files" match="/cruisecontrol/checkstyle/file" use="@name" />
+  
+  <xsl:include href="phpcs-list.xsl" />
   <xsl:include href="phpcs-summary.xsl" />
   <xsl:include href="phphelper.xsl" />
 
   <xsl:template match="/">
-    <h2>PHP CodeSniffer Summary</h2>
-    <xsl:call-template name="phpcs-summary" />
-    
+
+    <h2>PHPUnit CodeSniffer</h2>
+    <xsl:apply-templates select="/cruisecontrol/checkstyle" mode="phpcs-summary"/>
+    <xsl:apply-templates select="/cruisecontrol/checkstyle" mode="phpcs-list"/>
+
     <table class="result">
-      <colgroup>
-        <col width="5%"></col>
-        <col width="5%"></col>
-        <col width="90%"></col>
-      </colgroup>
-      <xsl:apply-templates select="cruisecontrol/checkstyle" />
+        <colgroup>
+            <col width="5%"></col>
+            <col width="5%"></col>
+            <col width="90%"></col>
+        </colgroup>
+        <xsl:apply-templates select="/cruisecontrol/checkstyle" />
     </table>
   </xsl:template>
-
+  
   <xsl:template match="checkstyle[file/error]">
     <xsl:apply-templates select="file[error]">
       <xsl:sort select="@name" />
@@ -76,10 +80,10 @@
     </xsl:variable>
     <thead>
       <tr>
-        <td colspan="3"><br /></td>
+        <td colspan="4"><br /></td>
       </tr>
       <tr>
-        <th colspan="3">
+        <th colspan="4">
           <a>
             <xsl:attribute name="name">
               <xsl:text>a</xsl:text>
@@ -103,11 +107,11 @@
             <xsl:call-template name="viewcvs">
               <xsl:with-param name="file" select="@name"/>
               <xsl:with-param name="line" select="@line"/>
+              <xsl:with-param name="col" select="@column"/>
             </xsl:call-template>
           </td>
-          <td>
-            <xsl:value-of select="translate(@message, '&#x7F;&#x80;&#x81;&#x82;&#x83;&#x84;&#x85;&#x86;&#x87;&#x88;&#x89;&#x8A;&#x8B;&#x8C;&#x8D;&#x8E;&#x8F;&#x90;&#x91;&#x92;&#x93;&#x94;&#x95;&#x96;&#x97;&#x98;&#x99;&#x9A;&#x9B;&#x9C;&#x9D;&#x9E;&#x9F;', '')"/>
-          </td>
+          <td><xsl:value-of select="@message"/></td>
+          <td><xsl:value-of select="@source"/></td>
         </tr>
       </xsl:for-each>
     </tbody>
@@ -116,9 +120,10 @@
   <xsl:template name="viewcvs">
     <xsl:param name="file"/>
     <xsl:param name="line"/>
+    <xsl:param name="col"/>
     <xsl:choose>
       <xsl:when test="not($viewcvs.url)">
-        <xsl:value-of select="$line"/>
+        <xsl:value-of select="$line"/>:<xsl:value-of select="$col"/>
       </xsl:when>
       <xsl:otherwise>
         <a>

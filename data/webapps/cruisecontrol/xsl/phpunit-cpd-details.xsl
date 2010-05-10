@@ -38,50 +38,75 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
   <xsl:output method="html"/>
   
-  <xsl:key name="sources" match="/cruisecontrol/checkstyle/file/error" use="@source" />
+  <xsl:param name="viewcvs.url"/>
+  <xsl:param name="cvsmodule" select="concat($project, '/source/src/')"/>
+  
+  <xsl:variable name="project" select="/cruisecontrol/info/property[@name='projectname']/@value"/>
+  
+  <xsl:include href="./phpunit-pmd-summary.xsl" />
+  <xsl:include href="./phphelper.xsl" />
 
-  <xsl:template match="checkstyle" mode="phpcs-summary">
-    <p/>
+  <xsl:template match="/">
+    <xsl:apply-templates select="cruisecontrol/pmd"/>
+
+    <script language="javascript" src="../js/shCore.js"></script>
+    <script language="javascript" src="../js/shBrushPhp.js"></script>
+    <script language="javascript">
+      window.onload = function() {
+        dp.SyntaxHighlighter.HighlightAll('code');
+      }
+    </script>
+  </xsl:template>
+
+  <xsl:template match="pmd">
+    <xsl:variable name="total.error.count" select="count(file/violation)" />
+    
+    <h2>PHPUnit CPD</h2>
+    
+    <xsl:apply-templates select="." mode="rule-summary"/>
+    <xsl:apply-templates select="//pmd-cpd/duplication" />
+  </xsl:template>
+
+  <xsl:template match="duplication">
     <table class="result" align="center">
       <colgroup>
-        <col width="1%"></col>
-        <col width="85%"></col>
-        <col width="5%"></col>
-        <col width="9%"></col>
+        <col width="5%"/>
+        <col width="10%"/>
+        <col width="80%"/>
+        <col width="5%"/>
       </colgroup>
       <thead>
+        <tr><td colspan="4"><br/></td></tr>
         <tr>
-          <th colspan="2">PHP CodeSniffer violation</th>
-          <th>Files</th>
-          <th>Errors</th>
+          <th colspan="4">Duplication
+          (Files: <xsl:value-of select="count(file)" />,
+           Lines: <xsl:value-of select="@lines" />,
+           Tokens: <xsl:value-of select="@tokens" />)</th>
         </tr>
       </thead>
       <tbody>
-        <xsl:for-each select="file/error[generate-id() = generate-id(key('sources', @source)[1])]">
-          <xsl:sort data-type="number" order="descending" select="count(key('sources', @source))"/>
-          <xsl:variable name="errorCount" select="count(key('sources', @source))"/>
-          <xsl:variable name="fileCount" select="count(../../file[error/@source=current()/@source])"/>
+        <xsl:for-each select="file">
           <tr>
-            <xsl:if test="position() mod 2 = 1">
+            <xsl:if test="position() mod 2 = 0">
               <xsl:attribute name="class">oddrow</xsl:attribute>
             </xsl:if>
             <td></td>
-            <td>              
-                <xsl:value-of select="@source"/>
-            </td>
-            <td align="right"><xsl:value-of select="$fileCount"/></td>
-            <td align="right"><xsl:value-of select="$errorCount"/></td>
+            <td align="right" class="warning"><xsl:value-of select="@line" /></td>
+            <td><xsl:value-of select="@path" /></td>
+            <td></td>
           </tr>
         </xsl:for-each>
-      </tbody>
-      <tfoot>
         <tr>
-          <td colspan="2"></td>
-          <td align="right"><xsl:value-of select="count(file[error])"/></td>
-          <td align="right"><xsl:value-of select="count(file/error)"/></td>
+          <td colspan="1"> </td>
+          <td colspan="3">
+            <textarea name="code" class="php">
+              <xsl:text>    </xsl:text>
+              <xsl:value-of select="codefragment/text()" />
+            </textarea>
+          </td>
         </tr>
-      </tfoot>
+      </tbody>
     </table>
-  </xsl:template>
 
+  </xsl:template>
 </xsl:stylesheet>

@@ -11,6 +11,31 @@ Event.observe( window, "load", function() {
         } );
     } );
 
+    $$( 'iframe.chart' ).each( function(el) {
+        var d = el.contentWindow.document.getElementById('ezcGraph');
+        if(d != null) {
+            el.setStyle( {
+                'height':  d.getAttribute('height') + 'px',
+                'width':  d.getAttribute('width') + 'px',
+            } );
+        }
+        delete d;
+    } );
+    
+    $$( 'iframe.diff' ).each( function(el) {
+        var d = el.contentWindow.document.body.scrollHeight;
+        if(d != null && d > 20) {
+            el.setStyle( {
+                'height':  (d + 50) + 'px',
+            } );
+        }
+        else {
+            el.hide();
+            el.previous('p').hide();
+        }
+        delete d;
+    } );
+    
     if ( $( 'dashboard' ) ) {
         new Ajax.PeriodicalUpdater(
             'dashboard',

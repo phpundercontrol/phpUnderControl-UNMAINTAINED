@@ -67,7 +67,7 @@ class phpucCodeViolationInput extends phpucAbstractInput
     {
         parent::__construct(
             'Coding Violations',
-            '06-coding-violations',
+            '07-coding-violations',
             phpucChartI::TYPE_LINE
         );
         

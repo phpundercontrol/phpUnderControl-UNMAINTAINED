@@ -36,146 +36,98 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  ********************************************************************************-->
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
-  <xsl:output method="html"/>
-  
-  <xsl:param name="viewcvs.url"/>
-  <xsl:param name="cvsmodule" select="concat($project, '/source/src/')"/>
-  
-  <xsl:variable name="project" select="/cruisecontrol/info/property[@name='projectname']/@value"/>
-  
-  <xsl:include href="./phpunit-pmd-summary.xsl" />
-  <xsl:include href="./phphelper.xsl" />
+    <xsl:output method="html"/>
 
-  <xsl:template match="/">
-    <xsl:apply-templates select="cruisecontrol/pmd"/>
+    <xsl:param name="viewcvs.url"/>
+    <xsl:param name="cvsmodule" select="concat($project, '/source/src/')"/>
+    <xsl:param name="pmd.warning.threshold" select="11"/>
 
-    <script language="javascript" src="../js/shCore.js"></script>
-    <script language="javascript" src="../js/shBrushPhp.js"></script>
-    <script language="javascript">
-      window.onload = function() {
-        dp.SyntaxHighlighter.HighlightAll('code');
-      }
-    </script>
-  </xsl:template>
+    <xsl:variable name="project" select="/cruisecontrol/info/property[@name='projectname']/@value"/>
+    <xsl:variable name="total.error.count" select="count(/cruisecontrol/pmd/file/violation)" />
 
-  <xsl:template match="pmd">
-    <xsl:variable name="total.error.count" select="count(file/violation)" />
-    
-    <h2>PHPUnit PMD</h2>
-    
-    <xsl:apply-templates select="." mode="rule-summary"/>
-    
-    <table class="result" align="center">
-      <colgroup>
-        <col width="5%"></col>
-        <col width="5%"></col>
-        <col width="85%"></col>
-        <col width="5%"></col>
-      </colgroup>
-      <xsl:for-each select="file[violation]">
-        <xsl:sort data-type="number" order="descending" select="count(violation)"/>
-        <xsl:apply-templates select="."/>
-      </xsl:for-each>
-    </table>
+    <xsl:include href="./phpunit-pmd-summary.xsl" />
+    <xsl:include href="./phpunit-pmd-list.xsl" />
+    <xsl:include href="./phphelper.xsl" />
 
-    <xsl:apply-templates select="//pmd-cpd/duplication" />
-  </xsl:template>
+    <xsl:template match="/">
+        <h2>PHPUnit PMD</h2>
+        <xsl:apply-templates select="cruisecontrol/pmd" mode="rule-summary"/>
+        <xsl:apply-templates select="cruisecontrol/pmd" mode="phpunit-pmd-list"/>
 
-  <xsl:template match="duplication">
-    <table class="result" align="center">
-      <colgroup>
-        <col width="5%"/>
-        <col width="5%"/>
-        <col width="85%"/>
-        <col width="5%"/>
-      </colgroup>
-      <thead>
-        <tr><td colspan="4"><br/></td></tr>
-        <tr>
-          <th colspan="4">Duplication
-          (Files: <xsl:value-of select="count(file)" />,
-           Lines: <xsl:value-of select="@lines" />,
-           Tokens: <xsl:value-of select="@tokens" />)</th>
-        </tr>
-      </thead>
-      <tbody>
-        <xsl:for-each select="file">
-          <tr>
-            <xsl:if test="position() mod 2 = 0">
-              <xsl:attribute name="class">oddrow</xsl:attribute>
-            </xsl:if>
-            <td></td>
-            <td align="right" class="warning"><xsl:value-of select="@line" /></td>
-            <td><xsl:value-of select="@path" /></td>
-            <td></td>
-          </tr>
-        </xsl:for-each>
-        <tr>
-          <td colspan="1"> </td>
-          <td colspan="3">
-            <textarea name="code" class="php">
-              <xsl:text>    </xsl:text>
-              <xsl:value-of select="codefragment/text()" />
-            </textarea>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+        <table class="result" align="center">
+            <colgroup>
+                <col width="5%"></col>
+                <col width="10%" style="padding-right:5px;"></col>
+                <col width="80%"></col>
+                <col width="5%"></col>
+            </colgroup>
+            <xsl:for-each select="/cruisecontrol/pmd/file[violation]">
+                <xsl:sort data-type="number" order="descending" select="count(violation)"/>
+                <xsl:apply-templates select="." mode="pmd-file"/>
+            </xsl:for-each>
+        </table>
+    </xsl:template>
 
-  </xsl:template>
-
-  <xsl:template match="file">
-    <xsl:variable name="javaclass">
-      <xsl:call-template name="phpname">
-        <xsl:with-param name="filename" select="@name"/>
-      </xsl:call-template>
-    </xsl:variable>
-    <xsl:variable name="filename" select="translate(@name,'\','/')"/>
-    <thead>
-      <tr><td colspan="4"><br/></td></tr>
-      <tr>
-        <th colspan="4">
-          <xsl:value-of select="$javaclass"/>
-          (<xsl:value-of select="count(violation)"/>)
-        </th>
-      </tr>
-    </thead>
-    <tbody>
-      <xsl:for-each select="violation">
-        <xsl:variable name="style">
-          <xsl:choose>
-            <xsl:when test="@priority &lt;= 2">error</xsl:when>
-            <xsl:otherwise>warning</xsl:otherwise>
-          </xsl:choose>
+    <xsl:template match="file" mode="pmd-file">
+        <xsl:variable name="javaclass">
+          <xsl:call-template name="phpname">
+            <xsl:with-param name="filename" select="@name"/>
+          </xsl:call-template>
         </xsl:variable>
-        <tr>
-          <xsl:if test="position() mod 2 = 0">
-            <xsl:attribute name="class">oddrow</xsl:attribute>
-          </xsl:if>
-          <td />
-          <td class="{$style}" align="right">
-            <xsl:call-template name="viewcvs">
-              <xsl:with-param name="file" select="$filename"/>
-              <xsl:with-param name="line" select="@line"/>
-            </xsl:call-template>
-          </td>
-          <td>
-            <xsl:value-of disable-output-escaping="no" select="."/>
-          </td>
-          <td>
-            <xsl:value-of select="@priority"/>
-          </td>
-        </tr>
-      </xsl:for-each> 
-    </tbody>
-  </xsl:template>
+        <xsl:variable name="filename" select="translate(@name,'\','/')"/>
+        <thead>
+          <tr><td colspan="3"><br/></td></tr>
+          <tr>
+            <th colspan="3">
+              <xsl:value-of select="$javaclass"/>
+              (<xsl:value-of select="count(violation)"/>)
+            </th>
+            <th>
+                Priority
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <xsl:for-each select="violation">
+            <xsl:variable name="style">
+              <xsl:choose>
+                <xsl:when test="@priority &lt;= 2">error</xsl:when>
+                <xsl:otherwise>warning</xsl:otherwise>
+              </xsl:choose>
+            </xsl:variable>
+            <tr>
+              <xsl:if test="position() mod 2 = 0">
+                <xsl:attribute name="class">oddrow</xsl:attribute>
+              </xsl:if>
+              <td />
+              <td class="{$style}" align="right">
+                <xsl:call-template name="viewcvs">
+                  <xsl:with-param name="file" select="$filename"/>
+                  <xsl:with-param name="beginline" select="@beginline"/>
+                  <xsl:with-param name="endline" select="@endline"/>
+                </xsl:call-template>
+              </td>
+              <td>
+                <xsl:value-of disable-output-escaping="no" select="."/>
+              </td>
+              <td align="center">
+                <xsl:value-of select="@priority"/>
+              </td>
+            </tr>
+          </xsl:for-each>
+        </tbody>
+    </xsl:template>
 
     <xsl:template name="viewcvs">
       <xsl:param name="file"/>
-      <xsl:param name="line"/>
+      <xsl:param name="beginline"/>
+      <xsl:param name="endline"/>
       <xsl:choose>
         <xsl:when test="not($viewcvs.url)">
-          <xsl:value-of select="$line"/>
+            <xsl:call-template name="lines">
+              <xsl:with-param name="beginline" select="$beginline"/>
+              <xsl:with-param name="endline" select="$endline"/>
+            </xsl:call-template>
         </xsl:when>
         <xsl:otherwise>
           <a>
@@ -183,12 +135,29 @@
               <xsl:value-of select="concat($viewcvs.url, $cvsmodule)"/>
               <xsl:value-of select="substring-after($file, $cvsmodule)"/>
               <xsl:text>?annotate=HEAD#</xsl:text>
-              <xsl:value-of select="$line"/>
+              <xsl:value-of select="$beginline"/>
             </xsl:attribute>
-            <xsl:value-of select="$line"/>
+            <xsl:call-template name="lines">
+              <xsl:with-param name="beginline" select="$beginline"/>
+              <xsl:with-param name="endline" select="$endline"/>
+            </xsl:call-template>
           </a>
         </xsl:otherwise>
       </xsl:choose>
     </xsl:template>
+
+    <xsl:template name="lines">
+      <xsl:param name="beginline"/>
+      <xsl:param name="endline"/>
+      <xsl:choose>
+        <xsl:when test="$beginline = $endline">
+          <xsl:value-of select="$beginline"/>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:value-of select="$beginline"/> - <xsl:value-of select="$endline"/>
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:template>
+
 
 </xsl:stylesheet>

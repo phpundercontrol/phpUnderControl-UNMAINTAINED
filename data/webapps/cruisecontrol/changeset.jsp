@@ -35,49 +35,59 @@
  ********************************************************************************--%>
 <%@page import="net.sourceforge.cruisecontrol.*, net.sourceforge.cruisecontrol.chart.*"%>
 <%@ taglib uri="/WEB-INF/cruisecontrol-jsp11.tld" prefix="cruisecontrol"%>
+<%@ page import="org.apache.commons.io.*" %>
 <%@ page import="java.io.File" %>
 <%@ page import="java.io.FilenameFilter" %>
 <%@ page import="java.util.Arrays" %>
+<%@ page import="java.util.regex.*" %>
+<%@ page import="java.util.Collection" %>
+<%@ page import="java.util.Iterator" %>
 
 <cruisecontrol:buildInfo />
 <% 
-File   graphDir = null;
-String graphUrl = null;
+File   diffDir = null;
+String diffUrl = null;
+String log     = null;
+String diffPath= null;
+String find    = "[^\\w]";
+String replace = "";
+String[] extensions = {"html"};
 %>
 
 <cruisecontrol:artifactsLink>
 <% 
-String log = new File(application.getInitParameter("logDir")).getAbsolutePath();
+log = new File(application.getInitParameter("logDir")).getAbsolutePath();
 String ts  = artifacts_url.substring(artifacts_url.lastIndexOf('/') + 1);
 
-graphUrl = artifacts_url + "/graph/";
-graphDir = new File( log + "/" + project + "/" + ts + "/graph" );
+diffUrl = artifacts_url + "/diff/";
+diffPath= log + "/" + project + "/" + ts + "/diff";
+diffDir = new File( diffPath );
 
-if (!graphDir.exists()) {
-    graphDir = new File(log + "/../artifacts/" + project + "/" + ts + "/graph" );
+if (!diffDir.exists()) {
+    diffDir = new File(log + "/../artifacts/" + project + "/" + ts + "/diff" );
 }
 %>
 </cruisecontrol:artifactsLink>
 
+<cruisecontrol:xsl xslFile="/xsl/modifications.xsl"/>
+
 <% 
-if (graphDir.exists()) {
-    FilenameFilter filter = new FilenameFilter() {
-        public boolean accept(File dir, String name) {
-            return name.substring(name.length() - 4).equals(".svg");
-        }
-    };
-    
-    String[] files = graphDir.list(filter);
-    Arrays.sort(files);
-    
-    for (int i = 0; i < files.length; i++) {
+if (diffDir.exists()) {
+    Collection files = FileUtils.listFiles(diffDir, extensions, true);
+    for (Iterator iterator = files.iterator(); iterator.hasNext();) {
+        File file = (File) iterator.next();
 %>
-<iframe class="chart" src="<%=request.getContextPath() %>/<%=graphUrl + files[i] %>" style="overflow: hidden;">
+
+<p class="fileinfo">
+    <a name="<%=file.getAbsolutePath().substring(diffPath.length(), file.getAbsolutePath().length()-5) %>">
+        <%=file.getAbsolutePath().substring(diffPath.length(), file.getAbsolutePath().length()-5) %>
+    </a>
+</p>
+<iframe class="diff" src="<%=request.getContextPath() %>/<%=diffUrl + file.getAbsolutePath().substring(diffPath.length()) %>" style="overflow: hidden;">
 </iframe>
+<br/>
 
 <% 
     }
-} else { 
+}
 %>
-<%@ include file="metrics.cewolf.jsp" %>
-<% } %>

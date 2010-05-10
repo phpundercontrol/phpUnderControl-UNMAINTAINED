@@ -67,7 +67,7 @@ class phpucUnitTestInput extends phpucAbstractInput
     {
         parent::__construct( 
             'Unit Tests', 
-            '04-unit-tests', 
+            '05-unit-tests', 
             phpucChartI::TYPE_LINE 
         );
         
