@@ -70,6 +70,7 @@ class phpucInstallCommand extends phpucAbstractCommand implements phpucConsoleCo
         '/webapps/cruisecontrol/error.jsp',
         '/webapps/cruisecontrol/favicon.ico',
         '/webapps/cruisecontrol/footer.jsp',
+        '/webapps/cruisecontrol/forcebuild.jsp',
         '/webapps/cruisecontrol/header.jsp',
         '/webapps/cruisecontrol/metrics.cewolf.jsp',
         '/webapps/cruisecontrol/phpcs.jsp',

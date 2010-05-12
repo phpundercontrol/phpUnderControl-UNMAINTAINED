@@ -40,11 +40,7 @@
 <%@ page import="org.phpundercontrol.dashboard.*" %>
 <%@ page import="java.net.URL" %>
 
-<cruisecontrol:jmxbase id="jmxBase" />
-
 <%
-URL jmxURL = new URL(jmxBase, "/invoke?operation=build&objectname=CruiseControl+Project%3Aname%3D");
-
 final String logDir     = application.getInitParameter("logDir");
 final String statusFile = application.getInitParameter("currentBuildStatusFile");
 %>
@@ -92,11 +88,15 @@ if (logDir == null) {
             <tbody>
               <tr>
                 <td class="play" rowspan="2">
-                  <a href="#" onclick="return callServer('<%= jmxURL.toExternalForm() + project.getProject() %>');">
+                  <a href="#" 
+                     onclick="return callServer('<%=request.getContextPath() %>/forcebuild.jsp?project=<%= project.getProject() %>');"
+                     title="Start a new build of project '<%= project.getProject() %>'">
                   </a>
                 </td>
                 <td class="left">
-                  <a href="<%=request.getContextPath() %>/buildresults/<%=project.getProject() %>"><%= project.getProject() %></a>
+                  <a href="<%=request.getContextPath() %>/buildresults/<%=project.getProject() %>">
+                    <%= project.getProject() %>
+                  </a>
                 </td>
                 <td class="right"><%= project.getLabel()%></td>
               </tr>
