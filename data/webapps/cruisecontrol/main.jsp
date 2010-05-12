@@ -138,12 +138,12 @@
             
             <%-- phpUnderControl 8 --%>
               
-            <cruisecontrol:tab name="pmd" label="PHPUnit PMD">
+            <cruisecontrol:tab name="pmd" label="PHPMD">
               <%@ include file="phpunit-pmd.jsp" %>
             </cruisecontrol:tab>
             
             <%-- phpUnderControl 9 --%>
-            <cruisecontrol:tab name="cpd" label="PHPUnit CPD">
+            <cruisecontrol:tab name="cpd" label="PHP-CPD">
               <%@ include file="phpunit-cpd.jsp" %>
             </cruisecontrol:tab>
             
