@@ -151,6 +151,9 @@
             <cruisecontrol:tab name="changeset" label="Changeset">
               <%@ include file="changeset.jsp" %>
             </cruisecontrol:tab>
+
+            <%-- phpUnderControl 11 --%>
+
           </td>
         </tr>
       </cruisecontrol:tabsheet>
