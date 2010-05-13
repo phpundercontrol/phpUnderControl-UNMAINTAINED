@@ -1,6 +1,9 @@
-phpUnderControl 0.5.2
+phpUnderControl 0.6.0
 ---------------------
 
+- Several new features like changesets, separate tab for PHPCPD and new
+  charts for build revisions + code clones. All features supplied by
+  hpbuniat via github.
 - Fixed #771: Invalid character in CodeSniffer output.
 - Fixed #732: Show revision of SVN/CVS on dashboard. Patch supplied by
   hpbuniat, through phpunit's issue tracker.

@@ -16,7 +16,7 @@ example project.
   </lead>
   <date>2010-01-31</date>
   <version>
-    <release>0.5.2</release>
+    <release>0.6.0beta1</release>
     <api>1.0.0</api>
   </version>
   <stability>
@@ -25,6 +25,9 @@ example project.
   </stability>
   <license uri="http://www.opensource.org/licenses/bsd-license.php">BSD License</license>
   <notes>
+- Several new features like changesets, separate tab for PHPCPD and new
+  charts for build revisions + code clones. All features supplied by
+  hpbuniat via github.
 - Fixed #771: Invalid character in CodeSniffer output.
 - Fixed #732: Show revision of SVN/CVS on dashboard. Patch supplied by
   hpbuniat, through phpunit's issue tracker.
