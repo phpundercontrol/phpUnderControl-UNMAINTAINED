@@ -40,7 +40,7 @@
 <cruisecontrol:jmxbase id="jmxBase" />
 
 <%
-URL url = new URL(jmxBase, "/invoke?operation=build&objectname=CruiseControl+Project%3Aname%3D" + request.getParameter("name"));
+URL url = new URL(jmxBase, "/invoke?operation=build&objectname=CruiseControl+Project%3Aname%3D" + request.getParameter("project"));
 InputStream is = url.openStream();
 
 byte[] bytes = new byte[is.available()];
