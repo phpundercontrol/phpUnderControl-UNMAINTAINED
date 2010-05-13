@@ -14,7 +14,7 @@ example project.
     <email>mapi@phpundercontrol.org</email>
     <active>yes</active>
   </lead>
-  <date>2010-01-31</date>
+  <date>2010-05-13</date>
   <version>
     <release>0.6.0beta1</release>
     <api>1.0.0</api>
@@ -184,6 +184,12 @@ example project.
               <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
               <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
             </file>
+            <file role="php" name="BuildRevisionTimelineInput.php">
+              <tasks:replace from="@package_version@" to="version" type="package-info"/>
+              <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+              <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+              <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+            </file>
             <file role="php" name="BuildBreakdownTimelineInput.php">
               <tasks:replace from="@package_version@" to="version" type="package-info"/>
               <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
@@ -191,6 +197,12 @@ example project.
               <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
             </file>
             <file role="php" name="InputI.php">
+              <tasks:replace from="@package_version@" to="version" type="package-info"/>
+              <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+              <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+              <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+            </file>
+            <file role="php" name="CodeCopyPasteInput.php">
               <tasks:replace from="@package_version@" to="version" type="package-info"/>
               <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
               <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
@@ -1567,21 +1579,27 @@ example project.
           <file name="errors.xsl" role="data"/>
           <file name="header.xsl" role="data"/>
           <file name="modifications.xsl" role="data"/>
-          <file name="phpcs.xsl" role="data"/>
           <file name="phpcs-details.xsl" role="data"/>
+          <file name="phpcs-list.xsl" role="data"/>
           <file name="phpcs-summary.xsl" role="data"/>
+          <file name="phpcs.xsl" role="data"/>
           <file name="phpdoc.xsl" role="data"/>
           <file name="phphelper.xsl" role="data"/>
-          <file name="phpunit.xsl" role="data"/>
+          <file name="phpunit-cpd-details.xsl" role="data"/>
           <file name="phpunit-details.xsl" role="data"/>
-          <file name="phpunit-pmd.xsl" role="data"/>
           <file name="phpunit-pmd-details.xsl" role="data"/>
+          <file name="phpunit-pmd-list.xsl" role="data"/>
           <file name="phpunit-pmd-summary.xsl" role="data"/>
+          <file name="phpunit-pmd.xsl" role="data"/>
+          <file name="phpunit.xsl" role="data"/>
         </dir>
         <dir name="WEB-INF/lib">
           <file name="php-under-control.jar" role="data"/>
         </dir>
         <file name="buildresults.jsp" role="data">
+          <tasks:replace from="- SVN" to="version" type="package-info"/>
+        </file>
+        <file name="changeset.jsp" role="data">
           <tasks:replace from="- SVN" to="version" type="package-info"/>
         </file>
         <file name="dashboard.jsp" role="data">
@@ -1592,6 +1610,9 @@ example project.
         </file>
         <file name="favicon.ico" role="data"/>
         <file name="footer.jsp" role="data">
+          <tasks:replace from="- SVN" to="version" type="package-info"/>
+        </file>
+        <file name="forcebuild.jsp" role="data">
           <tasks:replace from="- SVN" to="version" type="package-info"/>
         </file>
         <file name="header.jsp" role="data">
@@ -1612,10 +1633,13 @@ example project.
         <file name="phpcs.jsp" role="data">
           <tasks:replace from="- SVN" to="version" type="package-info"/>
         </file>
-        <file name="phpunit.jsp" role="data">
+        <file name="phpunit-cpd.jsp" role="data">
           <tasks:replace from="- SVN" to="version" type="package-info"/>
         </file>
         <file name="phpunit-pmd.jsp" role="data">
+          <tasks:replace from="- SVN" to="version" type="package-info"/>
+        </file>
+        <file name="phpunit.jsp" role="data">
           <tasks:replace from="- SVN" to="version" type="package-info"/>
         </file>
         <file name="servertime.jsp" role="data">
@@ -1628,6 +1652,11 @@ example project.
         </file>
         <file name="config.xml" role="doc">
           <tasks:replace from="@package_version@" to="version" type="package-info"/>
+        </file>
+      </dir>
+      <dir name="java">
+        <file name="modifications.xml" role="data">
+          <tasks:replace from="- SVN" to="version" type="package-info"/>
         </file>
       </dir>
       <file name="CHANGELOG" role="doc"/>
@@ -1721,8 +1750,10 @@ example project.
       <install as="phpUnderControl/Graph/Input/InputRule.php" name="src/Graph/Input/InputRule.php"/>
       <install as="phpUnderControl/Graph/Input/TestCodeRatioInput.php" name="src/Graph/Input/TestCodeRatioInput.php"/>
       <install as="phpUnderControl/Graph/Input/InputIterator.php" name="src/Graph/Input/InputIterator.php"/>
+      <install as="phpUnderControl/Graph/Input/BuildRevisionTimelineInput.php" name="src/Graph/Input/BuildRevisionTimelineInput.php"/>
       <install as="phpUnderControl/Graph/Input/BuildBreakdownTimelineInput.php" name="src/Graph/Input/BuildBreakdownTimelineInput.php"/>
       <install as="phpUnderControl/Graph/Input/InputI.php" name="src/Graph/Input/InputI.php"/>
+      <install as="phpUnderControl/Graph/Input/CodeCopyPasteInput.php" name="src/Graph/Input/CodeCopyPasteInput.php"/>
       <install as="phpUnderControl/Graph/Input/AbstractInput.php" name="src/Graph/Input/AbstractInput.php"/>
       <install as="phpUnderControl/Graph/Input/InputLoader.php" name="src/Graph/Input/InputLoader.php"/>
       <install as="phpUnderControl/Graph/Input/UnitCoverageInput.php" name="src/Graph/Input/UnitCoverageInput.php"/>
@@ -1817,8 +1848,10 @@ example project.
       <install as="phpUnderControl/Graph/Input/InputRule.php" name="src/Graph/Input/InputRule.php"/>
       <install as="phpUnderControl/Graph/Input/TestCodeRatioInput.php" name="src/Graph/Input/TestCodeRatioInput.php"/>
       <install as="phpUnderControl/Graph/Input/InputIterator.php" name="src/Graph/Input/InputIterator.php"/>
+      <install as="phpUnderControl/Graph/Input/BuildRevisionTimelineInput.php" name="src/Graph/Input/BuildRevisionTimelineInput.php"/>
       <install as="phpUnderControl/Graph/Input/BuildBreakdownTimelineInput.php" name="src/Graph/Input/BuildBreakdownTimelineInput.php"/>
       <install as="phpUnderControl/Graph/Input/InputI.php" name="src/Graph/Input/InputI.php"/>
+      <install as="phpUnderControl/Graph/Input/CodeCopyPasteInput.php" name="src/Graph/Input/CodeCopyPasteInput.php"/>
       <install as="phpUnderControl/Graph/Input/AbstractInput.php" name="src/Graph/Input/AbstractInput.php"/>
       <install as="phpUnderControl/Graph/Input/InputLoader.php" name="src/Graph/Input/InputLoader.php"/>
       <install as="phpUnderControl/Graph/Input/UnitCoverageInput.php" name="src/Graph/Input/UnitCoverageInput.php"/>
@@ -1920,7 +1953,6 @@ example project.
   for this contribution.
       </notes>
     </release>
-
     <release>
       <lead>
         <name>Manuel Pichler</name>
