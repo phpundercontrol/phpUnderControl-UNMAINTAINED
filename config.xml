@@ -2,12 +2,14 @@
 <cruisecontrol>
 
     <project name="phpUnderControl" buildafterfailed="false">
-        <listeners>
-            <currentbuildstatuslistener file="logs/${project.name}/status.txt"/>
-        </listeners>
 
+        <bootstrappers>
+            <gitbootstrapper localWorkingCopy="projects/${project.name}/source" />
+        </bootstrappers>
+ 
         <modificationset quietperiod="60">
             <git localWorkingCopy="projects/${project.name}/source/" />
+            <!--<filesystem folder="projects/${project.name}/source" />-->
         </modificationset>
 
         <schedule interval="60">
