@@ -1,61 +1,154 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="phpUnderControl" basedir="." default="build">
+<project name="phpUnderControl" basedir=".." default="build">
 
     <!--
-        Build base directory.
+        Define some common directories and settings
     -->
-    <property name="output.dir" value="${basedir}/build" />
+    <property name="sourcedir" value="${basedir}/source" />
+    <property name="builddir" value="${basedir}/build" />
+
+    <!--
+        Main build target for this project.
+    -->
+    <target name="build" depends="update,apidoc,test-static,test-runtime" />
+
+    <!--
+        Prepares the temporary build environment.
+    -->
+    <target name="prepare" depends="clean,init" />
+
+    <!--
+        Create the required build directories
+    -->
+    <target name="init">
+        <mkdir dir="${builddir}" />
+        <mkdir dir="${builddir}/api" />
+        <mkdir dir="${builddir}/charts" />
+        <mkdir dir="${builddir}/coverage" />
+        <mkdir dir="${builddir}/dist" />
+        <mkdir dir="${builddir}/logs" />
+    </target>
+
+    <!--
+        Removes all temporary build artifacts
+    -->
+    <target name="clean">
+        <delete dir="${builddir}" />
+    </target>
 
     <!--
         Update base directory from source
     -->
-    <target name="update">
-        <exec executable="svn" dir="${basedir}">
-            <arg line="up" />
+    <target name="update" depends="prepare">
+        <exec executable="git" dir="${sourcedir}">
+            <arg line="pull" />
         </exec>
     </target>
 
     <!--
-        Remove temporary build stuff
+        Executes several static tests against the project source.
     -->
-    <target name="clean">
-        <delete includeemptydirs="true">
-            <fileset dir="${output.dir}/" includes="**/*" />
-        </delete>
+    <target name="test-static" depends="prepare">
+        <parallel>
+            <antcall target="lint" />
+            <antcall target="phpmd" />
+            <antcall target="phpcpd" />
+            <antcall target="checkstyle" />
+        </parallel>
+        <!-- Do not run phpmd and pdepend parallel, there is a concurrency problem -->
+        <antcall target="pdepend" />
     </target>
 
-    <target name="phplint">
+    <!--
+        Performs a simple syntax check against the project's source code.
+    -->
+    <target name="lint">
         <apply executable="php" logerror="true" failonerror="true">
             <arg value="-l" />
-            <fileset dir="${basedir}">
+            <fileset dir="${sourcedir}">
                 <include name="tests/**/*.php" />
                 <include name="src/**/*.php" />
             </fileset>
         </apply>
     </target>
 
+    <!--
+        Checks that the project source matches the coding guidelines
+    -->
+    <target name="checkstyle" depends="init">
+        <exec executable="phpcs" failonerror="false">
+            <arg line="--report=checkstyle
+                       --standard=Mapi
+                       --report-file=${builddir}/logs/checkstyle.xml
+                       ${sourcedir}/src" />
+        </exec>
+    </target>
+
+    <!--
+        Checks that the project source does not contain any mess
+    -->
+    <target name="phpmd" depends="init">
+        <exec executable="phpmd" failonerror="false">
+            <arg line="${sourcedir}/src
+                       xml
+                       codesize,unusedcode,naming
+                       --reportfile ${builddir}/logs/pmd.xml" />
+        </exec>
+    </target>
+
+    <!--
+        Checks that the project source does not contain code clones
+    -->
+    <target name="phpcpd" depends="init">
+        <exec executable="phpcpd" failonerror="false">
+            <arg line="--log-pmd ${builddir}/logs/pmd-cpd.xml
+                       ${sourcedir}/src" />
+        </exec>
+    </target>
+
+    <!--
+        Checks several software metrics for the project source
+    -->
+    <target name="pdepend" depends="init">
+        <exec executable="pdepend" failonerror="false">
+            <arg line="--summary-xml=${builddir}/logs/pdepend.xml
+                       --jdepend-xml=${builddir}/logs/jdepend.xml
+                       --jdepend-chart=${builddir}/charts/jdepend.svg
+                       --overview-pyramid=${builddir}/charts/overview-pyramid.svg
+                       --coderank-mode=inheritance,property,method
+                       ${sourcedir}/src" />
+        </exec>
+    </target>
+
+    <!--
+        Performs a set of runtime tests against the project's source
+    -->
+    <target name="test-runtime" depends="prepare">
+        <antcall target="phpunit" />
+    </target>
+    
+    <!--
+        Executes the unit tests for the project under test.
+    -->
     <target name="phpunit">
-        <mkdir dir="${output.dir}/logs" />
-        <exec dir="tests" executable="phpunit">
-            <arg line="--log-pmd ${output.dir}/logs/pmd.xml
-                       --log-metrics ${output.dir}/logs/metrics.xml
-                       --coverage-xml ${output.dir}/logs/coverage.xml
-                       --coverage-html ${output.dir}/coverage
-                       phpucAllTests AllTests.php" />
+        <exec executable="phpunit" failonerror="true">
+            <arg line="--process-isolation
+                       --log-junit ${builddir}/logs/junit.xml
+                       --coverage-clover ${builddir}/logs/coverage.xml
+                       --coverage-html ${builddir}/coverage
+                       phpucAllTests ${sourcedir}/tests/AllTests.php" />
         </exec>
     </target>
 
-    <target name="phpdoc">
-        <mkdir dir="${output.dir}/api" />
-        <exec dir="src" executable="phpdoc">
-            <arg line="-ct type -ue on -t ${output.dir}/api -d ." />
-        </exec>
-    </target>
-
-    <target name="phpcs">
-        <mkdir dir="${output.dir}/logs" />
-        <exec dir="src" executable="phpcs" output="${output.dir}/logs/codesniffer.xml">
-            <arg line="--report=checkstyle --standard=MapiSource ." />
+    <!--
+        Generates the api documentation for the project's source
+    -->
+    <target name="apidoc">
+        <exec executable="phpdoc">
+            <arg line="-ue on
+                       -t ${builddir}/api
+                       -tb ${sourcedir}/data/phpdoc
+                       -d ${sourcedir}/src" />
         </exec>
     </target>
     
@@ -76,14 +169,6 @@
             <fileset file="${basedir}/java/README" />
             <fileset file="${basedir}/java/CRUISECONTROL-LICENSE" />
         </copy>
-    </target>
-
-    <target name="build" depends="phplint">
-        <!-- Clean previous build results -->
-        <antcall target="clean" />
-        
-        <!-- Update project source -->
-        <antcall target="update" />
     </target>
 
 </project>
