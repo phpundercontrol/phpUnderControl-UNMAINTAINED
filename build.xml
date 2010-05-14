@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="phpUnderControl" basedir=".." default="build">
+<project name="phpUnderControl" basedir="." default="build">
 
     <!--
         Define some common directories and settings
     -->
-    <property name="sourcedir" value="${basedir}/source" />
-    <property name="builddir" value="${basedir}/build" />
+    <property name="sourcedir" value="${basedir}" />
+    <property name="builddir" value="${basedir}/../build" />
 
     <!--
         Main build target for this project.
@@ -152,23 +152,4 @@
         </exec>
     </target>
     
-    <target name="copy">
-        <mkdir dir="${output.dir}/release" />
-        <mkdir dir="${output.dir}/release/docs" />
-       
-        <copy todir="${output.dir}/release">
-            <fileset dir="${basedir}/" includes="data/**" />
-            <fileset dir="${basedir}/" includes="lib/**" />
-            <fileset dir="${basedir}/" includes="src/**" />
-            <fileset dir="${basedir}/" includes="tests/**" />
-        </copy>
-        
-        <copy todir="${output.dir}/release/docs">
-            <fileset file="${basedir}/CHANGELOG" />
-            <fileset file="${basedir}/LICENSE" />
-            <fileset file="${basedir}/java/README" />
-            <fileset file="${basedir}/java/CRUISECONTROL-LICENSE" />
-        </copy>
-    </target>
-
 </project>
