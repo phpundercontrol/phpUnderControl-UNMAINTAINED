@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cruisecontrol>
+
+    <project name="phpUnderControl" buildafterfailed="false">
+        <modificationset quietperiod="60">
+            <git localWorkingCopy="projects/${project.name}/source/" />
+        </modificationset>
+
+        <schedule interval="60">
+            <ant anthome="apache-ant-1.7.0" buildfile="projects/${project.name}/source/build.xml"/>
+        </schedule>
+
+        <log dir="logs/${project.name}">
+            <merge dir="projects/${project.name}/build/logs/"/>
+        </log>
+
+        <publishers>
+            <artifactspublisher dir="projects/${project.name}/build/api"
+                                dest="artifacts/${project.name}"
+                                subdirectory="api"/>
+            <artifactspublisher dir="projects/${project.name}/build/coverage"
+                                dest="artifacts/${project.name}"
+                                subdirectory="coverage"/>
+            <execute command="phpuc graph logs/${project.name} artifacts/${project.name}"/>
+        </publishers>
+    </project>
+
+</cruisecontrol>
