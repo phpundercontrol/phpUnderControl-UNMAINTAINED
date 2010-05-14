@@ -8,8 +8,8 @@
         </bootstrappers>
  
         <modificationset quietperiod="60">
-            <!--<git localWorkingCopy="projects/${project.name}/source/" />-->
-            <filesystem folder="projects/${project.name}/source" />
+            <git localWorkingCopy="projects/${project.name}/source/" />
+            <!--<filesystem folder="projects/${project.name}/source" />-->
         </modificationset>
 
         <schedule interval="60">
