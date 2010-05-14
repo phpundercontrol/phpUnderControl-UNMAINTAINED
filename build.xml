@@ -27,6 +27,7 @@
         <mkdir dir="${builddir}/coverage" />
         <mkdir dir="${builddir}/dist" />
         <mkdir dir="${builddir}/logs" />
+        <mkdir dir="${builddir}/php-code-browser" />
     </target>
 
     <!--
