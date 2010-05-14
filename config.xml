@@ -2,6 +2,8 @@
 <cruisecontrol>
 
     <project name="phpUnderControl" buildafterfailed="false">
+        <property file="projects/${project.name}/source/config.properties" />
+
         <listeners>
             <currentbuildstatuslistener file="logs/${project.name}/status.txt" />
         </listeners>
@@ -37,6 +39,8 @@
             <artifactspublisher dir="projects/${project.name}/build/coverage"
                                 dest="artifacts/${project.name}"
                                 subdirectory="coverage" />
+
+            <twitter username="${twitter.username}" password="${twitter.password}" />
         </publishers>
     </project>
 
