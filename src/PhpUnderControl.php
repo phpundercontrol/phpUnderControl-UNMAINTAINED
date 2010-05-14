@@ -45,19 +45,22 @@
  * @link      http://www.phpundercontrol.org/
  */
 
-if ( strpos( '@php_dir@', '@php_dir' ) === false )
+if ( defined( 'PHPUC_INSTALL_DIR' ) === false )
 {
-    define( 'PHPUC_INSTALL_DIR', '@php_dir@/phpUnderControl' );
-    define( 'PHPUC_DATA_DIR', '@data_dir@/phpUnderControl/data' );
-    define( 'PHPUC_BIN_DIR', '@bin_dir@' );
-    define( 'PHPUC_EZC_BASE', '@php_dir@/ezc/Base/base.php' );
-}
-else
-{
-    define( 'PHPUC_INSTALL_DIR', dirname( __FILE__ ) );
-    define( 'PHPUC_DATA_DIR', realpath( PHPUC_INSTALL_DIR . '/../data' ) );
-    define( 'PHPUC_BIN_DIR', PHPUC_INSTALL_DIR . '/../bin' );
-    define( 'PHPUC_EZC_BASE', PHPUC_INSTALL_DIR . '/../lib/ezc/Base/src/base.php' );
+    if ( strpos( '@php_dir@', '@php_dir' ) === false )
+    {
+        define( 'PHPUC_INSTALL_DIR', '@php_dir@/phpUnderControl' );
+        define( 'PHPUC_DATA_DIR', '@data_dir@/phpUnderControl/data' );
+        define( 'PHPUC_BIN_DIR', '@bin_dir@' );
+        define( 'PHPUC_EZC_BASE', '@php_dir@/ezc/Base/base.php' );
+    }
+    else
+    {
+        define( 'PHPUC_INSTALL_DIR', dirname( __FILE__ ) );
+        define( 'PHPUC_DATA_DIR', realpath( PHPUC_INSTALL_DIR . '/../data' ) );
+        define( 'PHPUC_BIN_DIR', PHPUC_INSTALL_DIR . '/../bin' );
+        define( 'PHPUC_EZC_BASE', PHPUC_INSTALL_DIR . '/../lib/ezc/Base/src/base.php' );
+    }
 }
 
 require_once PHPUC_INSTALL_DIR . '/Util/Autoloader.php';
