@@ -46,6 +46,19 @@
     </target>
 
     <!--
+        Generates the api documentation for the project's source
+    -->
+    <target name="apidoc" depends="prepare">
+        <exec executable="phpdoc">
+            <arg line="-ue on
+                       --target ${builddir}/api
+                       --output HTML:Phpuc:phpuc
+                       --templatebase ${sourcedir}/data/phpdoc
+                       --directory ${sourcedir}/src" />
+        </exec>
+    </target>
+
+    <!--
         Executes several static tests against the project source.
     -->
     <target name="test-static" depends="prepare">
@@ -68,6 +81,7 @@
             <fileset dir="${sourcedir}">
                 <include name="tests/**/*.php" />
                 <include name="src/**/*.php" />
+                <exclude name="tests/run/**/*.php" />
             </fileset>
         </apply>
     </target>
@@ -137,18 +151,6 @@
                        --coverage-clover ${builddir}/logs/coverage.xml
                        --coverage-html ${builddir}/coverage
                        phpucAllTests ${sourcedir}/tests/AllTests.php" />
-        </exec>
-    </target>
-
-    <!--
-        Generates the api documentation for the project's source
-    -->
-    <target name="apidoc">
-        <exec executable="phpdoc">
-            <arg line="-ue on
-                       -t ${builddir}/api
-                       -tb ${sourcedir}/data/phpdoc
-                       -d ${sourcedir}/src" />
         </exec>
     </target>
     
