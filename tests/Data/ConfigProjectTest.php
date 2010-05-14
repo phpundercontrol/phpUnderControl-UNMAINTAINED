@@ -257,9 +257,9 @@ class phpucConfigProjectTest extends phpucAbstractConfigTest
 
         $this->assertTrue($exec->hasAttribute('args'));
         $dir = PHPUC_TEST_DIR . '/';
-        $argStr = "-logger org.apache.tools.ant.XmlLogger " .
+        $argStr = '-logger org.apache.tools.ant.XmlLogger ' .
                   "-logfile {$dir}log.xml " .
-                  "-buildfile projects/phpUnderControl/build.xml";
+                  '-buildfile projects/${project.name}/build.xml';
         $this->assertEquals($argStr, $exec->getAttribute('args'));
     }
 
@@ -290,12 +290,10 @@ class phpucConfigProjectTest extends phpucAbstractConfigTest
         $config = new phpucConfigFile( $this->testFile );
         $project = new phpucConfigProject( $config, 'phpUnderControl' );
 
-        $element = $project->element;
-        $schedule = $element->getElementsByTagName( 'schedule' );
+        $schedule = $project->element->getElementsByTagName( 'schedule' );
         $builders = $schedule->item( 0 )->getElementsByTagName( 'ant' );
         $ant = $builders->item( 0 );
 
-        $this->assertTrue($ant->hasAttribute('antscript'));
         $this->assertEquals($antScript, $ant->getAttribute('antscript'));
 
         $project = new phpucConfigProject( $config, 'phpUnderControl' );

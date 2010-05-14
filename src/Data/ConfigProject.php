@@ -463,14 +463,17 @@ class phpucConfigProject
 
         if ( $tools->length > 0 )
         {
-            $this->toolElement     = $tools->item( 0 );
-            $anthome    = $this->toolElement->getAttribute( 'anthome' );
-            $antscript  = $this->toolElement->getAttribute( 'antscript' );
-            if (!empty($anthome)) {
-                $this->properties['anthome']    = $anthome;
+            $this->toolElement = $tools->item( 0 );
+
+            $anthome    = trim( $this->toolElement->getAttribute( 'anthome' ) );
+            $antscript  = trim( $this->toolElement->getAttribute( 'antscript' ) );
+            if ( $anthome !== '' )
+            {
+                $this->properties['anthome'] = $anthome;
             }
-            if (!empty($antscript)) {
-                //$this->properties['antscript']  = $antscript;
+            if ( $antscript !== '' )
+            {
+                $this->properties['antscript'] = $antscript;
             }
         }
     }
