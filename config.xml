@@ -27,10 +27,10 @@
         <publishers>
             <execute command="phpuc graph logs/${project.name} artifacts/${project.name}" />
             <execute command="phpcb --log projects/${project.name}/build/logs 
-                                    --source projects/${project.name}/source/PHP 
-                                    --output projects/${project.name}/build/php-code-browser" />
+                                    --source projects/${project.name}/source/src 
+                                    --output projects/${project.name}/build/phpcb" />
 
-            <artifactspublisher dir="projects/${project.name}/build/php-code-browser" 
+            <artifactspublisher dir="projects/${project.name}/build/phpcb" 
                                 dest="artifacts/${project.name}" 
                                 subdirectory="php-code-browser" />
             <artifactspublisher dir="projects/${project.name}/build/api"
