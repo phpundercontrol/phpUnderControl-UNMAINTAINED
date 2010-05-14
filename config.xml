@@ -2,6 +2,9 @@
 <cruisecontrol>
 
     <project name="phpUnderControl" buildafterfailed="false">
+        <listeners>
+            <currentbuildstatuslistener file="logs/${project.name}/status.txt" />
+        </listeners>
 
         <bootstrappers>
             <gitbootstrapper localWorkingCopy="projects/${project.name}/source" />
@@ -20,13 +23,20 @@
         </log>
 
         <publishers>
+            <execute command="phpuc graph logs/${project.name} artifacts/${project.name}" />
+            <execute command="phpcb --log projects/${project.name}/build/logs 
+                                    --source projects/${project.name}/source/PHP 
+                                    --output projects/${project.name}/build/php-code-browser" />
+
+            <artifactspublisher dir="projects/${project.name}/build/php-code-browser" 
+                                dest="artifacts/${project.name}" 
+                                subdirectory="php-code-browser" />
             <artifactspublisher dir="projects/${project.name}/build/api"
                                 dest="artifacts/${project.name}"
-                                subdirectory="api"/>
+                                subdirectory="api" />
             <artifactspublisher dir="projects/${project.name}/build/coverage"
                                 dest="artifacts/${project.name}"
-                                subdirectory="coverage"/>
-            <execute command="phpuc graph logs/${project.name} artifacts/${project.name}"/>
+                                subdirectory="coverage" />
         </publishers>
     </project>
 
