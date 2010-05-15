@@ -4,7 +4,7 @@
     <project name="phpUnderControl" buildafterfailed="false">
         <property file="projects/${project.name}/source/config.properties" />
 
-        <labelincrementer separator="" />
+        <labelincrementer separator="." />
 
         <listeners>
             <currentbuildstatuslistener file="logs/${project.name}/status.txt" />
