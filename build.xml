@@ -2,15 +2,29 @@
 <project name="phpUnderControl" basedir="." default="build">
 
     <!--
+        Specify a default label
+    -->
+    <property name="label" value="" />
+
+    <!--
+        Include some external properties
+    -->
+    <property file="build.properties" />
+
+    <!--
         Define some common directories and settings
     -->
-    <property name="sourcedir" value="${basedir}" />
     <property name="builddir" value="${basedir}/../build" />
 
     <!--
         Main build target for this project.
     -->
     <target name="build" depends="update,apidoc,test-static,test-runtime" />
+
+    <!--
+        Creates the main distributables and tests the project
+    -->
+    <target name="dist" depends="build,bundle" />
 
     <!--
         Prepares the temporary build environment.
@@ -41,7 +55,7 @@
         Update base directory from source
     -->
     <target name="update" depends="prepare">
-        <exec executable="git" dir="${sourcedir}">
+        <exec executable="git" dir="${basedir}">
             <arg line="pull" />
         </exec>
     </target>
@@ -54,8 +68,8 @@
             <arg line="-ue on
                        --target ${builddir}/api
                        --output HTML:Phpuc:phpuc
-                       --templatebase ${sourcedir}/data/phpdoc
-                       --directory ${sourcedir}/src" />
+                       --templatebase ${basedir}/data/phpdoc
+                       --directory ${basedir}/src" />
         </exec>
     </target>
 
@@ -79,7 +93,7 @@
     <target name="lint">
         <apply executable="php" logerror="true" failonerror="true">
             <arg value="-l" />
-            <fileset dir="${sourcedir}">
+            <fileset dir="${basedir}">
                 <include name="tests/**/*.php" />
                 <include name="src/**/*.php" />
                 <exclude name="tests/run/**/*.php" />
@@ -95,7 +109,7 @@
             <arg line="--report=checkstyle
                        --standard=Mapi
                        --report-file=${builddir}/logs/checkstyle.xml
-                       ${sourcedir}/src" />
+                       ${basedir}/src" />
         </exec>
     </target>
 
@@ -104,7 +118,7 @@
     -->
     <target name="phpmd" depends="init">
         <exec executable="phpmd" failonerror="false">
-            <arg line="${sourcedir}/src
+            <arg line="${basedir}/src
                        xml
                        codesize,unusedcode,naming
                        --reportfile ${builddir}/logs/pmd.xml" />
@@ -117,7 +131,7 @@
     <target name="phpcpd" depends="init">
         <exec executable="phpcpd" failonerror="false">
             <arg line="--log-pmd ${builddir}/logs/pmd-cpd.xml
-                       ${sourcedir}/src" />
+                       ${basedir}/src" />
         </exec>
     </target>
 
@@ -131,7 +145,7 @@
                        --jdepend-chart=${builddir}/charts/jdepend.svg
                        --overview-pyramid=${builddir}/charts/overview-pyramid.svg
                        --coderank-mode=inheritance,property,method
-                       ${sourcedir}/src" />
+                       ${basedir}/src" />
         </exec>
     </target>
 
@@ -151,8 +165,54 @@
                        --log-junit ${builddir}/logs/junit.xml
                        --coverage-clover ${builddir}/logs/coverage.xml
                        --coverage-html ${builddir}/coverage
-                       phpucAllTests ${sourcedir}/tests/AllTests.php" />
+                       phpucAllTests ${basedir}/tests/AllTests.php" />
         </exec>
+    </target>
+
+    <target name="bundle" depends="bundle-pear-archive,bundle-zip-archive" />
+
+    <target name="bundle-pear-archive" depends="prepare">
+        <exec executable="php" failonerror="true">
+            <arg line="${basedir}/bin/package.php ${basedir}" />
+        </exec>
+
+        <tstamp>
+            <format property="bundle-time" pattern="yyyy-MM-dd" />
+        </tstamp>
+
+        <copy file="${basedir}/package.xml" tofile="${basedir}/package-tmp.xml">
+            <filterchain>
+                <replaceregex pattern="lead&gt;(\s+)&lt;date&gt;(.*)&lt;/date"
+                              replace="lead&gt;\1&lt;date&gt;${bundle-time}&lt;/date"
+                              flags="m"
+                              byline="false">
+                </replaceregex>
+                <replaceregex pattern="lead&gt;(\s+)&lt;date&gt;(.*)&lt;/date&gt;(\s+)&lt;version&gt;(\s+)&lt;release&gt;(.+)&lt;"
+                              replace="lead&gt;\1&lt;date&gt;\2&lt;/date&gt;\3&lt;version&gt;\4&lt;release&gt;${project.version}${label}&lt;"
+                              flags="m"
+                              byline="false">
+                </replaceregex>
+            </filterchain>
+        </copy>
+
+        <exec executable="pear" failonerror="true" dir="${basedir}">
+            <arg line="package package-tmp.xml" />
+        </exec>
+
+        <move file="${basedir}/${ant.project.name}-${project.version}${label}.tgz"
+              todir="${builddir}/dist/" />
+
+        <delete file="${basedir}/package-tmp.xml" />
+    </target>
+
+    <target name="bundle-zip-archive" depends="prepare">
+        <zip destfile="${builddir}/dist/${ant.project.name}-${project.version}${label}.zip">
+            <fileset dir="${basedir}">
+                <include name="**/*.*" />
+                <exclude name=".git/**" />
+                <exclude name=".gitignore" />
+            </fileset>
+        </zip>
     </target>
     
 </project>
