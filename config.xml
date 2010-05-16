@@ -43,6 +43,9 @@
             <artifactspublisher dir="projects/${project.name}/build/coverage"
                                 dest="artifacts/${project.name}"
                                 subdirectory="coverage" />
+            <artifactspublisher dir="projects/${project.name}/build/dist"
+                                dest="artifacts/${project.name}"
+                                subdirectory="dist" />
 
             <twitter username="${twitter.username}" password="${twitter.password}" />
 
@@ -58,6 +61,7 @@
                    subjectprefix="phpUnderControl">
                 <always address="cruise@php-under-control.org" />
             </email>
+
         </publishers>
     </project>
 
