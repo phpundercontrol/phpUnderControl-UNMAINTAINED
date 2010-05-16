@@ -4,8 +4,6 @@
     <project name="phpUnderControl" buildafterfailed="false">
         <property file="projects/${project.name}/source/config.properties" />
 
-        <labelincrementer separator="." />
-
         <listeners>
             <currentbuildstatuslistener file="logs/${project.name}/status.txt" />
         </listeners>
@@ -19,7 +17,11 @@
         </modificationset>
 
         <schedule interval="60">
-            <ant anthome="apache-ant-1.7.0" buildfile="projects/${project.name}/source/build.xml"/>
+            <ant anthome="apache-ant-1.7.0" 
+                 buildfile="projects/${project.name}/source/build.xml"
+                 target="dist">
+                <property name="continuous-integration" value="true" />
+            </ant>
         </schedule>
 
         <log dir="logs/${project.name}">
@@ -43,6 +45,19 @@
                                 subdirectory="coverage" />
 
             <twitter username="${twitter.username}" password="${twitter.password}" />
+
+            <email buildresultsurl="http://cruise.phpundercontrol.org"
+                   mailhost="${smtp.hostname}"
+                   mailport="${smtp.portname}"
+                   username="${smtp.username}"
+                   password="${smtp.password}"
+                   reportsuccess="always"
+                   returnaddress="cruise@php-under-control.org"
+                   returnname="Cruise"
+                   spamwhilebroken="false"
+                   subjectprefix="phpUnderControl">
+                <always address="cruise@php-under-control.org" />
+            </email>
         </publishers>
     </project>
 

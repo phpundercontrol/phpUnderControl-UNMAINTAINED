@@ -2,11 +2,6 @@
 <project name="phpUnderControl" basedir="." default="build">
 
     <!--
-        Specify a default label
-    -->
-    <property name="label" value="" />
-
-    <!--
         Include some external properties
     -->
     <property file="build.properties" />
@@ -41,7 +36,7 @@
         <mkdir dir="${builddir}/coverage" />
         <mkdir dir="${builddir}/dist" />
         <mkdir dir="${builddir}/logs" />
-        <mkdir dir="${builddir}/php-code-browser" />
+        <mkdir dir="${builddir}/phpcb" />
     </target>
 
     <!--
@@ -169,18 +164,44 @@
         </exec>
     </target>
 
-    <target name="bundle" depends="bundle-pear-archive,bundle-zip-archive" />
+    <target name="build-label" depends="build-label-ci,build-label-non-ci" />
 
-    <target name="bundle-pear-archive" depends="prepare">
+    <target name="build-label-ci" if="continuous-integration">
+        <buildnumber />
+        <property name="build.label" value="build${build.number}" />
+    </target>
+
+    <target name="build-label-non-ci" unless="continuous-integration">
+        <property name="build.label" value="" />
+    </target>
+    
+
+    <target name="bundle" depends="build-label,bundle-pear-archive,bundle-zip-archive" />
+
+    <target name="bundle-prepare" depends="prepare">
+        <copy todir="${builddir}/temp">
+            <fileset dir="${basedir}">
+                <include name="**/*.*" />
+                <include name="CHANGELOG" />
+                <include name="LICENSE" />
+                <exclude name=".git/**" />
+                <exclude name=".gitignore" />
+                <exclude name="build" />
+                <exclude name="config.properties" />
+            </fileset>
+        </copy>
+    </target>
+
+    <target name="bundle-pear-archive" depends="bundle-prepare">
         <exec executable="php" failonerror="true">
-            <arg line="${basedir}/bin/package.php ${basedir}" />
+            <arg line="${builddir}/temp/bin/package.php ${builddir}/temp" />
         </exec>
 
         <tstamp>
             <format property="bundle-time" pattern="yyyy-MM-dd" />
         </tstamp>
 
-        <copy file="${basedir}/package.xml" tofile="${basedir}/package-tmp.xml">
+        <copy file="${builddir}/temp/package.xml" tofile="${builddir}/temp/package2.xml">
             <filterchain>
                 <replaceregex pattern="lead&gt;(\s+)&lt;date&gt;(.*)&lt;/date"
                               replace="lead&gt;\1&lt;date&gt;${bundle-time}&lt;/date"
@@ -188,29 +209,26 @@
                               byline="false">
                 </replaceregex>
                 <replaceregex pattern="lead&gt;(\s+)&lt;date&gt;(.*)&lt;/date&gt;(\s+)&lt;version&gt;(\s+)&lt;release&gt;(.+)&lt;"
-                              replace="lead&gt;\1&lt;date&gt;\2&lt;/date&gt;\3&lt;version&gt;\4&lt;release&gt;${project.version}${label}&lt;"
+                              replace="lead&gt;\1&lt;date&gt;\2&lt;/date&gt;\3&lt;version&gt;\4&lt;release&gt;${project.version}${build.label}&lt;"
                               flags="m"
                               byline="false">
                 </replaceregex>
             </filterchain>
         </copy>
 
-        <exec executable="pear" failonerror="true" dir="${basedir}">
-            <arg line="package package-tmp.xml" />
+        <exec executable="pear" failonerror="true" dir="${builddir}/temp">
+            <arg line="package package2.xml" />
         </exec>
 
-        <move file="${basedir}/${ant.project.name}-${project.version}${label}.tgz"
+        <move file="${builddir}/temp/${ant.project.name}-${project.version}${build.label}.tgz"
               todir="${builddir}/dist/" />
 
-        <delete file="${basedir}/package-tmp.xml" />
     </target>
 
-    <target name="bundle-zip-archive" depends="prepare">
-        <zip destfile="${builddir}/dist/${ant.project.name}-${project.version}${label}.zip">
-            <fileset dir="${basedir}">
+    <target name="bundle-zip-archive" depends="bundle-prepare">
+        <zip destfile="${builddir}/dist/${ant.project.name}-${project.version}${build.label}.zip">
+            <fileset dir="${builddir}/temp">
                 <include name="**/*.*" />
-                <exclude name=".git/**" />
-                <exclude name=".gitignore" />
             </fileset>
         </zip>
     </target>
