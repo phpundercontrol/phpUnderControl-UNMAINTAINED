@@ -103,7 +103,7 @@ class phpucCruiseControlTask extends phpucAbstractTask
         
         $out->startList();
         
-        foreach ( $this->directories as $index => $directory )
+        foreach ( $this->directories as $directory )
         {
             // Skip for existing directories.
             if ( is_dir( $installDir . $directory ) )

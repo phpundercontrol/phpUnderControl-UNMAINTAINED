@@ -94,7 +94,7 @@ class phpucCreateFileTask extends phpucAbstractTask
         
         $out->startList();
         
-        foreach ( $this->files as $index => $file )
+        foreach ( $this->files as $file )
         {
             $filepath = $installDir . $file;
             
