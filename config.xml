@@ -53,7 +53,7 @@
 
             <twitter username="${twitter.username}" password="${twitter.password}" />
 
-            <email buildresultsurl="http://cruise.phpundercontrol.org"
+            <email buildresultsurl="http://cruise.phpundercontrol.org/buildresults/${project.name}"
                    mailhost="${smtp.hostname}"
                    mailport="${smtp.portname}"
                    username="${smtp.username}"
