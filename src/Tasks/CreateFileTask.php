@@ -61,7 +61,6 @@ class phpucCreateFileTask extends phpucAbstractTask
     /**
      * List of new files.
      *
-     * @type array<string>
      * @var array(string) $files
      */
     protected $files = array();

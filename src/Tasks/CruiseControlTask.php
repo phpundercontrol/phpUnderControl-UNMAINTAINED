@@ -64,7 +64,6 @@ class phpucCruiseControlTask extends phpucAbstractTask
     /**
      * List of additional directories for phpUnderControl.
      *
-     * @type array<string>
      * @var array(string)
      */
     private $directories = array(
