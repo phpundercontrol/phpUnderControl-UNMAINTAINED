@@ -66,7 +66,7 @@
                       "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html>
   <head>
-    <title><%= ccname%> phpUnderControl 0.5.1 - Build Results</title>
+    <title><%= ccname%> phpUnderControl - SVN - Build Results</title>
     <link type="text/css" rel="stylesheet" href="<%=request.getContextPath() %>/css/SyntaxHighlighter.css"/>
     <link type="text/css" rel="stylesheet" href="<%=request.getContextPath() %>/css/php-under-control.css?v=3"/>
     <link rel="icon" href="<%=request.getContextPath() %>/favicon.ico" type="image/x-icon" />
