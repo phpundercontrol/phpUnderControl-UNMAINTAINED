@@ -65,8 +65,7 @@ class phpucConfigExecutePublisher implements phpucConfigPublisherI
     /**
      * Magic properties for the artifact publisher tag.
      *
-     * @type array<mixed>
-     * @var array(string=>mixed) $properties
+     * @var array(string=>mixed)
      */
     protected $properties = array(
         'element'  =>  null,

@@ -61,8 +61,7 @@ class phpucGenerateGraphTask extends phpucAbstractTask implements phpucConsoleEx
     /**
      * The log directory.
      *
-     * @type string
-     * @var string $logDir
+     * @var string
      */
     protected $logDir = null;
 
@@ -72,8 +71,7 @@ class phpucGenerateGraphTask extends phpucAbstractTask implements phpucConsoleEx
      * Normally this defaults to log directory but in some cases different
      * directories are used for artifacts.
      *
-     * @type string
-     * @var string $outputDir
+     * @var string
      */
     protected $outputDir = null;
 
@@ -82,8 +80,7 @@ class phpucGenerateGraphTask extends phpucAbstractTask implements phpucConsoleEx
      *
      * If this is set to <b>true</b> all graphs are regenerate on every call.
      *
-     * @type boolean
-     * @var boolean $debug
+     * @var boolean
      */
     private $debug = false;
 

@@ -65,16 +65,14 @@ abstract class phpucAbstractTask implements phpucTaskI
     /**
      * Virtual properties for the setting implementation.
      *
-     * @type array<mixed>
-     * @var array(string=>mixed) $properties
+     * @var array(string=>mixed)
      */
     protected $properties = array();
 
     /**
      * The command line arguments.
      *
-     * @type phpucConsoleArgs
-     * @var phpucConsoleArgs $args
+     * @var phpucConsoleArgs
      */
     protected $args = null;
     

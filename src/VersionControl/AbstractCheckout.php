@@ -124,8 +124,7 @@ abstract class phpucAbstractCheckout implements phpucCheckoutI
     /**
      * Virtual properties for the setting implementation.
      *
-     * @type array<mixed>
-     * @var array(string=>mixed) $properties
+     * @var array(string=>mixed)
      */
     protected $properties = array(
         'url'       =>  null,

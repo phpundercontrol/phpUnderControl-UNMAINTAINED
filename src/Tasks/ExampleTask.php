@@ -64,8 +64,7 @@ class phpucExampleTask extends phpucAbstractTask
     /**
      * List of example files.
      *
-     * @type array<string>
-     * @var array(string) $fileNames
+     * @var array(string)
      */
     protected $fileNames = array(
         'src/Math.php',

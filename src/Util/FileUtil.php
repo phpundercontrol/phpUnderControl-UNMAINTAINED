@@ -71,24 +71,21 @@ final class phpucFileUtil
     /**
      * List of valid operation systems.
      *
-     * @type array<integer>
-     * @var array(integer) $validOS
+     * @var array(integer)
      */
     private static $validOS = array( self::OS_UNIX, self::OS_WINDOWS );
     
     /**
      * List of known windows executable extensions.
      *
-     * @type array<string>
-     * @var array(string) $windowsExts
+     * @var array(string)
      */
     private static $windowsExts = array( 'exe', 'cmd', 'bat' );
     
     /**
      * List of environment paths.
      *
-     * @type array<string>
-     * @var array(string) $paths
+     * @var array(string)
      */
     private static $paths = null;
     
@@ -97,8 +94,7 @@ final class phpucFileUtil
      * 
      * This property was primary introduced for class testing. 
      *
-     * @type integer
-     * @var integer $os
+     * @var integer
      */
     private static $os = null;
     

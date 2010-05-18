@@ -61,8 +61,7 @@ class phpucModifyFileTask extends phpucAbstractTask
     /**
      * List of files to modify.
      *
-     * @type array<string>
-     * @var array(string) $files
+     * @var array(string)
      */
     protected $files = array();
     

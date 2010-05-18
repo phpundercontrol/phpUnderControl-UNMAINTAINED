@@ -61,8 +61,7 @@ class phpucConsoleOutput
     /**
      * Holds the configured console output instance.
      *
-     * @type phpucConsoleOutput
-     * @var phpucConsoleOutput $output
+     * @var phpucConsoleOutput
      */
     protected static $output = null;
     

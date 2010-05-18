@@ -77,8 +77,7 @@ class phpucFileCopyUtil
      * List of file extensions where this class should look into the contents
      * for custom tags.
      *
-     * @type array<string>
-     * @var array(string) $extensions
+     * @var array(string)
      */
     protected static $extensions = array( 'jsp' );
     

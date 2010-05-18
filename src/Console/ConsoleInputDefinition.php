@@ -72,8 +72,7 @@ class phpucConsoleInputDefinition implements ArrayAccess, IteratorAggregate
     /**
      * List of valid modes.
      *
-     * @type array<array>
-     * @var array(string=>array) $definition
+     * @var array(string=>array)
      */
     private $definition = array(
     );

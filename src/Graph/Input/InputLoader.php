@@ -67,8 +67,7 @@ class phpucInputLoader implements IteratorAggregate
     /**
      * The input iterator.
      *
-     * @type phpucInputIterator
-     * @var phpucInputIterator $inputs
+     * @var phpucInputIterator
      */
     private $inputs = null;
     

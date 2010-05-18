@@ -61,16 +61,14 @@ class phpucConfigFile extends DOMDocument
     /**
      * The config.xml file name.
      *
-     * @type string
-     * @var string $fileName
+     * @var string
      */
     protected $fileName = '';
     
     /**
      * List of projects from the configuration file.
      *
-     * @type array<phpucConfigProject>
-     * @var array(string=>phpucConfigProject) $projects
+     * @var array(string=>phpucConfigProject)
      */
     protected $projects = array();
     

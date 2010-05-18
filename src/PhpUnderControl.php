@@ -103,16 +103,14 @@ class phpucPhpUnderControl
     /**
      * The used console input object.
      *
-     * @type phpucConsoleInput
-     * @var phpucConsoleInput $input
+     * @var phpucConsoleInput
      */
     private $input = null;
     
     /**
      * List with all tasks.
      *
-     * @type array<phpucTaskI>
-     * @var array(phpucTaskI) $tasks
+     * @var array(phpucTaskI)
      */
     private $tasks = array();
     

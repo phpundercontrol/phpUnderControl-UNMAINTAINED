@@ -71,8 +71,7 @@ class phpucInputIterator extends FilterIterator
     /**
      * List of available input object.
      *
-     * @type array<phpucInputI>
-     * @var array(phpucInputI) $inputs
+     * @var array(phpucInputI)
      */
     private $inputs = null;
     

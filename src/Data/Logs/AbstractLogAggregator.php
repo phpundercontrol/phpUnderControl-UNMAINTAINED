@@ -63,8 +63,7 @@ abstract class phpucAbstractLogAggregator
     /**
      * The primary log file.
      *
-     * @type DOMDocument
-     * @var DOMDocument $log
+     * @var DOMDocument
      */
     protected $log = null;
     

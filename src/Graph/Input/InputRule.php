@@ -63,32 +63,28 @@ class phpucInputRule
     /**
      * The human readable label.
      *
-     * @type string
-     * @var string $label
+     * @var string
      */
     public $label = null;
 
     /**
      * The xpath query for data selection.
      *
-     * @type string
-     * @var string $xpath
+     * @var string
      */
     public $xpath = null;
 
     /**
      * The value calculation mode.
      *
-     * @type integer
-     * @var integer $mode
+     * @var integer
      */
     public $mode = null;
 
     /**
      * List of valid modes.
      *
-     * @type array<integer>
-     * @var array(integer) $modes
+     * @var array(integer)
      */
     private $modes = array(
         phpucInputI::MODE_COUNT,

@@ -73,16 +73,14 @@ class phpucBuildTarget
     /**
      * List of {@link phpucAbstractAntTask}
      *
-     * @type array<phpucAbstractAntTask>
-     * @var array(phpucAbstractAntTask) $tasks
+     * @var array(phpucAbstractAntTask)
      */
     private $tasks = array();
 
     /**
      * Magic properties for the build target.
      *
-     * @type array<array>
-     * @var array(string=>array) $properties
+     * @var array(string=>array)
      */
     protected $properties = array(
         'failonerror'  =>  false,

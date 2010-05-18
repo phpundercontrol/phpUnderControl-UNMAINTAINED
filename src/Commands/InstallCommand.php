@@ -61,8 +61,7 @@ class phpucInstallCommand extends phpucAbstractCommand implements phpucConsoleCo
     /**
      * List of new files.
      *
-     * @type array<string>
-     * @var array(string=>string) $installFiles
+     * @var array(string=>string)
      */
     private $installFiles = array(
         '/webapps/cruisecontrol/changeset.jsp',
@@ -126,8 +125,7 @@ class phpucInstallCommand extends phpucAbstractCommand implements phpucConsoleCo
     /**
      * List of modified files.
      *
-     * @type array<string>
-     * @var array(string=>string) $modifiedFiles
+     * @var array(string=>string)
      */
     private $modifiedFiles = array(
         '/webapps/cruisecontrol/buildresults.jsp',

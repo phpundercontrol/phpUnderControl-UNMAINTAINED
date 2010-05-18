@@ -64,8 +64,7 @@ class phpucLogFile extends DOMDocument
     /**
      * Virtual properties for a single build log file.
      *
-     * @type array<mixed>
-     * @var array(string=>mixed) $properties
+     * @var array(string=>mixed)
      */
     protected $properties = array(
         'timestamp'  =>  null,

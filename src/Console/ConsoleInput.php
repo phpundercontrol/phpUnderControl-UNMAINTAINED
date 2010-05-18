@@ -66,48 +66,42 @@ class phpucConsoleInput
     /**
      * The argument array form the command line interface.
      *
-     * @type array<string>
-     * @var array(string) $argv
+     * @var array(string)
      */
     private $argv = array();
     
     /**
      * The given command.
      *
-     * @type string
-     * @var string $command
+     * @var string
      */
     private $command = null;
     
     /**
      * The given command line options.
      *
-     * @type array<mixed>
-     * @var array(string=>mixed) $options
+     * @var array(string=>mixed)
      */
     private $options = array();
     
     /**
      * The given command line arguments.
      *
-     * @type array<string>
-     * @var array(string=>string) $arguments
+     * @var array(string=>string)
      */
     private $arguments = array();
     
     /**
      * List of valid modes.
      *
-     * @type array<array>
-     * @var array(string=>array) $commands
+     * @var array(string=>array)
      */
     private $commands = null;
     
     /**
      * List of properties read from the command line interface.
      *
-     * @type array<mixed>
-     * @var array(string=>mixed) $properties
+     * @var array(string=>mixed)
      */
     private $properties = array(
         'args'  =>  null,

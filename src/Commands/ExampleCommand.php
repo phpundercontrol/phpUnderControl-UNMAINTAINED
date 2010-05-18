@@ -61,8 +61,7 @@ class phpucExampleCommand extends phpucAbstractCommand implements phpucConsoleCo
     /**
      * List of example files.
      *
-     * @type array<string>
-     * @var array(string=>string) $exampleFiles
+     * @var array(string=>string)
      */
     private $exampleFiles = array(
         'src/Math.php'        =>  null,

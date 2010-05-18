@@ -64,8 +64,7 @@ class phpucBuildFile extends DOMDocument
     /**
      * Magic properties for the build target.
      *
-     * @type array<array>
-     * @var array(string=>array) $properties
+     * @var array(string=>array)
      */
     protected $properties = array(
         'projectName'  =>  null,
@@ -75,8 +74,7 @@ class phpucBuildFile extends DOMDocument
     /**
      * List of build file targets.
      *
-     * @type array<phpucBuildTarget>
-     * @var array(phpucBuildTarget) $targets
+     * @var array(phpucBuildTarget)
      */
     protected $targets = array();
 

@@ -65,8 +65,7 @@ class phpucConsoleArgs
     /**
      * List of properties read from the command line interface.
      *
-     * @type array<mixed>
-     * @var array(string=>mixed) $properties
+     * @var array(string=>mixed)
      */
     private $properties = array(
         'command'    =>  null,

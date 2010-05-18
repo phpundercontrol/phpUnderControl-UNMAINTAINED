@@ -61,16 +61,14 @@ class phpucMergePhpunitTask extends phpucAbstractTask implements phpucConsoleExt
     /**
      * List of input log files.
      *
-     * @type array<string>
-     * @var array(string=>string) $inputFiles
+     * @var array(string=>string)
      */
     private $inputFiles = array();
     
     /**
      * The log output file.
      *
-     * @type string
-     * @var string $outputFile
+     * @var string
      */
     private $outputFile = null;
     

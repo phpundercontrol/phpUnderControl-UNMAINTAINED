@@ -72,16 +72,14 @@ abstract class phpucAbstractAntTask
     /**
      * List of {@link phpucAbstractAntTask}
      *
-     * @type array<phpucAbstractAntTask>
-     * @var array(phpucAbstractAntTask) $tasks
+     * @var array(phpucAbstractAntTask)
      */
     protected $tasks = array();
 
     /**
      * Magic properties for the build target.
      *
-     * @type array<array>
-     * @var array(string=>array) $properties
+     * @var array(string=>mixed)
      */
     protected $properties = array(
         'failonerror'  =>  false,

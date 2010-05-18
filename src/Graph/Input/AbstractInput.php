@@ -96,64 +96,56 @@ abstract class phpucAbstractInput implements phpucInputI
     /**
      * The human readable input type title.
      *
-     * @type string
-     * @var string $title
+     * @var string
      */
     protected $title = null;
 
     /**
      * An optional label for the y-axis.
      *
-     * @type string
-     * @var string $yAxisLabel
+     * @var string
      */
     protected $yAxisLabel = '';
 
     /**
      * An optional label for the x-axis.
      *
-     * @type string
-     * @var string $xAxisLabel
+     * @var string
      */
     protected $xAxisLabel = '';
 
     /**
      * Dimensions of Graph to export
      *
-     * @type array<mixed>
-     * @var array(string=>int) $graphDims
+     * @var array(string=>int)
      */
     protected $graphDims = array();
 
     /**
      * The output image file name.
      *
-     * @type string
-     * @var string $fileName
+     * @var string
      */
     private $fileName = null;
 
     /**
      * The output chart type.
      *
-     * @type integer
-     * @var integer $type
+     * @var integer
      */
     private $type = null;
 
     /**
      * The extracted log file data.
      *
-     * @type array<mixed>
-     * @var array(string=>array) $data
+     * @var array(string=>array)
      */
     private $data = array();
 
     /**
      * List of input rules.
      *
-     * @type array<phpucInputRule>
-     * @var array(phpucInputRule) $rules
+     * @var array(phpucInputRule)
      */
     private $rules = array();
     

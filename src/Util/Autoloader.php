@@ -64,7 +64,6 @@ class phpucAutoloader
     /**
      * Mapping between class names and files.
      *
-     * @type array<string>
      * @var array(string=>string)
      */
     private $classMap = null;

@@ -61,24 +61,21 @@ class phpucGraphPalette extends ezcGraphPaletteEzGreen
     /**
      * Tango white background color.
      *
-     * @type string
-     * @var string $background
+     * @var string
      */
     protected $background = '#eeeeef';
 
     /**
      * Light gray grid lines.
      *
-     * @type string
-     * @var string $majorGridColor
+     * @var string
      */
     protected $majorGridColor = '#d3d7cf';
     
     /**
      * Four gray and green tango colors for different graph records.
      *
-     * @type array<string>
-     * @var array(string) $dataSetColor
+     * @var array(string)
      */
     protected $dataSetColor = array(
         '#8ae234',
@@ -91,8 +88,7 @@ class phpucGraphPalette extends ezcGraphPaletteEzGreen
     /**
      * By default no symbol used.
      *
-     * @type array<integer>
-     * @var array(integer) $dataSetSymbol
+     * @var array(integer)
      */
     protected $dataSetSymbol = array(
         ezcGraph::NO_SYMBOL,
@@ -101,16 +97,14 @@ class phpucGraphPalette extends ezcGraphPaletteEzGreen
     /**
      * Sans-serif graph font.
      *
-     * @type string
-     * @var string $fontName
+     * @var string
      */
     protected $fontName = 'sans-serif';
 
     /**
      * Tango gray text.
      *
-     * @type string
-     * @var string $fontColor
+     * @var string
      */
     protected $fontColor = '#555753';
 }

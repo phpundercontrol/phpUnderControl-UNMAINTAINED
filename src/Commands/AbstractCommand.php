@@ -87,15 +87,13 @@ abstract class phpucAbstractCommand implements phpucCommandI
     /**
      * The console argument object.
      *
-     * @type phpucConsoleArgs
-     * @var phpucConsoleArgs $args
+     * @var phpucConsoleArgs
      */
     protected $args = null;
 
     /**
      * List of command specific tasks.
      *
-     * @type array<phpucTaskI>
      * @var array(phpucTaskI)
      */
     protected $tasks = null;

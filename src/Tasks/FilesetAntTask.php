@@ -65,8 +65,7 @@ class phpucFilesetAntTask extends phpucAbstractAntTask
     /**
      * Ant task name
      *
-     * @type string
-     * @var string $taskName
+     * @var string
      */
     public $taskName = 'fileset';
 

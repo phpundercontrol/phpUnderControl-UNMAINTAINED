@@ -64,8 +64,7 @@ class phpucApplyAntTask extends phpucAbstractAntTask
     /**
      * Ant task name
      *
-     * @type string
-     * @var string $taskName
+     * @var string
      */
     public $taskName = 'apply';
 

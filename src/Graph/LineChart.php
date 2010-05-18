@@ -63,8 +63,7 @@ class phpucLineChart extends ezcGraphLineChart implements phpucChartI
     /**
      * If <b>true</b> each data item is shown with a highlight symbol.
      *
-     * @type boolean
-     * @var boolean $showSymbol
+     * @var boolean
      */
     protected $showSymbol = false;
 

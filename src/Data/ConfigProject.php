@@ -83,8 +83,7 @@ class phpucConfigProject
     /**
      * Magic properties for the project tag.
      *
-     * @type array<mixed>
-     * @var array(string=>mixed) $properties
+     * @var array(string=>mixed)
      * @ignore
      */
     protected $properties = array(
@@ -99,48 +98,42 @@ class phpucConfigProject
     /**
      * List of all registered artificat publishers.
      *
-     * @type array<phpucConfigArtifactsPublisher>
-     * @var array(phpucConfigArtifactsPublisher) $publishers
+     * @var array(phpucConfigArtifactsPublisher)
      */
     protected $publishers = array();
 
     /**
      * List of all registered boot strappers.
      *
-     * @type array<phpucConfigBootStrapper>
-     * @var array(phpucConfigBootStrapper) $bootStrappers
+     * @var array(phpucConfigBootStrapper)
      */
     protected $bootStrappers = array();
 
     /**
      * List of all registered build triggers.
      *
-     * @type array<phpucConfigBuildTrigger>
-     * @var array(phpucConfigBuildTrigger) $buildTriggers
+     * @var array(phpucConfigBuildTrigger)
      */
     protected $buildTriggers = array();
 
     /**
      * Denotes the actual state of this project object.
      *
-     * @type integer
-     * @var integer $state
+     * @var integer
      */
     protected $state = self::STATE_CLEAN;
 
     /**
      * The <schedule> element from the project configuration.
      *
-     * @type DOMElement
-     * @var DOMElement $scheduleElement
+     * @var DOMElement
      */
     private $scheduleElement = null;
 
     /**
      * The build tool element from the project configuration.
      *
-     * @type DOMElement
-     * @var DOMElement $toolElement
+     * @var DOMElement
      */
     private $toolElement = null;
 

@@ -64,8 +64,7 @@ class phpucCvsCheckout extends phpucAbstractCheckout
     /**
      * The temporary cvs password file.
      *
-     * @type string
-     * @var string $passFile
+     * @var string
      */
     protected $passFile = null;
     

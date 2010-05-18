@@ -63,40 +63,35 @@ class phpucPHPUnitTestLogAggregator extends phpucAbstractLogAggregator
     /**
      * Identifier for the current build log file.
      *
-     * @type string
-     * @var string $currentBuild
+     * @var string
      */
     protected $currentBuild = null;
     
     /**
      * Array with created test suite elements.
      *
-     * @type array<DOMElement>
-     * @var array(string=>DOMElement) $testSuites
+     * @var array(string=>DOMElement)
      */
     protected $testSuites = array();
     
     /**
      * Array with created test case aggregate suite elements.
      *
-     * @type array<DOMElement>
-     * @var array(string=>DOMElement) $mergeSuites
+     * @var array(string=>DOMElement)
      */
     protected $mergeSuites = array();
     
     /**
      * The number of detected test errors.
      *
-     * @type integer
-     * @var integer $testErrorCount
+     * @var integer
      */
     private $testErrorCount = -1;
     
     /**
      * The number of detected test failures.
      *
-     * @type integer
-     * @var integer $testFailureCount
+     * @var integer
      */
     private $testFailureCount = -1;
     
