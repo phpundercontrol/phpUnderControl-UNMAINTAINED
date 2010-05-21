@@ -270,7 +270,6 @@ class phpucPhpUnitTask extends phpucAbstractPearTask
      */
     protected function doValidate()
     {
-        $cwd    = $this->getWorkingDirectory();
         $binary = basename( $this->executable );
 
         if ( ( $execdir = dirname( $this->executable ) ) !== '.' )

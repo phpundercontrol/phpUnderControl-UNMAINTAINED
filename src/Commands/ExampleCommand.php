@@ -59,16 +59,6 @@
 class phpucExampleCommand extends phpucAbstractCommand implements phpucConsoleCommandI
 {
     /**
-     * List of example files.
-     *
-     * @var array(string=>string)
-     */
-    private $exampleFiles = array(
-        'src/Math.php'        =>  null,
-        'tests/MathTest.php'  =>  null,
-    );
-
-    /**
      * Setter for the console arguments.
      *
      * @param phpucConsoleArgs $args The console arguments.

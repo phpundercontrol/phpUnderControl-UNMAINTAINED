@@ -103,7 +103,7 @@ class phpucLineChart extends ezcGraphLineChart implements phpucChartI
                 continue;
             }
 
-            foreach ( $this->data[$label] as $key => $v )
+            foreach ( array_keys( $data ) as $key )
             {
                 $this->data[$label]->symbol[$key] = ezcGraph::NO_SYMBOL;
             }

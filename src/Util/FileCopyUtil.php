@@ -128,9 +128,7 @@ class phpucFileCopyUtil
      */
     protected function hasPlaceHolders( $code )
     {
-        return ( preg_match_all( 
-            '#<%-- phpUnderControl (\d+) --%>#', $code, $matches 
-        ) !== 0 );
+        return ( preg_match( '#<%-- phpUnderControl (\d+) --%>#', $code ) !== 0 );
     }
     
     /**
