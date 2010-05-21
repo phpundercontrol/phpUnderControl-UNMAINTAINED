@@ -53,8 +53,7 @@
         </select>
     </fieldset>
 </form>
-   
-    
+
 <form method="GET" action="<%=request.getContextPath() %>/buildresults/<%=project %>" id="cc-build">
     <fieldset>
         <legend><a href="<%=request.getContextPath() %>/buildresults/<%=project %>">Build:</a></legend>
@@ -66,7 +65,7 @@
         </select>
     </fieldset>
 </form>
-    
-    <h2 id="cc-build-status">
-      <cruisecontrol:currentbuildstatus/>
-    </h2>
+
+<h2 id="cc-build-status">
+    <cruisecontrol:currentbuildstatus/>
+</h2>
