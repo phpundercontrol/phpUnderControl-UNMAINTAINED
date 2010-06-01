@@ -59,6 +59,24 @@
 class phpucChartFactory
 {
     /**
+     * The number entries to display in a chart.
+     *
+     * @var integer
+     */
+    private $numberOfEntries = 0;
+
+    /**
+     * Constructs a new chart factory instance.
+     *
+     * @param integer $numberOfEntries Optional argument which defines the
+     *        maximum number of entries that should be shown by a chart.
+     */
+    public function __construct( $numberOfEntries = 0 )
+    {
+        $this->numberOfEntries = $numberOfEntries;
+    }
+
+    /**
      * Creates a chart instance depending on the given <b>$input</b> settings.
      *
      * @param phpucAbstractInput $input The input data source.
@@ -86,6 +104,7 @@ class phpucChartFactory
                 break;
         }
 
+        $chart->setNumberOfEntries( $this->numberOfEntries );
         $chart->setInput( $input );
 
         return $chart;
