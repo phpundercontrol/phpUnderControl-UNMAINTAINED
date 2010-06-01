@@ -268,7 +268,7 @@ abstract class phpucAbstractInput implements phpucInputI
                     break;
 
                 case self::MODE_LIST:
-                    $this->data[$label][] = implode(';', $this->processLogList( $nodeList ));
+                    $this->data[$label][] = implode(';', $this->processLogList( $nodeList ) );
                     break;
             }
         }
