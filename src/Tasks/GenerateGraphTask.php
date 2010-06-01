@@ -117,6 +117,39 @@ class phpucGenerateGraphTask extends phpucAbstractTask implements phpucConsoleEx
         {
             $this->outputDir = $this->logDir;
         }
+
+        $this->validateMaxNumber();
+    }
+
+    /**
+     * Validates the configured max number value for log entries that will
+     * appear in a generated graph.
+     *
+     * @return void
+     */
+    private function validateMaxNumber()
+    {
+        if ( $this->getMaxNumber() < 2 )
+        {
+            throw new phpucValidateException(
+                'The maximum number of builds shown in charts must greater one.'
+            );
+        }
+    }
+
+    /**
+     * Returns the maximum number of log files that will show up in a generated
+     * graph.
+     *
+     * @return integer
+     */
+    private function getMaxNumber()
+    {
+        if ( $this->args->hasOption( 'max-number' ) )
+        {
+            return $this->args->getOption( 'max-number' );
+        }
+        return 0;
     }
 
     /**
@@ -133,6 +166,8 @@ class phpucGenerateGraphTask extends phpucAbstractTask implements phpucConsoleEx
         $chartFactory = new phpucChartFactory();
 
         $logFiles = new phpucLogFileIterator( $this->logDir );
+
+        $index = 0;
 
         foreach ( $logFiles as $logFile )
         {
@@ -194,6 +229,13 @@ class phpucGenerateGraphTask extends phpucAbstractTask implements phpucConsoleEx
             'u',
             'force-update',
             'Force graphic creation and overwrite existing files.'
+        );
+        $def->addOption(
+            $command->getCommandId(),
+            'm',
+            'max-number',
+            'Maximum number of entries that will appear in the generated graph.',
+            true
         );
     }
 }
