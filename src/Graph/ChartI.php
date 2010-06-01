@@ -82,11 +82,6 @@ interface phpucChartI
     const TYPE_TIME = 3;
 
     /**
-     * Identifies an input implementation for bar charts.
-     */
-    const TYPE_BAR = 4;
-
-    /**
      * Sets the input instance for the next rendering process.
      *
      * @param phpucAbstractInput $input The input object.
@@ -94,4 +89,6 @@ interface phpucChartI
      * @return void
      */
     function setInput( phpucAbstractInput $input );
+
+    function setNumberOfEntries( $numberOfEntries );
 }

@@ -84,10 +84,6 @@ class phpucChartFactory
             case phpucChartI::TYPE_TIME:
                 $chart = new phpucTimeChart();
                 break;
-
-            case phpucChartI::TYPE_BAR:
-                $chart = new phpucBarChart();
-                break;
         }
 
         $chart->setInput( $input );
