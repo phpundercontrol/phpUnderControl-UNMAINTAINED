@@ -163,11 +163,9 @@ class phpucGenerateGraphTask extends phpucAbstractTask implements phpucConsoleEx
         $force = ( $this->debug || $this->args->hasOption( 'force-update' ) );
 
         $inputLoader  = new phpucInputLoader();
-        $chartFactory = new phpucChartFactory();
+        $chartFactory = new phpucChartFactory( $this->getMaxNumber() );
 
         $logFiles = new phpucLogFileIterator( $this->logDir );
-
-        $index = 0;
 
         foreach ( $logFiles as $logFile )
         {
@@ -197,14 +195,11 @@ class phpucGenerateGraphTask extends phpucAbstractTask implements phpucConsoleEx
                 if ( !file_exists( $fileName ) || $force )
                 {
                     $chart = $chartFactory->createChart( $input );
-                    if ( $chart instanceof phpucThumbChartI )
-                    {
-                        $chart->render( 195, 125, $fileName );
-                    }
-                    else
-                    {
-                        $chart->render( $input->graphDims['width'], $input->graphDims['height'], $fileName );
-                    }
+                    $chart->render(
+                        $input->graphDims['width'],
+                        $input->graphDims['height'],
+                        $fileName
+                    );
                 }
             }
         }

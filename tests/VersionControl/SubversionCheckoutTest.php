@@ -77,6 +77,11 @@ class phpucSubversionCheckoutTest extends phpucAbstractCheckoutTest
     {
         parent::setUp();
 
+        if ( @file_get_contents( 'http://phpundercontrol.org' ) === false )
+        {
+            $this->markTestSkipped( 'Cannot connect to external host.' );
+        }
+
         phpucFileUtil::setOS();
         phpucFileUtil::setPaths();
 

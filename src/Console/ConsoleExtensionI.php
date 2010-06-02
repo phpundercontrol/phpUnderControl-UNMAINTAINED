@@ -69,6 +69,8 @@ interface phpucConsoleExtensionI
      * 
      * @return void
      */
-    function registerCommandExtension( phpucConsoleInputDefinition $def,
-                                       phpucConsoleCommandI $command );
+    function registerCommandExtension(
+        phpucConsoleInputDefinition $def,
+        phpucConsoleCommandI $command
+    );
 }

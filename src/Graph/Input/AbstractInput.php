@@ -169,8 +169,7 @@ abstract class phpucAbstractInput implements phpucInputI
             phpucChartI::TYPE_PIE,
             phpucChartI::TYPE_LINE,
             phpucChartI::TYPE_DOT,
-            phpucChartI::TYPE_TIME,
-            phpucChartI::TYPE_BAR
+            phpucChartI::TYPE_TIME
         );
 
         if ( !in_array( $type, $expected ) )
@@ -268,7 +267,9 @@ abstract class phpucAbstractInput implements phpucInputI
                     break;
 
                 case self::MODE_LIST:
-                    $this->data[$label][] = implode(';', $this->processLogList( $nodeList ) );
+                    $this->data[$label][] = implode( 
+                        ';', $this->processLogList( $nodeList ) 
+                    );
                     break;
             }
         }
