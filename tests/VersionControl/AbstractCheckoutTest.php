@@ -65,16 +65,12 @@ abstract class phpucAbstractCheckoutTest extends phpucAbstractTest
      * property.
      *
      * @return void
+     * @expectedException OutOfRangeException
      */
     public function testGetterUnknownPropertyFail()
     {
-        $this->setExpectedException(
-            'OutOfRangeException',
-            'Unknown or writonly property $phpuc.'
-        );
-        
         $checkout = $this->createCheckout();
-        echo $checkout->phpuc;
+        $property = $checkout->phpuc;
     }
     
     /**
@@ -92,6 +88,28 @@ abstract class phpucAbstractCheckoutTest extends phpucAbstractTest
         
         $checkout = $this->createCheckout();
         $checkout->phpuc = true;
+    }
+
+    /**
+     * Marks a test case as skipped when the remote host is not available.
+     *
+     * @param string $remote The remote host name + port.
+     *
+     * @return void
+     */
+    protected function markTestSkippedWhenRemoteHostNotAvailable( $remote )
+    {
+        $url = parse_url( $remote );
+
+        $socket = @fsockopen( $url['host'], $url['port'], $errno, $errstr, 1);
+        if ( is_resource( $socket ) )
+        {
+            fclose( $socket );
+        }
+        else
+        {
+            $this->markTestSkipped( 'Cannot connect to host ' . $remote . '.' );
+        }
     }
     
     /**

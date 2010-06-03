@@ -115,7 +115,7 @@ class phpucBuildBreakdownInput extends phpucAbstractInput
             }
             ++$data[$label];
         }
-        
+
         return $data;
     }
 }

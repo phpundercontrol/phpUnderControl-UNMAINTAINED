@@ -73,8 +73,7 @@ class phpucBuildRevisionTimelineInput extends phpucAbstractInput
 
         $this->yAxisLabel = 'Build';
         $this->xAxisLabel = 'Revision';
-        $this->graphDims  = array('width'  => 390,
-                                  'height' => 250,);
+        $this->graphDims  = array( 'width'  => 390, 'height' => 250, );
 
         $this->addRule(
             new phpucInputRule(
@@ -120,10 +119,10 @@ class phpucBuildRevisionTimelineInput extends phpucAbstractInput
         {
             $label = ( in_array( $build, $logs['build_error'] ) ) ? 'Broken Builds' : 'Good Builds';
 
-            $revisions = array_unique(explode(';', $logs['revision'][$index]));
+            $revisions = array_unique( explode( ';', $logs['revision'][$index] ) );
             foreach ( $revisions as $revision )
             {
-                $data[$label][$revision] = substr($build, strpos($build, '.')+1);
+                $data[$label][$revision] = substr( $build, strpos( $build, '.' ) + 1 );
             }
         }
 

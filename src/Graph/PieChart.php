@@ -81,6 +81,20 @@ class phpucPieChart extends ezcGraphPieChart implements phpucChartI
         
         $this->data['label'] = new ezcGraphArrayDataSet( $input->data );
     }
+
+    /**
+     * Setter method for the number of log entries shown in a generated chart.
+     * phpUnderControl will render all log entries if no value was set.
+     *
+     * @param integer $numberOfEntries Number of log entries shown in a chart.
+     *
+     * @return void
+     * @SuppressWarnings("PMD.UnusedParameter")
+     */
+    public function setNumberOfEntries( $numberOfEntries )
+    {
+        // Nothing todo, the pie chart can contain all entries
+    }
     
     /**
      * Initializes the chart properties.

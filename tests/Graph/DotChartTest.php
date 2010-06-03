@@ -45,7 +45,7 @@
  * @link      http://www.phpundercontrol.org/
  */
 
-require_once dirname( __FILE__ ) . '/../AbstractTest.php';
+require_once dirname( __FILE__ ) . '/AbstractChartTest.php';
 
 /**
  * Test case for the dot chart.
@@ -58,30 +58,35 @@ require_once dirname( __FILE__ ) . '/../AbstractTest.php';
  * @version   Release: @package_version@
  * @link      http://www.phpundercontrol.org/
  */
-class phpucDotChartTest extends phpucAbstractTest
+class phpucDotChartTest extends phpucAbstractChartTest
 {
     /**
      * Tests the line chart render method.
      *
      * @return void
      */
-    public function testRender()
+    public function testRenderCreatesExpectedChartFile()
     {
-        $this->markTestSkippedWhenEzcGraphChartNotExists();
+        $this->assertFileExists( $this->renderChart( 42 ) );
+    }
 
-        $dom = new DOMDocument();
-        $dom->load( PHPUC_TEST_LOG_FILE );
+    /**
+     * Creates an input instance.
+     *
+     * @return phpucAbstractInput
+     */
+    protected function createInput()
+    {
+        return new phpucBuildBreakdownTimelineInput();
+    }
 
-        $input = new phpucBuildBreakdownTimelineInput();
-        $input->processLog( new DOMXPath( $dom ) );
-
-        $chart = new phpucDotChart();
-        $chart->setInput( $input );
-
-        $file = PHPUC_TEST_DIR . '/test.png';
-
-        $chart->render( 230, 420, $file );
-
-        $this->assertFileExists( $file );
+    /**
+     * Creates a chart instance.
+     *
+     * @return phpucChartI
+     */
+    protected function createChart()
+    {
+        return new phpucDotChart();
     }
 }

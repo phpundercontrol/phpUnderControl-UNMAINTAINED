@@ -104,6 +104,8 @@ class phpucSubversionCheckoutTest extends phpucAbstractCheckoutTest
      */
     public function testSvnCheckoutNoLogin()
     {
+        $this->markTestSkippedWhenRemoteHostNotAvailable( 'xplib.de:80' );
+
         $destination = PHPUC_TEST_DIR . '/source';
         $checkFile1  = $destination . '/pdepend.php';
         $checkFile2  = $destination . '/PHP/Depend.php';
@@ -141,6 +143,8 @@ class phpucSubversionCheckoutTest extends phpucAbstractCheckoutTest
      */
     public function testSvnCheckoutWithLogin()
     {
+        $this->markTestSkippedWhenRemoteHostNotAvailable( 'xplib.de:80' );
+
         $destination = PHPUC_TEST_DIR . '/source';
         $checkFile1  = $destination . '/Commands/AbstractCommand.php';
         $checkFile2  = $destination . '/Commands/InstallCommand.php';
@@ -198,6 +202,8 @@ class phpucSubversionCheckoutTest extends phpucAbstractCheckoutTest
      */
     public function testHttpCheckout()
     {
+        $this->markTestSkippedWhenRemoteHostNotAvailable( 'xplib.de:80' );
+
         $destination = PHPUC_TEST_DIR . '/source';
         $checkFile1  = $destination . '/pdepend.php';
         $checkFile2  = $destination . '/PHP/Depend.php';

@@ -335,8 +335,8 @@ class phpucConsoleInput
             // Check for a value
             ++$idx;
             if ( !isset( $this->argv[$idx] ) 
-              || strpos( $this->argv[$idx], '-' ) === 0 )
-            {
+                || strpos( $this->argv[$idx], '-' ) === 0
+            ) {
                 throw new phpucConsoleException(
                     "The option '{$option}' requires an additional value."
                 );
@@ -347,8 +347,8 @@ class phpucConsoleInput
             unset( $this->argv[$idx - 1], $this->argv[$idx] ); 
             
             if ( is_array( $opt['arg'] ) 
-              && in_array( $value, $opt['arg'] ) === false )
-            {
+                && in_array( $value, $opt['arg'] ) === false
+            ) {
                 throw new phpucConsoleException(
                     sprintf(
                         'The value for option %s must match one of these values %s.',
@@ -358,8 +358,8 @@ class phpucConsoleInput
                 );
             }
             else if ( is_string( $opt['arg'] ) 
-                   && preg_match( $opt['arg'], $value ) === 0 )
-            {
+                && preg_match( $opt['arg'], $value ) === 0
+            ) {
                 throw new phpucConsoleException(
                     "The value for option '{$option}' has an invalid format."
                 );

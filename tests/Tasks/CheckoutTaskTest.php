@@ -69,6 +69,16 @@ class phpucCheckoutTaskTest extends phpucAbstractTaskTest
      */
     protected function setUp()
     {
+        $socket = @fsockopen( 'xplib.de', 80, $errno, $errstr, 1);
+        if ( is_resource( $socket ) )
+        {
+            fclose( $socket );
+        }
+        else
+        {
+            $this->markTestSkipped( 'Cannot connect to pserver.' );
+        }
+
         $this->cwd = getcwd();
 
         parent::setUp();
@@ -118,16 +128,6 @@ class phpucCheckoutTaskTest extends phpucAbstractTaskTest
      */
     public function testCvsCheckout()
     {
-        $socket = @fsockopen( 'xplib.de', 2401, $errno, $errstr, 1); 
-        if ( is_resource( $socket ) ) 
-        {   
-            fclose( $socket );
-        }   
-        else
-        {   
-            $this->markTestSkipped( 'Cannot connect to pserver.' );
-        }
-
         $this->prepareArgv(
             array(
                 'project',

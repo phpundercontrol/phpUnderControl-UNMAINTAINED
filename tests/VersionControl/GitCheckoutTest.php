@@ -104,6 +104,8 @@ class phpucGitCheckoutTest extends phpucAbstractCheckoutTest
      */
     public function testGitCheckoutNoLogin()
     {
+        $this->markTestSkippedWhenRemoteHostNotAvailable( 'github.com:80' );
+
         $checkFile = PHPUC_TEST_DIR . '/source/src/PhpUnderControl.php';
 
         $this->assertFileNotExists( $checkFile );

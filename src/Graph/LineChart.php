@@ -67,6 +67,8 @@ class phpucLineChart extends ezcGraphLineChart implements phpucChartI
      */
     protected $showSymbol = false;
 
+    private $numberOfEntries = 0;
+
     /**
      * Constructs a new line chart object.
      */
@@ -75,6 +77,19 @@ class phpucLineChart extends ezcGraphLineChart implements phpucChartI
         parent::__construct();
 
         $this->init();
+    }
+
+    /**
+     * Setter method for the number of log entries shown in a generated chart.
+     * phpUnderControl will render all log entries if no value was set.
+     *
+     * @param integer $numberOfEntries Number of log entries shown in a chart.
+     *
+     * @return void
+     */
+    public function setNumberOfEntries( $numberOfEntries )
+    {
+        $this->numberOfEntries = $numberOfEntries + $numberOfEntries % 2;
     }
 
     /**
@@ -92,10 +107,12 @@ class phpucLineChart extends ezcGraphLineChart implements phpucChartI
 
         $this->data = new ezcGraphChartDataContainer( $this );
 
-        $data = $input->data;
-        foreach ( $data as $label => $data )
+        foreach ( $input->data as $label => $value )
         {
-            $this->data[$label]         = new ezcGraphArrayDataSet( $data );
+
+            $value = $this->reduceNumberOfEntriesIfRequired( $value );
+
+            $this->data[$label]         = new ezcGraphArrayDataSet( $value );
             $this->data[$label]->symbol = ezcGraph::BULLET;
 
             if ( $this->showSymbol === true )
@@ -103,11 +120,48 @@ class phpucLineChart extends ezcGraphLineChart implements phpucChartI
                 continue;
             }
 
-            foreach ( array_keys( $data ) as $key )
+            foreach ( array_keys( $value ) as $key )
             {
                 $this->data[$label]->symbol[$key] = ezcGraph::NO_SYMBOL;
             }
         }
+    }
+
+    /**
+     * This method will reduce the number of log entries 
+     *
+     * @param array(mixed=>integer) $entries The raw input list of entries.
+     *
+     * @return array(mixed=>integer)
+     */
+    private function reduceNumberOfEntriesIfRequired( array $entries )
+    {
+        if ( $this->numberOfEntries === 0
+            || count( $entries ) < $this->numberOfEntries
+        ) {
+            return $entries;
+        }
+        return $this->reduceNumberOfEntries( $entries );
+    }
+
+    /**
+     * This method will reduce the number of entries from the given input array
+     * until its up to the configured max number of entries.
+     *
+     * @param array(mixed=>integer) $entries The raw input list of entries.
+     *
+     * @return array(mixed=>integer)
+     */
+    private function reduceNumberOfEntries( array $entries )
+    {
+        end( $entries );
+
+        $reduced = array();
+        for ( $i = 0; $i < $this->numberOfEntries; ++$i, prev( $entries ) )
+        {
+            $reduced[key( $entries )] = current( $entries );
+        }
+        return $reduced;
     }
 
     /**

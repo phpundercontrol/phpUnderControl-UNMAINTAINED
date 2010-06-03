@@ -48,7 +48,7 @@
 require_once dirname( __FILE__ ) . '/../AbstractTest.php';
 
 /**
- * Test case for the graph factory.
+ * Abstract base class for a chart test.
  *
  * @category  QualityAssurance
  * @package   Graph
@@ -58,77 +58,76 @@ require_once dirname( __FILE__ ) . '/../AbstractTest.php';
  * @version   Release: @package_version@
  * @link      http://www.phpundercontrol.org/
  */
-class phpucChartFactoryTest extends phpucAbstractTest
+abstract class phpucAbstractChartTest extends phpucAbstractTest
 {
     /**
-     * Tests that the chart factory creates a dot chart for timeline input.
+     * Generates a test chart file and returns an xpath instance for the
+     * created svg image.
      *
-     * @return void
+     * @param integer $numberOfRecords Number of input records.
+     * @param integer $numberOfEntries Number of entries that should be shown
+     *        in the generated chart image. Set this value to "0" to display all
+     *        input records.
+     *
+     * @return DOMXPath
      */
-    public function testCreateDotChartFromBuildBreakdownTimeline()
+    protected function renderChartAndReturnXPath( $numberOfRecords, $numberOfEntries = 0 )
     {
-        $this->markTestSkippedWhenEzcGraphChartNotExists();
+        $dom = new DOMDocument();
+        $dom->load( $this->renderChart( $numberOfRecords, $numberOfEntries ) );
 
-        $input = new phpucBuildBreakdownTimelineInput();
-        $input->processLog( new DOMXPath( new DOMDocument() ) );
+        $xpath = new DOMXPath( $dom );
+        $xpath->registerNamespace( 'svg', 'http://www.w3.org/2000/svg' );
 
-        $factory = new phpucChartFactory();
-        $chart   = $factory->createChart( $input );
-
-        $this->assertType( 'phpucDotChart', $chart );
+        return $xpath;
     }
 
     /**
-     * Tests that the chart factory creates a pie chart for breakdown input.
+     * Generates a test chart file.
      *
-     * @return void
+     * @param integer $numberOfRecords Number of input records.
+     * @param integer $numberOfEntries Number of entries that should be shown
+     *        in the generated chart image. Set this value to "0" to display all
+     *        input records.
+     *
+     * @return string
      */
-    public function testCreatePieChartFromBuildBreakdown()
+    protected function renderChart( $numberOfRecords, $numberOfEntries = 0 )
     {
         $this->markTestSkippedWhenEzcGraphChartNotExists();
 
-        $input = new phpucBuildBreakdownInput();
-        $input->processLog( new DOMXPath( new DOMDocument() ) );
+        $dom = new DOMDocument();
+        $dom->load( PHPUC_TEST_LOG_FILE );
 
-        $factory = new phpucChartFactory();
-        $chart   = $factory->createChart( $input );
+        $input = $this->createInput();
+        for ( $i = 0; $i < $numberOfRecords; ++$i )
+        {
+            $input->processLog( new DOMXPath( $dom ) );
+        }
 
-        $this->assertType( 'phpucPieChart', $chart );
+        $chart = $this->createChart();
+        if ( $numberOfEntries > 0 ) {
+            $chart->setNumberOfEntries( $numberOfEntries );
+        }
+        $chart->setInput( $input );
+
+        $file = PHPUC_TEST_DIR . '/test.svg';
+        $chart->render( 420, 420, $file );
+
+        return $file;
     }
 
     /**
-     * Tests that the chart factory creates a line chart for a coverage input.
+     * Creates an input instance.
      *
-     * @return void
+     * @return phpucAbstractInput
      */
-    public function testCreateLineChartFromUnitCoverage()
-    {
-        $this->markTestSkippedWhenEzcGraphChartNotExists();
-
-        $input = new phpucUnitCoverageInput();
-        $input->processLog( new DOMXPath( new DOMDocument() ) );
-
-        $factory = new phpucChartFactory();
-        $chart   = $factory->createChart( $input );
-
-        $this->assertType( 'phpucLineChart', $chart );
-    }
+    protected abstract function createInput();
 
     /**
-     * testCreateTimeChartFromUnitExecutionTime
+     * Creates a chart instance.
      *
-     * @return void
+     * @return phpucChartI
      */
-    public function testCreateTimeChartFromUnitExecutionTime()
-    {
-        $this->markTestSkippedWhenEzcGraphChartNotExists();
-
-        $input = new phpucUnitTestExecutionTimeInput();
-        $input->processLog( new DOMXPath( new DOMDocument() ) );
-
-        $factory = new phpucChartFactory();
-        $chart   = $factory->createChart( $input );
-
-        $this->assertType( 'phpucTimeChart', $chart );
-    }
+    protected abstract function createChart();
 }

@@ -239,15 +239,16 @@ class phpucConsoleInputDefinition implements ArrayAccess, IteratorAggregate
      *         mandatory parameter is not of type <b>boolean</b>. If the 
      *         <b>$mode</b> parameter has an invalid format. 
      */
-    public function addOption( $cmd, 
-                               $short, 
-                               $long, 
-                               $help,
-                               $arg = null, 
-                               $default = null, 
-                               $mandatory = false, 
-                               $mode = self::MODE_NORMAL )
-    {
+    public function addOption( 
+        $cmd, 
+        $short, 
+        $long, 
+        $help,
+        $arg = null, 
+        $default = null, 
+        $mandatory = false, 
+        $mode = self::MODE_NORMAL
+    ) {
         if ( !isset( $this->definition[$cmd] ) )
         {
             throw new phpucErrorException(

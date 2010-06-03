@@ -90,5 +90,13 @@ interface phpucChartI
      */
     function setInput( phpucAbstractInput $input );
 
+    /**
+     * Setter method for the number of log entries shown in a generated chart.
+     * phpUnderControl will render all log entries if no value was set.
+     *
+     * @param integer $numberOfEntries Number of log entries shown in a chart.
+     *
+     * @return void
+     */
     function setNumberOfEntries( $numberOfEntries );
 }
