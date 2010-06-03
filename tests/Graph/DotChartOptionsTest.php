@@ -1,7 +1,7 @@
 <?php
 /**
  * This file is part of phpUnderControl.
- * 
+ *
  * PHP Version 5.2.0
  *
  * Copyright (c) 2007-2010, Manuel Pichler <mapi@manuel-pichler.de>.
@@ -35,7 +35,7 @@
  * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
- * 
+ *
  * @category  QualityAssurance
  * @package   Graph
  * @author    Manuel Pichler <mapi@manuel-pichler.de>
@@ -45,24 +45,10 @@
  * @link      http://www.phpundercontrol.org/
  */
 
-if ( defined( 'PHPUnit_MAIN_METHOD' ) === false )
-{
-    define( 'PHPUnit_MAIN_METHOD', 'phpucGraphAllTests::main' );
-}
-
-require_once 'PHPUnit/Framework/TestSuite.php';
-require_once 'PHPUnit/TextUI/TestRunner.php';
-
-require_once dirname( __FILE__ ) . '/Input/GraphInputAllTests.php';
-require_once dirname( __FILE__ ) . '/ChartFactoryTest.php';
-require_once dirname( __FILE__ ) . '/DotChartTest.php';
-require_once dirname( __FILE__ ) . '/DotChartOptionsTest.php';
-require_once dirname( __FILE__ ) . '/LineChartTest.php';
-require_once dirname( __FILE__ ) . '/PieChartTest.php';
-require_once dirname( __FILE__ ) . '/TimeChartTest.php';
+require_once dirname( __FILE__ ) . '/../AbstractTest.php';
 
 /**
- * Test suite for the graph package
+ * Test case for the dot chart options.
  *
  * @category  QualityAssurance
  * @package   Graph
@@ -72,40 +58,51 @@ require_once dirname( __FILE__ ) . '/TimeChartTest.php';
  * @version   Release: @package_version@
  * @link      http://www.phpundercontrol.org/
  */
-class phpucGraphAllTests
+class phpucDotChartOptionsTest extends phpucAbstractTest
 {
     /**
-     * Test suite main method.
+     * testZeroValueForLineThicknessIsAllowed
      *
      * @return void
      */
-    public static function main()
+    public function testZeroValueForLineThicknessIsAllowed()
     {
-        PHPUnit_TextUI_TestRunner::run( self::suite() );
+        $options = new phpucDotChartOptions();
+        $options->lineThickness = 0;
     }
-    
+
     /**
-     * Creates the phpunit test suite for this package.
+     * testPositiveValueForLineThicknessIsAllowed
      *
-     * @return PHPUnit_Framework_TestSuite
+     * @return void
      */
-    public static function suite()
+    public function testPositiveValueForLineThicknessIsAllowed()
     {
-        $suite = new PHPUnit_Framework_TestSuite( 'phpUnderControl - GraphAllTests' );
-        $suite->addTest( phpucGraphInputAllTests::suite() );
-        $suite->addTestSuite( 'phpucDotChartOptionsTest' );
-
-        $suite->addTestSuite( 'phpucChartFactoryTest' );
-        $suite->addTestSuite( 'phpucDotChartTest' );
-        $suite->addTestSuite( 'phpucLineChartTest' );
-        $suite->addTestSuite( 'phpucPieChartTest' );
-        $suite->addTestSuite( 'phpucTimeChartTest' );
-
-        return $suite;
+        $options = new phpucDotChartOptions();
+        $options->lineThickness = 1;
     }
-}
 
-if ( PHPUnit_MAIN_METHOD === 'phpucGraphAllTests::main' )
-{
-    phpucGraphAllTests::main();
+    /**
+     * testNegativeValueForLineThicknessIsNotAllowed
+     *
+     * @return void
+     * @expectedException InvalidArgumentException
+     */
+    public function testNegativeValueForLineThicknessIsNotAllowed()
+    {
+        $options = new phpucDotChartOptions();
+        $options->lineThickness = -1;
+    }
+
+    /**
+     * testNonNumericValueForLineThicknessIsNotAllowed
+     *
+     * @return void
+     * @expectedException InvalidArgumentException
+     */
+    public function testNonNumericValueForLineThicknessIsNotAllowed()
+    {
+        $options = new phpucDotChartOptions();
+        $options->lineThickness = "Mapi";
+    }
 }
