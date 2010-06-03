@@ -45,7 +45,7 @@
  * @link      http://www.phpundercontrol.org/
  */
 
-require_once dirname( __FILE__ ) . '/../AbstractTest.php';
+require_once dirname( __FILE__ ) . '/AbstractChartTest.php';
 
 /**
  * Test case for the line chart.
@@ -58,30 +58,90 @@ require_once dirname( __FILE__ ) . '/../AbstractTest.php';
  * @version   Release: @package_version@
  * @link      http://www.phpundercontrol.org/
  */
-class phpucLineChartTest extends phpucAbstractTest
+class phpucLineChartTest extends phpucAbstractChartTest
 {
     /**
      * Tests the line chart render method.
      *
      * @return void
      */
-    public function testRender()
+    public function testRenderCreatesExpectedChartFile()
     {
-        $this->markTestSkippedWhenEzcGraphChartNotExists();
+        $this->assertFileExists( $this->renderChart( 8 ) );
+    }
 
-        $dom = new DOMDocument();
-        $dom->load( PHPUC_TEST_LOG_FILE );
+    /**
+     * testRenderWithoutNumberOfEntriesContainsAllEntries
+     *
+     * @return void
+     */
+    public function testRenderWithoutNumberOfEntriesContainsAllEntries()
+    {
+        $xpath = $this->renderChartAndReturnXPath( 8 );
+        $this->assertEquals( 8, $xpath->query('/svg:svg/svg:g/svg:g/svg:text[number( text() ) = text()]')->length );
+    }
 
-        $input = new phpucUnitCoverageInput();
-        $input->processLog( new DOMXPath( $dom ) );
+    /**
+     * testRenderWithNumberOfEntriesOldestExpectedEntryExists
+     *
+     * @return void
+     */
+    public function testRenderWithNumberOfEntriesOldestExpectedEntryExists()
+    {
+        $xpath = $this->renderChartAndReturnXPath( 8, 4 );
+        $this->assertEquals( 1, $xpath->query('/svg:svg/svg:g/svg:g/svg:text[text() = "4"]')->length );
+    }
 
-        $chart = new phpucLineChart();
-        $chart->setInput( $input );
+    /**
+     * testRenderWithNumberOfEntriesNoNewerEntryExists
+     *
+     * @return void
+     */
+    public function testRenderWithNumberOfEntriesNoOlderEntryExists()
+    {
+        $xpath = $this->renderChartAndReturnXPath( 8, 4 );
+        $this->assertEquals( 0, $xpath->query('/svg:svg/svg:g/svg:g/svg:text[text() = "3"]')->length );
+    }
 
-        $file = PHPUC_TEST_DIR . '/test.png';
+    /**
+     * testRenderWithNumberOfEntriesNewestExpectedEntryExists
+     *
+     * @return void
+     */
+    public function testRenderWithNumberOfEntriesNewestExpectedEntryExists()
+    {
+        $xpath = $this->renderChartAndReturnXPath( 8, 4 );
+        $this->assertEquals( 1, $xpath->query('/svg:svg/svg:g/svg:g/svg:text[text() = "7"]')->length );
+    }
 
-        $chart->render( 230, 420, $file );
+    /**
+     * testRenderWithNumberOfEntriesNoNewerEntryExists
+     *
+     * @return void
+     */
+    public function testRenderWithNumberOfEntriesNoNewerEntryExists()
+    {
+        $xpath = $this->renderChartAndReturnXPath( 8, 4 );
+        $this->assertEquals( 0, $xpath->query('/svg:svg/svg:g/svg:g/svg:text[text() = "8"]')->length );
+    }
 
-        $this->assertFileExists( $file );
+    /**
+     * Creates an input instance.
+     *
+     * @return phpucAbstractInput
+     */
+    protected function createInput()
+    {
+        return new phpucUnitCoverageInput();
+    }
+
+    /**
+     * Creates a chart instance.
+     *
+     * @return phpucChartI
+     */
+    protected function createChart()
+    {
+        return new phpucLineChart();
     }
 }

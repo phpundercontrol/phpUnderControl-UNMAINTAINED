@@ -154,8 +154,10 @@ class phpucLineChart extends ezcGraphLineChart implements phpucChartI
      */
     private function reduceNumberOfEntries( array $entries )
     {
+        end( $entries );
+
         $reduced = array();
-        for ( $i = 0; $i < $this->numberOfEntries; ++$i, next( $entries ) )
+        for ( $i = 0; $i < $this->numberOfEntries; ++$i, prev( $entries ) )
         {
             $reduced[key( $entries )] = current( $entries );
         }

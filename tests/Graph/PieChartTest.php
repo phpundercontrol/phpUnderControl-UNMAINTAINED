@@ -45,7 +45,7 @@
  * @link      http://www.phpundercontrol.org/
  */
 
-require_once dirname( __FILE__ ) . '/../AbstractTest.php';
+require_once dirname( __FILE__ ) . '/AbstractChartTest.php';
 
 /**
  * Test case for the pie chart.
@@ -58,7 +58,7 @@ require_once dirname( __FILE__ ) . '/../AbstractTest.php';
  * @version   Release: @package_version@
  * @link      http://www.phpundercontrol.org/
  */
-class phpucPieChartTest extends phpucAbstractTest
+class phpucPieChartTest extends phpucAbstractChartTest
 {
     /**
      * Tests the line chart render method.
@@ -83,5 +83,47 @@ class phpucPieChartTest extends phpucAbstractTest
         $chart->render( 230, 420, $file );
 
         $this->assertFileExists( $file );
+    }
+
+    /**
+     * testRenderWithNumberOfEntriesContainsAllEntries
+     * 
+     * @return void
+     */
+    public function testRenderWithNumberOfEntriesContainsAllEntries()
+    {
+        $xpath = $this->renderChartAndReturnXPath( 42, 23 );
+        $this->assertEquals( 1, $xpath->query( '//svg:g/svg:text[text() = "42 (100.0%)"]' )->length );
+    }
+
+    /**
+     * testRenderWithoutNumberOfEntriesContainsAllEntries
+     *
+     * @return void
+     */
+    public function testRenderWithoutNumberOfEntriesContainsAllEntries()
+    {
+        $xpath = $this->renderChartAndReturnXPath( 42 );
+        $this->assertEquals( 1, $xpath->query( '//svg:g/svg:text[text() = "42 (100.0%)"]' )->length );
+    }
+
+    /**
+     * Creates an input instance.
+     *
+     * @return phpucAbstractInput
+     */
+    protected function createInput()
+    {
+        return new phpucBuildBreakdownInput();
+    }
+
+    /**
+     * Creates a chart instance.
+     *
+     * @return phpucChartI
+     */
+    protected function createChart()
+    {
+        return new phpucPieChart();
     }
 }
