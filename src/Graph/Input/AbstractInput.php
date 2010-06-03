@@ -170,7 +170,6 @@ abstract class phpucAbstractInput implements phpucInputI
             phpucChartI::TYPE_LINE,
             phpucChartI::TYPE_DOT,
             phpucChartI::TYPE_TIME,
-            phpucChartI::TYPE_BAR
         );
 
         if ( !in_array( $type, $expected ) )
