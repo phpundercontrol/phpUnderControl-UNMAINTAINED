@@ -14,7 +14,7 @@ example project.
     <email>mapi@phpundercontrol.org</email>
     <active>yes</active>
   </lead>
-  <date>2010-05-13</date>
+  <date>2010-06-10</date>
   <version>
     <release>0.6.0beta2</release>
     <api>1.0.0</api>
@@ -28,6 +28,7 @@ example project.
 - Several new features like changesets, separate tab for PHPCPD and new
   charts for build revisions + code clones. All features supplied by
   hpbuniat via github.
+- Implemented #665: Display limit for build metrics.
 - Fixed #771: Invalid character in CodeSniffer output.
 - Fixed #732: Show revision of SVN/CVS on dashboard. Patch supplied by
   hpbuniat, through phpunit's issue tracker.
@@ -263,12 +264,6 @@ example project.
             <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
             <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
           </file>
-          <file role="php" name="ThumbChartI.php">
-            <tasks:replace from="@package_version@" to="version" type="package-info"/>
-            <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
-            <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
-            <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
-          </file>
           <file role="php" name="DotChartOptions.php">
             <tasks:replace from="@package_version@" to="version" type="package-info"/>
             <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
@@ -276,12 +271,6 @@ example project.
             <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
           </file>
           <file role="php" name="ChartFactory.php">
-            <tasks:replace from="@package_version@" to="version" type="package-info"/>
-            <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
-            <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
-            <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
-          </file>
-          <file role="php" name="BarChart.php">
             <tasks:replace from="@package_version@" to="version" type="package-info"/>
             <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
             <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
@@ -1154,6 +1143,18 @@ example project.
             <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
             <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
           </file>
+          <file role="test" name="DotChartOptionsTest.php">
+            <tasks:replace from="@package_version@" to="version" type="package-info"/>
+            <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+            <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+            <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+          </file>
+          <file role="test" name="AbstractChartTest.php">
+            <tasks:replace from="@package_version@" to="version" type="package-info"/>
+            <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+            <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+            <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+          </file>
           <file role="test" name="LineChartTest.php">
             <tasks:replace from="@package_version@" to="version" type="package-info"/>
             <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
@@ -1763,10 +1764,8 @@ example project.
       <install as="phpUnderControl/Graph/PieChart.php" name="src/Graph/PieChart.php"/>
       <install as="phpUnderControl/Graph/LineChart.php" name="src/Graph/LineChart.php"/>
       <install as="phpUnderControl/Graph/ChartI.php" name="src/Graph/ChartI.php"/>
-      <install as="phpUnderControl/Graph/ThumbChartI.php" name="src/Graph/ThumbChartI.php"/>
       <install as="phpUnderControl/Graph/DotChartOptions.php" name="src/Graph/DotChartOptions.php"/>
       <install as="phpUnderControl/Graph/ChartFactory.php" name="src/Graph/ChartFactory.php"/>
-      <install as="phpUnderControl/Graph/BarChart.php" name="src/Graph/BarChart.php"/>
       <install as="phpUnderControl/Graph/GraphPalette.php" name="src/Graph/GraphPalette.php"/>
       <install as="phpUnderControl/Graph/TimeChart.php" name="src/Graph/TimeChart.php"/>
       <install as="phpUnderControl/Graph/DotChart.php" name="src/Graph/DotChart.php"/>
@@ -1861,10 +1860,8 @@ example project.
       <install as="phpUnderControl/Graph/PieChart.php" name="src/Graph/PieChart.php"/>
       <install as="phpUnderControl/Graph/LineChart.php" name="src/Graph/LineChart.php"/>
       <install as="phpUnderControl/Graph/ChartI.php" name="src/Graph/ChartI.php"/>
-      <install as="phpUnderControl/Graph/ThumbChartI.php" name="src/Graph/ThumbChartI.php"/>
       <install as="phpUnderControl/Graph/DotChartOptions.php" name="src/Graph/DotChartOptions.php"/>
       <install as="phpUnderControl/Graph/ChartFactory.php" name="src/Graph/ChartFactory.php"/>
-      <install as="phpUnderControl/Graph/BarChart.php" name="src/Graph/BarChart.php"/>
       <install as="phpUnderControl/Graph/GraphPalette.php" name="src/Graph/GraphPalette.php"/>
       <install as="phpUnderControl/Graph/TimeChart.php" name="src/Graph/TimeChart.php"/>
       <install as="phpUnderControl/Graph/DotChart.php" name="src/Graph/DotChart.php"/>
