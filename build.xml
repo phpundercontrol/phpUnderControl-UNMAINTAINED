@@ -188,6 +188,9 @@
                 <exclude name=".gitignore" />
                 <exclude name="build" />
                 <exclude name="config.properties" />
+                <exclude name="bin/clearSetup.php" />
+                <exclude name="*.tgz" />
+                <exclude name="*.zip" />
             </fileset>
         </copy>
     </target>
