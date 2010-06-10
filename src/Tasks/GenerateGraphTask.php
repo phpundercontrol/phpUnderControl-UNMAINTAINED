@@ -149,7 +149,7 @@ class phpucGenerateGraphTask extends phpucAbstractTask implements phpucConsoleEx
         {
             return $this->args->getOption( 'max-number' );
         }
-        return 0;
+        return PHP_INT_MAX;
     }
 
     /**
