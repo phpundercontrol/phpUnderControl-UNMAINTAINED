@@ -33,7 +33,10 @@
         </log>
 
         <publishers>
-            <execute command="phpuc graph logs/${project.name} artifacts/${project.name}" />
+            <execute command="phpuc graph 
+                                    --max-number 50 
+                                    logs/${project.name} 
+                                    artifacts/${project.name}" />
             <execute command="phpcb --log projects/${project.name}/build/logs 
                                     --source projects/${project.name}/source/src 
                                     --output projects/${project.name}/build/phpcb" />
