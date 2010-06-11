@@ -89,11 +89,11 @@ class phpucCodeViolationInputTest extends phpucAbstractGraphInputTest
         $data = $input->data;
         
         $this->assertArrayHasKey( 'PHP CodeSniffer', $data );
-        $this->assertArrayHasKey( 'PMD', $data );
+        $this->assertArrayHasKey( 'PHPMD', $data );
         $this->assertArrayHasKey( 'PHPDoc', $data );
         
         $this->assertEquals( $log['PHP CodeSniffer'], reset( $data['PHP CodeSniffer'] ) );
-        $this->assertEquals( $log['PMD'], reset( $data['PMD'] ) );
+        $this->assertEquals( $log['PHPMD'], reset( $data['PHPMD'] ) );
         $this->assertEquals( $log['PHPDoc'], reset( $data['PHPDoc'] ) );
     }
     
@@ -115,13 +115,13 @@ class phpucCodeViolationInputTest extends phpucAbstractGraphInputTest
         {
             $records = array(
                 'PHP CodeSniffer'  =>  array(),
-                'PMD'              =>  array(),
+                'PHPMD'            =>  array(),
                 'PHPDoc'           =>  array()
             );
         }
 
         $records['PHP CodeSniffer'][] = $log['PHP CodeSniffer'];
-        $records['PMD'][]             = $log['PMD'];
+        $records['PHPMD'][]           = $log['PHPMD'];
         $records['PHPDoc'][]          = $log['PHPDoc'];
         
         return $records;
@@ -146,7 +146,7 @@ class phpucCodeViolationInputTest extends phpucAbstractGraphInputTest
         
         return array(
             'PHP CodeSniffer'  =>  $style->length,
-            'PMD'              =>  $pmd->length,
+            'PHPMD'            =>  $pmd->length,
             'PHPDoc'           =>  $phpdoc->length
         );
     }

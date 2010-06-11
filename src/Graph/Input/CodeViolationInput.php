@@ -83,7 +83,7 @@ class phpucCodeViolationInput extends phpucAbstractInput
         );
         $this->addRule(
             new phpucInputRule(
-                'PMD',
+                'PHPMD',
                 '/cruisecontrol/pmd/file/violation',
                 self::MODE_COUNT
             )
