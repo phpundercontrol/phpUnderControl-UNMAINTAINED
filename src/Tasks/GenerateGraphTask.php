@@ -106,7 +106,7 @@ class phpucGenerateGraphTask extends phpucAbstractTask implements phpucConsoleEx
         {
             $outputDir = $this->args->getArgument( 'project-output-dir' );
 
-            if ( ( $this->outputDir = realpath( $outputDir ) ) === '' )
+            if ( trim( $this->outputDir = realpath( $outputDir ) ) === '' )
             {
                 throw new phpucValidateException(
                     "The specified output directory '{$outputDir}' doesn't exist."

@@ -58,6 +58,7 @@ require_once dirname( __FILE__ ) . '/CreateFileTaskTest.php';
 require_once dirname( __FILE__ ) . '/CruiseControlTaskTest.php';
 require_once dirname( __FILE__ ) . '/ExecAntTaskTest.php';
 require_once dirname( __FILE__ ) . '/FilesetAntTaskTest.php';
+require_once dirname( __FILE__ ) . '/GenerateGraphTaskTest.php';
 require_once dirname( __FILE__ ) . '/GraphTaskTest.php';
 require_once dirname( __FILE__ ) . '/LintTaskTest.php';
 require_once dirname( __FILE__ ) . '/MergePhpunitTaskTest.php';
@@ -107,6 +108,7 @@ class phpucTasksAllTests
         $suite->addTestSuite( 'phpucCruiseControlTaskTest' );
         $suite->addTestSuite( 'phpucExecAntTaskTest' );
         $suite->addTestSuite( 'phpucFilesetAntTaskTest' );
+        $suite->addTestSuite( 'phpucGenerateGraphTaskTest' );
         $suite->addTestSuite( 'phpucGraphTaskTest' );
         $suite->addTestSuite( 'phpucLintTaskTest' );
         $suite->addTestSuite( 'phpucMergePhpunitTaskTest' );
