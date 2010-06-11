@@ -66,6 +66,9 @@ abstract class phpucAbstractGraphInputTest extends phpucAbstractTest
      * Tests the result data for single log files.
      *
      * @return void
+     * @group phpUnderControl
+     * @group phpUnderControl::Graph
+     * @group phpUnderControl::Graph::Input
      */
     public function testSingleLogResult()
     {
@@ -82,6 +85,9 @@ abstract class phpucAbstractGraphInputTest extends phpucAbstractTest
      * Tests the summary result for the build breakdown.
      *
      * @return void
+     * @group phpUnderControl
+     * @group phpUnderControl::Graph
+     * @group phpUnderControl::Graph::Input
      */
     public function testLogSumUp()
     {
