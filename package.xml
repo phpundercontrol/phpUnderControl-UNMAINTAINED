@@ -15,8 +15,9 @@ example project.
     <active>yes</active>
   </lead>
   <date>2010-08-06</date>
+  <time>14:36:14</time>
   <version>
-    <release>0.6.0</release>
+    <release>0.6.1beta1</release>
     <api>1.0.0</api>
   </version>
   <stability>
@@ -25,16 +26,8 @@ example project.
   </stability>
   <license uri="http://www.opensource.org/licenses/bsd-license.php">BSD License</license>
   <notes>
-- Several new features like changesets, separate tab for PHPCPD and new
-  charts for build revisions + code clones. All features supplied by
-  hpbuniat via github.
-- Implemented #665: Display limit for build metrics.
-- Fixed #771: Invalid character in CodeSniffer output.
-- Fixed #732: Show revision of SVN/CVS on dashboard. Patch supplied by
-  hpbuniat, through phpunit's issue tracker.
-- Fixed #1003: Force build button in the /cruisecontrol app doesn't work.
-- Fixed #1044: callServer should return false. Patch supplied by
-  Mekras in phpunit's issue tracker.
+- New setup command, which creates an unix init script for your phpUnderControl
+  installation. All features were supplied by proofek.
   </notes>
   <contents>
     <dir name="/">
@@ -328,6 +321,12 @@ example project.
             <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
             <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
           </file>
+          <file role="php" name="InstallCcScriptTask.php">
+            <tasks:replace from="@package_version@" to="version" type="package-info"/>
+            <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+            <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+            <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+          </file>
           <file role="php" name="CruiseControlTask.php">
             <tasks:replace from="@package_version@" to="version" type="package-info"/>
             <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
@@ -545,6 +544,12 @@ example project.
             <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
           </file>
           <file role="php" name="ExampleCommand.php">
+            <tasks:replace from="@package_version@" to="version" type="package-info"/>
+            <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+            <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+            <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+          </file>
+          <file role="php" name="SetupCcCommand.php">
             <tasks:replace from="@package_version@" to="version" type="package-info"/>
             <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
             <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
@@ -1244,6 +1249,12 @@ example project.
             <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
             <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
           </file>
+          <file role="test" name="InstallCcScriptTaskTest.php">
+            <tasks:replace from="@package_version@" to="version" type="package-info"/>
+            <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+            <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+            <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+          </file>
           <file role="test" name="PhpCodeSnifferTaskTest.php">
             <tasks:replace from="@package_version@" to="version" type="package-info"/>
             <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
@@ -1287,6 +1298,12 @@ example project.
             <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
           </file>
           <file role="test" name="AbstractTaskTest.php">
+            <tasks:replace from="@package_version@" to="version" type="package-info"/>
+            <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+            <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+            <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+          </file>
+          <file role="test" name="GenerateGraphTaskTest.php">
             <tasks:replace from="@package_version@" to="version" type="package-info"/>
             <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
             <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
@@ -1397,6 +1414,12 @@ example project.
             <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
           </file>
           <file role="test" name="CleanCommandTest.php">
+            <tasks:replace from="@package_version@" to="version" type="package-info"/>
+            <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
+            <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+            <tasks:replace from="@data_dir@" to="data_dir" type="pear-config"/>
+          </file>
+          <file role="test" name="SetupCcCommandTest.php">
             <tasks:replace from="@package_version@" to="version" type="package-info"/>
             <tasks:replace from="@php_dir@" to="php_dir" type="pear-config"/>
             <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
@@ -1774,6 +1797,7 @@ example project.
       <install as="phpUnderControl/Util/PhpFileFilterIterator.php" name="src/Util/PhpFileFilterIterator.php"/>
       <install as="phpUnderControl/Util/Autoloader.php" name="src/Util/Autoloader.php"/>
       <install as="phpUnderControl/Tasks/ProjectTask.php" name="src/Tasks/ProjectTask.php"/>
+      <install as="phpUnderControl/Tasks/InstallCcScriptTask.php" name="src/Tasks/InstallCcScriptTask.php"/>
       <install as="phpUnderControl/Tasks/CruiseControlTask.php" name="src/Tasks/CruiseControlTask.php"/>
       <install as="phpUnderControl/Tasks/GenerateGraphTask.php" name="src/Tasks/GenerateGraphTask.php"/>
       <install as="phpUnderControl/Tasks/FilesetAntTask.php" name="src/Tasks/FilesetAntTask.php"/>
@@ -1810,6 +1834,7 @@ example project.
       <install as="phpUnderControl/Console/ConsoleInput.php" name="src/Console/ConsoleInput.php"/>
       <install as="phpUnderControl/Commands/InstallCommand.php" name="src/Commands/InstallCommand.php"/>
       <install as="phpUnderControl/Commands/ExampleCommand.php" name="src/Commands/ExampleCommand.php"/>
+      <install as="phpUnderControl/Commands/SetupCcCommand.php" name="src/Commands/SetupCcCommand.php"/>
       <install as="phpUnderControl/Commands/CleanCommand.php" name="src/Commands/CleanCommand.php"/>
       <install as="phpUnderControl/Commands/CommandI.php" name="src/Commands/CommandI.php"/>
       <install as="phpUnderControl/Commands/MergePhpunitCommand.php" name="src/Commands/MergePhpunitCommand.php"/>
@@ -1870,6 +1895,7 @@ example project.
       <install as="phpUnderControl/Util/PhpFileFilterIterator.php" name="src/Util/PhpFileFilterIterator.php"/>
       <install as="phpUnderControl/Util/Autoloader.php" name="src/Util/Autoloader.php"/>
       <install as="phpUnderControl/Tasks/ProjectTask.php" name="src/Tasks/ProjectTask.php"/>
+      <install as="phpUnderControl/Tasks/InstallCcScriptTask.php" name="src/Tasks/InstallCcScriptTask.php"/>
       <install as="phpUnderControl/Tasks/CruiseControlTask.php" name="src/Tasks/CruiseControlTask.php"/>
       <install as="phpUnderControl/Tasks/GenerateGraphTask.php" name="src/Tasks/GenerateGraphTask.php"/>
       <install as="phpUnderControl/Tasks/FilesetAntTask.php" name="src/Tasks/FilesetAntTask.php"/>
@@ -1906,6 +1932,7 @@ example project.
       <install as="phpUnderControl/Console/ConsoleInput.php" name="src/Console/ConsoleInput.php"/>
       <install as="phpUnderControl/Commands/InstallCommand.php" name="src/Commands/InstallCommand.php"/>
       <install as="phpUnderControl/Commands/ExampleCommand.php" name="src/Commands/ExampleCommand.php"/>
+      <install as="phpUnderControl/Commands/SetupCcCommand.php" name="src/Commands/SetupCcCommand.php"/>
       <install as="phpUnderControl/Commands/CleanCommand.php" name="src/Commands/CleanCommand.php"/>
       <install as="phpUnderControl/Commands/CommandI.php" name="src/Commands/CommandI.php"/>
       <install as="phpUnderControl/Commands/MergePhpunitCommand.php" name="src/Commands/MergePhpunitCommand.php"/>
@@ -2396,6 +2423,32 @@ example project.
       <notes>
 - Bug fix, CC is compatible with Java 1.5, but the phpUnderControl sources were compiled against Java 1.6.
         </notes>
+    </release>
+    <release>
+      <date>2010-08-06</date>
+      <version>
+        <release>0.6.0</release>
+        <api>1.0.0</api>
+      </version>
+      <stability>
+        <release>beta</release>
+        <api>stable</api>
+      </stability>
+      <license uri="http://www.opensource.org/licenses/bsd-license.php">BSD License</license>
+      <notes>
+- New setup command, which creates an unix init script for your phpUnderControl
+  installation. All features were supplied by proofek.
+- Several new features like changesets, separate tab for PHPCPD and new
+  charts for build revisions + code clones. All features supplied by
+  hpbuniat via github.
+- Implemented #665: Display limit for build metrics.
+- Fixed #771: Invalid character in CodeSniffer output.
+- Fixed #732: Show revision of SVN/CVS on dashboard. Patch supplied by
+  hpbuniat, through phpunit's issue tracker.
+- Fixed #1003: Force build button in the /cruisecontrol app doesn't work.
+- Fixed #1044: callServer should return false. Patch supplied by
+  Mekras in phpunit's issue tracker.
+   </notes>
     </release>
   </changelog>
 </package>
