@@ -57,8 +57,8 @@
 <form method="GET" action="<%=request.getContextPath() %>/buildresults/<%=project %>" id="cc-build">
     <fieldset>
         <legend><a href="<%=request.getContextPath() %>/buildresults/<%=project %>">Build:</a></legend>
-        <select name="log" onchange="form.submit()">
-            <option>More builds</option>
+        <select name="log" onchange="form.submit();">
+            <option value="">More builds</option>
             <cruisecontrol:nav startingBuildNumber="1">
                 <option value="<%=logfile%>"<% if (logfile.equals(request.getParameter("log"))) {%> selected="selected"<% } %>><%= linktext %></option>
             </cruisecontrol:nav>
