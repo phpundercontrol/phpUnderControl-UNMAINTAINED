@@ -14,9 +14,9 @@ example project.
     <email>mapi@phpundercontrol.org</email>
     <active>yes</active>
   </lead>
-  <date>2010-06-10</date>
+  <date>2010-08-06</date>
   <version>
-    <release>0.6.0beta3</release>
+    <release>0.6.0</release>
     <api>1.0.0</api>
   </version>
   <stability>
