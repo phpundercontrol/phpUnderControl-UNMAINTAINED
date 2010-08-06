@@ -38,71 +38,73 @@
  *
  * @category  QualityAssurance
  * @package   Commands
- * @author    Manuel Pichler <mapi@phpundercontrol.org>
+ * @author    Sebastian Marek <proofek@gmail.com>
  * @copyright 2007-2010 Manuel Pichler. All rights reserved.
  * @license   http://www.opensource.org/licenses/bsd-license.php  BSD License
- * @version   SVN: $Id$
  * @link      http://www.phpundercontrol.org/
  */
 
-if ( defined( 'PHPUnit_MAIN_METHOD' ) === false )
-{
-    define( 'PHPUnit_MAIN_METHOD', 'phpucCommandsAllTests::main' );
-}
-
-require_once 'PHPUnit/Framework/TestSuite.php';
-require_once 'PHPUnit/TextUI/TestRunner.php';
-
-require_once dirname( __FILE__ ) . '/CleanCommandTest.php';
-require_once dirname( __FILE__ ) . '/CommandTest.php';
-require_once dirname( __FILE__ ) . '/DeleteCommandTest.php';
-require_once dirname( __FILE__ ) . '/InstallCommandTest.php';
-require_once dirname( __FILE__ ) . '/SetupCcCommandTest.php';
-
 /**
- * Main test suite for phpUnderControl Commands package.
+ * Command implementation for cruise control setup.
+ *
+ * For now it only installs init script for linux systems
  *
  * @category  QualityAssurance
  * @package   Commands
- * @author    Manuel Pichler <mapi@phpundercontrol.org>
+ * @author    Sebastian Marek <proofek@gmail.com>
  * @copyright 2007-2010 Manuel Pichler. All rights reserved.
  * @license   http://www.opensource.org/licenses/bsd-license.php  BSD License
  * @version   Release: @package_version@
  * @link      http://www.phpundercontrol.org/
  */
-class phpucCommandsAllTests
+class phpucSetupCcCommand extends phpucAbstractCommand implements phpucConsoleCommandI
 {
     /**
-     * Test suite main method.
+     * Creates all command specific {@link phpucTaskI} objects.
+     *
+     * @return array(phpucTaskI)
+     */
+    protected function doCreateTasks()
+    {
+        $tasks = array(
+            new phpucInstallCcScriptTask()
+        );
+
+        return $tasks;
+    }
+
+    /**
+     * Returns the cli command identifier.
+     *
+     * @return string
+     */
+    public function getCommandId()
+    {
+        return 'setup-cc';
+    }
+
+    /**
+     * Callback method that registers a cli command.
+     *
+     * @param phpucConsoleInputDefinition $def The input definition container.
      *
      * @return void
      */
-    public static function main()
+    public function registerCommand( phpucConsoleInputDefinition $def )
     {
-        PHPUnit_TextUI_TestRunner::run( self::suite() );
-    }
-
-    /**
-     * Creates the phpunit test suite for this package.
-     *
-     * @return PHPUnit_Framework_TestSuite
-     */
-    public static function suite()
-    {
-        $suite = new PHPUnit_Framework_TestSuite(
-            'phpUnderControl - CommandsAllTests'
+        $def->addCommand(
+            $this->getCommandId(),
+            'Installs CruiseControl start-up script for linux.'
         );
-        $suite->addTestSuite( 'phpucCommandTest' );
-        $suite->addTestSuite( 'phpucCleanCommandTest' );
-        $suite->addTestSuite( 'phpucDeleteCommandTest' );
-        $suite->addTestSuite( 'phpucInstallCommandTest' );
-        $suite->addTestSuite( 'phpucSetupCcCommandTest' );
-
-        return $suite;
+        $def->addArgument(
+            $this->getCommandId(),
+            'cc-install-dir',
+            'The installation directory of CruiseControl.'
+        );
+        $def->addArgument(
+            $this->getCommandId(),
+            'init-dir',
+            'Init scripts directory.'
+        );
     }
-}
-
-if ( PHPUnit_MAIN_METHOD === 'phpucCommandsAllTests::main' )
-{
-    phpucCommandsAllTests::main();
 }

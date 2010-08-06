@@ -4,7 +4,7 @@
  *
  * PHP Version 5.2.0
  *
- * Copyright (c) 2007-2010, Manuel Pichler <mapi@phpundercontrol.org>.
+ * Copyright (c) 2007-2010, Manuel Pichler <mapi@manuel-pichler.de>.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -38,71 +38,76 @@
  *
  * @category  QualityAssurance
  * @package   Commands
- * @author    Manuel Pichler <mapi@phpundercontrol.org>
+ * @author    Sebastian Marek <proofek@gmail.com>
  * @copyright 2007-2010 Manuel Pichler. All rights reserved.
  * @license   http://www.opensource.org/licenses/bsd-license.php  BSD License
- * @version   SVN: $Id$
  * @link      http://www.phpundercontrol.org/
  */
 
-if ( defined( 'PHPUnit_MAIN_METHOD' ) === false )
-{
-    define( 'PHPUnit_MAIN_METHOD', 'phpucCommandsAllTests::main' );
-}
-
-require_once 'PHPUnit/Framework/TestSuite.php';
-require_once 'PHPUnit/TextUI/TestRunner.php';
-
-require_once dirname( __FILE__ ) . '/CleanCommandTest.php';
-require_once dirname( __FILE__ ) . '/CommandTest.php';
-require_once dirname( __FILE__ ) . '/DeleteCommandTest.php';
-require_once dirname( __FILE__ ) . '/InstallCommandTest.php';
-require_once dirname( __FILE__ ) . '/SetupCcCommandTest.php';
+require_once dirname( __FILE__ ) . '/../AbstractTest.php';
 
 /**
- * Main test suite for phpUnderControl Commands package.
+ * Test case for the {@link phpucSetupCcCommand} class.
  *
  * @category  QualityAssurance
  * @package   Commands
- * @author    Manuel Pichler <mapi@phpundercontrol.org>
+ * @author    Sebastian Marek <proofek@gmail.com>
  * @copyright 2007-2010 Manuel Pichler. All rights reserved.
  * @license   http://www.opensource.org/licenses/bsd-license.php  BSD License
  * @version   Release: @package_version@
  * @link      http://www.phpundercontrol.org/
  */
-class phpucCommandsAllTests
+class phpucSetupCcCommandTest extends phpucAbstractTest
 {
     /**
-     * Test suite main method.
+     * That's that init script has been copied into init scripts directory
+     * and has correct permissions (must be executable).
      *
      * @return void
+     * @group commands
      */
-    public static function main()
+    public function testSetupCcInstallsInitScript()
     {
-        PHPUnit_TextUI_TestRunner::run( self::suite() );
+        $root = $this->createCruiseControlDummy();
+        $initDir = PHPUC_TEST_DIR . '/init.d';
+
+        $args = new phpucConsoleArgs(
+            'setup-cc',
+            array(
+                'java-home' => '/usr',
+                'cc-user'   => 'cruisecontrol',
+                'cc-bin'    => 'cruisecontrol.sh'),
+            array(
+                'cc-install-dir' => $root,
+                'init-dir'       => $initDir)
+        );
+
+        $command = new phpucSetupCcCommand();
+        $command->setConsoleArgs( $args );
+        $command->execute();
+
+        $this->assertFileExists( "$initDir/cruisecontrol" );
+        $this->assertEquals(
+            '0755',
+            substr( decoct( fileperms( "$initDir/cruisecontrol" ) ), 1)
+        );
     }
 
     /**
-     * Creates the phpunit test suite for this package.
-     *
-     * @return PHPUnit_Framework_TestSuite
+     * Root directory for a CruiseControl dummy.
      */
-    public static function suite()
+    const CRUISE_CONTROL_ROOT = 'CruiseControlDummy/webapps/cruisecontrol/';
+
+    /**
+     * Creates a dummy CruiseControl directory structure and returns the root
+     * directory of that installation.
+     *
+     * @return string
+     */
+    protected function createCruiseControlDummy()
     {
-        $suite = new PHPUnit_Framework_TestSuite(
-            'phpUnderControl - CommandsAllTests'
-        );
-        $suite->addTestSuite( 'phpucCommandTest' );
-        $suite->addTestSuite( 'phpucCleanCommandTest' );
-        $suite->addTestSuite( 'phpucDeleteCommandTest' );
-        $suite->addTestSuite( 'phpucInstallCommandTest' );
-        $suite->addTestSuite( 'phpucSetupCcCommandTest' );
+        $this->createInitScriptsDirectory();
 
-        return $suite;
+        return PHPUC_TEST_DIR . '/CruiseControlDummy';
     }
-}
-
-if ( PHPUnit_MAIN_METHOD === 'phpucCommandsAllTests::main' )
-{
-    phpucCommandsAllTests::main();
 }

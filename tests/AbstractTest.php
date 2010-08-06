@@ -279,6 +279,17 @@ abstract class phpucAbstractTest extends PHPUnit_Framework_TestCase
     }
 
     /**
+     * Creates an init scripts directory under the test directory.
+     *
+     * @return void
+     */
+    protected function createInitScriptsDirectory()
+    {
+        $fullPath = PHPUC_TEST_DIR . '/init.d';
+        mkdir( $fullPath, 0755, true );
+    }
+
+    /**
      * Creates a directory structure under the test directory.
      *
      * @param array(string) $directories Test directories.
@@ -399,6 +410,71 @@ abstract class phpucAbstractTest extends PHPUnit_Framework_TestCase
         }
 
         self::$windows = phpucFileUtil::getOS() === phpucFileUtil::OS_WINDOWS;
+    }
+
+    /**
+     * Sets up vfsStream if available
+     *
+     * Run as part of a test to register vfsStream and create root directory.
+     * If vfsStream is not installed the test will be skipped.
+     * Use {@link phpucAbstractTest::createVfsFile()} to create a virtual file
+     * or {@link phpucAbstractTest::createVfsDirectories()} to create
+     * virtual directories.
+     *
+     * @return bool
+     */
+    protected function setUpVfsStream()
+    {
+
+        @include_once 'vfsStream/vfsStream.php';
+        if ( !class_exists( 'vfsStreamWrapper' ) ) {
+
+            $this->markTestSkipped( 'vfsStream is not available - skipping' );
+            $bolDone = false;
+
+        } else {
+
+            vfsStreamWrapper::register();
+            vfsStreamWrapper::setRoot( vfsStream::newDirectory( '/' ) );
+            $bolDone = true;
+        }
+
+        return $bolDone;
+    }
+
+    /**
+     * Creates a vitrual file using vfsStream plugin
+     *
+     * @see phpucAbstractTest::setUpVfsStream()
+     *
+     * @param string $filePath Path to the virtual file
+     * @param string $content  Contents of the file
+     *
+     * @return vfsStreamFile
+     */
+    protected function createVfsFile( $filePath, $content = '...' )
+    {
+        return vfsStream::newFile( $filePath )
+                        ->withContent( $content )
+                        ->at( vfsStreamWrapper::getRoot() );
+    }
+
+    /**
+     * Creates virtual directories using vfsStream plugin
+     *
+     * @see phpucAbstractTest::setUpVfsStream()
+     *
+     * @param array $directories List of directories
+     *
+     * @return void
+     */
+    protected function createVfsDirectories( array $directories )
+    {
+        foreach ( $directories as $directory )
+        {
+            vfsStream::newDirectory( $directory )
+                     ->at( vfsStreamWrapper::getRoot() );
+        }
     }
 }
 
