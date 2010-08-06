@@ -274,6 +274,11 @@ class phpucInstallCcScriptTaskTest extends phpucAbstractTest
 
     public function executeDataProvider()
     {
+        if ( !$this->setUpVfsStream() ) {
+
+            return false;
+        }
+
         return array(
             array(
                 'cc-bin' => 'cc.sh',
