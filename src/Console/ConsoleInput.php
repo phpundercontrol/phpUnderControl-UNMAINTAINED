@@ -527,6 +527,7 @@ class phpucConsoleInput
      * @param array(string=>mixed) $option2 Compare option two.
      * 
      * @return integer
+     * @SuppressWarnings(PHPMD.UnusedPrivateMethod) 
      */
     private function sortCommandOptions( $option1, $option2 )
     {

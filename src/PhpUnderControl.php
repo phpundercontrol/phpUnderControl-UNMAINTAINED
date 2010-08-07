@@ -108,13 +108,6 @@ class phpucPhpUnderControl
     private $input = null;
     
     /**
-     * List with all tasks.
-     *
-     * @var array(phpucTaskI)
-     */
-    private $tasks = array();
-    
-    /**
      * The ctor creates the required console arg instance.
      */
     public function __construct()
