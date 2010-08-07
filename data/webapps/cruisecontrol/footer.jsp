@@ -38,6 +38,6 @@
   <a href="http://www.phpundercontrol.org">phpUnderControl - SVN</a>
   is Copyright (c) 2007-2010
   by <a href="http://www.manuel-pichler.de/">Manuel Pichler</a> hosted
-  on <a href="http://www.phpunit.de/">phpunit.de</a>.<hr />
+  on <a href="http://github.com/phpundercontrol/phpUnderControl">GitHub</a>.<hr />
   phpUnderControl is an extension for <a href="http://cruisecontrol.sourceforge.net/">CruiseControl</a>.
 </div>
