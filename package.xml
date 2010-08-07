@@ -15,7 +15,6 @@ example project.
     <active>yes</active>
   </lead>
   <date>2010-08-06</date>
-  <time>14:36:14</time>
   <version>
     <release>0.6.1beta1</release>
     <api>1.0.0</api>
