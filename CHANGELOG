@@ -1,3 +1,9 @@
+phpUnderControl 0.6.1
+---------------------
+
+- New setup command, which creates an unix init script for your phpUnderControl
+  installation. All features were supplied by proofek.
+
 phpUnderControl 0.6.0
 ---------------------
 
