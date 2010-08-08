@@ -11,13 +11,13 @@
 	<meta name="keywords" content="phpUnderControl, web, Continuous Integration, CruiseControl, Quality Assurance" />
 	<meta name="author" content="Manuel Pichler" />
 	<meta name="language" content="en" />
-	<meta name="date" content="Sun, 31 Jan 2010 17:42:18 +0100" />
+	<meta name="date" content="Sun, 08 Aug 2010 22:52:59 +0200" />
 	<meta name="robots" content="all" />
 
 	<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />
 	<meta name="DC.title" content="Documentation" />
 	<meta name="DC.creator" content="Manuel Pichler" />
-	<meta name="DC.date" content="Sun, 31 Jan 2010 17:42:18 +0100" />
+	<meta name="DC.date" content="Sun, 08 Aug 2010 22:52:59 +0200" />
 	<meta name="DC.rights" content="CC by-nc-sa" />
 
 	<link rel="meta" href="/documentation/installation.rdf" />
@@ -99,13 +99,24 @@ function returnMailLink( element, host, tld, user )
 		</div>
 
 	<div id="content">
-		<h2>Documentation - Installation</h2><p>This section describes how to install <a href="http://cruisecontrol.sourceforge.net/">CruiseControl</a> and phpUnderControl. If you have read the following lines you should be able to set up your own continuous integration environment for PHP development.</p><a name="setting-up-cruisecontrol-and-phpundercontrol"></a><h3>Setting up CruiseControl and phpUnderControl</h3><p>The first things you need is a <a href="http://java.sun.com/javase/downloads/?intcmp=1281">Java</a> environment and a working installation of <a href="http://sourceforge.net/project/showfiles.php?group_id=23523">CruiseControl</a>. I assume that Java is already installed and so I will not cover this topic here, but I suggest to use an original Java version from <a href="http://java.sun.com/">SUN</a> instead of some versions bundled with linux distributions, because in combination with <a href="http://compiz.org/">compiz</a> or <a href="http://www.beryl-project.org/">beryl</a> the metrics view may be broken otherwise.</p><p>Setting up a working CruiseControl installation is a really simple task. Just download one of the provided zip archives from the project site, unpack the contents into an arbitrary folder and start the application. For a detailed installation description how to install CruiseControl and how to configure it with PHPUnit I recommend an excellent <a href="http://nohn.org/blog/view/id/cruisecontrol_ant_and_phpunit">article by Sebastian Nohn</a> and the <a href="http://www.phpunit.de/pocket_guide/3.2/en/continuous-integration.html">Continuous Integration chapter</a> from the <a href="http://www.phpunit.de/pocket_guide/3.2/en/index.html">PHPUnit Pocket Guide</a>.</p><p><em>Please note</em> the CruiseControl <a href="http://nohn.org/blog/view/id/cruisecontrol_ant_and_phpunit">tutorial</a> uses version 2.4.*, but the current version is 2.7.*. So please install an up to date version, because it is required by phpUnderControl!</p><p>Now that you have a working CruiseControl, check out phpUnderControl from its repository hosted on github.</p><code class="block">git clone git://github.com/manuelpichler/phpUnderControl.git</code><p>Now you can patch your CruiseControl installation by entering</p><code class="block">phpUnderControl/bin/phpuc(.php|.bat) install /path/to/cruisecontrol</code><p>This command will exchange some template and the original metric charts and it installs additional resources.</p><p>That's it.</p>
+		<h2>Documentation - Installation</h2><p>This section describes how to install <a href="http://cruisecontrol.sourceforge.net/">CruiseControl</a> and phpUnderControl. If you have read the following lines you should be able to set up your own continuous integration environment for PHP development.</p><a name="setting-up-cruisecontrol-and-phpundercontrol"></a><h3>Setting up CruiseControl and phpUnderControl</h3><p>The first things you need is a <a href="http://java.sun.com/javase/downloads/?intcmp=1281">Java</a> environment and a working installation of <a href="http://sourceforge.net/project/showfiles.php?group_id=23523">CruiseControl</a>. I assume that Java is already installed and so I will not cover this topic here, but I suggest to use an original Java version from <a href="http://java.sun.com/">SUN</a> instead of some versions bundled with linux distributions, because in combination with <a href="http://compiz.org/">compiz</a> or <a href="http://www.beryl-project.org/">beryl</a> the metrics view may be broken otherwise.</p><p>Setting up a working CruiseControl installation is a really simple task. Just download one of the provided zip archives from the project site, unpack the contents into an arbitrary folder and start the application. For a detailed installation description how to install CruiseControl and how to configure it with PHPUnit I recommend an excellent <a href="http://nohn.org/blog/view/id/cruisecontrol_ant_and_phpunit">article by Sebastian Nohn</a> and the <a href="http://www.phpunit.de/pocket_guide/3.2/en/continuous-integration.html">Continuous Integration chapter</a> from the <a href="http://www.phpunit.de/pocket_guide/3.2/en/index.html">PHPUnit Pocket Guide</a>.</p><p><em>Please note</em> the CruiseControl <a href="http://nohn.org/blog/view/id/cruisecontrol_ant_and_phpunit">tutorial</a> uses version 2.4.*, but the current version is 2.8.*. So please install an up to date version, because it is required by phpUnderControl!</p><p>Now that you have a working CruiseControl, check out phpUnderControl from its repository hosted on github.</p><code class="block">git clone git://github.com/manuelpichler/phpUnderControl.git</code><p>Now you can patch your CruiseControl installation by entering</p><code class="block">phpUnderControl/bin/phpuc(.php|.bat) install /path/to/cruisecontrol</code><p>This command will exchange some template and the original metric charts and it installs additional resources.</p><p>That's it.</p>
 
 	</div>
 		
     <div id="info">
-Revision <strong>5</strong>
+Revision <strong>6</strong>
            <ul>
+<li>
+    <p>
+        Revision <strong>145</strong>
+        by <strong>mapi</strong>
+        at Sun, 08 Aug 2010 22:52:59 +0200
+    </p>
+    <p class="message">
+        # Documentation updated to CruiseControl version 2.8.x<br />
+
+    </p>
+</li>
 <li>
     <p>
         Revision <strong>123</strong>
@@ -165,14 +176,14 @@ Revision <strong>5</strong>
     By
 		<a href="" onclick="returnMailLink( this, 'manuel-pichler', 'de', 'mapi' );">Manuel Pichler</a>
 	<br />
-	At Sun, 31 Jan 2010 17:42:18 +0100
+	At Sun, 08 Aug 2010 22:52:59 +0200
 	<br />
 </div>
         
 	<div class="footer">
-Revision <strong>5</strong> by
+Revision <strong>6</strong> by
 		<strong><a href="" onclick="returnMailLink( this, 'manuel-pichler', 'de', 'mapi' );">Manuel Pichler</a></strong>
-	at <strong>Sun, 31 Jan 2010 17:42:18 +0100</strong>
+	at <strong>Sun, 08 Aug 2010 22:52:59 +0200</strong>
 	<br />
 	Displayed with <a href="svn://kore-nordmann.de/wcv/trunk" title="Web Content Viewer">WCV</a>
 	licensed under <a href="http://www.gnu.org/licenses/gpl.txt" title="GNU General Public License - Version 3">GPLv3</a>

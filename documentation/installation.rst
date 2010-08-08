@@ -36,8 +36,8 @@ __ http://www.phpunit.de/pocket_guide/3.2/en/continuous-integration.html
 __ http://www.phpunit.de/pocket_guide/3.2/en/index.html
 
 *Please note* the CruiseControl `tutorial`__ uses version 2.4.*, but the current
-version is 2.7.*. So please install an up to date version, because it is required
-by phpUnderControl!
+version is 2.8.*. So please install an up to date version, because it is 
+required by phpUnderControl!
 
 __ http://nohn.org/blog/view/id/cruisecontrol_ant_and_phpunit
 
