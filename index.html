@@ -1,11 +1,209 @@
-<html>
-    <head>
-        <meta http-equiv="Refresh" content="0;url=http://phpundercontrol.org/about.html" />
-    </head>
-    <body>
-        <h1>Sorry! We have moved!</h1>
-        <h2>The new URL is: <a href="http://phpundercontrol.org/about.html">http://phpundercontrol.org/about.html</a></h2>
-        <p>You will be redirected to the new address.</p>
-        <p>If you see this message for more than 5 seconds, please click on the link above!</p>
-    </body>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xml:lang="en"
+	  lang="en">
+  <head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+	<meta name="description" content="phpUnderControl - The first CruiseControl integration tool for PHP development." />
+	<meta name="keywords" content="phpUnderControl, web, Continuous Integration, CruiseControl, Quality Assurance" />
+	<meta name="author" content="Manuel Pichler" />
+	<meta name="language" content="en" />
+	<meta name="date" content="Wed, 21 Jul 2010 12:56:47 +0200" />
+	<meta name="robots" content="all" />
+
+	<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />
+	<meta name="DC.title" content="About" />
+	<meta name="DC.creator" content="Manuel Pichler" />
+	<meta name="DC.date" content="Wed, 21 Jul 2010 12:56:47 +0200" />
+	<meta name="DC.rights" content="CC by-nc-sa" />
+
+	<link rel="meta" href="/index.rdf" />
+
+	<link rel="Stylesheet" type="text/css" href="/styles/screen.css?v=3" media="screen" />
+	<link rel="Stylesheet" type="text/css" href="/styles/print.css?v=3" media="print" />
+	
+	<link rel="icon" href="/favicon.png" type="image/png" />
+
+
+	<script type="text/ecmascript">
+
+// <![CDATA[
+/**
+ * Return a mail link constructed from the parameters. The order of the
+ * parameters is a bit unintuitive to not match any common patterns easily.
+ * This is obviously no challenge for a specialized bot.
+ *
+ * @param string host
+ * @param string tld
+ * @param string user
+ * @return string
+ */
+function returnMailLink( element, host, tld, user )
+{
+	element.setAttribute( "href", "mailto:" + user + "@" + host + "." + tld );
+}
+// ]]>
+
+	</script>
+
+	<title>phpUnderControl</title>
+</head>
+<body>
+<div id="wcv">
+	<h1>
+	  <a href="http://www.phpundercontrol.org">phpUnderControl</a>
+	</h1>
+    <ul class="navigation">
+<li class="requested">
+	<a href="/index.html" title="About">About</a>
+	</li>
+<li >
+	<a href="/documentation/installation.html" title="Documentation">Documentation</a>
+		<ul>
+		<li >
+	<a href="/documentation/installation.html" title="Installation">Installation</a>
+	</li>
+<li >
+	<a href="/documentation/getting-started.html" title="Getting started">Getting started</a>
+	</li>
+<li >
+	<a href="/documentation/tutorials.html" title="Tutorials">Tutorials</a>
+	</li>
+<li >
+	<a href="/documentation/command-line.html" title="Command line">Command line</a>
+	</li>
+<li >
+	<a href="/documentation/faq.html" title="FAQ">FAQ</a>
+	</li>
+
+	</ul>
+</li>
+<li >
+	<a href="/screenshots.html" title="Screenshots">Screenshots</a>
+	</li>
+<li >
+	<a href="/download.html" title="Download">Download</a>
+	</li>
+
+</ul>
+
+		<div id="formats">
+						
+												
+						<a href="/index.rdf">Info</a>
+ | 			<a href="/index.html">HTML</a>
+ | 			<a href="/index.txt">Text</a>
+		</div>
+
+	<div id="content">
+		<h2>phpUnderControl - Continuous Integration for PHP</h2><a href="/images/0.3.5-metrics.png"><div class="&#10;&#9;&#9;&#9;&#9;&#9;image &#10;&#9;&#9;&#9;&#9;&#9;right "><img alt="phpUnderControl metrics screenshot" title="phpUnderControl metrics screenshot" src="/images/0.3.5-metrics_thumb.png"/><span class="image_title">phpUnderControl metrics screenshot</span></div></a><p>phpUnderControl is an addon application for the continuous integration tool <a href="http://cruisecontrol.sourceforge.net">CruiseControl</a>, which integrates some of the best PHP development tools. This project aims to make your first steps with CruiseControl and <a href="http://www.php.net">PHP</a> as easy as possible. Therefore phpUnderControl comes with a command line tool that performs all modifications to an existing CruiseControl installation.</p><a name="integrated-tools"></a><h3>Integrated tools</h3><ul><li><p>Testing and software metrics</p><p><a href="http://www.phpunit.de">PHPUnit</a> is the most popular xUnit implementation for PHP that provides a framework for automated software tests. Except the pure test automation PHPUnit contains a rich set of features like <a href="http://www.phpunit.de/pocket_guide/3.2/en/code-coverage-analysis.html">Code Coverage</a>, <a href="http://pmd.sourceforge.net">Project Mess Detection</a> and <a href="http://en.wikipedia.org/wiki/Software_metrics">Software Metrics</a>. To visualize the generated XML reports phpUnderControl comes with a set of XSL stylesheets that prepare the output for CruiseControl.</p></li><li><p>Documentation</p><p>phpUnderControl uses the most common documentation tool for PHP projects, <a href="http://www.phpdoc.org">PhpDocumentor</a>, to generate an up to date documentation of the software on every build cycle.  Therefore the developers will always get the latest API documentation of their project. Additionally phpUnderControl extracts the documentation violations found by the PhpDocumentor and visualizes these as an additional quality report in the user interface and the project time line of documentation violations.</p></li><li><p>Coding Standards</p><p>With the package <a href="http://pear.php.net/package/PHP_CodeSniffer">PHP_CodeSniffer</a> the <a href="http://pear.php.net">PEAR project</a> gave PHP developers a very useful tool to detect coding standard violations in a project. Since <a href="http://pear.php.net/bugs/roadmap.php?showold=1&amp;package=PHP_CodeSniffer#a1.0.0RC3">version 1.0.0RC3</a> it has native support for the <a href="http://checkstyle.sourceforge.net">Checkstyle</a> XML format that can be visualized by CruiseControl. PHP_CodeSniffer comes with a variety of pre defined coding standards like PEAR and ZEND but due to its modular structure you can easily implement a custom rule set or extend one of the pre defined sets.  This development tool assures that the whole project code will remain clean and consistent.</p></li></ul><a name="commercial-support"></a><h3>Commercial support</h3><p>There are also companies providing commercial support for phpUnderControl:</p><ul><li><p><a href="http://qafoo.com">Qafoo GmbH - passion for software quality</a></p><p>Founded by me, the lead developer of phpUnderControl, and two friends, Qafoo provides support for phpUnderControl and general consulting and training on software quality tools and processes.</p></li></ul><a name="communication"></a><h3>Communication</h3><a name="mailinglists"></a><h4>Mailinglists</h4><ul><li><p><em>commits@phpunit.de</em> is the list to which automatically generated mails with information about repository checkins are sent.</p><p>Sent an empty mail to <a href="mailto:commits-subscribe@phpunit.de">commits-subscribe@phpunit.de</a>, to subscribe to this list.</p></li><li><p><em>user@phpunit.de</em> is the list where you will find help on phpUnderControl related topics.</p><p>Sent an empty mail to <a href="mailto:user-subscribe@phpunit.de">user-subscribe@phpunit.de</a>, to subscribe to this list.</p></li></ul><a name="irc"></a><h4>IRC</h4><ul><li><p>You will always find help on phpUnderControl related topics in the #phpunit channel on the Freenode IRC network.</p></li></ul>
+
+	</div>
+		
+    <div id="info">
+Revision <strong>8</strong>
+           <ul>
+<li>
+    <p>
+        Revision <strong>135</strong>
+        by <strong>mapi</strong>
+        at Wed, 21 Jul 2010 12:56:47 +0200
+    </p>
+    <p class="message">
+        # Section about profession phpUnderControl support added.<br />
+
+    </p>
+</li>
+<li>
+    <p>
+        Revision <strong>94</strong>
+        by <strong>mapi</strong>
+        at Sun, 21 Sep 2008 00:16:19 +0200
+    </p>
+    <p class="message">
+        - Layout improved.
+    </p>
+</li>
+<li>
+    <p>
+        Revision <strong>83</strong>
+        by <strong>mapi</strong>
+        at Sun, 18 May 2008 14:49:45 +0200
+    </p>
+    <p class="message">
+        - Style fixed.
+    </p>
+</li>
+<li>
+    <p>
+        Revision <strong>82</strong>
+        by <strong>mapi</strong>
+        at Sun, 18 May 2008 14:45:06 +0200
+    </p>
+    <p class="message">
+        - Informations about possible phpUnderControl communication channels added.
+    </p>
+</li>
+<li>
+    <p>
+        Revision <strong>53</strong>
+        by <strong>mapi</strong>
+        at Sun, 03 Feb 2008 00:43:18 +0100
+    </p>
+    <p class="message">
+        - New screenshots from version 0.3.5 integrated.
+    </p>
+</li>
+<li>
+    <p>
+        Revision <strong>39</strong>
+        by <strong>mapi</strong>
+        at Sun, 20 Jan 2008 01:16:29 +0100
+    </p>
+    <p class="message">
+        - Metrics screenshot added to start page.
+    </p>
+</li>
+<li>
+    <p>
+        Revision <strong>23</strong>
+        by <strong>mapi</strong>
+        at Tue, 11 Dec 2007 20:27:30 +0100
+    </p>
+    <p class="message">
+        - Corrections by kore included.
+    </p>
+</li>
+<li>
+    <p>
+        Revision <strong>7</strong>
+        by <strong>mapi</strong>
+        at Sun, 02 Dec 2007 00:50:50 +0100
+    </p>
+    <p class="message">
+        - phpUnderControl start page added.
+    </p>
+</li>
+           </ul>
+   <br />
+    By
+		<a href="" onclick="returnMailLink( this, 'manuel-pichler', 'de', 'mapi' );">Manuel Pichler</a>
+	<br />
+	At Wed, 21 Jul 2010 12:56:47 +0200
+	<br />
+</div>
+        
+	<div class="footer">
+Revision <strong>8</strong> by
+		<strong><a href="" onclick="returnMailLink( this, 'manuel-pichler', 'de', 'mapi' );">Manuel Pichler</a></strong>
+	at <strong>Wed, 21 Jul 2010 12:56:47 +0200</strong>
+	<br />
+	Displayed with <a href="svn://kore-nordmann.de/wcv/trunk" title="Web Content Viewer">WCV</a>
+	licensed under <a href="http://www.gnu.org/licenses/gpl.txt" title="GNU General Public License - Version 3">GPLv3</a>
+</div>
+</div>
+</body>
 </html>
