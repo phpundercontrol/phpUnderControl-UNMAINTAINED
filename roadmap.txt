@@ -1,0 +1,124 @@
+phpUnderControl
+~~~~~~~~~~~~~~~
+
+:Author: 		Manuel Pichler
+:Date:			Wed, 10 Sep 2008 21:38:33 +0200
+:Revision: 		15
+:Copyright:		CC by-nc-sa
+
+=======
+Roadmap
+=======
+
+.. contents:: Table of Contents
+   :depth: 3
+   
+Version 0.4.4 (released 08/09/2008)
+===================================
+
+- Bugfix release for 0.4.3. 
+- Not failing builds fixed.
+- View issues fixed.
+   
+Version 0.4.3 (released 07/09/2008)
+===================================
+
+- New feature release. Merged phpunit log files.
+   
+Version 0.4.2 (released 21/04/2008)
+===================================
+
+- Hide empty CodeSniffer results on the project overview page.
+   
+Version 0.4.1 (released 06/04/2008)
+===================================
+   
+- New compact project overview page that doesn't show all CodeSniffer, PMD and
+  PHPDoc errors and warnings. Suggested by Sebastian, kore, norro.
+- Improved navigation for the CodeSniffer view.
+- PHPDoc errors integrated into generated documentation.
+- Better visualization for @dataProvider tests.
+- Improved PHPUnit view.
+   
+Version 0.4.0 (released 30/03/2008)
+===================================
+
+- Implement a project command for the cli tool that creates a new project from a
+  existing CVS or SVN repository. (done)
+
+- phpUnderControl now shows only the Coverage and Documentation tabs if content
+  exists. (done)
+  
+- New commands to delete a complete project, do delete a defined number of old
+  builds and a project wizard command added. (done)
+  
+- Minor view extensions. Shows only files in the code sniffer view where violations
+  were detected, XML Log removed from main menu,... (done)
+  
+- Integrate the `javascript test tool crosscheck`__ mentioned by `Lars in his Blog`__.
+  crosscheck is a javascript test environment that is written in java and simulates
+  different browsers, so that you can test your code without an installed version.
+  (skipped, to special for my own needs, but still a cool tool)
+  
+__ http://www.thefrontside.net/crosscheck
+__ http://www.frontalaufprall.com/2008/02/04/unit-testing-your-javascript-code/
+
+Version 0.3.6 (released)
+========================
+ 
+- Dashboard bugfix. The projects weren't sorted on the dashboard page. Thanks to
+  `kore`__ who notices this behaviour.
+  
+- Code cleanup for OS detection and fix for MacOSX Darwin added. Thanks to 
+  `Sebastian`__ who provides a patch.
+  
+- Customization support for java server pages added. This new feature allows 
+  custom tabs for further artifacts and build results.
+   
+- New chart type for the unit test execution time added.
+
+__ http://www.kore-nordmann.de
+__ http://www.sebastian-bergmann.de
+
+Version 0.3.0 (released)
+========================
+
+- Implement a project command for the cli tool that creates a new project from a
+  existing CVS or SVN repository. *(open, moved to 0.4.0)*
+  
+- The code fragments of the CPD detection should foldable to reduce the initial
+  page length. *(open, no concrete version)*
+  
+- Javascript replacement for the `cewolf`__ metrics view.
+
+__ http://cewolf.sourceforge.net/new/index.html
+
+Version 0.2.3 (skipped)
+=======================
+
+- Improve phpUnderControl Windows support and fix some windows specific bugs.
+- Complete online documentation for the CruiseControl config.xml file.
+  
+Version 0.2.2 (released)
+========================
+
+- Add an example ant build.xml file and a CruiseControl project config.xml to
+  show custom setups. (done)
+  
+  - Online and offline descibtion for both example files. (partially done) 
+  
+Version 0.2.1 (released)
+========================
+
+- Restructure source code into small tasks, so that each task performs a single 
+  job. *(mostly done)*
+
+- Replace all exit() interruptions with exceptions so that the code will become 
+  testable. *(done)*
+  
+- Provide phpUnderControl as a PEAR package from `phpunit.de`__. *(done)*
+
+  - Allow installation of used packages PHPUnit, PHP_CodeSniffer and
+    PhpDocumentor.
+
+  __ http://www.phpunit.de

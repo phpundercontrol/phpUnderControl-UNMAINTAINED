@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xml:lang="en"
+	  lang="en">
+  <head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+	<meta name="description" content="phpUnderControl - The first CruiseControl integration tool for PHP development." />
+	<meta name="keywords" content="phpUnderControl, web, Continuous Integration, CruiseControl, Quality Assurance" />
+	<meta name="author" content="Manuel Pichler" />
+	<meta name="language" content="en" />
+	<meta name="date" content="Wed, 10 Sep 2008 21:38:33 +0200" />
+	<meta name="robots" content="all" />
+
+	<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />
+	<meta name="DC.title" content="Roadmap" />
+	<meta name="DC.creator" content="Manuel Pichler" />
+	<meta name="DC.date" content="Wed, 10 Sep 2008 21:38:33 +0200" />
+	<meta name="DC.rights" content="CC by-nc-sa" />
+
+	<link rel="meta" href="/roadmap.rdf" />
+
+	<link rel="Stylesheet" type="text/css" href="/styles/screen.css?v=3" media="screen" />
+	<link rel="Stylesheet" type="text/css" href="/styles/print.css?v=3" media="print" />
+	
+	<link rel="icon" href="/favicon.png" type="image/png" />
+
+
+	<script type="text/ecmascript">
+
+// <![CDATA[
+/**
+ * Return a mail link constructed from the parameters. The order of the
+ * parameters is a bit unintuitive to not match any common patterns easily.
+ * This is obviously no challenge for a specialized bot.
+ *
+ * @param string host
+ * @param string tld
+ * @param string user
+ * @return string
+ */
+function returnMailLink( element, host, tld, user )
+{
+	element.setAttribute( "href", "mailto:" + user + "@" + host + "." + tld );
+}
+// ]]>
+
+	</script>
+
+	<title>phpUnderControl</title>
+</head>
+<body>
+<div id="wcv">
+	<h1>
+	  <a href="http://www.phpundercontrol.org">phpUnderControl</a>
+	</h1>
+    <ul class="navigation">
+<li >
+	<a href="/about.html" title="About">About</a>
+	</li>
+<li >
+	<a href="/documentation/installation.html" title="Documentation">Documentation</a>
+		<ul>
+		<li >
+	<a href="/documentation/installation.html" title="Installation">Installation</a>
+	</li>
+<li >
+	<a href="/documentation/getting-started.html" title="Getting started">Getting started</a>
+	</li>
+<li >
+	<a href="/documentation/tutorials.html" title="Tutorials">Tutorials</a>
+	</li>
+<li >
+	<a href="/documentation/command-line.html" title="Command line">Command line</a>
+	</li>
+<li >
+	<a href="/documentation/faq.html" title="FAQ">FAQ</a>
+	</li>
+
+	</ul>
+</li>
+<li >
+	<a href="/screenshots.html" title="Screenshots">Screenshots</a>
+	</li>
+<li >
+	<a href="/download.html" title="Download">Download</a>
+	</li>
+
+</ul>
+
+		<div id="formats">
+						
+												
+						<a href="/roadmap.rdf">Info</a>
+ | 			<a href="/roadmap.html">HTML</a>
+ | 			<a href="/roadmap.txt">Text</a>
+		</div>
+
+	<div id="content">
+		<h2>Roadmap</h2><div class="toc"><h3>Table of Contents</h3><ul><li><p><a href="#version-0-4-4-released-08-09-2008">Version 0.4.4 (released 08/09/2008)</a></p></li><li><p><a href="#version-0-4-3-released-07-09-2008">Version 0.4.3 (released 07/09/2008)</a></p></li><li><p><a href="#version-0-4-2-released-21-04-2008">Version 0.4.2 (released 21/04/2008)</a></p></li><li><p><a href="#version-0-4-1-released-06-04-2008">Version 0.4.1 (released 06/04/2008)</a></p></li><li><p><a href="#version-0-4-0-released-30-03-2008">Version 0.4.0 (released 30/03/2008)</a></p></li><li><p><a href="#version-0-3-6-released">Version 0.3.6 (released)</a></p></li><li><p><a href="#version-0-3-0-released">Version 0.3.0 (released)</a></p></li><li><p><a href="#version-0-2-3-skipped">Version 0.2.3 (skipped)</a></p></li><li><p><a href="#version-0-2-2-released">Version 0.2.2 (released)</a></p></li><li><p><a href="#version-0-2-1-released">Version 0.2.1 (released)</a></p></li></ul></div><a name="version-0-4-4-released-08-09-2008"></a><a name="id7"></a><h3>Version 0.4.4 (released 08/09/2008)</h3><ul><li><p>Bugfix release for 0.4.3.</p></li><li><p>Not failing builds fixed.</p></li><li><p>View issues fixed.</p></li></ul><a name="version-0-4-3-released-07-09-2008"></a><a name="id8"></a><h3>Version 0.4.3 (released 07/09/2008)</h3><ul><li><p>New feature release. Merged phpunit log files.</p></li></ul><a name="version-0-4-2-released-21-04-2008"></a><a name="id9"></a><h3>Version 0.4.2 (released 21/04/2008)</h3><ul><li><p>Hide empty CodeSniffer results on the project overview page.</p></li></ul><a name="version-0-4-1-released-06-04-2008"></a><a name="id10"></a><h3>Version 0.4.1 (released 06/04/2008)</h3><ul><li><p>New compact project overview page that doesn't show all CodeSniffer, PMD and PHPDoc errors and warnings. Suggested by Sebastian, kore, norro.</p></li><li><p>Improved navigation for the CodeSniffer view.</p></li><li><p>PHPDoc errors integrated into generated documentation.</p></li><li><p>Better visualization for @dataProvider tests.</p></li><li><p>Improved PHPUnit view.</p></li></ul><a name="version-0-4-0-released-30-03-2008"></a><a name="id11"></a><h3>Version 0.4.0 (released 30/03/2008)</h3><ul><li><p>Implement a project command for the cli tool that creates a new project from a existing CVS or SVN repository. (done)</p></li><li><p>phpUnderControl now shows only the Coverage and Documentation tabs if content exists. (done)</p></li><li><p>New commands to delete a complete project, do delete a defined number of old builds and a project wizard command added. (done)</p></li><li><p>Minor view extensions. Shows only files in the code sniffer view where violations were detected, XML Log removed from main menu,... (done)</p></li><li><p>Integrate the <a href="http://www.thefrontside.net/crosscheck">javascript test tool crosscheck</a> mentioned by <a href="http://www.frontalaufprall.com/2008/02/04/unit-testing-your-javascript-code/">Lars in his Blog</a>. crosscheck is a javascript test environment that is written in java and simulates different browsers, so that you can test your code without an installed version. (skipped, to special for my own needs, but still a cool tool)</p></li></ul><a name="version-0-3-6-released"></a><a name="id12"></a><h3>Version 0.3.6 (released)</h3><ul><li><p>Dashboard bugfix. The projects weren't sorted on the dashboard page. Thanks to <a href="http://www.kore-nordmann.de">kore</a> who notices this behaviour.</p></li><li><p>Code cleanup for OS detection and fix for MacOSX Darwin added. Thanks to <a href="http://www.sebastian-bergmann.de">Sebastian</a> who provides a patch.</p></li><li><p>Customization support for java server pages added. This new feature allows custom tabs for further artifacts and build results.</p></li><li><p>New chart type for the unit test execution time added.</p></li></ul><a name="version-0-3-0-released"></a><a name="id13"></a><h3>Version 0.3.0 (released)</h3><ul><li><p>Implement a project command for the cli tool that creates a new project from a existing CVS or SVN repository. <em>(open, moved to 0.4.0)</em></p></li><li><p>The code fragments of the CPD detection should foldable to reduce the initial page length. <em>(open, no concrete version)</em></p></li><li><p>Javascript replacement for the <a href="http://cewolf.sourceforge.net/new/index.html">cewolf</a> metrics view.</p></li></ul><a name="version-0-2-3-skipped"></a><a name="id14"></a><h3>Version 0.2.3 (skipped)</h3><ul><li><p>Improve phpUnderControl Windows support and fix some windows specific bugs.</p></li><li><p>Complete online documentation for the CruiseControl config.xml file.</p></li></ul><a name="version-0-2-2-released"></a><a name="id15"></a><h3>Version 0.2.2 (released)</h3><ul><li><p>Add an example ant build.xml file and a CruiseControl project config.xml to show custom setups. (done)</p><ul><li><p>Online and offline descibtion for both example files. (partially done)</p></li></ul></li></ul><a name="version-0-2-1-released"></a><a name="id16"></a><h3>Version 0.2.1 (released)</h3><ul><li><p>Restructure source code into small tasks, so that each task performs a single job. <em>(mostly done)</em></p></li><li><p>Replace all exit() interruptions with exceptions so that the code will become testable. <em>(done)</em></p></li><li><p>Provide phpUnderControl as a PEAR package from <a href="http://www.phpunit.de">phpunit.de</a>. <em>(done)</em></p><ul><li><p>Allow installation of used packages PHPUnit, PHP_CodeSniffer and PhpDocumentor.</p></li></ul></li></ul>
+
+	</div>
+		
+    <div id="info">
+Revision <strong>15</strong>
+           <ul>
+<li>
+    <p>
+        Revision <strong>89</strong>
+        by <strong>mapi</strong>
+        at Wed, 10 Sep 2008 21:38:33 +0200
+    </p>
+    <p class="message">
+        - phpUnderControl roadmap/releasemap adjusted.
+    </p>
+</li>
+<li>
+    <p>
+        Revision <strong>80</strong>
+        by <strong>mapi</strong>
+        at Fri, 02 May 2008 15:47:16 +0200
+    </p>
+    <p class="message">
+        - Download version of 0.4.2 added<br />
+- 0.4.2 added to roadmap
+    </p>
+</li>
+<li>
+    <p>
+        Revision <strong>76</strong>
+        by <strong>mapi</strong>
+        at Sun, 06 Apr 2008 17:01:39 +0200
+    </p>
+    <p class="message">
+        - New phpUnderControl version 0.4.1 added.
+    </p>
+</li>
+<li>
+    <p>
+        Revision <strong>63</strong>
+        by <strong>mapi</strong>
+        at Sun, 30 Mar 2008 18:46:23 +0200
+    </p>
+    <p class="message">
+        - Roadmap adjusted for the new 0.4.0 release.
+    </p>
+</li>
+<li>
+    <p>
+        Revision <strong>60</strong>
+        by <strong>mapi</strong>
+        at Tue, 12 Feb 2008 11:58:13 +0100
+    </p>
+    <p class="message">
+        - Contributor links added.
+    </p>
+</li>
+<li>
+    <p>
+        Revision <strong>59</strong>
+        by <strong>mapi</strong>
+        at Tue, 12 Feb 2008 11:50:01 +0100
+    </p>
+    <p class="message">
+        - Roadmap updated for release 0.3.6
+    </p>
+</li>
+<li>
+    <p>
+        Revision <strong>58</strong>
+        by <strong>mapi</strong>
+        at Tue, 05 Feb 2008 09:52:58 +0100
+    </p>
+    <p class="message">
+        - ceowolf -&gt; cewolf typo fixed.
+    </p>
+</li>
+<li>
+    <p>
+        Revision <strong>56</strong>
+        by <strong>mapi</strong>
+        at Tue, 05 Feb 2008 09:36:55 +0100
+    </p>
+    <p class="message">
+        - Javascript test tool crosscheck added to 0.4.0 roadmap.
+    </p>
+</li>
+<li>
+    <p>
+        Revision <strong>55</strong>
+        by <strong>mapi</strong>
+        at Sun, 03 Feb 2008 00:57:59 +0100
+    </p>
+    <p class="message">
+        - Roadmap adjusted.
+    </p>
+</li>
+<li>
+    <p>
+        Revision <strong>32</strong>
+        by <strong>mapi</strong>
+        at Fri, 11 Jan 2008 01:46:40 +0100
+    </p>
+    <p class="message">
+        - Roadmap for phpUnderControl 0.2.2 closed.<br />
+- Roadmap for phpUnderControl 0.2.3 started.
+    </p>
+</li>
+           </ul>
+   <br />
+    By
+		<a href="" onclick="returnMailLink( this, 'manuel-pichler', 'de', 'mapi' );">Manuel Pichler</a>
+	<br />
+	At Wed, 10 Sep 2008 21:38:33 +0200
+	<br />
+</div>
+        
+	<div class="footer">
+Revision <strong>15</strong> by
+		<strong><a href="" onclick="returnMailLink( this, 'manuel-pichler', 'de', 'mapi' );">Manuel Pichler</a></strong>
+	at <strong>Wed, 10 Sep 2008 21:38:33 +0200</strong>
+	<br />
+	Displayed with <a href="svn://kore-nordmann.de/wcv/trunk" title="Web Content Viewer">WCV</a>
+	licensed under <a href="http://www.gnu.org/licenses/gpl.txt" title="GNU General Public License - Version 3">GPLv3</a>
+</div>
+</div>
+</body>
+</html>

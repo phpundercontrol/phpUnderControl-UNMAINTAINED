@@ -1,0 +1,159 @@
+phpUnderControl
+~~~~~~~~~~~~~~~
+
+:Author: 		Manuel Pichler
+:Date:			Thu, 10 Jun 2010 20:56:55 +0200
+:Revision: 		28
+:Copyright:		CC by-nc-sa
+
+==========================
+phpUnderControl Downloads
+==========================
+
+PEAR Installer
+--------------
+
+The preferred way to install phpUnderControl should be the 
+`phpUnderControl PEAR channel`__, where you will always find 
+the latest stable version. Just enter ::
+
+    pear channel-discover components.ez.no
+    pear channel-discover pear.phpundercontrol.org
+    pear install --alldeps phpuc/phpUnderControl-beta
+
+__ http://pear.phpundercontrol.org
+
+From the subversion repository
+------------------------------
+
+If you are curious about the latest phpUnderControl features, you 
+can use a checkout from phpUnderControl's git repository. But keep 
+in mind that the master version may be broken from time to time. ::
+
+    git clone git://github.com/manuelpichler/phpUnderControl.git
+
+Otherwise you can check out one of the tagged versions from github. ::
+
+    git clone git://github.com/manuelpichler/phpUnderControl.git
+    cd phpUnderContol
+    git checkout 0.5.1
+
+Releases
+--------
+
+phpUnderControl 0.6.0beta3
+``````````````````````````
+
+* `phpUnderControl-0.6.0beta3.zip`__
+* git checkout `0.6.0beta3`__
+* pear install `phpuc/phpUnderControl-0.6.0beta3`__
+
+__ /releases/phpUnderControl-0.6.0beta3.zip
+__ http://github.com/manuelpichler/phpUnderControl/tree/0.6.0beta3
+__ http://pear.phpundercontrol.org/get/phpUnderControl-0.6.0beta3.tgz
+
+phpUnderControl 0.6.0beta2
+``````````````````````````
+
+* `phpUnderControl-0.6.0beta2.zip`__
+* git checkout `0.6.0beta2`__
+* pear install `phpuc/phpUnderControl-0.6.0beta2`__
+
+__ /releases/phpUnderControl-0.6.0beta2.zip
+__ http://github.com/manuelpichler/phpUnderControl/tree/0.6.0beta2
+__ http://pear.phpundercontrol.org/get/phpUnderControl-0.6.0beta2.tgz
+
+
+phpUnderControl 0.6.0beta1
+``````````````````````````
+
+* `phpUnderControl-0.6.0beta1.zip`__
+* git checkout `0.6.0beta1`__
+* pear install `phpuc/phpUnderControl-0.6.0beta1`__
+
+__ /releases/phpUnderControl-0.6.0beta1.zip
+__ http://github.com/manuelpichler/phpUnderControl/tree/0.6.0beta1
+__ http://pear.phpundercontrol.org/get/phpUnderControl-0.6.0beta1.tgz
+
+phpUnderControl 0.5.1
+`````````````````````
+
+* `phpUnderControl-0.5.1.zip`__
+* git checkout 0.5.1
+* pear install phpuc/phpUnderControl-0.5.1
+
+__ /releases/phpUnderControl-0.5.1.zip
+
+phpUnderControl 0.5.0
+`````````````````````
+
+* `phpUnderControl-0.5.0.zip`__
+* git checkout 0.5.0
+* pear install phpuc/phpUnderControl-0.5.0
+
+__ /releases/phpUnderControl-0.5.0.zip
+
+phpUnderControl 0.4.7
+`````````````````````
+* `phpUnderControl-0.4.7.zip`__
+* git checkout 0.4.7
+* pear install phpuc/phpUnderControl-0.4.7
+
+__ /releases/phpUnderControl-0.4.7.zip
+
+phpUnderControl 0.4.6
+`````````````````````
+* `phpUnderControl-0.4.6.zip`__
+* git checkout 0.4.6
+* pear install phpuc/phpUnderControl-0.4.6
+
+__ /releases/phpUnderControl-0.4.6.zip
+
+phpUnderControl 0.4.5
+`````````````````````
+* `phpUnderControl-0.4.5.zip`__
+* git checkout 0.4.5
+* pear install phpuc/phpUnderControl-0.4.5
+
+__ /releases/phpUnderControl-0.4.5.zip
+
+phpUnderControl 0.4.4
+`````````````````````
+* `phpUnderControl-0.4.4.zip`__
+* git checkout 0.4.4
+* pear install phpuc/phpUnderControl-0.4.4
+
+__ /releases/phpUnderControl-0.4.4.zip
+
+phpUnderControl 0.4.3
+`````````````````````
+* `phpUnderControl-0.4.3.zip`__
+* git checkout 0.4.3
+* pear install phpuc/phpUnderControl-0.4.3
+
+__ /releases/phpUnderControl-0.4.3.zip
+
+phpUnderControl 0.4.2
+`````````````````````
+* `phpUnderControl-0.4.2.zip`__
+* git checkout 0.4.2
+* pear install phpuc/phpUnderControl-0.4.2
+
+__ /releases/phpUnderControl-0.4.2.zip
+
+phpUnderControl 0.4.1
+`````````````````````
+* `phpUnderControl-0.4.1.zip`__
+* git checkout 0.4.1
+* pear install phpuc/phpUnderControl-0.4.1
+
+__ /releases/phpUnderControl-0.4.1.zip
+
+phpUnderControl 0.4.0
+`````````````````````
+* `phpUnderControl-0.4.0.zip`__
+* git checkout 0.4.0
+* pear install phpuc/phpUnderControl-0.4.0
+
+__ /releases/phpUnderControl-0.4.0.zip
+

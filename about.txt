@@ -1,0 +1,107 @@
+phpUnderControl
+~~~~~~~~~~~~~~~
+
+:Author: 		Manuel Pichler
+:Date:			Wed, 21 Jul 2010 12:56:47 +0200
+:Revision: 		8
+:Copyright:		CC by-nc-sa
+
+================================================
+phpUnderControl - Continuous Integration for PHP
+================================================
+
+.. image::  /images/0.3.5-metrics_thumb.png
+   :alt:    phpUnderControl metrics screenshot
+   :align:  right
+   :target: /images/0.3.5-metrics.png
+
+phpUnderControl is an addon application for the continuous integration tool
+`CruiseControl`__, which integrates some of the best PHP development tools.
+This project aims to make your first steps with CruiseControl and `PHP`__ as
+easy as possible. Therefore phpUnderControl comes with a command line tool
+that performs all modifications to an existing CruiseControl installation. 
+
+__ http://cruisecontrol.sourceforge.net
+__ http://www.php.net
+
+
+Integrated tools
+================
+
+- Testing and software metrics
+
+  `PHPUnit`__ is the most popular xUnit implementation for PHP that provides a
+  framework for automated software tests. Except the pure test automation PHPUnit 
+  contains a rich set of features like `Code Coverage`__, `Project Mess Detection`__
+  and `Software Metrics`__. To visualize the generated XML reports phpUnderControl
+  comes with a set of XSL stylesheets that prepare the output for CruiseControl.
+  
+  __ http://www.phpunit.de
+  __ http://www.phpunit.de/pocket_guide/3.2/en/code-coverage-analysis.html
+  __ http://pmd.sourceforge.net
+  __ http://en.wikipedia.org/wiki/Software_metrics
+
+- Documentation
+
+  phpUnderControl uses the most common documentation tool for PHP projects,
+  `PhpDocumentor`__, to generate an up to date documentation of the software
+  on every build cycle.  Therefore the developers will always get the latest
+  API documentation of their project. Additionally phpUnderControl extracts the
+  documentation violations found by the PhpDocumentor and visualizes these as
+  an additional quality report in the user interface and the project time line
+  of documentation violations. 
+
+  __ http://www.phpdoc.org
+
+- Coding Standards
+
+  With the package `PHP_CodeSniffer`__ the `PEAR project`__ gave PHP
+  developers a very useful tool to detect coding standard violations in a
+  project. Since `version 1.0.0RC3`__ it has native support for the
+  `Checkstyle`__ XML format that can be visualized by CruiseControl.
+  PHP_CodeSniffer comes with a variety of pre defined coding standards like
+  PEAR and ZEND but due to its modular structure you can easily implement a
+  custom rule set or extend one of the pre defined sets.  This development
+  tool assures that the whole project code will remain clean and consistent.  
+  
+  __ http://pear.php.net/package/PHP_CodeSniffer
+  __ http://pear.php.net
+  __ http://pear.php.net/bugs/roadmap.php?showold=1&package=PHP_CodeSniffer#a1.0.0RC3
+  __ http://checkstyle.sourceforge.net
+
+Commercial support
+==================
+
+There are also companies providing commercial support for phpUnderControl:
+
+- `Qafoo GmbH - passion for software quality`__
+
+  Founded by me, the lead developer of phpUnderControl, and two friends, Qafoo
+  provides support for phpUnderControl and general consulting and training on
+  software quality tools and processes.
+
+__ http://qafoo.com
+
+Communication
+=============
+
+Mailinglists
+````````````
+
+- *commits@phpunit.de* is the list to which automatically generated mails with 
+  information about repository checkins are sent.
+  
+  Sent an empty mail to commits-subscribe@phpunit.de, to subscribe to this list.
+  
+- *user@phpunit.de* is the list where you will find help on phpUnderControl
+  related topics.
+
+  Sent an empty mail to user-subscribe@phpunit.de, to subscribe to this list.
+  
+IRC
+```
+
+- You will always find help on phpUnderControl related topics in the #phpunit 
+  channel on the Freenode IRC network. 
+   
+

@@ -1,0 +1,485 @@
+===============================
+Documentation - Getting started
+===============================
+
+.. contents:: Table of Contents
+   :depth: 3
+
+Getting started with CruiseControl 
+==================================
+
+This section describes the required steps to set up and configure a custom 
+project using the `ant`__ build system. The following describtion is based on 
+the example files bundled with phpUnderControl since version `0.2.2`__. To 
+illustrate the configuration the following paragraphs use the phpUnderControl 
+subversion repository.
+
+__ http://ant.apache.org/
+__ http://www.phpunit.de/browser/phpUnderControl/tags/0.2.2
+
+The first thing that is needed is a root directory for the project. This 
+directory must be located under /path/to/cruisecontrol/projects. If you use the
+example files shipped with phpUnderControl the project directory must be named 
+phpundercontrol.org/. ::
+
+    /path/to/cruisecontrol/projects/phpundercontrol.org
+    
+For custom projects you have to adjust the matching sections in the 
+`config.xml`__ and `build.xml`__ files. Both files can also be found in the 
+phpUnderControl docs directory.
+
+__ http://www.phpunit.de/browser/phpUnderControl/trunk/docs/config.xml
+__ http://www.phpunit.de/browser/phpUnderControl/trunk/docs/build.xml
+
+The ant build.xml file
+----------------------
+
+The first thing that is needed for a project build is the ant build.xml file in
+the new project directory. This file is comparable with a engineering blue print
+that describes how to create a product. ::
+
+    /path/to/cruisecontrol/projects/phpundercontrol.org/build.xml
+
+At first the file should contain the following lines. If your project directory 
+has a different name you should change the @name attribute to that name. ::
+
+    <?xml version="1.0" encoding="UTF-8"?>
+    <project name="phpundercontrol.org" basedir="."> 
+    
+    </project>
+    
+Next, we need a working copy of the source code. The initial checkout is done
+by hand, as example we use the phpUnderControl trunk. ::
+
+    svn co svn://svn.phpunit.de/phpunit/phpUnderControl/trunk source
+    
+Checkout target
+```````````````
+    
+To run a build against the latest source code version we must alter the 
+build.xml file to update working copy before the build process starts. The shown
+target executes a 'svn up' in the phpundercontrol.org/source/ directory. ::
+
+    <?xml version="1.0" encoding="UTF-8"?>
+    <project name="phpundercontrol.org" basedir=".">
+      ... 
+      <target name="checkout">
+        <exec executable="svn" dir="${basedir}/source">
+          <arg line="up" />
+        </exec>
+      </target>
+      ...
+    </project>
+    
+To test that this target works, open a console and change your working dir to
+/path/to/cruisecontrol/projects/phpundercontrol.org/ and enter ::
+
+    mapi@arwen:phpundercontrol.org$ ../../apache-ant-1.7.0/bin/ant checkout
+    
+The result should look similar to: ::
+
+    Buildfile: build.xml
+
+    checkout:
+         [exec] At revision 2016.
+
+    BUILD SUCCESSFUL
+    Total time: 1 second
+
+PHPDoc target
+`````````````
+    
+The next think we need is an up to date api documentation, so we have to add a
+new target for `PhpDocumentor`__ that generates the documentation on each build
+cycle. :: 
+
+    <project name="phpundercontrol.org" basedir=".">
+      ... 
+      <target name="php-documentor">
+        <exec executable="phpdoc" dir="${basedir}/source">
+          <arg line="-ct type -ue on -t ${basedir}/build/api
+                     -tb /PATH/TO/YOUR/PHPUC/DATA/phpdoc -o HTML:Phpuc:phpuc 
+                     -d src/"/>
+        </exec>
+      </target>
+      ...
+    </project>
+
+__ http://phpdoc.org/
+
+phpUnderControl comes with its own phpDocumentor template that uses a special
+color scheme that harmonises with the phpUnderControl layout. To use this 
+template you must adjust the *-tb* option to point onto the phpUnderControl 
+data/phpdoc directory. Furthermore you must set the phpDocumentor output format 
+to *HTML:Phpuc:phpuc*. The structure of this template is inspired by the 
+`eZComponents api documentation`__.
+
+__ http://ezcomponents.org/docs/api  
+
+This target runs PhpDocumentor against the phpundercontrol.org/source/src 
+directory and it stores the generated files under phpundercontrol.org/build/api,
+which must be created manual. ::
+
+    mapi@arwen:phpundercontrol.org$ mkdir -p build/api
+    
+The php-documentor target could be tested similar to the checkout target. ::
+
+    mapi@arwen:phpundercontrol.org$ ../../apache-ant-1.7.0/bin/ant php-documentor
+
+CodeSniffer target
+``````````````````
+
+In this section we integrate a `PHP_CodeSniffer`__ target into the build file.
+The target looks similar to the previous targets, the only difference is the
+@output attribute that forces ant to write the command line output into the
+phpundercontrol.org/build/logs/checkstyle.xml file. ::
+
+    <project name="phpundercontrol.org" basedir=".">
+      ...
+      <target name="php-codesniffer">
+        <exec executable="phpcs" 
+              dir="${basedir}/source" 
+              output="${basedir}/build/logs/checkstyle.xml">
+          <arg line="--report=checkstyle 
+                     --standard=PEAR
+                     --ignore=src/autoload src/"/>
+        </exec>
+      </target>
+      ...
+    </project>
+    
+__ http://pear.php.net/package/PHP_CodeSniffer
+
+Before this target can be tested the output directory must be created. ::
+
+    mapi@arwen:phpundercontrol.org$ mkdir -p build/logs
+
+PHPMD target
+````````````
+
+In this section we will integrate the `PHP Mess Detector`__, a tool that helps you
+to find complicated-, unused-/dead- and horrible-code. Simply create the following
+target: ::
+
+    <project name="phpundercontrol.org" basedir=".">
+      ...
+      <target name="phpmd">
+        <exec executable="phpmd" 
+              dir="${basedir}/source">
+          <arg line="./src
+                     xml
+                     codesize,unusedcode,naming"/>
+        </exec>
+      </target>
+      ...
+    </project>
+
+__ http://phpmd.org
+
+You should create the log directory, before you run this target. ::
+
+    mapi@arwen:phpundercontrol.org$ mkdir -p build/logs
+    
+PHPUnit target
+``````````````
+
+Finally a target for `PHPUnit`__ must be added to the build file. The primary
+difference here is the @failonerror attribute. This forces ant to emit a build
+failed signal, if this target doesn't run thru. The different PHPUnit logs are
+stored in the phpundercontrol.org/build/logs directory which already exists, but
+for the coverage html report the directory phpundercontrol.org/build/coverage
+must be created. ::
+
+    mapi@arwen:phpundercontrol.org$ mkdir -p build/coverage
+    
+__ http://www.phpunit.de
+
+For a detailed description of the available PHPUnit command line options visit
+the excellent online documentation about the `command line options`__ or the new
+`xml configuration`__. ::
+
+    <project name="phpundercontrol.org" basedir=".">
+      ...
+      <target name="phpunit">
+        <exec executable="phpunit" dir="${basedir}/source" failonerror="on">
+          <arg line="--log-junit ${basedir}/build/logs/junit.xml 
+                     --coverage-xml  ${basedir}/build/logs/phpunit.coverage.xml 
+                     --coverage-html ${basedir}/build/coverage
+                     phpucAllTests tests/AllTests.php" />
+        </exec>
+      </target>
+      ...
+    </project> 
+
+__ http://www.phpunit.de/pocket_guide/3.2/en/textui.html
+__ http://www.phpunit.de/pocket_guide/3.2/en/appendixes.configuration.html
+
+Finishing the ant build file
+````````````````````````````
+
+Finally we have to combine the four independent targets into a single target. So
+create we create a new target *build* that depends on the other four. Therefore
+the target element accepts the attribute @depends that takes a comma separated
+list of other targets. ::
+
+    <project name="phpundercontrol.org" basedir=".">
+      ...
+      <target name="build" 
+              depends="checkout,php-documentor,php-codesniffer,phpmd,phpunit" />
+      ...
+    </project>
+    
+Because the new *build* target is our default target we add the @default 
+attibute to the project root element. This attribute forces ant to execute this
+target if no other target was passed in as command line argument. ::
+
+    <project name="phpundercontrol.org" default="build" basedir=".">
+      ...
+    </project>
+    
+The final directory structure looks similar to the following example: ::
+
+    <path-to-cruisecontrol>
+    |- projects
+    |  |- phpundercontrol.org
+    |  |  |- build
+    |  |  |  |- api
+    |  |  |  |- coverage
+    |  |  |  |- logs
+    |  |  |- source
+    
+and the build.xml file: ::
+
+    <?xml version="1.0" encoding="UTF-8"?>
+    <project name="phpundercontrol.org" default="build" basedir=".">
+    
+      <target name="build" 
+              depends="checkout,php-documentor,php-codesniffer,phpmd,phpunit" />
+    
+      <target name="checkout">
+        <exec executable="svn" dir="${basedir}/source">
+          <arg line="up" />
+        </exec>
+      </target>
+    
+      <target name="php-documentor">
+        <exec executable="phpdoc" dir="${basedir}/source">
+          <arg line="-ct type -ue on -t ${basedir}/build/api
+                     -tb /PATH/TO/YOUR/PHPUC/DATA/phpdoc -o HTML:Phpuc:phpuc 
+                     -d src/"/>
+        </exec>
+      </target>
+    
+      <target name="php-codesniffer">
+        <exec executable="phpcs" 
+              dir="${basedir}/source" 
+              output="${basedir}/build/logs/checkstyle.xml">
+          <arg line="--report=checkstyle 
+                     --standard=PEAR
+                     --ignore=src/autoload src/"/>
+        </exec>
+      </target>
+
+      <target name="phpmd">
+        <exec executable="phpmd" 
+              dir="${basedir}/source">
+          <arg line="./src
+                     xml
+                     codesize,unusedcode,naming"/>
+        </exec>
+      </target>
+      
+      <target name="phpunit">
+        <exec executable="phpunit" dir="${basedir}/source" failonerror="on">
+          <arg line="--log-junit ${basedir}/build/logs/junit.xml 
+                     --coverage-xml  ${basedir}/build/logs/phpunit.coverage.xml 
+                     --coverage-html ${basedir}/build/coverage
+                     phpucAllTests tests/AllTests.php" />
+        </exec>
+      </target>
+    </project>
+    
+The CruiseControl config.xml file
+---------------------------------
+
+Now that we have a working ant build.xml file, we can start to configure the 
+CruiseControl project. CruiseControl uses one central configuration file 
+*config.xml* that holds all projects. This file can be found the CruiseControl
+root directory.
+
+First of all we need a project element for the new project. ::
+
+    <?xml version="1.0" encoding="UTF-8"?>
+    <project name="phpundercontrol.org" buildafterfailed="false">
+    
+    </project>
+    
+The optional attribute @buildafterfailed can be used to force CruiseControl that
+it retries to build a project, after a failed build without changes to the 
+project sources. This option can be useful if the build process is based on an
+external resource, like a database server that could timeout during the build 
+process.
+    
+Including required plugins
+``````````````````````````
+    
+For this example we asume that the version control system Subversion is used for
+the project sources. And the first thing we must do is to load the required 
+`svn-plugin`__. ::
+
+    <?xml version="1.0" encoding="UTF-8"?>
+    <project name="phpundercontrol.org" buildafterfailed="false">
+    
+      <plugin name="svn"
+              classname="net.sourceforge.cruisecontrol.sourcecontrols.SVN" />
+    </project>
+
+__ http://cruisecontrol.sourceforge.net/main/configxml.html#plugin
+
+The modificationset triggers a build
+````````````````````````````````````
+
+Now we must define the case when CruiseControl should try to build a new project
+version. This is done in the modificationset element. If you have played with 
+the phpUnderControl example project, you already know the *alwaysbuild* trigger,
+that performs a build after a defined interval. But for this example we use 
+Subversion to manage the project sources, so we only want a new build if there
+was a source change. ::
+
+    <?xml version="1.0" encoding="UTF-8"?>
+    <project name="phpundercontrol.org" buildafterfailed="false">
+      ...
+      <modificationset quietperiod="60">
+        <svn localWorkingCopy="projects/${project.name}/source/"/>
+      </modificationset>
+    </project>
+ 
+The previous modificationset checks that there are changes in the Subversion
+repository for the local project checkout *projects/${project.name}/source/*, 
+that are older than 60 seconds. If this is true, CruiseControl will start a new
+build for this project.
+
+Use a bootstrapper to keep your build file under version control
+````````````````````````````````````````````````````````````````
+
+CruiseControl has a nice feature called *bootstrapper*. With this feature you
+can use an already existing a build.xml file that is under version control, to
+build your project with CruiseControl. A bootstrapper will load the defined 
+content from the version control system before it starts the main build loop. ::
+
+    <?xml version="1.0" encoding="UTF-8"?>
+    <project name="phpundercontrol.org" buildafterfailed="false">
+      ...
+      <bootstrappers>
+        <svnbootstrapper localWorkingCopy="projects/${project.name}/source/"
+                         file="build.xml"/>
+      </bootstrappers>
+    </project>
+    
+The previous example will load the *build.xml* file from the project repository
+when CruiseControl detects a repository change.
+
+The main project build process
+``````````````````````````````
+
+With the existing configuration CruiseControl knows the context project, the
+used version control system and when it should start a build process, but it 
+doesn't know what to do. This is done with the *schedule* element that accepts 
+an optional @interval attribute, that defines the number seconds to wait between
+two builds. The default schedule interval is 300 seconds(five minutes).
+
+The *schedule* element accepts multiple|different child elements that execute the
+main build process. For this sample we call ant with the project build.xml file. ::
+
+    <?xml version="1.0" encoding="UTF-8"?>
+    <project name="phpundercontrol.org" buildafterfailed="false">
+      ...
+      <schedule interval="120">
+        <ant anthome="apache-ant-1.7.0"
+             buildfile="projects/${project.name}/build.xml"/>
+      </schedule>
+    </project>
+    
+Listeners
+`````````
+
+*This currentbuildstatuslistener was removed in CruiseControl >= 2.8.3*
+
+Logging
+```````
+
+The frontend of CruiseControl is based on XSL-stylesheets, therefore its data
+model is a XML-document. To provide CruiseControl with all informations collected
+during the build process, all generated XML-logs must be merged in CruiseControl's  
+main log. This is done with the <log /> and the <merge /> element. ::
+
+    <?xml version="1.0" encoding="UTF-8"?>
+    <project name="phpundercontrol.org" buildafterfailed="false">
+      ...
+      <log dir="logs/${project.name}">
+        <merge dir="projects/${project.name}/build/logs/"/>
+      </log>
+    </project>
+    
+These element will merge all XML-documents in the *build/logs/* directory into
+the main log-file.
+
+Howto publish the latest build
+``````````````````````````````
+
+Now that you have a running build environment and a CruiseControl setup is one
+thing to do, the publishing of the build results. First we want to publish the
+api-documentation to provide our developers with an up2date documentation of the
+project. We need an <artifactspublisher /> tag to publish a static build result
+in a public accessible directory. ::
+
+    <?xml version="1.0" encoding="UTF-8"?>
+    <project name="phpundercontrol.org" buildafterfailed="false">
+      ...
+      <publishers>
+        <artifactspublisher dir="projects/${project.name}/build/api" 
+                            dest="artifacts/${project.name}" 
+                            subdirectory="api"/>
+      </publishers>
+    </project> 
+
+The previous example publisher will make all contents under the *@dir* directory
+public available. The *@dest* tag defines the main target directory, CruiseControl
+will create a new directory with the build timestamp under this directory. Because
+we do not only publish the api documentation a subdirectory is required, this can
+be done with the *@subdirectory* attribute. CruiseControl will now move the apidoc 
+contents in a directory named *artifacts/${project.name}/<timestamp>/api*. 
+
+Now you should repeat this procedure and add a <artifactspublisher /> for the 
+generated coverage report. ::
+
+    <?xml version="1.0" encoding="UTF-8"?>
+    <project name="phpundercontrol.org" buildafterfailed="false">
+      ...
+      <publishers>
+        <artifactspublisher dir="projects/${project.name}/build/api" ... />
+        <artifactspublisher dir="projects/${project.name}/build/coverage" 
+                            dest="artifacts/${project.name}" 
+                            subdirectory="coverage"/>
+      </publishers>
+    </project> 
+    
+Finally we want some shiny metric charts, therefore a new publisher is required,
+the *execute* publisher. This publisher executes any command for you. You can
+use this publisher to generate metric charts with phpUnderControl's chart engine,
+simply add the following lines to your <publishers/> section. ::
+
+    <?xml version="1.0" encoding="UTF-8"?>
+    <project name="phpundercontrol.org" buildafterfailed="false">
+      ...
+      <publishers>
+        <artifactspublisher dir="projects/${project.name}/build/api" ... />
+        <artifactspublisher dir="projects/${project.name}/build/coverage" ... />
+        <execute command="phpuc graph logs/${project.name} artifacts/${project.name}"/>
+      </publishers>
+    </project> 
+
+And that's it :-) Now you should have a running build environment and a running
+CruiseControl installation. 
+
+

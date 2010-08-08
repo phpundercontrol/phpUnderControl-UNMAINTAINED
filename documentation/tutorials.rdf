@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<rdf:RDF 
+	xmlns:cc="http://web.resource.org/cc/"
+	xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+	xmlns:dc="http://purl.org/dc/elements/1.1/">
+
+<rdf:Description rdf:about="/documentation/tutorials.html">
+
+	<dc:creator>Manuel Pichler</dc:creator>
+	<dc:title>Tutorials</dc:title>
+	<dc:date>Fri, 14 May 2010 07:29:51 +0200</dc:date>
+	<dc:rights>CC by-nc-sa</dc:rights>
+	<dc:language>en</dc:language>
+	<dc:format>text/html</dc:format>
+
+	<dc:description></dc:description>
+</rdf:Description> 
+
+<rdf:Description rdf:about="/documentation/tutorials.txt">
+
+	<dc:creator>Manuel Pichler</dc:creator>
+	<dc:title>Tutorials</dc:title>
+	<dc:date>Fri, 14 May 2010 07:29:51 +0200</dc:date>
+	<dc:rights>CC by-nc-sa</dc:rights>
+	<dc:language>en</dc:language>
+	<dc:format>text/plain</dc:format>
+
+	<dc:description></dc:description>
+</rdf:Description> 
+
+
+</rdf:RDF>

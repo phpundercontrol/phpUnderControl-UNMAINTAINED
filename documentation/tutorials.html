@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xml:lang="en"
+	  lang="en">
+  <head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+	<meta name="description" content="phpUnderControl - The first CruiseControl integration tool for PHP development." />
+	<meta name="keywords" content="phpUnderControl, web, Continuous Integration, CruiseControl, Quality Assurance" />
+	<meta name="author" content="Manuel Pichler" />
+	<meta name="language" content="en" />
+	<meta name="date" content="Fri, 14 May 2010 07:29:51 +0200" />
+	<meta name="robots" content="all" />
+
+	<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />
+	<meta name="DC.title" content="Tutorials" />
+	<meta name="DC.creator" content="Manuel Pichler" />
+	<meta name="DC.date" content="Fri, 14 May 2010 07:29:51 +0200" />
+	<meta name="DC.rights" content="CC by-nc-sa" />
+
+	<link rel="meta" href="/documentation/tutorials.rdf" />
+
+	<link rel="Stylesheet" type="text/css" href="/styles/screen.css?v=3" media="screen" />
+	<link rel="Stylesheet" type="text/css" href="/styles/print.css?v=3" media="print" />
+	
+	<link rel="icon" href="/favicon.png" type="image/png" />
+
+
+	<script type="text/ecmascript">
+
+// <![CDATA[
+/**
+ * Return a mail link constructed from the parameters. The order of the
+ * parameters is a bit unintuitive to not match any common patterns easily.
+ * This is obviously no challenge for a specialized bot.
+ *
+ * @param string host
+ * @param string tld
+ * @param string user
+ * @return string
+ */
+function returnMailLink( element, host, tld, user )
+{
+	element.setAttribute( "href", "mailto:" + user + "@" + host + "." + tld );
+}
+// ]]>
+
+	</script>
+
+	<title>phpUnderControl</title>
+</head>
+<body>
+<div id="wcv">
+	<h1>
+	  <a href="http://www.phpundercontrol.org">phpUnderControl</a>
+	</h1>
+    <ul class="navigation">
+<li >
+	<a href="/about.html" title="About">About</a>
+	</li>
+<li class="requested">
+	<a href="/documentation/installation.html" title="Documentation">Documentation</a>
+		<ul>
+		<li >
+	<a href="/documentation/installation.html" title="Installation">Installation</a>
+	</li>
+<li >
+	<a href="/documentation/getting-started.html" title="Getting started">Getting started</a>
+	</li>
+<li class="requested">
+	<a href="/documentation/tutorials.html" title="Tutorials">Tutorials</a>
+	</li>
+<li >
+	<a href="/documentation/command-line.html" title="Command line">Command line</a>
+	</li>
+<li >
+	<a href="/documentation/faq.html" title="FAQ">FAQ</a>
+	</li>
+
+	</ul>
+</li>
+<li >
+	<a href="/screenshots.html" title="Screenshots">Screenshots</a>
+	</li>
+<li >
+	<a href="/download.html" title="Download">Download</a>
+	</li>
+
+</ul>
+
+		<div id="formats">
+						
+												
+						<a href="/documentation/tutorials.rdf">Info</a>
+ | 			<a href="/documentation/tutorials.html">HTML</a>
+ | 			<a href="/documentation/tutorials.txt">Text</a>
+		</div>
+
+	<div id="content">
+		<h2>Documentation - Tutorials</h2><p>You are looking for good resources on howto setup and use phpUnderControl? Then you are right here. In this section we try to collect and link some of the best tutorials, best practice reports etc. available .</p><a name="getting-started-with-phpundercontrol"></a><h3>Getting started with phpUnderControl</h3><ul><li><p><a href="http://techportal.ibuildings.com/2009/03/03/getting-started-with-phpundercontrol">Getting started with phpUnderControl</a></p><p><em>Marc Veldman</em> gives a really complete introduction on how to setup a complete phpUnderControl environment.</p></li><li><p><a href="http://maff.ailoo.net/2009/09/continuous-integration-phpundercontrol-git">Continuous Integration with phpUnderControl and Git</a></p><p>Even when the title of this tutorial implies a phpUnderControl + <a href="http://git-scm.com">git</a> Howto, <em>Mathias Geat</em> gives a good introduction in how to setup a secure phpUnderControl instance behind the <a href="http://httpd.apache.org">Apache</a> proxy.</p></li><li><p><a href="http://jpablobr.com/php-staging-environment-for-continuous-integration-part-1">PHP Staging environment for continuous integration part 1</a></p><p>Really complete tutorial by <em>José Pablo Barrantes</em> on how to setup a phpUnderControl environment with support for <a href="http://phpunit.de">PHPUnit</a>, <a href="http://pear.php.net/package/PHP_CodeSniffer">PHP_CodeSniffer</a> and the <a href="http://git-scm.com">git</a> revision control system on a <a href="http://ubuntu.com">Ubuntu server</a>.</p></li><li><p><a href="http://jpablobr.com/php-staging-environment-for-continuous-integration-part-2">PHP Staging environment for continuous integration part 2</a></p><p>Part two of the installing a complete phpUnderControl environment on a ubuntu server.</p></li></ul>
+
+	</div>
+		
+    <div id="info">
+Revision <strong>2</strong>
+           <ul>
+<li>
+    <p>
+        Revision <strong>131</strong>
+        by <strong>mapi</strong>
+        at Fri, 14 May 2010 07:29:51 +0200
+    </p>
+    <p class="message">
+        - New tutorial added.<br />
+
+    </p>
+</li>
+<li>
+    <p>
+        Revision <strong>128</strong>
+        by <strong>mapi</strong>
+        at Thu, 13 May 2010 00:01:24 +0200
+    </p>
+    <p class="message">
+        - Tutorial section started...<br />
+
+    </p>
+</li>
+           </ul>
+   <br />
+    By
+		<a href="" onclick="returnMailLink( this, 'manuel-pichler', 'de', 'mapi' );">Manuel Pichler</a>
+	<br />
+	At Fri, 14 May 2010 07:29:51 +0200
+	<br />
+</div>
+        
+	<div class="footer">
+Revision <strong>2</strong> by
+		<strong><a href="" onclick="returnMailLink( this, 'manuel-pichler', 'de', 'mapi' );">Manuel Pichler</a></strong>
+	at <strong>Fri, 14 May 2010 07:29:51 +0200</strong>
+	<br />
+	Displayed with <a href="svn://kore-nordmann.de/wcv/trunk" title="Web Content Viewer">WCV</a>
+	licensed under <a href="http://www.gnu.org/licenses/gpl.txt" title="GNU General Public License - Version 3">GPLv3</a>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<rdf:RDF 
+	xmlns:cc="http://web.resource.org/cc/"
+	xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+	xmlns:dc="http://purl.org/dc/elements/1.1/">
+
+<rdf:Description rdf:about="/screenshots/0.html">
+
+	<dc:creator>manuel</dc:creator>
+	<dc:title>0</dc:title>
+	<dc:date>Sun, 08 Aug 2010 13:16:29 +0200</dc:date>
+	<dc:rights>CC by-nc-sa</dc:rights>
+	<dc:language>en</dc:language>
+	<dc:format>text/html</dc:format>
+
+</rdf:Description> 
+
+
+
+</rdf:RDF>

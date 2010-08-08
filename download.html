@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xml:lang="en"
+	  lang="en">
+  <head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+	<meta name="description" content="phpUnderControl - The first CruiseControl integration tool for PHP development." />
+	<meta name="keywords" content="phpUnderControl, web, Continuous Integration, CruiseControl, Quality Assurance" />
+	<meta name="author" content="Manuel Pichler" />
+	<meta name="language" content="en" />
+	<meta name="date" content="Thu, 10 Jun 2010 20:56:55 +0200" />
+	<meta name="robots" content="all" />
+
+	<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />
+	<meta name="DC.title" content="Download" />
+	<meta name="DC.creator" content="Manuel Pichler" />
+	<meta name="DC.date" content="Thu, 10 Jun 2010 20:56:55 +0200" />
+	<meta name="DC.rights" content="CC by-nc-sa" />
+
+	<link rel="meta" href="/download.rdf" />
+
+	<link rel="Stylesheet" type="text/css" href="/styles/screen.css?v=3" media="screen" />
+	<link rel="Stylesheet" type="text/css" href="/styles/print.css?v=3" media="print" />
+	
+	<link rel="icon" href="/favicon.png" type="image/png" />
+
+
+	<script type="text/ecmascript">
+
+// <![CDATA[
+/**
+ * Return a mail link constructed from the parameters. The order of the
+ * parameters is a bit unintuitive to not match any common patterns easily.
+ * This is obviously no challenge for a specialized bot.
+ *
+ * @param string host
+ * @param string tld
+ * @param string user
+ * @return string
+ */
+function returnMailLink( element, host, tld, user )
+{
+	element.setAttribute( "href", "mailto:" + user + "@" + host + "." + tld );
+}
+// ]]>
+
+	</script>
+
+	<title>phpUnderControl</title>
+</head>
+<body>
+<div id="wcv">
+	<h1>
+	  <a href="http://www.phpundercontrol.org">phpUnderControl</a>
+	</h1>
+    <ul class="navigation">
+<li >
+	<a href="/about.html" title="About">About</a>
+	</li>
+<li >
+	<a href="/documentation/installation.html" title="Documentation">Documentation</a>
+		<ul>
+		<li >
+	<a href="/documentation/installation.html" title="Installation">Installation</a>
+	</li>
+<li >
+	<a href="/documentation/getting-started.html" title="Getting started">Getting started</a>
+	</li>
+<li >
+	<a href="/documentation/tutorials.html" title="Tutorials">Tutorials</a>
+	</li>
+<li >
+	<a href="/documentation/command-line.html" title="Command line">Command line</a>
+	</li>
+<li >
+	<a href="/documentation/faq.html" title="FAQ">FAQ</a>
+	</li>
+
+	</ul>
+</li>
+<li >
+	<a href="/screenshots.html" title="Screenshots">Screenshots</a>
+	</li>
+<li class="requested">
+	<a href="/download.html" title="Download">Download</a>
+	</li>
+
+</ul>
+
+		<div id="formats">
+						
+												
+						<a href="/download.rdf">Info</a>
+ | 			<a href="/download.html">HTML</a>
+ | 			<a href="/download.txt">Text</a>
+		</div>
+
+	<div id="content">
+		<h2>phpUnderControl Downloads</h2><a name="pear-installer"></a><h3>PEAR Installer</h3><p>The preferred way to install phpUnderControl should be the <a href="http://pear.phpundercontrol.org">phpUnderControl PEAR channel</a>, where you will always find the latest stable version. Just enter</p><code class="block">pear channel-discover components.ez.no
+pear channel-discover pear.phpundercontrol.org
+pear install --alldeps phpuc/phpUnderControl-beta</code><a name="from-the-subversion-repository"></a><h3>From the subversion repository</h3><p>If you are curious about the latest phpUnderControl features, you can use a checkout from phpUnderControl's git repository. But keep in mind that the master version may be broken from time to time.</p><code class="block">git clone git://github.com/manuelpichler/phpUnderControl.git</code><p>Otherwise you can check out one of the tagged versions from github.</p><code class="block">git clone git://github.com/manuelpichler/phpUnderControl.git
+cd phpUnderContol
+git checkout 0.5.1</code><a name="releases"></a><h3>Releases</h3><a name="phpundercontrol-0-6-0beta3"></a><h4>phpUnderControl 0.6.0beta3</h4><ul><li><p><a href="/releases/phpUnderControl-0.6.0beta3.zip">phpUnderControl-0.6.0beta3.zip</a></p></li><li><p>git checkout <a href="http://github.com/manuelpichler/phpUnderControl/tree/0.6.0beta3">0.6.0beta3</a></p></li><li><p>pear install <a href="http://pear.phpundercontrol.org/get/phpUnderControl-0.6.0beta3.tgz">phpuc/phpUnderControl-0.6.0beta3</a></p></li></ul><a name="phpundercontrol-0-6-0beta2"></a><h4>phpUnderControl 0.6.0beta2</h4><ul><li><p><a href="/releases/phpUnderControl-0.6.0beta2.zip">phpUnderControl-0.6.0beta2.zip</a></p></li><li><p>git checkout <a href="http://github.com/manuelpichler/phpUnderControl/tree/0.6.0beta2">0.6.0beta2</a></p></li><li><p>pear install <a href="http://pear.phpundercontrol.org/get/phpUnderControl-0.6.0beta2.tgz">phpuc/phpUnderControl-0.6.0beta2</a></p></li></ul><a name="phpundercontrol-0-6-0beta1"></a><h4>phpUnderControl 0.6.0beta1</h4><ul><li><p><a href="/releases/phpUnderControl-0.6.0beta1.zip">phpUnderControl-0.6.0beta1.zip</a></p></li><li><p>git checkout <a href="http://github.com/manuelpichler/phpUnderControl/tree/0.6.0beta1">0.6.0beta1</a></p></li><li><p>pear install <a href="http://pear.phpundercontrol.org/get/phpUnderControl-0.6.0beta1.tgz">phpuc/phpUnderControl-0.6.0beta1</a></p></li></ul><a name="phpundercontrol-0-5-1"></a><h4>phpUnderControl 0.5.1</h4><ul><li><p><a href="/releases/phpUnderControl-0.5.1.zip">phpUnderControl-0.5.1.zip</a></p></li><li><p>git checkout 0.5.1</p></li><li><p>pear install phpuc/phpUnderControl-0.5.1</p></li></ul><a name="phpundercontrol-0-5-0"></a><h4>phpUnderControl 0.5.0</h4><ul><li><p><a href="/releases/phpUnderControl-0.5.0.zip">phpUnderControl-0.5.0.zip</a></p></li><li><p>git checkout 0.5.0</p></li><li><p>pear install phpuc/phpUnderControl-0.5.0</p></li></ul><a name="phpundercontrol-0-4-7"></a><h4>phpUnderControl 0.4.7</h4><ul><li><p><a href="/releases/phpUnderControl-0.4.7.zip">phpUnderControl-0.4.7.zip</a></p></li><li><p>git checkout 0.4.7</p></li><li><p>pear install phpuc/phpUnderControl-0.4.7</p></li></ul><a name="phpundercontrol-0-4-6"></a><h4>phpUnderControl 0.4.6</h4><ul><li><p><a href="/releases/phpUnderControl-0.4.6.zip">phpUnderControl-0.4.6.zip</a></p></li><li><p>git checkout 0.4.6</p></li><li><p>pear install phpuc/phpUnderControl-0.4.6</p></li></ul><a name="phpundercontrol-0-4-5"></a><h4>phpUnderControl 0.4.5</h4><ul><li><p><a href="/releases/phpUnderControl-0.4.5.zip">phpUnderControl-0.4.5.zip</a></p></li><li><p>git checkout 0.4.5</p></li><li><p>pear install phpuc/phpUnderControl-0.4.5</p></li></ul><a name="phpundercontrol-0-4-4"></a><h4>phpUnderControl 0.4.4</h4><ul><li><p><a href="/releases/phpUnderControl-0.4.4.zip">phpUnderControl-0.4.4.zip</a></p></li><li><p>git checkout 0.4.4</p></li><li><p>pear install phpuc/phpUnderControl-0.4.4</p></li></ul><a name="phpundercontrol-0-4-3"></a><h4>phpUnderControl 0.4.3</h4><ul><li><p><a href="/releases/phpUnderControl-0.4.3.zip">phpUnderControl-0.4.3.zip</a></p></li><li><p>git checkout 0.4.3</p></li><li><p>pear install phpuc/phpUnderControl-0.4.3</p></li></ul><a name="phpundercontrol-0-4-2"></a><h4>phpUnderControl 0.4.2</h4><ul><li><p><a href="/releases/phpUnderControl-0.4.2.zip">phpUnderControl-0.4.2.zip</a></p></li><li><p>git checkout 0.4.2</p></li><li><p>pear install phpuc/phpUnderControl-0.4.2</p></li></ul><a name="phpundercontrol-0-4-1"></a><h4>phpUnderControl 0.4.1</h4><ul><li><p><a href="/releases/phpUnderControl-0.4.1.zip">phpUnderControl-0.4.1.zip</a></p></li><li><p>git checkout 0.4.1</p></li><li><p>pear install phpuc/phpUnderControl-0.4.1</p></li></ul><a name="phpundercontrol-0-4-0"></a><h4>phpUnderControl 0.4.0</h4><ul><li><p><a href="/releases/phpUnderControl-0.4.0.zip">phpUnderControl-0.4.0.zip</a></p></li><li><p>git checkout 0.4.0</p></li><li><p>pear install phpuc/phpUnderControl-0.4.0</p></li></ul>
+
+	</div>
+		
+    <div id="info">
+Revision <strong>28</strong>
+           <ul>
+<li>
+    <p>
+        Revision <strong>134</strong>
+        by <strong>mapi</strong>
+        at Thu, 10 Jun 2010 20:56:55 +0200
+    </p>
+    <p class="message">
+        # Release update, now phpUnderControl 0.6.0 beta3 is out...<br />
+
+    </p>
+</li>
+<li>
+    <p>
+        Revision <strong>133</strong>
+        by <strong>mapi</strong>
+        at Thu, 10 Jun 2010 10:05:46 +0200
+    </p>
+    <p class="message">
+        # Second beta release of phpUnderControl added.<br />
+
+    </p>
+</li>
+<li>
+    <p>
+        Revision <strong>130</strong>
+        by <strong>root</strong>
+        at Thu, 13 May 2010 13:41:49 +0200
+    </p>
+    <p class="message">
+        - Links to 0.6.0beta1 release fixed.<br />
+
+    </p>
+</li>
+<li>
+    <p>
+        Revision <strong>129</strong>
+        by <strong>mapi</strong>
+        at Thu, 13 May 2010 13:39:24 +0200
+    </p>
+    <p class="message">
+        - phpUnderControl 0.6.0beta1 released...<br />
+
+    </p>
+</li>
+<li>
+    <p>
+        Revision <strong>124</strong>
+        by <strong>mapi</strong>
+        at Thu, 08 Apr 2010 15:13:34 +0200
+    </p>
+    <p class="message">
+        - Issue in channel discover example fixed. Thanks to Jeremy Gomez for<br />
+  reporting this bug.<br />
+
+    </p>
+</li>
+<li>
+    <p>
+        Revision <strong>123</strong>
+        by <strong>mapi</strong>
+        at Sun, 31 Jan 2010 17:42:18 +0100
+    </p>
+    <p class="message">
+        - phpUnderControl 0.5.1 released. plus documentation update to match<br />
+  the new development infrastructure on github and with own pear<br />
+  channel server.<br />
+
+    </p>
+</li>
+<li>
+    <p>
+        Revision <strong>122</strong>
+        by <strong>mapi</strong>
+        at Mon, 07 Dec 2009 10:12:04 +0100
+    </p>
+    <p class="message">
+        - Typo in download url fixed.<br />
+
+    </p>
+</li>
+<li>
+    <p>
+        Revision <strong>120</strong>
+        by <strong>root</strong>
+        at Sun, 06 Dec 2009 14:51:43 +0100
+    </p>
+    <p class="message">
+        - Checkout example changed to version 0.5.0.<br />
+
+    </p>
+</li>
+<li>
+    <p>
+        Revision <strong>118</strong>
+        by <strong>mapi</strong>
+        at Sun, 06 Dec 2009 14:42:31 +0100
+    </p>
+    <p class="message">
+        - New phpUnderControl release 0.5.0 published.<br />
+
+    </p>
+</li>
+<li>
+    <p>
+        Revision <strong>109</strong>
+        by <strong>mapi</strong>
+        at Sun, 30 Nov 2008 13:27:55 +0100
+    </p>
+    <p class="message">
+        - New phpUnderControl release 0.4.7 documented.
+    </p>
+</li>
+           </ul>
+   <br />
+    By
+		<a href="" onclick="returnMailLink( this, 'manuel-pichler', 'de', 'mapi' );">Manuel Pichler</a>
+	<br />
+	At Thu, 10 Jun 2010 20:56:55 +0200
+	<br />
+</div>
+        
+	<div class="footer">
+Revision <strong>28</strong> by
+		<strong><a href="" onclick="returnMailLink( this, 'manuel-pichler', 'de', 'mapi' );">Manuel Pichler</a></strong>
+	at <strong>Thu, 10 Jun 2010 20:56:55 +0200</strong>
+	<br />
+	Displayed with <a href="svn://kore-nordmann.de/wcv/trunk" title="Web Content Viewer">WCV</a>
+	licensed under <a href="http://www.gnu.org/licenses/gpl.txt" title="GNU General Public License - Version 3">GPLv3</a>
+</div>
+</div>
+</body>
+</html>
