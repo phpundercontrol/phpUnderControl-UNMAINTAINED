@@ -1608,12 +1608,12 @@ example project.
           <file name="phpcs.xsl" role="data"/>
           <file name="phpdoc.xsl" role="data"/>
           <file name="phphelper.xsl" role="data"/>
-          <file name="phpunit-cpd-details.xsl" role="data"/>
+          <file name="php-cpd-details.xsl" role="data"/>
           <file name="phpunit-details.xsl" role="data"/>
-          <file name="phpunit-pmd-details.xsl" role="data"/>
-          <file name="phpunit-pmd-list.xsl" role="data"/>
-          <file name="phpunit-pmd-summary.xsl" role="data"/>
-          <file name="phpunit-pmd.xsl" role="data"/>
+          <file name="phpmd-details.xsl" role="data"/>
+          <file name="phpmd-list.xsl" role="data"/>
+          <file name="phpmd-summary.xsl" role="data"/>
+          <file name="phpmd.xsl" role="data"/>
           <file name="phpunit.xsl" role="data"/>
         </dir>
         <dir name="WEB-INF/lib">
@@ -1656,10 +1656,10 @@ example project.
         <file name="phpcs.jsp" role="data">
           <tasks:replace from="- SVN" to="version" type="package-info"/>
         </file>
-        <file name="phpunit-cpd.jsp" role="data">
+        <file name="php-cpd.jsp" role="data">
           <tasks:replace from="- SVN" to="version" type="package-info"/>
         </file>
-        <file name="phpunit-pmd.jsp" role="data">
+        <file name="phpmd.jsp" role="data">
           <tasks:replace from="- SVN" to="version" type="package-info"/>
         </file>
         <file name="phpunit.jsp" role="data">

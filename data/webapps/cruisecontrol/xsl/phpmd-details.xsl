@@ -45,14 +45,14 @@
     <xsl:variable name="project" select="/cruisecontrol/info/property[@name='projectname']/@value"/>
     <xsl:variable name="total.error.count" select="count(/cruisecontrol/pmd/file/violation)" />
 
-    <xsl:include href="./phpunit-pmd-summary.xsl" />
-    <xsl:include href="./phpunit-pmd-list.xsl" />
+    <xsl:include href="./phpmd-summary.xsl" />
+    <xsl:include href="./phpmd-list.xsl" />
     <xsl:include href="./phphelper.xsl" />
 
     <xsl:template match="/">
-        <h2>PHPUnit PMD</h2>
+        <h2>PHPMD</h2>
         <xsl:apply-templates select="cruisecontrol/pmd" mode="rule-summary"/>
-        <xsl:apply-templates select="cruisecontrol/pmd" mode="phpunit-pmd-list"/>
+        <xsl:apply-templates select="cruisecontrol/pmd" mode="phpmd-list"/>
 
         <table class="result" align="center">
             <colgroup>
@@ -63,12 +63,16 @@
             </colgroup>
             <xsl:for-each select="/cruisecontrol/pmd/file[violation]">
                 <xsl:sort data-type="number" order="descending" select="count(violation)"/>
-                <xsl:apply-templates select="." mode="pmd-file"/>
+                <xsl:apply-templates select="." mode="pmd-file">
+                    <xsl:with-param name="position" select="position()" />
+                </xsl:apply-templates>
             </xsl:for-each>
         </table>
     </xsl:template>
 
     <xsl:template match="file" mode="pmd-file">
+        <xsl:param name="position" />
+
         <xsl:variable name="javaclass">
           <xsl:call-template name="phpname">
             <xsl:with-param name="filename" select="@name"/>
@@ -76,14 +80,18 @@
         </xsl:variable>
         <xsl:variable name="filename" select="translate(@name,'\','/')"/>
         <thead>
-          <tr><td colspan="3"><br/></td></tr>
+          <tr>
+              <td colspan="3">
+                  <br />
+              </td>
+          </tr>
           <tr>
             <th colspan="3">
               <xsl:value-of select="$javaclass"/>
               (<xsl:value-of select="count(violation)"/>)
             </th>
             <th>
-                Priority
+                Priority <a name="a{$position}"></a>
             </th>
           </tr>
         </thead>

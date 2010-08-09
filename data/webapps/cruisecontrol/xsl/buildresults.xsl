@@ -38,7 +38,7 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
 
     <xsl:import href="maven.xsl"/>
-    <xsl:import href="phpunit-pmd.xsl"/>
+    <xsl:import href="phpmd.xsl"/>
     <xsl:import href="errors.xsl"/>
     <xsl:import href="phpdoc.xsl"/>
     <xsl:import href="phpcs.xsl"/>

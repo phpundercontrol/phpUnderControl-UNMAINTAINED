@@ -43,7 +43,7 @@
   
   <xsl:variable name="project" select="/cruisecontrol/info/property[@name='projectname']/@value"/>
   
-  <xsl:include href="./phpunit-pmd-summary.xsl" />
+  <xsl:include href="./phpmd-summary.xsl" />
   <xsl:include href="./phphelper.xsl" />
 
   <xsl:template match="/">
@@ -61,7 +61,7 @@
   <xsl:template match="pmd">
     <xsl:variable name="total.error.count" select="count(file/violation)" />
     
-    <h2>PHPUnit CPD</h2>
+    <h2>PHP-CPD</h2>
     
     <xsl:apply-templates select="." mode="rule-summary"/>
     <xsl:apply-templates select="//pmd-cpd/duplication" />

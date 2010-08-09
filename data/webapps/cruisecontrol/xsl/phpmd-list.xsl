@@ -42,7 +42,7 @@
     <xsl:variable name="currentlog"
             select="substring(cruisecontrol/info/property[@name='logfile']/@value, 0, string-length(cruisecontrol/info/property[@name='logfile']/@value) - 3)" />
     
-    <xsl:template match="pmd" mode="phpunit-pmd-list">
+    <xsl:template match="pmd" mode="phpmd-list">
         <p/>
         <table class="result">
           <colgroup>
@@ -52,13 +52,13 @@
           </colgroup>
           <thead>
             <tr>
-              <th colspan="2">PHPUnit PMD Violations in Files</th>
+              <th colspan="2">PHPMD Violations in Files</th>
               <th>Errors / Warnings</th>
             </tr>
           </thead>
           <tbody>
             <xsl:for-each select="/cruisecontrol/pmd/file[violation]">
-              <xsl:sort select="@name" />
+              <xsl:sort data-type="number" order="descending" select="count(violation)"/>
               <xsl:variable name="errors" select="/cruisecontrol/pmd/file[@name=current()/@name]/violation"/>
               <xsl:variable name="errorCount" select="count($errors)"/>
               <tr>

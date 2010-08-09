@@ -51,7 +51,7 @@
       </colgroup>
       <thead>
         <tr>
-          <th colspan="2">PHPUnit PMD rule</th>
+          <th colspan="2">PHPMD rule</th>
           <th>Files</th>
           <th>Errors / Warnings</th>
         </tr>
@@ -73,7 +73,7 @@
                   <xsl:value-of select="@ruleset"/>
                 </xsl:when>
                 <xsl:otherwise>
-                  <xsl:text>PHPUnit PMD</xsl:text>
+                  <xsl:text>PHPMD</xsl:text>
                 </xsl:otherwise>
               </xsl:choose> / <xsl:value-of select="@rule"/></td>
             <td align="right"><xsl:value-of select="$fileCount"/></td>
@@ -88,7 +88,7 @@
               <xsl:attribute name="class">oddrow</xsl:attribute>
             </xsl:if>
             <td></td>
-            <td>PHPUnit CPD / CopyPasteDetection</td>
+            <td>PHP-CPD / CopyPasteDetection</td>
             <td align="right"><xsl:value-of select="$duplication.file.count" /></td>
             <td align="right"><xsl:value-of select="$duplication.count" /></td>
           </tr>
