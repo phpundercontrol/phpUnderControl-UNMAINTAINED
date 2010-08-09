@@ -52,7 +52,7 @@ __ http://nohn.org/blog/view/id/cruisecontrol_ant_and_phpunit
 Now that you have a working CruiseControl, check out phpUnderControl from its
 repository hosted on github. ::
 
-    git clone git://github.com/manuelpichler/phpUnderControl.git
+    git clone git://github.com/phpundercontrol/phpUnderControl.git
 
 Now you can patch your CruiseControl installation by entering ::
 

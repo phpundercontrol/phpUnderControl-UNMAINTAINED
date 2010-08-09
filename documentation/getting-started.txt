@@ -23,7 +23,7 @@ illustrate the configuration the following paragraphs use the phpUnderControl
 subversion repository.
 
 __ http://ant.apache.org/
-__ http://www.phpunit.de/browser/phpUnderControl/tags/0.2.2
+__ http://github.com/phpundercontrol/phpUnderControl/tree/0.2.2
 
 The first thing that is needed is a root directory for the project. This 
 directory must be located under /path/to/cruisecontrol/projects. If you use the
@@ -36,8 +36,8 @@ For custom projects you have to adjust the matching sections in the
 `config.xml`__ and `build.xml`__ files. Both files can also be found in the 
 phpUnderControl docs directory.
 
-__ http://www.phpunit.de/browser/phpUnderControl/trunk/docs/config.xml
-__ http://www.phpunit.de/browser/phpUnderControl/trunk/docs/build.xml
+__ http://github.com/phpundercontrol/phpUnderControl/tree/master/docs/config.xml
+__ http://github.com/phpundercontrol/phpUnderControl/tree/master/docs/build.xml
 
 The ant build.xml file
 ----------------------
@@ -59,7 +59,7 @@ has a different name you should change the @name attribute to that name. ::
 Next, we need a working copy of the source code. The initial checkout is done
 by hand, as example we use the phpUnderControl trunk. ::
 
-    svn co svn://svn.phpunit.de/phpunit/phpUnderControl/trunk source
+    svn co http://svn.github.com/phpundercontrol/phpUnderControl.git source
     
 Checkout target
 ```````````````
