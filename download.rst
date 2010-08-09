@@ -22,16 +22,38 @@ If you are curious about the latest phpUnderControl features, you
 can use a checkout from phpUnderControl's git repository. But keep 
 in mind that the master version may be broken from time to time. ::
 
-    git clone git://github.com/manuelpichler/phpUnderControl.git
+    git clone git://github.com/phpundercontrol/phpUnderControl.git
 
 Otherwise you can check out one of the tagged versions from github. ::
 
-    git clone git://github.com/manuelpichler/phpUnderControl.git
+    git clone git://github.com/phpundercontrol/phpUnderControl.git
     cd phpUnderContol
-    git checkout 0.5.1
+    git checkout 0.6.0
 
 Releases
 --------
+
+phpUnderControl 0.6.1beta1
+``````````````````````````
+
+* `phpUnderControl-0.6.1beta1.zip`__
+* git checkout `0.6.1beta1`__
+* pear install `phpuc/phpUnderControl-0.6.1beta1`__
+
+__ http://github.com/phpundercontrol/phpUnderControl/zipball/0.6.1beta1
+__ http://github.com/phpundercontrol/phpUnderControl/tree/0.6.1beta1
+__ http://pear.phpundercontrol.org/get/phpUnderControl-0.6.1beta1.tgz
+
+phpUnderControl 0.6.0
+`````````````````````
+
+* `phpUnderControl-0.6.0.zip`__
+* git checkout `0.6.0`__
+* pear install `phpuc/phpUnderControl-0.6.0`__
+
+__ http://github.com/phpundercontrol/phpUnderControl/zipball/0.6.0
+__ http://github.com/phpundercontrol/phpUnderControl/tree/0.6.0
+__ http://pear.phpundercontrol.org/get/phpUnderControl-0.6.0.tgz
 
 phpUnderControl 0.6.0beta3
 ``````````````````````````
@@ -40,8 +62,8 @@ phpUnderControl 0.6.0beta3
 * git checkout `0.6.0beta3`__
 * pear install `phpuc/phpUnderControl-0.6.0beta3`__
 
-__ /releases/phpUnderControl-0.6.0beta3.zip
-__ http://github.com/manuelpichler/phpUnderControl/tree/0.6.0beta3
+__ http://github.com/phpundercontrol/phpUnderControl/zipball/0.6.0beta3
+__ http://github.com/phpundercontrol/phpUnderControl/tree/0.6.0beta3
 __ http://pear.phpundercontrol.org/get/phpUnderControl-0.6.0beta3.tgz
 
 phpUnderControl 0.6.0beta2
@@ -51,8 +73,8 @@ phpUnderControl 0.6.0beta2
 * git checkout `0.6.0beta2`__
 * pear install `phpuc/phpUnderControl-0.6.0beta2`__
 
-__ /releases/phpUnderControl-0.6.0beta2.zip
-__ http://github.com/manuelpichler/phpUnderControl/tree/0.6.0beta2
+__ http://github.com/phpundercontrol/phpUnderControl/zipball/0.6.0beta2
+__ http://github.com/phpundercontrol/phpUnderControl/tree/0.6.0beta2
 __ http://pear.phpundercontrol.org/get/phpUnderControl-0.6.0beta2.tgz
 
 
@@ -63,88 +85,98 @@ phpUnderControl 0.6.0beta1
 * git checkout `0.6.0beta1`__
 * pear install `phpuc/phpUnderControl-0.6.0beta1`__
 
-__ /releases/phpUnderControl-0.6.0beta1.zip
-__ http://github.com/manuelpichler/phpUnderControl/tree/0.6.0beta1
+__ http://github.com/phpundercontrol/phpUnderControl/zipball/0.6.0beta1
+__ http://github.com/phpundercontrol/phpUnderControl/tree/0.6.0beta1
 __ http://pear.phpundercontrol.org/get/phpUnderControl-0.6.0beta1.tgz
 
 phpUnderControl 0.5.1
 `````````````````````
 
 * `phpUnderControl-0.5.1.zip`__
-* git checkout 0.5.1
+* `git checkout 0.5.1`__
 * pear install phpuc/phpUnderControl-0.5.1
 
-__ /releases/phpUnderControl-0.5.1.zip
+__ http://github.com/phpundercontrol/phpUnderControl/zipball/0.5.1
+__ http://github.com/phpundercontrol/phpUnderControl/tree/0.5.1
 
 phpUnderControl 0.5.0
 `````````````````````
 
 * `phpUnderControl-0.5.0.zip`__
-* git checkout 0.5.0
+* `git checkout 0.5.0`__
 * pear install phpuc/phpUnderControl-0.5.0
 
-__ /releases/phpUnderControl-0.5.0.zip
+__ http://github.com/phpundercontrol/phpUnderControl/zipball/0.5.0
+__ http://github.com/phpundercontrol/phpUnderControl/tree/0.5.0
 
 phpUnderControl 0.4.7
 `````````````````````
 * `phpUnderControl-0.4.7.zip`__
-* git checkout 0.4.7
+* `git checkout 0.4.7`__
 * pear install phpuc/phpUnderControl-0.4.7
 
-__ /releases/phpUnderControl-0.4.7.zip
+__ http://github.com/phpundercontrol/phpUnderControl/zipball/0.4.7
+__ http://github.com/phpundercontrol/phpUnderControl/tree/0.4.7
 
 phpUnderControl 0.4.6
 `````````````````````
 * `phpUnderControl-0.4.6.zip`__
-* git checkout 0.4.6
+* `git checkout 0.4.6`__
 * pear install phpuc/phpUnderControl-0.4.6
 
-__ /releases/phpUnderControl-0.4.6.zip
+__ http://github.com/phpundercontrol/phpUnderControl/zipball/0.4.6
+__ __ http://github.com/phpundercontrol/phpUnderControl/tree/0.4.6
 
 phpUnderControl 0.4.5
 `````````````````````
 * `phpUnderControl-0.4.5.zip`__
-* git checkout 0.4.5
+* `git checkout 0.4.5`__
 * pear install phpuc/phpUnderControl-0.4.5
 
-__ /releases/phpUnderControl-0.4.5.zip
+__ http://github.com/phpundercontrol/phpUnderControl/zipball/0.4.5
+__ http://github.com/phpundercontrol/phpUnderControl/tree/0.4.5
 
 phpUnderControl 0.4.4
 `````````````````````
 * `phpUnderControl-0.4.4.zip`__
-* git checkout 0.4.4
+* `git checkout 0.4.4`__
 * pear install phpuc/phpUnderControl-0.4.4
 
-__ /releases/phpUnderControl-0.4.4.zip
+__ http://github.com/phpundercontrol/phpUnderControl/zipball/0.4.4
+__ http://github.com/phpundercontrol/phpUnderControl/tree/0.4.4
 
 phpUnderControl 0.4.3
 `````````````````````
 * `phpUnderControl-0.4.3.zip`__
-* git checkout 0.4.3
+* `git checkout 0.4.3`__
 * pear install phpuc/phpUnderControl-0.4.3
 
-__ /releases/phpUnderControl-0.4.3.zip
+__ http://github.com/phpundercontrol/phpUnderControl/zipball/0.4.3
+__ http://github.com/phpundercontrol/phpUnderControl/tree/0.4.3
 
 phpUnderControl 0.4.2
 `````````````````````
 * `phpUnderControl-0.4.2.zip`__
-* git checkout 0.4.2
+* `git checkout 0.4.2`__
 * pear install phpuc/phpUnderControl-0.4.2
 
-__ /releases/phpUnderControl-0.4.2.zip
+__ http://github.com/phpundercontrol/phpUnderControl/zipball/0.4.2
+__ http://github.com/phpundercontrol/phpUnderControl/tree/0.4.2
 
 phpUnderControl 0.4.1
 `````````````````````
 * `phpUnderControl-0.4.1.zip`__
-* git checkout 0.4.1
+* `git checkout 0.4.1`__
 * pear install phpuc/phpUnderControl-0.4.1
 
-__ /releases/phpUnderControl-0.4.1.zip
+__ http://github.com/phpundercontrol/phpUnderControl/zipball/0.4.1
+__ http://github.com/phpundercontrol/phpUnderControl/tree/0.4.1
 
 phpUnderControl 0.4.0
 `````````````````````
 * `phpUnderControl-0.4.0.zip`__
-* git checkout 0.4.0
+* `git checkout 0.4.0`__
 * pear install phpuc/phpUnderControl-0.4.0
 
-__ /releases/phpUnderControl-0.4.0.zip
+__ http://github.com/phpundercontrol/phpUnderControl/zipball/0.4.0
+__ http://github.com/phpundercontrol/phpUnderControl/tree/0.4.0
