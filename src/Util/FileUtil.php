@@ -1,7 +1,7 @@
 <?php
 /**
  * This file is part of phpUnderControl.
- * 
+ *
  * PHP Version 5.2.0
  *
  * Copyright (c) 2007-2010, Manuel Pichler <mapi@phpundercontrol.org>.
@@ -35,7 +35,7 @@
  * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
- * 
+ *
  * @category  QualityAssurance
  * @package   Util
  * @author    Manuel Pichler <mapi@phpundercontrol.org>
@@ -62,42 +62,42 @@ final class phpucFileUtil
      * Indicates any windows operations system.
      */
     const OS_WINDOWS = 0;
-    
+
     /**
      * Indicates any unix based operation system.
      */
     const OS_UNIX = 1;
-    
+
     /**
      * List of valid operation systems.
      *
      * @var array(integer)
      */
     private static $validOS = array( self::OS_UNIX, self::OS_WINDOWS );
-    
+
     /**
      * List of known windows executable extensions.
      *
      * @var array(string)
      */
     private static $windowsExts = array( 'exe', 'cmd', 'bat' );
-    
+
     /**
      * List of environment paths.
      *
      * @var array(string)
      */
     private static $paths = null;
-    
+
     /**
      * The used operation system.
-     * 
-     * This property was primary introduced for class testing. 
+     *
+     * This property was primary introduced for class testing.
      *
      * @var integer
      */
     private static $os = null;
-    
+
     /**
      * Returns the current operation system. If no operation system is configured
      * this method uses the PHP constant <b>PHP_OS</b> for detection.
@@ -119,12 +119,12 @@ final class phpucFileUtil
         }
         return self::$os;
     }
-    
+
     /**
      * Sets the current operation system.  The method only exist's for testing.
      *
      * @param integer $os The current system os.
-     * 
+     *
      * @return void
      * @throws InvalidArgumentException If the given $os property is not a valid
      *         operation system, known by this class.
@@ -139,10 +139,10 @@ final class phpucFileUtil
         }
         self::$os = $os;
     }
-    
+
     /**
-     * Returns an <b>array</b> with all configured system paths. If the class 
-     * internal property isn't set, this method uses the environment variable 
+     * Returns an <b>array</b> with all configured system paths. If the class
+     * internal property isn't set, this method uses the environment variable
      * 'PATH' and the PHP constant <b>PATH_SEPARATOR</b> is used.
      *
      * @return array(string)
@@ -157,29 +157,29 @@ final class phpucFileUtil
         }
         return self::$paths;
     }
-    
+
     /**
      * Allows to set some custom paths. This method is only need intended for
      * testing.
      *
      * @param array $paths List of environment paths.
-     * 
+     *
      * @return void
      */
     public static function setPaths( array $paths = null )
     {
         self::$paths = $paths;
     }
-    
+
     /**
-     * Tries to find the full path for the given <b>$executable</b>. 
-     * 
+     * Tries to find the full path for the given <b>$executable</b>.
+     *
      * <b>$executable</b> should contain the unix file name with out any
      * file extension because for windows it tries to append some default
-     * extensions.  
+     * extensions.
      *
      * @param string $executable The pure executable name without an extension.
-     * 
+     *
      * @return string The executable path.
      * @throws phpucErrorException If the given executable doesn't exist in any
      *         of the configured paths.
@@ -197,7 +197,7 @@ final class phpucFileUtil
         }
         return $path;
     }
-    
+
     /**
      * Returns the system temp directory.
      *
@@ -242,26 +242,26 @@ final class phpucFileUtil
             mkdir( $path, 0775, true );
         }
     }
-    
+
     /**
      * Removes the given directory recursive.
      *
      * @param string $path The directory to delete.
-     * 
+     *
      * @return void
      */
     public static function deleteDirectory( $path )
     {
         self::deleteDirectoryRecursive( new RecursiveDirectoryIterator( $path ) );
-        
+
         rmdir( $path );
     }
-    
+
     /**
      * Removes the given directory recursive.
      *
      * @param DirectoryIterator $it The context directory iterator.
-     * 
+     *
      * @return void
      */
     private static function deleteDirectoryRecursive( DirectoryIterator $it )
@@ -284,12 +284,12 @@ final class phpucFileUtil
             }
         }
     }
-    
+
     /**
      * Tries to find the given executable on an unix system.
      *
      * @param string $executable The pure executable name without an extension.
-     * 
+     *
      * @return string The executable path.
      * @throws phpucErrorException If the given executable doesn't exist in any
      *         of the configured paths.
@@ -299,7 +299,7 @@ final class phpucFileUtil
         foreach ( self::getPaths() as $path )
         {
             $fullPath = "{$path}/{$executable}";
-            
+
             if ( file_exists( $fullPath ) && is_executable( $fullPath ) )
             {
                 return $executable;
@@ -311,14 +311,14 @@ final class phpucFileUtil
             )
         );
     }
-    
+
     /**
-     * Tries to find the given executable on a windows system. This means it 
-     * appends all known executable file extensions to the given name and this 
+     * Tries to find the given executable on a windows system. This means it
+     * appends all known executable file extensions to the given name and this
      * method skips the "is_executable" check.
      *
      * @param string $executable The pure executable name without an extension.
-     * 
+     *
      * @return string The executable path.
      * @throws phpucErrorException If the given executable doesn't exist in any
      *         of the configured paths.

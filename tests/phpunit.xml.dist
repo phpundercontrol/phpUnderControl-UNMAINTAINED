@@ -1,0 +1,15 @@
+<phpunit colors="true" backupGlobals="false">
+    <testsuite name="phpUnderControl">
+        <directory suffix=".php">./</directory>
+    </testsuite>
+    <filter>
+        <whitelist>
+            <directory suffix=".php">../src</directory>
+            <exclude>
+                <directory>_data</directory>
+                <directory>_expected</directory>
+                <directory>logs</directory>
+            </exclude>
+        </whitelist>
+    </filter>
+</phpunit>
