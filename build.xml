@@ -150,17 +150,16 @@
     <target name="test-runtime" depends="prepare">
         <antcall target="phpunit" />
     </target>
-    
+
     <!--
         Executes the unit tests for the project under test.
     -->
     <target name="phpunit">
-        <exec executable="phpunit" failonerror="true">
+        <exec executable="phpunit" failonerror="true" dir="${basedir}/tests">
             <arg line="--process-isolation
                        --log-junit ${builddir}/logs/junit.xml
                        --coverage-clover ${builddir}/logs/coverage.xml
-                       --coverage-html ${builddir}/coverage
-                       phpucAllTests ${basedir}/tests/AllTests.php" />
+                       --coverage-html ${builddir}/coverage" />
         </exec>
     </target>
 
@@ -174,7 +173,7 @@
     <target name="build-label-non-ci" unless="continuous-integration">
         <property name="build.label" value="" />
     </target>
-    
+
 
     <target name="bundle" depends="build-label,bundle-pear-archive,bundle-zip-archive" />
 
@@ -235,5 +234,5 @@
             </fileset>
         </zip>
     </target>
-    
+
 </project>
