@@ -402,8 +402,6 @@ abstract class phpucAbstractTest extends PHPUnit_Framework_TestCase
 
         phpucConsoleOutput::set( new phpucConsoleOutputBuffer() );
 
-        PHPUnit_Util_Filter::addDirectoryToWhitelist( PHPUC_SOURCE );
-
         if ( !is_dir( PHPUC_TEST_DIR ) )
         {
             mkdir( PHPUC_TEST_DIR );

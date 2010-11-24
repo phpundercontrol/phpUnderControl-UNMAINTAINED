@@ -1,7 +1,7 @@
 <?php
 /**
  * This file is part of phpUnderControl.
- * 
+ *
  * PHP Version 5.2.0
  *
  * Copyright (c) 2007-2010, Manuel Pichler <mapi@manuel-pichler.de>.
@@ -35,7 +35,7 @@
  * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
- * 
+ *
  * @category  QualityAssurance
  * @package   Tasks
  * @author    Manuel Pichler <mapi@manuel-pichler.de>
@@ -82,7 +82,7 @@ class phpucCheckoutTaskTest extends phpucAbstractTaskTest
         $this->cwd = getcwd();
 
         parent::setUp();
-        
+
         $this->createCCSkeleton();
     }
 
@@ -117,8 +117,8 @@ class phpucCheckoutTaskTest extends phpucAbstractTaskTest
                 PHPUC_TEST_DIR
             )
         );
-        
-        $this->doTestCheckout( 'svn' , 'PHP' );
+
+        $this->doTestCheckout( 'svn' , 'tests' );
     }
 
     /**
@@ -154,7 +154,7 @@ class phpucCheckoutTaskTest extends phpucAbstractTaskTest
                 PHPUC_TEST_DIR
             )
         );
-        
+
         $this->doTestCheckout( 'cvs' , 'PHP' );
     }
 
@@ -177,7 +177,7 @@ class phpucCheckoutTaskTest extends phpucAbstractTaskTest
                 PHPUC_TEST_DIR
             )
         );
-        
+
         $this->doTestCheckout( 'git' , 'src' );
     }
 
@@ -185,34 +185,34 @@ class phpucCheckoutTaskTest extends phpucAbstractTaskTest
      * Executes the {@link phpucCheckoutTask} and tests the generated contents.
      *
      * @param string $type The version control system.
-     * 
+     *
      * @return void
      */
     protected function doTestCheckout( $type , $file)
     {
         $directory = PHPUC_TEST_DIR . "/projects/{$this->projectName}/source";
-        
+
         $input = new phpucConsoleInput();
         $input->parse();
-        
+
         $this->assertFileNotExists( "{$directory}/{$file}" );
-        
+
         $checkout = new phpucCheckoutTask();
         $checkout->setConsoleArgs( $input->args );
         $checkout->execute();
-        
+
         $this->assertFileExists( "{$directory}/{$file}" );
-        
+
         $config = new DOMDocument();
         $config->load( PHPUC_TEST_DIR . '/config.xml' );
         $xpath  = new DOMXPath( $config );
-        
+
         $result = $xpath->query( "//{$type}bootstrapper[@localWorkingCopy='{$directory}']" );
         $this->assertEquals( 1, $result->length );
-        
+
         $result = $xpath->query( "//modificationset/{$type}[@localWorkingCopy='{$directory}']" );
         $this->assertEquals( 1, $result->length );
-        
+
         $build = new DOMDocument();
         $build->load( PHPUC_TEST_DIR . "/projects/{$this->projectName}/build.xml" );
         $xpath = new DOMXPath( $build );

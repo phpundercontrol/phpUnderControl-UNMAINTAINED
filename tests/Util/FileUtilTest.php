@@ -33,7 +33,7 @@
  * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
- * 
+ *
  * @package   Util
  * @author    Manuel Pichler <mapi@phpundercontrol.org>
  * @copyright 2007-2010 Manuel Pichler. All rights reserved.
@@ -63,7 +63,7 @@ class phpucFileUtilTest extends phpucAbstractTest
      * @var integer $os
      */
     protected $os = null;
-    
+
     /**
      * Detects the operation system.
      *
@@ -72,8 +72,8 @@ class phpucFileUtilTest extends phpucAbstractTest
     protected function setUp()
     {
         parent::setUp();
-        
-        if ( stripos( PHP_OS, 'win' ) === false )
+
+        if ( stripos( PHP_OS, 'win' ) === false || stristr( PHP_OS, 'darwin' ) )
         {
             $this->os = phpucFileUtil::OS_UNIX;
         }
@@ -82,7 +82,7 @@ class phpucFileUtilTest extends phpucAbstractTest
             $this->os = phpucFileUtil::OS_WINDOWS;
         }
     }
-    
+
     /**
      * Tests that the {@link phpucFileUtil::getOS()} method detects the correct
      * operation system.
@@ -93,9 +93,9 @@ class phpucFileUtilTest extends phpucAbstractTest
     {
         $this->assertEquals( $this->os, phpucFileUtil::getOS() );
     }
-    
+
     /**
-     * Tests that the {@link phpucFileUtil::getPaths()} method returns an array 
+     * Tests that the {@link phpucFileUtil::getPaths()} method returns an array
      * with all directories from <b>PATH</b> environment variable.
      *
      * @return void
@@ -104,18 +104,18 @@ class phpucFileUtilTest extends phpucAbstractTest
     {
         $env   = array_flip( explode( PATH_SEPARATOR, getenv( 'PATH' ) ) );
         $paths = phpucFileUtil::getPaths();
-        
+
         $this->assertType( 'array', $paths );
-        
+
         foreach ( $paths as $path )
         {
             $this->assertArrayHasKey( $path, $env );
             unset( $env[$path] );
         }
-        
+
         $this->assertEquals( 0, count( $env ) );
     }
-    
+
     /**
      * Tests the find executable method on a faked unix system.
      *
@@ -131,9 +131,9 @@ class phpucFileUtilTest extends phpucAbstractTest
         $this->initExecutableTest();
         $this->assertEquals( 'svn', phpucFileUtil::findExecutable( 'svn' ) );
     }
-    
+
     /**
-     * Tests that an exceptions is thrown if a requested executable doesn't 
+     * Tests that an exceptions is thrown if a requested executable doesn't
      * exist.
      *
      * @return void
@@ -146,12 +146,12 @@ class phpucFileUtilTest extends phpucAbstractTest
             return;
         }
         $this->initExecutableTest();
-        
+
         $this->setExpectedException( 'phpucErrorException' );
-        
-        phpucFileUtil::findExecutable( 'cvs' );        
+
+        phpucFileUtil::findExecutable( 'cvs' );
     }
-    
+
     /**
      * Tests the find executable method on a faked windows system.
      *
@@ -160,13 +160,13 @@ class phpucFileUtilTest extends phpucAbstractTest
     public function testFindExecutableWindows()
     {
         $this->initExecutableTest( phpucFileUtil::OS_WINDOWS );
-        $this->assertEquals( 
+        $this->assertEquals(
             'svn.cmd', basename( phpucFileUtil::findExecutable( 'svn' ) )
         );
     }
-    
+
     /**
-     * Tests that an exceptions is thrown if a requested executable doesn't 
+     * Tests that an exceptions is thrown if a requested executable doesn't
      * exist.
      *
      * @return void
@@ -174,12 +174,12 @@ class phpucFileUtilTest extends phpucAbstractTest
     public function testFindExecutableWindowsFail()
     {
         $this->initExecutableTest( phpucFileUtil::OS_WINDOWS );
-        
+
         $this->setExpectedException( 'phpucErrorException' );
-        
-        phpucFileUtil::findExecutable( 'cvs' );        
+
+        phpucFileUtil::findExecutable( 'cvs' );
     }
-    
+
     /**
      * Tests the recursive delete implementation works as expected.
      *
@@ -193,17 +193,17 @@ class phpucFileUtilTest extends phpucAbstractTest
                 '/artifacts/foo/67890',
             )
         );
-        
+
         $this->createTestFile( '/artifacts/foo/12345/bar.txt' );
         $this->createTestFile( '/artifacts/foo/67890/bar.txt' );
         $this->createTestFile( '/artifacts/foo/bar.txt' );
         $this->createTestFile( '/artifacts/bar.txt' );
-        
+
         phpucFileUtil::deleteDirectory( PHPUC_TEST_DIR . '/artifacts' );
-        
+
         $this->assertFileNotExists( PHPUC_TEST_DIR . '/artifacts' );
     }
-    
+
     /**
      * Tests the recursive delete implementation works also for directories with
      * linked contents.
@@ -217,25 +217,25 @@ class phpucFileUtilTest extends phpucAbstractTest
             $this->markTestSkipped( 'Missing "link" or "symlink" function.' );
             return;
         }
-        
+
         $this->createTestDirectories( array( '/logs/foo/12345' ) );
         $this->createTestFile( '/logs/foo/12345/bar.txt' );
-        
+
         $file = PHPUC_TEST_DIR . '/logs/foo/12345/bar.txt';
-        
+
         link( $file, PHPUC_TEST_DIR . '/logs/bar.txt' );
         symlink( $file, PHPUC_TEST_DIR . '/logs/foo/bar.txt' );
-        
+
         phpucFileUtil::deleteDirectory( PHPUC_TEST_DIR . '/logs' );
-        
+
         $this->assertFileNotExists( PHPUC_TEST_DIR . '/logs' );
     }
-    
+
     /**
      * Initializes the test directories and files for the executable test.
      *
      * @param integer $os The operation system.
-     * 
+     *
      * @return void
      */
     protected function initExecutableTest( $os = phpucFileUtil::OS_UNIX )

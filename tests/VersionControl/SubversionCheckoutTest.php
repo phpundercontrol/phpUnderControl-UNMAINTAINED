@@ -107,8 +107,8 @@ class phpucSubversionCheckoutTest extends phpucAbstractCheckoutTest
         $this->markTestSkippedWhenRemoteHostNotAvailable( 'xplib.de:80' );
 
         $destination = PHPUC_TEST_DIR . '/source';
-        $checkFile1  = $destination . '/pdepend.php';
-        $checkFile2  = $destination . '/PHP/Depend.php';
+        $checkFile1  = $destination . '/tests/PHP/Depend/AbstractTest.php';
+        $checkFile2  = $destination . '/tests/PHP/Depend/DependTest.php';
 
         $this->assertFileNotExists( $checkFile1 );
         $this->assertFileNotExists( $checkFile2 );
@@ -205,14 +205,14 @@ class phpucSubversionCheckoutTest extends phpucAbstractCheckoutTest
         $this->markTestSkippedWhenRemoteHostNotAvailable( 'xplib.de:80' );
 
         $destination = PHPUC_TEST_DIR . '/source';
-        $checkFile1  = $destination . '/pdepend.php';
-        $checkFile2  = $destination . '/PHP/Depend.php';
+        $checkFile1  = $destination . '/pom.xml';
+        $checkFile2  = $destination . '/php/pom.xml';
 
         $this->assertFileNotExists( $checkFile1 );
         $this->assertFileNotExists( $checkFile2 );
 
         $checkout       = new phpucSubversionCheckout();
-        $checkout->url  = 'http://svn.xplib.de/PHP_Depend/trunk';
+        $checkout->url  = 'http://svn.codehaus.org/sonar-plugins/trunk/php/';
         $checkout->checkout();
 
         $this->assertFileExists( $checkFile1 );
