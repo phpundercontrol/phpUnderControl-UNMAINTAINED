@@ -2,8 +2,8 @@ phpUnderControl
 ~~~~~~~~~~~~~~~
 
 :Author: 		Manuel Pichler
-:Date:			Wed, 21 Jul 2010 12:56:47 +0200
-:Revision: 		8
+:Date:			Sun, 08 Aug 2010 21:24:07 +0200
+:Revision: 		1
 :Copyright:		CC by-nc-sa
 
 ================================================

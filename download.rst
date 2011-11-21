@@ -28,10 +28,22 @@ Otherwise you can check out one of the tagged versions from github. ::
 
     git clone git://github.com/phpundercontrol/phpUnderControl.git
     cd phpUnderContol
-    git checkout 0.6.0
+    git checkout 1.0.0
 
 Releases
 --------
+
+phpUnderControl 1.0.0
+`````````````````````
+
+* `phpUnderControl-1.0.0.zip`__
+* git checkout `1.0.0`__
+* pear install `phpuc/phpUnderControl-1.0.0`__
+
+__ http://github.com/phpundercontrol/phpUnderControl/zipball/1.0.0
+__ http://github.com/phpundercontrol/phpUnderControl/tree/1.0.0
+__ http://pear.phpundercontrol.org/get/phpUnderControl-1.0.0.tgz
+
 
 phpUnderControl 0.6.1beta1
 ``````````````````````````
