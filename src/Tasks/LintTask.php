@@ -4,7 +4,7 @@
  *
  * PHP Version 5
  *
- * Copyright (c) 2007-2010, Manuel Pichler <mapi@manuel-pichler.de>.
+ * Copyright (c) 2007-2011, Manuel Pichler <mapi@manuel-pichler.de>.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -39,7 +39,7 @@
  * @category  QualityAssurance
  * @package   Tasks
  * @author    Sebastian Marek <proofek@gmail.com>
- * @copyright 2007-2010 Manuel Pichler. All rights reserved.
+ * @copyright 2007-2011 Manuel Pichler. All rights reserved.
  * @license   http://www.opensource.org/licenses/bsd-license.php  BSD License
  * @version   SVN: $Id$
  * @link      http://www.phpundercontrol.org/
@@ -51,7 +51,7 @@
  * @category  QualityAssurance
  * @package   Tasks
  * @author    Sebastian Marek <proofek@gmail.com>
- * @copyright 2007-2010 Manuel Pichler. All rights reserved.
+ * @copyright 2007-2011 Manuel Pichler. All rights reserved.
  * @license   http://www.opensource.org/licenses/bsd-license.php  BSD License
  * @version   Release: @package_version@
  * @link      http://www.phpundercontrol.org/
