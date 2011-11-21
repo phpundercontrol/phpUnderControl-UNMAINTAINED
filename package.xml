@@ -14,13 +14,19 @@ example project.
     <email>mapi@phpundercontrol.org</email>
     <active>yes</active>
   </lead>
+  <lead>
+    <name>Sebastian Marek</name>
+    <user>proofek</user>
+    <email>proofek@php-under-control.org</email>
+    <active>yes</active>
+  </lead>
   <date>2011-11-21</date>
   <version>
     <release>1.0.0</release>
     <api>1.0.0</api>
   </version>
   <stability>
-    <release>beta</release>
+    <release>stable</release>
     <api>stable</api>
   </stability>
   <license uri="http://www.opensource.org/licenses/bsd-license.php">BSD License</license>
@@ -1494,6 +1500,9 @@ example project.
         </file>
       </dir>
       <dir name="data/template">
+        <file name="cruisecontrol.sh" role="data">
+          <tasks:replace from="@package_version@" to="version" type="package-info"/>
+        </file>
         <file name="project.xml" role="data">
           <tasks:replace from="@package_version@" to="version" type="package-info"/>
         </file>
