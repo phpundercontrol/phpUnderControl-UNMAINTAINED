@@ -1,8 +1,7 @@
-<?xml version="1.0"?>
-<!--********************************************************************************
+<%--********************************************************************************
  * CruiseControl, a Continuous Integration Toolkit
  * Copyright (c) 2001, ThoughtWorks, Inc.
- * 651 W Washington Ave. Suite 500
+ * 200 E. Randolph, 25th Floor
  * Chicago, IL 60601 USA
  * All rights reserved.
  *
@@ -34,34 +33,8 @@
  * LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
  * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
- ********************************************************************************-->
-<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
+ ********************************************************************************--%>
+<%@ taglib uri="/WEB-INF/cruisecontrol-jsp11.tld" prefix="cruisecontrol"%>
 
-    <xsl:import href="maven.xsl"/>
-    <xsl:import href="phpmd.xsl"/>
-    <xsl:import href="errors.xsl"/>
-    <xsl:import href="phpdoc.xsl"/>
-    <xsl:import href="phpcs.xsl"/>
-    <xsl:import href="phpunit.xsl"/>
-    <xsl:import href="fittests.xsl"/>
-    <xsl:import href="modifications.xsl"/>
-    <xsl:import href="cvstagdiff.xsl"/>
-    <xsl:import href="distributables.xsl"/>
-    <xsl:import href="simpletest.xsl"/>
+<cruisecontrol:xsl xslFile="/xsl/simpletest-details.xsl"/>
 
-    <xsl:output method="html" />
-
-    <xsl:variable name="cruisecontrol.list" select="."/>
-
-    <xsl:template match="/">
-        <p><xsl:apply-templates select="$cruisecontrol.list" mode="errors"/></p>
-        <p><xsl:apply-templates select="$cruisecontrol.list" mode="unittests"/></p>
-        <p><xsl:apply-templates select="$cruisecontrol.list" mode="maven"/></p>
-        <p><xsl:apply-templates select="$cruisecontrol.list" mode="modifications"/></p>
-        <p><xsl:apply-templates select="$cruisecontrol.list" mode="cvstagdiff"/></p>
-        <p><xsl:apply-templates select="$cruisecontrol.list" mode="distributables"/></p>
-        <p><xsl:apply-templates select="$cruisecontrol.list" mode="pmd"/></p>
-        <p><xsl:apply-templates select="$cruisecontrol.list" mode="checkstyle" /></p>
-        <p><xsl:apply-templates select="$cruisecontrol.list" mode="phpdoc" /></p>
-    </xsl:template>
-</xsl:stylesheet>
