@@ -16,7 +16,7 @@ Event.observe( window, "load", function() {
         if(d != null) {
             el.setStyle( {
                 'height':  d.getAttribute('height') + 'px',
-                'width':  d.getAttribute('width') + 'px',
+                'width':  d.getAttribute('width') + 'px'
             } );
         }
         delete d;
@@ -26,7 +26,7 @@ Event.observe( window, "load", function() {
         var d = el.contentWindow.document.body.scrollHeight;
         if(d != null && d > 20) {
             el.setStyle( {
-                'height':  (d + 50) + 'px',
+                'height':  (d + 50) + 'px'
             } );
         }
         else {
