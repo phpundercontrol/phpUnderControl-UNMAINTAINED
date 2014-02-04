@@ -153,7 +153,9 @@
             </cruisecontrol:tab>
 
             <%-- phpUnderControl 11 --%>
-
+            <cruisecontrol:tab name="simpletest" label="Simpletest">
+              <%@ include file="simpletest.jsp" %>
+            </cruisecontrol:tab>
           </td>
         </tr>
       </cruisecontrol:tabsheet>
